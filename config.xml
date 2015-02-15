@@ -2,10 +2,10 @@
 <widget id="com.tradinglog" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>TradingLog</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        A mobile app designed to keep track of your trading activities and ease money management by calculating your stats.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="info@tradinglog.com" href="http://tradinglog.com">
+        TradingLog Team
     </author>
 
     <gap:platform name="ios" />
