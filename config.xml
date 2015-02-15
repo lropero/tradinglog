@@ -34,6 +34,13 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
+
+    <platform name="ios">
+        <icon src="icon.png" width="144" height="144" />
+        <splash src="splash.png" width="640" height="1136"/>
+    </platform>
+    <preference name="SplashScreenDelay" value="1000" />
+
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
