@@ -6,11 +6,12 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 	},
 	onDeviceReady: function() {
-		setTimeout(function() {
-			console.log(navigator);
-			navigator.splashscreen.hide();
-			// this.start();
-		}, 5000);
+		navigator.splashscreen.hide();
+		console.log('pepe');
+		// setTimeout(function() {
+		// 	navigator.splashscreen.hide();
+		// 	// this.start();
+		// }, 5000);
 	}
 	// start: function() {
 	// 	var width = $('.splash').width();
