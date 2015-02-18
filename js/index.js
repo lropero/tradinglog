@@ -6,7 +6,7 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 	},
 	onDeviceReady: function() {
-		navigator.splashscreen.hide();
+		// navigator.splashscreen.hide();
 		console.log('pepe');
 		// setTimeout(function() {
 		// 	navigator.splashscreen.hide();
