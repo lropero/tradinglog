@@ -8,12 +8,12 @@ var app = {
 	onDeviceReady: function() {
 		setTimeout(function() {
 			navigator.splashscreen.hide();
-			this.start();
+			// this.start();
 		}, 5000);
-	},
-	start: function() {
-		var width = $('.splash').width();
-		var height = $('.splash').height();
-		app.html(width + 'x' + height);
 	}
+	// start: function() {
+	// 	var width = $('.splash').width();
+	// 	var height = $('.splash').height();
+	// 	app.html(width + 'x' + height);
+	// }
 };
