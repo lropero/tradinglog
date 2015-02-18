@@ -32,6 +32,10 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
 
+    <preference name="disallow-overscroll" value="true" />
+    <preference name="splash-screen" value="screen" />
+    <preference name="splash-screen-delay" value="10000" />
+
     <gap:config-file platform="ios" parent="UISupportedInterfaceOrientations" mode="replace">
         <array>
             <string>UIInterfaceOrientationLandscapeOmg</string>
