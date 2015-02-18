@@ -6,8 +6,14 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 	},
 	onDeviceReady: function() {
+		setTimeout(function() {
+			navigator.splashscreen.hide();
+			this.start();
+		}, 5000);
+	},
+	start: function() {
 		var width = $('.splash').width();
 		var height = $('.splash').height();
-		alert(width + 'x' + height);
+		app.html(width + 'x' + height);
 	}
 };
