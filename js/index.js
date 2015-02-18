@@ -7,6 +7,7 @@ var app = {
 	},
 	onDeviceReady: function() {
 		setTimeout(function() {
+			console.log(navigator);
 			navigator.splashscreen.hide();
 			// this.start();
 		}, 5000);
