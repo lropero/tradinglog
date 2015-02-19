@@ -29,6 +29,7 @@
 		</array>
 	</gap:config-file>
 
+	<gap:plugin name="com.phonegap.plugin.statusbar" />
 	<gap:plugin name="org.apache.cordova.battery-status" />
 	<gap:plugin name="org.apache.cordova.camera" />
 	<gap:plugin name="org.apache.cordova.console" />

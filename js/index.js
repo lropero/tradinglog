@@ -6,6 +6,6 @@ var app = {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 	},
 	onDeviceReady: function() {
-		console.log('ready');
+		StatusBar.styleLightContent();
 	}
 };
