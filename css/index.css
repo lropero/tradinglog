@@ -25,11 +25,33 @@ header {
 }
 
 footer {
-	background-color: #e4e4e4;
+	background-color: #f3f3f3;
 	border-top: 1px solid #cccccc;
 	bottom: 0;
 	height: 43px;
 	left: 0;
 	position: absolute;
 	width: 100%;
+}
+
+footer bar.tab {
+	display: table;
+	width: 100%;
+}
+
+footer bar.tab a.item {
+	color: #999999;
+	display: table-cell;
+	height: 43px;
+	text-align: center;
+	width: 25%;
+	padding-top: 7px;
+}
+
+footer bar.tab a.item:active {
+	color: #4020d0;
+}
+
+footer bar.tab a.item span.icon {
+	font-size: 26px;
 }
