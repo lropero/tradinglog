@@ -7,7 +7,7 @@ var app = {
 	},
 	onDeviceReady: function() {
 		StatusBar.overlaysWebView(false);
-		StatusBar.backgroundColorByHexString('#4020d0');
+		StatusBar.backgroundColorByHexString('#ff0000');
 		StatusBar.styleLightContent();
 	}
 };

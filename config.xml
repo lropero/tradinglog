@@ -29,7 +29,6 @@
 		</array>
 	</gap:config-file>
 
-	<gap:plugin name="com.phonegap.plugin.statusbar" />
 	<gap:plugin name="org.apache.cordova.battery-status" />
 	<gap:plugin name="org.apache.cordova.camera" />
 	<gap:plugin name="org.apache.cordova.console" />
@@ -47,6 +46,7 @@
 	<gap:plugin name="org.apache.cordova.media-capture" />
 	<gap:plugin name="org.apache.cordova.network-information" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
+	<gap:plugin name="org.apache.cordova.statusbar" />
 	<gap:plugin name="org.apache.cordova.vibration" />
 
 	<icon src="img/res/ios/icon/icon-29.png" gap:platform="ios" width="29" height="29" />
