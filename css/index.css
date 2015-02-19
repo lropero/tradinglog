@@ -44,8 +44,8 @@ footer bar.tab a.item {
 	display: table-cell;
 	height: 43px;
 	text-align: center;
+	vertical-align: middle;
 	width: 25%;
-	padding-top: 7px;
 }
 
 footer bar.tab a.item:active {
