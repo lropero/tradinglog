@@ -17,7 +17,6 @@ body {
 
 header {
 	background-color: #4020d0;
-	border-bottom: 1px solid #cccccc;
 	height: 64px;
 	left: 0;
 	position: absolute;
@@ -29,7 +28,7 @@ footer {
 	background-color: #e4e4e4;
 	border-top: 1px solid #cccccc;
 	bottom: 0;
-	height: 44px;
+	height: 43px;
 	left: 0;
 	position: absolute;
 	width: 100%;
