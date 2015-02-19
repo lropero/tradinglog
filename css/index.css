@@ -14,3 +14,21 @@ body {
 	padding: 0;
 	width: 100%;
 }
+
+header {
+	background-color: #4020d0;
+	border-bottom: 1px solid #cccccc;
+	height: 128px;
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+footer {
+	background-color: #e4e4e4;
+	border-top: 1px solid #cccccc;
+	bottom: 0;
+	height: 88px;
+	left: 0;
+	position: absolute;
+}
