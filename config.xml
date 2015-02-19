@@ -16,7 +16,6 @@
 	<preference name="detect-data-types" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="fullscreen" value="true" />
-	<preference name="ios-statusbarstyle" value="black-translucent" />
 	<preference name="orientation" value="portrait" />
 	<preference name="phonegap-version" value="3.6.3" />
 	<preference name="prerendered-icon" value="true" />
