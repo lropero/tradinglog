@@ -7,5 +7,6 @@ var app = {
 	},
 	onDeviceReady: function() {
 		StatusBar.styleLightContent();
+		StatusBar.backgroundColorByHexString("#4020d0");
 	}
 };
