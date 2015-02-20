@@ -3,8 +3,7 @@ var app = {
 		var $app = $('.app');
 
 		var NavigationController = function() {
-			this.$main = $app.find('footer bar');
-			this.$headerNav = $app.find('header');
+			this.$tab = $app.find('footer bar.tab');
 			this.init();
 		};
 
@@ -13,31 +12,28 @@ var app = {
 				this.bindEvents();
 				_.extend(this, Backbone.Events);
 			},
-			removeActive: function() {
-				this.$main.find('a').removeClass('active');
-			},
 			bindEvents: function() {
 				var self = this;
-				this.$main.on('click', 'a', function() {
-					self.removeActive();
-					jQuery(this).addClass('active');
+				this.$tab.on('click', 'a', function() {
+					self.$tab.find('a').removeClass('active');
+					$(this).addClass('active');
 					app.router.navigate($(this).data('route'), {trigger: true});
 				});
 			}
 		};
 
-		var navController = new NavigationController();
-
+		var navigationController = new NavigationController();
 		Backbone.history.start();
 	}
 };
 
-function onLoad() {
-	document.addEventListener('deviceready', app.deviceReady, false);
-	new FastClick(document.body);
-}
-
 $(function() {
-	// REMOVE THIS WHEN BUILDING ON PHONEGAP
-	// app.deviceReady();
+	if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+		document.addEventListener('deviceready', app.deviceReady, false);
+		window.addEventListener('load', function() {
+			new FastClick(document.body);
+		}, false);
+	} else {
+		app.deviceReady();
+	}
 });
