@@ -15,8 +15,10 @@
 
 	window.load = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+			console.log('iphone');
 			document.addEventListener('deviceready', app.deviceReady, false);
 		} else {
+			console.log('local');
 			app.deviceReady();
 		}
 	}

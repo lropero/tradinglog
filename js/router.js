@@ -49,6 +49,7 @@
 	};
 
 	app.on('started', function() {
+		console.log('started');
 		var navigationController = new NavigationController();
 	});
 })(app);
