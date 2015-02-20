@@ -48,5 +48,7 @@
 		}
 	};
 
-	app.navigationController = new NavigationController();
+	app.on('started', function() {
+		var navigationController = new NavigationController();
+	});
 })(app);
