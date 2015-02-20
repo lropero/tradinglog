@@ -32,11 +32,12 @@ var app = {
 	}
 };
 
+function onLoad() {
+	document.addEventListener('deviceready', app.deviceReady, false);
+	new FastClick(document.body);
+}
+
 $(function() {
-	window.addEventListener('load', function() {
-		document.addEventListener('deviceready', app.deviceReady, false);
-		new FastClick(document.body);
-	}, false);
 	// REMOVE THIS WHEN BUILDING ON PHONEGAP
 	// app.deviceReady();
 });
