@@ -1,11 +1,5 @@
 var app = {
-	initialize: function() {
-		this.bindEvents();
-	},
-	bindEvents: function() {
-		document.addEventListener('deviceready', this.onDeviceReady, false);
-	},
-	onDeviceReady: function() {
+	deviceReady: function() {
 		var $app = $('.app');
 
 		var NavigationController = function() {
@@ -38,8 +32,9 @@ var app = {
 	}
 };
 
-// REMOVE THIS WHEN BUILDING ON PHONEGAP
 $(function() {
+	document.addEventListener('deviceready', app.deviceReady, false);
 	FastClick.attach(document.body);
-	app.onDeviceReady();
+	// REMOVE THIS WHEN BUILDING ON PHONEGAP
+	// app.deviceReady();
 });
