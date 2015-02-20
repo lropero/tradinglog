@@ -33,8 +33,10 @@ var app = {
 };
 
 $(function() {
-	document.addEventListener('deviceready', app.deviceReady, false);
-	FastClick.attach(document.body);
+	window.addEventListener('load', function() {
+		document.addEventListener('deviceready', app.deviceReady, false);
+		new FastClick(document.body);
+	}, false);
 	// REMOVE THIS WHEN BUILDING ON PHONEGAP
 	// app.deviceReady();
 });
