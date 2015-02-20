@@ -40,5 +40,6 @@ var app = {
 
 // REMOVE THIS WHEN BUILDING ON PHONEGAP
 $(function() {
+	FastClick.attach(document.body);
 	app.onDeviceReady();
 });
