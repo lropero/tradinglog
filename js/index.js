@@ -15,10 +15,10 @@
 
 	window.init = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-			var script = document.createElement('script');
-			script.setAttribute('type', 'text/javascript');
-			script.setAttribute('src', 'phonegap.js');
-			document.getElementsByTagName('head')[0].appendChild(script);
+			// var script = document.createElement('script');
+			// script.setAttribute('type', 'text/javascript');
+			// script.setAttribute('src', 'phonegap.js');
+			// document.getElementsByTagName('head')[0].appendChild(script);
 			document.addEventListener('deviceready', app.deviceReady, false);
 		} else {
 			app.deviceReady();
