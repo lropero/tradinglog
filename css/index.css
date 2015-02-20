@@ -64,9 +64,12 @@ footer bar.tab a.item {
 	width: 25%;
 }
 
-footer bar.tab a.item.active,
-footer bar.tab a.item:active {
+footer bar.tab a.item.active {
 	color: #4020d0;
+}
+
+footer bar.tab a.item:active {
+	color: #9f8fe7;
 }
 
 footer bar.tab a.item span.icon {
