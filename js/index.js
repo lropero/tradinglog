@@ -37,3 +37,8 @@ var app = {
 		Backbone.history.start();
 	}
 };
+
+// REMOVE THIS WHEN BUILDING ON PHONEGAP
+$(function() {
+	app.onDeviceReady();
+});
