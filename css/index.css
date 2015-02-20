@@ -81,7 +81,7 @@ footer bar.tab a.item.active {
 	color: #4020d0;
 }
 
-footer bar.tab a.item:active {
+footer bar.tab a.item:not(.active):active {
 	color: #9f8fe7;
 }
 

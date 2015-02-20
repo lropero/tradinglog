@@ -25,4 +25,28 @@
 	});
 
 	app.router = new Router();
+
+	var $app = $('.app');
+
+	var NavigationController = function() {
+		this.$tab = $app.find('footer bar.tab');
+		this.init();
+	};
+
+	NavigationController.prototype = {
+		init: function() {
+			this.bindEvents();
+			_.extend(this, Backbone.Events);
+		},
+		bindEvents: function() {
+			var self = this;
+			this.$tab.on('click', 'a:not(.active)', function() {
+				self.$tab.find('a.active').removeClass('active');
+				$(this).addClass('active');
+				app.router.navigate($(this).data('route'), {trigger: true});
+			});
+		}
+	};
+
+	app.navigationController = new NavigationController();
 })(app);
