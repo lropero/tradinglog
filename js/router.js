@@ -15,10 +15,10 @@
 			// console.log('stats');
 		},
 		friends: function() {
-			this.view = new app.Views.friendsView({
-				el: '#content'
-			});
-			this.view.render();
+			// this.view = new app.Views.friendsView({
+			// 	el: '#content'
+			// });
+			// this.view.render();
 		},
 		settings: function() {
 			// console.log('settings');
