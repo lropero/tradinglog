@@ -30,7 +30,7 @@
 		},
 		settings: function() {
 			this.view = new app.Views.settingsView({
-				el: '#content'
+				el: '#settings'
 			});
 			this.view.render();
 		}
@@ -38,10 +38,8 @@
 
 	app.router = new Router();
 
-	var $app = $('.app');
-
 	var NavigationController = function() {
-		this.$tab = $app.find('footer bar.tab');
+		this.$tab = $('.app').find('footer bar.tab');
 		this.initialize();
 	};
 
@@ -55,10 +53,26 @@
 			this.$tab.on('click', 'a:not(.active)', function() {
 				self.$tab.find('a.active').removeClass('active');
 				$(this).addClass('active');
-				app.router.navigate($(this).data('route'), {trigger: true});
+				var route = $(this).data('route');
+
+				// Trigger/untrigger settings pane
+				var $settings = $('.app').find('div#settings');
+				if(route === 'settings') {
+					var animated = 'animated bounceInDown';
+					$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
+						$settings.removeClass(animated);
+					});
+				} else if($settings.hasClass('show')) {
+					var animated = 'animated bounceOutUp';
+					$settings.addClass(animated).one('webkitAnimationEnd', function() {
+						$settings.removeClass('show ' + animated);
+					});
+				}
+
+				app.router.navigate(route, {trigger: true});
 			});
 		}
 	};
 
-	var navigationController = new NavigationController();
+	window.navigationController = new NavigationController();
 })();

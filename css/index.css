@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
@@ -17,21 +19,15 @@ body {
 
 header {
 	background-color: #4020d0;
+	position: fixed;
 	width: 100%;
+	z-index: 10;
 }
 
 header bar.navigation {
 	display: block;
 	height: 64px;
 	width: 100%;
-}
-
-@-webkit-keyframes logo {
-	from {
-		-webkit-transform: scale(1);
-	} to {
-		-webkit-transform: scale(1.12);
-	}
 }
 
 header bar.navigation div.logo {
@@ -53,13 +49,33 @@ header control.segmented {
 	width: 100%;
 }
 
+div#settings {
+	-webkit-animation-duration: 0.8s;
+	background-color: #4020d0;
+	bottom: 44px;
+	display: none;
+	padding-top: 64px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 5;
+}
+
+section#content {
+	bottom: 44px;
+	position: absolute;
+	top: 64px;
+	width: 100%;
+}
+
 footer {
 	background-color: #f3f3f3;
 	border-top: 1px solid #cccccc;
 	bottom: 0;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	width: 100%;
+	z-index: 10;
 }
 
 footer bar.tab {
@@ -87,4 +103,16 @@ footer bar.tab a.item:not(.active):active {
 
 footer bar.tab a.item span.icon {
 	font-size: 26px;
+}
+
+.show {
+	display: block !important;
+}
+
+@-webkit-keyframes logo {
+	from {
+		-webkit-transform: scale(1);
+	} to {
+		-webkit-transform: scale(1.12);
+	}
 }
