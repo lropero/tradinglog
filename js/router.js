@@ -51,6 +51,6 @@
 
 	app.on('started', function() {
 		var navigationController = new NavigationController();
-		app.router.navigate('friends', {trigger: true});
+		// app.router.navigate('friends', {trigger: true});
 	});
 })();
