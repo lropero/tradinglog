@@ -11,7 +11,6 @@
 		},
 		deviceReady: function() {
 			Backbone.history.start();
-			$('#content').html('ready');
 		}
 	};
 
