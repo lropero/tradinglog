@@ -31,11 +31,11 @@
 
 	var NavigationController = function() {
 		this.$tab = $app.find('footer bar.tab');
-		this.init();
+		this.initialize();
 	};
 
 	NavigationController.prototype = {
-		init: function() {
+		initialize: function() {
 			this.bindEvents();
 			_.extend(this, Backbone.Events);
 		},
@@ -49,10 +49,5 @@
 		}
 	};
 
-	app.on('started', function() {
-		$('#content').html('2.1');
-		var navigationController = new NavigationController();
-		$('#content').html('2.2');
-		// app.router.navigate('friends', {trigger: true});
-	});
+	var navigationController = new NavigationController();
 })();
