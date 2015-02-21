@@ -9,10 +9,10 @@
 			'settings': 'settings'
 		},
 		main: function() {
-			console.log('main');
+			// console.log('main');
 		},
 		stats: function() {
-			console.log('stats');
+			// console.log('stats');
 		},
 		friends: function() {
 			this.view = new app.Views.friendsView({
@@ -21,7 +21,7 @@
 			this.view.render();
 		},
 		settings: function() {
-			console.log('settings');
+			// console.log('settings');
 		}
 	});
 
