@@ -3,6 +3,8 @@
 
 	var Router = Backbone.Router.extend({
 		routes: {
+			''        : 'main',
+			'/'       : 'main',
 			'main'    : 'main',
 			'stats'   : 'stats',
 			'friends' : 'friends',
@@ -15,7 +17,10 @@
 			this.view.render();
 		},
 		stats: function() {
-			// console.log('stats');
+			this.view = new app.Views.statsView({
+				el: '#content'
+			});
+			this.view.render();
 		},
 		friends: function() {
 			this.view = new app.Views.friendsView({
@@ -24,7 +29,10 @@
 			this.view.render();
 		},
 		settings: function() {
-			// console.log('settings');
+			this.view = new app.Views.settingsView({
+				el: '#content'
+			});
+			this.view.render();
 		}
 	});
 

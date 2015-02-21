@@ -11,7 +11,6 @@
 		},
 		deviceReady: function() {
 			Backbone.history.start();
-			this.router.navigate('main', {trigger: true});
 		}
 	};
 
