@@ -48,8 +48,10 @@ div#settings {
 	background-color: #4020d0;
 	bottom: 44px;
 	display: none;
+	line-height: 460px;
 	padding-top: 64px;
 	position: absolute;
+	text-align: center;
 	top: 0;
 	width: 100%;
 	z-index: 5;
@@ -57,7 +59,9 @@ div#settings {
 
 section#content {
 	bottom: 44px;
+	line-height: 460px;
 	position: absolute;
+	text-align: center;
 	top: 64px;
 	width: 100%;
 }
