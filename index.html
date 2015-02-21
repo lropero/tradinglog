@@ -44,16 +44,15 @@
 		<!-- PhoneGap -->
 		<script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript">
-			app.init();
-			// if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-			// 	var script = document.createElement('script');
-			// 	script.setAttribute('type', 'text/javascript');
-			// 	script.setAttribute('src', 'phonegap.js');
-			// 	document.getElementsByTagName('head')[0].appendChild(script);
-			// 	app.init();
-			// } else {
-			// 	app.deviceReady();
-			// }
+			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+				// var script = document.createElement('script');
+				// script.setAttribute('type', 'text/javascript');
+				// script.setAttribute('src', 'phonegap.js');
+				// document.getElementsByTagName('head')[0].appendChild(script);
+				app.initialize();
+			} else {
+				app.deviceReady();
+			}
 		</script>
 	</body>
 </html>

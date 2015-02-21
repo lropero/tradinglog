@@ -1,20 +1,37 @@
-(function() {
-	'use strict';
+var app = {
+	Views: {},
+	initialize: function() {
+		this.bindEvents();
+	},
+	bindEvents: function() {
+		document.addEventListener('deviceready', this.deviceReady, false);
+	},
+	deviceReady: function() {
+		FastClick.attach(document.body);
+		Backbone.history.start();
+		this.trigger('started');
+	}
+};
 
-	window.app = {
-		Views: {},
-		init: function() {
-			this.bindEvents();
-		},
-		bindEvents: function() {
-			document.addEventListener('deviceready', this.deviceReady, false);
-		},
-		deviceReady: function() {
-			FastClick.attach(document.body);
-			Backbone.history.start();
-			this.trigger('started');
-		}
-	};
+_.extend(app, Backbone.Events);
 
-	_.extend(app, Backbone.Events);
-})();
+// (function() {
+// 	'use strict';
+
+// 	window.app = {
+// 		Views: {},
+// 		init: function() {
+// 			this.bindEvents();
+// 		},
+// 		bindEvents: function() {
+// 			document.addEventListener('deviceready', this.deviceReady, false);
+// 		},
+// 		deviceReady: function() {
+// 			FastClick.attach(document.body);
+// 			Backbone.history.start();
+// 			this.trigger('started');
+// 		}
+// 	};
+
+// 	_.extend(app, Backbone.Events);
+// })();
