@@ -12,7 +12,7 @@
 	// _.extend(app, Backbone.Events);
 
 	window.say = function() {
-		alert('jeje');
+		document.getElementById('content').innerHTML = 'jeje';
 	}
 
 	window.init = function() {
@@ -20,7 +20,7 @@
 			FastClick.attach(document.body);
 			document.addEventListener('deviceready', say, false);
 		} else {
-			say();
+			// say();
 		}
 	}
 })();
