@@ -18,6 +18,7 @@
 	<preference name="phonegap-version" value="3.6.3" />
 	<preference name="prerendered-icon" value="true" />
 	<preference name="target-device" value="universal" />
+	<preference name="webviewbounce" value="false" />
 
 	<gap:config-file platform="ios" parent="UISupportedInterfaceOrientations" mode="replace">
 		<array>
@@ -26,6 +27,7 @@
 	</gap:config-file>
 
 	<gap:plugin name="org.apache.cordova.console" />
+	<gap:plugin name="org.apache.cordova.splashscreen" />
 	<gap:plugin name="org.apache.cordova.statusbar" />
 
 	<icon src="img/res/ios/icon/icon-29.png" gap:platform="ios" width="29" height="29" />
