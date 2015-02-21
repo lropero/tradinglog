@@ -10,7 +10,9 @@
 			document.addEventListener('deviceready', this.deviceReady, false);
 		},
 		deviceReady: function() {
+			$('#content').html('1');
 			this.trigger('started');
+			$('#content').html('2');
 			Backbone.history.start();
 			$('#content').html('ready');
 		}
