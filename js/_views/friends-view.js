@@ -3,10 +3,14 @@
 
 	app.Views.friendsView = Backbone.View.extend({
 		initialize: function() {
-			this.render();
+			var self = this;
+			$.get('js/_templates/friends-template.html', function(template) {
+				self.template = _.template($(template).html());
+				self.render();
+			});
 		},
 		render: function() {
-			this.$el.html('friends');
+			this.$el.html(this.template());
 			return this;
 		}
 	});

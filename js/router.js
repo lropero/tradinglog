@@ -14,25 +14,21 @@
 			this.view = new app.Views.mainView({
 				el: '#content'
 			});
-			this.view.render();
 		},
 		stats: function() {
 			this.view = new app.Views.statsView({
 				el: '#content'
 			});
-			this.view.render();
 		},
 		friends: function() {
 			this.view = new app.Views.friendsView({
 				el: '#content'
 			});
-			this.view.render();
 		},
 		settings: function() {
 			this.view = new app.Views.settingsView({
 				el: '#settings'
 			});
-			this.view.render();
 		}
 	});
 
