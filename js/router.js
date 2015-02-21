@@ -47,6 +47,9 @@
 		bindEvents: function() {
 			var self = this;
 			this.$tab.on('click', 'a:not(.active)', function() {
+				if(self.running) {
+					return;
+				}
 				self.$tab.find('a.active').removeClass('active');
 				$(this).addClass('active');
 				var route = $(this).data('route');
@@ -54,20 +57,25 @@
 				// Trigger/untrigger settings pane
 				var $settings = $('.app').find('div#settings');
 				if(route === 'settings') {
+					self.running = true;
 					var animated = 'animated bounceInDown';
 					$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
 						$settings.removeClass(animated);
+						self.running = false;
 					});
 				} else if($settings.hasClass('show')) {
+					self.running = true;
 					var animated = 'animated bounceOutUp';
 					$settings.addClass(animated).one('webkitAnimationEnd', function() {
 						$settings.removeClass('show ' + animated);
+						self.running = false;
 					});
 				}
 
 				app.router.navigate(route, {trigger: true});
 			});
-		}
+		},
+		running: false
 	};
 
 	window.navigationController = new NavigationController();
