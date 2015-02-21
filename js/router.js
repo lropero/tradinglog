@@ -9,7 +9,10 @@
 			'settings': 'settings'
 		},
 		main: function() {
-			// console.log('main');
+			this.view = new app.Views.mainView({
+				el: '#content'
+			});
+			this.view.render();
 		},
 		stats: function() {
 			// console.log('stats');
