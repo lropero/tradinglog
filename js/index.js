@@ -11,9 +11,9 @@
 		},
 		deviceReady: function() {
 			$('#content').html('1');
-			this.trigger('started');
-			$('#content').html('2');
 			Backbone.history.start();
+			$('#content').html('2');
+			this.trigger('started');
 			$('#content').html('ready');
 		}
 	};

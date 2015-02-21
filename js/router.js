@@ -50,7 +50,9 @@
 	};
 
 	app.on('started', function() {
+		$('#content').html('2.1');
 		var navigationController = new NavigationController();
+		$('#content').html('2.2');
 		// app.router.navigate('friends', {trigger: true});
 	});
 })();
