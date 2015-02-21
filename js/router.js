@@ -3,8 +3,6 @@
 
 	var Router = Backbone.Router.extend({
 		routes: {
-			''        : 'main',
-			'/'       : 'main',
 			'main'    : 'main',
 			'stats'   : 'stats',
 			'friends' : 'friends',

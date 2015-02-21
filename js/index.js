@@ -8,6 +8,7 @@
 			}, false);
 			Backbone.history.start();
 			this.trigger('started');
+			this.router.navigate('main', {trigger: true});
 		}
 	};
 
