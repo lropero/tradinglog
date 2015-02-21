@@ -43,12 +43,6 @@ header bar.navigation div.logo {
 	top: 28px;
 }
 
-header control.segmented {
-	display: none;
-	height: 42px; /* FIX */
-	width: 100%;
-}
-
 div#settings {
 	-webkit-animation-duration: 0.8s;
 	background-color: #4020d0;
