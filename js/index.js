@@ -15,14 +15,11 @@
 	_.extend(app, Backbone.Events);
 
 	window.init = function() {
-		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-			var script = document.createElement('script');
-			script.setAttribute('type', 'text/javascript');
-			script.setAttribute('src', 'phonegap.js');
-			document.getElementsByTagName('head')[0].appendChild(script);
-			document.addEventListener('deviceready', app.deviceReady, false);
-		} else {
-			app.deviceReady();
-		}
+		document.addEventListener('deviceready', app.deviceReady, false);
+		// if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+		// 	document.addEventListener('deviceready', app.deviceReady, false);
+		// } else {
+		// 	app.deviceReady();
+		// }
 	}
 })();
