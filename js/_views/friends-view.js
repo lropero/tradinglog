@@ -5,7 +5,7 @@
 		initialize: function() {
 			var self = this;
 			$.get('js/_templates/friends-template.html', function(template) {
-				self.template = _.template($(template).html());
+				self.template = _.template($(template).html().trim());
 				self.render();
 			});
 		},
