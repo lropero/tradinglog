@@ -14,7 +14,7 @@
 	window.init = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
 			FastClick.attach(document.body);
-			document.addEventListener('deviceready', app.deviceReady, false);
+			window.addEventListener('deviceready', app.deviceReady, false);
 		} else {
 			app.deviceReady();
 		}
