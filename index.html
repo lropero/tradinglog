@@ -17,6 +17,7 @@
 				</bar>
 				<control class="segmented"></control>
 			</header>
+			<content id="content"></content>
 			<footer>
 				<bar class="tab">
 					<a class="item active" data-route="main"><span class="icon ion-home"></span></a>
@@ -26,12 +27,18 @@
 				</bar>
 			</footer>
 		</div>
-		<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+
+		<!-- Dependencies -->
 		<script type="text/javascript" src="js/vendor/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="js/vendor/underscore-min.js"></script>
 		<script type="text/javascript" src="js/vendor/backbone-min.js"></script>
 		<script type="text/javascript" src="js/vendor/fastclick.js"></script>
+
+		<!-- Core files -->
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/router.js"></script>
+
+		<!-- Views -->
+		<script type="text/javascript" src="js/_views/friends-view.js"></script>
 	</body>
 </html>

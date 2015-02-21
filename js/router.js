@@ -1,4 +1,4 @@
-(function(app) {
+(function() {
 	'use strict';
 
 	var Router = Backbone.Router.extend({
@@ -15,7 +15,10 @@
 			console.log('stats');
 		},
 		friends: function() {
-			console.log('friends');
+			this.view = new app.Views.friendsView({
+				el: '#content'
+			});
+			this.view.render();
 		},
 		settings: function() {
 			console.log('settings');
@@ -48,5 +51,6 @@
 
 	app.on('started', function() {
 		var navigationController = new NavigationController();
+		app.router.navigate('friends', {trigger: true});
 	});
-})(app);
+})();
