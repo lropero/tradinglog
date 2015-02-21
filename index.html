@@ -17,7 +17,7 @@
 				</bar>
 				<control class="segmented"></control>
 			</header>
-			<content id="content"></content>
+			<content id="content">not ready</content>
 			<footer>
 				<bar class="tab">
 					<a class="item active" data-route="main"><span class="icon ion-home"></span></a>
@@ -44,16 +44,15 @@
 		<!-- PhoneGap -->
 		<script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript">
-			app.initialize();
-			// if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-			// 	// var script = document.createElement('script');
-			// 	// script.setAttribute('type', 'text/javascript');
-			// 	// script.setAttribute('src', 'phonegap.js');
-			// 	// document.getElementsByTagName('head')[0].appendChild(script);
-			// 	app.initialize();
-			// } else {
-			// 	app.deviceReady();
-			// }
+			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+				// var script = document.createElement('script');
+				// script.setAttribute('type', 'text/javascript');
+				// script.setAttribute('src', 'phonegap.js');
+				// document.getElementsByTagName('head')[0].appendChild(script);
+				app.initialize();
+			} else {
+				app.deviceReady();
+			}
 		</script>
 	</body>
 </html>

@@ -7,9 +7,10 @@ var app = {
 		document.addEventListener('deviceready', this.deviceReady, false);
 	},
 	deviceReady: function() {
-		// FastClick.attach(document.body);
-		Backbone.history.start();
-		this.trigger('started');
+		FastClick.attach(document.body);
+		$('#content').html('ready');
+		// Backbone.history.start();
+		// this.trigger('started');
 	}
 };
 
