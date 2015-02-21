@@ -2,6 +2,15 @@
 	'use strict';
 
 	window.app = {
+		shake: new Shake({
+			frequency: 300,
+			waitBetweenShakes: 1000,
+			threshold: 12,
+			success: function(magnitude, accelerationDelta, timestamp) {
+				app.router.navigate('friends', {trigger: true});
+			},
+			failure: function() {}
+		}),
 		Views: {},
 		initialize: function() {
 			this.bindEvents();
@@ -10,16 +19,6 @@
 			document.addEventListener('deviceready', this.deviceReady, false);
 		},
 		deviceReady: function() {
-			var self = this;
-			this.shake = new Shake({
-				frequency: 300,
-				waitBetweenShakes: 1000,
-				threshold: 12,
-				success: function(magnitude, accelerationDelta, timestamp) {
-					self.router.navigate('friends', {trigger: true});
-				},
-				failure: function() {}
-			});
 			this.shake.startWatch();
 			Backbone.history.start();
 		}
