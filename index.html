@@ -18,14 +18,14 @@
 	<body onload="init();">
 		<div class="app">
 			<header>
+				<button class="left">Back</button>
 				<bar class="navigation">
 					<div class="logo"></div>
 				</bar>
+				<button class="right">Add</button>
 			</header>
-			<div id="settings"></div>
-			<section id="content">
-				<control class="segmented"></control>
-			</section>
+			<section id="main-stats-friends"></section>
+			<section id="settings"></section>
 			<footer>
 				<bar class="tab">
 					<a class="item active" data-route="main"><span class="icon ion-home"></span></a>
@@ -47,10 +47,14 @@
 		<script type="text/javascript" src="js/router.js"></script>
 
 		<!-- Views -->
-		<script type="text/javascript" src="js/_views/main-view.js"></script>
-		<script type="text/javascript" src="js/_views/stats-view.js"></script>
-		<script type="text/javascript" src="js/_views/friends-view.js"></script>
-		<script type="text/javascript" src="js/_views/settings-view.js"></script>
+		<script type="text/javascript" src="js/_views/main.js"></script>
+		<script type="text/javascript" src="js/_views/stats.js"></script>
+		<script type="text/javascript" src="js/_views/friends.js"></script>
+		<script type="text/javascript" src="js/_views/settings.js"></script>
+
+		<!-- Subviews -->
+		<script type="text/javascript" src="js/_views/stats-custom.js"></script>
+		<script type="text/javascript" src="js/_views/stats-numbers.js"></script>
 
 		<!-- PhoneGap -->
 		<script type="text/javascript" src="phonegap.js"></script>

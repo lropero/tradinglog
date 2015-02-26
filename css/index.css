@@ -17,53 +17,40 @@ body {
 	width: 100%;
 }
 
-header {
-	background-color: #4020d0;
-	position: fixed;
-	width: 100%;
-	z-index: 10;
-}
-
-header bar.navigation {
-	display: block;
-	height: 64px;
+control.segmented {
+	border-collapse: collapse;
+	border: none;
+	display: table;
 	width: 100%;
 }
 
-header bar.navigation div.logo {
-	-webkit-animation-direction: alternate;
-	-webkit-animation-duration: 2s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-name: logo;
-	-webkit-animation-timing-function: ease-in-out;
-	background: url('../img/logo.png') no-repeat center 0;
-	background-size: auto 100%;
-	height: 28px;
-	position: relative;
-	top: 28px;
+control.segmented ul {
+	border-bottom: 1px solid #333333;
+	border-top: 1px solid #333333;
+	display: table-row;
 }
 
-div#settings {
-	-webkit-animation-duration: 0.8s;
-	background-color: #4020d0;
-	bottom: 44px;
-	display: none;
-	line-height: 460px;
-	padding-top: 64px;
-	position: absolute;
+control.segmented ul li {
+	background-color: #9f8fe7;
+	color: #333333;
+	display: table-cell;
+	height: 30px;
+	line-height: 30px;
 	text-align: center;
-	top: 0;
-	width: 100%;
-	z-index: 5;
 }
 
-section#content {
-	bottom: 44px;
-	line-height: 460px;
-	position: absolute;
-	text-align: center;
-	top: 64px;
-	width: 100%;
+control.segmented ul li.active {
+	background-color: #333333;
+	color: #ffffff;
+}
+
+control.segmented ul li.middle {
+	border-left: 1px solid #333333;
+	border-right: 1px solid #333333;
+}
+
+control.segmented ul li:not(.active):active {
+	background-color: #4020d0;
 }
 
 footer {
@@ -91,6 +78,10 @@ footer bar.tab a.item {
 	width: 25%;
 }
 
+footer bar.tab a.item span.icon {
+	font-size: 26px;
+}
+
 footer bar.tab a.item.active {
 	color: #4020d0;
 }
@@ -99,8 +90,93 @@ footer bar.tab a.item:not(.active):active {
 	color: #9f8fe7;
 }
 
-footer bar.tab a.item span.icon {
-	font-size: 26px;
+header {
+	background-color: #4020d0;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+}
+
+header bar.navigation {
+	display: block;
+	height: 64px;
+	width: 100%;
+}
+
+header bar.navigation div.logo {
+	-webkit-animation-direction: alternate;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-name: logo;
+	-webkit-animation-timing-function: ease-in-out;
+	background: url('../img/logo.png') no-repeat center 0;
+	background-size: auto 100%;
+	height: 28px;
+	position: relative;
+	top: 28px;
+}
+
+header button {
+	background: none;
+	border: 0;
+	color: #ffffff;
+	height: 28px;
+	outline: 0;
+	padding: 0;
+	z-index: 20;
+}
+
+header button.left {
+	left: 3px;
+	padding-left: 24px;
+	position: absolute;
+	top: 28px;
+}
+
+header button.left:active:before {
+	border-color: #ff0000;
+}
+
+header button.left:before {
+	-webkit-transform: rotate(45deg);
+	border-bottom: 3px solid #ffffff;
+	border-left: 3px solid #ffffff;
+	content: '';
+	height: 10px;
+	left: 10px;
+	margin-top: -6px;
+	position: absolute;
+	top: 50%;
+	width: 10px;
+}
+
+header button.right {
+	position: absolute;
+	right: 12px;
+	top: 28px;
+}
+
+header button:active {
+	color: #ff0000;
+}
+
+section#main-stats-friends {
+	bottom: 44px;
+	position: absolute;
+	top: 64px;
+	width: 100%;
+}
+
+section#settings {
+	-webkit-animation-duration: 0.8s;
+	background-color: #4020d0;
+	bottom: 44px;
+	display: none;
+	padding-top: 64px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 5;
 }
 
 .show {

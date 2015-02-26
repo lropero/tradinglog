@@ -1,10 +1,11 @@
 (function() {
 	'use strict';
 
-	app.Views.settingsView = Backbone.View.extend({
+	app.Views.mainView = Backbone.View.extend({
+		el: '#main-stats-friends',
 		initialize: function() {
 			var self = this;
-			$.get('js/_templates/settings-template.html', function(template) {
+			$.get('js/_templates/main.tpl', function(template) {
 				self.template = _.template($(template).html().trim());
 				self.render();
 			});

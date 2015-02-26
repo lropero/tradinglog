@@ -11,24 +11,16 @@
 			'settings': 'settings'
 		},
 		main: function() {
-			this.view = new app.Views.mainView({
-				el: '#content'
-			});
+			this.view = new app.Views.mainView();
 		},
 		stats: function() {
-			this.view = new app.Views.statsView({
-				el: '#content'
-			});
+			this.view = new app.Views.statsView();
 		},
 		friends: function() {
-			this.view = new app.Views.friendsView({
-				el: '#content'
-			});
+			this.view = new app.Views.friendsView();
 		},
 		settings: function() {
-			this.view = new app.Views.settingsView({
-				el: '#settings'
-			});
+			this.view = new app.Views.settingsView();
 		}
 	});
 
@@ -55,7 +47,7 @@
 				var route = $(this).data('route');
 
 				// Trigger/untrigger settings pane
-				var $settings = $('.app').find('div#settings');
+				var $settings = $('.app').find('section#settings');
 				if(route === 'settings') {
 					self.running = true;
 					var animated = 'animated bounceInDown';
