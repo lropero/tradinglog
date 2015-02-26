@@ -121,7 +121,7 @@ header button {
 	border: 0;
 	color: #ffffff;
 	font-size: 15px;
-	height: 28px;
+	height: 54px;
 	outline: 0;
 	padding: 0;
 	z-index: 20;
@@ -130,8 +130,10 @@ header button {
 header button.left {
 	left: 3px;
 	padding-left: 24px;
+	padding-right: 10px;
+	padding-top: 10px;
 	position: absolute;
-	top: 28px;
+	top: 10px;
 }
 
 header button.left:active:before {
@@ -145,16 +147,18 @@ header button.left:before {
 	content: '';
 	height: 10px;
 	left: 10px;
-	margin-top: -6px;
+	margin-top: -1px;
 	position: absolute;
 	top: 50%;
 	width: 10px;
 }
 
 header button.right {
+	padding-left: 10px;
+	padding-top: 10px;
 	position: absolute;
 	right: 12px;
-	top: 28px;
+	top: 10px;
 }
 
 header button:active {
