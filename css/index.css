@@ -31,8 +31,8 @@ control.segmented ul {
 }
 
 control.segmented ul li {
-	background-color: #f3f3f3;
-	color: #333333;
+	background-color: #4020d0;
+	color: #ffffff;
 	display: table-cell;
 	height: 32px;
 	line-height: 32px;
