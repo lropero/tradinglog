@@ -21,6 +21,7 @@ control.segmented {
 	border-collapse: collapse;
 	border: none;
 	display: table;
+	table-layout: fixed;
 	width: 100%;
 }
 
@@ -37,6 +38,7 @@ control.segmented ul li {
 	height: 32px;
 	line-height: 32px;
 	text-align: center;
+	width: 100%;
 }
 
 control.segmented ul li.active {
