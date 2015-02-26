@@ -27,7 +27,6 @@
 		</array>
 	</gap:config-file>
 
-	<gap:plugin name="org.apache.cordova.device-motion" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 	<gap:plugin name="org.apache.cordova.statusbar" />
 
