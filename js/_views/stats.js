@@ -1,42 +1,30 @@
 (function() {
 	'use strict';
 
-	app.Views.statsView = Backbone.View.extend({
+	app.Views.stats = Backbone.View.extend({
 		el: '#main-stats-friends',
 		events: {
 			'click li:not(.active)': 'switch'
 		},
 		initialize: function() {
 			var self = this;
-			$.get('js/_templates/stats.tpl', function(template) {
-				self.template = _.template($(template).html().trim());
+			app.Helpers.templateLoader.get('stats', function(template) {
+				self.template = _.template(template);
 				self.render();
-				self.content = new app.Views.statsNumbersView();
 			});
 		},
 		render: function() {
+			app.Helpers.headerNavigation.update();
 			this.$el.html(this.template());
+			this.content = new app.Views.statsNumbers();
 			return this;
 		},
 		switch: function(e) {
 			this.$el.find('li.active').removeClass('active');
-			$(e.currentTarget).addClass('active');
-			var route = $(e.currentTarget).data('route');
+			var target = $(e.currentTarget);
+			target.addClass('active');
+			var subview = target.data('subview');
+			this.content = new app.Views['stats' + subview]();
 		}
-		// assign: function(selector, view) {
-		// 	var selectors;
-		// 	if(_.isObject(selector)) {
-		// 		selectors = selector;
-		// 	} else {
-		// 		selectors = {};
-		// 		selectors[selector] = view;
-		// 	}
-		// 	if(!selectors) {
-		// 		return;
-		// 	}
-		// 	_.each(selectors, function(view, selector) {
-		// 		view.setElement(this.$(selector)).render();
-		// 	}, this);
-		// }
 	});
 })();

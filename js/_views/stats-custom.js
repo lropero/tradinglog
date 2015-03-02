@@ -1,11 +1,11 @@
 (function() {
 	'use strict';
 
-	app.Views.statsNumbers = Backbone.View.extend({
+	app.Views.statsCustom = Backbone.View.extend({
 		el: '#main-stats-friends #content',
 		initialize: function() {
 			var self = this;
-			app.Helpers.templateLoader.get('stats-numbers', function(template) {
+			app.Helpers.templateLoader.get('stats-custom', function(template) {
 				self.template = _.template(template);
 				self.render();
 			});

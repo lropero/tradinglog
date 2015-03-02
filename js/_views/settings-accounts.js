@@ -1,26 +1,21 @@
 (function() {
 	'use strict';
 
-	app.Views.main = Backbone.View.extend({
-		el: '#main-stats-friends',
+	app.Views.settingsAccounts = Backbone.View.extend({
+		el: '#settings #content',
 		initialize: function() {
 			var self = this;
-			app.Helpers.templateLoader.get('main', function(template) {
+			app.Helpers.templateLoader.get('settings-accounts', function(template) {
 				self.template = _.template(template);
 				self.render();
 			});
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'left': {
-					'icon': 'f2a8',
-					'text': '',
-					'view': 'main'
-				},
 				'right': {
 					'icon': 'f218',
 					'text': '',
-					'view': 'settings'
+					'view': ''
 				}
 			});
 			this.$el.html(this.template());

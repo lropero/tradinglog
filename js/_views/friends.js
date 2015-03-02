@@ -1,16 +1,17 @@
 (function() {
 	'use strict';
 
-	app.Views.friendsView = Backbone.View.extend({
+	app.Views.friends = Backbone.View.extend({
 		el: '#main-stats-friends',
 		initialize: function() {
 			var self = this;
-			$.get('js/_templates/friends.tpl', function(template) {
-				self.template = _.template($(template).html().trim());
+			app.Helpers.templateLoader.get('friends', function(template) {
+				self.template = _.template(template);
 				self.render();
 			});
 		},
 		render: function() {
+			app.Helpers.headerNavigation.update();
 			this.$el.html(this.template());
 			return this;
 		}

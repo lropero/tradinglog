@@ -1,9 +1,9 @@
 <script type="text/template" id="stats-template">
 	<control class="segmented">
 		<ul>
-			<li data-route="main">Weekly</li>
-			<li class="middle active" data-route="main">Monthly</li>
-			<li data-route="friends">Custom</li>
+			<li data-subview="Numbers">Weekly</li>
+			<li class="middle active" data-subview="Numbers">Monthly</li>
+			<li data-subview="Custom">Custom</li>
 		</ul>
 	</control>
 	<section id="content"></section>

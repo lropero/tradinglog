@@ -11,16 +11,16 @@
 			'settings': 'settings'
 		},
 		main: function() {
-			this.view = new app.Views.mainView();
+			this.view = new app.Views.main();
 		},
 		stats: function() {
-			this.view = new app.Views.statsView();
+			this.view = new app.Views.stats();
 		},
 		friends: function() {
-			this.view = new app.Views.friendsView();
+			this.view = new app.Views.friends();
 		},
 		settings: function() {
-			this.view = new app.Views.settingsView();
+			this.view = new app.Views.settings();
 		}
 	});
 
@@ -39,7 +39,7 @@
 		bindEvents: function() {
 			var self = this;
 			this.$tab.on('click', 'a:not(.active)', function() {
-				if(self.running) {
+				if(self.animating) {
 					return;
 				}
 				self.$tab.find('a.active').removeClass('active');
@@ -49,25 +49,25 @@
 				// Trigger/untrigger settings pane
 				var $settings = $('.app').find('section#settings');
 				if(route === 'settings') {
-					self.running = true;
+					self.animating = true;
 					var animated = 'animated bounceInDown';
 					$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
 						$settings.removeClass(animated);
-						self.running = false;
+						self.animating = false;
 					});
 				} else if($settings.hasClass('show')) {
-					self.running = true;
+					self.animating = true;
 					var animated = 'animated bounceOutUp';
 					$settings.addClass(animated).one('webkitAnimationEnd', function() {
 						$settings.removeClass('show ' + animated);
-						self.running = false;
+						self.animating = false;
 					});
 				}
 
 				app.router.navigate(route, {trigger: true});
 			});
 		},
-		running: false
+		animating: false
 	};
 
 	window.navigationController = new NavigationController();

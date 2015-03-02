@@ -19,11 +19,11 @@
 	<body onload="init();">
 		<div class="app">
 			<header>
-				<button class="left">Back</button>
 				<bar class="navigation">
+					<button class="left" id="button-left"></button>
 					<div class="logo"></div>
+					<button class="right" id="button-right"></button>
 				</bar>
-				<button class="right">Add</button>
 			</header>
 			<section id="main-stats-friends"></section>
 			<section id="settings"></section>
@@ -47,6 +47,10 @@
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/router.js"></script>
 
+		<!-- Helpers -->
+		<script type="text/javascript" src="js/helpers/header-navigation.js"></script>
+		<script type="text/javascript" src="js/helpers/template-loader.js"></script>
+
 		<!-- Views -->
 		<script type="text/javascript" src="js/_views/main.js"></script>
 		<script type="text/javascript" src="js/_views/stats.js"></script>
@@ -54,7 +58,11 @@
 		<script type="text/javascript" src="js/_views/settings.js"></script>
 
 		<!-- Subviews -->
+		<script type="text/javascript" src="js/_views/stats-custom.js"></script>
 		<script type="text/javascript" src="js/_views/stats-numbers.js"></script>
+		<script type="text/javascript" src="js/_views/settings-accounts.js"></script>
+		<script type="text/javascript" src="js/_views/settings-general.js"></script>
+		<script type="text/javascript" src="js/_views/settings-instruments.js"></script>
 
 		<!-- PhoneGap -->
 		<script type="text/javascript" src="phonegap.js"></script>
