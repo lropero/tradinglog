@@ -1,3 +1,3 @@
-<script type="text/template" id="main-add-operation-template">
+<script id="main-add-operation-template" type="text/x-handlebars-template">
 	MAIN ADD OPERATION
 </script>

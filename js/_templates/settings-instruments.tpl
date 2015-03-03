@@ -1,3 +1,3 @@
-<script type="text/template" id="settings-instruments-template">
+<script id="settings-instruments-template" type="text/x-handlebars-template">
 	SETTINGS INSTRUMENTS
 </script>

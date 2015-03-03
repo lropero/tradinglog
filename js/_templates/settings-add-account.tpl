@@ -1,3 +1,3 @@
-<script type="text/template" id="settings-add-account-template">
+<script id="settings-add-account-template" type="text/x-handlebars-template">
 	SETTINGS ADD ACCOUNT
 </script>

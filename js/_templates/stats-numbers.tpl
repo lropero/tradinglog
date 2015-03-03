@@ -1,3 +1,3 @@
-<script type="text/template" id="stats-numbers-template">
+<script id="stats-numbers-template" type="text/x-handlebars-template">
 	STATS NUMBERS
 </script>

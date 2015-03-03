@@ -1,3 +1,3 @@
-<script type="text/template" id="settings-general-template">
+<script id="settings-general-template" type="text/x-handlebars-template">
 	SETTINGS GENERAL
 </script>

@@ -1,4 +1,4 @@
-<script type="text/template" id="main-template">
+<script id="main-template" type="text/x-handlebars-template">
 	<ul>
 		<li class="wrapper-label">
 			<div class="label trade open long">

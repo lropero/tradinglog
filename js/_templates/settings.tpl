@@ -1,4 +1,4 @@
-<script type="text/template" id="settings-template">
+<script id="settings-template" type="text/x-handlebars-template">
 	<control class="segmented">
 		<ul>
 			<li class="active" data-subview="Instruments">Instruments</li>

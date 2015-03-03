@@ -1,3 +1,3 @@
-<script type="text/template" id="friends-template">
+<script id="friends-template" type="text/x-handlebars-template">
 	FRIENDS
 </script>

@@ -1,4 +1,4 @@
-<script type="text/template" id="stats-template">
+<script id="stats-template" type="text/x-handlebars-template">
 	<control class="segmented">
 		<ul>
 			<li data-subview="Numbers">Weekly</li>
