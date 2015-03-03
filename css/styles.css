@@ -102,12 +102,12 @@ header bar.navigation button {
   bottom: 0;
   color: #ffffff;
   outline: 0;
-  padding: 10px;
+  padding: 8px;
   position: absolute;
   z-index: 2000;
 }
 header bar.navigation button.left {
-  left: 3px;
+  left: 5px;
 }
 header bar.navigation button.left.icon:before {
   content: attr(data-icon);
@@ -117,7 +117,7 @@ header bar.navigation button.left.icon:before {
   vertical-align: -1px;
 }
 header bar.navigation button.right {
-  right: 3px;
+  right: 5px;
 }
 header bar.navigation button.right.icon:after {
   content: attr(data-icon);
