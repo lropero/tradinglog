@@ -1,10 +1,10 @@
 (function() {
 	'use strict';
 
-	app.Views.main = Backbone.View.extend({
+	app.Views.mainAddOperation = Backbone.View.extend({
 		initialize: function() {
 			var self = this;
-			app.Helpers.templateLoader.get('main', function(template) {
+			app.Helpers.templateLoader.get('main-add-operation', function(template) {
 				self.template = _.template(template);
 				self.render();
 			});
@@ -12,16 +12,17 @@
 		render: function() {
 			app.Helpers.headerNavigation.update({
 				'left': {
-					'icon': 'f203',
-					'view': 'mainMap'
+					'icon': 'f124',
+					'text': 'Cancel',
+					'view': 'main'
 				},
 				'right': {
-					'icon': 'f218',
-					'view': 'mainAdd'
+					'text': 'Add',
+					'view': 'main'
 				}
 			});
 			this.$el.html(this.template());
-			$('#main-stats-friends').empty().append(this.$el);
+			$('#main-stats-friends #content').empty().append(this.$el);
 			return this;
 		}
 	});

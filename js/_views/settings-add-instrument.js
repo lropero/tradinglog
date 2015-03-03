@@ -1,19 +1,26 @@
 (function() {
 	'use strict';
 
-	app.Views.settingsInstruments = Backbone.View.extend({
+	app.Views.settingsAddInstrument = Backbone.View.extend({
 		initialize: function() {
 			var self = this;
-			app.Helpers.templateLoader.get('settings-instruments', function(template) {
+			app.Helpers.templateLoader.get('settings-add-instrument', function(template) {
 				self.template = _.template(template);
 				self.render();
 			});
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
+				'left': {
+					'icon': 'f124',
+					'text': 'Cancel',
+					'view': 'settings',
+					'subview': 'Instruments'
+				},
 				'right': {
-					'icon': 'f218',
-					'view': 'settingsAddInstrument'
+					'text': 'Add',
+					'view': 'settings',
+					'subview': 'Instruments'
 				}
 			});
 			this.$el.html(this.template());

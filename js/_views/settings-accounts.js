@@ -2,7 +2,6 @@
 	'use strict';
 
 	app.Views.settingsAccounts = Backbone.View.extend({
-		el: '#settings #content',
 		initialize: function() {
 			var self = this;
 			app.Helpers.templateLoader.get('settings-accounts', function(template) {
@@ -14,11 +13,11 @@
 			app.Helpers.headerNavigation.update({
 				'right': {
 					'icon': 'f218',
-					'text': '',
-					'view': ''
+					'view': 'settingsAddAccount'
 				}
 			});
 			this.$el.html(this.template());
+			$('#settings #content').empty().append(this.$el);
 			return this;
 		}
 	});

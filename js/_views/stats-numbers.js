@@ -2,7 +2,6 @@
 	'use strict';
 
 	app.Views.statsNumbers = Backbone.View.extend({
-		el: '#main-stats-friends #content',
 		initialize: function() {
 			var self = this;
 			app.Helpers.templateLoader.get('stats-numbers', function(template) {
@@ -12,6 +11,7 @@
 		},
 		render: function() {
 			this.$el.html(this.template());
+			$('#main-stats-friends #content').empty().append(this.$el);
 			return this;
 		}
 	});

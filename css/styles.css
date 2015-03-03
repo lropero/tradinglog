@@ -1,0 +1,460 @@
+@charset "UTF-8";
+@import url("normalize.3.0.2.css");
+@import url("ionicons.css");
+@import url("animate.min.css");
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-color: #ffffff;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5em;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+control.segmented {
+  border-collapse: collapse;
+  border: none;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+control.segmented ul {
+  border-bottom: 1px solid #333333;
+  border-top: 1px solid #333333;
+  display: table-row;
+}
+control.segmented ul li {
+  background-color: #4020d0;
+  color: #ffffff;
+  display: table-cell;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  width: 100%;
+}
+control.segmented ul li.active {
+  background-color: #333333;
+  color: #ffffff;
+}
+control.segmented ul li.middle {
+  border-left: 1px solid #333333;
+  border-right: 1px solid #333333;
+}
+control.segmented ul li:not(.active):active {
+  background-color: #9f8fe7;
+}
+footer {
+  background-color: #f3f3f3;
+  border-top: 1px solid #cccccc;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+footer bar.tab {
+  display: table;
+  height: 43px;
+  width: 100%;
+}
+footer bar.tab a.item {
+  color: #999999;
+  display: table-cell;
+  height: 43px;
+  text-align: center;
+  vertical-align: middle;
+  width: 25%;
+}
+footer bar.tab a.item span.icon {
+  font-size: 26px;
+}
+footer bar.tab a.item.active {
+  color: #4020d0;
+}
+footer bar.tab a.item:not(.active):active {
+  color: #9f8fe7;
+}
+header {
+  background-color: #4020d0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+header bar.navigation {
+  display: block;
+  height: 64px;
+  width: 100%;
+}
+header bar.navigation div.logo {
+  -webkit-animation-direction: alternate;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: logo;
+  -webkit-animation-timing-function: ease-in-out;
+  background: url('../img/logo.png') no-repeat center 0;
+  background-size: auto 100%;
+  height: 28px;
+  position: relative;
+  top: 28px;
+}
+header button {
+  background: none;
+  border: 0;
+  color: #ffffff;
+  font-size: 15px;
+  height: 54px;
+  outline: 0;
+  padding: 0;
+  z-index: 2000;
+}
+header button.left {
+  left: 3px;
+  padding-left: 24px;
+  padding-right: 10px;
+  padding-top: 10px;
+  position: absolute;
+  top: 10px;
+}
+header button.left:active:before {
+  border-color: #9f8fe7;
+}
+header button.left:before {
+  -webkit-transform: rotate(45deg);
+  border-bottom: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  content: '';
+  height: 10px;
+  left: 10px;
+  margin-top: -1px;
+  position: absolute;
+  top: 50%;
+  width: 10px;
+}
+header button.right {
+  padding-left: 10px;
+  padding-top: 10px;
+  position: absolute;
+  right: 12px;
+  top: 10px;
+}
+header button:active {
+  color: #9f8fe7;
+}
+section#main-stats-friends {
+  bottom: 44px;
+  position: absolute;
+  top: 64px;
+  width: 100%;
+}
+section#settings {
+  -webkit-animation-duration: 0.8s;
+  background-color: #4020d0;
+  bottom: 44px;
+  display: none;
+  padding-top: 64px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+}
+.show {
+  display: block !important;
+}
+@-webkit-keyframes logo {
+  from {
+    -webkit-transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(1.12);
+  }
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.white {
+  color: #fff;
+}
+.black {
+  color: #222;
+}
+.violet {
+  color: #4020d0;
+}
+.violet-light {
+  color: #9f8fe7;
+}
+.gray {
+  color: #989898;
+}
+.gray-light {
+  color: #f6f6f6;
+}
+.green {
+  color: #4bd763;
+}
+.red {
+  color: #ff3b30;
+}
+.b-white {
+  background-color: #fff;
+}
+.b-black {
+  background-color: #222;
+}
+.b-violet {
+  background-color: #4020d0;
+}
+.b-violet-light {
+  background-color: #9f8fe7;
+}
+.b-gray {
+  background-color: #989898;
+}
+.b-gray-light {
+  background-color: #f6f6f6;
+}
+.b-green {
+  background-color: #4bd763;
+}
+.b-red {
+  background-color: #ff3b30;
+}
+.wrapper-label {
+  position: relative;
+  display: block;
+  clear: both;
+  overflow: hidden;
+  min-height: 64px;
+}
+.label {
+  position: relative;
+  z-index: 100;
+  display: inline-block;
+  float: left;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 40px 10px 15px;
+  color: #222;
+  background-color: #fff;
+}
+.label:before {
+  position: absolute;
+  bottom: 0;
+  left: 65px;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background-color: #989898;
+}
+.label:after {
+  font-family: ionicons;
+  font-size: 14px;
+  line-height: 64px;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  height: 100%;
+  content: '\f125';
+  color: #989898;
+}
+.label.full {
+  padding-right: 15px;
+}
+.label.full:after {
+  content: '';
+}
+.label .row {
+  position: relative;
+  clear: right;
+  margin-left: 50px;
+}
+.label.trade .name {
+  float: left;
+  color: #222;
+}
+.label.trade .net.positive {
+  float: right;
+  color: #4020d0;
+}
+.label.trade .net.negative {
+  float: right;
+  color: #222;
+}
+.label.trade .balance {
+  float: left;
+  color: #989898;
+}
+.label.trade .variation {
+  float: right;
+  color: #989898;
+}
+.label.trade .ball {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-top: 6px;
+  margin-right: 15px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #222;
+}
+.label.trade .ball .globe-comments {
+  font-size: 12px;
+  line-height: 17px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  height: 17px;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
+  border-radius: 100px;
+  color: #fff;
+  background-color: #222;
+}
+.label.trade .ball .globe-commission {
+  font-size: 12px;
+  line-height: 17px;
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  min-width: 17px;
+  height: 17px;
+  border-radius: 100px;
+  color: #222;
+  background-color: #fff;
+}
+.label.trade .ball .globe-commission:after {
+  font-family: ionicons;
+  content: '\f100';
+}
+.label.trade .ball .icon {
+  font-family: ionicons;
+  font-size: 16px;
+  line-height: 32px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  height: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #fff;
+}
+.label.trade.open {
+  background-color: #222;
+}
+.label.trade.open .name,
+.label.trade.open .net.positive,
+.label.trade.open .net.negative {
+  color: #fff;
+}
+.label.trade.long .ball {
+  background-color: #4bd763;
+}
+.label.trade.long .ball .icon:after {
+  font-size: 16px;
+  line-height: 32px;
+  content: '\f10d';
+}
+.label.trade.short .ball {
+  background-color: #ff3b30;
+}
+.label.trade.short .ball .icon:after {
+  font-size: 16px;
+  line-height: 35px;
+  content: '\f104';
+}
+.label.trade.withdraw .ball {
+  background-color: #989898;
+}
+.label.trade.withdraw .ball .icon:after {
+  font-size: 16px;
+  line-height: 32px;
+  content: '\f107';
+}
+.label.trade.deposit .ball {
+  background-color: #989898;
+}
+.label.trade.deposit .ball .icon:after {
+  font-size: 16px;
+  line-height: 32px;
+  content: '\f10a';
+}
+.wrapper-swipe-label {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #9f8fe7;
+}
+.swipe-label {
+  font-family: ionicons;
+  font-size: 30px;
+  line-height: 64px;
+  position: relative;
+  display: block;
+  height: 64px;
+  text-align: center;
+  background-color: #4020d0;
+  color: #fff;
+}
+.swipe-label:before {
+  position: absolute;
+  bottom: 0;
+  left: 65px;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background-color: #9f8fe7;
+}
+.swipe-label ul {
+  position: relative;
+  display: block;
+}
+.swipe-label ul li {
+  display: inline-block;
+  float: right;
+  width: 25%;
+}
+.swipe-label .button-delete:after {
+  font-size: 30px;
+  line-height: 64px;
+  height: 64px;
+  content: '\f4c5';
+  color: #fff;
+}
+.swipe-label .button-commission:after {
+  font-size: 26.5px;
+  line-height: 64px;
+  height: 64px;
+  content: '\f353';
+}
+.active-swipe.one-button-swipe {
+  left: -25%;
+}
+.active-swipe.two-button-swipe {
+  left: -50%;
+}

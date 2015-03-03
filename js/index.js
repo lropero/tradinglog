@@ -26,12 +26,4 @@
 			app.deviceReady();
 		}
 	}
-
-	$(function() {
-		$('.navigation').on('click', 'button', function(e) {
-			var target = $(e.currentTarget);
-			var view = target.data('view');
-			app.router.view = new app.Views[view]();
-		});
-	});
 })();

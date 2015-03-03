@@ -1,23 +1,24 @@
 (function() {
 	'use strict';
 
-	app.Views.settingsInstruments = Backbone.View.extend({
+	app.Views.mainMap = Backbone.View.extend({
 		initialize: function() {
 			var self = this;
-			app.Helpers.templateLoader.get('settings-instruments', function(template) {
+			app.Helpers.templateLoader.get('main-map', function(template) {
 				self.template = _.template(template);
 				self.render();
 			});
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'right': {
-					'icon': 'f218',
-					'view': 'settingsAddInstrument'
+				'left': {
+					'icon': 'f124',
+					'text': 'Back',
+					'view': 'main'
 				}
 			});
 			this.$el.html(this.template());
-			$('#settings #content').empty().append(this.$el);
+			$('#main-stats-friends').empty().append(this.$el);
 			return this;
 		}
 	});

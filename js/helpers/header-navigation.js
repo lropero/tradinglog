@@ -21,19 +21,29 @@
 		},
 		set: function(button, options) {
 			var button = $('#button-' + button);
-			if(options.icon.length) {
+			if(typeof options.icon === 'undefined') {
+				button.removeClass('icon');
+			} else {
 				button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16)));
 				button.addClass('icon');
-			} else {
-				button.removeClass('icon');
 			}
-			button.html(options.text);
-			button.attr('data-view', options.view);
+			if(typeof options.text === 'undefined') {
+				button.html('');
+			} else {
+				button.html(options.text);
+			}
+			button.off().on('click', function() {
+				if(typeof options.subview === 'undefined') {
+					app.router.view = new app.Views[options.view]();
+				} else {
+					app.router.view = new app.Views[options.view](options.subview);
+				}
+			});
 			button.show();
 		},
 		remove: function(button) {
 			var button = $('#button-' + button);
-			button.hide();
+			button.off().hide();
 		}
 	};
 })();

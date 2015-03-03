@@ -2,7 +2,6 @@
 	'use strict';
 
 	app.Views.stats = Backbone.View.extend({
-		el: '#main-stats-friends',
 		events: {
 			'click li:not(.active)': 'switch'
 		},
@@ -16,6 +15,7 @@
 		render: function() {
 			app.Helpers.headerNavigation.update();
 			this.$el.html(this.template());
+			$('#main-stats-friends').empty().append(this.$el);
 			this.content = new app.Views.statsNumbers();
 			return this;
 		},

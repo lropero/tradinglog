@@ -1,0 +1,488 @@
+@charset 'UTF-8';
+
+// GLOBAL
+// -------------------------------------------------- //
+
+ul,
+ol
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+*
+{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+// PALETTE TEXT COLOR
+// -------------------------------------------------- //
+
+.white
+{
+    color: #fff;
+}
+
+.black
+{
+    color: #222;
+}
+
+.violet
+{
+    color: #4020d0;
+}
+
+.violet-light
+{
+    color: #9f8fe7;
+}
+
+.gray
+{
+    color: #989898;
+}
+
+.gray-light
+{
+    color: #f6f6f6;
+}
+
+.green
+{
+    color: #4bd763;
+}
+
+.red
+{
+    color: #ff3b30;
+}
+
+// PALETTE BACKGROUND COLOR
+// -------------------------------------------------- //
+
+.b-white
+{
+    background-color: #fff;
+}
+
+.b-black
+{
+    background-color: #222;
+}
+
+.b-violet
+{
+    background-color: #4020d0;
+}
+
+.b-violet-light
+{
+    background-color: #9f8fe7;
+}
+
+.b-gray
+{
+    background-color: #989898;
+}
+
+.b-gray-light
+{
+    background-color: #f6f6f6;
+}
+
+.b-green
+{
+    background-color: #4bd763;
+}
+
+.b-red
+{
+    background-color: #ff3b30;
+}
+
+// LABEL
+// -------------------------------------------------- //
+
+.wrapper-label
+{
+    position: relative;
+
+    display: block;
+    clear: both;
+    overflow: hidden;
+
+    min-height: 64px;
+}
+
+.label
+{
+    position: relative;
+    z-index: 100;
+
+    display: inline-block;
+    float: left;
+
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 40px 10px 15px;
+
+    .black();
+    .b-white();
+}
+
+.label:before
+{
+    position: absolute;
+    bottom: 0;
+    left: 65px;
+
+    width: 100%;
+    height: 1px;
+
+    content: '';
+
+    .b-gray();
+}
+
+.label:after
+{
+    font-family: ionicons;
+    font-size: 14px;
+    line-height: 64px;
+
+    position: absolute;
+    top: 0;
+    right: 15px;
+
+    height: 100%;
+
+    content: '\f125';
+
+    .gray();
+}
+
+// LABEL - FULL
+// -------------------------------------------------- //
+
+.label.full
+{
+    padding-right: 15px;
+}
+
+.label.full:after
+{
+    content: '';
+}
+
+.label .row
+{
+    position: relative;
+
+    clear: right;
+
+    margin-left: 50px;
+}
+
+// LABEL / TRADE
+// -------------------------------------------------- //
+
+.label.trade .name
+{
+    float: left;
+
+    .black();
+}
+
+.label.trade .net.positive
+{
+    float: right;
+
+    .violet();
+}
+
+.label.trade .net.negative
+{
+    float: right;
+
+    .black();
+}
+
+.label.trade .balance
+{
+    float: left;
+
+    .gray();
+}
+.label.trade .variation
+{
+    float: right;
+
+    .gray();
+}
+
+.label.trade .ball
+{
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+    margin-top: 6px;
+    margin-right: 15px;
+
+    text-align: center;
+
+    border-radius: 50%;
+
+    .b-black();
+}
+
+.label.trade .ball .globe-comments
+{
+    font-size: 12px;
+    line-height: 17px;
+
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    height: 17px;
+    padding-right: 5px;
+    padding-left: 5px;
+
+    text-align: center;
+
+    border-radius: 100px;
+
+    .white();
+    .b-black();
+}
+
+.label.trade .ball .globe-commission
+{
+    font-size: 12px;
+    line-height: 17px;
+
+    position: absolute;
+    bottom: -5px;
+    left: -5px;
+
+    min-width: 17px;
+    height: 17px;
+
+    border-radius: 100px;
+
+    .black();
+    .b-white();
+}
+
+.label.trade .ball .globe-commission:after
+{
+    font-family: ionicons;
+
+    content: '\f100';
+}
+
+.label.trade .ball .icon
+{
+    font-family: ionicons;
+    font-size: 16px;
+    line-height: 32px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    height: 32px;
+    margin-right: auto;
+    margin-left: auto;
+
+    .white();
+}
+
+// LABEL / TRADE - OPEN
+// -------------------------------------------------- //
+
+.label.trade.open
+{
+    .b-black();
+}
+
+.label.trade.open .name,
+.label.trade.open .net.positive,
+.label.trade.open .net.negative
+{
+    .white();
+}
+
+// LABEL / TRADE / LONG
+// -------------------------------------------------- //
+
+.label.trade.long .ball
+{
+    .b-green();
+}
+
+.label.trade.long .ball .icon:after
+{
+    font-size: 16px;
+    line-height: 32px;
+
+    content: '\f10d';
+}
+
+// LABEL / TRADE / SHORT
+// -------------------------------------------------- //
+
+.label.trade.short .ball
+{
+    .b-red();
+}
+
+.label.trade.short .ball .icon:after
+{
+    font-size: 16px;
+    line-height: 35px;
+
+    content: '\f104';
+}
+
+// LABEL / TRADE / WITHDRAW
+// -------------------------------------------------- //
+
+.label.trade.withdraw .ball
+{
+    .b-gray();
+}
+
+.label.trade.withdraw .ball .icon:after
+{
+    font-size: 16px;
+    line-height: 32px;
+
+    content: '\f107';
+}
+
+// LABEL / TRADE / DEPOSIT
+// -------------------------------------------------- //
+
+.label.trade.deposit .ball
+{
+    .b-gray();
+}
+
+.label.trade.deposit .ball .icon:after
+{
+    font-size: 16px;
+    line-height: 32px;
+
+    content: '\f10a';
+}
+
+// SWIPE - LABEL
+// -------------------------------------------------- //
+
+.wrapper-swipe-label
+{
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+
+    .b-violet-light();
+}
+
+.swipe-label
+{
+    font-family: ionicons;
+    font-size: 30px;
+    line-height: 64px;
+
+    position: relative;
+
+    display: block;
+
+    height: 64px;
+
+    text-align: center;
+
+    .white();
+    .b-violet();
+    .white();
+}
+
+.swipe-label:before
+{
+    position: absolute;
+    bottom: 0;
+    left: 65px;
+
+    width: 100%;
+    height: 1px;
+
+    content: '';
+
+    .b-violet-light();
+}
+
+.swipe-label ul
+{
+    position: relative;
+
+    display: block;
+}
+
+.swipe-label ul li
+{
+    display: inline-block;
+    float: right;
+
+    width: 25%;
+}
+
+// SWIPE - LABEL / BUTTONS
+// -------------------------------------------------- //
+
+.swipe-label .button-delete:after
+{
+    font-size: 30px;
+    line-height: 64px;
+
+    height: 64px;
+
+    content: '\f4c5';
+
+    .white();
+}
+
+.swipe-label .button-commission:after
+{
+    font-size: 26.5px;
+    line-height: 64px;
+
+    height: 64px;
+
+    content: '\f353';
+}
+
+// SWIPE - LABEL - ACTIVE
+// -------------------------------------------------- //
+
+.active-swipe.one-button-swipe
+{
+    left: -25%;
+}
+.active-swipe.two-button-swipe
+{
+    left: -50%;
+}

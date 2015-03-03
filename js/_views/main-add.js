@@ -1,25 +1,21 @@
 (function() {
 	'use strict';
 
-	app.Views.settings = Backbone.View.extend({
+	app.Views.mainAdd = Backbone.View.extend({
 		events: {
 			'click li:not(.active)': 'switch'
 		},
-		initialize: function(subview) {
-			if(typeof subview === 'undefined') {
-				subview = 'Instruments';
-			}
-			this.subview = subview;
+		initialize: function() {
 			var self = this;
-			app.Helpers.templateLoader.get('settings', function(template) {
+			app.Helpers.templateLoader.get('main-add', function(template) {
 				self.template = _.template(template);
 				self.render();
 			});
 		},
 		render: function() {
 			this.$el.html(this.template());
-			$('#settings').empty().append(this.$el);
-			this.content = new app.Views['settings' + this.subview]();
+			$('#main-stats-friends').empty().append(this.$el);
+			this.content = new app.Views.mainAddTrade();
 			return this;
 		},
 		switch: function(e) {
@@ -27,7 +23,7 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			var subview = target.data('subview');
-			this.content = new app.Views['settings' + subview]();
+			this.content = new app.Views['main' + subview]();
 		}
 	});
 })();
