@@ -5,7 +5,7 @@
 		initialize: function() {
 			var self = this;
 			app.Helpers.templateLoader.get('main', function(template) {
-				self.template = _.template(template);
+				self.template = Handlebars.compile(template);
 				self.render();
 			});
 		},

@@ -12,7 +12,7 @@
 			this.subview = subview;
 			var self = this;
 			app.Helpers.templateLoader.get('settings', function(template) {
-				self.template = _.template(template);
+				self.template = Handlebars.compile(template);
 				self.render();
 			});
 		},
