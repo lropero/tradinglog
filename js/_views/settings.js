@@ -26,8 +26,8 @@
 			this.$el.find('li.active').removeClass('active');
 			var target = $(e.currentTarget);
 			target.addClass('active');
-			var subview = target.data('subview');
-			this.content = new app.Views['settings' + subview]();
+			this.subview = target.data('subview');
+			this.content = new app.Views['settings' + this.subview]();
 		}
 	});
 })();
