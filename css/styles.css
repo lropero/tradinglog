@@ -1,23 +1,23 @@
 @charset "UTF-8";
-@import url("normalize.3.0.2.css");
-@import url("ionicons.css");
 @import url("animate.min.css");
+@import url("ionicons.min.css");
+@import url("normalize.css");
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 body {
-  -webkit-touch-callout: none;
-  /* prevent callout to copy image, etc when tap to hold */
   -webkit-text-size-adjust: none;
   /* prevent webkit from resizing text to fit */
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
   -webkit-user-select: none;
   /* prevent copy paste, to allow, change 'none' to 'text' */
   background-color: #ffffff;
   font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
   font-size: 15px;
-  line-height: 1.5em;
   height: 100%;
+  line-height: 1.5em;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -96,6 +96,39 @@ header bar.navigation {
   height: 64px;
   width: 100%;
 }
+header bar.navigation button {
+  background: none;
+  border: 0;
+  bottom: 2px;
+  color: #ffffff;
+  outline: 0;
+  padding: 10px;
+  position: absolute;
+  z-index: 2000;
+}
+header bar.navigation button.left {
+  left: 5px;
+  position: absolute;
+}
+header bar.navigation button.left.icon:before {
+  content: attr(data-icon);
+  font-family: ionicons;
+  font-size: 18px;
+  padding-right: 5px;
+}
+header bar.navigation button.right {
+  position: absolute;
+  right: 5px;
+}
+header bar.navigation button.right.icon:after {
+  content: attr(data-icon);
+  font-family: ionicons;
+  font-size: 18px;
+  padding-left: 5px;
+}
+header bar.navigation button:active {
+  color: #9f8fe7;
+}
 header bar.navigation div.logo {
   -webkit-animation-direction: alternate;
   -webkit-animation-duration: 2s;
@@ -107,49 +140,6 @@ header bar.navigation div.logo {
   height: 28px;
   position: relative;
   top: 28px;
-}
-header button {
-  background: none;
-  border: 0;
-  color: #ffffff;
-  font-size: 15px;
-  height: 54px;
-  outline: 0;
-  padding: 0;
-  z-index: 2000;
-}
-header button.left {
-  left: 3px;
-  padding-left: 24px;
-  padding-right: 10px;
-  padding-top: 10px;
-  position: absolute;
-  top: 10px;
-}
-header button.left:active:before {
-  border-color: #9f8fe7;
-}
-header button.left:before {
-  -webkit-transform: rotate(45deg);
-  border-bottom: 3px solid #ffffff;
-  border-left: 3px solid #ffffff;
-  content: '';
-  height: 10px;
-  left: 10px;
-  margin-top: -1px;
-  position: absolute;
-  top: 50%;
-  width: 10px;
-}
-header button.right {
-  padding-left: 10px;
-  padding-top: 10px;
-  position: absolute;
-  right: 12px;
-  top: 10px;
-}
-header button:active {
-  color: #9f8fe7;
 }
 section#main-stats-friends {
   bottom: 44px;
