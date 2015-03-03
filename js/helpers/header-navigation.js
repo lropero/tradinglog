@@ -24,8 +24,7 @@
 			if(typeof options.icon === 'undefined') {
 				button.removeClass('icon');
 			} else {
-				button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16)));
-				button.addClass('icon');
+				button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
 			}
 			if(typeof options.text === 'undefined') {
 				button.html('');
@@ -42,8 +41,7 @@
 			button.show();
 		},
 		remove: function(button) {
-			var button = $('#button-' + button);
-			button.off().hide();
+			$('#button-' + button).off().hide();
 		}
 	};
 })();
