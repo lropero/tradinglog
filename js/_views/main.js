@@ -40,6 +40,11 @@
 					$.pep.restore();
 				},
 				rest: function(e) {
+					e.stopPropagation();
+					e.preventDefault();
+				},
+				stop: function(e) {
+					e.stopPropagation();
 					e.preventDefault();
 				},
 				revertIf: function() {
