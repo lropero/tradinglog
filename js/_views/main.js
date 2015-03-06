@@ -29,7 +29,7 @@
 			$('.active-swipe').pep({
 				'axis': 'x',
 				'constrainTo': 'parent',
-				'useCSSTranslation': false,
+				// 'useCSSTranslation': false,
 				start: function() {
 					$(this.el).removeClass('swiped');
 					$.pep.restore();
