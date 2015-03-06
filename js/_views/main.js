@@ -39,14 +39,9 @@
 					$(this.el).removeClass('swiped');
 					$.pep.restore();
 				},
-				rest: function(e) {
-					e.stopPropagation();
+				stop: function(e) {
 					e.preventDefault();
 				},
-				// stop: function(e) {
-				// 	e.stopPropagation();
-				// 	e.preventDefault();
-				// },
 				revertIf: function() {
 					var $el = $(this.el);
 					if($el.position().left > 0) {
