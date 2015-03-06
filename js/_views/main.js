@@ -43,10 +43,10 @@
 					e.stopPropagation();
 					e.preventDefault();
 				},
-				stop: function(e) {
-					e.stopPropagation();
-					e.preventDefault();
-				},
+				// stop: function(e) {
+				// 	e.stopPropagation();
+				// 	e.preventDefault();
+				// },
 				revertIf: function() {
 					var $el = $(this.el);
 					if($el.position().left > 0) {
