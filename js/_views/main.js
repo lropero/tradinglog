@@ -2,6 +2,10 @@
 	'use strict';
 
 	app.Views.main = Backbone.View.extend({
+		events: {
+			'click div.operation': 'viewOperation',
+			'click div.trade:not(.operation)': 'viewTrade'
+		},
 		initialize: function() {
 			var self = this;
 			app.Helpers.templateLoader.get('main', function(template) {
@@ -29,6 +33,7 @@
 			$('.active-swipe').pep({
 				'axis': 'x',
 				'constrainTo': 'parent',
+				'shouldPreventDefault': false,
 				'useCSSTranslation': false,
 				start: function() {
 					$(this.el).removeClass('swiped');
@@ -43,6 +48,12 @@
 					return false;
 				}
 			});
+		},
+		viewOperation: function() {
+			this.content = new app.Views['mainViewOperation']();
+		},
+		viewTrade: function() {
+			this.content = new app.Views['mainViewTrade']();
 		}
 	});
 })();
