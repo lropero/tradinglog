@@ -4,7 +4,7 @@
 	app.Views.main = Backbone.View.extend({
 		events: {
 			'click div.operation': 'viewOperation',
-			'click div.trade:not(.operation)': 'viewTrade'
+			'click div.trade:not(.operation):not(.swiped)': 'viewTrade'
 		},
 		initialize: function() {
 			var self = this;
