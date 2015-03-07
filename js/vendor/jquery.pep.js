@@ -1174,7 +1174,9 @@
 
   $.pep.restore = function() {
     $.each(this.peps, function(index, pepObj) {
-      if($(pepObj.el).hasClass('swiped')) {
+      var $el = $(pepObj.el);
+      if($el.hasClass('swiped')) {
+        $el.removeClass('swiped');
         pepObj.revert();
       }
     });
