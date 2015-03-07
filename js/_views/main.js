@@ -35,18 +35,10 @@
 				'constrainTo': 'parent',
 				'shouldPreventDefault': false,
 				'useCSSTranslation': false,
-				start: function() {
-					$.pep.restore();
-				},
-				stop: function(e) {
-					e.preventDefault();
-				},
 				rest: function() {
 					var $el = $(this.el);
-					if($el.position().left > 0) {
-						if($el.hasClass('swiped')) {
-							$el.removeClass('swiped');
-						}
+					if($el.hasClass('swiped') && $el.position().left > 0) {
+						$el.removeClass('swiped');
 					}
 				},
 				revertIf: function() {
@@ -56,6 +48,13 @@
 					}
 					$el.addClass('swiped');
 					return false;
+				},
+				start: function() {
+					$(this.el).removeClass('swiped');
+					$.pep.restore();
+				},
+				stop: function(e) {
+					e.preventDefault();
 				}
 			});
 		},
