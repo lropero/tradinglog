@@ -11,7 +11,6 @@
 			app.Helpers.templateLoader.get('main', function(template) {
 				self.template = Handlebars.compile(template);
 				self.render();
-				self.swipe();
 			});
 		},
 		render: function() {
@@ -27,36 +26,8 @@
 			});
 			this.$el.html(this.template());
 			$('#main-stats-friends').empty().append(this.$el);
+			app.Helpers.swiper.init('.active-swipe');
 			return this;
-		},
-		swipe: function() {
-			$('.active-swipe').pep({
-				'axis': 'x',
-				'constrainTo': 'parent',
-				'shouldPreventDefault': false,
-				'useCSSTranslation': false,
-				rest: function() {
-					var $el = $(this.el);
-					if($el.hasClass('swiped') && $el.position().left > 0) {
-						$el.removeClass('swiped');
-					}
-				},
-				revertIf: function() {
-					var $el = $(this.el);
-					if($el.position().left > 0) {
-						return true;
-					}
-					$el.addClass('swiped');
-					return false;
-				},
-				start: function() {
-					$(this.el).removeClass('swiped');
-					$.pep.restore();
-				},
-				stop: function(e) {
-					e.preventDefault();
-				}
-			});
 		},
 		viewOperation: function() {
 			this.content = new app.Views['mainViewOperation']();

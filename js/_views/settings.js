@@ -17,7 +17,9 @@
 			});
 		},
 		render: function() {
-			this.$el.html(this.template());
+			this.$el.html(this.template({
+				subview: this.subview
+			}));
 			$('#settings').empty().append(this.$el);
 			this.content = new app.Views['settings' + this.subview]();
 			return this;
