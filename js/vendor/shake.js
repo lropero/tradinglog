@@ -67,18 +67,31 @@ function Shake(options) {
 		);
 		if (magnitude >= options.threshold) {
 			// Shake detected
-			if (options.waitBetweenShakes > 0) {
-				shake.stopWatch();
-				previousAcceleration = undefined;
+
+			if(this.counter === 'undefined') {
+				this.counter = 1;
+				var self = this;
+				setTimeout(function() {
+					self.counter = 0;
+				}, 2000);
+			} else {
+				this.counter++;
 			}
-			options.success.call(shake, magnitude, accelerationDelta, acceleration.timestamp);
-			// if (options.waitBetweenShakes > 0)
-			// 	setTimeout(
-			// 		function() {
-			// 			shake.startWatch();
-			// 		},
-			// 		options.waitBetweenShakes
-			// 	);
+
+			if(this.counter === 5) {
+				if (options.waitBetweenShakes > 0) {
+					shake.stopWatch();
+					previousAcceleration = undefined;
+				}
+				options.success.call(shake, magnitude, accelerationDelta, acceleration.timestamp);
+				// if (options.waitBetweenShakes > 0)
+				// 	setTimeout(
+				// 		function() {
+				// 			shake.startWatch();
+				// 		},
+				// 		options.waitBetweenShakes
+				// 	);
+			}
 		}
 		else
 			previousAcceleration = acceleration;
