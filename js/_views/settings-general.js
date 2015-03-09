@@ -19,10 +19,11 @@
 		shake: function() {
 			var shake = new Shake({
 				frequency: 300,
-				threshold: 30,
+				threshold: 50,
 				waitBetweenShakes: 1000,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					$('#settings #content').append('SI!');
+					shake.stopWatch();
 					// new app.Views['friends']();
 				},
 				failure: function() {
