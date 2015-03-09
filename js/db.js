@@ -18,5 +18,5 @@
 		}
 	};
 
-	app.db = new DatabaseController();
+	// app.db = new DatabaseController();
 })();
