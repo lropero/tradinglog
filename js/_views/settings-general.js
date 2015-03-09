@@ -18,16 +18,11 @@
 		},
 		shake: function() {
 			var shake = new Shake({
-				frequency: 300,
+				frequency: 200,
 				threshold: 50,
-				waitBetweenShakes: 1000,
+				waitBetweenShakes: 0,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					$('#settings #content').append('SI!');
-					shake.stopWatch();
-					// new app.Views['friends']();
-				},
-				failure: function() {
-					// new app.Views['stats']();
 				}
 			});
 			shake.startWatch();
