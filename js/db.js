@@ -1,4 +1,4 @@
-(function() {
+(function(app) {
 	'use strict';
 
 	var DatabaseController = function() {};
@@ -19,4 +19,4 @@
 	};
 
 	app.db = new DatabaseController();
-})();
+})(window.app);
