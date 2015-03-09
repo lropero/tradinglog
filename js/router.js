@@ -11,7 +11,7 @@
 			'settings': 'settings'
 		},
 		main: function() {
-			app.loadView('main');
+			// app.loadView('main');
 		},
 		stats: function() {
 			app.loadView('stats');
