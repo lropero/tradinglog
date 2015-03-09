@@ -21,7 +21,7 @@
 				frequency: 200,
 				threshold: 50,
 				success: function(magnitude, accelerationDelta, timestamp) {
-					$('#settings #content').append('SI!');
+					$('#settings #content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
 				}
 			});
 			shake.startWatch();
