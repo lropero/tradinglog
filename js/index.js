@@ -13,7 +13,7 @@
 			document.addEventListener('deviceready', this.deviceReady, false);
 		},
 		deviceReady: function() {
-			$('#main-stats-friends').empty().append(typeof this.db + '<br />');
+			$('#main-stats-friends').append(typeof this.db + '3<br />');
 			$('#main-stats-friends').append(typeof this.db.init);
 			this.db.init();
 			Backbone.history.start();

@@ -1,4 +1,4 @@
-(function(app) {
+(function() {
 	'use strict';
 
 	var DatabaseController = function() {};
@@ -18,5 +18,7 @@
 		}
 	};
 
+	$('#main-stats-friends').append(typeof DatabaseController + '1<br />');
 	app.db = new DatabaseController();
-})(window.app);
+	$('#main-stats-friends').append(typeof app.db + '2<br />');
+})();
