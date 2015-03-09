@@ -3,7 +3,7 @@
 
 	window.app = {
 		currentView: '',
-		router: '',
+		router: 'pepe',
 		Helpers: {},
 		Templates: {},
 		Views: {},

@@ -1,4 +1,4 @@
-(function(app) {
+(function() {
 	'use strict';
 
 	var Router = Backbone.Router.extend({
@@ -71,4 +71,4 @@
 	};
 
 	window.navigationController = new NavigationController();
-})(app);
+})();
