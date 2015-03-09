@@ -76,7 +76,7 @@ function Shake(options) {
 			}
 			counter++;
 
-			if(counter === 5) {
+			if(counter === 3) {
 				if (options.waitBetweenShakes > 0) {
 					shake.stopWatch();
 					previousAcceleration = undefined;
