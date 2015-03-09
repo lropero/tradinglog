@@ -22,10 +22,11 @@
 				threshold: 12,
 				waitBetweenShakes: 1000,
 				success: function(magnitude, accelerationDelta, timestamp) {
-					new app.Views['friends']();
+					$('#settings #content').append('SI!');
+					// new app.Views['friends']();
 				},
 				failure: function() {
-					new app.Views['stats']();
+					// new app.Views['stats']();
 				}
 			});
 			shake.startWatch();

@@ -26,7 +26,7 @@ function Shake(options) {
 	for (var p in defaultOptions)
 		if (!options.hasOwnProperty(p))
 			options[p] = defaultOptions[p];
-	
+
 	// Start watching the accelerometer for a shake gesture
 	shake.startWatch = function () {
 		if (watchId)
@@ -34,8 +34,9 @@ function Shake(options) {
 		watchId = navigator.accelerometer.watchAcceleration(getAccelerationSnapshot, handleError, {
 			frequency: options.frequency
 		});
+		$('#settings #content').append(watchId);
 	};
-	
+
 	// Stop watching the accelerometer for a shake gesture
 	shake.stopWatch = function () {
 		if (!watchId)
@@ -43,12 +44,12 @@ function Shake(options) {
 		navigator.accelerometer.clearWatch(watchId);
 		watchId = null;
 	};
-	
+
 	// Gets the current acceleration snapshot from the last accelerometer watch
 	function getAccelerationSnapshot() {
 		navigator.accelerometer.getCurrentAcceleration(assessCurrentAcceleration, handleError);
 	}
-	
+
 	// Assess the current acceleration parameters to determine a shake
 	function assessCurrentAcceleration(acceleration) {
 		if (!previousAcceleration) {
