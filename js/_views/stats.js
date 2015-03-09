@@ -6,10 +6,6 @@
 			'click li:not(.active)': 'switch'
 		},
 		initialize: function(subview) {
-			if(typeof subview === 'undefined') {
-				subview = 'Numbers';
-			}
-			this.subview = subview;
 			var self = this;
 			app.Helpers.templateLoader.get('stats', function(template) {
 				self.template = Handlebars.compile(template);
@@ -20,7 +16,7 @@
 			app.Helpers.headerNavigation.update();
 			this.$el.html(this.template());
 			$('#main-stats-friends').empty().append(this.$el);
-			new app.Views['stats' + this.subview]();
+			new app.Views['statsNumbers']();
 			return this;
 		},
 		switch: function(e) {
