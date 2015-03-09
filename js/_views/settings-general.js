@@ -20,7 +20,6 @@
 			var shake = new Shake({
 				frequency: 200,
 				threshold: 50,
-				waitBetweenShakes: 0,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					$('#settings #content').append('SI!');
 				}
