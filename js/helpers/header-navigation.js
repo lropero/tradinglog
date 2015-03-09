@@ -31,13 +31,15 @@
 			} else {
 				button.html(options.text);
 			}
-			button.off().on('click', function() {
-				if(typeof options.subview === 'undefined') {
-					app.loadView(options.view);
-				} else {
-					app.loadView(options.view, options.subview);
-				}
-			});
+			if(typeof options.view !== 'undefined') {
+				button.off().on('click', function() {
+					if(typeof options.subview === 'undefined') {
+						app.loadView(options.view);
+					} else {
+						app.loadView(options.view, options.subview);
+					}
+				});
+			}
 			button.show();
 		},
 		remove: function(button) {

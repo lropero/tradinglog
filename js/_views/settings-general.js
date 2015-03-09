@@ -24,6 +24,14 @@
 				frequency: 100,
 				threshold: 100,
 				success: function(magnitude, accelerationDelta, timestamp) {
+					app.Helpers.headerNavigation.update({
+						left: {
+							icon: 'f2a8'
+						},
+						right: {
+							icon: 'f26a'
+						}
+					});
 					$('#settings #content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
 				}
 			});
