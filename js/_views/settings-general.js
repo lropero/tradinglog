@@ -24,7 +24,10 @@
 				frequency: 100,
 				threshold: 50,
 				success: function(magnitude, accelerationDelta, timestamp) {
-					$('#settings #content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
+					$('#settings #content').empty().append(magnitude + '<br />');
+					$('#settings #content').append(accelerationDelta + '<br />');
+					$('#settings #content').append(timestamp + '<br />');
+					// $('#settings #content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
 				}
 			});
 			app.shake.startWatch();

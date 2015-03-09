@@ -75,7 +75,6 @@ function Shake(options) {
 				}, 2000);
 			}
 			counter++;
-			$('#settings #content').append(counter + '<br />');
 
 			if(counter === 5) {
 				if (options.waitBetweenShakes > 0) {
