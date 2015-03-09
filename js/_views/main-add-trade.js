@@ -11,14 +11,14 @@
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'left': {
-					'icon': 'f124',
-					'text': 'Cancel',
-					'view': 'main'
+				left: {
+					icon: 'f124',
+					text: 'Cancel',
+					view: 'main'
 				},
-				'right': {
-					'text': 'Add',
-					'view': 'main'
+				right: {
+					text: 'Add',
+					view: 'main'
 				}
 			});
 			this.$el.html(this.template());

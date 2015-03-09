@@ -15,13 +15,13 @@
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'left': {
-					'icon': 'f203',
-					'view': 'mainMap'
+				left: {
+					icon: 'f203',
+					view: 'mainMap'
 				},
-				'right': {
-					'icon': 'f218',
-					'view': 'mainAdd'
+				right: {
+					icon: 'f218',
+					view: 'mainAdd'
 				}
 			});
 			this.$el.html(this.template());
@@ -30,10 +30,10 @@
 			return this;
 		},
 		viewOperation: function() {
-			this.content = new app.Views['mainViewOperation']();
+			new app.Views['mainViewOperation']();
 		},
 		viewTrade: function() {
-			this.content = new app.Views['mainViewTrade']();
+			new app.Views['mainViewTrade']();
 		}
 	});
 })();

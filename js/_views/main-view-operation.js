@@ -11,10 +11,10 @@
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'left': {
-					'icon': 'f124',
-					'text': 'Back',
-					'view': 'main'
+				left: {
+					icon: 'f124',
+					text: 'Back',
+					view: 'main'
 				}
 			});
 			this.$el.html(this.template());

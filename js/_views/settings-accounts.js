@@ -11,9 +11,9 @@
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'right': {
-					'icon': 'f218',
-					'view': 'settingsAddAccount'
+				right: {
+					icon: 'f218',
+					view: 'settingsAddAccount'
 				}
 			});
 			this.$el.html(this.template());

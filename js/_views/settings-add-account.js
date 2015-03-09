@@ -11,16 +11,16 @@
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'left': {
-					'icon': 'f124',
-					'text': 'Cancel',
-					'view': 'settings',
-					'subview': 'Accounts'
+				left: {
+					icon: 'f124',
+					text: 'Cancel',
+					view: 'settings',
+					subview: 'Accounts'
 				},
-				'right': {
-					'text': 'Add',
-					'view': 'settings',
-					'subview': 'Accounts'
+				right: {
+					text: 'Add',
+					view: 'settings',
+					subview: 'Accounts'
 				}
 			});
 			this.$el.html(this.template());

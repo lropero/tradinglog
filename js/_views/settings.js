@@ -21,7 +21,7 @@
 				subview: this.subview
 			}));
 			$('#settings').empty().append(this.$el);
-			this.content = new app.Views['settings' + this.subview]();
+			new app.Views['settings' + this.subview]();
 			return this;
 		},
 		switch: function(e) {
@@ -29,7 +29,7 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			this.subview = target.data('subview');
-			this.content = new app.Views['settings' + this.subview]();
+			new app.Views['settings' + this.subview]();
 		}
 	});
 })();

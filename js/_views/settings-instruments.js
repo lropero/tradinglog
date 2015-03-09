@@ -11,9 +11,9 @@
 		},
 		render: function() {
 			app.Helpers.headerNavigation.update({
-				'right': {
-					'icon': 'f218',
-					'view': 'settingsAddInstrument'
+				right: {
+					icon: 'f218',
+					view: 'settingsAddInstrument'
 				}
 			});
 			this.$el.html(this.template());

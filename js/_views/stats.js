@@ -20,7 +20,7 @@
 			app.Helpers.headerNavigation.update();
 			this.$el.html(this.template());
 			$('#main-stats-friends').empty().append(this.$el);
-			this.content = new app.Views['stats' + this.subview]();
+			new app.Views['stats' + this.subview]();
 			return this;
 		},
 		switch: function(e) {
@@ -28,7 +28,7 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			this.subview = target.data('subview');
-			this.content = new app.Views['stats' + this.subview]();
+			new app.Views['stats' + this.subview]();
 		}
 	});
 })();
