@@ -14,7 +14,7 @@
 			document.addEventListener('deviceready', this.deviceReady, false);
 		},
 		deviceReady: function() {
-			$('#main-stats-friends').append(typeof this.router + ' ROUTER<br />');
+			$('#main-stats-friends').append(typeof app.router + ' ROUTER<br />');
 			$('#main-stats-friends').append(typeof this.db + '3<br />');
 			$('#main-stats-friends').append(typeof this.db.init);
 			this.db.init();
