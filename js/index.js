@@ -13,7 +13,7 @@
 			document.addEventListener('deviceready', this.deviceReady, false);
 		},
 		deviceReady: function() {
-			this.db.init();
+			// this.db.init();
 			Backbone.history.start();
 		},
 		loadView: function(view, subview) {
