@@ -25,7 +25,7 @@
 			return this;
 		},
 		switch: function(e) {
-			if(app.shake !== 'undefined') {
+			if(typeof app.shake !== 'undefined') {
 				app.shake.stopWatch();
 			}
 			this.$el.find('li.active').removeClass('active');
