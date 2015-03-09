@@ -64,7 +64,7 @@
 					});
 				}
 
-				app.router.navigate(route, {trigger: true});
+				// app.router.navigate(route, {trigger: true});
 			});
 		},
 		animating: false
