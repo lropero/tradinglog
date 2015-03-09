@@ -6,13 +6,14 @@
 		Helpers: {},
 		Templates: {},
 		Views: {},
-		initialize: function() {
+		init: function() {
 			this.bindEvents();
 		},
 		bindEvents: function() {
 			document.addEventListener('deviceready', this.deviceReady, false);
 		},
 		deviceReady: function() {
+			this.db.init();
 			Backbone.history.start();
 		},
 		loadView: function(view, subview) {
@@ -30,7 +31,7 @@
 	window.init = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
 			FastClick.attach(document.body);
-			app.initialize();
+			app.init();
 		} else {
 			app.deviceReady();
 		}

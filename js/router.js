@@ -28,11 +28,11 @@
 
 	var NavigationController = function() {
 		this.$tab = $('.app').find('footer bar.tab');
-		this.initialize();
+		this.init();
 	};
 
 	NavigationController.prototype = {
-		initialize: function() {
+		init: function() {
 			this.bindEvents();
 			_.extend(this, Backbone.Events);
 		},
