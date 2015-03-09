@@ -19,7 +19,7 @@
 		shake: function() {
 			var shake = new Shake({
 				frequency: 200,
-				threshold: 50,
+				threshold: 70,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					$('#settings #content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
 				}
