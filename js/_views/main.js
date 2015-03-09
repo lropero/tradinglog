@@ -30,10 +30,10 @@
 			return this;
 		},
 		viewOperation: function() {
-			new app.Views['mainViewOperation']();
+			app.loadView('mainViewOperation');
 		},
 		viewTrade: function() {
-			new app.Views['mainViewTrade']();
+			app.loadView('mainViewTrade');
 		}
 	});
 })();

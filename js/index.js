@@ -2,6 +2,7 @@
 	'use strict';
 
 	window.app = {
+		currentView: '',
 		Helpers: {},
 		Templates: {},
 		Views: {},
@@ -13,6 +14,16 @@
 		},
 		deviceReady: function() {
 			Backbone.history.start();
+		},
+		loadView: function(view, subview) {
+			if(this.currentView.length) {
+				$(this.currentView).trigger('destroy');
+			}
+			if(typeof subview === 'undefined') {
+				this.currentView = new this.Views[view]();
+			} else {
+				this.currentView = new this.Views[view](subview);
+			}
 		}
 	};
 

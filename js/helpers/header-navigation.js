@@ -33,9 +33,9 @@
 			}
 			button.off().on('click', function() {
 				if(typeof options.subview === 'undefined') {
-					app.router.view = new app.Views[options.view]();
+					app.loadView(options.view);
 				} else {
-					app.router.view = new app.Views[options.view](options.subview);
+					app.loadView(options.view, options.subview);
 				}
 			});
 			button.show();

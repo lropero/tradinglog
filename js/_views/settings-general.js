@@ -2,6 +2,9 @@
 	'use strict';
 
 	app.Views.settingsGeneral = Backbone.View.extend({
+		events: {
+			'destroy': 'destroy'
+		},
 		initialize: function() {
 			var self = this;
 			app.Helpers.templateLoader.get('settings-general', function(template) {
@@ -25,6 +28,9 @@
 				}
 			});
 			app.shake.startWatch();
+		},
+		destroy: function() {
+			app.shake.stopWatch();
 		}
 	});
 })();

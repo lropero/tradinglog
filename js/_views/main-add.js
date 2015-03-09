@@ -15,7 +15,7 @@
 		render: function() {
 			this.$el.html(this.template());
 			$('#main-stats-friends').empty().append(this.$el);
-			new app.Views.mainAddTrade();
+			app.loadView('mainAddTrade');
 			return this;
 		},
 		switch: function(e) {
@@ -23,7 +23,7 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			this.subview = target.data('subview');
-			new app.Views['main' + this.subview]();
+			app.loadView('main' + this.subview);
 		}
 	});
 })();

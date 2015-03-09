@@ -11,16 +11,16 @@
 			'settings': 'settings'
 		},
 		main: function() {
-			this.view = new app.Views.main();
+			app.loadView('main');
 		},
 		stats: function() {
-			this.view = new app.Views.stats();
+			app.loadView('stats');
 		},
 		friends: function() {
-			this.view = new app.Views.friends();
+			app.loadView('friends');
 		},
 		settings: function() {
-			this.view = new app.Views.settings();
+			app.loadView('settings');
 		}
 	});
 

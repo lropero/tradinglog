@@ -21,18 +21,15 @@
 				subview: this.subview
 			}));
 			$('#settings').empty().append(this.$el);
-			new app.Views['settings' + this.subview]();
+			app.loadView('settings' + this.subview);
 			return this;
 		},
 		switch: function(e) {
-			if(typeof app.shake !== 'undefined') {
-				app.shake.stopWatch();
-			}
 			this.$el.find('li.active').removeClass('active');
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			this.subview = target.data('subview');
-			new app.Views['settings' + this.subview]();
+			app.loadView('settings' + this.subview);
 		}
 	});
 })();
