@@ -25,6 +25,9 @@
 			return this;
 		},
 		switch: function(e) {
+			if(app.shake !== 'undefined') {
+				app.shake.stopWatch();
+			}
 			this.$el.find('li.active').removeClass('active');
 			var target = $(e.currentTarget);
 			target.addClass('active');

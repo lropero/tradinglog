@@ -17,14 +17,14 @@
 			return this;
 		},
 		shake: function() {
-			var shake = new Shake({
+			app.shake = new Shake({
 				frequency: 100,
 				threshold: 50,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					$('#settings #content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
 				}
 			});
-			shake.startWatch();
+			app.shake.startWatch();
 		}
 	});
 })();
