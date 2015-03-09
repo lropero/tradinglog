@@ -22,7 +22,8 @@ function Shake(options) {
 			success: undefined,
 			failure: undefined
 		},
-		previousAcceleration;
+		previousAcceleration,
+		counter = 0;
 	for (var p in defaultOptions)
 		if (!options.hasOwnProperty(p))
 			options[p] = defaultOptions[p];
@@ -68,18 +69,15 @@ function Shake(options) {
 		if (magnitude >= options.threshold) {
 			// Shake detected
 
-			if(this.counter === 'undefined') {
-				this.counter = 1;
-				var self = this;
+			if(counter === 0) {
 				setTimeout(function() {
-					self.counter = 0;
+					counter = 0;
 				}, 2000);
-			} else {
-				this.counter++;
 			}
-			$('#settings #content').append(this.counter + '<br />');
+			counter++;
+			$('#settings #content').append(counter + '<br />');
 
-			if(this.counter === 5) {
+			if(counter === 5) {
 				if (options.waitBetweenShakes > 0) {
 					shake.stopWatch();
 					previousAcceleration = undefined;
