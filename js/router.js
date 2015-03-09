@@ -24,7 +24,7 @@
 		}
 	});
 
-	app.router = new Router();
+	// app.router = new Router();
 
 	var NavigationController = function() {
 		this.$tab = $('.app').find('footer bar.tab');
