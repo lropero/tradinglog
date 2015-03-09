@@ -17,12 +17,18 @@
 			return this;
 		},
 		shake: function() {
-			var pepe = new Shake({
+			var shake = new Shake({
+				frequency: 300,
+				threshold: 12,
+				waitBetweenShakes: 1000,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					new app.Views['friends']();
+				},
+				failure: function() {
+					new app.Views['stats']();
 				}
 			});
-			pepe.startWatch();
+			shake.startWatch();
 		}
 	});
 })();
