@@ -148,7 +148,7 @@ section#main-stats-friends {
   width: 100%;
   min-height: 100%;
   margin-top: 64px;
-  margin-bottom: 44px;
+  margin-bottom: 43px;
 }
 section#settings {
   -webkit-animation-duration: 0.8s;
@@ -199,7 +199,7 @@ ol {
   margin: 15px;
   color: #989898;
 }
-.description {
+.body {
   display: block;
   margin: 15px;
 }
@@ -218,7 +218,7 @@ ol {
   min-height: 65px;
   padding: 10px 40px 10px 15px;
   color: #222222;
-  border-bottom: 1px solid #989898;
+  border-bottom: 1px solid #dadada;
   background-color: #ffffff;
 }
 .label:after {
@@ -452,6 +452,7 @@ img {
   color: #ffffff;
 }
 .label.trade.open {
+  border-bottom: 1px solid #333333;
   background-color: #222222;
 }
 .label.trade.open .name,
@@ -504,6 +505,7 @@ img {
   position: relative;
   display: block;
   height: 65px;
+  border-top: 1px solid #3219a4;
   background-color: #4020d0;
 }
 .swipe:before {
@@ -524,7 +526,6 @@ img {
   float: right;
   width: 80px;
   height: 100%;
-  border-top: 1px solid #333333;
 }
 .swipe .button-swipe {
   font-family: ionicons;
@@ -540,8 +541,26 @@ img {
 .swipe .button-swipe.commission:after {
   font-size: 21px;
   line-height: 66px;
-  height: 65px;
   content: '\f353';
+}
+.swipe .button-swipe.group {
+  text-align: left;
+}
+.swipe .button-swipe.group span {
+  font-size: 15px;
+  line-height: 20px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-top: 22px;
+  margin-left: 30px;
+  content: '';
+  text-align: center;
+  color: #4020d0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #ffffff;
 }
 .active-swipe.one-button-swipe {
   left: -80px;
@@ -682,10 +701,10 @@ textarea {
   clear: both;
   margin: 15px;
 }
-.form-group .input-icon input {
+.wrapper-input .input-icon input {
   padding-left: 65px;
 }
-.form-group .input-icon:before {
+.wrapper-input .input-icon:before {
   font-family: ionicons;
   font-size: 26px;
   line-height: 45px;
@@ -704,7 +723,7 @@ textarea {
   border-bottom-left-radius: 4px;
   background-color: #989898;
 }
-.form-group .input-icon.price:before {
+.wrapper-input .input-icon.price:before {
   font-size: 26px;
   line-height: 45px;
   content: '\f353';
@@ -713,6 +732,9 @@ textarea {
   font-size: 12px;
   display: block;
   color: #989898;
+}
+.help-block.header {
+  margin-bottom: 15px;
 }
 .radiobutton {
   position: relative;
@@ -805,4 +827,66 @@ textarea {
   padding: 0 15px;
   color: #222222;
   background-color: #f6f6f6;
+}
+.wrapper-checkbox {
+  position: relative;
+  display: table;
+  clear: both;
+  width: 100%;
+  margin: 15px;
+}
+.checkbox {
+  position: relative;
+  float: left;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  border: 2px solid #4020d0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.checkbox.active:after {
+  font-family: ionicons;
+  font-size: 18px;
+  line-height: 29px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  height: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  content: '\f122';
+  color: #4020d0;
+}
+.wrapper-checkbox span {
+  float: left;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.wrapper-feedback {
+  position: relative;
+  display: table;
+  clear: both;
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+}
+.wrapper-feedback .button-feedback {
+  position: relative;
+  display: inline-block;
+  margin: 0 30px;
+  font-family: ionicons;
+  font-size: 40px;
+  line-height: 1;
+}
+.wrapper-feedback .button-feedback.happy:after {
+  content: '\f3c6';
+  color: #4bd763;
+}
+.wrapper-feedback .button-feedback.sad:after {
+  content: '\f4d7';
+  color: #989898;
 }

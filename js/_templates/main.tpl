@@ -5,6 +5,22 @@
 		<div class="balance">Balance: <span>$4,896.52</span></div>
 	</div>
 
+	<ul class="wrapper-feedback">
+		<span class="help-block header">Lorem ipsum dolor.</span>
+		<li class="button-feedback happy"></li>
+		<li class="button-feedback sad"></li>
+	</ul>
+
+	<div class="wrapper-checkbox">
+		<div class="checkbox"></div>
+		<span>Lorem ipsum</span>
+	</div>
+
+	<div class="wrapper-checkbox">
+		<div class="checkbox active"></div>
+		<span>Lorem ipsum</span>
+	</div>
+
 	<div class="wrapper-select">
 		<div class="select">Lorem ipsum select</div>
 	</div>
@@ -88,7 +104,7 @@
 					<span class="group">A</span>
 				</div>
 				<div class="row">
-					<div class="name">E-mini S&P 500</div>
+					<div class="name">E-mini S&P 500 grupito</div>
 				</div>
 				<div class="row">
 					<div class="balance">Future</div>
@@ -98,7 +114,7 @@
 			<div class="wrapper-swipe" style="width: 320px;">
 				<div class="swipe">
 					<ul>
-						<li class="button-swipe commission"></li>
+						<li class="button-swipe group"><span>A</span></li>
 					</ul>
 				</div>
 			</div>
@@ -154,7 +170,7 @@
 		</li>
 	</ul>
 
-	<p class="description">Lorem ipsum dolor sit amet.</p>
+	<p class="body">Lorem ipsum dolor sit amet.</p>
 
 	<form>
 		<div class="wrapper-input">
@@ -271,8 +287,8 @@
 				</div>
 			</div>
 		</li>
-		<li class="wrapper-label">
-			<div class="label no-click operation withdraw">
+		<li class="wrapper-label" style="left: -80px; width: 400px;">
+			<div class="label operation withdraw active-swipe one-button-swipe" style="left: 80px; width: 320px;">
 				<div class="ball">
 					<div class="icon"></div>
 				</div>
@@ -283,6 +299,13 @@
 				<div class="row">
 					<div class="balance">April 14th 2015</div>
 					<div class="variation">-7.11%</div>
+				</div>
+			</div>
+			<div class="wrapper-swipe" style="width: 320px;">
+				<div class="swipe">
+					<ul>
+						<li class="button-swipe commission"></li>
+					</ul>
 				</div>
 			</div>
 		</li>

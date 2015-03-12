@@ -44,7 +44,11 @@ ol
 
 @gray: #989898;
 
-@gray-light: #f6f6f6;
+@gray-light: #dadada;
+
+@gray-lighter: #f6f6f6;
+
+@violet-dark: darken(@violet, 10%);
 
 @violet: #4020d0;
 
@@ -74,10 +78,10 @@ ol
     color: @gray;
 }
 
-// FONT - DESCRIPTION
+// FONT - BODY
 // -------------------------------------------------- //
 
-.description
+.body
 {
     display: block;
 
@@ -110,7 +114,7 @@ ol
     padding: 10px 40px 10px 15px;
 
     color: @black;
-    border-bottom: 1px solid @gray;
+    border-bottom: 1px solid @gray-light;
     background-color: @white;
 }
 
@@ -515,6 +519,7 @@ img
 
 .label.trade.open
 {
+    border-bottom: 1px solid @gray-dark;
     background-color: @black;
 }
 
@@ -613,6 +618,7 @@ img
 
     height: 65px;
 
+    border-top: 1px solid @violet-dark;
     background-color: @violet;
 }
 
@@ -644,8 +650,6 @@ img
 
     width: 80px;
     height: 100%;
-
-    border-top: 1px solid @gray-dark;
 }
 
 // SWIPE - BUTTONS
@@ -673,9 +677,34 @@ img
     font-size: 21px;
     line-height: 66px;
 
-    height: 65px;
-
     content: '\f353';
+}
+
+.swipe .button-swipe.group
+{
+    text-align: left;
+}
+
+.swipe .button-swipe.group span
+{
+    font-size: @medium;
+    line-height: 20px;
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+    margin-top: 22px;
+    margin-left: 30px;
+
+    content: '';
+    text-align: center;
+
+    color: @violet;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    background-color: @white;
 }
 
 // SWIPE > ACTIVE
@@ -912,15 +941,15 @@ textarea
     margin: 15px;
 }
 
-// FORM - FORM INPUT > ICON
+// FORM - INPUT > ICON
 // -------------------------------------------------- //
 
-.form-group .input-icon input
+.wrapper-input .input-icon input
 {
     padding-left: 65px;
 }
 
-.form-group .input-icon:before
+.wrapper-input .input-icon:before
 {
     font-family: ionicons;
     font-size: 26px;
@@ -948,7 +977,7 @@ textarea
 // FORM - FORM INPUT > ICONS
 // -------------------------------------------------- //
 
-.form-group .input-icon.price:before
+.wrapper-input .input-icon.price:before
 {
     font-size: 26px;
     line-height: 45px;
@@ -966,6 +995,10 @@ textarea
     display: block;
 
     color: @gray;
+}
+
+.help-block.header {
+    margin-bottom: 15px;
 }
 
 // RADIO BUTTON
@@ -1008,7 +1041,7 @@ textarea
     color: @violet;
 }
 
-// WRAPPER RADIO BUTTON - RADIO BUTTON (IN LINE)
+// RADIO BUTTON (IN LINE)
 // -------------------------------------------------- //
 
 .wrapper-radiobutton
@@ -1118,5 +1151,108 @@ textarea
     padding: 0 15px;
 
     color: @black;
-    background-color: @gray-light;
+    background-color: @gray-lighter;
 }
+
+// CHECKBOX
+// -------------------------------------------------- //
+
+.wrapper-checkbox
+{
+    position: relative;
+
+    display: table;
+    clear: both;
+
+    width: 100%;
+    margin: 15px;
+}
+
+.checkbox
+{
+    position: relative;
+
+    float: left;
+
+    width: 32px;
+    height: 32px;
+
+    text-align: center;
+
+    border: 2px solid @violet;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+.checkbox.active:after
+{
+    font-family: ionicons;
+    font-size: 18px;
+    line-height: 29px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    height: 32px;
+    margin-right: auto;
+    margin-left: auto;
+
+    content: '\f122';
+
+    color: @violet;
+}
+
+.wrapper-checkbox span
+{
+    float: left;
+
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+// FEEDBACK
+// -------------------------------------------------- //
+
+.wrapper-feedback
+{
+    position: relative;
+
+    display: table;
+    clear: both;
+
+    width: 100%;
+    margin: 15px 0;
+
+    text-align: center;
+}
+
+.wrapper-feedback .button-feedback
+{
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0 30px;
+    font-family: ionicons;
+    font-size: 40px;
+    line-height: 1;
+}
+
+.wrapper-feedback .button-feedback.happy:after
+{
+    content: '\f3c6';
+    color: @green;
+}
+
+.wrapper-feedback .button-feedback.sad:after
+{
+    content: '\f4d7';
+    color: @gray;
+}
+
+
