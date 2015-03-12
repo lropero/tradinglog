@@ -98,6 +98,8 @@ header {
 	position: fixed;
 	width: 100%;
 	z-index: 1000;
+	top: 0;
+	left: 0;
 }
 
 header bar.navigation {
@@ -159,10 +161,11 @@ header bar.navigation div.logo {
 }
 
 section#main-stats-friends {
-	bottom: 44px;
-	position: absolute;
-	top: 64px;
+	position: relative;
 	width: 100%;
+	min-height: 100%;
+	margin-top: 64px;
+	margin-bottom: 44px;
 }
 
 section#settings {

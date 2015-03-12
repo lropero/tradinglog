@@ -90,6 +90,8 @@ header {
   position: fixed;
   width: 100%;
   z-index: 1000;
+  top: 0;
+  left: 0;
 }
 header bar.navigation {
   display: block;
@@ -142,10 +144,11 @@ header bar.navigation div.logo {
   top: 28px;
 }
 section#main-stats-friends {
-  bottom: 44px;
-  position: absolute;
-  top: 64px;
+  position: relative;
   width: 100%;
+  min-height: 100%;
+  margin-top: 64px;
+  margin-bottom: 44px;
 }
 section#settings {
   -webkit-animation-duration: 0.8s;
@@ -169,6 +172,10 @@ section#settings {
     -webkit-transform: scale(1.12);
   }
 }
+html,
+body {
+  overflow-x: hidden;
+}
 ul,
 ol {
   margin: 0;
@@ -180,89 +187,48 @@ ol {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.white {
-  color: #fff;
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-.black {
-  color: #222;
-}
-.violet {
-  color: #4020d0;
-}
-.violet-light {
-  color: #9f8fe7;
-}
-.gray {
+.note {
+  font-size: 12px;
+  display: block;
+  margin: 15px;
   color: #989898;
 }
-.gray-light {
-  color: #f6f6f6;
-}
-.green {
-  color: #4bd763;
-}
-.red {
-  color: #ff3b30;
-}
-.b-white {
-  background-color: #fff;
-}
-.b-black {
-  background-color: #222;
-}
-.b-violet {
-  background-color: #4020d0;
-}
-.b-violet-light {
-  background-color: #9f8fe7;
-}
-.b-gray {
-  background-color: #989898;
-}
-.b-gray-light {
-  background-color: #f6f6f6;
-}
-.b-green {
-  background-color: #4bd763;
-}
-.b-red {
-  background-color: #ff3b30;
+.description {
+  display: block;
+  margin: 15px;
 }
 .wrapper-label {
   position: relative;
   display: block;
   clear: both;
-  overflow: hidden;
-  min-height: 64px;
+  width: 100%;
+  min-height: 65px;
 }
 .label {
   position: relative;
   z-index: 100;
-  display: inline-block;
-  float: left;
+  display: block;
   width: 100%;
-  min-height: 44px;
+  min-height: 65px;
   padding: 10px 40px 10px 15px;
-  color: #222;
-  background-color: #fff;
-}
-.label:before {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  content: '';
-  background-color: #989898;
+  color: #222222;
+  border-bottom: 1px solid #989898;
+  background-color: #ffffff;
 }
 .label:after {
   font-family: ionicons;
   font-size: 14px;
-  line-height: 64px;
+  line-height: 1;
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 15px;
-  height: 100%;
+  margin-top: -5px;
   content: '\f125';
   color: #989898;
 }
@@ -270,58 +236,188 @@ ol {
   padding-right: 15px;
 }
 .label.full:after {
+  display: none;
+  content: '';
+}
+.label.no-click:after {
+  display: none;
   content: '';
 }
 .label .row {
   position: relative;
-  clear: right;
+  clear: both;
+}
+.label.comment {
+  padding: 10px 15px;
+}
+.label.comment:after {
+  display: none;
+  content: '';
+}
+.label.comment .row {
+  margin-left: 33px;
+}
+.label.comment .comment {
+  float: left;
+  color: #222222;
+}
+.label.comment .date {
+  float: left;
+  color: #989898;
+}
+.label.comment .ball {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  margin-top: 15px;
+  text-align: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #222222;
+}
+.image-comment {
+  margin: 15px;
+}
+img {
+  width: 100%;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.label.comment.long .ball {
+  background-color: #4bd763;
+}
+.label.comment.short .ball {
+  background-color: #ff3b30;
+}
+.label.comment.withdraw .ball {
+  background-color: #989898;
+}
+.label.comment.deposit .ball {
+  background-color: #989898;
+}
+.label.account .row {
   margin-left: 50px;
 }
-.label.trade .name {
+.label.account .name {
   float: left;
-  color: #222;
+  color: #222222;
 }
-.label.trade .net.positive {
+.label.account .net {
+  float: left;
+  color: #989898;
+}
+.label.account .radiobutton {
+  position: absolute;
+  margin-top: 6px;
+}
+.label.instrument .row {
+  margin-left: 50px;
+}
+.label.instrument .name {
+  float: left;
+  color: #222222;
+}
+.label.instrument .net.positive {
   float: right;
   color: #4020d0;
 }
-.label.trade .net.negative {
+.label.instrument .net.negative {
   float: right;
-  color: #222;
+  color: #222222;
 }
-.label.trade .balance {
+.label.instrument .balance {
   float: left;
   color: #989898;
 }
-.label.trade .variation {
+.label.instrument .variation {
   float: right;
   color: #989898;
 }
-.label.trade .ball {
+.label.instrument .ball {
   position: absolute;
   width: 32px;
   height: 32px;
   margin-top: 6px;
-  margin-right: 15px;
   text-align: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
-  background-color: #222;
+  background-color: #4020d0;
 }
-.label.trade .ball .globe-comments {
+.label.instrument .ball .group {
+  font-size: 15px;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  height: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #ffffff;
+}
+.label.trade .row,
+.label.operation .row {
+  margin-left: 50px;
+}
+.label.trade .name,
+.label.operation .name {
+  float: left;
+  color: #222222;
+}
+.label.trade .net.positive,
+.label.operation .net.positive {
+  float: right;
+  color: #4020d0;
+}
+.label.trade .net.negative,
+.label.operation .net.negative {
+  float: right;
+  color: #222222;
+}
+.label.trade .balance,
+.label.operation .balance {
+  float: left;
+  color: #989898;
+}
+.label.trade .variation,
+.label.operation .variation {
+  float: right;
+  color: #989898;
+}
+.label.trade .ball,
+.label.operation .ball {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-top: 6px;
+  text-align: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #222222;
+}
+.label.trade .ball .globe-comments,
+.label.operation .ball .globe-comments {
   font-size: 12px;
   line-height: 17px;
   position: absolute;
   top: -5px;
   right: -5px;
   height: 17px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding: 0 5px;
   text-align: center;
+  color: #ffffff;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
   border-radius: 100px;
-  color: #fff;
-  background-color: #222;
+  background-color: #222222;
 }
-.label.trade .ball .globe-commission {
+.label.trade .ball .globe-commission,
+.label.operation .ball .globe-commission {
   font-size: 12px;
   line-height: 17px;
   position: absolute;
@@ -329,15 +425,19 @@ ol {
   left: -5px;
   min-width: 17px;
   height: 17px;
+  color: #222222;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
   border-radius: 100px;
-  color: #222;
-  background-color: #fff;
+  background-color: #ffffff;
 }
-.label.trade .ball .globe-commission:after {
+.label.trade .ball .globe-commission:after,
+.label.operation .ball .globe-commission:after {
   font-family: ionicons;
   content: '\f100';
 }
-.label.trade .ball .icon {
+.label.trade .ball .icon,
+.label.operation .ball .icon {
   font-family: ionicons;
   font-size: 16px;
   line-height: 32px;
@@ -349,15 +449,15 @@ ol {
   height: 32px;
   margin-right: auto;
   margin-left: auto;
-  color: #fff;
+  color: #ffffff;
 }
 .label.trade.open {
-  background-color: #222;
+  background-color: #222222;
 }
 .label.trade.open .name,
 .label.trade.open .net.positive,
 .label.trade.open .net.negative {
-  color: #fff;
+  color: #ffffff;
 }
 .label.trade.long .ball {
   background-color: #4bd763;
@@ -375,23 +475,23 @@ ol {
   line-height: 35px;
   content: '\f104';
 }
-.label.trade.withdraw .ball {
+.label.operation.withdraw .ball {
   background-color: #989898;
 }
-.label.trade.withdraw .ball .icon:after {
+.label.operation.withdraw .ball .icon:after {
   font-size: 16px;
   line-height: 32px;
   content: '\f107';
 }
-.label.trade.deposit .ball {
+.label.operation.deposit .ball {
   background-color: #989898;
 }
-.label.trade.deposit .ball .icon:after {
+.label.operation.deposit .ball .icon:after {
   font-size: 16px;
   line-height: 32px;
   content: '\f10a';
 }
-.wrapper-swipe-label {
+.wrapper-swipe {
   position: absolute;
   z-index: 10;
   top: 0;
@@ -400,52 +500,309 @@ ol {
   height: 100%;
   background-color: #9f8fe7;
 }
-.swipe-label {
-  font-family: ionicons;
-  font-size: 30px;
-  line-height: 64px;
+.swipe {
   position: relative;
   display: block;
-  height: 64px;
-  text-align: center;
+  height: 65px;
   background-color: #4020d0;
-  color: #fff;
 }
-.swipe-label:before {
+.swipe:before {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 65px;
   width: 100%;
   height: 1px;
-  content: '';
   background-color: #9f8fe7;
 }
-.swipe-label ul {
+.swipe ul {
   position: relative;
   display: block;
+  height: 100%;
 }
-.swipe-label ul li {
+.swipe ul li {
   display: inline-block;
   float: right;
+  width: 80px;
+  height: 100%;
   border-top: 1px solid #333333;
-  width: 25%;
 }
-.swipe-label .button-delete:after {
-  font-size: 30px;
-  line-height: 64px;
-  height: 64px;
+.swipe .button-swipe {
+  font-family: ionicons;
+  font-size: 26px;
+  text-align: center;
+  color: #ffffff;
+}
+.swipe .button-swipe.delete:after {
+  font-size: 25px;
+  line-height: 66px;
   content: '\f4c5';
-  color: #fff;
 }
-.swipe-label .button-commission:after {
-  font-size: 26.5px;
-  line-height: 64px;
-  height: 64px;
+.swipe .button-swipe.commission:after {
+  font-size: 21px;
+  line-height: 66px;
+  height: 65px;
   content: '\f353';
 }
 .active-swipe.one-button-swipe {
-  left: -25%;
+  left: -80px;
 }
 .active-swipe.two-button-swipe {
-  left: -50%;
+  left: -160px;
+}
+.wrapper-button-default {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 44px;
+}
+.wrapper-button-default .button-default {
+  line-height: 44px;
+  position: relative;
+  z-index: 100;
+  display: inline-block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #ffffff;
+  background-color: #4020d0;
+}
+.wrapper-button-default.one-button-default .button-default {
+  width: 100%;
+}
+.wrapper-button-default.two-button-default .button-default {
+  float: left;
+  width: 50%;
+}
+.wrapper-button-default.two-button-default .button-default:first-child {
+  border-right: 1px solid #ffffff;
+}
+.button-primary {
+  line-height: 44px;
+  position: relative;
+  display: block;
+  clear: both;
+  height: 44px;
+  margin: 15px;
+  text-align: center;
+  color: #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #4020d0;
+}
+.button-primary.add-photo:after {
+  font-family: ionicons;
+  font-size: 21px;
+  line-height: 46px;
+  content: '\f2d3';
+  text-align: center;
+}
+.button-primary.delete-photo:after {
+  font-family: ionicons;
+  font-size: 21px;
+  line-height: 46px;
+  content: '\f2d3';
+  text-align: center;
+}
+.button-primary.delete-photo:before {
+  font-family: ionicons;
+  font-size: 24px;
+  line-height: 46px;
+  position: absolute;
+  z-index: 10;
+  content: '\f12a';
+  text-align: center;
+  color: #4020d0 !important;
+}
+.drag-account {
+  font-size: 12px;
+  line-height: 30px;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 0 15px;
+  color: #ffffff;
+  background-color: #9f8fe7;
+}
+.drag-account .account {
+  float: left;
+}
+.drag-account .balance {
+  float: right;
+}
+form {
+  width: 100%;
+}
+input {
+  line-height: 40px;
+  width: 100%;
+  height: 45px;
+  padding: 0 15px;
+  border: 1px solid #989898;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+textarea {
+  font-size: inherit;
+  line-height: inherit;
+  width: 100%;
+  padding: 10px 15px;
+  resize: none;
+  border: 1px solid #989898;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+form,
+input,
+textarea {
+  color: #222222;
+}
+::-webkit-input-placeholder {
+  color: #989898;
+}
+:-moz-placeholder {
+  opacity: 1;
+  color: #989898;
+}
+::-moz-placeholder {
+  opacity: 1;
+  color: #989898;
+}
+:-ms-input-placeholder {
+  color: #989898;
+}
+.wrapper-input,
+.wrapper-comment {
+  position: relative;
+  display: block;
+  clear: both;
+  margin: 15px;
+}
+.form-group .input-icon input {
+  padding-left: 65px;
+}
+.form-group .input-icon:before {
+  font-family: ionicons;
+  font-size: 26px;
+  line-height: 45px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 45px;
+  text-align: center;
+  color: #ffffff;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #989898;
+}
+.form-group .input-icon.price:before {
+  font-size: 26px;
+  line-height: 45px;
+  content: '\f353';
+}
+.help-block {
+  font-size: 12px;
+  display: block;
+  color: #989898;
+}
+.radiobutton {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  border: 2px solid #4020d0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.radiobutton.active:after {
+  font-family: ionicons;
+  font-size: 15px;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  height: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  content: '\f21b';
+  color: #4020d0;
+}
+.wrapper-radiobutton {
+  position: relative;
+  display: table;
+  clear: both;
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+}
+.group-radiobutton {
+  position: relative;
+  display: inline-block;
+  margin-left: 15px;
+}
+.group-radiobutton .radiobutton {
+  float: left;
+}
+.group-radiobutton span {
+  float: left;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.wrapper-select {
+  position: relative;
+  display: block;
+  clear: both;
+  margin: 15px;
+}
+.wrapper-select .select {
+  font-size: 12px;
+  line-height: 30px;
+  position: relative;
+  display: block;
+  height: 30px;
+  padding: 0 15px;
+  text-decoration: none;
+  color: #989898;
+  border: 1px solid #4020d0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+.wrapper-select .select:after {
+  font-family: ionicons;
+  font-size: 16px;
+  line-height: 30px;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  padding: 0 10px;
+  content: '\f104';
+  color: #ffffff;
+  background-color: #4020d0;
+}
+.title-section {
+  font-size: 12px;
+  line-height: 30px;
+  position: relative;
+  display: block;
+  clear: both;
+  width: 100%;
+  height: 30px;
+  margin: 15px 0;
+  padding: 0 15px;
+  color: #222222;
+  background-color: #f6f6f6;
 }

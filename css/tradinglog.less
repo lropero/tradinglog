@@ -3,6 +3,12 @@
 // GLOBAL
 // -------------------------------------------------- //
 
+html,
+body
+{
+    overflow-x: hidden;
+}
+
 ul,
 ol
 {
@@ -19,90 +25,63 @@ ol
             box-sizing: border-box;
 }
 
-// PALETTE TEXT COLOR
+*:before,
+*:after
+{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+// PALETTE COLOR
 // -------------------------------------------------- //
 
-.white
-{
-    color: #fff;
-}
+@white: #fff;
 
-.black
-{
-    color: #222;
-}
+@black: #222;
 
-.violet
-{
-    color: #4020d0;
-}
+@gray-dark: #333;
 
-.violet-light
-{
-    color: #9f8fe7;
-}
+@gray: #989898;
 
-.gray
-{
-    color: #989898;
-}
+@gray-light: #f6f6f6;
 
-.gray-light
-{
-    color: #f6f6f6;
-}
+@violet: #4020d0;
 
-.green
-{
-    color: #4bd763;
-}
+@violet-light: #9f8fe7;
 
-.red
-{
-    color: #ff3b30;
-}
+@green: #4bd763;
 
-// PALETTE BACKGROUND COLOR
+@red: #ff3b30;
+
+// FONT - SIZE
 // -------------------------------------------------- //
 
-.b-white
+@small: 12px;
+@medium: 15px;
+
+// FONT - NOTE
+// -------------------------------------------------- //
+
+.note
 {
-    background-color: #fff;
+    font-size: @small;
+
+    display: block;
+
+    margin: 15px;
+
+    color: @gray;
 }
 
-.b-black
-{
-    background-color: #222;
-}
+// FONT - DESCRIPTION
+// -------------------------------------------------- //
 
-.b-violet
+.description
 {
-    background-color: #4020d0;
-}
+    display: block;
 
-.b-violet-light
-{
-    background-color: #9f8fe7;
-}
-
-.b-gray
-{
-    background-color: #989898;
-}
-
-.b-gray-light
-{
-    background-color: #f6f6f6;
-}
-
-.b-green
-{
-    background-color: #4bd763;
-}
-
-.b-red
-{
-    background-color: #ff3b30;
+    margin: 15px;
 }
 
 // LABEL
@@ -114,9 +93,9 @@ ol
 
     display: block;
     clear: both;
-    overflow: hidden;
 
-    min-height: 64px;
+    width: 100%;
+    min-height: 65px;
 }
 
 .label
@@ -124,49 +103,35 @@ ol
     position: relative;
     z-index: 100;
 
-    display: inline-block;
-    float: left;
+    display: block;
 
     width: 100%;
-    min-height: 44px;
+    min-height: 65px;
     padding: 10px 40px 10px 15px;
 
-    .black();
-    .b-white();
-}
-
-.label:before
-{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 1px;
-
-    content: '';
-
-    .b-gray();
+    color: @black;
+    border-bottom: 1px solid @gray;
+    background-color: @white;
 }
 
 .label:after
 {
     font-family: ionicons;
     font-size: 14px;
-    line-height: 64px;
+    line-height: 1;
 
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 15px;
 
-    height: 100%;
+    margin-top: -5px;
 
     content: '\f125';
 
-    .gray();
+    color: @gray;
 }
 
-// LABEL - FULL
+// LABEL > FULL
 // -------------------------------------------------- //
 
 .label.full
@@ -176,72 +141,306 @@ ol
 
 .label.full:after
 {
+    display: none;
+
     content: '';
 }
+
+// LABEL > NO-CLICK
+// -------------------------------------------------- //
+
+.label.no-click:after
+{
+    display: none;
+
+    content: '';
+}
+
+// LABEL - ROW
+// -------------------------------------------------- //
 
 .label .row
 {
     position: relative;
 
-    clear: right;
+    clear: both;
+}
 
+// LABEL > COMMENT
+// -------------------------------------------------- //
+
+.label.comment
+{
+    padding: 10px 15px;
+}
+
+.label.comment:after
+{
+    display: none;
+
+    content: '';
+}
+
+.label.comment .row
+{
+    margin-left: 33px;
+}
+
+.label.comment .comment
+{
+    float: left;
+
+    color: @black;
+}
+
+.label.comment .date
+{
+    float: left;
+
+    color: @gray;
+}
+
+.label.comment .ball
+{
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+    margin-top: 15px;
+
+    text-align: center;
+
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    background-color: @black;
+}
+
+// IMAGE COMMENT
+// -------------------------------------------------- //
+
+.image-comment
+{
+    margin: 15px;
+}
+
+img
+{
+    width: 100%;
+
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+// LABEL > COMMENT > LONG
+// -------------------------------------------------- //
+
+.label.comment.long .ball
+{
+    background-color: @green;
+}
+
+// LABEL > COMMENT > SHORT
+// -------------------------------------------------- //
+
+.label.comment.short .ball
+{
+    background-color: @red;
+}
+
+// LABEL > COMMENT > WITHDRAW
+// -------------------------------------------------- //
+
+.label.comment.withdraw .ball
+{
+    background-color: @gray;
+}
+
+// LABEL > COMMENT > DEPOSIT
+// -------------------------------------------------- //
+
+.label.comment.deposit .ball
+{
+    background-color: @gray;
+}
+
+// LABEL > ACCOUNT
+// -------------------------------------------------- //
+
+.label.account .row
+{
     margin-left: 50px;
 }
 
-// LABEL / TRADE
+.label.account .name
+{
+    float: left;
+
+    color: @black;
+}
+
+.label.account .net
+{
+    float: left;
+
+    color: @gray;
+}
+
+.label.account .radiobutton
+{
+    position: absolute;
+
+    margin-top: 6px;
+}
+
+// LABEL > INSTRUMENT
 // -------------------------------------------------- //
 
-.label.trade .name
+.label.instrument .row
+{
+    margin-left: 50px;
+}
+
+.label.instrument .name
 {
     float: left;
 
-    .black();
+    color: @black;
 }
 
-.label.trade .net.positive
+.label.instrument .net.positive
 {
     float: right;
 
-    .violet();
+    color: @violet;
 }
 
-.label.trade .net.negative
+.label.instrument .net.negative
 {
     float: right;
 
-    .black();
+    color: @black;
 }
 
-.label.trade .balance
+.label.instrument .balance
 {
     float: left;
 
-    .gray();
+    color: @gray;
 }
-.label.trade .variation
+
+.label.instrument .variation
 {
     float: right;
 
-    .gray();
+    color: @gray;
 }
 
-.label.trade .ball
+.label.instrument .ball
 {
     position: absolute;
 
     width: 32px;
     height: 32px;
     margin-top: 6px;
-    margin-right: 15px;
 
     text-align: center;
 
-    border-radius: 50%;
-
-    .b-black();
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    background-color: @violet;
 }
 
-.label.trade .ball .globe-comments
+
+.label.instrument .ball .group
+{
+    font-size: 15px;
+    line-height: 30px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    height: 32px;
+    margin-right: auto;
+    margin-left: auto;
+
+    color: @white;
+}
+
+// LABEL > TRADE / OPERATION 
+// -------------------------------------------------- //
+
+.label.trade .row,
+.label.operation .row
+{
+    margin-left: 50px;
+}
+
+.label.trade .name,
+.label.operation .name
+{
+    float: left;
+
+    color: @black;
+}
+
+.label.trade .net.positive,
+.label.operation .net.positive
+{
+    float: right;
+
+    color: @violet;
+}
+
+.label.trade .net.negative,
+.label.operation .net.negative
+{
+    float: right;
+
+    color: @black;
+}
+
+.label.trade .balance,
+.label.operation .balance
+{
+    float: left;
+
+    color: @gray;
+}
+
+.label.trade .variation,
+.label.operation .variation
+{
+    float: right;
+
+    color: @gray;
+}
+
+.label.trade .ball,
+.label.operation .ball
+{
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+    margin-top: 6px;
+
+    text-align: center;
+
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    background-color: @black;
+}
+
+.label.trade .ball .globe-comments,
+.label.operation .ball .globe-comments
 {
     font-size: 12px;
     line-height: 17px;
@@ -251,18 +450,19 @@ ol
     right: -5px;
 
     height: 17px;
-    padding-right: 5px;
-    padding-left: 5px;
+    padding: 0 5px;
 
     text-align: center;
 
-    border-radius: 100px;
-
-    .white();
-    .b-black();
+    color: @white;
+    -webkit-border-radius: 100px;
+       -moz-border-radius: 100px;
+            border-radius: 100px;
+    background-color: @black;
 }
 
-.label.trade .ball .globe-commission
+.label.trade .ball .globe-commission,
+.label.operation .ball .globe-commission
 {
     font-size: 12px;
     line-height: 17px;
@@ -274,20 +474,23 @@ ol
     min-width: 17px;
     height: 17px;
 
-    border-radius: 100px;
-
-    .black();
-    .b-white();
+    color: @black;
+    -webkit-border-radius: 100px;
+       -moz-border-radius: 100px;
+            border-radius: 100px;
+    background-color: @white;
 }
 
-.label.trade .ball .globe-commission:after
+.label.trade .ball .globe-commission:after,
+.label.operation .ball .globe-commission:after
 {
     font-family: ionicons;
 
     content: '\f100';
 }
 
-.label.trade .ball .icon
+.label.trade .ball .icon,
+.label.operation .ball .icon
 {
     font-family: ionicons;
     font-size: 16px;
@@ -304,30 +507,30 @@ ol
     margin-right: auto;
     margin-left: auto;
 
-    .white();
+    color: @white;
 }
 
-// LABEL / TRADE - OPEN
+// LABEL > TRADE > OPEN
 // -------------------------------------------------- //
 
 .label.trade.open
 {
-    .b-black();
+    background-color: @black;
 }
 
 .label.trade.open .name,
 .label.trade.open .net.positive,
 .label.trade.open .net.negative
 {
-    .white();
+    color: @white;
 }
 
-// LABEL / TRADE / LONG
+// LABEL > TRADE > LONG
 // -------------------------------------------------- //
 
 .label.trade.long .ball
 {
-    .b-green();
+    background-color: @green;
 }
 
 .label.trade.long .ball .icon:after
@@ -338,12 +541,12 @@ ol
     content: '\f10d';
 }
 
-// LABEL / TRADE / SHORT
+// LABEL > TRADE > SHORT
 // -------------------------------------------------- //
 
 .label.trade.short .ball
 {
-    .b-red();
+    background-color: @red;
 }
 
 .label.trade.short .ball .icon:after
@@ -354,15 +557,15 @@ ol
     content: '\f104';
 }
 
-// LABEL / TRADE / WITHDRAW
+// LABEL > OPERATION > WITHDRAW
 // -------------------------------------------------- //
 
-.label.trade.withdraw .ball
+.label.operation.withdraw .ball
 {
-    .b-gray();
+    background-color: @gray;
 }
 
-.label.trade.withdraw .ball .icon:after
+.label.operation.withdraw .ball .icon:after
 {
     font-size: 16px;
     line-height: 32px;
@@ -370,15 +573,15 @@ ol
     content: '\f107';
 }
 
-// LABEL / TRADE / DEPOSIT
+// LABEL > OPERATION > DEPOSIT
 // -------------------------------------------------- //
 
-.label.trade.deposit .ball
+.label.operation.deposit .ball
 {
-    .b-gray();
+    background-color: @gray;
 }
 
-.label.trade.deposit .ball .icon:after
+.label.operation.deposit .ball .icon:after
 {
     font-size: 16px;
     line-height: 32px;
@@ -386,10 +589,10 @@ ol
     content: '\f10a';
 }
 
-// SWIPE - LABEL
+// WRAPPER LABEL - SWIPE
 // -------------------------------------------------- //
 
-.wrapper-swipe-label
+.wrapper-swipe
 {
     position: absolute;
     z-index: 10;
@@ -399,92 +602,521 @@ ol
     width: 100%;
     height: 100%;
 
-    .b-violet-light();
+    background-color: @violet-light;
 }
 
-.swipe-label
+.swipe
 {
-    font-family: ionicons;
-    font-size: 30px;
-    line-height: 64px;
-
     position: relative;
 
     display: block;
 
-    height: 64px;
+    height: 65px;
 
-    text-align: center;
-
-    .white();
-    .b-violet();
-    .white();
+    background-color: @violet;
 }
 
-.swipe-label:before
+.swipe:before
 {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 65px;
 
     width: 100%;
     height: 1px;
 
-    content: '';
-
-    .b-violet-light();
+    background-color: @violet-light;
 }
 
-.swipe-label ul
+.swipe ul
 {
     position: relative;
 
     display: block;
+
+    height: 100%;
 }
 
-.swipe-label ul li
+.swipe ul li
 {
     display: inline-block;
     float: right;
 
-    border-top: 1px solid #333333;
+    width: 80px;
+    height: 100%;
 
-    width: 25%;
+    border-top: 1px solid @gray-dark;
 }
 
-// SWIPE - LABEL / BUTTONS
+// SWIPE - BUTTONS
 // -------------------------------------------------- //
-
-.swipe-label .button-delete:after
+.swipe .button-swipe
 {
-    font-size: 30px;
-    line-height: 64px;
+    font-family: ionicons;
+    font-size: 26px;
 
-    height: 64px;
+    text-align: center;
+
+    color: @white;
+}
+
+.swipe .button-swipe.delete:after
+{
+    font-size: 25px;
+    line-height: 66px;
 
     content: '\f4c5';
-
-    .white();
 }
 
-.swipe-label .button-commission:after
+.swipe .button-swipe.commission:after
 {
-    font-size: 26.5px;
-    line-height: 64px;
+    font-size: 21px;
+    line-height: 66px;
 
-    height: 64px;
+    height: 65px;
 
     content: '\f353';
 }
 
-// SWIPE - LABEL - ACTIVE
+// SWIPE > ACTIVE
 // -------------------------------------------------- //
 
 .active-swipe.one-button-swipe
 {
-    left: -25%;
+    left: -80px;
 }
 .active-swipe.two-button-swipe
 {
-    left: -50%;
+    left: -160px;
+}
+
+// BUTTON DEFAULT
+// -------------------------------------------------- //
+
+.wrapper-button-default
+{
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    min-height: 44px;
+}
+
+.wrapper-button-default .button-default
+{
+    line-height: 44px;
+
+    position: relative;
+    z-index: 100;
+
+    display: inline-block;
+    float: left;
+
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+
+    color: @white;
+    background-color: @violet;
+}
+
+.wrapper-button-default.one-button-default .button-default
+{
+    width: 100%;
+}
+
+.wrapper-button-default.two-button-default .button-default
+{
+    float: left;
+
+    width: 50%;
+}
+
+.wrapper-button-default.two-button-default .button-default:first-child
+{
+    border-right: 1px solid @white;
+}
+
+// BUTTON PRIMARY
+// -------------------------------------------------- //
+
+.button-primary
+{
+    line-height: 44px;
+
+    position: relative;
+
+    display: block;
+    clear: both;
+
+    height: 44px;
+    margin: 15px;
+
+    text-align: center;
+
+    color: @white;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    background-color: @violet;
+}
+
+.button-primary.add-photo:after
+{
+    font-family: ionicons;
+    font-size: 21px;
+    line-height: 46px;
+
+    content: '\f2d3';
+    text-align: center;
+}
+
+.button-primary.delete-photo:after
+{
+    font-family: ionicons;
+    font-size: 21px;
+    line-height: 46px;
+
+    content: '\f2d3';
+    text-align: center;
+}
+
+.button-primary.delete-photo:before
+{
+    font-family: ionicons;
+    font-size: 24px;
+    line-height: 46px;
+
+    position: absolute;
+    z-index: 10;
+
+    content: '\f12a';
+    text-align: center;
+
+    color: @violet!important;
+}
+
+// DRAG ACCOUNT
+// -------------------------------------------------- //
+
+.drag-account
+{
+    font-size: @small;
+    line-height: 30px;
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 30px;
+    padding: 0 15px;
+
+    color: @white;
+    background-color: @violet-light;
+}
+
+.drag-account .account
+{
+    float: left;
+}
+
+.drag-account .balance
+{
+    float: right;
+}
+
+// FORM
+// -------------------------------------------------- //
+
+form
+{
+    width: 100%;
+}
+
+input
+{
+    line-height: 40px;
+
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+
+    border: 1px solid @gray;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+textarea
+{
+    font-size: inherit;
+    line-height: inherit;
+
+    width: 100%;
+    padding: 10px 15px;
+
+    resize: none;
+
+    border: 1px solid @gray;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+form,
+input,
+textarea
+{
+    color: @black;
+}
+
+// FORM - PLACEHOLDER COLOR
+// -------------------------------------------------- //
+
+::-webkit-input-placeholder
+{
+    color: @gray;
+}
+
+:-moz-placeholder
+{
+    opacity: 1;
+    color: @gray;
+}
+
+::-moz-placeholder
+{
+    opacity: 1;
+    color: @gray;
+}
+
+:-ms-input-placeholder
+{
+    color: @gray;
+}
+
+// FORM - INPUT
+// -------------------------------------------------- //
+
+.wrapper-input,
+.wrapper-comment
+{
+    position: relative;
+
+    display: block;
+    clear: both;
+
+    margin: 15px;
+}
+
+// FORM - FORM INPUT > ICON
+// -------------------------------------------------- //
+
+.form-group .input-icon input
+{
+    padding-left: 65px;
+}
+
+.form-group .input-icon:before
+{
+    font-family: ionicons;
+    font-size: 26px;
+    line-height: 45px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 50px;
+    height: 45px;
+
+    text-align: center;
+
+    color: @white;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+            border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+            border-bottom-left-radius: 4px;
+    background-color: @gray;
+}
+
+// FORM - FORM INPUT > ICONS
+// -------------------------------------------------- //
+
+.form-group .input-icon.price:before
+{
+    font-size: 26px;
+    line-height: 45px;
+
+    content: '\f353';
+}
+
+// HELP BLOCK
+// -------------------------------------------------- //
+
+.help-block
+{
+    font-size: @small;
+
+    display: block;
+
+    color: @gray;
+}
+
+// RADIO BUTTON
+// -------------------------------------------------- //
+
+.radiobutton
+{
+    position: relative;
+
+    width: 32px;
+    height: 32px;
+
+    text-align: center;
+
+    border: 2px solid @violet;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+}
+
+.radiobutton.active:after
+{
+    font-family: ionicons;
+    font-size: 15px;
+    line-height: 30px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    display: block;
+
+    height: 32px;
+    margin-right: auto;
+    margin-left: auto;
+
+    content: '\f21b';
+
+    color: @violet;
+}
+
+// WRAPPER RADIO BUTTON - RADIO BUTTON (IN LINE)
+// -------------------------------------------------- //
+
+.wrapper-radiobutton
+{
+    position: relative;
+
+    display: table;
+    clear: both;
+
+    width: 100%;
+    margin: 15px 0;
+
+    text-align: center;
+}
+
+.group-radiobutton
+{
+    position: relative;
+
+    display: inline-block;
+
+    margin-left: 15px;
+}
+
+.group-radiobutton .radiobutton
+{
+    float: left;
+}
+
+.group-radiobutton span
+{
+    float: left;
+
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+// SELECT
+// -------------------------------------------------- //
+
+.wrapper-select
+{
+    position: relative;
+
+    display: block;
+    clear: both;
+
+    margin: 15px;
+}
+
+.wrapper-select .select
+{
+    font-size: @small;
+    line-height: 30px;
+
+    position: relative;
+
+    display: block;
+
+    height: 30px;
+    padding: 0 15px;
+
+    text-decoration: none;
+
+    color: @gray;
+    border: 1px solid @violet;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    background-color: @white;
+}
+
+.wrapper-select .select:after
+{
+    font-family: ionicons;
+    font-size: 16px;
+    line-height: 30px;
+
+    position: absolute;
+    right: 0;
+
+    height: 100%;
+    padding: 0 10px;
+
+    content: '\f104';
+
+    color: @white;
+    background-color: @violet;
+}
+
+// TITLE SECTION
+// -------------------------------------------------- //
+
+.title-section
+{
+    font-size: @small;
+    line-height: 30px;
+
+    position: relative;
+
+    display: block;
+    clear: both;
+
+    width: 100%;
+    height: 30px;
+    margin: 15px 0;
+    padding: 0 15px;
+
+    color: @black;
+    background-color: @gray-light;
 }
