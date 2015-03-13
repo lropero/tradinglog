@@ -193,13 +193,13 @@ ol {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.note {
+.text-note {
   font-size: 12px;
   display: block;
   margin: 15px;
   color: #989898;
 }
-.body {
+.text-body {
   display: block;
   margin: 15px;
 }
@@ -246,6 +246,7 @@ ol {
 .label .row {
   position: relative;
   clear: both;
+  overflow: hidden;
 }
 .label.comment {
   padding: 10px 15px;
@@ -257,7 +258,8 @@ ol {
 .label.comment .row {
   margin-left: 33px;
 }
-.label.comment .comment {
+.label.comment .size-price,
+.label.comment .body {
   float: left;
   color: #222222;
 }
@@ -276,25 +278,22 @@ ol {
   border-radius: 50%;
   background-color: #222222;
 }
-.image-comment {
+.comment.photo {
   margin: 15px;
 }
-img {
+.comment.photo img {
   width: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-.label.comment.long .ball {
+.label.comment.buy .ball {
   background-color: #4bd763;
 }
-.label.comment.short .ball {
+.label.comment.sell .ball {
   background-color: #ff3b30;
 }
-.label.comment.withdraw .ball {
-  background-color: #989898;
-}
-.label.comment.deposit .ball {
+.label.comment.commentary .ball {
   background-color: #989898;
 }
 .label.account .row {
@@ -304,7 +303,7 @@ img {
   float: left;
   color: #222222;
 }
-.label.account .net {
+.label.account .balance {
   float: left;
   color: #989898;
 }
@@ -327,11 +326,11 @@ img {
   float: right;
   color: #222222;
 }
-.label.instrument .balance {
+.label.instrument .type {
   float: left;
   color: #989898;
 }
-.label.instrument .variation {
+.label.instrument .commission {
   float: right;
   color: #989898;
 }
@@ -363,8 +362,8 @@ img {
 .label.operation .row {
   margin-left: 50px;
 }
-.label.trade .name,
-.label.operation .name {
+.label.trade .instrument,
+.label.operation .instrument {
   float: left;
   color: #222222;
 }
@@ -378,8 +377,10 @@ img {
   float: right;
   color: #222222;
 }
-.label.trade .balance,
-.label.operation .balance {
+.label.trade .size-price,
+.label.operation .size-price,
+.label.trade .date,
+.label.operation .date {
   float: left;
   color: #989898;
 }
@@ -455,7 +456,7 @@ img {
   border-bottom: 1px solid #333333;
   background-color: #222222;
 }
-.label.trade.open .name,
+.label.trade.open .instrument,
 .label.trade.open .net.positive,
 .label.trade.open .net.negative {
   color: #ffffff;
@@ -667,6 +668,8 @@ input {
 textarea {
   font-size: inherit;
   line-height: inherit;
+  float: left;
+  clear: both;
   width: 100%;
   padding: 10px 15px;
   resize: none;
@@ -694,12 +697,26 @@ textarea {
 :-ms-input-placeholder {
   color: #989898;
 }
-.wrapper-input,
 .wrapper-comment {
   position: relative;
   display: block;
   clear: both;
   margin: 15px;
+}
+.wrapper-input {
+  position: relative;
+  display: block;
+  clear: both;
+  margin: 15px;
+}
+.wrapper-input.two-input {
+  display: inline-block;
+  margin: 15px 7.5px;
+}
+.wrapper-input.two-input .wrapper-input {
+  display: table-cell;
+  clear: none;
+  padding: 0 7.5px;
 }
 .wrapper-input .input-icon input {
   padding-left: 65px;
@@ -731,6 +748,8 @@ textarea {
 .help-block {
   font-size: 12px;
   display: block;
+  clear: both;
+  width: 100%;
   color: #989898;
 }
 .help-block.header {
@@ -875,12 +894,12 @@ textarea {
   text-align: center;
 }
 .wrapper-feedback .button-feedback {
+  font-family: ionicons;
+  font-size: 36px;
+  line-height: 1;
   position: relative;
   display: inline-block;
   margin: 0 30px;
-  font-family: ionicons;
-  font-size: 40px;
-  line-height: 1;
 }
 .wrapper-feedback .button-feedback.happy:after {
   content: '\f3c6';

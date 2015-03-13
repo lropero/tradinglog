@@ -64,10 +64,10 @@ ol
 @small: 12px;
 @medium: 15px;
 
-// FONT - NOTE
+// TEXT - NOTE
 // -------------------------------------------------- //
 
-.note
+.text-note
 {
     font-size: @small;
 
@@ -78,10 +78,10 @@ ol
     color: @gray;
 }
 
-// FONT - BODY
+// TEXT - BODY
 // -------------------------------------------------- //
 
-.body
+.text-body
 {
     display: block;
 
@@ -168,6 +168,7 @@ ol
     position: relative;
 
     clear: both;
+    overflow: hidden;
 }
 
 // LABEL > COMMENT
@@ -190,7 +191,8 @@ ol
     margin-left: 33px;
 }
 
-.label.comment .comment
+.label.comment .size-price,
+.label.comment .body
 {
     float: left;
 
@@ -220,15 +222,15 @@ ol
     background-color: @black;
 }
 
-// IMAGE COMMENT
+// COMMENT - PHOTO
 // -------------------------------------------------- //
 
-.image-comment
+.comment.photo
 {
     margin: 15px;
 }
 
-img
+.comment.photo img
 {
     width: 100%;
 
@@ -240,7 +242,7 @@ img
 // LABEL > COMMENT > LONG
 // -------------------------------------------------- //
 
-.label.comment.long .ball
+.label.comment.buy .ball
 {
     background-color: @green;
 }
@@ -248,7 +250,7 @@ img
 // LABEL > COMMENT > SHORT
 // -------------------------------------------------- //
 
-.label.comment.short .ball
+.label.comment.sell .ball
 {
     background-color: @red;
 }
@@ -256,15 +258,7 @@ img
 // LABEL > COMMENT > WITHDRAW
 // -------------------------------------------------- //
 
-.label.comment.withdraw .ball
-{
-    background-color: @gray;
-}
-
-// LABEL > COMMENT > DEPOSIT
-// -------------------------------------------------- //
-
-.label.comment.deposit .ball
+.label.comment.commentary .ball
 {
     background-color: @gray;
 }
@@ -284,7 +278,7 @@ img
     color: @black;
 }
 
-.label.account .net
+.label.account .balance
 {
     float: left;
 
@@ -327,14 +321,14 @@ img
     color: @black;
 }
 
-.label.instrument .balance
+.label.instrument .type
 {
     float: left;
 
     color: @gray;
 }
 
-.label.instrument .variation
+.label.instrument .commission
 {
     float: right;
 
@@ -386,8 +380,8 @@ img
     margin-left: 50px;
 }
 
-.label.trade .name,
-.label.operation .name
+.label.trade .instrument,
+.label.operation .instrument
 {
     float: left;
 
@@ -410,8 +404,10 @@ img
     color: @black;
 }
 
-.label.trade .balance,
-.label.operation .balance
+.label.trade .size-price,
+.label.operation .size-price,
+.label.trade .date,
+.label.operation .date
 {
     float: left;
 
@@ -523,7 +519,7 @@ img
     background-color: @black;
 }
 
-.label.trade.open .name,
+.label.trade.open .instrument,
 .label.trade.open .net.positive,
 .label.trade.open .net.negative
 {
@@ -884,6 +880,9 @@ textarea
     font-size: inherit;
     line-height: inherit;
 
+    float: left;
+    clear: both;
+
     width: 100%;
     padding: 10px 15px;
 
@@ -927,11 +926,24 @@ textarea
     color: @gray;
 }
 
+// FORM - COMMENT
+// -------------------------------------------------- //
+
+.wrapper-comment
+{
+    position: relative;
+
+    display: block;
+    clear: both;
+    clear: both;
+
+    margin: 15px;
+}
+
 // FORM - INPUT
 // -------------------------------------------------- //
 
-.wrapper-input,
-.wrapper-comment
+.wrapper-input
 {
     position: relative;
 
@@ -939,6 +951,24 @@ textarea
     clear: both;
 
     margin: 15px;
+}
+
+// FORM - TWO INPUT
+// -------------------------------------------------- //
+
+.wrapper-input.two-input
+{
+    display: inline-block;
+
+    margin: 15px 7.5px;
+}
+
+.wrapper-input.two-input .wrapper-input
+{
+    display: table-cell;
+    clear: none;
+
+    padding: 0 7.5px;
 }
 
 // FORM - INPUT > ICON
@@ -993,11 +1023,15 @@ textarea
     font-size: @small;
 
     display: block;
+    clear: both;
+
+    width: 100%;
 
     color: @gray;
 }
 
-.help-block.header {
+.help-block.header
+{
     margin-bottom: 15px;
 }
 
@@ -1233,26 +1267,27 @@ textarea
 
 .wrapper-feedback .button-feedback
 {
+    font-family: ionicons;
+    font-size: 36px;
+    line-height: 1;
+
     position: relative;
 
     display: inline-block;
 
     margin: 0 30px;
-    font-family: ionicons;
-    font-size: 40px;
-    line-height: 1;
 }
 
 .wrapper-feedback .button-feedback.happy:after
 {
     content: '\f3c6';
+
     color: @green;
 }
 
 .wrapper-feedback .button-feedback.sad:after
 {
     content: '\f4d7';
+
     color: @gray;
 }
-
-
