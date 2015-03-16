@@ -30,6 +30,7 @@
 
 	<gap:plugin name="org.apache.cordova.device-motion" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
+	<gap:plugin name="org.apache.cordova.statusbar" />
 	<gap:plugin name="com.millerjames01.sqlite-plugin" />
 
 	<icon src="img/res/ios/icon/icon-29.png" gap:platform="ios" width="29" height="29" />
