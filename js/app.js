@@ -11,7 +11,7 @@
 			var self = this;
 			var layout = new app.Views.layout();
 			$.when(
-				app.databaseController.init(),
+				// app.databaseController.init(),
 				layout.deferred.promise()
 			).done(function() {
 				self.view = new app.Views.friends();
