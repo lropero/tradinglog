@@ -106,7 +106,10 @@
 				'INSERT INTO instrument VALUES (null, 0, "Light Sweet Crude Oil", 1000, 4.84, 0, 0);',
 				'INSERT INTO trade VALUES (null, 1, 1, 0, 500, 200, 8.48, 5.83, 3, 1426273045);',
 				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 100, 4.24, -2, 0, 1426283045);',
-				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 1426293045);'
+				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 1426293045);',
+				'INSERT INTO trade VALUES (null, 1, 1, 0, 500, 200, 8.48, 5.83, 3, 0);',
+				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 100, 4.24, -2, 0, 1426283045);',
+				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 0);'
 			];
 			this.db.transaction(function(tx) {
 				$.each(sqls, function(index, sql) {
