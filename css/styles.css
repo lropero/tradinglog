@@ -144,6 +144,7 @@ header bar.navigation div.logo {
   top: 28px;
 }
 section#main-stats-friends {
+  -webkit-overflow-scrolling: touch;
   margin-bottom: 43px;
   margin-top: 64px;
   min-height: 100%;
@@ -152,6 +153,7 @@ section#main-stats-friends {
 }
 section#settings {
   -webkit-animation-duration: 0.8s;
+  -webkit-overflow-scrolling: touch;
   background-color: #4020d0;
   bottom: 44px;
   display: none;
