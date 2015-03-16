@@ -7,6 +7,7 @@
 		Models: {},
 		Templates: {},
 		Views: {},
+		view: '',
 		init: function() {
 			var self = this;
 			var layout = new app.Views.layout();
