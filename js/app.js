@@ -18,7 +18,8 @@
 			});
 		},
 		loadView: function(view) {
-			$('section#main-stats-friends').html(typeof this.view.destroy);
+			$('section#main-stats-friends').html('loadView<br />');
+			$('section#main-stats-friends').append(typeof this.view.destroy);
 			if(typeof this.view.destroy !== 'undefined') {
 				// this.view.destroy();
 			}
