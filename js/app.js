@@ -15,7 +15,7 @@
 				// app.databaseController.init(),
 				layout.deferred.promise()
 			).done(function() {
-				self.view = new app.Views.friends();
+				app.view = new app.Views.friends();
 			});
 		},
 		loadView: function(view) {
