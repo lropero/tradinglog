@@ -7,25 +7,21 @@
 		Models: {},
 		Templates: {},
 		Views: {},
-		view: '',
 		init: function() {
-			var self = this;
 			var layout = new app.Views.layout();
 			$.when(
-				// app.databaseController.init(),
+				app.databaseController.init(),
 				layout.deferred.promise()
 			).done(function() {
-				app.view = new app.Views.friends();
+				app.view = new app.Views.main();
 			});
 		},
 		loadView: function(view) {
-			$('section#main-stats-friends').html('loadView<br />');
-			$('section#main-stats-friends').append(typeof this.view);
-			if(typeof this.view.destroy !== 'undefined') {
-				// this.view.destroy();
+			if(typeof this.view.destroy === 'function') {
+				this.view.destroy();
 			}
 			$('section#main-stats-friends').append('<br />pasamo');
-			// this.view = new app.Views[view];
+			this.view = new app.Views[view];
 		}
 	};
 
