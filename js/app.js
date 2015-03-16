@@ -18,9 +18,9 @@
 			});
 		},
 		loadView: function(view) {
-			if(typeof this.view.destroy === 'function') {
-				this.view.destroy();
-			}
+			// if(typeof this.view.destroy === 'function') {
+			// 	this.view.destroy();
+			// }
 			this.view = new app.Views[view];
 		}
 	};
