@@ -16,10 +16,7 @@
 				app.view = new app.Views.main();
 				app.view.deferred.done(function() {
 					if(navigator.splashscreen) {
-						var animated = 'animated fadeOut';
-						navigator.splashscreen.addClass(animated).one('webkitAnimationEnd', function() {
-							navigator.splashscreen.hide().removeClass(animated);
-						});
+						navigator.splashscreen.hide();
 					}
 				});
 			});
