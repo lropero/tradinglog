@@ -20,7 +20,6 @@
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
 			}
-			$('section#main-stats-friends').append('<br />pasamo');
 			this.view = new app.Views[view];
 		}
 	};
