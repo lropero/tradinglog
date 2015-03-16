@@ -32,11 +32,9 @@ function Shake(options) {
 	shake.startWatch = function () {
 		if (watchId)
 			return;
-		if(navigator.accelerometer) {
-			watchId = navigator.accelerometer.watchAcceleration(getAccelerationSnapshot, handleError, {
-				frequency: options.frequency
-			});
-		}
+		watchId = navigator.accelerometer.watchAcceleration(getAccelerationSnapshot, handleError, {
+			frequency: options.frequency
+		});
 	};
 
 	// Stop watching the accelerometer for a shake gesture

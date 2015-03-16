@@ -14,6 +14,11 @@
 				layout.deferred.promise()
 			).done(function() {
 				app.view = new app.Views.main();
+				app.view.deferred.done(function() {
+					if(navigator.splashscreen) {
+						navigator.splashscreen.hide();
+					}
+				});
 			});
 		},
 		loadView: function(view) {

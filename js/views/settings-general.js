@@ -13,7 +13,9 @@
 		render: function() {
 			app.trigger('change', 'settings-general');
 			this.$el.html(this.template());
-			this.shake();
+			if(navigator.accelerometer) {
+				this.shake();
+			}
 			return this;
 		},
 		shake: function() {
