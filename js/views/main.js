@@ -20,7 +20,8 @@
 				self.$el.html(self.template({
 					trades: self.trades
 				}));
-				app.swiper.init('.active-swipe');
+				// app.swiper.init('.active-swipe');
+				new IScroll('#main-stats-friends');
 			});
 			return this;
 		},
