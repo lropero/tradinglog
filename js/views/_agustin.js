@@ -13,6 +13,7 @@
 		render: function() {
 			app.trigger('change', '_agustin');
 			this.$el.html(this.template());
+			new IScroll('#main-stats-friends');
 			return this;
 		}
 	});
