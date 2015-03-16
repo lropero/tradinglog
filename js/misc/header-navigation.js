@@ -3,16 +3,16 @@
 
 	app.headerNavigation = {
 		update: function(options) {
-			if(!options['left']) {
-				this.remove('left');
-			} else {
-				this.set('left', options['left']);
-			}
-			if(!options['right']) {
-				this.remove('right');
-			} else {
-				this.set('right', options['right']);
-			}
+			// if(!options['left']) {
+			// 	this.remove('left');
+			// } else {
+			// 	this.set('left', options['left']);
+			// }
+			// if(!options['right']) {
+			// 	this.remove('right');
+			// } else {
+			// 	this.set('right', options['right']);
+			// }
 		},
 		set: function(button, options) {
 			var button = $('header #button-' + button);

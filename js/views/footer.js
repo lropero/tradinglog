@@ -23,11 +23,11 @@
 			this.$el.find('a.active').removeClass('active');
 			var target = $(e.currentTarget);
 			target.addClass('active');
-			var section = target.data('section');
+			var view = target.data('view');
 
 			// Trigger/untrigger settings pane
 			var $settings = $('section#settings');
-			if(section === 'settings') {
+			if(view === 'settings') {
 				var animated = 'animated bounceInDown';
 				$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
 					$settings.removeClass(animated);
@@ -41,7 +41,7 @@
 				});
 			}
 
-			app.loadView(section);
+			app.loadView(view);
 		}
 	});
 })();

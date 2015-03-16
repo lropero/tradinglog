@@ -24,7 +24,7 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			var section = target.data('section');
-			new app.Views['stats' + section.ucfirst()]();
+			new app.Views['stats' + section]();
 		},
 		destroy: function() {
 			this.undelegateEvents();
