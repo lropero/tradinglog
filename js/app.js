@@ -18,10 +18,12 @@
 			});
 		},
 		loadView: function(view) {
-			if(typeof this.view.destroy === 'function') {
+			$('section#main-stats-friends').html(typeof this.view.destroy);
+			if(typeof this.view.destroy !== 'undefined') {
 				// this.view.destroy();
 			}
-			this.view = new app.Views[view];
+			$('section#main-stats-friends').append('<br />pasamo');
+			// this.view = new app.Views[view];
 		}
 	};
 
