@@ -13,7 +13,8 @@
 		render: function() {
 			app.trigger('change', '_agustin');
 			this.$el.html(this.template());
-			new IScroll('#main-stats-friends');
+			// var pepe = new IScroll('#main-stats-friends');
+			// console.log(pepe.options);
 			return this;
 		}
 	});
