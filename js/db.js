@@ -1,20 +1,118 @@
 (function() {
 	'use strict';
 
-	var DatabaseController = function() {};
-
-	DatabaseController.prototype = {
+	app.databaseController = {
 		init: function() {
-			if(typeof window.sqlitePlugin !== 'undefined') {
-				var db = window.sqlitePlugin.openDatabase({
+			this.deferred = $.Deferred();
+			if(window.sqlitePlugin) {
+				this.db = window.sqlitePlugin.openDatabase({
 					name: 'TradingLog',
 					location: 2
 				});
 			} else {
-				var db = window.openDatabase('TradingLog', '1.0', 'TradingLog v1.0', 1024 * 1024);
+				this.db = window.openDatabase('TradingLog', '1.0', 'TradingLog v1.0', 1024 * 1024);
 			}
+			this.reset();
+			this.createTables();
+			this.populateDemo();
+			return this.deferred.promise();
+		},
+		getDB: function() {
+			return this.db;
+		},
+		reset: function() {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT name FROM sqlite_master WHERE type = "table" AND name NOT LIKE "sqlite_%";';
+				tx.executeSql(sql, [], function(tx, results) {
+					for(var i = 0; i < results.rows.length; i++) {
+						var name = results.rows.item(i).name;
+						if(name === '__WebKitDatabaseInfoTable__') {
+							continue;
+						}
+						tx.executeSql('DROP TABLE ' + name + ';');
+					}
+				});
+			});
+		},
+		createTables: function() {
+			var self = this;
+			var sqls = [
+				'CREATE TABLE IF NOT EXISTS account (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'name TEXT,' +
+					'balance NUMERIC,' +
+					'is_active INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS comment (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'trade_id INTEGER,' +
+					'body TEXT,' +
+					'created_at INTEGER,' +
+					'image TEXT' +
+				');',
+				'CREATE TABLE IF NOT EXISTS configuration (' +
+					'language TEXT,' +
+					'numeric_format INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS instrument (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'type INTEGER,' +
+					'name TEXT,' +
+					'point_value NUMERIC,' +
+					'commission NUMERIC,' +
+					'group_id INTEGER,' +
+					'is_deleted INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS operation (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'account_id INTEGER,' +
+					'amount NUMERIC,' +
+					'description TEXT,' +
+					'variation NUMERIC,' +
+					'created_at INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS position (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'trade_id INTEGER,' +
+					'size INTEGER,' +
+					'price NUMERIC,' +
+					'created_at INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS trade (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'account_id INTEGER,' +
+					'instrument_id INTEGER,' +
+					'type INTEGER,' +
+					'profit NUMERIC,' +
+					'loss NUMERIC,' +
+					'commission NUMERIC,' +
+					'variation NUMERIC,' +
+					'comments INTEGER,' +
+					'closed_at INTEGER' +
+				');'
+			];
+			this.db.transaction(function(tx) {
+				$.each(sqls, function(index, sql) {
+					tx.executeSql(sql);
+				});
+			}, null, function() {
+				self.deferred.resolve();
+			});
+		},
+		populateDemo: function() {
+			var sqls = [
+				'INSERT INTO account VALUES (null, "Demo", 5000, 1);',
+				'INSERT INTO instrument VALUES (null, 0, "E-mini S&P 500", 50, 4.24, 0, 0);',
+				'INSERT INTO instrument VALUES (null, 0, "Light Sweet Crude Oil", 1000, 4.84, 0, 0);',
+				'INSERT INTO trade VALUES (null, 1, 1, 0, 500, 200, 8.48, 5.83, 3, 1426273045);',
+				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 100, 4.24, -2, 0, 1426283045);',
+				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 1426293045);'
+			];
+			this.db.transaction(function(tx) {
+				$.each(sqls, function(index, sql) {
+					tx.executeSql(sql);
+				});
+			});
 		}
 	};
-
-	app.db = new DatabaseController();
 })();
