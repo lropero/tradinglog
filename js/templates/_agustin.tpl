@@ -5,6 +5,54 @@
 		<div class="balance">Balance: <span>$4,896.52</span></div>
 	</div>
 
+	<ul id="map">
+
+		<li class="wrapper-label">
+			<div class="label trade long positive">
+				<div class="ball">
+					<div class="icon"></div>
+				</div>
+				<div class="row">
+					<div class="instrument">E-mini S&P 500</div>
+					<div class="net positive">$ 50.00</div>
+				</div>
+				<div class="percentage">
+					<div class="bar-percentage" style="width: 50%;"></div>
+				</div>
+			</div>
+		</li>
+
+		<li class="wrapper-label">
+			<div class="label trade short negative">
+				<div class="ball">
+					<div class="icon"></div>
+				</div>
+				<div class="row">
+					<div class="instrument">E-mini S&P 500</div>
+					<div class="net negative">$ -25.00</div>
+				</div>
+				<div class="percentage">
+					<div class="bar-percentage" style="width: 25%;"></div>
+				</div>
+			</div>
+		</li>
+
+		<li class="wrapper-label">
+			<div class="label trade short cero">
+				<div class="ball">
+					<div class="icon"></div>
+				</div>
+				<div class="row">
+					<div class="instrument">E-mini S&P 500</div>
+					<div class="net cero">$ 0.00</div>
+				</div>
+				<div class="percentage">
+					<div class="bar-percentage" style="width: 100%;"></div>
+				</div>
+			</div>
+		</li>
+	</ul>
+
 	<ul class="wrapper-feedback">
 		<span class="help-block header">Lorem ipsum dolor.</span>
 		<li class="button-feedback happy"></li>

@@ -1,197 +1,271 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
-* {
-	-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+*
+{
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
-body {
-	-webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
-	-webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
-	-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
-	background-color: #ffffff;
-	font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-	font-size: 15px;
-	height: 100%;
-	line-height: 1.5em;
-	margin: 0;
-	padding: 0;
-	width: 100%;
+body
+{
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+
+    background-color: #fff;
+
+    -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+    -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
 }
 
-control.segmented {
-	border-collapse: collapse;
-	border: none;
-	display: table;
-	table-layout: fixed;
-	width: 100%;
+control.segmented
+{
+    position: fixed;
+    z-index: 1000;
+
+    display: table;
+
+    width: 100%;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    border: none;
 }
 
-control.segmented ul {
-	border-bottom: 1px solid #333333;
-	border-top: 1px solid #333333;
-	display: table-row;
+control.segmented ul
+{
+    display: table-row;
+
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
 }
 
-control.segmented ul li {
-	background-color: #4020d0;
-	color: #ffffff;
-	display: table-cell;
-	height: 32px;
-	line-height: 32px;
-	text-align: center;
-	width: 100%;
+control.segmented ul li
+{
+    line-height: 32px;
+
+    display: table-cell;
+
+    width: 100%;
+    height: 32px;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: #4020d0;
 }
 
-control.segmented ul li.active {
-	background-color: #333333;
-	color: #ffffff;
+control.segmented ul li.active
+{
+    color: #fff;
+    background-color: #333;
 }
 
-control.segmented ul li.middle {
-	border-left: 1px solid #333333;
-	border-right: 1px solid #333333;
+control.segmented ul li.middle
+{
+    border-right: 1px solid #333;
+    border-left: 1px solid #333;
 }
 
-control.segmented ul li:not(.active):active {
-	background-color: #9f8fe7;
+control.segmented ul li:not(.active):active
+{
+    background-color: #9f8fe7;
 }
 
-footer {
-	background-color: #f3f3f3;
-	border-top: 1px solid #cccccc;
-	bottom: 0;
-	left: 0;
-	position: fixed;
-	width: 100%;
-	z-index: 1000;
+control.segmented + #content
+{
+    position: relative;
+    top: 49px;
 }
 
-footer bar.tab {
-	display: table;
-	height: 43px;
-	width: 100%;
+footer
+{
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    border-top: 1px solid #ccc;
+    background-color: #f3f3f3;
 }
 
-footer bar.tab a.item {
-	color: #999999;
-	display: table-cell;
-	height: 43px;
-	text-align: center;
-	vertical-align: middle;
-	width: 25%;
+footer bar.tab
+{
+    display: table;
+
+    width: 100%;
+    height: 43px;
 }
 
-footer bar.tab a.item span.icon {
-	font-size: 26px;
+footer bar.tab a.item
+{
+    display: table-cell;
+
+    width: 25%;
+    height: 43px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    color: #999;
 }
 
-footer bar.tab a.item.active {
-	color: #4020d0;
+footer bar.tab a.item span.icon
+{
+    font-size: 26px;
 }
 
-footer bar.tab a.item:not(.active):active {
-	color: #9f8fe7;
+footer bar.tab a.item.active
+{
+    color: #4020d0;
 }
 
-header {
-	background-color: #4020d0;
-	left: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1000;
+footer bar.tab a.item:not(.active):active
+{
+    color: #9f8fe7;
 }
 
-header bar.navigation {
-	display: block;
-	height: 64px;
-	width: 100%;
+header
+{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background-color: #4020d0;
 }
 
-header bar.navigation button {
-	background: none;
-	border: 0;
-	bottom: 0;
-	color: #ffffff;
-	outline: 0;
-	padding: 8px;
-	position: absolute;
-	z-index: 2000;
+header bar.navigation
+{
+    display: block;
+
+    width: 100%;
+    height: 64px;
 }
 
-header bar.navigation button.left {
-	left: 5px;
+header bar.navigation button
+{
+    position: absolute;
+    z-index: 2000;
+    bottom: 0;
+
+    padding: 8px;
+
+    color: #fff;
+    border: 0;
+    outline: 0;
+    background: none;
 }
 
-header bar.navigation button.left.icon:before {
-	content: attr(data-icon);
-	font-family: ionicons;
-	font-size: 18px;
-	padding-right: 5px;
-	vertical-align: -1px;
+header bar.navigation button.left
+{
+    left: 5px;
 }
 
-header bar.navigation button.right {
-	right: 5px;
+header bar.navigation button.left.icon:before
+{
+    font-family: ionicons;
+    font-size: 18px;
+
+    padding-right: 5px;
+
+    content: attr(data-icon);
+    vertical-align: -1px;
 }
 
-header bar.navigation button.right.icon:after {
-	content: attr(data-icon);
-	font-family: ionicons;
-	font-size: 18px;
-	padding-left: 5px;
-	vertical-align: -1px;
+header bar.navigation button.right
+{
+    right: 5px;
 }
 
-header bar.navigation button:active {
-	color: #9f8fe7;
+header bar.navigation button.right.icon:after
+{
+    font-family: ionicons;
+    font-size: 18px;
+
+    padding-left: 5px;
+
+    content: attr(data-icon);
+    vertical-align: -1px;
 }
 
-header bar.navigation div.logo {
-	-webkit-animation-direction: alternate;
-	-webkit-animation-duration: 2s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-name: logo;
-	-webkit-animation-timing-function: ease-in-out;
-	background: url('../img/logo.png') no-repeat center 0;
-	background-size: auto 100%;
-	height: 28px;
-	position: relative;
-	top: 28px;
+header bar.navigation button:active
+{
+    color: #9f8fe7;
 }
 
-section#main-stats-friends {
-	margin-bottom: 43px;
-	margin-top: 64px;
-	min-height: 100%;
-	position: relative;
-	width: 100%;
+header bar.navigation div.logo
+{
+    position: relative;
+    top: 28px;
+
+    height: 28px;
+
+    -webkit-animation-name: logo;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+
+    background: url('../img/logo.png') no-repeat center 0;
+    background-size: auto 100%;
 }
 
-section#settings {
-	-webkit-animation-duration: 0.8s;
-	background-color: #4020d0;
-	bottom: 44px;
-	display: none;
-	padding-top: 64px;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 500;
+section#main-stats-friends
+{
+    position: relative;
+
+    width: 100%;
+    min-height: 100%;
+    margin-top: 64px;
+    margin-bottom: 43px;
 }
 
-.show {
-	display: block !important;
+section#settings
+{
+    position: absolute;
+    z-index: 500;
+    top: 0;
+    bottom: 44px;
+
+    display: none;
+
+    width: 100%;
+    padding-top: 64px;
+
+    -webkit-animation-duration: .8s;
+
+    background-color: #4020d0;
 }
 
-::-webkit-scrollbar {
-	display: none;
+.show
+{
+    display: block !important;
 }
 
-@-webkit-keyframes logo {
-	from {
-		-webkit-transform: scale(1);
-	} to {
-		-webkit-transform: scale(1.12);
-	}
+::-webkit-scrollbar
+{
+    display: none;
+}
+
+@-webkit-keyframes logo
+{
+    from
+    {
+        -webkit-transform: scale(1);
+    } to
+    {
+        -webkit-transform: scale(1.12);
+    }
 }
