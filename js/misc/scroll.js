@@ -31,14 +31,14 @@
 				app.scroll.posY = parseInt($content.css('transform').split(',')[5], 10);
 				app.scroll.posY = isNaN(app.scroll.posY) ? 0 : app.scroll.posY;
 
-				// var inertia = -100 * e.velocityY;
-				// var delta = app.scroll.posY + inertia;
-				// if(delta > 0) {
-				// 	delta = 0;
-				// }
-				// $content.animate({
-				// 	transform: 'translateY(' + delta + 'px)'
-				// }, 1000, 'swing');
+				var inertia = -100 * e.velocityY;
+				var delta = app.scroll.posY + inertia;
+				if(delta > 0) {
+					delta = 0;
+				}
+				$content.animate({
+					transform: 'translateY(' + delta + 'px)'
+				}, 1000, 'swing');
 
 				if(app.scroll.posY === 0) {
 					snabbt($('.scroll'), {
