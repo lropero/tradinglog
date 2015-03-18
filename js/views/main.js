@@ -21,7 +21,7 @@
 					trades: self.trades
 				}));
 				app.swiper.init('.active-swipe');
-				self.scroll = new app.Scroll(self);
+				app.scroll.init(self.el);
 			});
 			return this;
 		},
