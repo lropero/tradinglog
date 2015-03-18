@@ -21,7 +21,7 @@
 					trades: self.trades
 				}));
 				app.swiper.init('.active-swipe');
-				// new IScroll('#main-stats-friends');
+				self.scroll = new app.Scroll(self);
 			});
 			return this;
 		},
