@@ -20,6 +20,7 @@
 			});
 
 			hammer.on('panstart', function(e) {
+				$content.stop();
 				app.scroll.contentY = parseInt($content.css('transform').split(',')[5], 10);
 				app.scroll.contentY = isNaN(app.scroll.contentY) ? 0 : app.scroll.contentY;
 			});
