@@ -3,6 +3,7 @@
 
 	app.Views.settingsAccounts = Backbone.View.extend({
 		el: 'section#settings section#content',
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('settings-accounts').done(function(template) {
@@ -10,6 +11,7 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', 'settings-accounts');
 			this.$el.html(this.template());

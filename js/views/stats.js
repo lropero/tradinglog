@@ -6,6 +6,7 @@
 		events: {
 			'touchend li:not(.active)': 'switch'
 		},
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('stats').done(function(template) {
@@ -13,12 +14,14 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', 'stats');
 			this.$el.html(this.template());
 			new app.Views.statsNumbers();
 			return this;
 		},
+
 		switch: function(e) {
 			this.$el.find('li.active').removeClass('active');
 			var target = $(e.currentTarget);
@@ -26,6 +29,7 @@
 			var section = target.data('section');
 			new app.Views['stats' + section]();
 		},
+
 		destroy: function() {
 			this.undelegateEvents();
 		}

@@ -3,6 +3,7 @@
 
 	app.Views.mainMap = Backbone.View.extend({
 		el: 'section#main-stats-friends',
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('main-map').done(function(template) {
@@ -10,6 +11,7 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', 'main-map');
 			this.$el.html(this.template());

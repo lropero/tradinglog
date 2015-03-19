@@ -3,6 +3,7 @@
 
 	app.Views.statsCustom = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('stats-custom').done(function(template) {
@@ -10,6 +11,7 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', 'stats-custom');
 			this.$el.html(this.template());

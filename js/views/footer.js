@@ -3,7 +3,6 @@
 
 	app.Views.footer = Backbone.View.extend({
 		el: 'footer',
-
 		events: {
 			'touchend a:not(.active)': 'navigate'
 		},

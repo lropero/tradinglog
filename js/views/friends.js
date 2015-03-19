@@ -3,6 +3,7 @@
 
 	app.Views.friends = Backbone.View.extend({
 		el: 'section#main-stats-friends',
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('friends').done(function(template) {
@@ -10,6 +11,7 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', 'friends');
 			this.$el.html(this.template());

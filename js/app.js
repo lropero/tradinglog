@@ -7,6 +7,7 @@
 		Models: {},
 		Templates: {},
 		Views: {},
+
 		init: function() {
 
 			/** We start by calling our layout view which is in charge of rendering
@@ -39,6 +40,7 @@
 
 			});
 		},
+
 		loadView: function(view) {
 
 			/** Some views require to undelegate events, specifically those with

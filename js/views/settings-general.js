@@ -3,6 +3,7 @@
 
 	app.Views.settingsGeneral = Backbone.View.extend({
 		el: 'section#settings section#content',
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('settings-general').done(function(template) {
@@ -10,6 +11,7 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', 'settings-general');
 			this.$el.html(this.template());
@@ -18,6 +20,7 @@
 			}
 			return this;
 		},
+
 		shake: function() {
 			app.shake = new Shake({
 				frequency: 100,
