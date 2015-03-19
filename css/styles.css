@@ -177,7 +177,6 @@ section#settings {
   z-index: 500;
 }
 .scroll {
-  background-color: green;
   bottom: 0;
   overflow: hidden;
   position: absolute;
