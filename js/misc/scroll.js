@@ -42,7 +42,7 @@
 				}
 				$content.animate({
 					transform: 'translateY(' + delta + 'px)'
-				}, 500, 'swing');
+				}, 800, 'swing');
 
 				if(app.scroll.contentY === 0 && parseInt($('.scroll').css('transform').split(',')[5], 10) > 0) {
 					app.scroll.dragDown.rollback(function() {
