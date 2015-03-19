@@ -27,7 +27,7 @@
 				button.html(options.text);
 			}
 			if(options.view) {
-				button.off().on('click', function() {
+				button.off().on('touchend', function() {
 					app.loadView(options.view);
 				});
 			}

@@ -5,7 +5,7 @@
 		el: 'footer',
 
 		events: {
-			'click a:not(.active)': 'navigate'
+			'touchend a:not(.active)': 'navigate'
 		},
 
 		initialize: function() {
