@@ -1,6 +1,6 @@
 <script type="text/x-handlebars-template" id="layout-template">
-	<header></header>
+	<header data-tap-toggle="false"></header>
 	<section id="main-stats-friends"></section>
 	<section id="settings"></section>
-	<footer></footer>
+	<footer data-tap-toggle="false"></footer>
 </script>
