@@ -1,4 +1,4 @@
-<script id="main-template" type="text/x-handlebars-template">
+<script type="text/x-handlebars-template" id="agustin-template">
 	<section id="content">
 
 		<div class="drag-account">
