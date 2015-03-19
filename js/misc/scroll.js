@@ -15,8 +15,7 @@
 
 			var hammer = new Hammer($('.scroll')[0]);
 			hammer.get('pan').set({
-				direction: Hammer.DIRECTION_VERTICAL,
-				threshold: 20
+				direction: Hammer.DIRECTION_VERTICAL
 			});
 
 			hammer.on('panstart', function(e) {
@@ -69,7 +68,8 @@
 			switch(direction) {
 				case Hammer.DIRECTION_DOWN:
 					if(delta === 0) {
-						var value = deltaY > 200 ? 1 : $.easing.easeOutSine(1, deltaY, 0, 1, 200);
+						var scrollY = app.scroll.contentY + deltaY;
+						var value = scrollY > 200 ? 1 : $.easing.easeOutSine(1, scrollY, 0, 1, 200);
 						app.scroll.dragDown.setValue(value);
 					} else {
 						content.css('transform', 'translateY(' + delta + 'px)');
