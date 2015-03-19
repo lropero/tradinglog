@@ -167,19 +167,9 @@ header bar.navigation div.logo {
 	top: 28px;
 }
 
-section#content {
-	-webkit-transform: tranzlateZ(0);
-	background-color: red;
-	height: 100%;
-	position: absolute;
-	width: 100%;
-}
-
 section#main-stats-friends {
-	-webkit-overflow-scrolling: touch;
 	bottom: 44px;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow: hidden;
 	position: absolute;
 	top: 64px;
 	width: 100%;
@@ -229,33 +219,4 @@ section#settings {
 	} to {
 		-webkit-transform: scale(1.12);
 	}
-}
-
-#container {
-	background-color: #f00;
-	display: block;
-	margin: 0 auto;
-	position: relative;
-	width: 500px;
-	z-index: 0;
-}
-
-#overlay {
-	-webkit-overflow-scrolling: touch;
-	background-color: #0f0;
-	height: 400px;
-	left: 0;
-	margin: 0 auto;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	position: absolute;
-	top: 0;
-	width: 500px;
-	z-index: 3;
-}
-
-#subcontent {
-	-webkit-transform: translateZ(0);
-	line-height: 1.5em;
-	position: relative;
 }

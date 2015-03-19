@@ -22,8 +22,8 @@
 				self.$el.html(self.template({
 					trades: self.trades
 				}));
-				// app.scroll.init(self.el, true);
-				// app.swipe.init('.active-swipe');
+				app.scroll.init(self.el, true);
+				app.swipe.init('.active-swipe');
 			});
 			return this;
 		},
