@@ -58,7 +58,7 @@
 				} else {
 					var inertia = 100 * -e.velocityY;
 					var delta = app.scroll.contentY + inertia;
-					var time = parseInt(300 * Math.abs(e.velocityY), 10);
+					var time = parseInt(500 * Math.abs(e.velocityY), 10);
 					if(delta > 0) {
 						delta = 0;
 					} else if(delta < -app.scroll.maxScroll) {
