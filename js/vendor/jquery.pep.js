@@ -311,7 +311,10 @@
             // if so, fire users start event
             var initialDx  = Math.abs(this.startX - curX);
             var initialDy  = Math.abs(this.startY - curY);
-            if ( !this.started && initialDx > this.options.startThreshold[0] ){
+
+            //** TradingLog HACK! :) */
+            // if ( !this.started && ( initialDx > this.options.startThreshold[0] || initialDy > this.options.startThreshold[1] ) ){
+            if ( !this.started && initialDx > this.options.startThreshold[0] && initialDy < this.options.startThreshold[1] ){
               this.started = true;
               this.$el.addClass('pep-start');
               this.options.start.call(this, this.startEvent, this);

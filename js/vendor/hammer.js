@@ -1643,6 +1643,11 @@ inherit(PanRecognizer, AttrRecognizer, {
         var x = input.deltaX;
         var y = input.deltaY;
 
+        //** TradingLog HACK! :) */
+        if(x < -30) {
+            return;
+        }
+
         // lock to axis?
         if (!(direction & options.direction)) {
             if (options.direction & DIRECTION_HORIZONTAL) {

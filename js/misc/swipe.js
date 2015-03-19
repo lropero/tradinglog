@@ -7,7 +7,7 @@
 				axis: 'x',
 				constrainTo: 'parent',
 				shouldPreventDefault: false,
-				startThreshold: [30, 0],
+				startThreshold: [30, 20],
 				useCSSTranslation: false,
 				initiate: function() {
 					var $el = $(this.el);
@@ -18,7 +18,6 @@
 				},
 				rest: function() {
 					var $el = $(this.el);
-					console.log($el.position().left);
 					if($el.hasClass('swiped') && $el.position().left > 0) {
 						$el.removeClass('swiped');
 					}
@@ -30,9 +29,9 @@
 					}
 					$el.addClass('swiped');
 					return false;
-				},
-				stop: function(e) {
-					e.preventDefault();
+				// },
+				// stop: function(e) {
+				// 	e.preventDefault();
 				}
 			});
 		}
