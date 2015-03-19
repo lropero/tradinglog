@@ -13,6 +13,7 @@
 		render: function() {
 			app.trigger('change', '_agustin');
 			this.$el.html(this.template());
+			app.scroll.init(this.el);
 			return this;
 		}
 	});
