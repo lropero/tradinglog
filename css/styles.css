@@ -157,10 +157,11 @@ section#content {
 section#main-stats-friends {
   -webkit-overflow-scrolling: touch;
   bottom: 44px;
+  overflow-x: hidden;
   overflow-y: scroll;
   position: absolute;
   top: 64px;
-  width: 100%;
+  width: 320px;
 }
 /*
 section#main-stats-friends {
