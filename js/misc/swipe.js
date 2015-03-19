@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	app.swiper = {
+	app.swipe = {
 		init: function(selector) {
 			$(selector).pep({
 				axis: 'x',
@@ -18,6 +18,7 @@
 				},
 				rest: function() {
 					var $el = $(this.el);
+					console.log($el.position().left);
 					if($el.hasClass('swiped') && $el.position().left > 0) {
 						$el.removeClass('swiped');
 					}
