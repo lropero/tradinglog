@@ -32,20 +32,16 @@
 				app.scroll.set($content, e.direction, e.deltaY);
 				app.scroll.contentY = parseInt($content.css('transform').split(',')[5], 10);
 
-				// var inertia = -100 * e.velocityY;
-				// var delta = app.scroll.contentY + inertia;
-				// if(delta > 0) {
-				// 	delta = 0;
-				// }
-				// $content.animate({
-				// 	transform: 'translateY(' + delta + 'px)'
-				// }, 1000, 'swing');
-
-				// app.scroll.inertia = snabbt($content, {
-				// 	easing: 'easeOut',
-				// 	fromPosition: [0, app.scroll.contentY, 0],
-				// 	position: [0, delta, 0]
-				// });
+				var inertia = -200 * e.velocityY;
+				var delta = app.scroll.contentY + inertia;
+				if(delta > 0) {
+					delta = 0;
+				} else if(app.scroll.maxScroll + delta < 0) {
+					delta = -app.scroll.maxScroll
+				}
+				$content.animate({
+					transform: 'translateY(' + delta + 'px)'
+				}, 500, 'swing');
 
 				if(app.scroll.contentY === 0 && parseInt($('.scroll').css('transform').split(',')[5], 10) > 0) {
 					app.scroll.dragDown.rollback(function() {
