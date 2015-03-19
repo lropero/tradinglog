@@ -15,7 +15,8 @@
 
 			var hammer = new Hammer($('.scroll')[0]);
 			hammer.get('pan').set({
-				direction: Hammer.DIRECTION_VERTICAL
+				direction: Hammer.DIRECTION_VERTICAL,
+				threshold: 30
 			});
 
 			hammer.on('panstart', function(e) {
