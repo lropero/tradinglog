@@ -69,7 +69,7 @@
 					}
 					$content.animate({
 						transform: 'translateY(' + delta + 'px)'
-					}, time, 'easeOutCubic', function() {
+					}, time, 'easeOutExpo', function() {
 						app.scroll.animating = false;
 					});
 				}
