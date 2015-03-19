@@ -10,7 +10,6 @@
 
 			var $content = $(el).find('section#content');
 			$content.wrap('<div class="scroll"></div>');
-			app.scroll.maxScroll = $content.height() - $('.scroll').height();
 
 			if(hasDrag) {
 				app.scroll.dragDown = snabbt($('.scroll'), {
@@ -33,6 +32,9 @@
 				app.scroll.animating = true;
 				app.scroll.contentY = parseInt($content.css('transform').split(',')[5], 10);
 				app.scroll.contentY = isNaN(app.scroll.contentY) ? 0 : app.scroll.contentY;
+				if(typeof app.scroll.maxScroll === 'undefined') {
+					app.scroll.maxScroll = $content.height() - $('.scroll').height();
+				}
 			});
 
 			hammer.on('pan', function(e) {
