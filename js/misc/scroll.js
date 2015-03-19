@@ -3,6 +3,8 @@
 
 	app.scroll = {
 		init: function(el, hasDrag) {
+			this.reset();
+
 			if(typeof hasDrag === 'undefined') {
 				hasDrag = false;
 			}
@@ -102,6 +104,14 @@
 					content.css('transform', 'translateY(' + delta + 'px)');
 					break;
 			};
+		},
+		reset: function() {
+			delete app.scroll.animating;
+			delete app.scroll.contentY;
+			delete app.scroll.dragDown;
+			delete app.scroll.dragSize;
+			delete app.scroll.hasDrag;
+			delete app.scroll.maxScroll;
 		}
 	};
 })();
