@@ -61,7 +61,7 @@
 					}
 					$content.animate({
 						transform: 'translateY(' + delta + 'px)'
-					}, 500, 'easeOutExpo', function() {
+					}, 800, 'easeOutExpo', function() {
 						app.scroll.animating = false;
 					});
 				}
