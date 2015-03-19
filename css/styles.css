@@ -150,6 +150,7 @@ header bar.navigation div.logo {
   top: 28px;
 }
 section#content {
+  -webkit-transform: tranzlateZ(0);
   background-color: red;
   height: 100%;
   position: absolute;
