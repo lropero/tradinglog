@@ -168,13 +168,18 @@ header bar.navigation div.logo {
 }
 
 section#content {
-	-webkit-transform: translateZ(0px);
+	-webkit-transform: tranzlateZ(0);
+	background-color: red;
+	height: 100%;
+	position: absolute;
+	width: 100%;
 }
 
 section#main-stats-friends {
 	-webkit-overflow-scrolling: touch;
 	bottom: 44px;
-	// overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	position: absolute;
 	top: 64px;
 	width: 100%;
