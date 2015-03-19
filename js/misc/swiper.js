@@ -7,6 +7,7 @@
 				axis: 'x',
 				constrainTo: 'parent',
 				shouldPreventDefault: false,
+				startThreshold: [30, 0],
 				useCSSTranslation: false,
 				initiate: function() {
 					var $el = $(this.el);

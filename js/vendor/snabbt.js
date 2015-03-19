@@ -383,9 +383,9 @@ snabbtjs.snabbt = function(arg1, arg2, arg3) {
         });
         return aggregateChainer;
       },
-      rollback: function() {
+      rollback: function(callback) {
         this.chainers.forEach(function(chainer) {
-          chainer.rollback();
+          chainer.rollback(callback);
         });
         return aggregateChainer;
       }
@@ -599,7 +599,7 @@ snabbtjs.currentAnimationState = function(element) {
   var state = snabbtjs.findAnimationState(snabbtjs.runningAnimations, element);
   if(state)
     return state;
- 
+
   return snabbtjs.findAnimationState(snabbtjs.completedAnimations, element);
 };
 
@@ -1030,7 +1030,7 @@ snabbtjs.State.prototype.getProperties = function() {
 ;var snabbtjs = snabbtjs || {};
 
 // ------------------
-// -- StateTweener -- 
+// -- StateTweener --
 // -------------------
 
 snabbtjs.StateTweener = function(startState, endState, resultState) {
@@ -1094,7 +1094,7 @@ snabbtjs.StateTweener.prototype.setReverse = function() {
 };
 
 // ------------------------
-// -- ValueFeederTweener -- 
+// -- ValueFeederTweener --
 // ------------------------
 
 snabbtjs.ValueFeederTweener = function(valueFeeder, startState, endState, resultState) {
