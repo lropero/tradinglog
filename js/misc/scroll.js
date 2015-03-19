@@ -52,7 +52,7 @@
 						app.scroll.dragSize = 0;
 					});
 				} else {
-					var inertia = -200 * e.velocityY;
+					var inertia = -100 * e.velocityY;
 					var delta = app.scroll.contentY + inertia;
 					if(delta > 0) {
 						delta = 0;
