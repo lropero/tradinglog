@@ -3,6 +3,7 @@
 
 	app.Views.header = Backbone.View.extend({
 		el: 'header',
+
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
@@ -12,11 +13,13 @@
 			});
 			this.listenTo(app, 'change', this.update);
 		},
+
 		render: function() {
 			this.$el.html(this.template());
 			this.deferred.resolve();
 			return this;
 		},
+
 		update: function(view) {
 			if(app.shake) {
 				app.shake.stopWatch();

@@ -3,6 +3,7 @@
 
 	app.Views.main = Backbone.View.extend({
 		el: 'section#main-stats-friends',
+
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
@@ -13,6 +14,7 @@
 			this.trades = [];
 			this.fetchTrades();
 		},
+
 		render: function() {
 			var self = this;
 			this.deferred.done(function() {
@@ -25,6 +27,7 @@
 			});
 			return this;
 		},
+
 		fetchTrades: function() {
 			var self = this;
 			var trades = new app.Collections.trades();

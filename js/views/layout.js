@@ -3,6 +3,7 @@
 
 	app.Views.layout = Backbone.View.extend({
 		el: 'div#layout',
+
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
@@ -11,6 +12,7 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			var self = this;
 			this.$el.html(this.template());

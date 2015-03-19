@@ -3,9 +3,11 @@
 
 	app.Views.footer = Backbone.View.extend({
 		el: 'footer',
+
 		events: {
 			'click a:not(.active)': 'navigate'
 		},
+
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
@@ -14,11 +16,13 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			this.$el.html(this.template());
 			this.deferred.resolve();
 			return this;
 		},
+
 		navigate: function(e) {
 			this.$el.find('a.active').removeClass('active');
 			var target = $(e.currentTarget);

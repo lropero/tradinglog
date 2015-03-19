@@ -3,6 +3,7 @@
 
 	app.Views._agustin = Backbone.View.extend({
 		el: 'section#main-stats-friends',
+
 		initialize: function() {
 			var self = this;
 			app.templateLoader.get('_agustin').done(function(template) {
@@ -10,10 +11,11 @@
 				self.render();
 			});
 		},
+
 		render: function() {
 			app.trigger('change', '_agustin');
 			this.$el.html(this.template());
-			app.scroll.init(this.el);
+			// app.scroll.init(this.el);
 			// app.swipe.init('.active-swipe');
 			return this;
 		}

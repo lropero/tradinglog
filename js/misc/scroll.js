@@ -36,6 +36,9 @@
 				app.scroll.contentY = isNaN(app.scroll.contentY) ? 0 : app.scroll.contentY;
 				if(typeof app.scroll.maxScroll === 'undefined') {
 					app.scroll.maxScroll = $content.height() - $('.scroll').height();
+					if(app.scroll.maxScroll < 0) {
+						app.scroll.maxScroll = 0;
+					}
 				}
 			});
 
@@ -72,6 +75,7 @@
 				}
 			});
 		},
+
 		set: function(content, direction, deltaY) {
 			if(app.scroll.dragSize > 0) {
 				if(direction === Hammer.DIRECTION_DOWN) {
@@ -106,6 +110,7 @@
 					break;
 			};
 		},
+
 		reset: function() {
 			delete app.scroll.animating;
 			delete app.scroll.contentY;
