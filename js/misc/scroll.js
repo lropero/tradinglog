@@ -14,13 +14,17 @@
 			app.scroll.maxScroll = $content.height() - $('.scroll').height();
 
 			var hammer = new Hammer($('.scroll')[0]);
+
 			hammer.get('pan').set({
 				direction: Hammer.DIRECTION_VERTICAL,
 				threshold: 20
 			});
 
 			hammer.on('panstart', function(e) {
-				$content.stop();
+				if(app.scroll.animating) {
+					$content.stop();
+				}
+				app.scroll.animating = true;
 				app.scroll.contentY = parseInt($content.css('transform').split(',')[5], 10);
 				app.scroll.contentY = isNaN(app.scroll.contentY) ? 0 : app.scroll.contentY;
 			});
@@ -42,7 +46,9 @@
 				}
 				$content.animate({
 					transform: 'translateY(' + delta + 'px)'
-				}, 800, 'easeOutExpo');
+				}, 800, 'easeOutExpo', function() {
+					app.scroll.animating = false;
+				});
 
 				if(app.scroll.contentY === 0 && parseInt($('.scroll').css('transform').split(',')[5], 10) > 0) {
 					app.scroll.dragDown.rollback(function() {
