@@ -1,8 +1,4 @@
 <script type="text/x-handlebars-template" id="main-template">
-	<div class="drag-account">
-		<div class="account">Account: <span>Real</span></div>
-		<div class="balance">Balance: <span>$4,896.52</span></div>
-	</div>
 	<section id="content">
 		<ul>
 			{{#each trades}}

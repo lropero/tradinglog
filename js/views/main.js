@@ -23,33 +23,9 @@
 					trades: self.trades
 				}));
 
-				document.getElementById('content').addEventListener('touchstart', function(e) {});
-
-				document.getElementById('content').addEventListener('scroll', function(e) {
-					if(typeof app.scroller === 'undefined') {
-						app.scroller = setInterval(function() {
-							var pos = $('#content ul').position().top;
-							$('footer').html(pos);
-						}, 10);
-					}
-				});
-
-				// this.listenTo(app, 'scroll', function() {
-				// 	console.log('pepe');
-				// });
-
-				// var hammer = new Hammer(self.el);
-				// hammer.get('pan').set({
-				// 	direction: Hammer.DIRECTION_VERTICAL,
-				// 	threshold: 20
-				// });
-
-				// hammer.on('pan', function(e) {
-				// 	// var pos = $('#content ul').position().top;
-				// 	// // console.log(pos);
-				// 	// $('footer').html(pos);
-				// });
-
+				$('header').append('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+				// $('#main-stats-friends').css('top', '94px');
+				$('#main-stats-friends').css('zIndex', '1000');
 				// app.scroll.init(self.el, true);
 				// app.swipe.init('.active-swipe');
 			});
