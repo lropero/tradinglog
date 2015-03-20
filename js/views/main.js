@@ -30,7 +30,8 @@
 				});
 
 				document.getElementById('content').addEventListener('scroll', function(e) {
-					$('footer').html(e);
+					var pos = $('#content ul').position().top;
+					$('footer').html(pos);
 				});
 
 				// this.listenTo(app, 'scroll', function() {
