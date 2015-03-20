@@ -40,7 +40,6 @@
 
 		renderDrag: function() {
 			$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-			$('header div#drag div.drag-account').css('height', '300px');
 			$('header div#drag').show();
 		},
 
