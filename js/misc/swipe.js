@@ -6,10 +6,9 @@
 			$(selector).pep({
 				axis: 'x',
 				constrainTo: 'parent',
-				cssEaseDuration: 500,
+				cssEaseDuration: 300,
 				shouldPreventDefault: false,
 				startThreshold: [30, 20],
-				useCSSTranslation: false,
 
 				rest: function() {
 					$('section#content').css('-webkit-overflow-scrolling', 'touch');
