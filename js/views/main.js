@@ -23,17 +23,31 @@
 					trades: self.trades
 				}));
 
-				var hammer = new Hammer(self.el);
-				hammer.get('pan').set({
-					direction: Hammer.DIRECTION_VERTICAL,
-					threshold: 20
+				document.getElementById('content').addEventListener('touchstart', function(e) {});
+
+				document.getElementById('content').addEventListener('onscroll', function(e) {
+					$('footer').html('onscroll');
 				});
 
-				hammer.on('pan', function(e) {
-					// var pos = $('#content ul').position().top;
-					// // console.log(pos);
-					// $('footer').html(pos);
+				document.getElementById('content').addEventListener('scroll', function(e) {
+					$('footer').html('scroll');
 				});
+
+				// this.listenTo(app, 'scroll', function() {
+				// 	console.log('pepe');
+				// });
+
+				// var hammer = new Hammer(self.el);
+				// hammer.get('pan').set({
+				// 	direction: Hammer.DIRECTION_VERTICAL,
+				// 	threshold: 20
+				// });
+
+				// hammer.on('pan', function(e) {
+				// 	// var pos = $('#content ul').position().top;
+				// 	// // console.log(pos);
+				// 	// $('footer').html(pos);
+				// });
 
 				// app.scroll.init(self.el, true);
 				// app.swipe.init('.active-swipe');
