@@ -24,52 +24,53 @@
 				}));
 				self.renderDrag();
 				// app.scroll.init(self.el, true);
-				// app.swipe.init('.active-swipe');
+				app.swipe.init('.active-swipe');
 
-				var hammer = new Hammer($(self.$el)[0]);
+				// var hammer = new Hammer($(self.$el)[0]);
 
-				hammer.get('pan').set({
-					direction: Hammer.DIRECTION_HORIZONTAL,
-					threshold: 20
-				});
+				// hammer.get('pan').set({
+				// 	direction: Hammer.DIRECTION_HORIZONTAL,
+				// 	threshold: 20
+				// });
 
-				hammer.on('panstart', function(e) {
-					if(app.view.swiped) {
-						$('section#content').css('-webkit-overflow-scrolling', 'auto');
-						$('section#content').css('overflow-y', 'hidden');
-						app.view.swiped.animate({
-							transform: 'translateX(0)'
-						}, 300, 'easeOutQuad', function() {
-							delete app.view.swiped;
-							$('section#content').css('-webkit-overflow-scrolling', 'touch');
-							$('section#content').css('overflow-y', 'scroll');
-						});
-					} else {
-						var $target = $(e.target).parents('div.active-swipe');
-						if($target.hasClass('active-swipe')) {
-							$('section#content').css('-webkit-overflow-scrolling', 'auto');
-							$('section#content').css('overflow-y', 'hidden');
-							app.view.swiped = $target;
-							if(e.direction === Hammer.DIRECTION_LEFT) {
-								$target.animate({
-									transform: 'translateX(-80px)'
-								}, 500, 'easeOutExpo');
-							}
-						}
-					}
-				});
+				// hammer.on('panstart', function(e) {
+				// 	if(app.view.swiped) {
+				// 		$('section#content').css('-webkit-overflow-scrolling', 'auto');
+				// 		$('section#content').css('overflow-y', 'hidden');
+				// 		app.view.swiped.animate({
+				// 			transform: 'translateX(0)'
+				// 		}, 300, 'easeOutQuad', function() {
+				// 			delete app.view.swiped;
+				// 			$('section#content').css('-webkit-overflow-scrolling', 'touch');
+				// 			$('section#content').css('overflow-y', 'scroll');
+				// 		});
+				// 	} else {
+				// 		var $target = $(e.target).parents('div.active-swipe');
+				// 		if($target.hasClass('active-swipe')) {
+				// 			if(e.direction === Hammer.DIRECTION_LEFT) {
+				// 				$target.animate({
+				// 					transform: 'translateX(-80px)'
+				// 				}, 500, 'easeOutExpo', function() {
+				// 					$('section#content').css('-webkit-overflow-scrolling', 'auto');
+				// 					$('section#content').css('overflow-y', 'hidden');
+				// 					app.view.swiped = $target;
+				// 				});
+				// 			}
+				// 		}
+				// 	}
+				// });
 
-				hammer.on('tap', function(e) {
-					if(app.view.swiped) {
-						app.view.swiped.animate({
-							transform: 'translateX(0)'
-						}, 300, 'easeOutQuad', function() {
-							delete app.view.swiped;
-							$('section#content').css('-webkit-overflow-scrolling', 'touch');
-							$('section#content').css('overflow-y', 'scroll');
-						});
-					}
-				});
+				// hammer.on('tap', function(e) {
+				// 	if(app.view.swiped) {
+				// 		app.view.swiped.animate({
+				// 			transform: 'translateX(0)'
+				// 		}, 300, 'easeOutQuad', function() {
+				// 			delete app.view.swiped;
+				// 			$('section#content').css('-webkit-overflow-scrolling', 'touch');
+				// 			$('section#content').css('overflow-y', 'scroll');
+				// 		});
+				// 	}
+				// });
 			});
 			return this;
 		},
