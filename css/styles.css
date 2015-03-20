@@ -681,8 +681,8 @@ ol {
   width: 100%;
   height: 30px;
   padding: 0 15px;
-  color: #4020d0;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #4020d0;
 }
 .drag-account .account {
   float: left;
