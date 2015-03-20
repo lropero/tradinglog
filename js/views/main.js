@@ -25,20 +25,23 @@
 
 				if($('section#settings').hasClass('show')) {
 					setTimeout(function() {
-						$('#main-stats-friends').css('zIndex', '2000');
-						$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-						$('header div#drag').show();
+						self.renderDrag();
 					}, 1000);
 				} else {
-					$('#main-stats-friends').css('zIndex', '2000');
-					$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-					$('header div#drag').show();
+					self.renderDrag();
 				}
 
 				// app.scroll.init(self.el, true);
 				// app.swipe.init('.active-swipe');
 			});
 			return this;
+		},
+
+		renderDrag: function() {
+			$('#main-stats-friends').css('zIndex', '2000');
+			$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+			$('header div#drag div.drag-account').css('height', $(this.el).height() + 'px');
+			$('header div#drag').show();
 		},
 
 		fetchTrades: function() {
