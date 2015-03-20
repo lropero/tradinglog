@@ -18,29 +18,29 @@
 					$.pep.restore();
 				},
 
-				rest: function() {
-					// console.log('rest');
-					// // var $el = $(this.el);
-					// // if($el.position().left > 0) {
-					// // 	app.swipe.counter--;
-					// // }
-					// // if(app.swipe.counter === 0) {
-					// 	console.log('si');
-					this.coco = true;
-					var self = this;
-					$.each($('.active-swipe'), function() {
-						if($(this).hasClass('swiped')) {
-							self.coco = false;
-							return;
-						}
-					});
-					if(this.coco) {
-						console.log('eee');
-						$('section#content').css('-webkit-overflow-scrolling', 'touch');
-						$('section#content').css('overflow-y', 'scroll');
-					}
-					// // }
-				},
+				// rest: function() {
+				// 	// console.log('rest');
+				// 	// // var $el = $(this.el);
+				// 	// // if($el.position().left > 0) {
+				// 	// // 	app.swipe.counter--;
+				// 	// // }
+				// 	// // if(app.swipe.counter === 0) {
+				// 	// 	console.log('si');
+				// 	this.coco = true;
+				// 	var self = this;
+				// 	$.each($('.active-swipe'), function() {
+				// 		if($(this).hasClass('swiped')) {
+				// 			self.coco = false;
+				// 			return;
+				// 		}
+				// 	});
+				// 	if(this.coco) {
+				// 		console.log('eee');
+				// 		$('section#content').css('-webkit-overflow-scrolling', 'touch');
+				// 		$('section#content').css('overflow-y', 'scroll');
+				// 	}
+				// 	// // }
+				// },
 
 				revertIf: function() {
 					var $el = $(this.el);
