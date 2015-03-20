@@ -39,7 +39,7 @@
 						$('section#content').css('overflow-y', 'hidden');
 						app.view.swiped.animate({
 							transform: 'translateX(0)'
-						}, 300, 'easeOutExpo', function() {
+						}, 300, 'easeOutQuad', function() {
 							delete app.view.swiped;
 							$('section#content').css('-webkit-overflow-scrolling', 'touch');
 							$('section#content').css('overflow-y', 'scroll');
@@ -49,12 +49,11 @@
 						if($target.hasClass('active-swipe')) {
 							$('section#content').css('-webkit-overflow-scrolling', 'auto');
 							$('section#content').css('overflow-y', 'hidden');
+							app.view.swiped = $target;
 							if(e.direction === Hammer.DIRECTION_LEFT) {
 								$target.animate({
 									transform: 'translateX(-80px)'
-								}, 300, 'easeOutExpo', function() {
-									app.view.swiped = $target;
-								});
+								}, 500, 'easeOutExpo');
 							}
 						}
 					}
@@ -64,7 +63,7 @@
 					if(app.view.swiped) {
 						app.view.swiped.animate({
 							transform: 'translateX(0)'
-						}, 300, 'easeOutExpo', function() {
+						}, 300, 'easeOutQuad', function() {
 							delete app.view.swiped;
 							$('section#content').css('-webkit-overflow-scrolling', 'touch');
 							$('section#content').css('overflow-y', 'scroll');
