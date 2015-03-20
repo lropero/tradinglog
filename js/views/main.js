@@ -25,16 +25,6 @@
 				self.renderDrag();
 				// app.scroll.init(self.el, true);
 				app.swipe.init('.active-swipe');
-
-
-				setTimeout(function() {
-					$('section#content').css('-webkit-overflow-scrolling', 'auto');
-					$('section#content').css('overflow-y', 'hidden');
-					setTimeout(function() {
-						$('section#content').css('-webkit-overflow-scrolling', 'touch');
-						$('section#content').css('overflow-y', 'scroll');
-					}, 5000);
-				}, 5000);
 				// var hammer = new Hammer($(self.$el)[0]);
 
 				// hammer.get('pan').set({

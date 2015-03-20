@@ -9,6 +9,7 @@
 				shouldPreventDefault: false,
 				startThreshold: [30, 20],
 				useCSSTranslation: false,
+
 				initiate: function() {
 					var $el = $(this.el);
 					if($el.hasClass('swiped')) {
@@ -16,12 +17,16 @@
 					}
 					$.pep.restore();
 				},
+
 				rest: function() {
 					var $el = $(this.el);
 					if($el.hasClass('swiped') && $el.position().left > 0) {
 						$el.removeClass('swiped');
 					}
+					$('section#content').css('-webkit-overflow-scrolling', 'touch');
+					$('section#content').css('overflow-y', 'scroll');
 				},
+
 				revertIf: function() {
 					var $el = $(this.el);
 					if($el.position().left > 0) {
@@ -29,10 +34,16 @@
 					}
 					$el.addClass('swiped');
 					return false;
-				// },
+				},
+
+				start: function() {
+					$('section#content').css('-webkit-overflow-scrolling', 'auto');
+					$('section#content').css('overflow-y', 'hidden');
+				},
+
 				// stop: function(e) {
 				// 	e.preventDefault();
-				}
+				// }
 			});
 		}
 	};
