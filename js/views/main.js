@@ -22,16 +22,7 @@
 				self.$el.html(self.template({
 					trades: self.trades
 				}));
-
 				self.renderDrag();
-				if($('section#settings').hasClass('show')) {
-					setTimeout(function() {
-						$('#main-stats-friends').css('zIndex', '2000');
-					}, 1000);
-				} else {
-					$('#main-stats-friends').css('zIndex', '2000');
-				}
-
 				// app.scroll.init(self.el, true);
 				// app.swipe.init('.active-swipe');
 			});
@@ -40,7 +31,6 @@
 
 		renderDrag: function() {
 			$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-			$('header div#drag').show();
 		},
 
 		fetchTrades: function() {
