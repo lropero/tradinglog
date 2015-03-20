@@ -25,13 +25,13 @@
 
 				document.getElementById('content').addEventListener('touchstart', function(e) {});
 
-				document.getElementById('content').addEventListener('onscroll', function(e) {
-					$('footer').html('onscroll');
-				});
-
 				document.getElementById('content').addEventListener('scroll', function(e) {
-					var pos = $('#content ul').position().top;
-					$('footer').html(pos);
+					if(typeof app.scroller === 'undefined') {
+						app.scroller = setInterval(function() {
+							var pos = $('#content ul').position().top;
+							$('footer').html(pos);
+						}, 10);
+					}
 				});
 
 				// this.listenTo(app, 'scroll', function() {
