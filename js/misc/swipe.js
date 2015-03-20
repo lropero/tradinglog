@@ -6,7 +6,7 @@
 			$(selector).pep({
 				axis: 'x',
 				constrainTo: 'parent',
-				cssEaseDuration: 300,
+				cssEaseDuration: 500,
 				shouldPreventDefault: false,
 				startThreshold: [30, 20],
 				useCSSTranslation: false,
@@ -32,7 +32,7 @@
 					if($el.hasClass('swiped')) {
 						$el.removeClass('swiped');
 					}
-					$.pep.restore();
+					// $.pep.restore();
 				},
 
 				// stop: function(e) {
