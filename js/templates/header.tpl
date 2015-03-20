@@ -4,4 +4,5 @@
 		<div class="logo"><div onclick="if(!$('section#settings').is(':visible')) { app.loadView('_agustin'); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>
 		<button class="right" id="button-right"></button>
 	</bar>
+	<div id="drag"></div>
 </script>

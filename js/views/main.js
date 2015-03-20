@@ -23,9 +23,18 @@
 					trades: self.trades
 				}));
 
-				$('header').append('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-				// $('#main-stats-friends').css('top', '94px');
-				$('#main-stats-friends').css('zIndex', '1000');
+				if($('section#settings').hasClass('show')) {
+					setTimeout(function() {
+						$('#main-stats-friends').css('zIndex', '2000');
+						$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+						$('header div#drag').show();
+					}, 1000);
+				} else {
+					$('#main-stats-friends').css('zIndex', '2000');
+					$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+					$('header div#drag').show();
+				}
+
 				// app.scroll.init(self.el, true);
 				// app.swipe.init('.active-swipe');
 			});
@@ -49,6 +58,12 @@
 					});
 				}
 			});
+		},
+
+		destroy: function() {
+			$('header div#drag').hide();
+			$('header div#drag').empty();
+			$('#main-stats-friends').css('zIndex', '0');
 		}
 	});
 })();

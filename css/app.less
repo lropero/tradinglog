@@ -118,11 +118,11 @@ header bar.navigation {
 header bar.navigation button {
 	background: none;
 	border: 0;
-	bottom: 0;
 	color: #ffffff;
 	outline: 0;
 	padding: 8px;
 	position: absolute;
+	top: 21px;
 	z-index: 2000;
 }
 
@@ -167,6 +167,10 @@ header bar.navigation div.logo {
 	top: 28px;
 }
 
+header div#drag {
+	display: none;
+}
+
 section#content {
 	-webkit-overflow-scrolling: touch;
 	height: 100%;
@@ -203,14 +207,6 @@ section#settings {
 	top: 0;
 	width: 100%;
 	z-index: 500;
-}
-
-.scroll {
-	bottom: 0;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	width: 100%;
 }
 
 .show {
