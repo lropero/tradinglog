@@ -23,17 +23,17 @@
 					trades: self.trades
 				}));
 
-				// var hammer = new Hammer(self.el);
-				// hammer.get('pan').set({
-				// 	direction: Hammer.DIRECTION_VERTICAL,
-				// 	threshold: 20
-				// });
+				var hammer = new Hammer(self.el);
+				hammer.get('pan').set({
+					direction: Hammer.DIRECTION_VERTICAL,
+					threshold: 20
+				});
 
-				// hammer.on('pan', function(e) {
-				// 	var pos = $('#content ul').position().top;
-				// 	// console.log(pos);
-				// 	$('footer').html(pos);
-				// });
+				hammer.on('pan', function(e) {
+					// var pos = $('#content ul').position().top;
+					// // console.log(pos);
+					// $('footer').html(pos);
+				});
 
 				// app.scroll.init(self.el, true);
 				// app.swipe.init('.active-swipe');
