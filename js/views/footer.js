@@ -41,14 +41,7 @@
 				$settings.addClass(animated).one('webkitAnimationEnd', function() {
 					$settings.removeClass('show ' + animated);
 					$settings.empty();
-					if(view === 'main') {
-						$('section#main-stats-friends').css('zIndex', '2000');
-						$('header div#drag').show();
-					}
 				});
-			} else if(view === 'main') {
-				$('section#main-stats-friends').css('zIndex', '2000');
-				$('header div#drag').show();
 			}
 
 			app.loadView(view);

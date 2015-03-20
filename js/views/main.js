@@ -30,7 +30,8 @@
 		},
 
 		renderDrag: function() {
-			$('header div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+			$('div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+			$('div#drag').show();
 		},
 
 		fetchTrades: function() {
@@ -53,9 +54,8 @@
 		},
 
 		destroy: function() {
-			$('header div#drag').hide();
-			$('header div#drag').empty();
-			$('#main-stats-friends').css('zIndex', '0');
+			$('div#drag').hide();
+			$('div#drag').empty();
 		}
 	});
 })();

@@ -60,6 +60,13 @@ control.segmented + #content {
   position: relative;
   top: 49px;
 }
+div#drag {
+  display: none;
+  position: absolute;
+  top: 64px;
+  width: 100%;
+  z-index: 50;
+}
 footer {
   background-color: #f3f3f3;
   border-top: 1px solid #cccccc;
@@ -107,11 +114,11 @@ header bar.navigation {
 header bar.navigation button {
   background: none;
   border: 0;
+  bottom: 0;
   color: #ffffff;
   outline: 0;
   padding: 8px;
   position: absolute;
-  top: 21px;
   z-index: 2000;
 }
 header bar.navigation button.left {
@@ -149,9 +156,6 @@ header bar.navigation div.logo {
   position: relative;
   top: 28px;
 }
-header div#drag {
-  display: none;
-}
 section#content {
   -webkit-overflow-scrolling: touch;
   height: 100%;
@@ -165,6 +169,7 @@ section#main-stats-friends {
   position: absolute;
   top: 64px;
   width: 100%;
+  z-index: 100;
 }
 /*
 section#main-stats-friends {
