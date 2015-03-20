@@ -26,8 +26,19 @@
 					// // }
 					// // if(app.swipe.counter === 0) {
 					// 	console.log('si');
-					$('section#content').css('-webkit-overflow-scrolling', 'touch');
-					$('section#content').css('overflow-y', 'scroll');
+					this.coco = true;
+					var self = this;
+					$.each($('.active-swipe'), function() {
+						if($(this).hasClass('swiped')) {
+							self.coco = false;
+							return;
+						}
+					});
+					if(this.coco) {
+						console.log('eee');
+						$('section#content').css('-webkit-overflow-scrolling', 'touch');
+						$('section#content').css('overflow-y', 'scroll');
+					}
 					// // }
 				},
 
