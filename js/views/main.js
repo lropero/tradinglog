@@ -25,6 +25,23 @@
 				self.renderDrag();
 				// app.scroll.init(self.el, true);
 				app.swipe.init('.active-swipe');
+
+
+				// var hammer = new Hammer($(self.$el)[0]);
+
+				// hammer.get('pan').set({
+				// 	direction: Hammer.DIRECTION_VERTICAL,
+				// 	threshold: 20
+				// });
+
+				// hammer.on('panstart', function(e) {
+				// 	console.log(document.getElementById('content').style.webkitOverflowScrolling);
+				// 	// console.log($('section#content').css('webkitOverflowScrolling'));
+				// 	$('section#content').css('-webkit-overflow-scrolling', 'touch');
+				// 	$('section#content').css('overflow-y', 'scroll');
+				// });
+
+
 			});
 			return this;
 		},
