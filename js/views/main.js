@@ -30,7 +30,7 @@
 				});
 
 				document.getElementById('content').addEventListener('scroll', function(e) {
-					$('footer').html('scroll');
+					$('footer').html(e);
 				});
 
 				// this.listenTo(app, 'scroll', function() {
