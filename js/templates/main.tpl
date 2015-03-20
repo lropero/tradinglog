@@ -7,7 +7,7 @@
 		<ul>
 			{{#each trades}}
 				<li class="wrapper-label" style="left: -80px; width: 400px;">
-					<div class="label trade long active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+					<div class="label trade long open active-swipe one-button-swipe" style="left: 80px; width: 320px;">
 						<div class="ball">
 							{{#if this.comments}}
 								<div class="globe-comments">{{ this.comments }}</div>
