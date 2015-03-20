@@ -24,22 +24,53 @@
 				}));
 				self.renderDrag();
 				// app.scroll.init(self.el, true);
-				app.swipe.init('.active-swipe');
-				// var hammer = new Hammer($(self.$el)[0]);
+				// app.swipe.init('.active-swipe');
 
-				// hammer.get('pan').set({
-				// 	direction: Hammer.DIRECTION_VERTICAL,
-				// 	threshold: 20
-				// });
+				var hammer = new Hammer($(self.$el)[0]);
 
-				// hammer.on('panstart', function(e) {
-				// 	console.log(document.getElementById('content').style.webkitOverflowScrolling);
-				// 	// console.log($('section#content').css('webkitOverflowScrolling'));
-				// 	$('section#content').css('-webkit-overflow-scrolling', 'touch');
-				// 	$('section#content').css('overflow-y', 'scroll');
-				// });
+				hammer.get('pan').set({
+					direction: Hammer.DIRECTION_HORIZONTAL,
+					threshold: 20
+				});
 
+				hammer.on('panstart', function(e) {
+					if(app.view.swiped) {
+						$('section#content').css('-webkit-overflow-scrolling', 'auto');
+						$('section#content').css('overflow-y', 'hidden');
+						app.view.swiped.animate({
+							transform: 'translateX(0)'
+						}, 300, 'easeOutExpo', function() {
+							delete app.view.swiped;
+							$('section#content').css('-webkit-overflow-scrolling', 'touch');
+							$('section#content').css('overflow-y', 'scroll');
+						});
+					} else {
+						var $target = $(e.target).parents('div.active-swipe');
+						if($target.hasClass('active-swipe')) {
+							$('section#content').css('-webkit-overflow-scrolling', 'auto');
+							$('section#content').css('overflow-y', 'hidden');
+							if(e.direction === Hammer.DIRECTION_LEFT) {
+								$target.animate({
+									transform: 'translateX(-80px)'
+								}, 300, 'easeOutExpo', function() {
+									app.view.swiped = $target;
+								});
+							}
+						}
+					}
+				});
 
+				hammer.on('tap', function(e) {
+					if(app.view.swiped) {
+						app.view.swiped.animate({
+							transform: 'translateX(0)'
+						}, 300, 'easeOutExpo', function() {
+							delete app.view.swiped;
+							$('section#content').css('-webkit-overflow-scrolling', 'touch');
+							$('section#content').css('overflow-y', 'scroll');
+						});
+					}
+				});
 			});
 			return this;
 		},
