@@ -12,6 +12,11 @@
 				useCSSTranslation: false,
 
 				rest: function() {
+					var $el = $(this.el);
+					var left = $el.position().left;
+					if(left % 80 > 0) {
+						$.pep.restore();
+					}
 					$('section#content').css('-webkit-overflow-scrolling', 'touch');
 					$('section#content').css('overflow-y', 'scroll');
 				},
