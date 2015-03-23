@@ -31,6 +31,7 @@
 
 		renderDrag: function() {
 			$('div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+			$('div#drag').css('height', $('section#content').height());
 			$('div#drag').show();
 		},
 
