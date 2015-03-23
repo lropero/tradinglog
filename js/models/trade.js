@@ -39,16 +39,16 @@
 		},
 
 		fetchPositions: function() {
-			var self = this;
-			var positions = new app.Collections.positions();
-			positions.setTradeId(this.get('id'));
-			positions.fetch({
-				success: function() {
-					for(var i = 0; i < positions.length; i++) {
-						self.positions.push(positions.toJSON()[i]);
-					}
-				}
-			});
+			// var self = this;
+			// var positions = new app.Collections.positions();
+			// positions.setTradeId(this.get('id'));
+			// positions.fetch({
+			// 	success: function() {
+			// 		for(var i = 0; i < positions.length; i++) {
+			// 			self.positions.push(positions.toJSON()[i]);
+			// 		}
+			// 	}
+			// });
 		},
 
 		fetchComments: function() {
