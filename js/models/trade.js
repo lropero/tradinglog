@@ -64,6 +64,7 @@
 		toJSON: function() {
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			json.instrument = this.instrument;
+			json.isLong = true;
 			json.isOpen = this.isOpen();
 			json.net = this.calculateNet();
 			return json;
