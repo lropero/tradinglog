@@ -17,6 +17,7 @@
 				});
 			});
 		},
+
 		findAll: function(callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM instrument ORDER BY id;';

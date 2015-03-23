@@ -17,9 +17,11 @@
 			this.populateDemo();
 			return this.deferred.promise();
 		},
+
 		getDB: function() {
 			return this.db;
 		},
+
 		reset: function() {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT name FROM sqlite_master WHERE type = "table" AND name NOT LIKE "sqlite_%";';
@@ -34,6 +36,7 @@
 				});
 			});
 		},
+
 		createTables: function() {
 			var self = this;
 			var sqls = [
@@ -99,17 +102,25 @@
 				self.deferred.resolve();
 			});
 		},
+
 		populateDemo: function() {
 			var sqls = [
 				'INSERT INTO account VALUES (null, "Demo", 5000, 1);',
 				'INSERT INTO instrument VALUES (null, 0, "E-mini S&P 500", 50, 4.24, 0, 0);',
 				'INSERT INTO instrument VALUES (null, 0, "Light Sweet Crude Oil", 1000, 4.84, 0, 0);',
 				'INSERT INTO trade VALUES (null, 1, 1, 0, 500, 200, 8.48, 5.83, 3, 1426273045);',
-				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 100, 4.24, -2, 0, 1426283045);',
+				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 112.5, 4.24, -2, 0, 1426283045);',
 				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 1426293045);',
 				'INSERT INTO trade VALUES (null, 1, 1, 0, 500, 200, 8.48, 5.83, 3, 0);',
-				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 100, 4.24, -2, 0, 1426283045);',
-				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 0);'
+				'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 100, 4.24, -2, 0, 1426303045);',
+				'INSERT INTO trade VALUES (null, 1, 2, 0, 300, 0, 4.84, 3, 1, 0);',
+				'INSERT INTO position VALUES (null, 1, 2, 250, 1426283045);',
+				'INSERT INTO position VALUES (null, 1, -1, 250, 1426293045);',
+				'INSERT INTO position VALUES (null, 2, 2, 250, 1426283045);',
+				'INSERT INTO position VALUES (null, 2, -1, 250, 1426293045);',
+				'INSERT INTO position VALUES (null, 4, 2, 250, 1426283045);',
+				'INSERT INTO position VALUES (null, 4, -1, 250, 1426293045);',
+				'INSERT INTO position VALUES (null, 4, -1, 250, 1426293045);'
 			];
 			this.db.transaction(function(tx) {
 				$.each(sqls, function(index, sql) {

@@ -9,7 +9,10 @@
 			if(this.collection) {
 				this.collection.deferreds.push(this.deferred);
 			}
+			this.positions = [];
 			this.fetchInstrument();
+			this.fetchPositions();
+			this.fetchComments();
 		},
 
 		calculateGross: function() {
@@ -20,13 +23,12 @@
 		calculateNet: function() {
 			var net = this.calculateGross() - this.get('commission');
 			return net;
-
 		},
 
 		fetchInstrument: function() {
 			var self = this;
 			var instrument = new app.Models.instrument({
-				id: self.get('instrument_id')
+				id: this.get('instrument_id')
 			});
 			instrument.fetch({
 				success: function() {
@@ -36,11 +38,34 @@
 			});
 		},
 
-		toJSON: function() {
+		fetchPositions: function() {
 			var self = this;
-			var json = Backbone.Model.prototype.toJSON.apply(self, arguments);
-			json.instrument = self.instrument;
-			json.net = self.calculateNet();
+			var positions = new app.Collections.positions();
+			positions.setTradeId(this.get('id'));
+			positions.fetch({
+				success: function() {
+					for(var i = 0; i < positions.length; i++) {
+						self.positions.push(positions.toJSON()[i]);
+					}
+				}
+			});
+		},
+
+		fetchComments: function() {
+		},
+
+		isOpen: function() {
+			if(this.get('closed_at') === 0) {
+				return true;
+			}
+			return false;
+		},
+
+		toJSON: function() {
+			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
+			json.instrument = this.instrument;
+			json.isOpen = this.isOpen();
+			json.net = this.calculateNet();
 			return json;
 		}
 	});

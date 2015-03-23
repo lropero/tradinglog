@@ -9,6 +9,10 @@
 					dao.find(model, function(data) {
 						options.success(data);
 					});
+				} else if(model.trade_id) {
+					dao.findSet(model, function(data) {
+						options.success(data);
+					});
 				} else {
 					dao.findAll(function(data) {
 						options.success(data);

@@ -14,6 +14,7 @@
 				this.set('right', options['right']);
 			}
 		},
+
 		set: function(button, options) {
 			var button = $('header #button-' + button);
 			if(!options.icon) {
@@ -33,6 +34,7 @@
 			}
 			button.show();
 		},
+
 		remove: function(button) {
 			$('header #button-' + button).off().hide();
 		}

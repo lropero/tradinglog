@@ -10,7 +10,7 @@
 
 		init: function() {
 
-			/** We start by calling our layout view which is in charge of rendering
+			/** We start by calling the layout view which is in charge of rendering
 				the header and footer (both of them separate views); all of these
 				happens asynchronously, i.e. app.Views.layout() has a 'deferred'
 				property which allow us to set a done() method to continue booting
@@ -19,15 +19,13 @@
 
 			$.when(
 
-				/** DB becomes ready while layout loads; it returns a promise from
-					a self-resolved deferred object, so no need to access its
-					$.Deferred() property here */
+				/** DB becomes ready while layout loads and returns a promise */
 				app.databaseController.init(),
 
 				layout.deferred.promise()
 			).done(function() {
 
-				/** DB and layout view are ready; we load our main view */
+				/** DB and layout view are ready; we load the main view */
 				app.view = new app.Views.main();
 
 				/** We hide the initial splash screen once the main view is ready

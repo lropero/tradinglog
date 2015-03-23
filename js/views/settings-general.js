@@ -27,7 +27,7 @@
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					app.trigger('change', 'easter');
-					$('section#settings section#content').empty().append('<img src="img/easter.jpg" style="height: 100%; width: 100%;" />');
+					$('section#settings section#content').empty().append('<img src="img/easter.jpg" style="width: 100%;" />');
 				}
 			});
 			app.shake.startWatch();
