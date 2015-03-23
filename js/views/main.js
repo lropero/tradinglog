@@ -28,7 +28,7 @@
 				var content = $('section#content').height();
 				var ul = $('section#content').find('ul').height();
 				if(content > ul) {
-					self.$el.append('<div style="bottom: 0; height: ' + (content - ul) + 'px; position: absolute; width: 100%;"></div>');
+					self.$el.append('<div style="bottom: 0; height: ' + (content - ul + 30) + 'px; position: absolute; width: 100%;"></div>');
 				}
 			});
 			return this;
