@@ -25,6 +25,11 @@
 				self.renderDrag();
 				// app.scroll.init(self.el, true);
 				app.swipe.init('.active-swipe');
+				var content = $('section#content').height();
+				var ul = $('section#content').find('ul').height();
+				if(content > ul) {
+					self.$el.append('<div style="bottom: 0; height: ' + (content - ul) + 'px; position: absolute; width: 100%;"></div>');
+				}
 			});
 			return this;
 		},
