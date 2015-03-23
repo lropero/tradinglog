@@ -58,7 +58,7 @@ control.segmented ul li:not(.active):active {
 }
 control.segmented + #content {
   position: relative;
-  top: 34px;
+  top: 49px;
 }
 div#drag {
   display: none;
