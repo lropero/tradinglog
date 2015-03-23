@@ -23,12 +23,11 @@
 					trades: self.trades
 				}));
 				self.renderDrag();
-				// app.scroll.init(self.el, true);
 				app.swipe.init('.active-swipe');
 				var content = $('section#content').height();
 				var ul = $('section#content').find('ul').height();
 				if(content > ul) {
-					self.$el.append('<div style="background: red; bottom: -180px; height: 200px; position: absolute; width: 100%;"></div>');
+					app.scroll.init(self.el, true);
 				}
 			});
 			return this;
