@@ -24,7 +24,7 @@
 				}));
 				self.renderDrag();
 				// app.scroll.init(self.el, true);
-				app.swipe.init('.active-swipe');
+				// app.swipe.init('.active-swipe');
 			});
 			return this;
 		},
