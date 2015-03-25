@@ -40,8 +40,9 @@
 				var $content = $('section#content');
 				var $ul = $('section#content').find('ul');
 				if($content.height() > $ul.height()) {
-					// $ul.append('<li style="background: red; height: ' + ($content.height() - $ul.height() + 300) + 'px; width: 100%;"></li>');
-					$ul.append('<li style="background: green; height: 300px; width: 100%;">pepe</li>');
+					$ul.append('<li style="height: ' + ($content.height() - $ul.height() + 300) + 'px; width: 100%;"></li>');
+					$content.css('-webkit-overflow-scrolling', 'touch');
+					$content.css('overflow-y', 'scroll');
 					// app.scroll.init(self.el, true);
 				}
 			});
