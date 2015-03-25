@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+// PALETTE COLOR
+// -------------------------------------------------- //
+@black: #222;
+@gray-dark: #333;
+@gray-light: #dadada;
+@gray-lighter: #f6f6f6;
+@gray: #989898;
+@green: #4bd763;
+@red: #ff3b30;
+@violet-dark: darken(@violet, 15%);
+@violet-light: #9f8fe7;
+@violet: #4020d0;
+@white: #fff;
+
 * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
@@ -29,8 +43,8 @@ control.segmented {
 }
 
 control.segmented ul {
-	border-bottom: 1px solid #333333;
-	border-top: 1px solid #333333;
+	border-bottom: 1px solid @violet-dark;
+	border-top: 1px solid @violet-dark;
 	display: table-row;
 }
 
@@ -45,13 +59,13 @@ control.segmented ul li {
 }
 
 control.segmented ul li.active {
-	background-color: #333333;
+	background-color: @violet-dark;
 	color: #ffffff;
 }
 
 control.segmented ul li.middle {
-	border-left: 1px solid #333333;
-	border-right: 1px solid #333333;
+	border-left: 1px solid @violet-dark;
+	border-right: 1px solid @violet-dark;
 }
 
 control.segmented ul li:not(.active):active {
