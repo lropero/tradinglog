@@ -38,6 +38,7 @@
 		submit: function() {
 			var type = this.$el.find('ul#type div.active').data('type');
 			var amount = this.$el.find('input#amount').val().replace(',', '.');
+			amount = Math.abs(amount);
 			if(type === 2) {
 				amount *= -1;
 			}

@@ -12,7 +12,7 @@
 		},
 		validation: {
 			amount: {
-				gt: 0
+				not: 0
 			}
 		},
 

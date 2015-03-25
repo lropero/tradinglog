@@ -8,6 +8,12 @@
 			if(!(value > customValue)) {
 				return 'error';
 			}
+		},
+
+		not: function(value, attr, customValue, model) {
+			if(!(value > customValue) && !(value < customValue)) {
+				return 'error';
+			}
 		}
 	});
 })();
