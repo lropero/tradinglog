@@ -40,11 +40,11 @@
 				var $content = $('section#content');
 				var $ul = $('section#content').find('ul');
 				if($content.height() > $ul.height()) {
-					$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 44) + 'px; width: 100%;"></li>');
+					$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 10) + 'px; width: 100%;"></li>');
 					setTimeout(function() {
 						$content.css('-webkit-overflow-scrolling', 'touch');
 						$content.css('overflow-y', 'scroll');
-					}, 300);
+					}, 50);
 					// app.scroll.init(self.el, true);
 				}
 			});
