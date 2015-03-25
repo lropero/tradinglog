@@ -40,9 +40,8 @@
 				var $content = $('section#content');
 				var $ul = $('section#content').find('ul');
 				if($content.height() > $ul.height()) {
-					$content.css('height', '110%');
 					// $ul.append('<li style="background: red; height: ' + ($content.height() - $ul.height() + 300) + 'px; width: 100%;"></li>');
-					// $ul.append('<li style="background: green; height: 100px; width: 100%;"></li>');
+					$ul.append('<li style="background: green; height: 300px; width: 100%;"></li>');
 					// app.scroll.init(self.el, true);
 				}
 			});
