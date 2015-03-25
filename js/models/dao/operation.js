@@ -1,15 +1,15 @@
 (function() {
 	'use strict';
 
-	var positionDAO = function() {
+	var operationDAO = function() {
 		this.db = app.databaseController.getDB();
 	};
 
-	positionDAO.prototype = {
+	operationDAO.prototype = {
 		create: function(model, callback) {
-			var fields = ['trade_id', 'size', 'price', 'created_at'];
+			var fields = ['account_id', 'amount', 'description', 'variation', 'created_at'];
 			this.db.transaction(function(tx) {
-				var sql = app.databaseController.buildInsert('position', fields, model);
+				var sql = app.databaseController.buildInsert('operation', fields, model);
 				tx.executeSql(sql, [], function(tx, results) {
 					callback(results.insertId);
 				});
@@ -18,17 +18,17 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM position WHERE trade_id = "' + model.trade_id + '";';
+				var sql = 'SELECT * FROM operation WHERE account_id = "' + model.account_id + '" ORDER BY created_at DESC;';
 				tx.executeSql(sql, [], function(tx, results) {
-					var positions = [];
+					var operations = [];
 					for(var i = 0; i < results.rows.length; i++) {
-						positions[i] = results.rows.item(i);
+						operations[i] = results.rows.item(i);
 					}
-					callback(positions);
+					callback(operations);
 				});
 			});
 		}
 	};
 
-	app.DAOs.position = positionDAO;
+	app.DAOs.operation = operationDAO;
 })();

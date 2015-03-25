@@ -11,8 +11,21 @@
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
 			});
+			this.operations = [];
 			this.trades = [];
-			this.fetchTrades();
+			$.when(
+				this.fetchOperations(),
+				this.fetchTrades()
+			).done(function() {
+				self.objects = [];
+				self.sort();
+				self.deferred.resolve();
+			});
+		},
+
+		destroy: function() {
+			$('div#drag').hide();
+			$('div#drag').empty();
 		},
 
 		render: function() {
@@ -20,17 +33,55 @@
 			this.deferred.done(function() {
 				app.trigger('change', 'main');
 				self.$el.html(self.template({
-					trades: self.trades
+					objects: self.objects
 				}));
 				self.renderDrag();
 				app.swipe.init('.active-swipe');
-				var content = $('section#content').height();
-				var ul = $('section#content').find('ul').height();
-				if(content > ul) {
-					app.scroll.init(self.el, true);
+				var $content = $('section#content');
+				var $ul = $('section#content').find('ul');
+				if($content.height() > $ul.height()) {
+					$ul.append('<li style="background: red; height: ' + ($content.height() - $ul.height()) + 'px; width: 100%;"></li>');
+					// app.scroll.init(self.el, true);
 				}
 			});
 			return this;
+		},
+
+		fetchOperations: function() {
+			var self = this;
+			var deferred = $.Deferred();
+			var operations = new app.Collections.operations();
+			operations.setAccountId(1);
+			operations.fetch({
+				success: function() {
+					operations = operations.toJSON();
+					for(var i = 0; i < operations.length; i++) {
+						self.operations.push(operations[i]);
+					}
+					deferred.resolve();
+				}
+			});
+			return deferred;
+		},
+
+		fetchTrades: function() {
+			var self = this;
+			var deferred = $.Deferred();
+			var trades = new app.Collections.trades();
+			trades.setAccountId(1);
+			trades.deferreds = [];
+			trades.fetch({
+				success: function() {
+					$.when.apply($, trades.deferreds).done(function() {
+						trades = trades.toJSON();
+						for(var i = 0; i < trades.length; i++) {
+							self.trades.push(trades[i]);
+						}
+						deferred.resolve();
+					});
+				}
+			});
+			return deferred;
 		},
 
 		renderDrag: function() {
@@ -38,28 +89,23 @@
 			$('div#drag').show();
 		},
 
-		fetchTrades: function() {
-			var self = this;
-			var trades = new app.Collections.trades();
-			trades.deferreds = [];
-			trades.fetch({
-				success: function() {
-					$.when.apply($, trades.deferreds).done(function() {
-						trades = trades.where({
-							account_id: 1
-						});
-						for(var i = 0; i < trades.length; i++) {
-							self.trades.push(trades[i].toJSON());
-						}
-						self.deferred.resolve();
-					});
+		sort: function() {
+			while(this.trades.length && this.trades[0].closed_at === 0) {
+				this.objects.push(this.trades.shift());
+			}
+			while(this.operations.length && this.trades.length) {
+				if(this.operations[0].created_at > this.trades[0].closed_at) {
+					this.objects.push(this.operations.shift());
+				} else {
+					this.objects.push(this.trades.shift());
 				}
-			});
-		},
-
-		destroy: function() {
-			$('div#drag').hide();
-			$('div#drag').empty();
+			}
+			while(this.operations.length) {
+				this.objects.push(this.operations.shift());
+			}
+			while(this.trades.length) {
+				this.objects.push(this.trades.shift());
+			}
 		}
 	});
 })();

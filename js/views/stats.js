@@ -15,6 +15,10 @@
 			});
 		},
 
+		destroy: function() {
+			this.undelegateEvents();
+		},
+
 		render: function() {
 			app.trigger('change', 'stats');
 			this.$el.html(this.template());
@@ -28,10 +32,6 @@
 			target.addClass('active');
 			var section = target.data('section');
 			new app.Views['stats' + section]();
-		},
-
-		destroy: function() {
-			this.undelegateEvents();
 		}
 	});
 })();

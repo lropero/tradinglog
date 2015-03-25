@@ -59,6 +59,22 @@
 					};
 					break;
 				case 'main-add-operation':
+					options = {
+						left: {
+							icon: 'f124',
+							text: 'Cancel',
+							view: 'main'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Add'
+						}
+					}
+					break;
 				case 'main-add-trade':
 					options = {
 						left: {
@@ -67,8 +83,12 @@
 							view: 'main'
 						},
 						right: {
-							text: 'Add',
-							view: 'main'
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Add'
 						}
 					}
 					break;

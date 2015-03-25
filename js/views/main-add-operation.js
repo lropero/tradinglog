@@ -3,6 +3,9 @@
 
 	app.Views.mainAddOperation = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
+		events: {
+			'touchend ul#type div:not(.active)': 'radio'
+		},
 
 		initialize: function() {
 			var self = this;
@@ -10,12 +13,47 @@
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
 			});
+			app.submit = function() {
+				self.submit();
+			}
+		},
+
+		destroy: function() {
+			delete app.submit;
+			this.undelegateEvents();
 		},
 
 		render: function() {
 			app.trigger('change', 'main-add-operation');
 			this.$el.html(this.template());
 			return this;
+		},
+
+		radio: function(e) {
+			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
+			var target = $(e.currentTarget);
+			target.addClass('active');
+		},
+
+		submit: function() {
+			var type = this.$el.find('ul#type div.active').data('type');
+			var amount = this.$el.find('input#amount').val();
+			if(type === 2) {
+				amount *= -1;
+			}
+			var description = this.$el.find('textarea#description').val();
+			var operation = new app.Models.operation();
+			operation.set({
+				account_id: 1,
+				amount: amount,
+				description: description,
+				created_at: (new Date()).getTime()
+			});
+			operation.save(null, {
+				success: function(model, insertId) {
+					app.loadView('main');
+				}
+			})
 		}
 	});
 })();

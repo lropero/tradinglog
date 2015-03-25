@@ -3,24 +3,24 @@
 		<div class="select">Instrument</div>
 		<span class="help-block">Manage your instruments through Settings.</span>
 	</div>
-	<ul class="wrapper-radiobutton">
+	<ul class="wrapper-radiobutton" id="type">
 		<li class="group-radiobutton">
-			<div class="radiobutton active"></div>
+			<div class="radiobutton active" data-type="1"></div>
 			<span>Long</span>
 		</li>
 		<li class="group-radiobutton">
-			<div class="radiobutton"></div>
+			<div class="radiobutton" data-type="2"></div>
 			<span>Short</span>
 		</li>
 	</ul>
 	<form>
 		<div class="wrapper-input">
-			<input type="" placeholder="Position size">
+			<input id="size" type="text" placeholder="Position size" />
 			<span class="help-block">Quantity of shares or contracts.</span>
 		</div>
 		<div class="wrapper-input">
 			<div class="input-icon price">
-				<input type="" placeholder="Price">
+				<input id="price" type="text" placeholder="Price" />
 			</div>
 			<span class="help-block">Buy or sell price.</span>
 		</div>
