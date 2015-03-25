@@ -76,7 +76,6 @@
 				});
 				trade.save(null, {
 					success: function(model, insertId) {
-						var position = new app.Models.position();
 						position.set({
 							trade_id: insertId
 						});
