@@ -9,5 +9,13 @@
 			price: 0,
 			created_at: 0
 		},
+		validation: {
+			price: {
+				gt: 0
+			},
+			size: {
+				gt: 0
+			}
+		}
 	});
 })();

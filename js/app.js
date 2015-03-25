@@ -12,14 +12,12 @@
 
 			/** We start by calling the layout view which is in charge of rendering
 				the header and footer (both of them separate views); all of these
-				happens asynchronously, i.e. app.Views.layout() has a 'deferred'
-				property which allow us to set a done() method to continue booting
-				after both views are ready */
+				happens asynchronously using deferreds/promises */
 			var layout = new app.Views.layout();
 
 			$.when(
 
-				/** DB becomes ready while layout loads and returns a promise */
+				/** DB becomes ready while layout loads; init() returns a promise */
 				app.databaseController.init(),
 
 				layout.deferred.promise()

@@ -55,33 +55,39 @@
 		submit: function() {
 			var instrument_id = 1;
 			var type = this.$el.find('ul#type div.active').data('type');
-			var size = this.$el.find('input#size').val();
+			var size = parseInt(this.$el.find('input#size').val(), 10);
 			if(type === 2) {
 				size *= -1;
 			}
-			var price = this.$el.find('input#price').val();
-			var trade = new app.Models.trade();
-			trade.set({
-				account_id: 1,
-				instrument_id: instrument_id,
-				type: type
+			var price = this.$el.find('input#price').val().replace(',', '.');
+			var position = new app.Models.position();
+			position.set({
+				size: size,
+				price: price,
+				created_at: (new Date()).getTime()
 			});
-			trade.save(null, {
-				success: function(model, insertId) {
-					var position = new app.Models.position();
-					position.set({
-						trade_id: insertId,
-						size: size,
-						price: price,
-						created_at: (new Date()).getTime()
-					});
-					position.save(null, {
-						success: function() {
-							app.loadView('main');
-						}
-					});
-				}
-			});
+			position.validate();
+			if(position.isValid()) {
+				var trade = new app.Models.trade();
+				trade.set({
+					account_id: 1,
+					instrument_id: instrument_id,
+					type: type
+				});
+				trade.save(null, {
+					success: function(model, insertId) {
+						var position = new app.Models.position();
+						position.set({
+							trade_id: insertId
+						});
+						position.save(null, {
+							success: function() {
+								app.loadView('main');
+							}
+						});
+					}
+				});
+			}
 		}
 	});
 })();

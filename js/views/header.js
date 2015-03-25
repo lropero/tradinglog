@@ -49,7 +49,7 @@
 				case 'main':
 					options = {
 						left: {
-							icon: 'f137',
+							icon: 'f2c3',
 							view: 'mainMap'
 						},
 						right: {
