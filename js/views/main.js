@@ -18,7 +18,7 @@
 				this.fetchTrades()
 			).done(function() {
 				self.objects = [];
-				self.sort();
+				self.prepareObjects();
 				self.deferred.resolve();
 			});
 		},
@@ -33,6 +33,7 @@
 			if(app.cache) {
 				app.trigger('change', 'main');
 				this.$el.html(app.cache);
+				this.decorate();
 			} else {
 				this.deferred.done(function() {
 					app.trigger('change', 'main');
@@ -40,20 +41,24 @@
 						objects: self.objects
 					});
 					self.$el.html(app.cache);
-					self.renderDrag();
-					app.swipe.init('.active-swipe');
-					var $content = $('section#content');
-					var $ul = $('section#content').find('ul');
-					if($content.height() > $ul.height()) {
-						$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
-						setTimeout(function() {
-							$content.css('-webkit-overflow-scrolling', 'touch');
-							$content.css('overflow-y', 'scroll');
-						}, 10);
-					}
+					self.decorate();
 				});
 			}
 			return this;
+		},
+
+		decorate: function() {
+			this.renderDrag();
+			app.swipe.init('.active-swipe');
+			var $content = $('section#content');
+			var $ul = $('section#content').find('ul');
+			if($content.height() > $ul.height()) {
+				$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
+				setTimeout(function() {
+					$content.css('-webkit-overflow-scrolling', 'touch');
+					$content.css('overflow-y', 'scroll');
+				}, 10);
+			}
 		},
 
 		fetchOperations: function() {
@@ -93,12 +98,7 @@
 			return deferred;
 		},
 
-		renderDrag: function() {
-			$('div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-			$('div#drag').show();
-		},
-
-		sort: function() {
+		prepareObjects: function() {
 			while(this.trades.length && this.trades[0].closed_at === 0) {
 				this.objects.push(this.trades.shift());
 			}
@@ -115,6 +115,11 @@
 			while(this.trades.length) {
 				this.objects.push(this.trades.shift());
 			}
+		},
+
+		renderDrag: function() {
+			$('div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
+			$('div#drag').show();
 		}
 	});
 })();
