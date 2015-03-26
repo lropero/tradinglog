@@ -67,12 +67,12 @@
 				StatusBar.styleLightContent();
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				FastClick.attach(document.body);
-				window.addEventListener('native.keyboardshow', function() {
-					StatusBar.hide();
-				});
-				window.addEventListener('native.keyboardhide', function() {
-					StatusBar.show();
-				});
+				// window.addEventListener('native.keyboardshow', function() {
+				// 	StatusBar.hide();
+				// });
+				// window.addEventListener('native.keyboardhide', function() {
+				// 	StatusBar.show();
+				// });
 			}
 		}
 	};
