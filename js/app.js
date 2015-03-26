@@ -64,8 +64,8 @@
 
 		mobile: function() {
 			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-				StatusBar.styleLightContent();
-				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+				// StatusBar.styleLightContent();
+				// cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				// FastClick.attach(document.body);
 				// window.addEventListener('native.keyboardshow', function() {
 				// 	StatusBar.hide();
