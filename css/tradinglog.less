@@ -884,6 +884,17 @@ textarea
     color: @black;
 }
 
+// FORM > ERROR
+// -------------------------------------------------- //
+
+input.error, textarea.error {
+    border-color: @red !important;
+}
+
+.wrapper-input .input-icon.error:before {
+    background-color: @red !important;
+}
+
 // FORM - PLACEHOLDER COLOR
 // -------------------------------------------------- //
 
@@ -1506,10 +1517,4 @@ textarea
 }
 
 
-input.error, textarea.error {
-    border-color: @red !important;
-}
 
-.wrapper-input .input-icon.error:before {
-    background-color: @red !important;
-}
