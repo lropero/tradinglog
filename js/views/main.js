@@ -13,20 +13,14 @@
 			});
 			this.operations = [];
 			this.trades = [];
-			if(typeof app.cache !== 'undefined') {
-				this.objects = app.cache;
-				this.deferred.resolve();
-			} else {
-				$.when(
-					this.fetchOperations(),
-					this.fetchTrades()
-				).done(function() {
-					self.objects = [];
-					self.sort();
-					app.cache = self.objects;
-					self.deferred.resolve();
-				});
-			}
+			$.when(
+				this.fetchOperations(),
+				this.fetchTrades()
+			).done(function() {
+				self.objects = [];
+				self.sort();
+				self.deferred.resolve();
+			});
 		},
 
 		destroy: function() {
@@ -36,23 +30,29 @@
 
 		render: function() {
 			var self = this;
-			this.deferred.done(function() {
+			if(app.cache) {
 				app.trigger('change', 'main');
-				self.$el.html(self.template({
-					objects: self.objects
-				}));
-				self.renderDrag();
-				app.swipe.init('.active-swipe');
-				var $content = $('section#content');
-				var $ul = $('section#content').find('ul');
-				if($content.height() > $ul.height()) {
-					$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
-					setTimeout(function() {
-						$content.css('-webkit-overflow-scrolling', 'touch');
-						$content.css('overflow-y', 'scroll');
-					}, 10);
-				}
-			});
+				this.$el.html(app.cache);
+			} else {
+				this.deferred.done(function() {
+					app.trigger('change', 'main');
+					app.cache = self.template({
+						objects: self.objects
+					});
+					self.$el.html(app.cache);
+					self.renderDrag();
+					app.swipe.init('.active-swipe');
+					var $content = $('section#content');
+					var $ul = $('section#content').find('ul');
+					if($content.height() > $ul.height()) {
+						$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
+						setTimeout(function() {
+							$content.css('-webkit-overflow-scrolling', 'touch');
+							$content.css('overflow-y', 'scroll');
+						}, 10);
+					}
+				});
+			}
 			return this;
 		},
 

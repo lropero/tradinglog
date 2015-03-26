@@ -78,7 +78,8 @@
 						break;
 				}
 				var date = then.getDate();
-				var string = month + ' ' + date + (date === 1 ? 'st' : (date === 2 ? 'nd' : (date === 3 ? 'rd' : 'th'))) + ', ' + then.getFullYear();
+				var day = then.getDay();
+				var string = month + ' ' + date + (day === 1 ? 'st' : (day === 2 ? 'nd' : (day === 3 ? 'rd' : 'th'))) + ', ' + then.getFullYear();
 				return string;
 			}
 		}

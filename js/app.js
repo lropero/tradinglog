@@ -35,6 +35,15 @@
 				});
 
 			});
+
+			/** A cache is used to hold the HTML rendered in app.Views.main so we
+			don't have to fetch all trades upon simple navigation. We then provide
+			a way to clear it triggering an event */
+			this.listenTo(app, 'clear', function(callback) {
+				delete app.cache;
+				callback();
+			});
+
 		},
 
 		loadView: function(view) {
