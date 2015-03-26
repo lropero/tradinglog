@@ -30,6 +30,8 @@
 					(i.e. all objects within are correctly loaded) */
 				app.view.deferred.done(function() {
 					if(navigator.splashscreen) {
+						StatusBar.styleLightContent();
+						cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 						navigator.splashscreen.hide();
 					}
 				});
@@ -64,8 +66,6 @@
 
 	window.start = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-			StatusBar.styleLightContent();
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			FastClick.attach(document.body);
 			document.addEventListener('deviceready', app.init, false);
 		} else {
