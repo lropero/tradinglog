@@ -16,4 +16,32 @@
 			}
 		}
 	});
+
+	app.combine = function() {
+		if($('div#isolate').is(':visible')) {
+			if(typeof cordova !== 'undefined') {
+				cordova.plugins.Keyboard.close();
+			}
+			$('div#isolate').hide();
+			$('div#isolated').append($('div#done').next());
+			$('div#isolated').children().unwrap();
+			$('div#complete').show();
+			$('header #button-left').show();
+			$('header #button-right').show();
+		}
+	}
+
+	app.isolate = function(e) {
+		if($('div#isolate').is(':hidden')) {
+			e.preventDefault();
+			var isolate = $(e.currentTarget).parents('.isolate');
+			isolate.wrap('<div id="isolated"></div>');
+			$('header #button-left').hide();
+			$('header #button-right').hide();
+			$('div#complete').hide();
+			$('div#isolate').append(isolate);
+			$('div#isolate').show();
+			$(e.currentTarget).focus();
+		}
+	}
 })();
