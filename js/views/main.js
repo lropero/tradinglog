@@ -13,14 +13,20 @@
 			});
 			this.operations = [];
 			this.trades = [];
-			$.when(
-				this.fetchOperations(),
-				this.fetchTrades()
-			).done(function() {
-				self.objects = [];
-				self.sort();
-				self.deferred.resolve();
-			});
+			if(typeof app.cache !== 'undefined') {
+				this.objects = app.cache;
+				this.deferred.resolve();
+			} else {
+				$.when(
+					this.fetchOperations(),
+					this.fetchTrades()
+				).done(function() {
+					self.objects = [];
+					self.sort();
+					app.cache = self.objects;
+					self.deferred.resolve();
+				});
+			}
 		},
 
 		destroy: function() {
