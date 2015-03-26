@@ -1516,5 +1516,398 @@ input.error, textarea.error {
     background-color: @white;
 }
 
+// SELECT GROUP
+// -------------------------------------------------- //
+
+.wrapper-select-group
+{
+    position: relative;
+
+    display: table;
+    clear: both;
+
+    width: 100%;
+    margin: 15px 0;
+
+    text-align: center;
+}
+
+.wrapper-select-group .group
+{
+    font-size: 15px;
+    line-height: 30px;
+
+    position: relative;
+
+    display: inline-block;
+
+    width: 32px;
+    height: 32px;
+    margin-left: 15px;
+
+    text-align: center;
+
+    color: @white;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    background-color: @violet-light;
+}
+
+.wrapper-select-group .group.select
+{
+    background-color: @violet;
+}
+
+// GRADIENT CONTENT
+// -------------------------------------------------- //
+
+.gradient-content
+{
+    position: fixed;
+    z-index: 200;
+    bottom: 44px;
+    left: 0;
+
+    width: 100%;
+    height: 50%;
+    min-height: 200px;
+
+    background:    -moz-linear-gradient(top,  rgba(64,32,208,0) 0%, rgba(64,32,208,1) 87%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,32,208,0)), color-stop(87%,rgba(64,32,208,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* Chrome10+,Safari5.1+ */
+    background:      -o-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* Opera 11.10+ */
+    background:     -ms-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* IE10+ */
+    background:         linear-gradient(to bottom,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* W3C */
+}
+
+.gradient-content:before
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 30px;
+
+    content: '';
+
+    background-color: @violet;
+}
+
+// CONTROL BOX SWIPE
+// -------------------------------------------------- //
+
+.wrapper-control-box-swipe
+{
+    position: fixed;
+    z-index: 1000;
+    bottom: 44px;
+
+    display: block;
+    clear: both;
+
+    width: 100%;
+    height: 30px;
+
+    background-color: @violet;
+}
+
+.control-box-swipe
+{
+    position: relative;
+
+    display: table;
+
+    width: 100%;
+    height: 30px;
+
+    text-align: center;
+}
+
+.control-box-swipe:before,
+.control-box-swipe:after
+{
+    font-family: ionicons;
+    font-size: 18px;
+
+    position: relative;
+    top: 2px;
+
+    padding: 0 5px;
+
+    color: @violet-light;
+}
+
+.control-box-swipe:before
+{
+    content: '\f107';
+}
+
+.control-box-swipe:after
+{
+    content: '\f10a';
+}
+
+.control-box-swipe.end-left:before,
+.control-box-swipe.end-right:after
+{
+    display: none;
+
+    content: '';
+}
+
+.control-box-swipe li
+{
+    position: relative;
+
+    display: inline-block;
+
+    padding: 0 5px;
+
+    text-align: center;
+
+    color: @violet-light;
+}
+
+.control-box-swipe li:after
+{
+    font-family: ionicons;
+    font-size: 12px;
+    line-height: 30px;
+
+    content: '\f21b';
+}
+
+.control-box-swipe li.active
+{
+    color: @white!important;
+}
+
+// CONTROL BOX SWIPE - ACTIVE GROUP
+// -------------------------------------------------- //
+
+.wrapper-control-box-swipe .wrapper-active-group
+{
+    position: absolute;
+    top: 0;
+    left: -3px;
+
+    width: 100%;
+    height: 30px;
+    margin: 0 15px;
+}
+
+.wrapper-control-box-swipe .wrapper-active-group .group
+{
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 14px;
+
+    float: left;
+
+    width: 14px;
+    height: 14px;
+    margin-top: 8px;
+    margin-left: 3px;
+
+    text-align: center;
+
+    color: @violet;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    background-color: @violet-light;
+}
+
+.wrapper-control-box-swipe .wrapper-active-group .group.select
+{
+    background-color: @white;
+}
+
+// HEADER BOX SWIPE
+// -------------------------------------------------- //
+
+.header-box-swipe
+{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    top: 64px;
+    left: 0;
+
+    display: block;
+    overflow: auto;
+
+    width: 100%;
+
+    background-color: @white;
+}
+
+// BOX SWIPE
+// -------------------------------------------------- //
+
+.box-swipe
+{
+    min-height: 100%;
+    padding-top: 112px;
+    padding-bottom: 30px;
+
+    background-color: @violet;
+}
+
+// BOX SWIPE / STATS MONTHLY 3RD
+// -------------------------------------------------- //
+
+.box-swipe .stats-monthly-3red
+{
+    padding-bottom: 7px;
+}
+
+.box-swipe .stats-monthly-3red .wrapper-label
+{
+    height: 30px;
+    min-height: inherit;
+}
+
+.box-swipe .stats-monthly-3red .label
+{
+    font-size: 12px;
+    line-height: 30px;
+
+    height: 30px;
+    min-height: inherit;
+    padding: 0 0 0 15px;
+
+    border-bottom: transparent;
+    background-color: transparent;
+}
+
+.box-swipe .stats-monthly-3red .label:after
+{
+    display: none;
+
+    content: '';
+}
+
+.box-swipe .stats-monthly-3red .label.trade .row
+{
+    z-index: 10;
+
+    margin-left: 33px;
+}
+
+.box-swipe .stats-monthly-3red .label.trade .net
+{
+    min-width: 105px;
+    padding: 0 15px;
+
+    text-align: right;
+
+    background-color: transparent;
+}
+
+.box-swipe .stats-monthly-3red .label.trade .ball
+{
+    z-index: 10;
+
+    width: 18px;
+    height: 18px;
+}
+
+.box-swipe .stats-monthly-3red .label.trade .ball .icon
+{
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.box-swipe .stats-monthly-3red .label.trade.long .ball .icon:after
+{
+    font-size: 12px!important;
+    line-height: 18px!important;
+}
+
+.box-swipe .stats-monthly-3red .label.trade.short .ball .icon:after
+{
+    font-size: 12px!important;
+    line-height: 20px!important;
+}
+
+.box-swipe .stats-monthly-3red .label.trade .instrument,
+.box-swipe .stats-monthly-3red .label.trade .net,
+.box-swipe .stats-monthly-3red .label.trade .net.positive,
+.box-swipe .stats-monthly-3red .label.trade .net.negative
+{
+    color: @white!important;
+}
+
+// PEPE
+// -------------------------------------------------- //
+
+.pepe
+{
+    font-size: @small;
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    margin: 15px 0;
+
+    color: @white;
+}
+
+.pepe li
+{
+    position: relative;
+
+    display: block;
+    clear: both;
+
+    width: 100%;
+    padding: 0 15px;
+}
+
+.pepe li .col-1,
+.pepe li .col-2
+{
+    position: relative;
+
+    display: inline;
+
+    width: 50%;
+}
+
+.pepe li .col-1
+{
+    padding-right: 7.5px;
+
+    text-align: right;
+}
+
+.pepe li .col-2
+{
+    padding-left: 7.5px;
+
+    text-align: left;
+}
+
+.pepe li .col-2 .percentage
+{
+    float: right;
+
+    text-align: right;
+}
 
 
+
+
+
+// STYLE APP.LESS
+// -------------------------------------------------- //
+
+section#content
+{
+    z-index: 100;
+}
