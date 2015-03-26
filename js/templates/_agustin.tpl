@@ -38,11 +38,11 @@
 			</ul>
 
 			<ul class="wrapper-active-group">
-				<li class="group select">A</li>
-				<li class="group select">B</li>
+				<li class="group selected">A</li>
+				<li class="group selected">B</li>
 				<li class="group">C</li>
 				<li class="group">D</li>
-				<li class="group select">E</li>
+				<li class="group selected">E</li>
 			</ul>
 
 		</div>
@@ -288,11 +288,11 @@
 		</ul>
 
 		<ul class="wrapper-active-group">
-			<li class="group select">A</li>
-			<li class="group select">B</li>
+			<li class="group selected">A</li>
+			<li class="group selected">B</li>
 			<li class="group">C</li>
 			<li class="group">D</li>
-			<li class="group select">E</li>
+			<li class="group selected">E</li>
 		</ul>
 
 	</div>
@@ -430,41 +430,41 @@
 </div>
 
 <ul class="wrapper-select-group">
-	<li class="group select">A</li>
-	<li class="group select">B</li>
+	<li class="group selected">A</li>
+	<li class="group selected">B</li>
 	<li class="group">C</li>
 	<li class="group">D</li>
-	<li class="group select">E</li>
+	<li class="group selected">E</li>
 </ul>
 
 <div class="wrapper-calendar">
 	<div class="buttons-calendar">
-		<a href=""></a>
-		<a href=""></a>
+		<a href="" class="buttom-left"></a>
+		<a href="" class="buttom-right"></a>
 	</div>
 	<div class="calendar">July 2014</div>
 </div>
 
 <div class="wrapper-calendar">
 	<div class="buttons-calendar">
-		<a href=""></a>
-		<a href=""></a>
+		<a href="" class="buttom-left"></a>
+		<a href="" class="buttom-right"></a>
 	</div>
 	<div class="calendar">88/88/88 - 88/88/88 | 88/88/88 - 88/88/88</div>
 </div>
 
 <div class="wrapper-calendar">
 	<div class="buttons-calendar">
-		<a href=""></a>
-		<a href=""></a>
+		<a href="" class="buttom-left"></a>
+		<a href="" class="buttom-right"></a>
 	</div>
 	<div class="calendar end-left">88/88/88 - 88/88/88 | 88/88/88 - 88/88/88</div>
 </div>
 
 <div class="wrapper-calendar">
 	<div class="buttons-calendar">
-		<a href=""></a>
-		<a href=""></a>
+		<a href="" class="buttom-left"></a>
+		<a href="" class="buttom-right"></a>
 	</div>
 	<div class="calendar end-right">88/88/88 - 88/88/88 | 88/88/88 - 88/88/88</div>
 </div>

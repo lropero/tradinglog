@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 
 // GLOBAL
 // -------------------------------------------------- //
@@ -887,11 +887,14 @@ textarea
 // FORM > ERROR
 // -------------------------------------------------- //
 
-input.error, textarea.error {
+input.error,
+textarea.error
+{
     border-color: @red !important;
 }
 
-.wrapper-input .input-icon.error:before {
+.wrapper-input .input-icon.error:before
+{
     background-color: @red !important;
 }
 
@@ -1210,14 +1213,23 @@ input.error, textarea.error {
     height: 100%;
 }
 
-.wrapper-calendar .buttons-calendar a
+.wrapper-calendar .buttons-calendar .buttom-left,
+.wrapper-calendar .buttons-calendar .buttom-right
 {
     position: relative;
 
-    float: left;
-
-    width: 50%;
+    width: 80px;
     height: 100%;
+}
+
+.wrapper-calendar .buttons-calendar .buttom-left
+{
+    float: left;
+}
+
+.wrapper-calendar .buttons-calendar .buttom-right
+{
+    float: right;
 }
 
 .wrapper-calendar .calendar:before
@@ -1554,7 +1566,7 @@ input.error, textarea.error {
     background-color: @violet-light;
 }
 
-.wrapper-select-group .group.select
+.wrapper-select-group .group.selected
 {
     background-color: @violet;
 }
@@ -1720,7 +1732,7 @@ input.error, textarea.error {
     background-color: @violet-light;
 }
 
-.wrapper-control-box-swipe .wrapper-active-group .group.select
+.wrapper-control-box-swipe .wrapper-active-group .group.selected
 {
     background-color: @white;
 }

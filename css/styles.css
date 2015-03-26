@@ -609,10 +609,10 @@ ol {
   border-radius: 50%;
   background-color: #ffffff;
 }
-.active-swipe.one-button-swipe {
+.swipe.one-button-swipe {
   left: -80px;
 }
-.active-swipe.two-button-swipe {
+.swipe.two-button-swipe {
   left: -160px;
 }
 .wrapper-button-default {
@@ -919,11 +919,17 @@ textarea.error {
   width: 100%;
   height: 100%;
 }
-.wrapper-calendar .buttons-calendar a {
+.wrapper-calendar .buttons-calendar .buttom-left,
+.wrapper-calendar .buttons-calendar .buttom-right {
   position: relative;
-  float: left;
-  width: 50%;
+  width: 80px;
   height: 100%;
+}
+.wrapper-calendar .buttons-calendar .buttom-left {
+  float: left;
+}
+.wrapper-calendar .buttons-calendar .buttom-right {
+  float: right;
 }
 .wrapper-calendar .calendar:before {
   font-family: ionicons;
@@ -1131,7 +1137,7 @@ textarea.error {
   border-radius: 50%;
   background-color: #9f8fe7;
 }
-.wrapper-select-group .group.select {
+.wrapper-select-group .group.selected {
   background-color: #4020d0;
 }
 .gradient-content {
@@ -1241,7 +1247,7 @@ textarea.error {
   border-radius: 50%;
   background-color: #9f8fe7;
 }
-.wrapper-control-box-swipe .wrapper-active-group .group.select {
+.wrapper-control-box-swipe .wrapper-active-group .group.selected {
   background-color: #ffffff;
 }
 .header-box-swipe {
@@ -1314,7 +1320,7 @@ textarea.error {
 .box-swipe .stats-monthly-3red .label.trade .net.negative {
   color: #ffffff !important;
 }
-.pepe {
+.box-swipe .pane {
   font-size: 12px;
   position: relative;
   display: block;
@@ -1322,28 +1328,28 @@ textarea.error {
   margin: 15px 0;
   color: #ffffff;
 }
-.pepe li {
+.box-swipe .pane li {
   position: relative;
   display: block;
   clear: both;
   width: 100%;
   padding: 0 15px;
 }
-.pepe li .col-1,
-.pepe li .col-2 {
+.box-swipe .pane li .col-1,
+.box-swipe .pane li .col-2 {
   position: relative;
   display: inline;
   width: 50%;
 }
-.pepe li .col-1 {
+.box-swipe .pane li .col-1 {
   padding-right: 7.5px;
   text-align: right;
 }
-.pepe li .col-2 {
+.box-swipe .pane li .col-2 {
   padding-left: 7.5px;
   text-align: left;
 }
-.pepe li .col-2 .percentage {
+.box-swipe .pane li .col-2 .percentage {
   float: right;
   text-align: right;
 }
