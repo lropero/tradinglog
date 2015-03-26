@@ -73,7 +73,7 @@
 					}, 300);
 				});
 				window.addEventListener('native.keyboardshow', function(e) {
-					$('#done').css('height', e.keyboardHeight + 'px');
+					$('#done').css('top', e.keyboardHeight + 'px');
 					$('#done').show();
 				});
 			}
