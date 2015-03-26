@@ -4,6 +4,7 @@
 	app.Views.mainAddOperation = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
+			'blur input, textarea': 'combine',
 			'touchend div#done': 'combine',
 			'touchend input, textarea': 'isolate',
 			'touchend ul#type div:not(.active)': 'radio'
@@ -32,25 +33,29 @@
 		},
 
 		combine: function() {
-			if(typeof cordova !== 'undefined') {
-				cordova.plugins.Keyboard.close();
+			if($('div#isolate').is(':visible')) {
+				if(typeof cordova !== 'undefined') {
+					cordova.plugins.Keyboard.close();
+				}
+				$('div#isolate').hide();
+				$('div#isolated').append($('div#done').next());
+				$('div#isolated').children().unwrap();
+				$('div#complete').show();
+				$('header #button-right').show();
 			}
-			$('div#isolate').hide();
-			$('div#isolated').append($('div#done').next());
-			$('div#isolated').children().unwrap();
-			$('div#complete').show();
-			$('header #button-right').show();
 		},
 
 		isolate: function(e) {
-			e.preventDefault();
-			var isolate = $(e.currentTarget).parents('.isolate');
-			isolate.wrap('<div id="isolated"></div>');
-			$('header #button-right').hide();
-			$('div#complete').hide();
-			$('div#isolate').append(isolate);
-			$('div#isolate').show();
-			$(e.currentTarget).focus();
+			if($('div#isolate').is(':hidden')) {
+				e.preventDefault();
+				var isolate = $(e.currentTarget).parents('.isolate');
+				isolate.wrap('<div id="isolated"></div>');
+				$('header #button-right').hide();
+				$('div#complete').hide();
+				$('div#isolate').append(isolate);
+				$('div#isolate').show();
+				$(e.currentTarget).focus();
+			}
 		},
 
 		radio: function(e) {
