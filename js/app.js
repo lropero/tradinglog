@@ -10,6 +10,9 @@
 
 		init: function() {
 
+			/** A few settings needed when running mobile */
+			this.mobile();
+
 			/** We start by calling the layout view which is in charge of rendering
 				the header and footer (both of them separate views); all of these
 				happens asynchronously using deferreds/promises */
@@ -30,8 +33,6 @@
 					(i.e. all objects within are correctly loaded) */
 				app.view.deferred.done(function() {
 					if(navigator.splashscreen) {
-						StatusBar.styleLightContent();
-						cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 						navigator.splashscreen.hide();
 					}
 				});
@@ -59,6 +60,20 @@
 			/** View is loaded */
 			this.view = new app.Views[view];
 
+		},
+
+		mobile: function() {
+			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+				StatusBar.styleLightContent();
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+				FastClick.attach(document.body);
+				window.addEventListener('native.keyboardshow', function() {
+					StatusBar.hide();
+				});
+				window.addEventListener('native.keyboardhide', function() {
+					StatusBar.show();
+				});
+			}
 		}
 	};
 
@@ -66,7 +81,6 @@
 
 	window.start = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-			FastClick.attach(document.body);
 			document.addEventListener('deviceready', app.init, false);
 		} else {
 			app.init();
