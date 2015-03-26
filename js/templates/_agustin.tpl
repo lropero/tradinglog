@@ -47,8 +47,6 @@
 
 		</div>
 
-		<div class="gradient-content"></div>
-
 		<div class="box-swipe">
 
 			<ul class="stats-monthly-3red">
@@ -301,7 +299,7 @@
 
 	<div class="box-swipe">
 
-		<ul class="pepe">
+		<ul class="pane">
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
@@ -346,7 +344,7 @@
 			</li>
 		</ul>
 
-		<ul class="pepe">
+		<ul class="pane">
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
@@ -377,7 +375,7 @@
 			</li>
 		</ul>
 
-		<ul class="pepe">
+		<ul class="pane">
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
@@ -574,7 +572,7 @@
 
 <ul>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label account active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label account swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="radiobutton"></div>
 			<div class="row">
 				<div class="name">E-mini S&P 500</div>
@@ -592,7 +590,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label account active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label account swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="radiobutton active"></div>
 			<div class="row">
 				<div class="name">E-mini S&P 500</div>
@@ -613,7 +611,7 @@
 
 <ul>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label instrument active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label instrument swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<span class="group">A</span>
 			</div>
@@ -647,7 +645,7 @@
 
 <ul>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label comment buy active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label comment buy swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="size-price">1 @ 103.30</div>
@@ -665,7 +663,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label comment sell active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label comment sell swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="size-price">1 @ 103.30</div>
@@ -683,7 +681,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label comment commentary active-swipe one-button-swipe" style="left: 80px; width: 320px; position: relative!important ">
+		<div class="label comment commentary swipe one-button-swipe" style="left: 80px; width: 320px; position: relative!important ">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="body">Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor</div>
@@ -748,7 +746,7 @@
 
 <ul>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label trade open long active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label trade open long swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<div class="globe-comments">2</div>
 				<div class="icon"></div>
@@ -770,7 +768,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label trade open short active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label trade open short swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<div class="icon"></div>
 			</div>
@@ -790,7 +788,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label trade long active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label trade long swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<div class="globe-comments">1</div>
 				<div class="icon"></div>
@@ -813,7 +811,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label trade short active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label trade short swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<div class="globe-commission"></div>
 				<div class="icon"></div>
@@ -836,7 +834,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label operation withdraw active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label operation withdraw swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<div class="icon"></div>
 			</div>
@@ -858,7 +856,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label" style="left: -80px; width: 400px;">
-		<div class="label trade long active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+		<div class="label trade long swipe one-button-swipe" style="left: 80px; width: 320px;">
 			<div class="ball">
 				<div class="icon"></div>
 			</div>
