@@ -81,9 +81,9 @@
 						});
 						position.save(null, {
 							success: function() {
-								app.trigger('clear', function() {
+								// app.trigger('clear', function() {
 									app.loadView('main');
-								});
+								// });
 							}
 						});
 					}
