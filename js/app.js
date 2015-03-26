@@ -68,6 +68,7 @@
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				FastClick.attach(document.body);
 				window.addEventListener('native.keyboardshow', function() {
+					document.body.scrollTop = 0;
 					StatusBar.hide();
 				});
 				window.addEventListener('native.keyboardhide', function() {

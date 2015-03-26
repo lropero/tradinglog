@@ -12,7 +12,7 @@
 	<form>
 		<div class="wrapper-input">
 			<div class="input-icon price">
-				<input id="amount" type="text" placeholder="Amount" />
+				<input id="amount" type="number" pattern="\d*" placeholder="Amount" />
 			</div>
 			<span class="help-block">Total amount.</span>
 		</div>
