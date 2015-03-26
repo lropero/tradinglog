@@ -548,14 +548,14 @@ ol {
   height: 100%;
   background-color: #9f8fe7;
 }
-.swipe {
+.swipe-buttons {
   position: relative;
   display: block;
   height: 65px;
   border-top: 1px solid #2c168e;
   background-color: #4020d0;
 }
-.swipe:before {
+.swipe-buttons:before {
   position: absolute;
   top: 0;
   left: 65px;
@@ -563,37 +563,37 @@ ol {
   height: 1px;
   background-color: #9f8fe7;
 }
-.swipe ul {
+.swipe-buttons ul {
   position: relative;
   display: block;
   height: 100%;
 }
-.swipe ul li {
+.swipe-buttons ul li {
   display: inline-block;
   float: right;
   width: 80px;
   height: 100%;
 }
-.swipe .button-swipe {
+.swipe-buttons .button-swipe {
   font-family: ionicons;
   font-size: 26px;
   text-align: center;
   color: #ffffff;
 }
-.swipe .button-swipe.delete:after {
+.swipe-buttons .button-swipe.delete:after {
   font-size: 25px;
   line-height: 66px;
   content: '\f4c5';
 }
-.swipe .button-swipe.commission:after {
+.swipe-buttons .button-swipe.commission:after {
   font-size: 21px;
   line-height: 66px;
   content: '\f353';
 }
-.swipe .button-swipe.group {
+.swipe-buttons .button-swipe.group {
   text-align: left;
 }
-.swipe .button-swipe.group span {
+.swipe-buttons .button-swipe.group span {
   font-size: 15px;
   line-height: 20px;
   position: absolute;

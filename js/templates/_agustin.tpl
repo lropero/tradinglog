@@ -582,7 +582,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -600,7 +600,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -624,7 +624,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe group"><span>A</span></li>
 				</ul>
@@ -655,7 +655,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -673,7 +673,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -691,7 +691,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -760,7 +760,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -780,7 +780,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe delete"></li>
 				</ul>
@@ -803,7 +803,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe commission"></li>
 				</ul>
@@ -826,7 +826,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe commission"></li>
 				</ul>
@@ -848,7 +848,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe commission"></li>
 				</ul>
@@ -870,7 +870,7 @@
 			</div>
 		</div>
 		<div class="wrapper-swipe" style="width: 320px;">
-			<div class="swipe">
+			<div class="swipe-buttons">
 				<ul>
 					<li class="button-swipe commission"></li>
 				</ul>

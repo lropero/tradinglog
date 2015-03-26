@@ -15,7 +15,7 @@
 		render: function() {
 			app.trigger('change', '_agustin');
 			this.$el.html(this.template());
-			app.swipe.init('.active-swipe');
+			app.swipe.init('.swipe');
 			return this;
 		}
 	});
