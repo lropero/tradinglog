@@ -71,7 +71,6 @@
 					cordova.plugins.Keyboard.close();
 				});
 				window.addEventListener('native.keyboardshow', function(e) {
-					$('#done').css('top', e.keyboardHeight + 'px');
 					$('#done').show();
 				});
 				window.addEventListener('native.keyboardhide', function(e) {
