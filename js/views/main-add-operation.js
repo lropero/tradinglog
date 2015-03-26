@@ -32,6 +32,7 @@
 		},
 
 		combine: function() {
+			cordova.plugins.Keyboard.close();
 			$('div#isolate').hide();
 			$('div#isolated').append($('div#done').next());
 			$('div#isolated').children().unwrap();
@@ -44,6 +45,7 @@
 			$('div#complete').hide();
 			$('div#isolate').append(isolate);
 			$('div#isolate').show();
+			cordova.plugins.Keyboard.show();
 		},
 
 		radio: function(e) {

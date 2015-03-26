@@ -67,9 +67,6 @@
 				cordova.plugins.Keyboard.disableScroll(true);
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				FastClick.attach(document.body);
-				$('div#done').on('touchend', function() {
-					cordova.plugins.Keyboard.close();
-				});
 			}
 		}
 	};
