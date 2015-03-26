@@ -24,22 +24,24 @@
 			).done(function() {
 
 				/** DB and layout view are ready; we load the main view */
-				app.view = new app.Views.main();
+				// app.view = new app.Views.main();
+				$('#main-stats-friends').html(typeof app._events.change + '<br />');
+				$('#main-stats-friends').append(typeof app._events.clear + '<br />');
 
 				/** We hide the initial splash screen once the main view is ready
 					(i.e. all objects within are correctly loaded) */
-				app.view.deferred.done(function() {
+				// app.view.deferred.done(function() {
 					if(navigator.splashscreen) {
 						navigator.splashscreen.hide();
 					}
-				});
+				// });
 
 			});
 
 			/** A cache is used to hold the HTML rendered in app.Views.main so we
 			don't have to fetch all trades upon simple navigation. We then provide
 			a way to clear it triggering an event */
-			this.listenTo(app, 'pepe', function(view) {
+			this.listenTo(app, 'clear', function(view) {
 				$('#content').html(view + '<br />');
 				$('#content').append(typeof app.cache + '<br />');
 				delete app.cache;
