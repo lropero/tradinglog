@@ -32,17 +32,21 @@
 		},
 
 		combine: function() {
-			cordova.plugins.Keyboard.close();
+			if(typeof cordova !== 'undefined') {
+				cordova.plugins.Keyboard.close();
+			}
 			$('div#isolate').hide();
 			$('div#isolated').append($('div#done').next());
 			$('div#isolated').children().unwrap();
 			$('div#complete').show();
+			$('header #button-right').show();
 		},
 
 		isolate: function(e) {
 			e.preventDefault();
 			var isolate = $(e.currentTarget).parents('.isolate');
 			isolate.wrap('<div id="isolated"></div>');
+			$('header #button-right').hide();
 			$('div#complete').hide();
 			$('div#isolate').append(isolate);
 			$('div#isolate').show();
