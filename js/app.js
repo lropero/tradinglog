@@ -40,8 +40,11 @@
 			don't have to fetch all trades upon simple navigation. We then provide
 			a way to clear it triggering an event */
 			this.listenTo(app, 'clear', function(view) {
+				$('#content').html(view + '<br />');
+				$('#content').append(typeof app.cache + '<br />');
 				delete app.cache;
-				this.loadView(view);
+				$('#content').append(typeof app.cache + '<br />');
+				// this.loadView(view);
 			});
 
 		},
