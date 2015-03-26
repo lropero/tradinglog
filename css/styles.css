@@ -145,6 +145,11 @@ header bar.navigation button.left.icon:before {
   padding-right: 5px;
   vertical-align: -1px;
 }
+header bar.navigation button.left.rotate.icon:before {
+  display: inline-block;
+  font-size: 22px;
+  transform: scaleX(-1) rotate(-90deg);
+}
 header bar.navigation button.right {
   right: 5px;
 }

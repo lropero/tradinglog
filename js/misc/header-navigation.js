@@ -17,15 +17,20 @@
 
 		set: function(button, options) {
 			var button = $('header #button-' + button);
-			if(!options.icon) {
-				button.removeClass('icon');
-			} else {
+			if(options.icon) {
 				button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
-			}
-			if(!options.text) {
-				button.html('');
 			} else {
+				button.removeClass('icon');
+			}
+			if(options.text) {
 				button.html(options.text);
+			} else {
+				button.html('');
+			}
+			if(options.rotate) {
+				button.addClass('rotate');
+			} else {
+				button.removeClass('rotate');
 			}
 			if(options.action) {
 				button.off().on('touchend', function() {

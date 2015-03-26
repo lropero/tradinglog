@@ -45,7 +45,8 @@
 				case 'main':
 					options = {
 						left: {
-							icon: 'f2c3',
+							icon: 'f274',
+							rotate: true,
 							view: 'mainMap'
 						},
 						right: {
