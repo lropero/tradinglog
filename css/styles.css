@@ -61,7 +61,7 @@ control.segmented + #content {
   top: 34px;
 }
 div#done {
-  background-color: #222222;
+  background-color: #9f8fe7;
   color: #ffffff;
   display: none;
   font-size: 18px;
