@@ -39,7 +39,7 @@
 			/** A cache is used to hold the HTML rendered in app.Views.main so we
 			don't have to fetch all trades upon simple navigation. We then provide
 			a way to clear it triggering an event */
-			this.listenTo(app, 'clear', function(view) {
+			this.listenTo(app, 'pepe', function(view) {
 				$('#content').html(view + '<br />');
 				$('#content').append(typeof app.cache + '<br />');
 				delete app.cache;

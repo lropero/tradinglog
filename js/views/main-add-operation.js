@@ -52,7 +52,7 @@
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
-					app.trigger('clear', 'main');
+					app.trigger('pepe', 'main');
 				}
 			})
 		}
