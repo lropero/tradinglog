@@ -64,13 +64,16 @@
 
 		mobile: function() {
 			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				FastClick.attach(document.body);
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				$('#done').on('touchend', function() {
 					cordova.plugins.Keyboard.close();
-					$('#done').hide();
+					setTimeout(function() {
+						$('#done').hide();
+					}, 300);
 				});
-				window.addEventListener('native.keyboardshow', function() {
+				window.addEventListener('native.keyboardshow', function(e) {
+					$('#done').css('height', e.keyboardHeight + 'px');
 					$('#done').show();
 				});
 			}

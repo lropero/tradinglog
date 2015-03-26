@@ -21,6 +21,7 @@
 	<preference name="phonegap-version" value="3.7.0" />
 	<preference name="prerendered-icon" value="true" />
 	<preference name="show-splash-screen-spinner" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#4020d0" />
 	<preference name="target-device" value="universal" />
 	<preference name="webviewbounce" value="false" />
 
