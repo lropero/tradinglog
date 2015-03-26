@@ -10,12 +10,37 @@
 			created_at: 0
 		},
 		validation: {
-			price: {
-				gt: 0
-			},
 			size: {
 				not: 0
+			},
+			price: {
+				gt: 0
 			}
+		},
+
+		initialize: function() {
+			this.listenTo(this, 'validated', function(isValid, model, errors) {
+				if(!isValid) {
+					$('input').each(function(index, el) {
+						var $el = $(el);
+						if($el.hasClass('error')) {
+							$el.removeClass('error');
+							var $price = $el.parent('div.price');
+							if($price) {
+								$price.removeClass('error');
+							}
+						}
+					});
+					$.each(errors, function(index, error) {
+						var $el = $('#' + index);
+						$el.addClass('error');
+						var $price = $el.parent('div.price');
+						if($price) {
+							$price.addClass('error');
+						}
+					});
+				}
+			});
 		}
 	});
 })();

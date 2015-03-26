@@ -1025,3 +1025,9 @@ textarea {
   height: 100%;
   background-color: #ffffff;
 }
+input.error {
+  border-color: #ff3b30 !important;
+}
+.wrapper-input .input-icon.error:before {
+  background-color: #ff3b30 !important;
+}
