@@ -24,17 +24,15 @@
 			).done(function() {
 
 				/** DB and layout view are ready; we load the main view */
-				// app.view = new app.Views.main();
-				$('#main-stats-friends').html(typeof app._events.change + '<br />');
-				$('#main-stats-friends').append(typeof app._events.clear + '<br />');
+				app.view = new app.Views.main();
 
 				/** We hide the initial splash screen once the main view is ready
 					(i.e. all objects within are correctly loaded) */
-				// app.view.deferred.done(function() {
+				app.view.deferred.done(function() {
 					if(navigator.splashscreen) {
 						navigator.splashscreen.hide();
 					}
-				// });
+				});
 
 			});
 
@@ -42,11 +40,8 @@
 			don't have to fetch all trades upon simple navigation. We then provide
 			a way to clear it triggering an event */
 			app.listenTo(app, 'clear', function(view) {
-				$('#content').html(view + '<br />');
-				$('#content').append(typeof app.cache + '<br />');
 				delete app.cache;
-				$('#content').append(typeof app.cache + '<br />');
-				// this.loadView(view);
+				this.loadView(view);
 			});
 
 		},
