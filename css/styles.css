@@ -61,10 +61,10 @@ control.segmented + #content {
   top: 34px;
 }
 div#done {
-  background-color: #9f8fe7;
+  background-color: #4020d0;
   color: #ffffff;
   display: none;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   height: 64px;
   line-height: 64px;

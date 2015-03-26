@@ -71,9 +71,18 @@
 					cordova.plugins.Keyboard.close();
 				});
 				window.addEventListener('native.keyboardshow', function(e) {
+					$('#content').find('.hide').each(function() {
+						this.hide();
+					});
+					$('*:focus').parents('.hide').show();
+					StatusBar.hide();
 					$('#done').show();
 				});
 				window.addEventListener('native.keyboardhide', function(e) {
+					$('#content').find('.hide').each(function() {
+						this.show();
+					});
+					StatusBar.show();
 					$('#done').hide();
 				});
 			}
