@@ -64,6 +64,8 @@
 
 	window.start = function() {
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+			StatusBar.styleLightContent();
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			FastClick.attach(document.body);
 			document.addEventListener('deviceready', app.init, false);
 		} else {
