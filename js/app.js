@@ -11,7 +11,7 @@
 		init: function() {
 
 			/** A few settings needed when running mobile */
-			this.mobile();
+			app.mobile();
 
 			/** We start by calling the layout view which is in charge of rendering
 				the header and footer (both of them separate views); all of these
@@ -64,15 +64,15 @@
 
 		mobile: function() {
 			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-				// StatusBar.styleLightContent();
-				// cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-				// FastClick.attach(document.body);
-				// window.addEventListener('native.keyboardshow', function() {
-				// 	StatusBar.hide();
-				// });
-				// window.addEventListener('native.keyboardhide', function() {
-				// 	StatusBar.show();
-				// });
+				StatusBar.styleLightContent();
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+				FastClick.attach(document.body);
+				window.addEventListener('native.keyboardshow', function() {
+					StatusBar.hide();
+				});
+				window.addEventListener('native.keyboardhide', function() {
+					StatusBar.show();
+				});
 			}
 		}
 	};
