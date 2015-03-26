@@ -60,26 +60,15 @@ control.segmented + #content {
   position: relative;
   top: 34px;
 }
-div#done {
-  background-color: #4020d0;
-  color: #ffffff;
-  display: none;
-  font-size: 20px;
-  font-weight: bold;
-  height: 64px;
-  line-height: 64px;
-  position: absolute;
-  text-align: center;
-  top: 0;
-  width: 100%;
-  z-index: 5000;
-}
 div#drag {
   display: none;
   position: absolute;
   top: 64px;
   width: 100%;
   z-index: 50;
+}
+div#isolate {
+  display: none;
 }
 footer {
   background-color: #f3f3f3;

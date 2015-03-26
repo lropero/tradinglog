@@ -4,6 +4,8 @@
 	app.Views.mainAddOperation = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
+			'focus input, textarea': 'isolate',
+			'touchend div#done': 'combine',
 			'touchend ul#type div:not(.active)': 'radio'
 		},
 
@@ -27,6 +29,21 @@
 			app.trigger('change', 'main-add-operation');
 			this.$el.html(this.template());
 			return this;
+		},
+
+		combine: function() {
+			$('div#isolate').hide();
+			$('div#isolated').append($('div#done').next());
+			$('div#isolated').children().unwrap();
+			$('div#complete').show();
+		},
+
+		isolate: function(e) {
+			var isolate = $(e.currentTarget).parents('.isolate');
+			isolate.wrap('<div id="isolated"></div>');
+			$('div#complete').hide();
+			$('div#isolate').append(isolate);
+			$('div#isolate').show();
 		},
 
 		radio: function(e) {

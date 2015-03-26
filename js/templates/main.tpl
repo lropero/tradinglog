@@ -4,7 +4,7 @@
 			{{#each objects}}
 				{{#if this.instrument}}
 					<li class="wrapper-label" style="left: -80px; width: 400px;">
-						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}active-swipe one-button-swipe" style="left: 80px; width: 320px;">
+						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe one-button-swipe" style="left: 80px; width: 320px;">
 							<div class="ball">
 								{{#if this.comments}}
 									<div class="globe-comments">{{this.comments}}</div>
@@ -20,7 +20,7 @@
 							</div>
 						</div>
 						<div class="wrapper-swipe" style="width: 320px;">
-							<div class="swipe">
+							<div class="swipe-buttons">
 								<ul>
 									<li class="button-swipe {{#if this.isOpen}}delete{{else}}commission{{/if}}"></li>
 								</ul>
