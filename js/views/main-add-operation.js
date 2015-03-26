@@ -52,9 +52,7 @@
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
-					app.trigger('clear', function() {
-						app.loadView('main');
-					});
+					app.trigger('clear', 'main');
 				}
 			})
 		}
