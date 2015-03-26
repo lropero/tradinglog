@@ -30,6 +30,9 @@
 			this.$el.html(this.template({
 				instruments: this.instruments
 			}));
+			if($.cookie('size')) {
+				this.$el.find('input#size').val($.cookie('size'));
+			}
 			return this;
 		},
 
@@ -81,6 +84,7 @@
 						});
 						position.save(null, {
 							success: function() {
+								$.cookie('size', size);
 								app.trigger('clear', 'main');
 							}
 						});
