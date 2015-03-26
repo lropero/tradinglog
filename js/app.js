@@ -64,13 +64,9 @@
 
 		mobile: function() {
 			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-				$('#main-stats-friends').html('1');
 				StatusBar.styleLightContent();
-				$('#main-stats-friends').append('2');
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-				$('#main-stats-friends').append('3');
-				FastClick.attach(document.body);
-				$('#main-stats-friends').append('4');
+				// FastClick.attach(document.body);
 				// window.addEventListener('native.keyboardshow', function() {
 				// 	StatusBar.hide();
 				// });
