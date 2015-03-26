@@ -40,12 +40,12 @@
 		},
 
 		isolate: function(e) {
-			var isolate = $(e.currentTarget).parents('.isolate');
-			isolate.wrap('<div id="isolated"></div>');
-			$('div#complete').hide();
-			$('div#isolate').append(isolate);
-			$('div#isolate').show();
-			cordova.plugins.Keyboard.show();
+			// var isolate = $(e.currentTarget).parents('.isolate');
+			// isolate.wrap('<div id="isolated"></div>');
+			// $('div#complete').hide();
+			// $('div#isolate').append(isolate);
+			// $('div#isolate').show();
+			// cordova.plugins.Keyboard.show();
 		},
 
 		radio: function(e) {
