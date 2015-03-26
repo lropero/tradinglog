@@ -64,15 +64,14 @@
 
 		mobile: function() {
 			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-				StatusBar.styleLightContent();
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 				FastClick.attach(document.body);
-				window.addEventListener('native.keyboardshow', function() {
-					document.body.scrollTop = 0;
-					StatusBar.hide();
+				$('#done').on('touchend', function() {
+					cordova.plugins.Keyboard.close();
+					$('#done').hide();
 				});
-				window.addEventListener('native.keyboardhide', function() {
-					StatusBar.show();
+				window.addEventListener('native.keyboardshow', function() {
+					$('#done').show();
 				});
 			}
 		}
