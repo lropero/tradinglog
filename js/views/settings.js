@@ -16,6 +16,9 @@
 		},
 
 		destroy: function() {
+			if(typeof this.subview.destroy === 'function') {
+				this.subview.destroy();
+			}
 			this.undelegateEvents();
 		},
 
@@ -24,7 +27,7 @@
 			this.$el.html(this.template({
 				section: 'instruments'
 			}));
-			new app.Views.settingsInstruments();
+			this.subview = new app.Views.settingsInstruments();
 			return this;
 		},
 
@@ -33,7 +36,10 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			var section = target.data('section');
-			new app.Views['settings' + section]();
+			if(typeof this.subview.destroy === 'function') {
+				this.subview.destroy();
+			}
+			this.subview = new app.Views['settings' + section]();
 		}
 	});
 })();

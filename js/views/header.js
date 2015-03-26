@@ -11,7 +11,7 @@
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
 			});
-			this.listenTo(app, 'change', this.update);
+			app.listenTo(app, 'change', this.update);
 		},
 
 		render: function() {
@@ -21,10 +21,6 @@
 		},
 
 		update: function(view) {
-			if(app.shake) {
-				app.shake.stopWatch();
-				delete app.shake;
-			}
 			var options = {};
 			switch(view) {
 				case '_agustin':

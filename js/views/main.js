@@ -35,6 +35,7 @@
 				this.$el.html(app.cache);
 				this.decorate();
 			} else {
+				app.headerNavigation.update({});
 				this.deferred.done(function() {
 					app.trigger('change', 'main');
 					app.cache = self.template({

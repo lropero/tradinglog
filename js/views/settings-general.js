@@ -12,6 +12,13 @@
 			});
 		},
 
+		destroy: function() {
+			if(app.shake) {
+				app.shake.stopWatch();
+				delete app.shake;
+			}
+		},
+
 		render: function() {
 			app.trigger('change', 'settings-general');
 			this.$el.html(this.template());
