@@ -39,9 +39,9 @@
 					$.pep.restore();
 				},
 
-				// stop: function(e) {
-				// 	e.preventDefault();
-				// }
+				stop: function(e) {
+					e.preventDefault();
+				}
 			});
 		}
 	};
