@@ -33,18 +33,11 @@
 			this.$el.html(this.template({
 				instruments: this.instruments
 			}));
-			var size = $.cookie('size');
-			if(size) {
-				if(size < 0) {
-					size *= -1;
-				}
-				this.$el.find('input#size').val(size);
-			}
 			return this;
 		},
 
 		combine: function() {
-			app.form.combine();
+			app.combine();
 		},
 
 		fetchInstruments: function() {
@@ -61,7 +54,18 @@
 		},
 
 		isolate: function(e) {
-			app.form.isolate(e);
+			if($(e.currentTarget).attr('id') === 'size') {
+				if(!this.$el.find('input#size').val()) {
+					var size = $.cookie('size');
+					if(size) {
+						if(size < 0) {
+							size *= -1;
+						}
+						this.$el.find('input#size').val(size);
+					}
+				}
+			}
+			app.isolate(e);
 		},
 
 		radio: function(e) {
@@ -100,7 +104,7 @@
 						position.save(null, {
 							success: function() {
 								$.cookie('size', size, {
-									expires: 30
+									expires: 20
 								});
 								app.trigger('clear', 'main');
 							}

@@ -33,11 +33,11 @@
 		},
 
 		combine: function() {
-			app.form.combine();
+			app.combine();
 		},
 
 		isolate: function(e) {
-			app.form.isolate(e);
+			app.isolate(e);
 		},
 
 		radio: function(e) {
