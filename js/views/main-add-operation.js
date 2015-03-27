@@ -4,9 +4,9 @@
 	app.Views.mainAddOperation = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
-			'blur input, textarea': 'combine',
-			'touchend div#done': 'combine',
-			'touchend input, textarea': 'isolate',
+			// 'blur input, textarea': 'combine',
+			// 'touchend div#done': 'combine',
+			// 'touchend input, textarea': 'isolate',
 			'touchend ul#type div:not(.active)': 'radio'
 		},
 
@@ -33,11 +33,11 @@
 		},
 
 		combine: function() {
-			app.combine();
+			app.form.combine();
 		},
 
 		isolate: function(e) {
-			app.isolate(e);
+			app.form.isolate(e);
 		},
 
 		radio: function(e) {

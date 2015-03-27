@@ -17,7 +17,7 @@
 		}
 	});
 
-	app.combine = function() {
+	app.form.combine = function() {
 		if($('div#isolate').is(':visible')) {
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
@@ -31,7 +31,7 @@
 		}
 	}
 
-	app.isolate = function(e) {
+	app.form.isolate = function(e) {
 		if($('div#isolate').is(':hidden')) {
 			e.preventDefault();
 			var isolate = $(e.currentTarget).parents('.isolate');

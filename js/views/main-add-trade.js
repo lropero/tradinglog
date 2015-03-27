@@ -4,9 +4,9 @@
 	app.Views.mainAddTrade = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
-			'blur input': 'combine',
-			'touchend div#done': 'combine',
-			'touchend input': 'isolate',
+			// 'blur input': 'combine',
+			// 'touchend div#done': 'combine',
+			// 'touchend input': 'isolate',
 			'touchend ul#type div:not(.active)': 'radio'
 		},
 
@@ -44,7 +44,7 @@
 		},
 
 		combine: function() {
-			app.combine();
+			app.form.combine();
 		},
 
 		fetchInstruments: function() {
@@ -61,7 +61,7 @@
 		},
 
 		isolate: function(e) {
-			app.isolate(e);
+			app.form.isolate(e);
 		},
 
 		radio: function(e) {
