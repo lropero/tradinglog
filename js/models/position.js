@@ -11,7 +11,7 @@
 		},
 		validation: {
 			size: {
-				not: 0
+				nat: 0
 			},
 			price: {
 				gt: 0

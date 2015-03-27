@@ -50,7 +50,7 @@
 
 		decorate: function() {
 			this.renderDrag();
-			// app.swipe.init('.swipe');
+			app.swipe.init('.swipe');
 			var $content = $('section#content');
 			var $ul = $('section#content').find('ul');
 			if($content.height() > $ul.height()) {

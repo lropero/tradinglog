@@ -77,7 +77,7 @@
 		submit: function() {
 			var instrument_id = 1;
 			var type = this.$el.find('ul#type div.active').data('type');
-			var size = parseInt(this.$el.find('input#size').val(), 10);
+			var size = this.$el.find('input#size').val();
 			if(type === 2) {
 				size *= -1;
 			}

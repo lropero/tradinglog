@@ -10,6 +10,14 @@
 			}
 		},
 
+		nat: function(value, attr, customValue, model) {
+			if(!(value > customValue) && !(value < customValue)) {
+				return 'error';
+			} else if(!(parseFloat(value) === parseInt(value, 10))) {
+				return 'error';
+			}
+		},
+
 		not: function(value, attr, customValue, model) {
 			if(!(value > customValue) && !(value < customValue)) {
 				return 'error';

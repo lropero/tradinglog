@@ -1347,6 +1347,3 @@ textarea.error {
   float: right;
   text-align: right;
 }
-section#content {
-  z-index: 100;
-}
