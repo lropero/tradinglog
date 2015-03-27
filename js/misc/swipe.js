@@ -36,7 +36,7 @@
 					if($el.hasClass('swiped')) {
 						$el.removeClass('swiped');
 					}
-					// $.pep.restore();
+					$.pep.restore();
 				},
 
 				// stop: function(e) {
