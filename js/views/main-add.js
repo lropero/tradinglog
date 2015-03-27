@@ -4,7 +4,7 @@
 	app.Views.mainAdd = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 		events: {
-			'touchend control.segmented li:not(.active)': 'switch'
+			'tap control.segmented li:not(.active)': 'switch'
 		},
 
 		initialize: function() {

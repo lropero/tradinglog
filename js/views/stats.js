@@ -4,7 +4,7 @@
 	app.Views.stats = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 		events: {
-			'touchend li:not(.active)': 'switch'
+			'tap li:not(.active)': 'switch'
 		},
 
 		initialize: function() {

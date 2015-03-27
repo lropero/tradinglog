@@ -5,9 +5,9 @@
 		el: 'section#main-stats-friends section#content',
 		events: {
 			'blur input': 'combine',
-			'touchend div#done': 'combine',
-			'touchend input': 'isolate',
-			'touchend ul#type div:not(.active)': 'radio'
+			'tap div#done': 'combine',
+			'tap input': 'isolate',
+			'tap ul#type div:not(.active)': 'radio'
 		},
 
 		initialize: function() {

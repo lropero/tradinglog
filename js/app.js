@@ -44,7 +44,9 @@
 			a way to clear it triggering an event */
 			app.listenTo(app, 'clear', function(view) {
 				delete app.cache;
-				this.loadView(view);
+				if(view) {
+					this.loadView(view);
+				}
 			});
 
 		},
@@ -66,7 +68,6 @@
 			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
 				cordova.plugins.Keyboard.disableScroll(true);
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-				FastClick.attach(document.body);
 			}
 		}
 	};

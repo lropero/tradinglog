@@ -4,7 +4,7 @@
 	app.Views.footer = Backbone.View.extend({
 		el: 'footer',
 		events: {
-			'touchend a:not(.active)': 'navigate'
+			'tap a:not(.active)': 'navigate'
 		},
 
 		initialize: function() {
@@ -27,6 +27,7 @@
 			var target = $(e.currentTarget);
 			target.addClass('active');
 			var view = target.data('view');
+			app.loadView(view);
 
 			// Trigger/untrigger settings pane
 			var $settings = $('section#settings');
@@ -43,8 +44,6 @@
 					$settings.empty();
 				});
 			}
-
-			app.loadView(view);
 		}
 	});
 })();

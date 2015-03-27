@@ -98,6 +98,24 @@
 						}
 					};
 					break;
+				case 'main-view-operation':
+					options = {
+						left: {
+							icon: 'f124',
+							text: 'Back',
+							view: 'main'
+						}
+					};
+					break;
+				case 'main-view-trade':
+					options = {
+						left: {
+							icon: 'f124',
+							text: 'Back',
+							view: 'main'
+						}
+					};
+					break;
 			}
 			app.headerNavigation.update(options);
 		}

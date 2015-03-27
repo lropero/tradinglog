@@ -33,11 +33,11 @@
 				button.removeClass('rotate');
 			}
 			if(options.action) {
-				button.off().on('touchend', function() {
+				button.off().on('tap', function() {
 					options.action();
 				});
 			} else if(options.view) {
-				button.off().on('touchend', function() {
+				button.off().on('tap', function() {
 					app.loadView(options.view);
 				});
 			}

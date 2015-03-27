@@ -3,6 +3,10 @@
 
 	app.Views.main = Backbone.View.extend({
 		el: 'section#main-stats-friends',
+		events: {
+			'tap div.operation:not(.no-click):not(.swiped)': 'viewOperation',
+			'tap div.trade:not(.swiped)': 'viewTrade'
+		},
 
 		initialize: function() {
 			var self = this;
@@ -24,8 +28,8 @@
 		},
 
 		destroy: function() {
-			$('div#drag').hide();
-			$('div#drag').empty();
+			$('div#drag').hide().empty();
+			this.undelegateEvents();
 		},
 
 		render: function() {
@@ -121,6 +125,14 @@
 		renderDrag: function() {
 			$('div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
 			$('div#drag').show();
+		},
+
+		viewOperation: function() {
+			app.loadView('mainViewOperation');
+		},
+
+		viewTrade: function() {
+			app.loadView('mainViewTrade');
 		}
 	});
 })();

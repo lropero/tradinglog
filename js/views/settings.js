@@ -4,7 +4,7 @@
 	app.Views.settings = Backbone.View.extend({
 		el: 'section#settings',
 		events: {
-			'touchend li:not(.active)': 'switch'
+			'tap li:not(.active)': 'switch'
 		},
 
 		initialize: function() {
