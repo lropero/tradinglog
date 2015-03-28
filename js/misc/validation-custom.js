@@ -40,8 +40,8 @@
 	}
 
 	app.isolate = function(e) {
-		e.preventDefault();
 		if($('div#isolate').is(':hidden')) {
+			e.preventDefault();
 			var isolate = $(e.currentTarget).parents('.isolate');
 			isolate.wrap('<div id="isolated"></div>');
 			$('header #button-left').hide();
