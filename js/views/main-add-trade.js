@@ -4,7 +4,7 @@
 	app.Views.mainAddTrade = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
-			'tap div#done': 'combine',
+			'blur input': 'combine',
 			'tap input': 'isolate',
 			'tap ul#type div:not(.active)': 'radio'
 		},

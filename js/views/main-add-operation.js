@@ -4,7 +4,7 @@
 	app.Views.mainAddOperation = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
-			'tap div#done': 'combine',
+			'blur input, textarea': 'combine',
 			'tap input, textarea': 'isolate',
 			'tap ul#type div:not(.active)': 'radio'
 		},
