@@ -34,11 +34,6 @@
 				app.view.deferred.done(function() {
 					if(navigator.splashscreen) {
 						navigator.splashscreen.hide();
-						window.addEventListener('native.keyboardhide', function() {
-							if($('div#isolate').is(':visible')) {
-								app.combine();
-							}
-						});
 					}
 				});
 
