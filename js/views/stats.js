@@ -28,9 +28,9 @@
 
 		switch: function(e) {
 			this.$el.find('li.active').removeClass('active');
-			var target = $(e.currentTarget);
-			target.addClass('active');
-			var section = target.data('section');
+			var $target = $(e.currentTarget);
+			$target.addClass('active');
+			var section = $target.data('section');
 			new app.Views['stats' + section]();
 		}
 	});

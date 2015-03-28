@@ -40,9 +40,17 @@
 	}
 
 	app.isolate = function(e) {
+		var $target = $(e.currentTarget);
 		if($('div#isolate').is(':hidden')) {
 			e.preventDefault();
-			var isolate = $(e.currentTarget).parents('.isolate');
+			if($target.hasClass('error')) {
+				$target.removeClass('error');
+				var $price = $target.parent('div.price');
+				if($price) {
+					$price.removeClass('error');
+				}
+			}
+			var isolate = $target.parents('.isolate');
 			isolate.wrap('<div id="isolated"></div>');
 			$('header #button-left').hide();
 			$('header #button-right').hide();
@@ -50,6 +58,6 @@
 			$('div#isolate').append(isolate).show();
 			$('footer').hide();
 		}
-		$(e.currentTarget).focus();
+		$target.focus();
 	}
 })();

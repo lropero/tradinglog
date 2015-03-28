@@ -24,9 +24,9 @@
 
 		navigate: function(e) {
 			this.$el.find('a.active').removeClass('active');
-			var target = $(e.currentTarget);
-			target.addClass('active');
-			var view = target.data('view');
+			var $target = $(e.currentTarget);
+			$target.addClass('active');
+			var view = $target.data('view');
 			app.loadView(view);
 
 			// Trigger/untrigger settings pane

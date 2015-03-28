@@ -41,8 +41,8 @@
 
 		radio: function(e) {
 			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
-			var target = $(e.currentTarget);
-			target.addClass('active');
+			var $target = $(e.currentTarget);
+			$target.addClass('active');
 		},
 
 		submit: function() {

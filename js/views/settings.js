@@ -33,9 +33,9 @@
 
 		switch: function(e) {
 			this.$el.find('li.active').removeClass('active');
-			var target = $(e.currentTarget);
-			target.addClass('active');
-			var section = target.data('section');
+			var $target = $(e.currentTarget);
+			$target.addClass('active');
+			var section = $target.data('section');
 			if(typeof this.subview.destroy === 'function') {
 				this.subview.destroy();
 			}
