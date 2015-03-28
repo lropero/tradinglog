@@ -49,7 +49,7 @@
 			$('div#complete').hide();
 			$('div#isolate').append(isolate).show();
 			$('footer').hide();
-			$(e.currentTarget).focus();
 		}
+		$(e.currentTarget).focus();
 	}
 })();
