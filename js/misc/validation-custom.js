@@ -30,6 +30,7 @@
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
 			}
+			$('footer').show();
 			$('div#isolate').hide();
 			$('div#isolated').append($('div#done').next());
 			$('div#isolated').children().unwrap();
@@ -49,6 +50,7 @@
 			$('div#complete').hide();
 			$('div#isolate').append(isolate);
 			$('div#isolate').show();
+			$('footer').hide();
 			$(e.currentTarget).focus();
 		}
 	}
