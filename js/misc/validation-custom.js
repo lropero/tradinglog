@@ -27,15 +27,15 @@
 
 	app.combine = function() {
 		if($('div#isolate').is(':visible')) {
-			if(typeof cordova !== 'undefined') {
-				cordova.plugins.Keyboard.close();
-			}
 			$('footer').show();
 			$('div#isolate').hide();
 			$('div#isolated').append($('div#done').next()).children().unwrap();
 			$('div#complete').show();
 			$('header #button-left').show();
 			$('header #button-right').show();
+			if(typeof cordova !== 'undefined') {
+				cordova.plugins.Keyboard.close();
+			}
 		}
 	}
 
