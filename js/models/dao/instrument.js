@@ -11,8 +11,8 @@
 				var sql = 'SELECT * FROM instrument WHERE id = "' + model.id + '";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 1) {
-						var trade = results.rows.item(0);
-						callback(trade);
+						var instrument = results.rows.item(0);
+						callback(instrument);
 					}
 				});
 			});
@@ -22,11 +22,11 @@
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM instrument ORDER BY id;';
 				tx.executeSql(sql, [], function(tx, results) {
-					var trades = [];
+					var instruments = [];
 					for(var i = 0; i < results.rows.length; i++) {
-						trades[i] = results.rows.item(i);
+						instruments[i] = results.rows.item(i);
 					}
-					callback(trades);
+					callback(instruments);
 				});
 			});
 		}

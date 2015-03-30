@@ -80,5 +80,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['css', 'js', 'clean']);
 	grunt.registerTask('css', ['less', 'concat:css', 'cssmin']);
 	grunt.registerTask('js', ['concat:js', 'uglify']);
-	grunt.registerTask('default', ['build', 'watch']);
+	grunt.registerTask('default', ['build']);
 };

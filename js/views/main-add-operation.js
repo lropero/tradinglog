@@ -62,7 +62,22 @@
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
-					app.trigger('clear', 'main');
+					var account = new app.Models.account({
+						id: 1
+					});
+					account.fetch({
+						success: function() {
+							var balance = account.get('balance') + amount;
+							account.set({
+								balance: balance
+							});
+							account.save(null, {
+								success: function() {
+									app.trigger('clear', 'main');
+								}
+							});
+						}
+					});
 				}
 			})
 		}

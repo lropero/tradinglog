@@ -28,7 +28,7 @@
 		},
 
 		destroy: function() {
-			$('div#drag').hide().empty();
+			this.drag.destroy();
 			this.undelegateEvents();
 		},
 
@@ -53,7 +53,7 @@
 		},
 
 		decorate: function() {
-			this.renderDrag();
+			this.drag = new app.Views.mainDrag();
 			app.swipe.init('.swipe');
 			var $content = $('section#content');
 			var $ul = $('section#content').find('ul');
@@ -120,11 +120,6 @@
 			while(this.trades.length) {
 				this.objects.push(this.trades.shift());
 			}
-		},
-
-		renderDrag: function() {
-			$('div#drag').html('<div class="drag-account"><div class="account">Account: <span>Real</span></div><div class="balance">Balance: <span>$4,896.52</span></div></div>');
-			$('div#drag').show();
 		},
 
 		viewOperation: function() {
