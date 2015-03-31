@@ -54,7 +54,8 @@
 		},
 
 		button: function(e) {
-			var $target = $(e.currentTarget);
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var id = $wrapper.data('id');
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,
@@ -65,9 +66,11 @@
 			});
 			alertify.confirm('Delete this trade?', function(e) {
 				if(e) {
-					console.log('yes');
-				} else {
-					console.log('no');
+					$wrapper.hide();
+					// var trade = new app.Models.trade({
+					// 	id: id
+					// });
+					// trade.delete();
 				}
 			});
 		},

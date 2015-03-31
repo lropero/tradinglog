@@ -73,6 +73,10 @@
 			return array.length + ' @ ' + accounting.formatMoney(average, '');
 		},
 
+		delete: function() {
+			console.log('delete trade');
+		},
+
 		fetchInstrument: function() {
 			var self = this;
 			var deferred = $.Deferred();
