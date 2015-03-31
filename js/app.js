@@ -26,17 +26,27 @@
 				layout.deferred.promise()
 			).done(function() {
 
-				/** DB and layout view are ready; we load the main view */
-				app.view = new app.Views.main();
-
-				/** We hide the initial splash screen once the main view is ready
-					(i.e. all objects within are correctly loaded) */
-				app.view.deferred.done(function() {
-					if(navigator.splashscreen) {
-						navigator.splashscreen.hide();
-					}
+				/** Get active account */
+				app.account = new app.Models.account({
+					id: 1
 				});
 
+				app.account.fetch({
+					success: function() {
+
+						/** DB and layout view are ready; we load the main view */
+						app.view = new app.Views.main();
+
+						/** We hide the initial splash screen once the main view is ready
+							(i.e. all objects within are correctly loaded) */
+						app.view.deferred.done(function() {
+							if(navigator.splashscreen) {
+								navigator.splashscreen.hide();
+							}
+						});
+
+					}
+				});
 			});
 
 			/** A cache is used to hold the HTML rendered in app.Views.main so we

@@ -39,6 +39,9 @@
 							</div>
 							<div class="row">
 								<div class="date">{{#date this.created_at}}{{/date}}</div>
+								{{#if this.variation}}
+									<div class="variation">{{#variation this.variation}}{{/variation}}</div>
+								{{/if}}
 							</div>
 						</div>
 					</li>

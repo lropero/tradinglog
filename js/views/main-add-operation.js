@@ -58,24 +58,18 @@
 				account_id: 1,
 				amount: amount,
 				description: description,
+				variation: amount * 100 / app.account.get('balance'),
 				created_at: (new Date()).getTime()
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
-					var account = new app.Models.account({
-						id: 1
+					var balance = app.account.get('balance') + amount;
+					app.account.set({
+						balance: balance
 					});
-					account.fetch({
+					app.account.save(null, {
 						success: function() {
-							var balance = account.get('balance') + amount;
-							account.set({
-								balance: balance
-							});
-							account.save(null, {
-								success: function() {
-									app.trigger('clear', 'main');
-								}
-							});
+							app.trigger('clear', 'main');
 						}
 					});
 				}

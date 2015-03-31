@@ -112,4 +112,8 @@
 	Handlebars.registerHelper('money', function(money) {
 		return accounting.formatMoney(money, '$ ');
 	});
+
+	Handlebars.registerHelper('variation', function(variation) {
+		return accounting.toFixed(variation, 2) + '%';
+	});
 })();
