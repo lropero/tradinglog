@@ -5,7 +5,8 @@
 		el: 'section#main-stats-friends',
 		events: {
 			'tap div.operation:not(.no-click):not(.swiped)': 'viewOperation',
-			'tap div.trade:not(.swiped)': 'viewTrade'
+			'tap div.trade:not(.swiped)': 'viewTrade',
+			'tap li.button-swipe': 'button'
 		},
 
 		initialize: function() {
@@ -50,6 +51,25 @@
 				});
 			}
 			return this;
+		},
+
+		button: function(e) {
+			var $target = $(e.currentTarget);
+			alertify.set({
+				buttonFocus: 'none',
+				buttonReverse: true,
+				labels: {
+					cancel: 'No',
+					ok: 'Yes'
+				}
+			});
+			alertify.confirm('Delete this trade?', function(e) {
+				if(e) {
+					console.log('yes');
+				} else {
+					console.log('no');
+				}
+			});
 		},
 
 		decorate: function() {
