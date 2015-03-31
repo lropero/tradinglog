@@ -50,12 +50,12 @@
 					$price.removeClass('error');
 				}
 			}
-			var isolate = $target.parents('.isolate');
-			isolate.wrap('<div id="isolated"></div>');
+			var $isolate = $target.parents('.isolate');
+			$isolate.wrap('<div id="isolated"></div>');
 			$('header #button-left').hide();
 			$('header #button-right').hide();
 			$('div#complete').hide();
-			$('div#isolate').append(isolate).show();
+			$('div#isolate').append($isolate).show();
 			$('footer').hide();
 		}
 		$target.focus();

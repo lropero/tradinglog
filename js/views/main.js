@@ -122,8 +122,12 @@
 			}
 		},
 
-		viewOperation: function() {
-			app.loadView('mainViewOperation');
+		viewOperation: function(e) {
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var id = $wrapper.data('id');
+			app.loadView('mainViewOperation', {
+				id: id
+			});
 		},
 
 		viewTrade: function() {

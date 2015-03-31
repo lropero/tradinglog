@@ -61,16 +61,16 @@
 
 		},
 
-		loadView: function(view) {
+		loadView: function(view, attrs) {
 
-			/** Some views require to undelegate events, specifically those with
+			/** Some views require to undelegate events, e.g. those with
 				control segments (i.e. <ul><li>submenus</li></ul>) */
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
 			}
 
 			/** View is loaded */
-			this.view = new app.Views[view];
+			this.view = new app.Views[view](attrs);
 
 		},
 

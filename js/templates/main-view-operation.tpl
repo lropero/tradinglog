@@ -1,3 +1,3 @@
 <script type="text/x-handlebars-template" id="main-view-operation-template">
-	MAIN VIEW OPERATION
+	<p class="text-body">{{this.description}}</p>
 </script>

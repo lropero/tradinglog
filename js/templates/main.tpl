@@ -28,7 +28,7 @@
 						</div>
 					</li>
 				{{else}}
-					<li class="wrapper-label">
+					<li class="wrapper-label" data-id="{{this.id}}">
 						<div class="label operation {{#gt this.amount 0}}deposit{{else}}withdraw{{/gt}}{{#unless this.description.length}} no-click{{/unless}}">
 							<div class="ball">
 								<div class="icon"></div>

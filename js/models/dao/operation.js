@@ -16,6 +16,18 @@
 			});
 		},
 
+		find: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT * FROM operation WHERE id = "' + model.id + '";';
+				tx.executeSql(sql, [], function(tx, results) {
+					if(results.rows.length === 1) {
+						var operation = results.rows.item(0);
+						callback(operation);
+					}
+				});
+			});
+		},
+
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM operation WHERE account_id = "' + model.account_id + '" ORDER BY created_at DESC;';
