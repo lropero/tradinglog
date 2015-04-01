@@ -67,6 +67,9 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
+					var $content = $('section#content');
+					$content.css('-webkit-overflow-scrolling', 'touch');
+					$content.css('overflow-y', 'scroll');
 					var trade = new app.Models.trade({
 						id: id
 					});

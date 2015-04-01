@@ -22,6 +22,7 @@
 				account: app.account.get('name'),
 				balance: app.account.get('balance')
 			}));
+			$('.drag-account').css('height', parseInt($('section#content').height() / 2, 10) + 'px');
 			this.$el.show();
 			return this;
 		}
