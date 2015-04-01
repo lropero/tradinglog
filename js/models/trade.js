@@ -84,7 +84,7 @@
 				}
 				self.destroy({
 					success: function() {
-						app.trigger('clear');
+						app.trigger('clear', 'main');
 					}
 				});
 			});

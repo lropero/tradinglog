@@ -67,12 +67,10 @@
 			});
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
-					$wrapper.hide();
 					var trade = new app.Models.trade({
 						id: id
 					});
 					trade.delete();
-					self.decorate();
 				}
 			});
 		},
