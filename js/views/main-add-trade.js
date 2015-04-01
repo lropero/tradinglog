@@ -61,7 +61,7 @@
 
 		isolate: function(e) {
 			e.preventDefault();
-			if($(e.currentTarget).attr('id') === 'size') {
+			if($(e.currentTarget).prop('id') === 'size') {
 				if(!this.$el.find('input#size').val()) {
 					var size = $.cookie('size');
 					if(size) {
