@@ -1,4 +1,30 @@
 <script type="text/x-handlebars-template" id="agustin-template">
+
+	<ul>
+		<li class="wrapper-label" data-swipe="1" style="width: 400px;">
+			<div class="label trade open long swipe one-button-swipe" style="width: 320px;">
+				<div class="ball">
+					<div class="globe-comments">2</div>
+					<div class="icon"></div>
+				</div>
+				<div class="row">
+					<div class="instrument">E-mini S&P 500</div>
+					<div class="net positive">$ 108.26</div>
+				</div>
+				<div class="row">
+					<div class="size-price">2 @ 1,853.50</div>
+				</div>
+			</div>
+			<div class="wrapper-swipe" style="width: 320px;">
+				<div class="swipe-buttons">
+					<ul>
+						<li class="button-swipe delete"></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+	</ul>
+
 	<section id="content">
 
 		<!-- 

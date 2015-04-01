@@ -632,12 +632,6 @@ ol {
   border-radius: 50%;
   background-color: #ffffff;
 }
-.swipe.one-button-swipe {
-  left: -80px;
-}
-.swipe.two-button-swipe {
-  left: -160px;
-}
 .wrapper-button-default {
   position: relative;
   display: block;
