@@ -3,8 +3,8 @@
 		<ul>
 			{{#each objects}}
 				{{#if this.instrument}}
-					<li class="wrapper-label" data-id="{{this.id}}" style="left: -80px; width: 400px;">
-						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe one-button-swipe" style="left: 80px; width: 320px;">
+					<li class="wrapper-label" data-id="{{this.id}}" data-swipe="1">
+						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe">
 							<div class="ball">
 								{{#if this.comments}}
 									<div class="globe-comments">{{this.comments}}</div>
@@ -19,7 +19,7 @@
 								<div class="{{#if this.isOpen}}size-price{{else}}date{{/if}}">{{#if this.isOpen}}{{this.sizePrice}}{{else}}date{{/if}}</div>
 							</div>
 						</div>
-						<div class="wrapper-swipe" style="width: 320px;">
+						<div class="wrapper-swipe">
 							<div class="swipe-buttons">
 								<ul>
 									<li class="button-swipe {{#if this.isOpen}}delete{{else}}commission{{/if}}"></li>
