@@ -7,7 +7,7 @@
 			<div class="wrapper-select">
 				<div class="select">
 					<select>
-						<option>1</option>
+						<option>Instrument</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
