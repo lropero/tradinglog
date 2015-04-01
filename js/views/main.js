@@ -68,8 +68,10 @@
 				if(e) {
 					$wrapper.hide();
 					var $content = $('section#content');
-					$content.css('-webkit-overflow-scrolling', 'touch');
-					$content.css('overflow-y', 'scroll');
+					setTimeout(function() {
+						$content.css('-webkit-overflow-scrolling', 'touch');
+						$content.css('overflow-y', 'scroll');
+					}, 10);
 					var trade = new app.Models.trade({
 						id: id
 					});
