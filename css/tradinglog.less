@@ -1,3 +1,5 @@
+@charset 'UTF-8';
+
 // GLOBAL
 // -------------------------------------------------- //
 
@@ -19,7 +21,6 @@ ol
 *
 {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
             box-sizing: border-box;
 }
 
@@ -27,7 +28,6 @@ ol
 *:after
 {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
             box-sizing: border-box;
 }
 
@@ -36,6 +36,72 @@ ol
 
 @small: 12px;
 @medium: 15px;
+
+// FONT COLOR
+// -------------------------------------------------- //
+
+.black
+{
+    color: @black;
+}
+
+.gray-dark
+{
+    color: @gray-dark;
+}
+
+.gray-light
+{
+    color: #dadada;
+}
+
+.gray-lighter
+{
+    color: @gray-lighter;
+}
+
+.gray
+{
+    color: @gray;
+}
+
+.green
+{
+    color: @green;
+}
+
+.red
+{
+    color: @red;
+}
+
+.violet-dark
+{
+    color: @violet-dark;
+}
+
+.violet-light
+{
+    color: @violet-light;
+}
+
+.violet
+{
+    color: @violet;
+}
+
+.white
+{
+    color: @white;
+}
+
+// SMOOTHING
+// --------------------------------------------------
+
+.smoothing
+{
+    -webkit-font-smoothing: antialiased;
+}
 
 // TEXT NOTE
 // -------------------------------------------------- //
@@ -190,7 +256,6 @@ ol
     text-align: center;
 
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
     background-color: @black;
 }
@@ -208,7 +273,6 @@ ol
     width: 100%;
 
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
             border-radius: 4px;
 }
 
@@ -319,7 +383,6 @@ ol
     text-align: center;
 
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
     background-color: @violet;
 }
@@ -415,7 +478,6 @@ ol
     text-align: center;
 
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
     background-color: @black;
 }
@@ -437,7 +499,6 @@ ol
 
     color: @white;
     -webkit-border-radius: 100px;
-       -moz-border-radius: 100px;
             border-radius: 100px;
     background-color: @black;
 }
@@ -457,7 +518,6 @@ ol
 
     color: @black;
     -webkit-border-radius: 100px;
-       -moz-border-radius: 100px;
             border-radius: 100px;
     background-color: @white;
 }
@@ -679,7 +739,6 @@ ol
 
     color: @violet;
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
     background-color: @white;
 }
@@ -764,7 +823,6 @@ ol
 
     color: @white;
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
             border-radius: 4px;
     background-color: @violet;
 }
@@ -837,6 +895,28 @@ ol
 // FORM
 // -------------------------------------------------- //
 
+form,
+input,
+textarea,
+select
+{
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    text-decoration: none;
+    text-transform: none;
+
+    color: @black;
+    background-color: transparent;
+    background-image: none;
+    -webkit-box-shadow: none!important;
+            box-shadow: none!important;
+
+    -webkit-appearance: none;
+            appearance: none;
+}
+
 form
 {
     width: 100%;
@@ -852,15 +932,12 @@ input
 
     border: 1px solid @gray;
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
             border-radius: 4px;
+    background-color: @white;
 }
 
 textarea
 {
-    font-size: inherit;
-    line-height: inherit;
-
     display: block;
     clear: both;
 
@@ -871,15 +948,34 @@ textarea
 
     border: 1px solid @gray;
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
             border-radius: 4px;
+    background-color: @white;
 }
 
-form,
+// FORM TEXT COLOR
+// -------------------------------------------------- //
+
+select
+{
+    color: @gray;
+}
+
 input,
 textarea
 {
     color: @black;
+}
+
+input:focus,
+textarea:focus,
+select:focus
+{
+    color: @black;
+}
+
+::-webkit-input-placeholder
+{
+    color: @gray!important;
 }
 
 // FORM > ERROR
@@ -894,31 +990,6 @@ textarea.error
 .wrapper-input .input-icon.error:before
 {
     background-color: @red !important;
-}
-
-// FORM - PLACEHOLDER COLOR
-// -------------------------------------------------- //
-
-::-webkit-input-placeholder
-{
-    color: @gray;
-}
-
-:-moz-placeholder
-{
-    opacity: 1;
-    color: @gray;
-}
-
-::-moz-placeholder
-{
-    opacity: 1;
-    color: @gray;
-}
-
-:-ms-input-placeholder
-{
-    color: @gray;
 }
 
 // FORM - COMMENT
@@ -991,10 +1062,8 @@ textarea.error
 
     color: @white;
     -webkit-border-top-left-radius: 4px;
-    -moz-border-radius-topleft: 4px;
             border-top-left-radius: 4px;
     -webkit-border-bottom-left-radius: 4px;
-    -moz-border-radius-bottomleft: 4px;
             border-bottom-left-radius: 4px;
     background-color: @gray;
 }
@@ -1048,7 +1117,6 @@ textarea.error
 
     border: 2px solid @violet;
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
 }
 
@@ -1125,44 +1193,60 @@ textarea.error
     margin: 15px;
 }
 
-.wrapper-select .select
-{
-    font-size: @small;
-    line-height: 30px;
-
-    position: relative;
-
-    display: block;
-
-    height: 30px;
-    padding: 0 15px;
-
-    text-decoration: none;
-
-    color: @gray;
-    border: 1px solid @violet;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-    background-color: @white;
-}
-
-.wrapper-select .select:after
+.wrapper-select:after
 {
     font-family: ionicons;
     font-size: 16px;
     line-height: 30px;
 
     position: absolute;
+    top: 0;
     right: 0;
 
-    height: 100%;
+    height: 30px;
     padding: 0 10px;
 
     content: '\f104';
 
     color: @white;
+    -webkit-border-top-right-radius: 4px;
+            border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 4px;
     background-color: @violet;
+}
+
+.select
+{
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
+    background-color: @white;
+}
+
+select
+{
+    font-size: @small;
+    line-height: 30px;
+
+    position: relative;
+    z-index: 10;
+
+    display: block;
+
+    width: 100%;
+    height: 30px;
+    padding-right: 45px;
+    padding-left: 15px;
+
+    border: 1px solid @violet;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
 }
 
 // CALENDAR
@@ -1196,7 +1280,6 @@ textarea.error
     color: @white;
     border: 1px solid @black;
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
             border-radius: 4px;
     background-color: @black;
 }
@@ -1267,9 +1350,7 @@ textarea.error
 .wrapper-calendar .calendar.end-left:before,
 .wrapper-calendar .calendar.end-right:after
 {
-    display: none;
-
-    content: '';
+    opacity: 0!important;
 }
 
 // TITLE SECTION
@@ -1321,7 +1402,6 @@ textarea.error
 
     border: 2px solid @violet;
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
             border-radius: 4px;
 }
 
@@ -1369,6 +1449,8 @@ textarea.error
     margin: 15px 0;
 
     text-align: center;
+
+    .smoothing();
 }
 
 .wrapper-feedback .button-feedback
@@ -1499,16 +1581,16 @@ textarea.error
 
 #map .label.trade.positive .percentage
 {
-    background-color: #4bd763;
-    background-image: -webkit-linear-gradient(left, #4bd763, #b7efc1);
-    background-image:         linear-gradient(to right, #4bd763, #b7efc1);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(75,215,99,1)), color-stop(100%,rgba(75,215,99,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(75,215,99,1) 0%,rgba(75,215,99,0) 100%); /* Chrome10+,Safari5.1+ */
+    background:         linear-gradient(to right,  rgba(75,215,99,1) 0%,rgba(75,215,99,0) 100%); /* W3C */
 }
 
 #map .label.negative .percentage
 {
-    background-color: #ff3b30;
-    background-image: -webkit-linear-gradient(left, #ff3b30, #ffb1ac);
-    background-image:         linear-gradient(to right, #ff3b30, #ffb1ac);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,59,48,1)), color-stop(100%,rgba(255,59,48,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* Chrome10+,Safari5.1+ */
+    background:         linear-gradient(to right,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* W3C */
 }
 
 #map .label.cero .percentage
@@ -1559,7 +1641,6 @@ textarea.error
 
     color: @white;
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
     background-color: @violet-light;
 }
@@ -1583,11 +1664,8 @@ textarea.error
     height: 50%;
     min-height: 200px;
 
-    background:    -moz-linear-gradient(top,  rgba(64,32,208,0) 0%, rgba(64,32,208,1) 87%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,32,208,0)), color-stop(87%,rgba(64,32,208,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* Chrome10+,Safari5.1+ */
-    background:      -o-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* Opera 11.10+ */
-    background:     -ms-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* IE10+ */
     background:         linear-gradient(to bottom,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* W3C */
 }
 
@@ -1662,9 +1740,7 @@ textarea.error
 .control-box-swipe.end-left:before,
 .control-box-swipe.end-right:after
 {
-    display: none;
-
-    content: '';
+    opacity: 0!important;
 }
 
 .control-box-swipe li
@@ -1725,7 +1801,6 @@ textarea.error
 
     color: @violet;
     -webkit-border-radius: 50%;
-       -moz-border-radius: 50%;
             border-radius: 50%;
     background-color: @violet-light;
 }
@@ -1908,4 +1983,196 @@ textarea.error
     float: right;
 
     text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SETTINGS
+// -------------------------------------------------- //
+
+#settings
+{
+    color: @white;
+}
+
+// SETTINGS / FORM
+// -------------------------------------------------- //
+
+#settings form
+{
+    color: @white;
+}
+
+#settings input
+{
+    border: 1px solid @violet-dark;
+}
+
+#settings .wrapper-input .input-icon:before
+{
+    color: @violet;
+    background: @violet-dark;
+}
+
+#settings textarea
+{
+    border: 1px solid @violet-dark;
+}
+
+// SETTINGS / HELP BLOCK
+// -------------------------------------------------- //
+
+#settings .help-block
+{
+    color: @violet-light;
+}
+
+// SETTINGS / TEXT NOTE
+// -------------------------------------------------- //
+
+#settings .text-note
+{
+    color: @violet-light;
+}
+
+// SETTINGS / SELECT
+// -------------------------------------------------- //
+
+#settings .wrapper-select:after
+{
+    color: @white;
+    background-color: @violet-dark;
+}
+
+#settings select
+{
+    border: 1px solid @violet-dark;
+}
+
+// SETTINGS / RADIO BUTTON
+// -------------------------------------------------- //
+
+#settings .radiobutton
+{
+    border: 2px solid @white;
+}
+
+#settings .radiobutton.active:after
+{
+    color: @white;
+}
+
+// SETTINGS / BUTTON PRIMARY
+// -------------------------------------------------- //
+
+#settings .button-primary
+{
+    color: @violet;
+    background-color: @white;
+}
+
+// SETTINGS / CHECKBOX
+// -------------------------------------------------- //
+
+#settings .checkbox
+{
+    border: 2px solid @white;
+}
+
+#settings .checkbox.active:after
+{
+    color: @white;
+}
+
+// SETTINGS / LABEL
+// -------------------------------------------------- //
+
+#settings .label:after
+{
+    color: @violet-dark;
+}
+
+#settings .label
+{
+    color: @white;
+    border-bottom: 1px solid @violet-dark;
+    background-color: @violet;
+}
+#settings .label.account .name
+{
+    color: @white;
+}
+
+#settings .label.account .balance
+{
+    color: @violet-light;
+}
+
+// SETTINGS / SWIPE - BUTTONS
+// -------------------------------------------------- //
+
+#settings .swipe-buttons
+{
+    border-top: 1px darken(@violet-dark, 15%);
+    background-color: @violet-dark;
+}
+
+// SETTINGS / MAP
+// -------------------------------------------------- //
+
+#settings .label.trade .instrument,
+#settings .label.operation .instrument
+{
+    color: @white;
+}
+
+#settings #map .bar-percentage
+{
+    background-color: @violet;
+}
+
+#settings #map .label.trade .net
+{
+    color: @white;
+    background-color: @violet;
+}
+
+#settings #map .label
+{
+    border-bottom: transparent;
+}
+
+#settings #map .label.trade .net.cero,
+#settings #map .label.operation .net.cero
+{
+    color: @violet-light;
+}
+
+#settings #map .label.cero .percentage
+{
+    background-color: @violet-light;
 }

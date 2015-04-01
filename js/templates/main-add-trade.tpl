@@ -3,10 +3,20 @@
 		<div class="button-primary" id="done">Done</div>
 	</div>
 	<div id="complete">
-		<div class="wrapper-select">
-			<div class="select">Instrument</div>
-			<span class="help-block">Manage your instruments through Settings.</span>
-		</div>
+		<form>
+			<div class="wrapper-select">
+				<div class="select">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<span class="help-block">Manage your instruments through Settings.</span>
+			</div>
+		</form>
 		<ul class="wrapper-radiobutton" id="type">
 			<li class="group-radiobutton">
 				<div class="radiobutton active" data-type="1"></div>

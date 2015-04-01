@@ -2,6 +2,7 @@
 	<section id="content">
 
 		<!-- 
+
 		<div class="header-box-swipe">
 
 			<div class="wrapper-calendar">
@@ -252,6 +253,7 @@
 
 
 	<!-- 
+
 	<div class="header-box-swipe">
 
 		<div class="wrapper-calendar">
@@ -304,73 +306,42 @@
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="red">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="red">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
-				</div>
-			</li>
-		</ul>
-
-		<ul class="pane">
-			<li>
-				<div class="col-1">Average time in market</div>
-				<div class="col-2">
-					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
-				</div>
-			</li>
-			<li>
-				<div class="col-1">Average time in market</div>
-				<div class="col-2">
-					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
-				</div>
-			</li>
-			<li>
-				<div class="col-1">Average time in market</div>
-				<div class="col-2">
-					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
-				</div>
-			</li>
-			<li>
-				<div class="col-1">Average time in market</div>
-				<div class="col-2">
-					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 		</ul>
@@ -380,42 +351,73 @@
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="red">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="red">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
+				</div>
+			</li>
+		</ul>
+
+		<ul class="pane">
+			<li>
+				<div class="col-1">Average time in market</div>
+				<div class="col-2">
+					<span>0d 0h 0m 0s</span>
+					<span class="percentage"><span class="red">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 			<li>
 				<div class="col-1">Average time in market</div>
 				<div class="col-2">
 					<span>0d 0h 0m 0s</span>
-					<span class="percentage">- 10.00%</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
+				</div>
+			</li>
+			<li>
+				<div class="col-1">Average time in market</div>
+				<div class="col-2">
+					<span>0d 0h 0m 0s</span>
+					<span class="percentage"><span class="red">-</span> 10.00%</span>
+				</div>
+			</li>
+			<li>
+				<div class="col-1">Average time in market</div>
+				<div class="col-2">
+					<span>0d 0h 0m 0s</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
+				</div>
+			</li>
+			<li>
+				<div class="col-1">Average time in market</div>
+				<div class="col-2">
+					<span>0d 0h 0m 0s</span>
+					<span class="percentage"><span class="green">-</span> 10.00%</span>
 				</div>
 			</li>
 		</ul>
@@ -423,6 +425,7 @@
 	</div>
 
 -->
+
 
 <div class="drag-account">
 	<div class="account">Account: <span>Real</span></div>
@@ -533,14 +536,34 @@
 	<span>Lorem ipsum</span>
 </div>
 
-<div class="wrapper-select">
-	<div class="select">Lorem ipsum select</div>
-</div>
+<form>
+	<div class="wrapper-select">
+		<div class="select">
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
+</form>
 
-<div class="wrapper-select">
-	<div class="select">Lorem ipsum select</div>
-	<span class="help-block">Lorem ipsum dolor.</span>
-</div>
+<form>
+	<div class="wrapper-select">
+		<div class="select">
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<span class="help-block">Lorem ipsum dolor.</span>
+	</div>
+</form>
 
 <div class="title-section">Tilte section</div>
 
@@ -701,11 +724,11 @@
 </ul>
 
 <form>
+
 	<div class="wrapper-input">
 		<input type="" placeholder="Position size">
 		<span class="help-block">Lorem ipsum dolor.</span>
 	</div>
-
 
 	<div class="wrapper-input two-input">
 		<div class="wrapper-input">
@@ -719,18 +742,20 @@
 		</div>
 	</div>
 
-
 	<div class="wrapper-input">
 		<div class="input-icon price">
 			<input type="" placeholder="Price">
 		</div>
 		<span class="help-block">Lorem ipsum dolor.</span>
 	</div>
+
 	<div class="wrapper-comment">
 		<textarea rows="5" placeholder="Comment"></textarea>
 		<span class="help-block">Lorem ipsum dolor.</span>
 	</div>
+
 	<span class="text-note">Note: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus varius volutpat rutrum. Aenean sed volutpat eros. Phasellus venenatis arcu lacinia arcu laoreet, non maximus turpis malesuada. Morbi quis viverra massa, eget convallis felis. Vivamus quis est arcu.</span>
+
 </form>
 
 <p class="text-body">Lorem ipsum dolor sit amet.</p>
