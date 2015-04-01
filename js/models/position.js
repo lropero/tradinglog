@@ -44,7 +44,7 @@
 		},
 
 		delete: function() {
-			console.log('delete position');
+			this.destroy();
 		}
 	});
 })();

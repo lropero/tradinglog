@@ -82,7 +82,11 @@
 					});
 					position.delete();
 				}
-				console.log('delete trade');
+				self.destroy({
+					success: function() {
+						app.trigger('clear');
+					}
+				});
 			});
 		},
 

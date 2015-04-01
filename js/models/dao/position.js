@@ -16,6 +16,15 @@
 			});
 		},
 
+		destroy: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'DELETE FROM position WHERE id = "' + model.toJSON().id + '";';
+				tx.executeSql(sql);
+			}, null, function(tx) {
+				callback();
+			});
+		},
+
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM position WHERE trade_id = "' + model.trade_id + '";';

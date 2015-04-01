@@ -16,6 +16,15 @@
 			});
 		},
 
+		destroy: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'DELETE FROM trade WHERE id = "' + model.toJSON().id + '";';
+				tx.executeSql(sql);
+			}, null, function(tx) {
+				callback();
+			});
+		},
+
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ORDER BY closed_at, id DESC;';
