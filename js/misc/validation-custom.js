@@ -42,7 +42,6 @@
 	app.isolate = function(e) {
 		var $target = $(e.currentTarget);
 		if($('div#isolate').is(':hidden')) {
-			e.preventDefault();
 			if($target.hasClass('error')) {
 				$target.removeClass('error');
 				var $price = $target.parent('div.price');

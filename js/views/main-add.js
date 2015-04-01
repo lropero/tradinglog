@@ -30,6 +30,7 @@
 		},
 
 		switch: function(e) {
+			e.preventDefault();
 			this.$el.find('li.active').removeClass('active');
 			var $target = $(e.currentTarget);
 			$target.addClass('active');

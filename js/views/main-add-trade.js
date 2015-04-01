@@ -6,6 +6,7 @@
 		events: {
 			'tap div#done': 'combine',
 			'tap input': 'isolate',
+			'tap select': 'removeValidation',
 			'tap ul#type div:not(.active)': 'radio'
 		},
 
@@ -39,7 +40,8 @@
 			});
 		},
 
-		combine: function() {
+		combine: function(e) {
+			e.preventDefault();
 			app.combine();
 		},
 
@@ -58,6 +60,7 @@
 		},
 
 		isolate: function(e) {
+			e.preventDefault();
 			if($(e.currentTarget).attr('id') === 'size') {
 				if(!this.$el.find('input#size').val()) {
 					var size = $.cookie('size');
@@ -73,20 +76,38 @@
 		},
 
 		radio: function(e) {
+			e.preventDefault();
 			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 			var $target = $(e.currentTarget);
 			$target.addClass('active');
 		},
 
+		removeValidation: function(e) {
+			var $target = $(e.currentTarget);
+			if($target.hasClass('error')) {
+				$target.removeClass('error');
+				var $wrapper = $target.parents('div.wrapper-select');
+				if($wrapper) {
+					$wrapper.removeClass('error');
+				}
+			}
+		},
+
 		submit: function() {
-			// var instrument_id = this.$el.find('select#instrument').val();
-			var instrument_id = 1;
+			var instrument_id = this.$el.find('select#instrument_id').val();
 			var type = this.$el.find('ul#type div.active').data('type');
 			var size = this.$el.find('input#size').val();
 			if(type === 2) {
 				size *= -1;
 			}
 			var price = this.$el.find('input#price').val().replace(',', '.');
+			var trade = new app.Models.trade();
+			trade.set({
+				account_id: 1,
+				instrument_id: instrument_id,
+				type: type
+			});
+			trade.validate();
 			var position = new app.Models.position();
 			position.set({
 				size: size,
@@ -94,13 +115,7 @@
 				created_at: (new Date()).getTime()
 			});
 			position.validate();
-			if(position.isValid()) {
-				var trade = new app.Models.trade();
-				trade.set({
-					account_id: 1,
-					instrument_id: instrument_id,
-					type: type
-				});
+			if(trade.isValid() && position.isValid()) {
 				trade.save(null, {
 					success: function(model, insertId) {
 						position.set({

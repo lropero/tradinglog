@@ -6,10 +6,10 @@
 		<form>
 			<div class="wrapper-select">
 				<div class="select">
-					<select id="instrument">
-						<option>Instrument</option>
+					<select id="instrument_id">
+						<option value="0">Instrument</option>
 						{{#each this.instruments}}
-							<option>{{this.name}}</option>
+							<option value="{{this.id}}">{{this.name}}</option>
 						{{/each}}
 					</select>
 				</div>

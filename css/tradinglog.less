@@ -970,12 +970,18 @@ select:focus
 // -------------------------------------------------- //
 
 input.error,
+select.error,
 textarea.error
 {
     border-color: @red !important;
 }
 
 .wrapper-input .input-icon.error:before
+{
+    background-color: @red !important;
+}
+
+.wrapper-select.error:after
 {
     background-color: @red !important;
 }

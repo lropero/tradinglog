@@ -54,6 +54,7 @@
 		},
 
 		button: function(e) {
+			e.preventDefault();
 			var self = this;
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var id = $wrapper.data('id');
@@ -147,6 +148,7 @@
 		},
 
 		viewOperation: function(e) {
+			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var id = $wrapper.data('id');
 			app.loadView('mainViewOperation', {
@@ -154,7 +156,8 @@
 			});
 		},
 
-		viewTrade: function() {
+		viewTrade: function(e) {
+			e.preventDefault();
 			app.loadView('mainViewTrade');
 		}
 	});

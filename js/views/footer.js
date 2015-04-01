@@ -23,6 +23,7 @@
 		},
 
 		navigate: function(e) {
+			e.preventDefault();
 			this.$el.find('a.active').removeClass('active');
 			var $target = $(e.currentTarget);
 			$target.addClass('active');

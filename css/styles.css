@@ -771,10 +771,14 @@ select:focus {
   color: #989898 !important;
 }
 input.error,
+select.error,
 textarea.error {
   border-color: #ff3b30 !important;
 }
 .wrapper-input .input-icon.error:before {
+  background-color: #ff3b30 !important;
+}
+.wrapper-select.error:after {
   background-color: #ff3b30 !important;
 }
 .wrapper-comment {

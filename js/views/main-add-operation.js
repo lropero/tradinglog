@@ -31,15 +31,18 @@
 			return this;
 		},
 
-		combine: function() {
+		combine: function(e) {
+			e.preventDefault();
 			app.combine();
 		},
 
 		isolate: function(e) {
+			e.preventDefault();
 			app.isolate(e);
 		},
 
 		radio: function(e) {
+			e.preventDefault();
 			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 			var $target = $(e.currentTarget);
 			$target.addClass('active');

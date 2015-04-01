@@ -14,6 +14,11 @@
 			comments: 0,
 			closed_at: 0
 		},
+		validation: {
+			instrument_id: {
+				gt: 0
+			}
+		},
 
 		initialize: function() {
 			var self = this;
@@ -29,6 +34,19 @@
 					this.fetchComments()
 				).done(function() {
 					self.deferred.resolve();
+				});
+			} else {
+				this.listenTo(this, 'validated', function(isValid, model, errors) {
+					if(!isValid) {
+						$.each(errors, function(index, error) {
+							var $el = $('#' + index);
+							$el.addClass('error');
+							var $wrapper = $el.parents('div.wrapper-select');
+							if($wrapper) {
+								$wrapper.addClass('error');
+							}
+						});
+					}
 				});
 			}
 		},
