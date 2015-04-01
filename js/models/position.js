@@ -41,6 +41,10 @@
 					});
 				}
 			});
+		},
+
+		delete: function() {
+			console.log('delete position');
 		}
 	});
 })();

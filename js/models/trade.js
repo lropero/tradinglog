@@ -74,7 +74,16 @@
 		},
 
 		delete: function() {
-			console.log('delete trade');
+			var self = this;
+			this.deferred.done(function() {
+				for(var i = 0; i < self.positions.length; i++) {
+					var position = new app.Models.position({
+						id: self.positions[i].id
+					});
+					position.delete();
+				}
+				console.log('delete trade');
+			});
 		},
 
 		fetchInstrument: function() {

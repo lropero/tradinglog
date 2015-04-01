@@ -64,13 +64,13 @@
 					ok: 'Yes'
 				}
 			});
-			alertify.confirm('Delete this trade?', function(e) {
+			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					// var trade = new app.Models.trade({
-					// 	id: id
-					// });
-					// trade.delete();
+					var trade = new app.Models.trade({
+						id: id
+					});
+					trade.delete();
 				}
 			});
 		},
