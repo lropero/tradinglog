@@ -53,6 +53,11 @@
 				amount *= -1;
 			}
 			var description = this.$el.find('textarea#description').val();
+			var balance = app.account.get('balance') + amount;
+			if(balance < 0) {
+				alertify.error('Withdrawal exceeds your balance');
+				return;
+			}
 			var operation = new app.Models.operation();
 			operation.set({
 				account_id: 1,
@@ -63,7 +68,6 @@
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
-					var balance = app.account.get('balance') + amount;
 					app.account.set({
 						balance: balance
 					});
