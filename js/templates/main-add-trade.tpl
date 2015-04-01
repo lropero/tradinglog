@@ -6,12 +6,11 @@
 		<form>
 			<div class="wrapper-select">
 				<div class="select">
-					<select>
+					<select id="instrument">
 						<option>Instrument</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+						{{#each this.instruments}}
+							<option>{{this.name}}</option>
+						{{/each}}
 					</select>
 				</div>
 				<span class="help-block">Manage your instruments through Settings.</span>

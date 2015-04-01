@@ -11,6 +11,7 @@
 
 		initialize: function() {
 			var self = this;
+			this.deferred = $.Deferred();
 			app.templateLoader.get('main-add-trade').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
@@ -28,11 +29,14 @@
 		},
 
 		render: function() {
-			app.trigger('change', 'main-add-trade');
-			this.$el.html(this.template({
-				instruments: this.instruments
-			}));
-			return this;
+			var self = this;
+			this.deferred.done(function() {
+				app.trigger('change', 'main-add-trade');
+				self.$el.html(self.template({
+					instruments: self.instruments
+				}));
+				return this;
+			});
 		},
 
 		combine: function() {
@@ -44,10 +48,11 @@
 			var instruments = new app.Collections.instruments();
 			instruments.fetch({
 				success: function() {
-					// self.instruments = instruments.toJSON();
-					// for(var i = 0; i < instruments.length; i++) {
-					// 	self.instruments.push(i);
-					// }
+					instruments = instruments.toJSON();
+					for(var i = 0; i < instruments.length; i++) {
+						self.instruments.push(instruments[i]);
+					}
+					self.deferred.resolve();
 				}
 			});
 		},
@@ -74,6 +79,7 @@
 		},
 
 		submit: function() {
+			// var instrument_id = this.$el.find('select#instrument').val();
 			var instrument_id = 1;
 			var type = this.$el.find('ul#type div.active').data('type');
 			var size = this.$el.find('input#size').val();
