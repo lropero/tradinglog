@@ -54,6 +54,7 @@
 		},
 
 		button: function(e) {
+			var self = this;
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var id = $wrapper.data('id');
 			alertify.set({
@@ -67,15 +68,11 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					var $content = $('section#content');
-					setTimeout(function() {
-						$content.css('-webkit-overflow-scrolling', 'touch');
-						$content.css('overflow-y', 'scroll');
-					}, 10);
 					var trade = new app.Models.trade({
 						id: id
 					});
 					trade.delete();
+					self.decorate();
 				}
 			});
 		},
