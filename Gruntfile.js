@@ -8,6 +8,8 @@ module.exports = function(grunt) {
 				dest: 'tmp/styles.css',
 				src: [
 					'css/normalize.css',
+					'css/alertify-core.css',
+					'css/alertify-default.css',
 					'css/animate.css',
 					'css/ionicons.css',
 					'css/styles.css'
@@ -20,6 +22,7 @@ module.exports = function(grunt) {
 					'js/vendor/underscore.js',
 					'js/vendor/backbone.js',
 					'js/vendor/accounting.js',
+					'js/vendor/alertify.js',
 					'js/vendor/backbone-sync.js',
 					'js/vendor/backbone-validation.js',
 					'js/vendor/handlebars-v3.0.0.js',
