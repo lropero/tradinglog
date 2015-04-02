@@ -1,0 +1,174 @@
+.alertify,
+.alertify-show,
+.alertify-log
+{
+    -webkit-transition: all 500ms cubic-bezier(.175, .885, .32, 1.275);
+            transition: all 500ms cubic-bezier(.175, .885, .32, 1.275);
+}
+
+.alertify-hide
+{
+    -webkit-transition: all 250ms cubic-bezier(.6, -.28, .735, .045);
+            transition: all 250ms cubic-bezier(.6, -.28, .735, .045);
+}
+
+.alertify-log-hide
+{
+    -webkit-transition: all 500ms cubic-bezier(.6, -.28, .735, .045);
+            transition: all 500ms cubic-bezier(.6, -.28, .735, .045);
+}
+
+.alertify-cover
+{
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    opacity: .5;
+    background-color: @black;
+}
+
+.alertify-cover-hidden
+{
+    display: none;
+}
+
+.alertify
+{
+    position: fixed;
+    z-index: 99999;
+    top: 80px;
+    left: 50%;
+
+    width: 550px;
+    margin-left: -275px;
+
+    opacity: 1;
+}
+
+.alertify-hidden
+{
+    display: none;
+
+    opacity: 0;
+}
+
+:root * > .alertify-hidden
+{
+    display: block;
+    visibility: hidden;
+}
+
+.alertify-logs
+{
+    position: fixed;
+    z-index: 5000;
+    bottom: 52px;
+    left: 5%;
+}
+
+.alertify-logs-hidden
+{
+    display: none;
+}
+
+.alertify-log
+{
+    position: relative;
+    right: -300px;
+
+    display: block;
+
+    margin-top: 10px;
+
+    opacity: 0;
+}
+
+.alertify-log-show
+{
+    right: 0;
+
+    opacity: 1;
+}
+
+.alertify-log-hide
+{
+    -webkit-transform: translate(300px, 0);
+        -ms-transform: translate(300px, 0);
+            transform: translate(300px, 0);
+
+    opacity: 0;
+}
+
+.alertify-dialog
+{
+    padding: 0 15px;
+}
+
+.alertify-resetFocus
+{
+    position: absolute;
+
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    border: 0;
+}
+
+.alertify-inner
+{
+    text-align: center;
+}
+
+.alertify-text
+{
+    font-size: 100%;
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.alertify-button,
+.alertify-button:hover,
+.alertify-button:active,
+.alertify-button:visited
+{
+    font-size: 100%;
+    line-height: inherit;
+
+    display: block;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    border: none;
+}
+
+@media only screen and (max-width: 680px)
+{
+    .alertify,
+    .alertify-logs
+    {
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        width: 90%;
+    }
+    .alertify
+    {
+        left: 5%;
+
+        margin: 0;
+    }
+}

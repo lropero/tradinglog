@@ -114,7 +114,29 @@ ol
 
     margin: 15px;
 
+    text-align: left;
+
     color: @gray;
+}
+
+// COPYRIGHT
+// -------------------------------------------------- //
+
+.copyright
+{
+    font-size: @small;
+
+    position: absolute;
+    bottom: 0;
+
+    display: block;
+
+    width: 100%;
+    margin-bottom: 15px;
+
+    text-align: center;
+
+    color: @violet-light;
 }
 
 // TEXT BODY
@@ -266,6 +288,14 @@ ol
 .comment.photo
 {
     margin: 15px;
+}
+
+.row .comment.photo
+{
+    margin-top: 15px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
 }
 
 .comment.photo img
@@ -440,12 +470,12 @@ ol
 }
 
 
-.label.trade .net.cero,
-.label.operation .net.cero
+.label.trade .net.zero,
+.label.operation .net.zero
 {
     float: right;
 
-    color: @gray;
+    color: @violet-light;
 }
 
 .label.trade .size-price,
@@ -691,6 +721,7 @@ ol
 
 // SWIPE - BUTTONS
 // -------------------------------------------------- //
+
 .swipe-buttons .button-swipe
 {
     font-family: ionicons;
@@ -707,6 +738,35 @@ ol
     line-height: 66px;
 
     content: '\f4c5';
+}
+
+.swipe-buttons .button-swipe.add-photo:after
+{
+    font-size: 21px;
+    line-height: 66px;
+
+    content: '\f2d3';
+}
+
+.swipe-buttons .button-swipe.delete-photo:after
+{
+    font-size: 21px;
+    line-height: 66px;
+
+    content: '\f2d3';
+}
+
+.swipe-buttons .button-swipe.delete-photo:before
+{
+    font-size: 24px;
+    line-height: 66px;
+
+    position: absolute;
+    z-index: 10;
+
+    content: '\f12a';
+
+    color: @violet!important;
 }
 
 .swipe-buttons .button-swipe.commission:after
@@ -1018,7 +1078,7 @@ textarea.error
 
 .wrapper-input.two-input
 {
-    display: inline-block;
+    display: block;
 
     margin: 15px 7.5px;
 }
@@ -1088,6 +1148,8 @@ textarea.error
     width: 100%;
     margin-top: 5px;
 
+    text-align: left;
+
     color: @gray;
 }
 
@@ -1095,6 +1157,8 @@ textarea.error
 {
     margin-top: 0;
     margin-bottom: 15px;
+
+    text-align: center;
 }
 
 // RADIO BUTTON
@@ -1152,7 +1216,7 @@ textarea.error
     text-align: center;
 }
 
-.group-radiobutton
+.wrapper-radiobutton .group-radiobutton
 {
     position: relative;
 
@@ -1161,12 +1225,17 @@ textarea.error
     margin-left: 15px;
 }
 
-.group-radiobutton .radiobutton
+.wrapper-radiobutton .group-radiobutton:first-child
+{
+    margin-left: 0;
+}
+
+.wrapper-radiobutton .group-radiobutton .radiobutton
 {
     float: left;
 }
 
-.group-radiobutton span
+.wrapper-radiobutton .group-radiobutton span
 {
     float: left;
 
@@ -1288,8 +1357,8 @@ select
     height: 100%;
 }
 
-.wrapper-calendar .buttons-calendar .buttom-left,
-.wrapper-calendar .buttons-calendar .buttom-right
+.wrapper-calendar .buttons-calendar .button-left,
+.wrapper-calendar .buttons-calendar .button-right
 {
     position: relative;
 
@@ -1297,12 +1366,12 @@ select
     height: 100%;
 }
 
-.wrapper-calendar .buttons-calendar .buttom-left
+.wrapper-calendar .buttons-calendar .button-left
 {
     float: left;
 }
 
-.wrapper-calendar .buttons-calendar .buttom-right
+.wrapper-calendar .buttons-calendar .button-right
 {
     float: right;
 }
@@ -1362,7 +1431,7 @@ select
 
     width: 100%;
     height: 30px;
-    margin: 15px 0;
+    margin-bottom: 15px;
     padding: 0 15px;
 
     color: @black;
@@ -1458,20 +1527,28 @@ select
     display: inline-block;
 
     margin: 0 30px;
+
+    color: @gray;
 }
 
 .wrapper-feedback .button-feedback.happy:after
 {
     content: '\f3c6';
+}
 
+.wrapper-feedback .button-feedback.happy.active:after
+{
     color: @green;
 }
 
 .wrapper-feedback .button-feedback.sad:after
 {
     content: '\f4d7';
+}
 
-    color: @gray;
+.wrapper-feedback .button-feedback.sad.active:after
+{
+    color: @red;
 }
 
 // MAP
@@ -1587,9 +1664,9 @@ select
     background:         linear-gradient(to right,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* W3C */
 }
 
-#map .label.cero .percentage
+#map .label.zero .percentage
 {
-    background-color: @gray;
+    background-color: @violet-light;
 }
 
 #map .bar-percentage
@@ -1600,6 +1677,63 @@ select
     height: 100%;
 
     background-color: @white;
+}
+
+// PANE
+// -------------------------------------------------- //
+
+.pane
+{
+    font-size: @small;
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    margin: 15px 0;
+}
+
+.pane li
+{
+    position: relative;
+
+    display: table;
+    clear: both;
+
+    width: 100%;
+    padding: 0 15px;
+}
+
+.pane li .col-1,
+.pane li .col-2
+{
+    position: relative;
+
+    display: table-cell;
+
+    width: 1%;
+}
+
+.pane li .col-1
+{
+    padding-right: 7.5px;
+
+    text-align: right;
+}
+
+.pane li .col-2
+{
+    padding-left: 7.5px;
+
+    text-align: left;
+}
+
+.pane li .col-2 .percentage
+{
+    float: right;
+
+    text-align: right;
 }
 
 // SELECT GROUP
@@ -1614,6 +1748,7 @@ select
 
     width: 100%;
     margin: 15px 0;
+    padding: 0 15px;
 
     text-align: center;
 }
@@ -1644,40 +1779,31 @@ select
     background-color: @violet;
 }
 
-// GRADIENT CONTENT
+.wrapper-select-group .group:first-child
+{
+    margin-left: 0;
+}
+
+// HEADER - BOX SWIPE
 // -------------------------------------------------- //
 
-.gradient-content
+.header-box-swipe
 {
     position: fixed;
-    z-index: 200;
-    bottom: 44px;
+    z-index: 1000;
+    top: 0;
+    top: 64px;
     left: 0;
 
-    width: 100%;
-    height: 50%;
-    min-height: 200px;
-
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,32,208,0)), color-stop(87%,rgba(64,32,208,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* Chrome10+,Safari5.1+ */
-    background:         linear-gradient(to bottom,  rgba(64,32,208,0) 0%,rgba(64,32,208,1) 87%); /* W3C */
-}
-
-.gradient-content:before
-{
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    display: block;
+    overflow: auto;
 
     width: 100%;
-    height: 30px;
 
-    content: '';
-
-    background-color: @violet;
+    background-color: @white;
 }
 
-// CONTROL BOX SWIPE
+// CONTROL - BOX SWIPE
 // -------------------------------------------------- //
 
 .wrapper-control-box-swipe
@@ -1764,7 +1890,7 @@ select
     color: @white!important;
 }
 
-// CONTROL BOX SWIPE - ACTIVE GROUP
+// CONTROL - BOX SWIPE - ACTIVE GROUP
 // -------------------------------------------------- //
 
 .wrapper-control-box-swipe .wrapper-active-group
@@ -1804,25 +1930,6 @@ select
     background-color: @white;
 }
 
-// HEADER BOX SWIPE
-// -------------------------------------------------- //
-
-.header-box-swipe
-{
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    top: 64px;
-    left: 0;
-
-    display: block;
-    overflow: auto;
-
-    width: 100%;
-
-    background-color: @white;
-}
-
 // BOX SWIPE
 // -------------------------------------------------- //
 
@@ -1832,343 +1939,265 @@ select
     padding-top: 112px;
     padding-bottom: 30px;
 
+    color: @white;
     background-color: @violet;
 }
 
-// BOX SWIPE / STATS MONTHLY 3RD
+// BOX-VIOLET
 // -------------------------------------------------- //
 
-.box-swipe .stats-monthly-3red
+.box-violet
 {
-    padding-bottom: 7px;
-}
-
-.box-swipe .stats-monthly-3red .wrapper-label
-{
-    height: 30px;
-    min-height: inherit;
-}
-
-.box-swipe .stats-monthly-3red .label
-{
-    font-size: 12px;
-    line-height: 30px;
-
-    height: 30px;
-    min-height: inherit;
-    padding: 0 0 0 15px;
-
-    border-bottom: transparent;
-    background-color: transparent;
-}
-
-.box-swipe .stats-monthly-3red .label:after
-{
-    display: none;
-
-    content: '';
-}
-
-.box-swipe .stats-monthly-3red .label.trade .row
-{
-    z-index: 10;
-
-    margin-left: 33px;
-}
-
-.box-swipe .stats-monthly-3red .label.trade .net
-{
-    min-width: 105px;
-    padding: 0 15px;
-
-    text-align: right;
-
-    background-color: transparent;
-}
-
-.box-swipe .stats-monthly-3red .label.trade .ball
-{
-    z-index: 10;
-
-    width: 18px;
-    height: 18px;
-}
-
-.box-swipe .stats-monthly-3red .label.trade .ball .icon
-{
-    font-size: 12px;
-    line-height: 18px;
-}
-
-.box-swipe .stats-monthly-3red .label.trade.long .ball .icon:after
-{
-    font-size: 12px!important;
-    line-height: 18px!important;
-}
-
-.box-swipe .stats-monthly-3red .label.trade.short .ball .icon:after
-{
-    font-size: 12px!important;
-    line-height: 20px!important;
-}
-
-.box-swipe .stats-monthly-3red .label.trade .instrument,
-.box-swipe .stats-monthly-3red .label.trade .net,
-.box-swipe .stats-monthly-3red .label.trade .net.positive,
-.box-swipe .stats-monthly-3red .label.trade .net.negative
-{
-    color: @white!important;
-}
-
-// BOX SWIPE / PANE
-// -------------------------------------------------- //
-
-.box-swipe .pane
-{
-    font-size: @small;
-
-    position: relative;
-
-    display: block;
-
-    width: 100%;
-    margin: 15px 0;
-
     color: @white;
+    background-color: @violet;
 }
 
-.box-swipe .pane li
-{
-    position: relative;
-
-    display: block;
-    clear: both;
-
-    width: 100%;
-    padding: 0 15px;
-}
-
-.box-swipe .pane li .col-1,
-.box-swipe .pane li .col-2
-{
-    position: relative;
-
-    display: inline;
-
-    width: 50%;
-}
-
-.box-swipe .pane li .col-1
-{
-    padding-right: 7.5px;
-
-    text-align: right;
-}
-
-.box-swipe .pane li .col-2
-{
-    padding-left: 7.5px;
-
-    text-align: left;
-}
-
-.box-swipe .pane li .col-2 .percentage
-{
-    float: right;
-
-    text-align: right;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// SETTINGS
+// BOX-VIOLET / BOX SWIPE - FORM
 // -------------------------------------------------- //
 
-#settings
+.box-violet form,
+.box-swipe form
 {
     color: @white;
 }
 
-// SETTINGS / FORM
-// -------------------------------------------------- //
-
-#settings form
-{
-    color: @white;
-}
-
-#settings input
+.box-violet input,
+.box-swipe input
 {
     border: 1px solid @violet-dark;
 }
 
-#settings .wrapper-input .input-icon:before
+.box-violet .wrapper-input .input-icon:before,
+.box-swipe .wrapper-input .input-icon:before
 {
     color: @violet;
     background: @violet-dark;
 }
 
-#settings textarea
+.box-violet textarea,
+.box-swipe textarea
 {
     border: 1px solid @violet-dark;
 }
 
-// SETTINGS / HELP BLOCK
+// BOX-VIOLET / BOX SWIPE - HELP BLOCK
 // -------------------------------------------------- //
 
-#settings .help-block
+.box-violet .help-block,
+.box-swipe .help-block
 {
     color: @violet-light;
 }
 
-// SETTINGS / TEXT NOTE
+// BOX-VIOLET / BOX SWIPE - TEXT NOTE
 // -------------------------------------------------- //
 
-#settings .text-note
+.box-violet .text-note,
+.box-swipe .text-note
 {
     color: @violet-light;
 }
 
-// SETTINGS / SELECT
+// BOX-VIOLET / BOX SWIPE - SELECT
 // -------------------------------------------------- //
 
-#settings .wrapper-select:after
+.box-violet .wrapper-select:after,
+.box-swipe .wrapper-select:after
 {
     color: @white;
     background-color: @violet-dark;
 }
 
-#settings select
+.box-violet select,
+.box-swipe select
 {
     border: 1px solid @violet-dark;
 }
 
-// SETTINGS / RADIO BUTTON
+// BOX-VIOLET / BOX SWIPE - RADIO BUTTON
 // -------------------------------------------------- //
 
-#settings .radiobutton
+.box-violet .radiobutton,
+.box-swipe .radiobutton
 {
     border: 2px solid @white;
 }
 
-#settings .radiobutton.active:after
+.box-violet .radiobutton.active:after,
+.box-swipe .radiobutton.active:after
 {
     color: @white;
 }
 
-// SETTINGS / BUTTON PRIMARY
+// BOX-VIOLET / BOX SWIPE - BUTTON PRIMARY
 // -------------------------------------------------- //
 
-#settings .button-primary
+.box-violet .button-primary,
+.box-swipe .button-primary
 {
     color: @violet;
     background-color: @white;
 }
 
-// SETTINGS / CHECKBOX
+// BOX-VIOLET / BOX SWIPE - CHECKBOX
 // -------------------------------------------------- //
 
-#settings .checkbox
+.box-violet .checkbox,
+.box-swipe .checkbox
 {
     border: 2px solid @white;
 }
 
-#settings .checkbox.active:after
+.box-violet .checkbox.active:after,
+.box-swipe .checkbox.active:after
 {
     color: @white;
 }
 
-// SETTINGS / LABEL
+// BOX-VIOLET / BOX SWIPE - LABEL
 // -------------------------------------------------- //
 
-#settings .label:after
+.box-violet .label:after,
+.box-swipe .label:after
 {
     color: @violet-dark;
 }
 
-#settings .label
+.box-violet .label,
+.box-swipe .label
 {
     color: @white;
     border-bottom: 1px solid @violet-dark;
     background-color: @violet;
 }
-#settings .label.account .name
+
+.box-violet .label.account .name,
+.box-swipe .label.account .name
 {
     color: @white;
 }
 
-#settings .label.account .balance
+.box-violet .label.account .balance,
+.box-swipe .label.account .balance
 {
     color: @violet-light;
 }
 
-// SETTINGS / SWIPE - BUTTONS
+.box-violet .label.instrument .ball,
+.box-swipe .label.instrument .ball
+{
+    background-color: @white;
+}
+
+.box-violet .label.instrument .ball .group,
+.box-swipe .label.instrument .ball .group
+{
+    color: @violet;
+}
+
+.box-violet .label.instrument .name,
+.box-swipe .label.instrument .name
+{
+    color: @white;
+}
+.box-violet .label.instrument .type,
+.box-violet .label.instrument .commission,
+.box-swipe .label.instrument .type,
+.box-swipe .label.instrument .commission
+{
+    color: @violet-light;
+}
+
+// BOX-VIOLET / BOX SWIPE - SWIPE BUTTONS
 // -------------------------------------------------- //
 
-#settings .swipe-buttons
+.box-violet .swipe-buttons,
+.box-swipe .swipe-buttons
 {
     border-top: 1px darken(@violet-dark, 15%);
     background-color: @violet-dark;
 }
 
-// SETTINGS / MAP
+// BOX-VIOLET / BOX SWIPE - MAP
 // -------------------------------------------------- //
 
-#settings .label.trade .instrument,
-#settings .label.operation .instrument
+.box-violet .label.trade .instrument,
+.box-violet .label.operation .instrument,
+.box-swipe .label.trade .instrument,
+.box-swipe .label.operation .instrument
 {
     color: @white;
 }
 
-#settings #map .bar-percentage
+.box-violet #map .bar-percentage,
+.box-swipe #map .bar-percentage
 {
     background-color: @violet;
 }
 
-#settings #map .label.trade .net
+.box-violet #map .label.trade .net,
+.box-swipe #map .label.trade .net
 {
     color: @white;
     background-color: @violet;
 }
 
-#settings #map .label
+.box-violet #map .label,
+.box-swipe #map .label
 {
     border-bottom: transparent;
 }
 
-#settings #map .label.trade .net.cero,
-#settings #map .label.operation .net.cero
+// BOX-VIOLET / BOX SWIPE - PANE
+// -------------------------------------------------- //
+
+.box-violet .pane,
+.box-swipe .pane
+{
+    color: @white;
+}
+
+// BOX-VIOLET / BOX SWIPE - FEEDBACK
+// -------------------------------------------------- //
+
+.box-violet .wrapper-feedback .button-feedback,
+.box-swipe .wrapper-feedback .button-feedback
 {
     color: @violet-light;
 }
 
-#settings #map .label.cero .percentage
+.box-violet .wrapper-feedback .button-feedback.happy.active:after,
+.box-violet .wrapper-feedback .button-feedback.sad.active:after,
+.box-swipe .wrapper-feedback .button-feedback.happy.active:after,
+.box-swipe .wrapper-feedback .button-feedback.sad.active:after
 {
+    color: @white;
+}
+
+// BOX-VIOLET / BOX SWIPE - TITLE SECTION
+// -------------------------------------------------- //
+
+.box-violet .title-section,
+.box-swipe .title-section
+{
+    color: @white;
+    background-color: @violet-dark;
+}
+
+// BOX-VIOLET / BOX SWIPE - SELECT GROUP
+// -------------------------------------------------- //
+
+
+.box-violet .wrapper-select-group .group,
+.box-swipe .wrapper-select-group .group
+{
+    color: @white;
     background-color: @violet-light;
 }
 
-
+.box-violet .wrapper-select-group .group.selected,
+.box-swipe .wrapper-select-group .group.selected
+{
+    color: @violet;
+    background-color: @white;
+}

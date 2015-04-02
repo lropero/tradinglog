@@ -20,7 +20,7 @@ body {
 	-webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
 	-webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
 	-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
-	background-color: #ffffff;
+	background-color: @white;
 	font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	height: 100%;
@@ -47,8 +47,8 @@ control.segmented ul {
 }
 
 control.segmented ul li {
-	background-color: #4020d0;
-	color: #ffffff;
+	background-color: @violet;
+	color: @white;
 	display: table-cell;
 	height: 32px;
 	line-height: 32px;
@@ -58,7 +58,7 @@ control.segmented ul li {
 
 control.segmented ul li.active {
 	background-color: @violet-dark;
-	color: #ffffff;
+	color: @white;
 }
 
 control.segmented ul li.middle {
@@ -67,7 +67,7 @@ control.segmented ul li.middle {
 }
 
 control.segmented ul li:not(.active):active {
-	background-color: #9f8fe7;
+	background-color: @violet-light;
 }
 
 control.segmented + #content {
@@ -88,8 +88,8 @@ div#isolate {
 }
 
 footer {
-	background-color: #f3f3f3;
-	border-top: 1px solid #cccccc;
+	background-color: @gray-lighter;
+	border-top: 1px solid @gray-light;
 	bottom: 0;
 	left: 0;
 	position: fixed;
@@ -104,7 +104,7 @@ footer bar.tab {
 }
 
 footer bar.tab a.item {
-	color: #999999;
+	color: @gray;
 	display: table-cell;
 	height: 43px;
 	text-align: center;
@@ -117,15 +117,15 @@ footer bar.tab a.item span.icon {
 }
 
 footer bar.tab a.item.active {
-	color: #4020d0;
+	color: @violet;
 }
 
 footer bar.tab a.item:not(.active):active {
-	color: #9f8fe7;
+	color: @violet-light;
 }
 
 header {
-	background-color: #4020d0;
+	background-color: @violet;
 	left: 0;
 	position: fixed;
 	top: 0;
@@ -143,7 +143,7 @@ header bar.navigation button {
 	background: none;
 	border: 0;
 	bottom: 0;
-	color: #ffffff;
+	color: @white;
 	outline: 0;
 	padding: 8px;
 	position: absolute;
@@ -181,7 +181,7 @@ header bar.navigation button.right.icon:after {
 }
 
 header bar.navigation button:active {
-	color: #9f8fe7;
+	color: @violet-light;
 }
 
 header bar.navigation div.logo {
@@ -220,7 +220,7 @@ section#main-stats-friends {
 
 section#settings {
 	-webkit-animation-duration: 0.8s;
-	background-color: #4020d0;
+	background-color: @violet;
 	bottom: 44px;
 	display: none;
 	padding-top: 64px;

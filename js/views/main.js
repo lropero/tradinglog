@@ -74,8 +74,9 @@
 						id: id
 					});
 					trade.delete();
+				} else {
+					app.enableScroll();
 				}
-				app.enableScroll();
 			});
 		},
 
@@ -87,8 +88,7 @@
 			if($content.height() > $ul.height()) {
 				$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
 				setTimeout(function() {
-					$content.css('-webkit-overflow-scrolling', 'touch');
-					$content.css('overflow-y', 'scroll');
+					app.enableScroll();
 				}, 10);
 			}
 		},
