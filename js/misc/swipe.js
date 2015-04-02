@@ -30,7 +30,7 @@
 						$.pep.restore();
 						app.timeout = setTimeout(function() {
 							app.enableScroll();
-						}, 300);
+						}, 3000);
 					} else {
 						if($el.position().left > 0) {
 							$el.removeClass('swiped');
