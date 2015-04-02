@@ -79,6 +79,16 @@
 				cordova.plugins.Keyboard.disableScroll(true);
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
+
+			app.disableScroll = function() {
+				$('section#content').css('-webkit-overflow-scrolling', 'auto');
+				$('section#content').css('overflow-y', 'hidden');
+			}
+
+			app.enableScroll = function() {
+				$('section#content').css('-webkit-overflow-scrolling', 'touch');
+				$('section#content').css('overflow-y', 'scroll');
+			}
 		}
 	};
 

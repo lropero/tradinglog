@@ -24,10 +24,12 @@
 				rest: function() {
 					var $el = $(this.el);
 					if($el.position().left % 80 > 0) {
+						$el.addClass('swiped');
 						$.pep.restore();
 					}
-					$('section#content').css('-webkit-overflow-scrolling', 'touch');
-					$('section#content').css('overflow-y', 'scroll');
+					if($el.position().left > 0) {
+						app.enableScroll();
+					}
 				},
 
 				revertIf: function() {
@@ -40,11 +42,11 @@
 				},
 
 				start: function() {
-					$('section#content').css('-webkit-overflow-scrolling', 'auto');
-					$('section#content').css('overflow-y', 'hidden');
 					var $el = $(this.el);
 					if($el.hasClass('swiped')) {
 						$el.removeClass('swiped');
+					} else {
+						app.disableScroll();
 					}
 					$.pep.restore();
 				},

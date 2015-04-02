@@ -748,7 +748,7 @@
       this.$el.css({margin: 0});
 
     this.$el.css({
-      position:   'absolute',
+      position:   'relative',
       top:        this.offset.top,
       left:       this.offset.left
     });

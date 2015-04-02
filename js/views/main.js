@@ -66,6 +66,7 @@
 					ok: 'Yes'
 				}
 			});
+			app.disableScroll();
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
@@ -74,6 +75,7 @@
 					});
 					trade.delete();
 				}
+				app.enableScroll();
 			});
 		},
 
