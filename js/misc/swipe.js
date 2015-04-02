@@ -28,15 +28,12 @@
 					var $el = $(this.el);
 					if($el.position().left % 80 > 0) {
 						$.pep.restore();
-						app.timeout = setTimeout(function() {
-							app.enableScroll();
-						}, 3000);
-					} else {
-						if($el.position().left > 0) {
-							$el.removeClass('swiped');
-						}
-						app.enableScroll();
+					} else if($el.position().left > 0) {
+						$el.removeClass('swiped');
 					}
+					app.timeout = setTimeout(function() {
+						app.enableScroll();
+					}, 3000);
 				},
 
 				revertIf: function() {
