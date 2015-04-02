@@ -10,6 +10,11 @@
 
 		init: function() {
 
+			/** Setting to avoid a visual glitch that occurs when keyboard is shown */
+			if(typeof cordova !== 'undefined') {
+				cordova.plugins.Keyboard.disableScroll(true);
+			}
+
 			/** We start by calling the layout view which is in charge of rendering
 				the header and footer (both of them separate views); all of these
 				happens asynchronously using deferreds/promises */
