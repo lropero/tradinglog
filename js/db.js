@@ -123,10 +123,12 @@
 				// 'INSERT INTO position VALUES (null, 4, -1, 250, 1426293045);',
 				// 'INSERT INTO position VALUES (null, 4, -1, 250, 1426293045);'
 				'INSERT INTO trade VALUES (null, 1, 1, 1, 500, 200, 8.48, 5.83, 3, 0);',
+				'INSERT INTO trade VALUES (null, 1, 2, 2, 0, 0, 0, 0, 0, 0);',
+				'INSERT INTO trade VALUES (null, 1, 1, 1, 0, 0, 0, 0, 0, 0);',
 				'INSERT INTO position VALUES (null, 1, 5, 1000, 1427228155168);',
-				'INSERT INTO position VALUES (null, 1, -1, 1200, 1427228255168);',
-				'INSERT INTO position VALUES (null, 1, -2, 800, 1427228355168);',
-				'INSERT INTO position VALUES (null, 1, 2, 700, 1427228455168);',
+				'INSERT INTO position VALUES (null, 2, -1, 1200, 1427228255168);',
+				'INSERT INTO position VALUES (null, 2, -2, 800, 1427228355168);',
+				'INSERT INTO position VALUES (null, 3, 2, 700, 1427228455168);',
 				'INSERT INTO position VALUES (null, 1, -1, 1500, 1427228555168);'
 			];
 			this.db.transaction(function(tx) {

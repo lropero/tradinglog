@@ -3,6 +3,8 @@
 
 	app.swipe = {
 		init: function(selector) {
+
+			/** Support all widths */
 			var width = $(document).width();
 			$(selector).each(function() {
 				var $wrapper = $(this).parents('.wrapper-label');
@@ -13,6 +15,7 @@
 				$(this).css('width', width + 'px');
 				$(this).next().css('width', width + 'px');
 			});
+
 			$(selector).pep({
 				axis: 'x',
 				constrainTo: 'parent',
@@ -26,10 +29,7 @@
 					if($el.position().left % 80 > 0) {
 						$.pep.restore();
 					}
-					if($el.position().left > 0) {
-						$el.removeClass('swiped');
-						app.enableScroll();
-					}
+					app.enableScroll();
 				},
 
 				revertIf: function() {
@@ -42,9 +42,9 @@
 				},
 
 				start: function() {
+					app.disableScroll();
 					var $el = $(this.el);
 					if(!$el.hasClass('swiped')) {
-						app.disableScroll();
 						$.pep.restore();
 					}
 				},
