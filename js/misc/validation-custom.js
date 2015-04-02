@@ -29,7 +29,6 @@
 		if($('div#isolate').is(':visible')) {
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
-				cordova.plugins.Keyboard.disableScroll(false);
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 			}
 			$('footer').show();
@@ -45,7 +44,6 @@
 		var $target = $(e.currentTarget);
 		if($('div#isolate').is(':hidden')) {
 			if(typeof cordova !== 'undefined') {
-				cordova.plugins.Keyboard.disableScroll(true);
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 			if($target.hasClass('error')) {
