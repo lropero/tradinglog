@@ -10,9 +10,6 @@
 
 		init: function() {
 
-			/** A few settings needed when running mobile */
-			app.mobile();
-
 			/** We start by calling the layout view which is in charge of rendering
 				the header and footer (both of them separate views); all of these
 				happens asynchronously using deferreds/promises */
@@ -61,6 +58,16 @@
 
 		},
 
+		disableScroll: function() {
+			$('section#content').css('-webkit-overflow-scrolling', 'auto');
+			$('section#content').css('overflow-y', 'hidden');
+		},
+
+		enableScroll: function() {
+			$('section#content').css('-webkit-overflow-scrolling', 'touch');
+			$('section#content').css('overflow-y', 'scroll');
+		},
+
 		loadView: function(view, attrs) {
 
 			/** Some views require to undelegate events, e.g. those with
@@ -72,23 +79,6 @@
 			/** View is loaded */
 			this.view = new app.Views[view](attrs);
 
-		},
-
-		mobile: function() {
-			if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
-				cordova.plugins.Keyboard.disableScroll(true);
-				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-			}
-
-			app.disableScroll = function() {
-				$('section#content').css('-webkit-overflow-scrolling', 'auto');
-				$('section#content').css('overflow-y', 'hidden');
-			}
-
-			app.enableScroll = function() {
-				$('section#content').css('-webkit-overflow-scrolling', 'touch');
-				$('section#content').css('overflow-y', 'scroll');
-			}
 		}
 	};
 

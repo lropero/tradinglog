@@ -24,10 +24,10 @@
 				rest: function() {
 					var $el = $(this.el);
 					if($el.position().left % 80 > 0) {
-						$el.addClass('swiped');
 						$.pep.restore();
 					}
 					if($el.position().left > 0) {
+						$el.removeClass('swiped');
 						app.enableScroll();
 					}
 				},
@@ -43,12 +43,10 @@
 
 				start: function() {
 					var $el = $(this.el);
-					if($el.hasClass('swiped')) {
-						$el.removeClass('swiped');
-					} else {
+					if(!$el.hasClass('swiped')) {
 						app.disableScroll();
+						$.pep.restore();
 					}
-					$.pep.restore();
 				},
 
 				stop: function(e) {
