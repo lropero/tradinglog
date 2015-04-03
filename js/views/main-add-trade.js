@@ -61,14 +61,30 @@
 
 		isolate: function(e) {
 			e.preventDefault();
+			var cookie = $.cookie('cookie');
+			if(cookie) {
+				cookie = cookie.split('&');
+				for(var i = 0; i < cookie.length; i++) {
+					cookie[i] = cookie[i].split('=')[1];
+				}
+				var instrument_id = cookie[0];
+				var size = cookie[1];
+			}
 			if($(e.currentTarget).prop('id') === 'size') {
-				if(!this.$el.find('input#size').val()) {
-					var size = $.cookie('size');
+				var $input = this.$el.find('input#size');
+				if(!$input.val()) {
 					if(size) {
 						if(size < 0) {
 							size *= -1;
 						}
-						this.$el.find('input#size').val(size);
+						$input.val(size);
+					}
+				}
+			} else if($(e.currentTarget).prop('id') === 'instrument_id') {
+				var $select = this.$el.find('select#instrument_id');
+				if($select.val() === '0') {
+					if(instrument_id) {
+						$select.val(instrument_id);
 					}
 				}
 			}
@@ -112,7 +128,11 @@
 						});
 						position.save(null, {
 							success: function() {
-								$.cookie('size', size, {
+								var cookie = {
+									instrument_id: instrument_id,
+									size: size
+								};
+								$.cookie('cookie', $.param(cookie), {
 									expires: 20
 								});
 								app.trigger('clear', 'main');
