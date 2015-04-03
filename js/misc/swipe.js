@@ -36,11 +36,13 @@
 							app.enableScroll();
 						}, 500);
 					} else if($el.position().left > 0) {
-						$el.removeClass('swiped');
-						if(app.timeout) {
-							clearTimeout(app.timeout);
+						if($el.hasClass('swiped')) {
+							$el.removeClass('swiped');
+							if(app.timeout) {
+								clearTimeout(app.timeout);
+							}
+							app.enableScroll();
 						}
-						app.enableScroll();
 					} else {
 						if(app.timeout) {
 							clearTimeout(app.timeout);
