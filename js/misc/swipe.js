@@ -64,13 +64,13 @@
 					var left = $el.position().left;
 					if(left < parseInt(this.offset.left, 10)) {
 						app.disableScroll();
-						if(app.timeout) {
-							clearTimeout(app.timeout);
-						}
-						app.timeout = setTimeout(function() {
-							app.enableScroll();
-						}, 500);
 					}
+					if(app.timeout) {
+						clearTimeout(app.timeout);
+					}
+					app.timeout = setTimeout(function() {
+						app.enableScroll();
+					}, 500);
 				}
 			});
 		}
