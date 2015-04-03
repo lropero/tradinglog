@@ -149,18 +149,18 @@
 		viewOperation: function(e) {
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var index = $wrapper.data('index');
+			var key = $wrapper.data('key');
 			app.loadView('mainViewOperation', {
-				description: this.objects[index].description
+				description: this.objects[key].description
 			});
 		},
 
 		viewTrade: function(e) {
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var index = $wrapper.data('index');
+			var key = $wrapper.data('key');
 			app.loadView('mainViewTrade', {
-				instrument: this.objects[index].instrument
+				instrument: this.objects[key].instrument
 				// trade: this.objects[index]
 			});
 		}

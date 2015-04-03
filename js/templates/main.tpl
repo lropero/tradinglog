@@ -3,7 +3,7 @@
 		<ul>
 			{{#each objects}}
 				{{#if this.instrument}}
-					<li class="wrapper-label" data-index="{{@index}}" data-swipe="1">
+					<li class="wrapper-label" data-key="{{@key}}" data-swipe="1">
 						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe">
 							<div class="ball">
 								{{#if this.comments}}
@@ -28,7 +28,7 @@
 						</div>
 					</li>
 				{{else}}
-					<li class="wrapper-label" data-index="{{@index}}">
+					<li class="wrapper-label" data-key="{{@key}}">
 						<div class="label operation {{#gt this.amount 0}}deposit{{else}}withdraw{{/gt}}{{#unless this.description.length}} no-click{{/unless}}">
 							<div class="ball">
 								<div class="icon"></div>
