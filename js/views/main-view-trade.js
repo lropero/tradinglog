@@ -16,7 +16,7 @@
 		render: function() {
 			app.trigger('change', 'main-view-trade');
 			this.$el.html(this.template({
-				trade: this.trade
+				// trade: this.trade
 			}));
 			return this;
 		}
