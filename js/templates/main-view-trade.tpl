@@ -15,4 +15,8 @@
 			</div>
 		</li>
 	</ul>
+	<ul class="wrapper-button-default two-button-default">
+		<li class="button-default">Add position</li>
+		<li class="button-default">Add comment</li>
+	</ul>
 </script>
