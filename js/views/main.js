@@ -159,6 +159,16 @@
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var id = $wrapper.data('id');
+
+			// Preload
+			app.headerNavigation.update({});
+			this.destroy();
+			this.$el.empty();
+			var $label = $wrapper.children('div.label');
+			$label.addClass('full');
+			$label.find('div.globe-comments').hide();
+			this.$el.append($wrapper);
+
 			app.loadView('mainViewTrade', {
 				id: id
 			});
