@@ -30,10 +30,12 @@
 						$.pep.restore();
 					} else if($el.position().left > 0) {
 						$el.removeClass('swiped');
-					}
-					app.timeout = setTimeout(function() {
+					} else {
+						if(app.timeout) {
+							clearTimeout(app.timeout);
+						}
 						app.enableScroll();
-					}, 3000);
+					}
 				},
 
 				revertIf: function() {
@@ -58,6 +60,13 @@
 
 				stop: function(e) {
 					e.preventDefault();
+					app.disableScroll();
+					if(app.timeout) {
+						clearTimeout(app.timeout);
+					}
+					app.timeout = setTimeout(function() {
+						app.enableScroll();
+					}, 300);
 				}
 			});
 		}
