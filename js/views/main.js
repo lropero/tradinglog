@@ -151,7 +151,7 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var index = $wrapper.data('index');
 			app.loadView('mainViewOperation', {
-				operation: this.objects[index]
+				description: this.objects[index].description
 			});
 		},
 
@@ -160,7 +160,8 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var index = $wrapper.data('index');
 			app.loadView('mainViewTrade', {
-				trade: this.objects[index]
+				instrument: this.objects[index].instrument
+				// trade: this.objects[index]
 			});
 		}
 	});

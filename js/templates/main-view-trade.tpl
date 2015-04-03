@@ -6,7 +6,7 @@
 					<div class="icon"></div>
 				</div>
 				<div class="row">
-					<div class="instrument">{{trade.instrument}}</div>
+					<div class="instrument">{{this.instrument}}</div>
 					<div class="net {{#gt trade.net 0}}positive{{else}}negative{{/gt}}">{{#if trade.net}}{{#money trade.net}}{{/money}}{{/if}}</div>
 				</div>
 				<div class="row">
