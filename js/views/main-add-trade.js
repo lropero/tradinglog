@@ -6,7 +6,7 @@
 		events: {
 			'tap div#done': 'combine',
 			'tap input': 'isolate',
-			'tap select': 'removeValidation',
+			'tap select': 'isolate',
 			'tap ul#type div:not(.active)': 'radio'
 		},
 
@@ -80,17 +80,6 @@
 			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 			var $target = $(e.currentTarget);
 			$target.addClass('active');
-		},
-
-		removeValidation: function(e) {
-			var $target = $(e.currentTarget);
-			if($target.hasClass('error')) {
-				$target.removeClass('error');
-				var $wrapper = $target.parents('div.wrapper-select');
-				if($wrapper) {
-					$wrapper.removeClass('error');
-				}
-			}
 		},
 
 		submit: function() {

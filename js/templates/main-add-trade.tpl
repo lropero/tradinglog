@@ -3,8 +3,8 @@
 		<div class="button-primary" id="done">Done</div>
 	</div>
 	<div id="complete">
-		<form>
-			<div class="wrapper-select">
+		<div class="wrapper-select isolate">
+			<form>
 				<div class="select">
 					<select id="instrument_id">
 						<option value="0">Instrument</option>
@@ -14,8 +14,8 @@
 					</select>
 				</div>
 				<span class="help-block">Manage your instruments through Settings.</span>
-			</div>
-		</form>
+			</form>
+		</div>
 		<ul class="wrapper-radiobutton" id="type">
 			<li class="group-radiobutton">
 				<div class="radiobutton active" data-type="1"></div>

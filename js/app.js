@@ -10,9 +10,11 @@
 
 		init: function() {
 
-			/** Setting to avoid a visual glitch that occurs when keyboard is shown */
+			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
+				shown */
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.disableScroll(true);
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
 			/** We start by calling the layout view which is in charge of rendering
@@ -39,8 +41,7 @@
 						/** DB and layout view are ready; we load the main view */
 						app.view = new app.Views.main();
 
-						/** We hide the initial splash screen once the main view is ready
-							(i.e. all objects within are correctly loaded) */
+						/** We hide the initial splash screen once the main view is ready */
 						app.view.deferred.done(function() {
 							if(navigator.splashscreen) {
 								navigator.splashscreen.hide();
@@ -52,8 +53,8 @@
 			});
 
 			/** A cache is used to hold the HTML rendered in app.Views.main so we
-			don't have to fetch all trades upon simple navigation. We then provide
-			a way to clear it triggering an event */
+			don't have to fetch all trades upon simple navigation. We then provide a
+			way to clear it triggering an event */
 			app.listenTo(app, 'clear', function(view) {
 				delete app.cache;
 				if(view) {
@@ -75,8 +76,8 @@
 
 		loadView: function(view, attrs) {
 
-			/** Some views require to undelegate events, e.g. those with
-				control segments (i.e. <ul><li>submenus</li></ul>) */
+			/** Some views require to undelegate events, e.g. those with control
+				segments (i.e. <ul><li>submenus</li></ul>) */
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
 			}

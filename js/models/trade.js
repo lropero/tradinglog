@@ -102,7 +102,7 @@
 				}
 				self.destroy({
 					success: function() {
-						app.trigger('clear', 'main');
+						app.trigger('clear');
 					}
 				});
 			});
