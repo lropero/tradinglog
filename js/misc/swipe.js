@@ -19,14 +19,15 @@
 			$(selector).pep({
 				axis: 'x',
 				constrainTo: 'parent',
-				cssEaseDuration: 300,
+				cssEaseDuration: 250,
 				shouldPreventDefault: false,
 				startThreshold: [30, 20],
 				useCSSTranslation: false,
 
 				rest: function() {
 					var $el = $(this.el);
-					if($el.position().left % 80 > 0) {
+					var left = $el.position().left;
+					if(left > 0 && left < parseInt(this.offset.left, 10)) {
 						$.pep.restore();
 					} else if($el.position().left > 0) {
 						$el.removeClass('swiped');
@@ -60,13 +61,17 @@
 
 				stop: function(e) {
 					e.preventDefault();
-					app.disableScroll();
-					if(app.timeout) {
-						clearTimeout(app.timeout);
+					var $el = $(this.el);
+					var left = $el.position().left;
+					if(left < parseInt(this.offset.left, 10)) {
+						app.disableScroll();
+						if(app.timeout) {
+							clearTimeout(app.timeout);
+						}
+						app.timeout = setTimeout(function() {
+							app.enableScroll();
+						}, 500);
 					}
-					app.timeout = setTimeout(function() {
-						app.enableScroll();
-					}, 300);
 				}
 			});
 		}
