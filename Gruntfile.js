@@ -8,8 +8,6 @@ module.exports = function(grunt) {
 				dest: 'tmp/styles.css',
 				src: [
 					'css/normalize.css',
-					'css/alertify-core.css',
-					'css/alertify-default.css',
 					'css/animate.css',
 					'css/ionicons.css',
 					'css/styles.css'
