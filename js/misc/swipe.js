@@ -45,7 +45,6 @@
 						if(app.timeout) {
 							clearTimeout(app.timeout);
 						}
-						app.enableScroll();
 					}
 				},
 
