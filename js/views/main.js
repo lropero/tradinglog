@@ -160,7 +160,7 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			app.loadView('mainViewTrade', {
-				instrument: this.objects[key].instrument
+				// instrument: this.objects[key].instrument
 				// trade: this.objects[index]
 			});
 		}
