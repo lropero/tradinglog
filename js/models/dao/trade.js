@@ -25,6 +25,18 @@
 			});
 		},
 
+		find: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT * FROM trade WHERE id = "' + model.id + '";';
+				tx.executeSql(sql, [], function(tx, results) {
+					if(results.rows.length === 1) {
+						var trade = results.rows.item(0);
+						callback(trade);
+					}
+				});
+			});
+		},
+
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ORDER BY closed_at, id DESC;';

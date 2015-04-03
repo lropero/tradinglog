@@ -27,13 +27,17 @@
 				if(this.collection) {
 					this.collection.deferreds.push(this.deferred);
 				}
-				this.positions = [];
-				$.when(
-					this.fetchInstrument(),
-					this.fetchPositions(),
-					this.fetchComments()
-				).done(function() {
-					self.deferred.resolve();
+				this.fetch({
+					success: function() {
+						self.positions = [];
+						$.when(
+							self.fetchInstrument(),
+							self.fetchPositions(),
+							self.fetchComments()
+						).done(function() {
+							self.deferred.resolve();
+						});
+					}
 				});
 			} else {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {

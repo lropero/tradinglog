@@ -55,7 +55,7 @@
 			if(type === 2) {
 				amount *= -1;
 			}
-			var description = this.$el.find('textarea#description').val();
+			var description = this.$el.find('textarea#description').val().trim();
 			var balance = app.account.get('balance') + amount;
 			if(balance < 0) {
 				alertify.error('Withdrawal exceeds your balance');

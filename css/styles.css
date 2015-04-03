@@ -875,7 +875,10 @@ ol {
   width: 50%;
 }
 .wrapper-button-default.two-button-default .button-default:first-child {
-  border-right: 1px solid #ffffff;
+  border-right: 1px solid #2c168e;
+}
+.wrapper-button-default.two-button-default .button-default:nth-child(2) {
+  border-left: 1px solid #2c168e;
 }
 .button-primary {
   line-height: 44px;

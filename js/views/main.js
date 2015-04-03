@@ -157,7 +157,11 @@
 
 		viewTrade: function(e) {
 			e.preventDefault();
-			app.loadView('mainViewTrade');
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var id = $wrapper.data('id');
+			app.loadView('mainViewTrade', {
+				id: id
+			});
 		}
 	});
 })();

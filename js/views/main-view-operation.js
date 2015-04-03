@@ -9,14 +9,12 @@
 			this.operation = new app.Models.operation({
 				id: attrs.id
 			});
-			this.operation.fetch({
-				success: function() {
-					app.templateLoader.get('main-view-operation').done(function(template) {
-						self.template = Handlebars.compile($(template).html().trim());
-						self.render();
-					});
-				}
-			})
+			this.operation.deferred.done(function() {
+				app.templateLoader.get('main-view-operation').done(function(template) {
+					self.template = Handlebars.compile($(template).html().trim());
+					self.render();
+				});
+			});
 		},
 
 		render: function() {

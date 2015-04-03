@@ -17,18 +17,28 @@
 		},
 
 		initialize: function() {
-			this.listenTo(this, 'validated', function(isValid, model, errors) {
-				if(!isValid) {
-					$.each(errors, function(index, error) {
-						var $el = $('#' + index);
-						$el.addClass('error');
-						var $price = $el.parent('div.price');
-						if($price) {
-							$price.addClass('error');
-						}
-					});
-				}
-			});
+			var self = this;
+			if(!this.isNew()) {
+				this.deferred = $.Deferred();
+				this.fetch({
+					success: function() {
+						self.deferred.resolve();
+					}
+				});
+			} else {
+				this.listenTo(this, 'validated', function(isValid, model, errors) {
+					if(!isValid) {
+						$.each(errors, function(index, error) {
+							var $el = $('#' + index);
+							$el.addClass('error');
+							var $price = $el.parent('div.price');
+							if($price) {
+								$price.addClass('error');
+							}
+						});
+					}
+				});
+			}
 		}
 	});
 })();

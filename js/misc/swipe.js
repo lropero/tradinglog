@@ -31,16 +31,12 @@
 						$.pep.restore();
 					} else if($el.position().left > 0) {
 						if($el.hasClass('swiped')) {
+							clearTimeout(app.timeout);
 							$el.removeClass('swiped');
-							if(app.timeout) {
-								clearTimeout(app.timeout);
-							}
 							app.enableScroll();
 						}
 					} else {
-						if(app.timeout) {
-							clearTimeout(app.timeout);
-						}
+						clearTimeout(app.timeout);
 					}
 				},
 
@@ -54,10 +50,8 @@
 				},
 
 				start: function() {
+					clearTimeout(app.timeout);
 					app.disableScroll();
-					if(app.timeout) {
-						clearTimeout(app.timeout);
-					}
 					var $el = $(this.el);
 					if(!$el.hasClass('swiped')) {
 						$.pep.restore();
@@ -69,10 +63,8 @@
 					var $el = $(this.el);
 					var left = $el.position().left;
 					if(left < parseInt(this.offset.left, 10)) {
+						clearTimeout(app.timeout);
 						app.disableScroll();
-						if(app.timeout) {
-							clearTimeout(app.timeout);
-						}
 						app.timeout = setTimeout(function() {
 							app.enableScroll();
 						}, 500);
