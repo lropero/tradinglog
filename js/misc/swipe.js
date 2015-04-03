@@ -29,12 +29,6 @@
 					var left = $el.position().left;
 					if(left > 0 && left < parseInt(this.offset.left, 10)) {
 						$.pep.restore();
-						if(app.timeout) {
-							clearTimeout(app.timeout);
-						}
-						app.timeout = setTimeout(function() {
-							app.enableScroll();
-						}, 500);
 					} else if($el.position().left > 0) {
 						if($el.hasClass('swiped')) {
 							$el.removeClass('swiped');
@@ -76,6 +70,12 @@
 					var left = $el.position().left;
 					if(left < parseInt(this.offset.left, 10)) {
 						app.disableScroll();
+						if(app.timeout) {
+							clearTimeout(app.timeout);
+						}
+						app.timeout = setTimeout(function() {
+							app.enableScroll();
+						}, 500);
 					}
 				}
 			});
