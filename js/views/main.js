@@ -149,28 +149,18 @@
 		viewOperation: function(e) {
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var id = $wrapper.data('id');
+			var index = $wrapper.data('index');
 			app.loadView('mainViewOperation', {
-				id: id
+				operation: this.objects[index]
 			});
 		},
 
 		viewTrade: function(e) {
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var id = $wrapper.data('id');
-
-			// Preload
-			app.headerNavigation.update({});
-			this.destroy();
-			this.$el.empty();
-			var $label = $wrapper.children('div.label');
-			$label.addClass('full');
-			$label.find('div.globe-comments').hide();
-			this.$el.append($wrapper);
-
+			var index = $wrapper.data('index');
 			app.loadView('mainViewTrade', {
-				id: id
+				trade: this.objects[index]
 			});
 		}
 	});

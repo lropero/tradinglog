@@ -6,21 +6,17 @@
 
 		initialize: function(attrs) {
 			var self = this;
-			this.operation = new app.Models.operation({
-				id: attrs.id
-			});
-			this.operation.deferred.done(function() {
-				app.templateLoader.get('main-view-operation').done(function(template) {
-					self.template = Handlebars.compile($(template).html().trim());
-					self.render();
-				});
+			this.operation = attrs.operation;
+			app.templateLoader.get('main-view-operation').done(function(template) {
+				self.template = Handlebars.compile($(template).html().trim());
+				self.render();
 			});
 		},
 
 		render: function() {
 			app.trigger('change', 'main-view-operation');
 			this.$el.html(this.template({
-				description: this.operation.get('description')
+				description: this.operation.description
 			}));
 			return this;
 		}
