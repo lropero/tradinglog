@@ -161,7 +161,7 @@
 			var key = $wrapper.data('key');
 			app.loadView('mainViewTrade', {
 				// instrument: this.objects[key].instrument
-				// trade: this.objects[index]
+				trade: this.objects[key]
 			});
 		}
 	});

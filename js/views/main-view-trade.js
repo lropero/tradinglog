@@ -6,6 +6,7 @@
 
 		initialize: function(attrs) {
 			var self = this;
+			this.trade = attrs.trade;
 			// this.instrument = attrs.instrument;
 			app.templateLoader.get('main-view-trade').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
@@ -17,7 +18,7 @@
 			app.trigger('change', 'main-view-trade');
 			this.$el.html(this.template({
 				// instrument: this.instrument
-				// trade: this.trade
+				trade: this.trade
 			}));
 			return this;
 		}
