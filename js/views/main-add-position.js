@@ -30,7 +30,9 @@
 			app.trigger('change', 'main-add-position', {
 				trade: this.trade
 			});
-			this.$el.html(this.template());
+			this.$el.html(this.template({
+				closeSize: this.trade.closeSize
+			}));
 			return this;
 		},
 
@@ -59,6 +61,21 @@
 				size *= -1;
 			}
 			var price = this.$el.find('input#price').val().replace(',', '.');
+			var result = parseInt(size, 10) + this.trade.closeSize;
+			switch(this.trade.type) {
+				case 1:
+					if(result < 0) {
+						alertify.error('Position exceeds closing size');
+						return;
+					}
+					break;
+				case 2:
+					if(result > 0) {
+						alertify.error('Position exceeds closing size');
+						return;
+					}
+					break;
+			}
 			var position = new app.Models.position();
 			position.set({
 				trade_id: this.trade.id,
@@ -68,10 +85,24 @@
 			});
 			position.save(null, {
 				success: function() {
-					app.trigger('clear');
-					app.loadView('mainViewTrade', {
-						trade_id: self.trade.id
-					});
+					if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
+						var trade = new app.Models.trade({
+							id: self.trade.id
+						});
+						trade.deferred.then(function() {
+							trade.setPnL(function() {
+								app.trigger('clear');
+								app.loadView('mainViewTrade', {
+									trade_id: self.trade.id
+								});
+							});
+						});
+					} else {
+						app.trigger('clear');
+						app.loadView('mainViewTrade', {
+							trade_id: self.trade.id
+						});
+					}
 				}
 			});
 		}

@@ -25,9 +25,21 @@
 			});
 		},
 
+		find: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT * FROM position WHERE id = "' + model.id + '";';
+				tx.executeSql(sql, [], function(tx, results) {
+					if(results.rows.length === 1) {
+						var position = results.rows.item(0);
+						callback(position);
+					}
+				});
+			});
+		},
+
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM position WHERE trade_id = "' + model.trade_id + '";';
+				var sql = 'SELECT * FROM position WHERE trade_id = "' + model.trade_id + '" ORDER BY created_at;';
 				tx.executeSql(sql, [], function(tx, results) {
 					var positions = [];
 					for(var i = 0; i < results.rows.length; i++) {

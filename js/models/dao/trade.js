@@ -48,6 +48,16 @@
 					callback(trades);
 				});
 			});
+		},
+
+		update: function(model, callback) {
+			model = model.toJSON();
+			this.db.transaction(function(tx) {
+				var sql = 'UPDATE trade SET account_id = "' + model.account_id + '", instrument_id = "' + model.instrument_id + '", type = "' + model.type + '", profit = "' + model.profit + '", loss = "' + model.loss + '", commission = "' + model.commission + '", variation = "' + model.variation + '", comments = "' + model.comments + '", closed_at = "' + model.closed_at + '" WHERE id = "' + model.id + '";';
+				tx.executeSql(sql);
+			}, null, function(tx) {
+				callback();
+			});
 		}
 	};
 

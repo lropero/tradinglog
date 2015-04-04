@@ -19,22 +19,38 @@
 		},
 
 		initialize: function() {
-			this.listenTo(this, 'validated', function(isValid, model, errors) {
-				if(!isValid) {
-					$.each(errors, function(index, error) {
-						var $el = $('#' + index);
-						$el.addClass('error');
-						var $price = $el.parent('div.price');
-						if($price) {
-							$price.addClass('error');
-						}
-					});
-				}
-			});
+			var self = this;
+			this.deferred = $.Deferred();
+			if(!this.isNew()) {
+				this.fetch({
+					success: function() {
+						self.deferred.resolve();
+					}
+				});
+			} else {
+				this.listenTo(this, 'validated', function(isValid, model, errors) {
+					if(!isValid) {
+						$.each(errors, function(index, error) {
+							var $el = $('#' + index);
+							$el.addClass('error');
+							var $price = $el.parent('div.price');
+							if($price) {
+								$price.addClass('error');
+							}
+						});
+					}
+				});
+			}
 		},
 
 		delete: function() {
 			this.destroy();
+		},
+
+		toJSON: function() {
+			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
+			json.sizePrice = Math.abs(this.get('size')) + ' @ ' + accounting.formatMoney(this.get('price'), '');
+			return json;
 		}
 	});
 })();

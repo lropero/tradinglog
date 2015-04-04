@@ -55,14 +55,14 @@
 			}
 		},
 
-		calculateGross: function() {
-			var gross = this.get('profit') - this.get('loss');
-			return gross;
-		},
-
-		calculateNet: function() {
-			var net = this.calculateGross() - this.get('commission');
-			return net;
+		calculateCloseSize: function() {
+			var counter = 0;
+			for(var i = 0; i < this.positions.length; i++) {
+				var position = this.positions[i];
+				var size = parseInt(position.size, 10);
+				counter += size;
+			}
+			return counter;
 		},
 
 		calculateSizePrice: function() {
@@ -150,6 +150,16 @@
 			return deferred;
 		},
 
+		getGross: function() {
+			var gross = this.get('profit') - this.get('loss');
+			return gross;
+		},
+
+		getNet: function() {
+			var net = this.getGross() - this.get('commission');
+			return net;
+		},
+
 		isLong: function() {
 			if(this.get('type') === 1) {
 				return true;
@@ -164,15 +174,76 @@
 			return false;
 		},
 
+		setPnL: function(callback) {
+			var self = this;
+			var profit = 0;
+			var loss = 0;
+			var count = 0;
+			var array = [];
+			var type = parseInt(this.get('type'), 10);
+			for(var i = 0; i < this.positions.length; i++) {
+				var position = this.positions[i];
+				var size = parseInt(position.size, 10);
+				for(var j = 0; j < Math.abs(size); j++) {
+					if(type === 1) {
+						if(size > 0) {
+							array.push(position.price);
+						} else {
+							count++;
+							var pnl = position.price - array[0];
+							if(pnl > 0) {
+								profit += pnl;
+							} else {
+								loss += Math.abs(pnl);
+							}
+							array.shift();
+						}
+					} else {
+						if(size < 0) {
+							array.push(position.price);
+						} else {
+							count++;
+							var pnl = array[0] - position.price;
+							if(pnl > 0) {
+								profit += pnl;
+							} else {
+								loss += Math.abs(pnl);
+							}
+							array.shift();
+						}
+					}
+				}
+			}
+			var instrument = new app.Models.instrument({
+				id: this.get('instrument_id')
+			});
+			instrument.deferred.then(function() {
+				instrument = instrument.toJSON();
+				profit *= instrument.point_value;
+				loss *= instrument.point_value;
+				var commission = instrument.commission * count;
+				self.set({
+					profit: profit,
+					loss: loss,
+					commission: commission
+				});
+				self.save(null, {
+					success: callback
+				});
+			});
+		},
+
 		toJSON: function() {
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			if(this.positions && this.positions.length > 0) {
+				json.closeSize = this.calculateCloseSize();
 				json.instrument = this.instrument;
 				json.isLong = this.isLong();
 				json.isOpen = this.isOpen();
 				if(this.positions.length > 1) {
-					json.net = this.calculateNet();
+					json.net = this.getNet();
 				}
+				json.positions = this.positions;
 				json.sizePrice = this.calculateSizePrice();
 			}
 			return json;

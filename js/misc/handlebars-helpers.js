@@ -1,19 +1,23 @@
 (function() {
 	'use strict';
 
-	Handlebars.registerHelper('date', function(date) {
+	Handlebars.registerHelper('abs', function(number) {
+		return Math.abs(number);
+	});
+
+	Handlebars.registerHelper('date', function(timestamp) {
 		var today = new Date();
 		today.setHours(0, 0, 0, 0);
 		var time = today.getTime();
-		if(date > time) {
+		if(timestamp > time) {
 			return 'Today';
-		} else if(date > time - (24 * 60 * 60 * 1000)) {
+		} else if(timestamp > time - (24 * 60 * 60 * 1000)) {
 			return 'Yesterday';
 		} else {
 			var week = new Date(today.getTime());
 			week.setDate(today.getDate() - 6);
-			if(date > week.getTime()) {
-				switch((new Date(date)).getDay()) {
+			if(timestamp > week.getTime()) {
+				switch((new Date(timestamp)).getDay()) {
 					case 0:
 						return 'Sunday';
 						break;
@@ -37,7 +41,7 @@
 						break;
 				}
 			} else {
-				var then = new Date(date);
+				var then = new Date(timestamp);
 				var month = '';
 				switch(then.getMonth()) {
 					case 0:
@@ -111,6 +115,17 @@
 
 	Handlebars.registerHelper('money', function(money) {
 		return accounting.formatMoney(money, '$ ');
+	});
+
+	Handlebars.registerHelper('time', function(timestamp) {
+		var then = new Date(timestamp);
+		var hours = then.getHours();
+		var meridiem = 'am';
+		if(hours > 12) {
+			hours -= 12;
+			meridiem = 'pm';
+		}
+		return hours + ':' + then.getMinutes() + meridiem;
 	});
 
 	Handlebars.registerHelper('variation', function(variation) {
