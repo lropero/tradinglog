@@ -30,12 +30,12 @@
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
 			}
-			var $el = $('div#done').next();
-			$el.children().prop('disabled', true);
-			$('footer').show();
+			var $wrapper = $('div#done').next();
+			$wrapper.find('.field').prop('disabled', true).removeClass('field');
 			$('div#isolate').hide();
-			$('div#isolated').append($el).children().unwrap();
+			$('div#isolated').append($wrapper).children().unwrap();
 			$('div#complete').show();
+			$('footer').show();
 			$('header #button-left').show();
 			$('header #button-right').show();
 		}
@@ -55,13 +55,14 @@
 					$wrapper.removeClass('error');
 				}
 			}
+			$target.addClass('field');
 			var $isolate = $target.parents('.isolate');
 			$isolate.wrap('<div id="isolated"></div>');
 			$('header #button-left').hide();
 			$('header #button-right').hide();
+			$('footer').hide();
 			$('div#complete').hide();
 			$('div#isolate').append($isolate).show();
-			$('footer').hide();
 		}
 		setTimeout(function() {
 			$target.prop('disabled', false);

@@ -16,12 +16,12 @@
 		<form>
 			<div class="wrapper-input isolate">
 				<div class="input-icon price">
-					<input id="amount" type="number" placeholder="Amount" />
+					<input id="amount" type="number" placeholder="Amount" disabled />
 				</div>
 				<span class="help-block">Total amount.</span>
 			</div>
 			<div class="wrapper-comment isolate">
-				<textarea id="description" rows="5" placeholder="Description"></textarea>
+				<textarea id="description" rows="5" placeholder="Description" disabled></textarea>
 				<span class="help-block">Optional comment in which you can describe the reasons for this operation. For example, 'Monthly contribution', 'Balance adjustment', etc.</span>
 			</div>
 		</form>

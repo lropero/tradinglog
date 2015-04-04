@@ -28,12 +28,12 @@
 		</ul>
 		<form>
 			<div class="wrapper-input isolate">
-				<input id="size" type="number" placeholder="Position size" />
+				<input id="size" type="number" placeholder="Position size" disabled />
 				<span class="help-block">Quantity of shares or contracts.</span>
 			</div>
 			<div class="wrapper-input isolate">
 				<div class="input-icon price">
-					<input id="price" type="number" placeholder="Price" />
+					<input id="price" type="number" placeholder="Price" disabled />
 				</div>
 				<span class="help-block">Buy or sell price.</span>
 			</div>
