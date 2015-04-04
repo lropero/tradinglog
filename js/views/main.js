@@ -12,10 +12,6 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.get('main').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
 			this.operations = [];
 			this.trades = [];
 			$.when(
@@ -25,6 +21,10 @@
 				self.objects = [];
 				self.prepareObjects();
 				self.deferred.resolve();
+			});
+			app.templateLoader.get('main').done(function(template) {
+				self.template = Handlebars.compile($(template).html().trim());
+				self.render();
 			});
 		},
 
@@ -54,10 +54,10 @@
 		},
 
 		button: function(e) {
-			e.preventDefault();
 			var self = this;
+			e.preventDefault();
+			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var id = $wrapper.data('id');
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,

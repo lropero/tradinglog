@@ -17,8 +17,8 @@
 			var self = this;
 			this.$el.html(this.template());
 			$.when(
-				new app.Views.header().deferred.promise(),
-				new app.Views.footer().deferred.promise()
+				new app.Views.header().deferred,
+				new app.Views.footer().deferred
 			).done(function() {
 				self.deferred.resolve();
 			})

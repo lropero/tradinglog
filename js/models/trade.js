@@ -22,8 +22,8 @@
 
 		initialize: function() {
 			var self = this;
+			this.deferred = $.Deferred();
 			if(!this.isNew()) {
-				this.deferred = $.Deferred();
 				if(this.collection) {
 					this.collection.deferreds.push(this.deferred);
 				}

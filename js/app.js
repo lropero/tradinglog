@@ -27,7 +27,7 @@
 				/** DB becomes ready while layout loads; init() returns a promise */
 				app.databaseController.init(),
 
-				layout.deferred.promise()
+				layout.deferred
 			).done(function() {
 
 				/** Get active account */
@@ -82,7 +82,7 @@
 				this.view.destroy();
 			}
 
-			/** View is loaded */
+			/** Load view */
 			this.view = new app.Views[view](attrs);
 
 		}

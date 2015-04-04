@@ -1,20 +1,21 @@
 (function() {
 	'use strict';
 
-	app.Views.mainAddOperation = Backbone.View.extend({
-		el: 'section#main-stats-friends section#content',
+	app.Views.mainAddPosition = Backbone.View.extend({
+		el: 'section#main-stats-friends',
 		events: {
 			'tap div#done': 'combine',
 			'tap input, textarea': 'isolate',
 			'tap ul#type div:not(.active)': 'radio'
 		},
 
-		initialize: function() {
+		initialize: function(attrs) {
 			var self = this;
+			this.trade = attrs.trade;
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('main-add-operation').done(function(template) {
+			app.templateLoader.get('main-add-position').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
 			});
@@ -26,7 +27,9 @@
 		},
 
 		render: function() {
-			app.trigger('change', 'main-add-operation');
+			app.trigger('change', 'main-add-position', {
+				trade: this.trade
+			});
 			this.$el.html(this.template());
 			return this;
 		},
@@ -49,38 +52,28 @@
 		},
 
 		submit: function() {
+			var self = this;
 			var type = this.$el.find('ul#type div.active').data('type');
-			var amount = this.$el.find('input#amount').val().replace(',', '.');
-			amount = Math.abs(amount);
+			var size = this.$el.find('input#size').val();
 			if(type === 2) {
-				amount *= -1;
+				size *= -1;
 			}
-			var description = this.$el.find('textarea#description').val().trim();
-			var balance = app.account.get('balance') + amount;
-			if(balance < 0) {
-				alertify.error('Withdrawal exceeds your balance');
-				return;
-			}
-			var operation = new app.Models.operation();
-			operation.set({
-				account_id: 1,
-				amount: amount,
-				description: description,
-				variation: amount * 100 / app.account.get('balance'),
+			var price = this.$el.find('input#price').val().replace(',', '.');
+			var position = new app.Models.position();
+			position.set({
+				trade_id: this.trade.id,
+				size: size,
+				price: price,
 				created_at: (new Date()).getTime()
 			});
-			operation.save(null, {
-				success: function(model, insertId) {
-					app.account.set({
-						balance: balance
-					});
-					app.account.save(null, {
-						success: function() {
-							app.trigger('clear', 'main');
-						}
+			position.save(null, {
+				success: function() {
+					app.trigger('clear');
+					app.loadView('mainViewTrade', {
+						trade_id: self.trade.id
 					});
 				}
-			})
+			});
 		}
 	});
 })();

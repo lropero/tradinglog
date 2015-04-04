@@ -13,15 +13,15 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.get('main-add-trade').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
 			this.instruments = [];
 			this.fetchInstruments();
 			app.submit = function() {
 				self.submit();
 			}
+			app.templateLoader.get('main-add-trade').done(function(template) {
+				self.template = Handlebars.compile($(template).html().trim());
+				self.render();
+			});
 		},
 
 		destroy: function() {
@@ -36,7 +36,7 @@
 				self.$el.html(self.template({
 					instruments: self.instruments
 				}));
-				return this;
+				return self;
 			});
 		},
 

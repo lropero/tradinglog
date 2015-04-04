@@ -7,11 +7,11 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
+			app.listenTo(app, 'change', this.update);
 			app.templateLoader.get('header').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
 			});
-			app.listenTo(app, 'change', this.update);
 		},
 
 		render: function() {
@@ -20,10 +20,13 @@
 			return this;
 		},
 
-		update: function(view) {
+		update: function(view, attrs) {
 			var options = {};
 			switch(view) {
 				case '_agustin':
+				case 'main-map':
+				case 'main-view-operation':
+				case 'main-view-trade':
 					options = {
 						left: {
 							icon: 'f124',
@@ -55,23 +58,8 @@
 						}
 					};
 					break;
+				case 'main-add-comment':
 				case 'main-add-operation':
-					options = {
-						left: {
-							icon: 'f124',
-							text: 'Cancel',
-							view: 'main'
-						},
-						right: {
-							action: function() {
-								if(app.submit) {
-									app.submit();
-								}
-							},
-							text: 'Add'
-						}
-					}
-					break;
 				case 'main-add-trade':
 					options = {
 						left: {
@@ -89,32 +77,26 @@
 						}
 					}
 					break;
-				case 'main-map':
+				case 'main-add-position':
 					options = {
 						left: {
+							action: function() {
+								app.loadView('mainViewTrade', {
+									trade: attrs.trade
+								});
+							},
 							icon: 'f124',
-							text: 'Back',
-							view: 'main'
+							text: 'Cancel'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Add'
 						}
-					};
-					break;
-				case 'main-view-operation':
-					options = {
-						left: {
-							icon: 'f124',
-							text: 'Back',
-							view: 'main'
-						}
-					};
-					break;
-				case 'main-view-trade':
-					options = {
-						left: {
-							icon: 'f124',
-							text: 'Back',
-							view: 'main'
-						}
-					};
+					}
 					break;
 			}
 			app.headerNavigation.update(options);

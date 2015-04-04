@@ -18,8 +18,8 @@
 
 		initialize: function() {
 			var self = this;
+			this.deferred = $.Deferred();
 			if(!this.isNew()) {
-				this.deferred = $.Deferred();
 				this.fetch({
 					success: function() {
 						self.deferred.resolve();

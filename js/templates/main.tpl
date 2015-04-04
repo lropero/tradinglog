@@ -22,7 +22,7 @@
 						<div class="wrapper-swipe">
 							<div class="swipe-buttons">
 								<ul>
-									<li class="button-swipe {{#if this.isOpen}}delete{{else}}commission{{/if}}"></li>
+									<li class="button-swipe {{#if this.isOpen}}delete{{else}}commission{{/if}}" data-id="{{this.id}}"></li>
 								</ul>
 							</div>
 						</div>

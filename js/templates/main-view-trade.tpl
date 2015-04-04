@@ -16,7 +16,7 @@
 		</li>
 	</ul>
 	<ul class="wrapper-button-default two-button-default">
-		<li class="button-default">Add position</li>
-		<li class="button-default">Add comment</li>
+		<li class="button-default" data-view="mainAddPosition">Add position</li>
+		<li class="button-default" data-view="mainAddComment">Add comment</li>
 	</ul>
 </script>

@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	app.Views.mainAddOperation = Backbone.View.extend({
+	app.Views.mainAddComment = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
 			'tap div#done': 'combine',
