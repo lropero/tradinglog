@@ -30,12 +30,14 @@
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
 			}
+			var $el = $('div#done').next();
 			$('footer').show();
 			$('div#isolate').hide();
-			$('div#isolated').append($('div#done').next()).children().unwrap();
+			$('div#isolated').append($el).children().unwrap();
 			$('div#complete').show();
 			$('header #button-left').show();
 			$('header #button-right').show();
+			$el.children().prop('disabled', true);
 		}
 	}
 
@@ -61,6 +63,9 @@
 			$('div#isolate').append($isolate).show();
 			$('footer').hide();
 		}
-		$target.focus();
+		setTimeout(function() {
+			$target.prop('disabled', false);
+			$target.focus();
+		}, 100);
 	}
 })();
