@@ -31,10 +31,10 @@
 						$.pep.restore();
 					} else if($el.position().left > 0) {
 						if($el.hasClass('swiped')) {
-							clearTimeout(app.timeout);
 							$el.removeClass('swiped');
-							app.enableScroll();
 						}
+						clearTimeout(app.timeout);
+						app.enableScroll();
 					} else {
 						clearTimeout(app.timeout);
 					}
