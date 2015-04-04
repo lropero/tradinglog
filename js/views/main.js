@@ -73,6 +73,7 @@
 						id: id
 					});
 					trade.delete();
+					app.enableScroll();
 				}
 			});
 		},
