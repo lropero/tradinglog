@@ -30,9 +30,11 @@
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
 			}
+			var $el = $('div#done').next();
+			$el.children().prop('disabled', true);
 			$('footer').show();
 			$('div#isolate').hide();
-			$('div#isolated').append($('div#done').next()).children().unwrap();
+			$('div#isolated').append($el).children().unwrap();
 			$('div#complete').show();
 			$('header #button-left').show();
 			$('header #button-right').show();
@@ -62,6 +64,7 @@
 			$('footer').hide();
 		}
 		setTimeout(function() {
+			$target.prop('disabled', false);
 			$target.focus();
 		}, 100);
 	}
