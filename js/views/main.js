@@ -88,6 +88,8 @@
 				setTimeout(function() {
 					app.enableScroll();
 				}, 10);
+			} else {
+				app.enableScroll();
 			}
 		},
 
