@@ -22,20 +22,40 @@
 		{{#if trade.isOpen}}
 			<li class="button-default" data-view="mainAddPosition">Add position</li>
 		{{/if}}
-		<li class="button-default" data-view="main">Add comment</li>
+		<li class="button-default" data-view="mainAddComment">Add comment</li>
 	</ul>
 	<ul>
-		{{#each trade.positions}}
+		{{#each trade.objects}}
 			<li class="wrapper-label">
-				<div class="label comment {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
-					<div class="ball"></div>
-					<div class="row">
-						<div class="size-price">{{this.sizePrice}}</div>
+				{{#if this.size}}
+					<div class="label comment {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
+						<div class="ball"></div>
+						<div class="row">
+							<div class="size-price">{{this.sizePrice}}</div>
+						</div>
+						<div class="row">
+							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
+						</div>
 					</div>
-					<div class="row">
-						<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
+				{{else}}
+					<div class="label comment commentary swipe">
+						<div class="ball"></div>
+						<div class="row">
+							<div class="body">{{this.body}}</div>
+						</div>
+						<div class="row">
+							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
+						</div>
 					</div>
-				</div>
+					<div class="wrapper-swipe">
+						<div class="swipe-buttons">
+							<ul>
+								<li class="button-swipe delete"></li>
+								<li class="button-swipe add-photo"></li>
+							</ul>
+						</div>
+					</div>
+				{{/if}}
 			</li>
 		{{/each}}
 	</ul>

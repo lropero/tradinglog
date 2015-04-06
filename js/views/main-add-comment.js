@@ -2,19 +2,19 @@
 	'use strict';
 
 	app.Views.mainAddComment = Backbone.View.extend({
-		el: 'section#main-stats-friends section#content',
+		el: 'section#main-stats-friends',
 		events: {
 			'tap div#done': 'combine',
-			'tap input, textarea': 'isolate',
-			'tap ul#type div:not(.active)': 'radio'
+			'tap textarea': 'isolate'
 		},
 
-		initialize: function() {
+		initialize: function(attrs) {
 			var self = this;
+			this.trade = attrs.trade;
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('main-add-operation').done(function(template) {
+			app.templateLoader.get('main-add-comment').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
 			});
@@ -26,7 +26,9 @@
 		},
 
 		render: function() {
-			app.trigger('change', 'main-add-operation');
+			app.trigger('change', 'main-add-comment', {
+				trade: this.trade
+			});
 			this.$el.html(this.template());
 			return this;
 		},
@@ -41,43 +43,27 @@
 			app.isolate(e);
 		},
 
-		radio: function(e) {
-			e.preventDefault();
-			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
-			var $target = $(e.currentTarget);
-			$target.addClass('active');
-		},
-
 		submit: function() {
-			var type = this.$el.find('ul#type div.active').data('type');
-			var amount = this.$el.find('input#amount').val().replace(',', '.');
-			amount = Math.abs(amount);
-			if(type === 2) {
-				amount *= -1;
-			}
-			var description = this.$el.find('textarea#description').val().trim();
-			var balance = app.account.get('balance') + amount;
-			if(balance < 0) {
-				alertify.error('Withdrawal exceeds your balance');
-				return;
-			}
-			var operation = new app.Models.operation();
-			operation.set({
-				account_id: 1,
-				amount: amount,
-				description: description,
-				variation: amount * 100 / app.account.get('balance'),
+			var self = this;
+			var body = this.$el.find('textarea#body').val().trim();
+			var comment = new app.Models.comment();
+			comment.set({
+				trade_id: this.trade.id,
+				body: body,
 				created_at: (new Date()).getTime()
 			});
-			operation.save(null, {
-				success: function(model, insertId) {
-					app.account.set({
-						balance: balance
+			comment.save(null, {
+				success: function() {
+					var trade = new app.Models.trade({
+						id: self.trade.id
 					});
-					app.account.save(null, {
-						success: function() {
-							app.trigger('clear', 'main');
-						}
+					trade.deferred.then(function() {
+						trade.addComment(function() {
+							app.trigger('clear');
+							app.loadView('mainViewTrade', {
+								trade_id: self.trade.id
+							});
+						});
 					});
 				}
 			})

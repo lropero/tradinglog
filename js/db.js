@@ -46,8 +46,8 @@
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'trade_id INTEGER,' +
 					'body TEXT,' +
-					'created_at INTEGER,' +
-					'image TEXT' +
+					'created_at INTEGER' +
+					// 'image TEXT' +
 				');',
 				'CREATE TABLE IF NOT EXISTS configuration (' +
 					'language TEXT,' +

@@ -58,7 +58,6 @@
 						}
 					};
 					break;
-				case 'main-add-comment':
 				case 'main-add-operation':
 				case 'main-add-trade':
 					options = {
@@ -77,6 +76,7 @@
 						}
 					}
 					break;
+				case 'main-add-comment':
 				case 'main-add-position':
 					options = {
 						left: {

@@ -29,12 +29,15 @@
 				}
 				this.fetch({
 					success: function() {
+						self.comments = [];
 						self.positions = [];
 						$.when(
 							self.fetchInstrument(),
 							self.fetchPositions(),
 							self.fetchComments()
 						).done(function() {
+							self.objects = [];
+							self.prepareObjects();
 							self.deferred.resolve();
 						});
 					}
@@ -53,6 +56,16 @@
 					}
 				});
 			}
+		},
+
+		addComment: function(callback) {
+			var comments = this.get('comments');
+			this.set({
+				comments: comments + 1
+			});
+			this.save(null, {
+				success: callback
+			});
 		},
 
 		calculateCloseSize: function() {
@@ -112,6 +125,23 @@
 			});
 		},
 
+		fetchComments: function() {
+			var self = this;
+			var deferred = $.Deferred();
+			var comments = new app.Collections.comments();
+			comments.setTradeId(this.get('id'));
+			comments.fetch({
+				success: function() {
+					comments = comments.toJSON();
+					for(var i = 0; i < comments.length; i++) {
+						self.comments.push(comments[i]);
+					}
+					deferred.resolve();
+				}
+			});
+			return deferred;
+		},
+
 		fetchInstrument: function() {
 			var self = this;
 			var deferred = $.Deferred();
@@ -144,12 +174,6 @@
 			return deferred;
 		},
 
-		fetchComments: function() {
-			var deferred = $.Deferred();
-			deferred.resolve();
-			return deferred;
-		},
-
 		getGross: function() {
 			var gross = this.get('profit') - this.get('loss');
 			return gross;
@@ -172,6 +196,24 @@
 				return true;
 			}
 			return false;
+		},
+
+		prepareObjects: function() {
+			var comments = this.comments.slice();
+			var positions = this.positions.slice();
+			while(comments.length && positions.length) {
+				if(comments[0].created_at > positions[0].created_at) {
+					this.objects.push(positions.shift());
+				} else {
+					this.objects.push(comments.shift());
+				}
+			}
+			while(comments.length) {
+				this.objects.push(comments.shift());
+			}
+			while(positions.length) {
+				this.objects.push(positions.shift());
+			}
 		},
 
 		setPnL: function(callback) {
@@ -276,7 +318,7 @@
 				if(this.positions.length > 1) {
 					json.net = this.getNet();
 				}
-				json.positions = this.positions;
+				json.objects = this.objects;
 				json.sizePrice = this.calculateSizePrice();
 			}
 			return json;
