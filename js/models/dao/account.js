@@ -24,7 +24,7 @@
 				tx.executeSql(sql, [], function(tx, results) {
 					var accounts = [];
 					for(var i = 0; i < results.rows.length; i++) {
-						accounts[i] = results.rows.item(i);
+						accounts.push(results.rows.item(i));
 					}
 					callback(accounts);
 				});

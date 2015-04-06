@@ -34,7 +34,7 @@
 				tx.executeSql(sql, [], function(tx, results) {
 					var operations = [];
 					for(var i = 0; i < results.rows.length; i++) {
-						operations[i] = results.rows.item(i);
+						operations.push(results.rows.item(i));
 					}
 					callback(operations);
 				});

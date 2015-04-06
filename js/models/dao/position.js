@@ -43,7 +43,7 @@
 				tx.executeSql(sql, [], function(tx, results) {
 					var positions = [];
 					for(var i = 0; i < results.rows.length; i++) {
-						positions[i] = results.rows.item(i);
+						positions.push(results.rows.item(i));
 					}
 					callback(positions);
 				});

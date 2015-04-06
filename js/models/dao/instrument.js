@@ -24,7 +24,7 @@
 				tx.executeSql(sql, [], function(tx, results) {
 					var instruments = [];
 					for(var i = 0; i < results.rows.length; i++) {
-						instruments[i] = results.rows.item(i);
+						instruments.push(results.rows.item(i));
 					}
 					callback(instruments);
 				});

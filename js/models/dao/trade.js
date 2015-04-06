@@ -43,17 +43,36 @@
 				if(model.instrument_id) {
 					sql += 'AND instrument_id == "' + model.instrument_id + '" ';
 				}
+				sql += 'AND closed_at == "0"';
 				if(model.isOpen) {
-					sql += 'AND closed_at == "0" ';
+					sql += ';';
+					tx.executeSql(sql, [], function(tx, results) {
+						var trades = [];
+						for(var i = 0; i < results.rows.length; i++) {
+							trades.push(results.rows.item(i));
+						}
+						callback(trades);
+					});
+				} else {
+					sql += ' ORDER BY id DESC;';
+					tx.executeSql(sql, [], function(tx, results) {
+						var trades = [];
+						for(var i = 0; i < results.rows.length; i++) {
+							trades.push(results.rows.item(i));
+						}
+						var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
+						if(model.instrument_id) {
+							sql += 'AND instrument_id == "' + model.instrument_id + '" ';
+						}
+						sql += 'AND closed_at > "0" ORDER BY closed_at DESC;';
+						tx.executeSql(sql, [], function(tx, results) {
+							for(var i = 0; i < results.rows.length; i++) {
+								trades.push(results.rows.item(i));
+							}
+							callback(trades);
+						});
+					});
 				}
-				sql += 'ORDER BY closed_at, id DESC;';
-				tx.executeSql(sql, [], function(tx, results) {
-					var trades = [];
-					for(var i = 0; i < results.rows.length; i++) {
-						trades[i] = results.rows.item(i);
-					}
-					callback(trades);
-				});
 			});
 		},
 
