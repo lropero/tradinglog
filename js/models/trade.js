@@ -179,8 +179,10 @@
 			var profit = 0;
 			var loss = 0;
 			var count = 0;
+			var created_at = 0;
 			var array = [];
 			var type = parseInt(this.get('type'), 10);
+
 			for(var i = 0; i < this.positions.length; i++) {
 				var position = this.positions[i];
 				var size = parseInt(position.size, 10);
@@ -196,6 +198,7 @@
 							} else {
 								loss += Math.abs(pnl);
 							}
+							created_at = position.created_at;
 							array.shift();
 						}
 					} else {
@@ -209,15 +212,19 @@
 							} else {
 								loss += Math.abs(pnl);
 							}
+							created_at = position.created_at;
 							array.shift();
 						}
 					}
 				}
 			}
+
 			var instrument = new app.Models.instrument({
 				id: this.get('instrument_id')
 			});
+
 			instrument.deferred.then(function() {
+
 				instrument = instrument.toJSON();
 				profit *= instrument.point_value;
 				loss *= instrument.point_value;
@@ -227,6 +234,24 @@
 					loss: loss,
 					commission: commission
 				});
+
+				var balance = app.account.get('balance') + self.getNet();
+				if(balance < 0) {
+					alertify.error('Non-sufficient funds');
+					var last = self.positions[self.positions.length - 1];
+					var position = new app.Models.position({
+						id: last.id
+					});
+					position.delete();
+					return;
+				}
+
+				if(!array.length && created_at > 0) {
+					self.set({
+						closed_at: created_at
+					});
+				}
+
 				self.save(null, {
 					success: callback
 				});

@@ -16,7 +16,7 @@
 								<div class="net {{#gt this.net 0}}positive{{else}}negative{{/gt}}">{{#if this.net}}{{#money this.net}}{{/money}}{{/if}}</div>
 							</div>
 							<div class="row">
-								<div class="{{#if this.isOpen}}size-price{{else}}date{{/if}}">{{#if this.isOpen}}{{this.sizePrice}}{{else}}date{{/if}}</div>
+								<div class="{{#if this.isOpen}}size-price{{else}}date{{/if}}">{{#if this.isOpen}}{{this.sizePrice}}{{else}}{{#date this.closed_at}}{{/date}}{{/if}}</div>
 							</div>
 						</div>
 						<div class="wrapper-swipe">

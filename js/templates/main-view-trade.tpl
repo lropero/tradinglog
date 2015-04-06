@@ -10,13 +10,15 @@
 					<div class="net {{#gt trade.net 0}}positive{{else}}negative{{/gt}}">{{#if trade.net}}{{#money trade.net}}{{/money}}{{/if}}</div>
 				</div>
 				<div class="row">
-					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}date{{/if}}</div>
+					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}{{#date trade.closed_at}}{{/date}}{{/if}}</div>
 				</div>
 			</div>
 		</li>
 	</ul>
-	<ul class="wrapper-button-default two-button-default">
-		<li class="button-default" data-view="mainAddPosition">Add position</li>
+	<ul class="wrapper-button-default {{#if trade.isOpen}}two{{else}}one{{/if}}-button-default">
+		{{#if trade.isOpen}}
+			<li class="button-default" data-view="mainAddPosition">Add position</li>
+		{{/if}}
 		<li class="button-default" data-view="main">Add comment</li>
 	</ul>
 	<ul>
