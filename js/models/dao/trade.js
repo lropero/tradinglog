@@ -39,7 +39,14 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ORDER BY closed_at, id DESC;';
+				var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
+				if(model.instrument_id) {
+					sql += 'AND instrument_id == "' + model.instrument_id + '" ';
+				}
+				if(model.isOpen) {
+					sql += 'AND closed_at == "0" ';
+				}
+				sql += 'ORDER BY closed_at, id DESC;';
 				tx.executeSql(sql, [], function(tx, results) {
 					var trades = [];
 					for(var i = 0; i < results.rows.length; i++) {

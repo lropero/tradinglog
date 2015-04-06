@@ -11,6 +11,9 @@
 				</div>
 				<div class="row">
 					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}{{#date trade.closed_at}}{{/date}}{{/if}}</div>
+					{{#if trade.variation}}
+						<div class="variation">{{#variation trade.variation}}{{/variation}}</div>
+					{{/if}}
 				</div>
 			</div>
 		</li>

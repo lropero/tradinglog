@@ -17,6 +17,9 @@
 							</div>
 							<div class="row">
 								<div class="{{#if this.isOpen}}size-price{{else}}date{{/if}}">{{#if this.isOpen}}{{this.sizePrice}}{{else}}{{#date this.closed_at}}{{/date}}{{/if}}</div>
+								{{#if this.variation}}
+									<div class="variation">{{#variation this.variation}}{{/variation}}</div>
+								{{/if}}
 							</div>
 						</div>
 						<div class="wrapper-swipe">

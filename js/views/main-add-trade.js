@@ -106,41 +106,63 @@
 				size *= -1;
 			}
 			var price = this.$el.find('input#price').val().replace(',', '.');
-			var trade = new app.Models.trade();
-			trade.set({
-				account_id: 1,
-				instrument_id: instrument_id,
-				type: type
+
+			var deferred = $.Deferred();
+			var trades = new app.Collections.trades();
+			trades.setAccountId(1);
+			trades.setInstrumentId(instrument_id);
+			trades.setOpen();
+			trades.deferreds = [];
+			trades.fetch({
+				success: function() {
+					$.when.apply($, trades.deferreds).done(function() {
+						trades = trades.toJSON();
+						if(trades.length > 0) {
+							alertify.error('A trade for this instrument is already open');
+						} else {
+							deferred.resolve();
+						}
+					});
+				}
 			});
-			trade.validate();
-			var position = new app.Models.position();
-			position.set({
-				size: size,
-				price: price,
-				created_at: (new Date()).getTime()
-			});
-			position.validate();
-			if(trade.isValid() && position.isValid()) {
-				trade.save(null, {
-					success: function(model, insertId) {
-						position.set({
-							trade_id: insertId
-						});
-						position.save(null, {
-							success: function() {
-								var cookie = {
-									instrument_id: instrument_id,
-									size: size
-								};
-								$.cookie('cookie', $.param(cookie), {
-									expires: 20
-								});
-								app.trigger('clear', 'main');
-							}
-						});
-					}
+
+			deferred.done(function() {
+				var trade = new app.Models.trade();
+				trade.set({
+					account_id: 1,
+					instrument_id: instrument_id,
+					type: type
 				});
-			}
+				trade.validate();
+				var position = new app.Models.position();
+				position.set({
+					size: size,
+					price: price,
+					created_at: (new Date()).getTime()
+				});
+				position.validate();
+				if(trade.isValid() && position.isValid()) {
+					trade.save(null, {
+						success: function(model, insertId) {
+							position.set({
+								trade_id: insertId
+							});
+							position.save(null, {
+								success: function() {
+									var cookie = {
+										instrument_id: instrument_id,
+										size: size
+									};
+									$.cookie('cookie', $.param(cookie), {
+										expires: 20
+									});
+									app.trigger('clear', 'main');
+								}
+							});
+						}
+					});
+				}
+			});
 		}
 	});
 })();

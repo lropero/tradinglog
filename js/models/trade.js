@@ -224,7 +224,6 @@
 			});
 
 			instrument.deferred.then(function() {
-
 				instrument = instrument.toJSON();
 				profit *= instrument.point_value;
 				loss *= instrument.point_value;
@@ -234,10 +233,9 @@
 					loss: loss,
 					commission: commission
 				});
-
 				var balance = app.account.get('balance') + self.getNet();
 				if(balance < 0) {
-					alertify.error('Non-sufficient funds');
+					alertify.error('Non-sufficient funds to close trade');
 					var last = self.positions[self.positions.length - 1];
 					var position = new app.Models.position({
 						id: last.id
@@ -245,16 +243,26 @@
 					position.delete();
 					return;
 				}
-
 				if(!array.length && created_at > 0) {
 					self.set({
+						variation: (profit - loss - commission) * 100 / app.account.get('balance'),
 						closed_at: created_at
 					});
+					self.save(null, {
+						success: function() {
+							app.account.set({
+								balance: balance
+							});
+							app.account.save(null, {
+								success: callback
+							});
+						}
+					});
+				} else {
+					self.save(null, {
+						success: callback
+					});
 				}
-
-				self.save(null, {
-					success: callback
-				});
 			});
 		},
 
