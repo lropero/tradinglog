@@ -117,6 +117,10 @@
 		return accounting.formatMoney(money, '$ ');
 	});
 
+	Handlebars.registerHelper('nl2br', function(string) {
+		return string.replace(/(\r\n|\n\r|\r|\n)/g, '<br />')
+	});
+
 	Handlebars.registerHelper('time', function(timestamp) {
 		var then = new Date(timestamp);
 		var hours = then.getHours();

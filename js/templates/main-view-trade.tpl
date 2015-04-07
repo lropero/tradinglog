@@ -24,39 +24,41 @@
 		{{/if}}
 		<li class="button-default" data-view="mainAddComment">Add comment</li>
 	</ul>
-	<ul>
-		{{#each trade.objects}}
-			<li class="wrapper-label">
-				{{#if this.size}}
-					<div class="label comment {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
-						<div class="ball"></div>
-						<div class="row">
-							<div class="size-price">{{this.sizePrice}}</div>
+	<section id="content">
+		<ul>
+			{{#each trade.objects}}
+				<li class="wrapper-label">
+					{{#if this.size}}
+						<div class="label comment {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
+							<div class="ball"></div>
+							<div class="row">
+								<div class="size-price">{{this.sizePrice}}</div>
+							</div>
+							<div class="row">
+								<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
+							</div>
 						</div>
-						<div class="row">
-							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
+					{{else}}
+						<div class="label comment commentary swipe">
+							<div class="ball"></div>
+							<div class="row">
+								<div class="body">{{#nl2br this.body}}{{/nl2br}}</div>
+							</div>
+							<div class="row">
+								<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
+							</div>
 						</div>
-					</div>
-				{{else}}
-					<div class="label comment commentary swipe">
-						<div class="ball"></div>
-						<div class="row">
-							<div class="body">{{this.body}}</div>
+						<div class="wrapper-swipe">
+							<div class="swipe-buttons">
+								<ul>
+									<li class="button-swipe delete"></li>
+									<li class="button-swipe add-photo"></li>
+								</ul>
+							</div>
 						</div>
-						<div class="row">
-							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
-						</div>
-					</div>
-					<div class="wrapper-swipe">
-						<div class="swipe-buttons">
-							<ul>
-								<li class="button-swipe delete"></li>
-								<li class="button-swipe add-photo"></li>
-							</ul>
-						</div>
-					</div>
-				{{/if}}
-			</li>
-		{{/each}}
-	</ul>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</section>
 </script>
