@@ -39,7 +39,9 @@
 				self.$el.html(self.template({
 					trade: self.trade
 				}));
-				app.enableScroll();
+				setTimeout(function() {
+					app.enableScroll();
+				}, 10);
 				return self;
 			});
 		},
