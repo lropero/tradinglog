@@ -4,6 +4,7 @@
 	app.Views.mainViewTrade = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 		events: {
+			'tap li.button-swipe': 'button',
 			'tap ul.wrapper-button-default li': 'add'
 		},
 
@@ -39,6 +40,7 @@
 				self.$el.html(self.template({
 					trade: self.trade
 				}));
+				app.swipe.init('.swipe');
 				setTimeout(function() {
 					app.enableScroll();
 				}, 10);
@@ -52,6 +54,32 @@
 			var view = $target.data('view');
 			app.loadView(view, {
 				trade: this.trade
+			});
+		},
+
+		button: function(e) {
+			var self = this;
+			e.preventDefault();
+			var id = $(e.currentTarget).data('id');
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			alertify.set({
+				buttonFocus: 'none',
+				buttonReverse: true,
+				labels: {
+					cancel: 'No',
+					ok: 'Yes'
+				}
+			});
+			alertify.confirm('Are you sure?', function(e) {
+				if(e) {
+					$wrapper.hide();
+					var comment = new app.Models.comment({
+						id: id
+					});
+					comment.deferred.then(function() {
+						comment.delete();
+					});
+				}
 			});
 		}
 	});

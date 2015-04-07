@@ -27,8 +27,8 @@
 	<section id="content">
 		<ul>
 			{{#each trade.objects}}
-				<li class="wrapper-label">
-					{{#if this.size}}
+				{{#if this.size}}
+					<li class="wrapper-label">
 						<div class="label comment {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
 							<div class="ball"></div>
 							<div class="row">
@@ -38,7 +38,9 @@
 								<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
 							</div>
 						</div>
-					{{else}}
+					</li>
+				{{else}}
+					<li class="wrapper-label" data-swipe="1">
 						<div class="label comment commentary swipe">
 							<div class="ball"></div>
 							<div class="row">
@@ -51,13 +53,12 @@
 						<div class="wrapper-swipe">
 							<div class="swipe-buttons">
 								<ul>
-									<li class="button-swipe delete"></li>
-									<li class="button-swipe add-photo"></li>
+									<li class="button-swipe delete" data-id="{{this.id}}"></li>
 								</ul>
 							</div>
 						</div>
-					{{/if}}
-				</li>
+					</li>
+				{{/if}}
 			{{/each}}
 		</ul>
 	</section>

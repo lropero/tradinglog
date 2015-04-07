@@ -58,10 +58,10 @@
 			}
 		},
 
-		addComment: function(callback) {
+		addToComments: function(qty, callback) {
 			var comments = this.get('comments');
 			this.set({
-				comments: comments + 1
+				comments: comments + qty
 			});
 			this.save(null, {
 				success: callback

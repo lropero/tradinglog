@@ -18,7 +18,7 @@
 
 		destroy: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'DELETE FROM trade WHERE id = "' + model.toJSON().id + '";';
+				var sql = 'DELETE FROM trade WHERE id = "' + model.id + '";';
 				tx.executeSql(sql);
 			}, null, function(tx) {
 				callback();

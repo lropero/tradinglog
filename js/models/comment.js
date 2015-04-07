@@ -28,6 +28,19 @@
 					}
 				});
 			}
+		},
+
+		delete: function() {
+			var self = this;
+			var trade = new app.Models.trade({
+				id: this.get('trade_id')
+			});
+			trade.deferred.then(function() {
+				trade.addToComments(-1, function() {
+					app.trigger('clear');
+					self.destroy();
+				});
+			});
 		}
 	});
 })();

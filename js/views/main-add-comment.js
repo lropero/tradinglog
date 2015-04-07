@@ -58,7 +58,7 @@
 						id: self.trade.id
 					});
 					trade.deferred.then(function() {
-						trade.addComment(function() {
+						trade.addToComments(1, function() {
 							app.trigger('clear');
 							app.loadView('mainViewTrade', {
 								trade_id: self.trade.id

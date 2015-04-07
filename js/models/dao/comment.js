@@ -16,6 +16,15 @@
 			});
 		},
 
+		destroy: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'DELETE FROM comment WHERE id = "' + model.id + '";';
+				tx.executeSql(sql);
+			}, null, function(tx) {
+				callback();
+			});
+		},
+
 		find: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM comment WHERE id = "' + model.id + '";';
