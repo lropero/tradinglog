@@ -28,9 +28,8 @@
 			});
 		},
 
-		destroy: function(callback) {
+		destroy: function() {
 			this.undelegateEvents();
-			callback();
 		},
 
 		render: function() {

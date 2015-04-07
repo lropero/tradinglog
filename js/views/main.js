@@ -28,9 +28,9 @@
 			});
 		},
 
-		destroy: function(callback) {
+		destroy: function() {
+			this.drag.destroy();
 			this.undelegateEvents();
-			this.drag.destroy(callback);
 		},
 
 		render: function() {

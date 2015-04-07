@@ -13,9 +13,8 @@
 			});
 		},
 
-		destroy: function(callback) {
+		destroy: function() {
 			this.$el.hide();
-			callback();
 		},
 
 		render: function() {

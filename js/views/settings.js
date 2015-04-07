@@ -15,13 +15,11 @@
 			});
 		},
 
-		destroy: function(callback) {
-			this.undelegateEvents();
+		destroy: function() {
 			if(typeof this.subview.destroy === 'function') {
-				this.subview.destroy(callback);
-			} else {
-				callback();
+				this.subview.destroy();
 			}
+			this.undelegateEvents();
 		},
 
 		render: function() {

@@ -12,13 +12,10 @@
 			});
 		},
 
-		destroy: function(callback) {
+		destroy: function() {
 			if(app.shake) {
 				app.shake.stopWatch();
 				delete app.shake;
-			}
-			if(typeof callback === 'function') {
-				callback();
 			}
 		},
 

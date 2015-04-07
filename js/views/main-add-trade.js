@@ -24,12 +24,9 @@
 			});
 		},
 
-		destroy: function(callback) {
+		destroy: function() {
 			delete app.submit;
 			this.undelegateEvents();
-			if(typeof callback === 'function') {
-				callback();
-			}
 		},
 
 		render: function() {
