@@ -39,6 +39,7 @@
 				self.$el.html(self.template({
 					trade: self.trade
 				}));
+				app.enableScroll();
 				return self;
 			});
 		},
