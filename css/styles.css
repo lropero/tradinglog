@@ -934,6 +934,15 @@ ol {
 .drag-account .balance {
   float: right;
 }
+.drag-account .peeking {
+  background: url('../img/peeking.png') no-repeat;
+  bottom: 0;
+  height: 52px;
+  left: 50%;
+  margin-left: -31px;
+  position: absolute;
+  width: 62px;
+}
 form,
 input,
 textarea,
