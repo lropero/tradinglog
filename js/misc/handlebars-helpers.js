@@ -124,12 +124,16 @@
 	Handlebars.registerHelper('time', function(timestamp) {
 		var then = new Date(timestamp);
 		var hours = then.getHours();
+		var minutes = then.getMinutes();
+		if(minutes < 10) {
+			minutes = '0' + minutes;
+		}
 		var meridiem = 'am';
 		if(hours > 12) {
 			hours -= 12;
 			meridiem = 'pm';
 		}
-		return hours + ':' + then.getMinutes() + meridiem;
+		return hours + ':' + minutes + meridiem;
 	});
 
 	Handlebars.registerHelper('variation', function(variation) {
