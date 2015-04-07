@@ -13,8 +13,9 @@
 			});
 		},
 
-		destroy: function() {
+		destroy: function(callback) {
 			this.$el.hide();
+			callback();
 		},
 
 		render: function() {
