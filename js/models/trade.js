@@ -119,7 +119,7 @@
 				}
 				self.destroy({
 					success: function() {
-						app.trigger('clear');
+						app.cache.delete('main');
 					}
 				});
 			});

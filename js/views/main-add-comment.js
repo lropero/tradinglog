@@ -59,7 +59,8 @@
 					});
 					trade.deferred.then(function() {
 						trade.addToComments(1, function() {
-							app.trigger('clear');
+							app.cache.delete('main');
+							app.cache.delete('trade' + self.trade.id);
 							app.loadView('mainViewTrade', {
 								trade_id: self.trade.id
 							});

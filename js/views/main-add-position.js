@@ -91,14 +91,16 @@
 						});
 						trade.deferred.then(function() {
 							trade.setPnL(function() {
-								app.trigger('clear');
+								app.cache.delete('main');
+								app.cache.delete('trade' + self.trade.id);
 								app.loadView('mainViewTrade', {
 									trade_id: self.trade.id
 								});
 							});
 						});
 					} else {
-						app.trigger('clear');
+						app.cache.delete('main');
+						app.cache.delete('trade' + self.trade.id);
 						app.loadView('mainViewTrade', {
 							trade_id: self.trade.id
 						});

@@ -35,21 +35,13 @@
 
 		render: function() {
 			var self = this;
-			if(app.cache) {
+			this.deferred.done(function() {
 				app.trigger('change', 'main');
-				this.$el.html(app.cache);
-				this.decorate();
-			} else {
-				app.headerNavigation.update({});
-				this.deferred.done(function() {
-					app.trigger('change', 'main');
-					app.cache = self.template({
-						objects: self.objects
-					});
-					self.$el.html(app.cache);
-					self.decorate();
-				});
-			}
+				self.$el.html(app.cache.get('main', self.template, {
+					objects: self.objects
+				}));
+				self.decorate();
+			});
 			return this;
 		},
 

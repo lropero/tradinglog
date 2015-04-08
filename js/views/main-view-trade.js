@@ -37,15 +37,15 @@
 			var self = this;
 			this.deferred.done(function() {
 				app.trigger('change', 'main-view-trade');
-				self.$el.html(self.template({
+				self.$el.html(app.cache.get('trade' + self.trade.id, self.template, {
 					trade: self.trade
 				}));
 				app.swipe.init('.swipe');
 				setTimeout(function() {
 					app.enableScroll();
 				}, 10);
-				return self;
 			});
+			return this;
 		},
 
 		add: function(e) {

@@ -36,8 +36,8 @@
 				self.$el.html(self.template({
 					instruments: self.instruments
 				}));
-				return self;
 			});
+			return this;
 		},
 
 		combine: function(e) {
@@ -156,7 +156,10 @@
 									$.cookie('cookie', $.param(cookie), {
 										expires: 20
 									});
-									app.trigger('clear', 'main');
+									app.cache.delete('main');
+									app.loadView('mainViewTrade', {
+										trade_id: self.trade.id
+									});
 								}
 							});
 						}

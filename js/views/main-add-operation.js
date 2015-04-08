@@ -76,7 +76,8 @@
 					});
 					app.account.save(null, {
 						success: function() {
-							app.trigger('clear', 'main');
+							app.cache.delete('main');
+							app.loadView('main');
 						}
 					});
 				}

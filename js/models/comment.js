@@ -32,13 +32,18 @@
 
 		delete: function() {
 			var self = this;
+			var trade_id = this.get('trade_id');
 			var trade = new app.Models.trade({
-				id: this.get('trade_id')
+				id: trade_id
 			});
 			trade.deferred.then(function() {
 				trade.addToComments(-1, function() {
-					app.trigger('clear');
+					app.cache.delete('main');
+					app.cache.delete('trade' + trade_id);
 					self.destroy();
+					app.loadView('mainViewTrade', {
+						trade_id: trade_id
+					});
 				});
 			});
 		}
