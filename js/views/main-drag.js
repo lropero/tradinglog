@@ -14,8 +14,7 @@
 		},
 
 		destroy: function() {
-			// this.$el.hide();
-			this.$el.css('display', 'none');
+			this.$el.hide();
 		},
 
 		render: function() {
