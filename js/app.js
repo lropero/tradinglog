@@ -64,6 +64,7 @@
 		},
 
 		loadView: function(view, attrs) {
+			var self = this;
 
 			/** Some views require to undelegate events, e.g. those with control
 				segments (i.e. <ul><li>submenus</li></ul>) */
@@ -72,7 +73,9 @@
 			}
 
 			/** Load view */
-			this.view = new app.Views[view](attrs);
+			setTimeout(function() {
+				self.view = new app.Views[view](attrs);
+			}, 10);
 
 		}
 	};
