@@ -14,8 +14,7 @@
 
 		render: function() {
 			app.trigger('change', '_agustin');
-			var template = this.template();
-			this.$el.html(template);
+			this.$el.html(this.template());
 			// app.swipe.init('.swipe');
 			return this;
 		}

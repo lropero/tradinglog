@@ -64,15 +64,21 @@
 		},
 
 		loadView: function(view, attrs) {
+			var self = this;
 
 			/** Some views require to undelegate events, e.g. those with control
 				segments (i.e. <ul><li>submenus</li></ul>) */
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
+				setTimeout(function() {
+					self.view = new app.Views[view](attrs);
+				}, 100);
+			} else {
+				this.view = new app.Views[view](attrs);
 			}
 
 			/** Load view */
-			this.view = new app.Views[view](attrs);
+			// this.view = new app.Views[view](attrs);
 
 		}
 	};
