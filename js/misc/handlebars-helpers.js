@@ -113,6 +113,12 @@
 		}
 	});
 
+	Handlebars.registerHelper('map', function(net, max) {
+		var abs = Math.abs(net);
+		var percentage = accounting.toFixed(100 - (abs * 100 / max), 2);
+		return percentage;
+	});
+
 	Handlebars.registerHelper('money', function(money) {
 		return accounting.formatMoney(money, '$ ');
 	});

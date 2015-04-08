@@ -59,7 +59,7 @@
 							});
 						});
 
-						/** DB and layout view are ready; we load the main view */
+						/** Load main view */
 						app.view = new app.Views.main();
 
 						/** We hide the initial splash screen once the main view is ready */
