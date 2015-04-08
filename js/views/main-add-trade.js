@@ -158,7 +158,7 @@
 									});
 									app.cache.delete('main');
 									app.loadView('mainViewTrade', {
-										trade_id: self.trade.id
+										trade_id: insertId
 									});
 								}
 							});

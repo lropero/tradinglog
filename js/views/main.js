@@ -153,6 +153,11 @@
 		viewTrade: function(e) {
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var $label = $($wrapper.context);
+			var isOpen = $label.hasClass('open');
+			if(!isOpen) {
+				$label.css('backgroundColor', '#dadada');
+			}
 			var key = $wrapper.data('key');
 			app.loadView('mainViewTrade', {
 				trade: this.objects[key]
