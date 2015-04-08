@@ -13,6 +13,10 @@
 			});
 		},
 
+		destroy: function() {
+			this.$el.hide();
+		},
+
 		render: function() {
 			this.$el.html(this.template({
 				account: app.account.get('name'),

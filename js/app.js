@@ -64,7 +64,6 @@
 		},
 
 		loadView: function(view, attrs) {
-			$('div#drag').hide();
 
 			/** Some views require to undelegate events, e.g. those with control
 				segments (i.e. <ul><li>submenus</li></ul>) */
