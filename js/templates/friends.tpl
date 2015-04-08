@@ -43,7 +43,7 @@
 </ul>
 <ul>
 	<li class="wrapper-label">
-		<div class="label comment buy swipe">
+		<div class="label position buy swipe">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="size-price">1 @ 103.30</div>
@@ -61,7 +61,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label">
-		<div class="label comment sell swipe">
+		<div class="label position sell swipe">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="size-price">1 @ 103.30</div>
@@ -79,7 +79,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label">
-		<div class="label comment commentary swipe position: relative!important ">
+		<div class="label comment swipe">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="body">Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor</div>
@@ -179,7 +179,7 @@
 </ul>
 <ul>
 	<li class="wrapper-label">
-		<div class="label comment buy swipe">
+		<div class="label position buy swipe">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="size-price">1 @ 103.30</div>
@@ -197,7 +197,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label">
-		<div class="label comment sell swipe">
+		<div class="label position sell swipe">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="size-price">1 @ 103.30</div>
@@ -215,7 +215,7 @@
 		</div>
 	</li>
 	<li class="wrapper-label">
-		<div class="label comment commentary swipe position: relative!important ">
+		<div class="label comment swipe">
 			<div class="ball"></div>
 			<div class="row">
 				<div class="body">Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor</div>

@@ -230,14 +230,16 @@ ol
     overflow: hidden;
 }
 
-// LABEL > COMMENT
+// LABEL > POSITON / COMMENT
 // -------------------------------------------------- //
 
+.label.position,
 .label.comment
 {
     padding: 10px 15px;
 }
 
+.label.position:after,
 .label.comment:after
 {
     display: none;
@@ -245,11 +247,14 @@ ol
     content: '';
 }
 
+.label.position .row,
 .label.comment .row
 {
     margin-left: 33px;
 }
 
+.label.position .size-price,
+.label.position .body,
 .label.comment .size-price,
 .label.comment .body
 {
@@ -258,6 +263,7 @@ ol
     color: @black;
 }
 
+.label.position .date,
 .label.comment .date
 {
     float: left;
@@ -265,6 +271,7 @@ ol
     color: @gray;
 }
 
+.label.position .ball,
 .label.comment .ball
 {
     position: absolute;
@@ -280,7 +287,7 @@ ol
     background-color: @black;
 }
 
-// COMMENT > PHOTO
+// LABEL > COMMENT > PHOTO
 // -------------------------------------------------- //
 
 .comment.photo
@@ -307,7 +314,7 @@ ol
 // LABEL > COMMENT > LONG
 // -------------------------------------------------- //
 
-.label.comment.buy .ball
+.label.position.buy .ball
 {
     background-color: @green;
 }
@@ -315,7 +322,7 @@ ol
 // LABEL > COMMENT > SHORT
 // -------------------------------------------------- //
 
-.label.comment.sell .ball
+.label.position.sell .ball
 {
     background-color: @red;
 }
@@ -323,7 +330,7 @@ ol
 // LABEL > COMMENT > WITHDRAW
 // -------------------------------------------------- //
 
-.label.comment.commentary .ball
+.label.comment .ball
 {
     background-color: @gray;
 }
@@ -467,7 +474,6 @@ ol
     color: @black;
 }
 
-
 .label.trade .net.zero,
 .label.operation .net.zero
 {
@@ -590,7 +596,8 @@ ol
 
 .label.trade.open .instrument,
 .label.trade.open .net.positive,
-.label.trade.open .net.negative
+.label.trade.open .net.negative,
+.label.trade.open .net.zero
 {
     color: @white;
 }
@@ -943,14 +950,20 @@ ol
     float: right;
 }
 
-.drag-account .peeking {
-    background: url('../img/peeking.png') no-repeat;
-    bottom: -6px;
-    height: 84px;
-    left: 50%;
-    margin-left: -121px;
+.drag-account .peeking
+{
     position: absolute;
+    bottom: -6px;
+    left: 50%;
+
     width: 242px;
+    height: 84px;
+    margin-left: -121px;
+
+    background-image: url('../img/peeking.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
 }
 
 // FORM

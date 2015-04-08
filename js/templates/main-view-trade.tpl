@@ -29,7 +29,7 @@
 			{{#each trade.objects}}
 				{{#if this.size}}
 					<li class="wrapper-label">
-						<div class="label comment {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
+						<div class="label position {{#gt this.size 0}}buy{{else}}sell{{/gt}}">
 							<div class="ball"></div>
 							<div class="row">
 								<div class="size-price">{{this.sizePrice}}</div>
@@ -41,7 +41,7 @@
 					</li>
 				{{else}}
 					<li class="wrapper-label" data-swipe="1">
-						<div class="label comment commentary swipe">
+						<div class="label comment swipe">
 							<div class="ball"></div>
 							<div class="row">
 								<div class="body">{{#nl2br this.body}}{{/nl2br}}</div>
