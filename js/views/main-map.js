@@ -19,16 +19,35 @@
 			});
 		},
 
+		destroy: function() {
+			this.drag.destroy();
+		},
+
 		render: function() {
 			var self = this;
 			this.deferred.done(function() {
 				app.trigger('change', 'main-map');
-				self.$el.html(self.template({
+				self.$el.html(app.cache.get('map', self.template, {
 					trades: self.trades,
 					max: self.max
 				}));
+				self.decorate();
 			});
 			return this;
+		},
+
+		decorate: function() {
+			this.drag = new app.Views.mainDrag();
+			var $content = $('section#content');
+			var $ul = $('section#content').find('ul');
+			if($content.height() > $ul.height()) {
+				$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
+				setTimeout(function() {
+					app.enableScroll();
+				}, 10);
+			} else {
+				app.enableScroll();
+			}
 		},
 
 		fetchTrades: function() {
