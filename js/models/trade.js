@@ -296,7 +296,10 @@
 								balance: balance
 							});
 							app.account.save(null, {
-								success: callback
+								success: function() {
+									app.cache.delete('map');
+									callback();
+								}
 							});
 						}
 					});
