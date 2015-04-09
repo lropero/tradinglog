@@ -8,7 +8,7 @@
 			'tap ul.wrapper-button-default li': 'add'
 		},
 
-		initialize: function(attrs) {
+		initialize: function(attrs, cache) {
 			var self = this;
 			this.deferred = $.Deferred();
 			if(attrs.trade) {
@@ -25,7 +25,7 @@
 			}
 			app.templateLoader.get('main-view-trade').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -33,17 +33,20 @@
 			this.undelegateEvents();
 		},
 
-		render: function() {
+		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				app.trigger('change', 'main-view-trade');
-				self.$el.html(app.cache.get('trade' + self.trade.id, self.template, {
+				var template = app.cache.get('trade' + self.trade.id, self.template, {
 					trade: self.trade
-				}));
-				app.swipe.init('.swipe');
-				setTimeout(function() {
-					app.enableScroll();
-				}, 10);
+				});
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main-view-trade');
+					self.$el.html(template);
+					app.swipe.init('.swipe');
+					setTimeout(function() {
+						app.enableScroll();
+					}, 10);
+				}
 			});
 			return this;
 		},

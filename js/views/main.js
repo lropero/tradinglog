@@ -9,7 +9,7 @@
 			'tap li.button-swipe': 'button'
 		},
 
-		initialize: function() {
+		initialize: function(cache) {
 			var self = this;
 			this.deferred = $.Deferred();
 			this.operations = [];
@@ -24,7 +24,7 @@
 			});
 			app.templateLoader.get('main').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -33,14 +33,17 @@
 			this.undelegateEvents();
 		},
 
-		render: function() {
+		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				app.trigger('change', 'main');
-				self.$el.html(app.cache.get('main', self.template, {
+				var template = app.cache.get('main', self.template, {
 					objects: self.objects
-				}));
-				self.decorate();
+				});
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main');
+					self.$el.html(template);
+					self.decorate();
+				}
 			});
 			return this;
 		},

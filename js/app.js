@@ -38,25 +38,23 @@
 				app.account.fetch({
 					success: function() {
 
-						/** Preload open trade's templates to smoothen navigation */
-						app.templateLoader.get('main-view-trade').done(function(template) {
-							var template = Handlebars.compile($(template).html().trim());
-							var trades = new app.Collections.trades();
-							trades.setAccountId(1);
-							trades.setOpen();
-							trades.deferreds = [];
-							trades.fetch({
-								success: function() {
-									$.when.apply($, trades.deferreds).done(function() {
-										trades = trades.toJSON();
-										for(var i = 0; i < trades.length; i++) {
-											app.cache.get('trade' + trades[i].id, template, {
-												trade: trades[i]
-											})
-										}
-									});
-								}
-							});
+						/** Preload map & open trade's templates to smoothen navigation */
+						new app.Views.mainMap(true);
+						var trades = new app.Collections.trades();
+						trades.setAccountId(1);
+						trades.setOpen();
+						trades.deferreds = [];
+						trades.fetch({
+							success: function() {
+								$.when.apply($, trades.deferreds).done(function() {
+									trades = trades.toJSON();
+									for(var i = 0; i < trades.length; i++) {
+										new app.Views.mainViewTrade({
+											trade: trades[i]
+										}, true);
+									}
+								});
+							}
 						});
 
 						/** Load main view */

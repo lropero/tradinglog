@@ -4,7 +4,7 @@
 	app.Views.mainMap = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 
-		initialize: function() {
+		initialize: function(cache) {
 			var self = this;
 			this.deferred = $.Deferred();
 			this.trades = [];
@@ -15,7 +15,7 @@
 			});
 			app.templateLoader.get('main-map').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -23,15 +23,18 @@
 			this.drag.destroy();
 		},
 
-		render: function() {
+		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				app.trigger('change', 'main-map');
-				self.$el.html(app.cache.get('map', self.template, {
+				var template = app.cache.get('map', self.template, {
 					trades: self.trades,
 					max: self.max
-				}));
-				self.decorate();
+				});
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main-map');
+					self.$el.html(template);
+					self.decorate();
+				}
 			});
 			return this;
 		},
