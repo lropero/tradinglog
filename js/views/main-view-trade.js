@@ -46,6 +46,8 @@
 					setTimeout(function() {
 						app.enableScroll();
 					}, 10);
+				} else {
+					self.undelegateEvents();
 				}
 			});
 			return this;

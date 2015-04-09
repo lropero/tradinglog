@@ -43,6 +43,8 @@
 					app.trigger('change', 'main');
 					self.$el.html(template);
 					self.decorate();
+				} else {
+					self.undelegateEvents();
 				}
 			});
 			return this;
