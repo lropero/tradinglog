@@ -54,6 +54,7 @@
 			});
 			comment.save(null, {
 				success: function() {
+					app.headerNavigation.update({});
 					var trade = new app.Models.trade({
 						id: self.trade.id
 					});
