@@ -33,8 +33,7 @@
 				button.removeClass('rotate');
 			}
 			if(options.action) {
-				button.off().on('touchend', function(e) {
-					e.preventDefault();
+				button.off().on('touchend', function() {
 					options.action();
 				});
 			} else if(options.view) {
