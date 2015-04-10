@@ -6,7 +6,8 @@
 		events: {
 			'tap div#done': 'combine',
 			'tap input, textarea': 'isolate',
-			'tap ul#type div:not(.active)': 'radio'
+			'tap ul#type div:not(.active)': 'radio',
+			'tap ul#type span': 'radio'
 		},
 
 		initialize: function(attrs) {
@@ -48,9 +49,15 @@
 
 		radio: function(e) {
 			e.preventDefault();
-			this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 			var $target = $(e.currentTarget);
-			$target.addClass('active');
+			var $radio = $target;
+			if($target.is('span')) {
+				$radio = $target.prev();
+			}
+			if(!$radio.hasClass('active')) {
+				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
+				$radio.addClass('active');
+			}
 		},
 
 		submit: function() {
