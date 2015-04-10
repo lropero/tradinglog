@@ -97,7 +97,7 @@
 						var trade = new app.Models.trade({
 							id: self.trade.id
 						});
-						trade.deferred.then(function() {
+						trade.deferred.done(function() {
 							trade.setPnL(function(is_first) {
 								if(!is_first) {
 									is_first = false;

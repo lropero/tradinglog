@@ -19,7 +19,7 @@
 					id: attrs.trade_id
 				});
 				this.deferred = this.trade.deferred;
-				this.deferred.then(function() {
+				this.deferred.done(function() {
 					self.trade = self.trade.toJSON();
 					if(attrs.is_first) {
 						self.trade.isFirst = true;
