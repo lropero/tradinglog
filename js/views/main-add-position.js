@@ -99,7 +99,11 @@
 						});
 						trade.deferred.then(function() {
 							trade.setPnL(function(isFirst) {
-								var isFirst = isFirst ? isFirst : false;
+								if(typeof isFirst !== 'undefined') {
+									var isFirst = true;
+								} else {
+									var isFirst = false;
+								}
 								app.cache.delete('main');
 								app.cache.delete('trade' + self.trade.id);
 								app.loadView('mainViewTrade', {

@@ -60,12 +60,16 @@
 					});
 					trade.deferred.then(function() {
 						trade.addToComments(1, function() {
-							var isFirst = self.trade.isFirst ? self.trade.isFirst : false;
+							if(typeof self.trade.isFirst !== 'undefined') {
+								var isFirst = true;
+							} else {
+								var isFirst = false;
+							}
 							app.cache.delete('main');
 							app.cache.delete('trade' + self.trade.id);
 							app.loadView('mainViewTrade', {
 								trade_id: self.trade.id,
-								isFirst: self.trade.isFirst
+								isFirst: isFirst
 							});
 						});
 					});

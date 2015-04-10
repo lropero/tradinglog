@@ -21,7 +21,7 @@
 				this.deferred = this.trade.deferred;
 				this.deferred.then(function() {
 					self.trade = self.trade.toJSON();
-					if(attrs.isFirst) {
+					if(typeof attrs.isFirst !== 'undefined') {
 						self.trade.isFirst = true;
 					}
 				});
