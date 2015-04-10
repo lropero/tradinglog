@@ -98,7 +98,6 @@
 				case 'main-map':
 				case 'main-view-operation':
 				case 'main-view-trade':
-				case '_agustin':
 					options = {
 						left: {
 							icon: 'f124',

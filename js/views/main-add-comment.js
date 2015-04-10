@@ -60,11 +60,7 @@
 					});
 					trade.deferred.then(function() {
 						trade.addToComments(1, function() {
-							if(typeof self.trade.isFirst !== 'undefined') {
-								var isFirst = true;
-							} else {
-								var isFirst = false;
-							}
+							var isFirst = self.trade.isFirst ? self.trade.isFirst : false;
 							app.cache.delete('main');
 							app.cache.delete('trade' + self.trade.id);
 							app.loadView('mainViewTrade', {
