@@ -43,8 +43,39 @@
 			}
 		},
 
-		delete: function() {
-			this.destroy();
+		delete: function(tradeDelete) {
+			var self = this;
+			this.deferred.done(function() {
+				var trade_id = self.get('trade_id');
+				var size = self.get('size');
+				self.destroy({
+					success: function() {
+						if(!tradeDelete) {
+							var trade = new app.Models.trade({
+								id: trade_id
+							});
+							trade.deferred.done(function() {
+								var type = trade.get('type');
+								if((type === 1 && size < 0) || (type === 2 && size > 0)) {
+									trade.setPnL(function() {
+										app.cache.delete('main');
+										app.cache.delete('trade' + trade_id);
+										app.loadView('mainViewTrade', {
+											trade_id: trade_id
+										});
+									});
+								} else {
+									app.cache.delete('main');
+									app.cache.delete('trade' + trade_id);
+									app.loadView('mainViewTrade', {
+										trade_id: trade_id
+									});
+								}
+							});
+						}
+					}
+				});
+			});
 		},
 
 		toJSON: function() {

@@ -115,7 +115,7 @@
 					var position = new app.Models.position({
 						id: self.positions[i].id
 					});
-					position.delete();
+					position.delete(true);
 				}
 				self.destroy({
 					success: function() {
@@ -166,6 +166,9 @@
 				success: function() {
 					positions = positions.toJSON();
 					for(var i = 0; i < positions.length; i++) {
+						if(i + 1 === positions.length) {
+							positions[i].last = true;
+						}
 						self.positions.push(positions[i]);
 					}
 					deferred.resolve();
@@ -270,25 +273,15 @@
 				profit *= instrument.point_value;
 				loss *= instrument.point_value;
 				var commission = instrument.commission * count;
-				self.set({
-					profit: profit,
-					loss: loss,
-					commission: commission
-				});
-				var balance = app.account.get('balance') + self.getNet();
-				if(balance < 0) {
-					alertify.error('Non-sufficient funds to close trade');
-					var last = self.positions[self.positions.length - 1];
-					var position = new app.Models.position({
-						id: last.id
-					});
-					position.delete();
-					return;
-				}
-				if(!array.length && created_at > 0) {
+				var closed_at = self.get('closed_at');
+				if(closed_at > 0) {
+					var balance = app.account.get('balance') - self.getNet();
 					self.set({
-						variation: (profit - loss - commission) * 100 / app.account.get('balance'),
-						closed_at: created_at
+						profit: profit,
+						loss: loss,
+						commission: commission,
+						variation: 0,
+						closed_at: 0
 					});
 					self.save(null, {
 						success: function() {
@@ -304,9 +297,44 @@
 						}
 					});
 				} else {
-					self.save(null, {
-						success: callback
+					self.set({
+						profit: profit,
+						loss: loss,
+						commission: commission
 					});
+					var balance = app.account.get('balance') + self.getNet();
+					if(balance < 0) {
+						alertify.error('Non-sufficient funds to close trade');
+						var last = self.positions[self.positions.length - 1];
+						var position = new app.Models.position({
+							id: last.id
+						});
+						position.delete();
+						return;
+					}
+					if(!array.length && created_at > 0) {
+						self.set({
+							variation: (profit - loss - commission) * 100 / app.account.get('balance'),
+							closed_at: created_at
+						});
+						self.save(null, {
+							success: function() {
+								app.account.set({
+									balance: balance
+								});
+								app.account.save(null, {
+									success: function() {
+										app.cache.delete('map');
+										callback(true);
+									}
+								});
+							}
+						});
+					} else {
+						self.save(null, {
+							success: callback
+						});
+					}
 				}
 			});
 		},
@@ -322,6 +350,7 @@
 					json.net = this.getNet();
 				}
 				json.objects = this.objects;
+				json.positions = this.positions.length;
 				json.sizePrice = this.calculateSizePrice();
 			}
 			return json;

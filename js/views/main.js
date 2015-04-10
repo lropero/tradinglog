@@ -6,7 +6,7 @@
 		events: {
 			'tap div.operation:not(.no-click):not(.swiped)': 'viewOperation',
 			'tap div.trade:not(.swiped)': 'viewTrade',
-			'tap li.button-swipe': 'button'
+			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
 		initialize: function(cache) {
@@ -18,6 +18,11 @@
 				this.fetchOperations(),
 				this.fetchTrades()
 			).done(function() {
+				self.count = {
+					open: 0,
+					closed: 0,
+					operations: 0
+				};
 				self.objects = [];
 				self.prepareObjects();
 				self.deferred.resolve();
@@ -40,7 +45,9 @@
 					objects: self.objects
 				});
 				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'main');
+					app.trigger('change', 'main', {
+						closed: self.count.closed
+					});
 					self.$el.html(template);
 					self.decorate();
 				} else {
@@ -50,11 +57,13 @@
 			return this;
 		},
 
-		button: function(e) {
+		buttonDelete: function(e) {
 			var self = this;
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var $label = $wrapper.children('div');
+			var object = $label.hasClass('operation') ? 'operation' : ($label.hasClass('trade') ? 'trade' : '');
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,
@@ -66,10 +75,20 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					var trade = new app.Models.trade({
-						id: id
-					});
-					trade.delete();
+					switch(object) {
+						case 'operation':
+							var operation = new app.Models.operation({
+								id: id
+							});
+							operation.delete();
+							break;
+						case 'trade':
+							var trade = new app.Models.trade({
+								id: id
+							});
+							trade.delete();
+							break;
+					}
 					self.decorate();
 				}
 			});
@@ -79,7 +98,7 @@
 			this.drag = new app.Views.mainDrag();
 			app.swipe.init('.swipe');
 			var $content = $('section#content');
-			var $ul = $('section#content').find('ul');
+			var $ul = $('section#content').children('ul');
 			if($content.height() > $ul.height()) {
 				$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
 				setTimeout(function() {
@@ -130,19 +149,27 @@
 		prepareObjects: function() {
 			while(this.trades.length && this.trades[0].closed_at === 0) {
 				this.objects.push(this.trades.shift());
+				this.count.open++;
 			}
 			while(this.operations.length && this.trades.length) {
 				if(this.operations[0].created_at > this.trades[0].closed_at) {
 					this.objects.push(this.operations.shift());
+					this.count.operations++;
 				} else {
 					this.objects.push(this.trades.shift());
+					this.count.closed++;
 				}
 			}
 			while(this.operations.length) {
 				this.objects.push(this.operations.shift());
+				this.count.operations++;
 			}
 			while(this.trades.length) {
 				this.objects.push(this.trades.shift());
+				this.count.closed++;
+			}
+			if(!(!this.count.closed && this.count.operations === 1)) {
+				this.objects[this.count.open].isFirst = true;
 			}
 		},
 

@@ -39,6 +39,27 @@
 					}
 				});
 			}
+		},
+
+		delete: function() {
+			var self = this;
+			this.deferred.done(function() {
+				var amount = self.get('amount');
+				self.destroy({
+					success: function() {
+						var balance = app.account.get('balance') - amount;
+						app.account.set({
+							balance: balance
+						});
+						app.account.save(null, {
+							success: function() {
+								app.cache.delete('main');
+								new app.Views.mainDrag();
+							}
+						});
+					}
+				});
+			});
 		}
 	});
 })();

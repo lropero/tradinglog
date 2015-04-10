@@ -4,7 +4,7 @@
 	app.Views.mainViewTrade = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 		events: {
-			'tap li.button-swipe': 'button',
+			'tap li.button-swipe.delete': 'buttonDelete',
 			'tap ul.wrapper-button-default li': 'add'
 		},
 
@@ -21,6 +21,9 @@
 				this.deferred = this.trade.deferred;
 				this.deferred.then(function() {
 					self.trade = self.trade.toJSON();
+					if(attrs.is_first) {
+						self.trade.isFirst = true;
+					}
 				});
 			}
 			app.templateLoader.get('main-view-trade').done(function(template) {
@@ -62,11 +65,13 @@
 			});
 		},
 
-		button: function(e) {
+		buttonDelete: function(e) {
 			var self = this;
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var $label = $wrapper.children('div');
+			var object = $label.hasClass('comment') ? 'comment' : ($label.hasClass('position') ? 'position' : '');
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,
@@ -78,12 +83,20 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					var comment = new app.Models.comment({
-						id: id
-					});
-					comment.deferred.then(function() {
-						comment.delete();
-					});
+					switch(object) {
+						case 'comment':
+							var comment = new app.Models.comment({
+								id: id
+							});
+							comment.delete();
+							break;
+						case 'position':
+							var position = new app.Models.position({
+								id: id
+							});
+							position.delete();
+							break;
+					}
 				}
 			});
 		}
