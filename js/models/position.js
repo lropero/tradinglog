@@ -54,7 +54,7 @@
 							var trade = new app.Models.trade({
 								id: trade_id
 							});
-							trade.deferred.done(function() {
+							trade.deferred.then(function() {
 								var type = trade.get('type');
 								if((type === 1 && size < 0) || (type === 2 && size > 0)) {
 									trade.setPnL(function() {

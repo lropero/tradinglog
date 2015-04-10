@@ -97,16 +97,14 @@
 						var trade = new app.Models.trade({
 							id: self.trade.id
 						});
-						trade.deferred.done(function() {
-							trade.setPnL(function(is_first) {
-								if(!is_first) {
-									is_first = false;
-								}
+						trade.deferred.then(function() {
+							trade.setPnL(function(isFirst) {
+								var isFirst = isFirst ? isFirst : false;
 								app.cache.delete('main');
 								app.cache.delete('trade' + self.trade.id);
 								app.loadView('mainViewTrade', {
 									trade_id: self.trade.id,
-									is_first: is_first
+									isFirst: isFirst
 								});
 							});
 						});

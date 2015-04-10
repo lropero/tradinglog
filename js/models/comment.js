@@ -37,7 +37,7 @@
 				var trade = new app.Models.trade({
 					id: trade_id
 				});
-				trade.deferred.done(function() {
+				trade.deferred.then(function() {
 					trade.addToComments(-1, function() {
 						self.destroy({
 							success: function() {

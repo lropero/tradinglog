@@ -268,7 +268,7 @@
 				id: this.get('instrument_id')
 			});
 
-			instrument.deferred.done(function() {
+			instrument.deferred.then(function() {
 				instrument = instrument.toJSON();
 				profit *= instrument.point_value;
 				loss *= instrument.point_value;
