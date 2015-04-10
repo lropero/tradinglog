@@ -21,9 +21,6 @@
 				this.deferred = this.trade.deferred;
 				this.deferred.then(function() {
 					self.trade = self.trade.toJSON();
-					if(typeof attrs.isFirst !== 'undefined') {
-						self.trade.isFirst = true;
-					}
 				});
 			}
 			app.templateLoader.get('main-view-trade').done(function(template) {
