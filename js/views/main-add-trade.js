@@ -165,10 +165,9 @@
 										expires: 20
 									});
 									app.cache.delete('main');
-									app.loadView('main');
-									// app.loadView('mainViewTrade', {
-									// 	trade_id: insertId
-									// });
+									app.loadView('mainViewTrade', {
+										trade_id: insertId
+									});
 								}
 							});
 						}

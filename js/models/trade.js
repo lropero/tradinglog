@@ -166,9 +166,9 @@
 				success: function() {
 					positions = positions.toJSON();
 					for(var i = 0; i < positions.length; i++) {
-						// if(i + 1 === positions.length) {
-						// 	positions[i].last = true;
-						// }
+						if(i + 1 === positions.length) {
+							positions[i].last = true;
+						}
 						self.positions.push(positions[i]);
 					}
 					deferred.resolve();
@@ -350,7 +350,7 @@
 					json.net = this.getNet();
 				}
 				json.objects = this.objects;
-				// json.positions = this.positions.length;
+				json.positions = this.positions.length;
 				json.sizePrice = this.calculateSizePrice();
 			}
 			return json;
