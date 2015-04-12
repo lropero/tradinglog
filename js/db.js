@@ -5,11 +5,10 @@
 		init: function() {
 			this.deferred = $.Deferred();
 			if(window.sqlitePlugin) {
-				this.db = window.openDatabase('TradingLog', '1.0', 'TradingLog v1.0', 1024 * 1024);
-				// this.db = window.sqlitePlugin.openDatabase({
-				// 	name: 'TradingLog',
-				// 	location: 2
-				// });
+				this.db = window.sqlitePlugin.openDatabase({
+					name: 'TradingLog',
+					location: 2
+				});
 			} else {
 				this.db = window.openDatabase('TradingLog', '1.0', 'TradingLog v1.0', 1024 * 1024);
 			}

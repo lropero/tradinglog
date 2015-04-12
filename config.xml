@@ -30,9 +30,9 @@
 		</array>
 	</gap:config-file>
 
+	<gap:plugin name="com.brodysoft.sqliteplugin" />
 	<gap:plugin name="com.ionic.keyboard" />
 	<gap:plugin name="com.jchalan.cordova.ios.disableshaketoundo" />
-	<gap:plugin name="com.millerjames01.sqlite-plugin" />
 	<gap:plugin name="org.apache.cordova.device-motion" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 	<gap:plugin name="org.apache.cordova.statusbar" />
