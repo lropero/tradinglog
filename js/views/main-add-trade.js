@@ -153,7 +153,7 @@
 						success: function(model, insertId) {
 							app.headerNavigation.update({});
 							position.set({
-								trade_id: insertId
+								trade_id: 1
 							});
 							position.save(null, {
 								success: function() {
