@@ -310,30 +310,30 @@
 							id: last.id
 						});
 						position.delete();
-						return;
-					}
-					if(!array.length && created_at > 0) {
-						self.set({
-							variation: (profit - loss - commission) * 100 / app.account.get('balance'),
-							closed_at: created_at
-						});
-						self.save(null, {
-							success: function() {
-								app.account.set({
-									balance: balance
-								});
-								app.account.save(null, {
-									success: function() {
-										app.cache.delete('map');
-										callback(true);
-									}
-								});
-							}
-						});
 					} else {
-						self.save(null, {
-							success: callback
-						});
+						if(!array.length && created_at > 0) {
+							self.set({
+								variation: (profit - loss - commission) * 100 / app.account.get('balance'),
+								closed_at: created_at
+							});
+							self.save(null, {
+								success: function() {
+									app.account.set({
+										balance: balance
+									});
+									app.account.save(null, {
+										success: function() {
+											app.cache.delete('map');
+											callback(true);
+										}
+									});
+								}
+							});
+						} else {
+							self.save(null, {
+								success: callback
+							});
+						}
 					}
 				}
 			});

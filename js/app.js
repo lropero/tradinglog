@@ -38,7 +38,7 @@
 				app.account.fetch({
 					success: function() {
 
-						/** Preload map & open trade's templates to smoothen navigation */
+						/** Preload map + open trade's templates to smoothen navigation */
 						new app.Views.mainMap(true);
 						var trades = new app.Collections.trades();
 						trades.setAccountId(1);
