@@ -53,8 +53,8 @@
 						});
 						app.account.save(null, {
 							success: function() {
-								app.cache.delete('main');
-								new app.Views.mainDrag();
+								app.cache.delete('main', true);
+								app.loadView('main');
 							}
 						});
 					}

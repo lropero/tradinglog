@@ -92,7 +92,6 @@
 			});
 			position.save(null, {
 				success: function() {
-					app.headerNavigation.update({});
 					if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
 						var trade = new app.Models.trade({
 							id: self.trade.id

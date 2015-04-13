@@ -78,7 +78,6 @@
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
-					app.headerNavigation.update({});
 					app.account.set({
 						balance: balance
 					});

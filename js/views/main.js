@@ -9,7 +9,7 @@
 			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
-		initialize: function(cache) {
+		initialize: function(cache, fromDelete) {
 			var self = this;
 			this.deferred = $.Deferred();
 			this.operations = [];
@@ -24,7 +24,7 @@
 					operations: 0
 				};
 				self.objects = [];
-				self.prepareObjects();
+				self.prepareObjects(cache, fromDelete);
 				self.deferred.resolve();
 			});
 			app.templateLoader.get('main').done(function(template) {
@@ -146,7 +146,7 @@
 			return deferred;
 		},
 
-		prepareObjects: function() {
+		prepareObjects: function(cache, fromDelete) {
 			while(this.trades.length && this.trades[0].closed_at === 0) {
 				this.objects.push(this.trades.shift());
 				this.count.open++;
@@ -170,6 +170,20 @@
 			}
 			if(!(!this.count.closed && this.count.operations === 1)) {
 				this.objects[this.count.open].isFirst = true;
+				if(typeof this.objects[this.count.open].instrument_id === 'undefined') {
+					if(app.firstTrade) {
+						app.cache.delete('trade' + app.firstTrade);
+						delete(app.firstTrade);
+					}
+				} else if(app.firstTrade !== this.objects[this.count.open].id) {
+					if(app.firstTrade) {
+						app.cache.delete('trade' + app.firstTrade);
+					}
+					if(typeof cache !== 'boolean' || fromDelete) {
+						app.cache.delete('trade' + this.objects[this.count.open].id);
+					}
+					app.firstTrade = this.objects[this.count.open].id;
+				}
 			}
 		},
 

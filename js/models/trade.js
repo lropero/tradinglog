@@ -309,7 +309,7 @@
 						var position = new app.Models.position({
 							id: last.id
 						});
-						position.delete();
+						position.delete(true);
 					} else {
 						if(!array.length && created_at > 0) {
 							self.set({
