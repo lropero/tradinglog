@@ -1,5 +1,5 @@
 <script type="text/x-handlebars-template" id="main-view-trade-template">
-	<div id="loading"><span></span></div>
+	<div id="loading"><div></div></div>
 	<div id="top">
 		<ul>
 			<li class="wrapper-label">

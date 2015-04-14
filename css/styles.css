@@ -78,7 +78,7 @@ div#loading {
   height: 109px;
   text-align: center;
 }
-div#loading span {
+div#loading div {
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-name: loading;
@@ -86,7 +86,7 @@ div#loading span {
   line-height: 109px;
   margin: 0;
 }
-div#loading span:after {
+div#loading div:after {
   color: #ffffff;
   content: '\f29d';
   font-family: ionicons;
