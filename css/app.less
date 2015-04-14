@@ -93,20 +93,22 @@ div#isolate {
 
 div#loading {
 	background: @violet-light;
+	display: none;
 	height: 109px;
 	text-align: center;
 }
 
-div#loading div {
+div#loading span {
 	-webkit-animation-duration: 2s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-name: loading;
 	-webkit-animation-timing-function: linear;
-	line-height: 109px;
+	display: block;
 	margin: 0;
+	padding: 30px;
 }
 
-div#loading div:after {
+div#loading span:after {
 	color: @white;
 	content: '\f29d';
 	font-family: ionicons;
