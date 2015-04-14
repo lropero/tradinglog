@@ -94,7 +94,7 @@
 							var position = new app.Models.position({
 								id: id
 							});
-							// position.delete();
+							position.delete();
 							break;
 					}
 				}

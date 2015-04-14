@@ -75,7 +75,6 @@ div#isolate {
 }
 div#loading {
   background: #9f8fe7;
-  display: none;
   height: 109px;
   text-align: center;
 }
