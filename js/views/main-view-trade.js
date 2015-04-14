@@ -89,6 +89,8 @@
 							comment.delete();
 							break;
 						case 'position':
+							$('div#top').hide();
+							$('div#loading').show();
 							var position = new app.Models.position({
 								id: id
 							});

@@ -73,6 +73,24 @@ div#drag {
 div#isolate {
   display: none;
 }
+div#loading {
+  background: #9f8fe7;
+  display: none;
+  height: 109px;
+  text-align: center;
+}
+div#loading:after {
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: loading;
+  -webkit-animation-timing-function: linear;
+  color: #ffffff;
+  content: '\f29d';
+  font-family: ionicons;
+  font-size: 32px;
+  line-height: 109px;
+  margin: 0;
+}
 footer {
   background-color: #f6f6f6;
   border-top: 1px solid #dadada;
@@ -201,6 +219,14 @@ section#settings {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @-webkit-keyframes logo {
   from {
