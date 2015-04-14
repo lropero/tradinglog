@@ -310,6 +310,7 @@
 							id: last.id
 						});
 						position.delete(true);
+						$('header button').show();
 					} else {
 						if(!array.length && created_at > 0) {
 							self.set({

@@ -151,6 +151,7 @@
 				if(trade.isValid() && position.isValid()) {
 					trade.save(null, {
 						success: function(model, insertId) {
+							$('header button').hide();
 							position.set({
 								trade_id: insertId
 							});

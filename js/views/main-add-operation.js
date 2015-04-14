@@ -78,6 +78,7 @@
 			});
 			operation.save(null, {
 				success: function(model, insertId) {
+					$('header button').hide();
 					app.account.set({
 						balance: balance
 					});

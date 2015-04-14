@@ -54,6 +54,7 @@
 			});
 			comment.save(null, {
 				success: function() {
+					$('header button').hide();
 					var trade = new app.Models.trade({
 						id: self.trade.id
 					});
