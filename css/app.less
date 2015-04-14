@@ -92,16 +92,16 @@ div#isolate {
 }
 
 div#loading {
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-name: loading;
+	-webkit-animation-timing-function: linear;
 	background: @violet-light;
 	height: 109px;
 	text-align: center;
 }
 
 div#loading:after {
-	-webkit-animation-duration: 2s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-name: loading;
-	-webkit-animation-timing-function: linear;
 	color: @white;
 	content: '\f29d';
 	font-family: ionicons;
