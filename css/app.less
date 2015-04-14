@@ -92,22 +92,26 @@ div#isolate {
 }
 
 div#loading {
-	-webkit-animation-duration: 2s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-name: loading;
-	-webkit-animation-timing-function: linear;
 	background: @violet-light;
+	display: none;
 	height: 109px;
 	text-align: center;
 }
 
-div#loading:after {
+div#loading span {
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-name: loading;
+	-webkit-animation-timing-function: linear;
+	line-height: 109px;
+	margin: 0;
+}
+
+div#loading span:after {
 	color: @white;
 	content: '\f29d';
 	font-family: ionicons;
 	font-size: 32px;
-	line-height: 109px;
-	margin: 0;
 }
 
 footer {

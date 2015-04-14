@@ -74,21 +74,24 @@ div#isolate {
   display: none;
 }
 div#loading {
+  background: #9f8fe7;
+  display: none;
+  height: 109px;
+  text-align: center;
+}
+div#loading span {
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-name: loading;
   -webkit-animation-timing-function: linear;
-  background: #9f8fe7;
-  height: 109px;
-  text-align: center;
+  line-height: 109px;
+  margin: 0;
 }
-div#loading:after {
+div#loading span:after {
   color: #ffffff;
   content: '\f29d';
   font-family: ionicons;
   font-size: 32px;
-  line-height: 109px;
-  margin: 0;
 }
 footer {
   background-color: #f6f6f6;
