@@ -38,8 +38,7 @@
 				app.account.fetch({
 					success: function() {
 
-						/** Preload map + open trade's templates to smoothen navigation */
-						new app.Views.mainMap(true);
+						/** Preload some templates to smoothen navigation */
 						var trades = new app.Collections.trades();
 						trades.setAccountId(app.account.get('id'));
 						trades.setOpen();
@@ -56,6 +55,8 @@
 								});
 							}
 						});
+						new app.Views.mainMap(true);
+						new app.Views.settingsAddInstrument(true);
 
 						/** Load main view */
 						app.view = new app.Views.main();

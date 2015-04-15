@@ -103,6 +103,8 @@
 		viewInstrument: function(e) {
 			e.preventDefault();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var $label = $($wrapper.context);
+			$label.css('backgroundColor', '#333');
 			var key = $wrapper.data('key');
 			app.view.subview.destroy();
 			app.view.subview = new app.Views.settingsAddInstrument({

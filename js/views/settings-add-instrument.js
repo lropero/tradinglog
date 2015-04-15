@@ -10,7 +10,7 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(attrs) {
+		initialize: function(attrs, cache) {
 			var self = this;
 			if(typeof attrs !== 'undefined') {
 				this.instrument = attrs.instrument;
@@ -20,7 +20,7 @@
 			}
 			app.templateLoader.get('settings-add-instrument').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -29,15 +29,18 @@
 			this.undelegateEvents();
 		},
 
-		render: function() {
+		render: function(cache) {
 			if(this.instrument) {
 				app.trigger('change', 'settings-edit-instrument');
 				this.$el.html(this.template({
 					instrument: this.instrument
 				}));
 			} else {
-				app.trigger('change', 'settings-add-instrument');
-				this.$el.html(this.template());
+				var template = app.cache.get('addInstrument', this.template);
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'settings-add-instrument');
+					this.$el.html(template);
+				}
 			}
 			return this;
 		},
