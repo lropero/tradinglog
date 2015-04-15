@@ -9,7 +9,7 @@
 					dao.find(model, function(data) {
 						options.success(data);
 					});
-				} else if(model.account_id || model.trade_id) {
+				} else if(model.account_id || model.isActive || model.trade_id) {
 					dao.findSet(model, function(data) {
 						options.success(data);
 					});

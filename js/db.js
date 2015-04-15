@@ -105,10 +105,11 @@
 
 		populateDemo: function() {
 			var sqls = [
-				'INSERT INTO account VALUES (null, "Demo", 5000, 1);',
-				'INSERT INTO instrument VALUES (null, 1, "E-mini S&P 500", 50, 4.24, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 4.84, 0, 0);',
-				'INSERT INTO operation VALUES (null, 1, 5000, "Initial deposit.", 0, ' + (new Date()).getTime() + ');',
+				// 'INSERT INTO account VALUES (null, "Demo", 5000, 1);',
+				// 'INSERT INTO account VALUES (null, "Real", 5200, 0);',
+				'INSERT INTO instrument VALUES (null, 1, "E-mini S&P 500", 50, 5, 0, 0);',
+				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 5, 0, 0);',
+				// 'INSERT INTO operation VALUES (null, 1, 5000, "Initial deposit.", 0, ' + (new Date()).getTime() + ');',
 				// 'INSERT INTO trade VALUES (null, 1, 1, 0, 500, 200, 8.48, 5.83, 3, 1426273045);',
 				// 'INSERT INTO trade VALUES (null, 1, 1, 0, 0, 112.5, 4.24, -2, 0, 1426283045);',
 				// 'INSERT INTO trade VALUES (null, 1, 2, 1, 300, 0, 4.84, 3, 1, 1426293045);',

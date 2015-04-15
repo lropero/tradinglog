@@ -31,6 +31,19 @@
 			});
 		},
 
+		findSet: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT * FROM account WHERE is_active = "1";';
+				tx.executeSql(sql, [], function(tx, results) {
+					var accounts = [];
+					for(var i = 0; i < results.rows.length; i++) {
+						accounts.push(results.rows.item(i));
+					}
+					callback(accounts);
+				});
+			});
+		},
+
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
