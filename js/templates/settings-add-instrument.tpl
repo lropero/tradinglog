@@ -1,5 +1,5 @@
 <script type="text/x-handlebars-template" id="settings-add-instrument-template">
-	<div id="isolate">
+	<div class="box-violet" id="isolate">
 		<div class="button-primary" id="done">Done</div>
 	</div>
 	<div id="complete">
