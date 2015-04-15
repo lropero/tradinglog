@@ -73,6 +73,9 @@ div#drag {
 div#isolate {
   display: none;
 }
+div#layout {
+  height: 100%;
+}
 div#loading {
   background: #9f8fe7;
   display: none;
@@ -242,6 +245,7 @@ section#settings {
 html,
 body {
   overflow-x: hidden;
+  height: 100%;
 }
 ul,
 ol {
