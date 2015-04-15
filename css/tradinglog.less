@@ -117,6 +117,11 @@ ol
     color: @gray;
 }
 
+.text-note.header
+{
+    text-align: center;
+}
+
 // COPYRIGHT
 // -------------------------------------------------- //
 
@@ -2220,7 +2225,6 @@ select
 // BOX-VIOLET / BOX SWIPE - SELECT GROUP
 // -------------------------------------------------- //
 
-
 .box-violet .wrapper-select-group .group,
 .box-swipe .wrapper-select-group .group
 {
@@ -2233,4 +2237,71 @@ select
 {
     color: @violet;
     background-color: @white;
+}
+
+// WELCOME
+// -------------------------------------------------- //
+
+.welcome
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    background-color: @violet;
+}
+
+.welcome .content
+{
+    position: relative;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    padding-top: 30px;
+}
+
+.welcome h1
+{
+    font-weight: 100;
+    font-style: normal;
+    line-height: 1;
+
+    display: block;
+    clear: both;
+
+    margin: 0 0 30px 0;
+
+    text-align: center;
+    letter-spacing: 1px;
+
+    .smoothing();
+}
+.welcome .text-body
+{
+
+    margin: 30px 15px;
+
+    .smoothing();
+    color: @white;
+    text-align: center;
+}
+
+.welcome .video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    opacity: .3;
+    background-image: url('../video/tradinglog.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
 }
