@@ -23,7 +23,7 @@
 			});
 		},
 
-		getType: function() {
+		getTypeName: function() {
 			switch(this.get('type')) {
 				case 0:
 					return 'Future';
@@ -40,7 +40,7 @@
 		toJSON: function() {
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			json.group = String.fromCharCode(this.get('group_id') + 65);
-			json.type = this.getType();
+			json.typeName = this.getTypeName();
 			return json;
 		}
 	});

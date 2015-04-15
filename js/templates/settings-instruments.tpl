@@ -11,7 +11,7 @@
 							<div class="name">{{this.name}}</div>
 						</div>
 						<div class="row">
-							<div class="type">{{this.type}}</div>
+							<div class="type">{{this.typeName}}</div>
 							<div class="commission">{{#money this.commission}}{{/money}}</div>
 						</div>
 					</div>
