@@ -106,11 +106,54 @@
 						}
 					};
 					break;
+				case 'settings-add-instrument':
+					options = {
+						left: {
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsInstruments();
+							},
+							icon: 'f124',
+							text: 'Cancel'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Add'
+						}
+					}
+					break;
+				case 'settings-edit-instrument':
+					options = {
+						left: {
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsInstruments();
+							},
+							icon: 'f124',
+							text: 'Back'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Save'
+						}
+					}
+					break;
 				case 'settings-instruments':
 					options = {
 						right: {
-							icon: 'f218',
-							view: 'mainAdd'
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsAddInstrument();
+							},
+							icon: 'f218'
 						}
 					};
 					break;

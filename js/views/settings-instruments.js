@@ -4,6 +4,7 @@
 	app.Views.settingsInstruments = Backbone.View.extend({
 		el: 'section#settings section#content',
 		events: {
+			'tap div.instrument:not(.swiped)': 'viewInstrument',
 			'tap li.button-swipe.delete': 'buttonDelete',
 			'tap li.button-swipe.group': 'buttonGroup'
 		},
@@ -97,6 +98,16 @@
 					});
 				});
 			}, 1000);
+		},
+
+		viewInstrument: function(e) {
+			e.preventDefault();
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var key = $wrapper.data('key');
+			app.view.subview.destroy();
+			app.view.subview = new app.Views.settingsAddInstrument({
+				instrument: this.instruments[key]
+			});
 		}
 	});
 })();

@@ -3,6 +3,25 @@
 
 	app.Models.instrument = Backbone.Model.extend({
 		dao: app.DAOs.instrument,
+		defaults: {
+			type: 0,
+			name: '',
+			point_value: 1,
+			commission: 0,
+			group_id: 0,
+			is_deleted: 0
+		},
+		validation: {
+			name: {
+				required: true
+			},
+			point_value: {
+				gt: 0
+			},
+			commission: {
+				min: 0
+			}
+		},
 
 		initialize: function() {
 			var self = this;
@@ -11,6 +30,19 @@
 				this.fetch({
 					success: function() {
 						self.deferred.resolve();
+					}
+				});
+			} else {
+				this.listenTo(this, 'validated', function(isValid, model, errors) {
+					if(!isValid) {
+						$.each(errors, function(index, error) {
+							var $el = $('#' + index);
+							$el.addClass('error');
+							var $price = $el.parent('div.price');
+							if($price) {
+								$price.addClass('error');
+							}
+						});
 					}
 				});
 			}
@@ -25,13 +57,13 @@
 
 		getTypeName: function() {
 			switch(this.get('type')) {
-				case 0:
+				case 1:
 					return 'Future';
 					break;
-				case 1:
+				case 2:
 					return 'Currency';
 					break;
-				case 2:
+				case 3:
 					return 'Stock';
 					break;
 			}

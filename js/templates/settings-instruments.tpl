@@ -2,7 +2,7 @@
 	<div class="box-violet">
 		<ul>
 			{{#each instruments}}
-				<li class="wrapper-label" data-swipe="2">
+				<li class="wrapper-label" data-key="{{@key}}" data-swipe="2">
 					<div class="label instrument swipe">
 						<div class="ball">
 							<span class="group">{{this.group}}</span>
@@ -12,7 +12,9 @@
 						</div>
 						<div class="row">
 							<div class="type">{{this.typeName}}</div>
-							<div class="commission">{{#money this.commission}}{{/money}}</div>
+							{{#equal this.type 1}}
+								<div class="commission">{{#money this.commission}}{{/money}}</div>
+							{{/equal}}
 						</div>
 					</div>
 					<div class="wrapper-swipe">

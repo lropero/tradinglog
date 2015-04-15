@@ -6,6 +6,16 @@
 	};
 
 	instrumentDAO.prototype = {
+		create: function(model, callback) {
+			var fields = ['type', 'name', 'point_value', 'commission', 'group_id', 'is_deleted'];
+			this.db.transaction(function(tx) {
+				var sql = app.databaseController.buildInsert('instrument', fields, model);
+				tx.executeSql(sql, [], function(tx, results) {
+					callback(results.insertId);
+				});
+			});
+		},
+
 		destroy: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'UPDATE instrument SET is_deleted = "1" WHERE id = "' + model.id + '";';
