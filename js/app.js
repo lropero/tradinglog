@@ -17,18 +17,7 @@
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
-			/** We start by calling the layout view which is in charge of rendering
-				the header and footer (both of them separate views); all of these
-				happens asynchronously using deferreds/promises */
-			var layout = new app.Views.layout();
-
-			$.when(
-
-				/** DB becomes ready while layout loads; init() returns a promise */
-				app.databaseController.init(),
-
-				layout.deferred
-			).done(function() {
+			app.databaseController.init().done(function() {
 				var accounts = new app.Collections.accounts();
 				accounts.setActive();
 				accounts.fetch({
@@ -43,36 +32,43 @@
 							/** Get active account */
 							app.account = accounts.models[0];
 
-							/** Preload some templates to smoothen navigation */
-							var trades = new app.Collections.trades();
-							trades.setAccountId(app.account.get('id'));
-							trades.setOpen();
-							trades.deferreds = [];
-							trades.fetch({
-								success: function() {
-									$.when.apply($, trades.deferreds).done(function() {
-										trades = trades.toJSON();
-										for(var i = 0; i < trades.length; i++) {
-											new app.Views.mainViewTrade({
-												trade: trades[i]
-											}, true);
-										}
-									});
-								}
+							/** We instantiate the layout view which is in charge of rendering the
+								header and footer views */
+							var layout = new app.Views.layout();
+
+							layout.deferred.done(function() {
+
+								/** Preload some templates to smoothen navigation */
+								var trades = new app.Collections.trades();
+								trades.setAccountId(app.account.get('id'));
+								trades.setOpen();
+								trades.deferreds = [];
+								trades.fetch({
+									success: function() {
+										$.when.apply($, trades.deferreds).done(function() {
+											trades = trades.toJSON();
+											for(var i = 0; i < trades.length; i++) {
+												new app.Views.mainViewTrade({
+													trade: trades[i]
+												}, true);
+											}
+										});
+									}
+								});
+								new app.Views.mainMap(true);
+								new app.Views.settingsAddInstrument(true);
+
+								/** Load main view */
+								app.view = new app.Views.main();
+
+								/** We hide the initial splash screen once the main view is ready */
+								app.view.deferred.done(function() {
+									if(navigator.splashscreen) {
+										navigator.splashscreen.hide();
+									}
+								});
+
 							});
-							new app.Views.mainMap(true);
-							new app.Views.settingsAddInstrument(true);
-
-							/** Load main view */
-							app.view = new app.Views.main();
-
-							/** We hide the initial splash screen once the main view is ready */
-							app.view.deferred.done(function() {
-								if(navigator.splashscreen) {
-									navigator.splashscreen.hide();
-								}
-							});
-
 						}
 					}
 				});

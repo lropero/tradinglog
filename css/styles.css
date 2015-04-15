@@ -1425,6 +1425,7 @@ select {
   background-color: #4020d0;
 }
 .box-violet {
+  padding-bottom: 34px;
   color: #ffffff;
   background-color: #4020d0;
 }
@@ -1584,7 +1585,6 @@ select {
   z-index: 100;
   top: 0;
   left: 0;
-  padding-top: 30px;
 }
 .welcome h1 {
   font-weight: 100;
