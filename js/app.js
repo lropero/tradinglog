@@ -41,7 +41,7 @@
 						/** Preload map + open trade's templates to smoothen navigation */
 						new app.Views.mainMap(true);
 						var trades = new app.Collections.trades();
-						trades.setAccountId(1);
+						trades.setAccountId(app.account.get('id'));
 						trades.setOpen();
 						trades.deferreds = [];
 						trades.fetch({

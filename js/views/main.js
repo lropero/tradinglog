@@ -113,7 +113,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			var operations = new app.Collections.operations();
-			operations.setAccountId(1);
+			operations.setAccountId(app.account.get('id'));
 			operations.fetch({
 				success: function() {
 					operations = operations.toJSON();
@@ -130,7 +130,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
-			trades.setAccountId(1);
+			trades.setAccountId(app.account.get('id'));
 			trades.deferreds = [];
 			trades.fetch({
 				success: function() {

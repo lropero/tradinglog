@@ -116,7 +116,7 @@
 
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
-			trades.setAccountId(1);
+			trades.setAccountId(app.account.get('id'));
 			trades.setInstrumentId(instrument_id);
 			trades.setOpen();
 			trades.deferreds = [];

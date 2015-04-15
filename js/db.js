@@ -123,9 +123,9 @@
 				// 'INSERT INTO position VALUES (null, 4, -1, 250, 1426293045);',
 				// 'INSERT INTO position VALUES (null, 4, -1, 250, 1426293045);'
 
-				'INSERT INTO trade VALUES (null, 1, ' + (Math.floor(Math.random() * 2) + 1) + ', ' + (Math.floor(Math.random() * 2) + 1) + ', ' + (Math.floor(Math.random() * 100000) + 1) / 100 + ', ' + (Math.floor(Math.random() * 100000) + 1) / 100 + ', 42.4, 5, 0, ' + (new Date()).getTime() + ');',
-				'INSERT INTO position VALUES (null, 1, 10, 1800, 1428520308180);',
-				'INSERT INTO position VALUES (null, 1, -10, 1802, 1428520308180);',
+				// 'INSERT INTO trade VALUES (null, 1, ' + (Math.floor(Math.random() * 2) + 1) + ', ' + (Math.floor(Math.random() * 2) + 1) + ', ' + (Math.floor(Math.random() * 100000) + 1) / 100 + ', ' + (Math.floor(Math.random() * 100000) + 1) / 100 + ', 42.4, 5, 0, ' + (new Date()).getTime() + ');',
+				// 'INSERT INTO position VALUES (null, 1, 10, 1800, 1428520308180);',
+				// 'INSERT INTO position VALUES (null, 1, -10, 1802, 1428520308180);',
 				// 'INSERT INTO trade VALUES (null, 1, ' + (Math.floor(Math.random() * 2) + 1) + ', ' + (Math.floor(Math.random() * 2) + 1) + ', ' + (Math.floor(Math.random() * 100000) + 1) / 100 + ', ' + (Math.floor(Math.random() * 100000) + 1) / 100 + ', 42.4, 5, 0, 1428521318180);',
 				// 'INSERT INTO position VALUES (null, 2, 10, 1800, 1428521318180);',
 				// 'INSERT INTO position VALUES (null, 2, -10, 1802, 1428521318180);',

@@ -4,7 +4,7 @@
 	app.Views.stats = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 		events: {
-			'tap li:not(.active)': 'switch'
+			'tap control.segmented li:not(.active)': 'switch'
 		},
 
 		initialize: function() {

@@ -4,7 +4,7 @@
 	app.Views.settings = Backbone.View.extend({
 		el: 'section#settings',
 		events: {
-			'tap li:not(.active)': 'switch'
+			'tap control.segmented li:not(.active)': 'switch'
 		},
 
 		initialize: function() {

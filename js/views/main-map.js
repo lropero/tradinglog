@@ -57,7 +57,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
-			trades.setAccountId(1);
+			trades.setAccountId(app.account.get('id'));
 			trades.deferreds = [];
 			trades.fetch({
 				success: function() {

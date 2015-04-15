@@ -106,6 +106,14 @@
 						}
 					};
 					break;
+				case 'settings-instruments':
+					options = {
+						right: {
+							icon: 'f218',
+							view: 'mainAdd'
+						}
+					};
+					break;
 			}
 			app.headerNavigation.update(options);
 		}
