@@ -106,10 +106,10 @@
 			var $label = $($wrapper.context);
 			$label.css('backgroundColor', '#333');
 			var key = $wrapper.data('key');
-			app.view.subview.destroy();
-			app.view.subview = new app.Views.settingsAddInstrument({
-				instrument: this.instruments[key]
-			});
+			// app.view.subview.destroy();
+			// app.view.subview = new app.Views.settingsAddInstrument({
+			// 	instrument: this.instruments[key]
+			// });
 		}
 	});
 })();
