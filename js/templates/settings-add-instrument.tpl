@@ -36,7 +36,7 @@
 					<span class="help-block">This is a round-trip commission (charged once per buy/sell match). You'll be able to manually edit the commission by swiping the trade to the left once it's closed.</span>
 				</div>
 				<span class="text-note" id="text-currency"{{#if this.instrument}}{{#notequal this.instrument.type 2}} style="display: none;"{{/notequal}}{{/if}}{{#unless this.instrument}} style="display: none;"{{/unless}}>Note: Since Forex markets are not exchange-based, such instruments does not have commissions.</span>
-				<span class="text-note" id="text-stock"{{#if this.instrument}}{{#notequal this.instrument.type 3}} style="display: none;"{{/notequal}}{{/if}}{{#unless this.instrument}} style="display: none;"{{/unless}}>Note: Since there are many commission schemas for stocks (flat rate, percentage, etc.), such trades will display an alert icon after you close them and will require you to manually edit the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</span>
+				<span class="text-note" id="text-stock"{{#if this.instrument}}{{#notequal this.instrument.type 3}} style="display: none;"{{/notequal}}{{/if}}{{#unless this.instrument}} style="display: none;"{{/unless}}>Note: Since there are many commission schemas for stocks (flat rate, percentage, etc.), such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them and will require you to manually edit the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</span>
 			</form>
 		</div>
 	</div>
