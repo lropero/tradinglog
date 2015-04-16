@@ -132,6 +132,7 @@
 				instrument.save(null, {
 					success: function() {
 						$('header button').hide();
+						app.cache.delete('mainAddTrade');
 						app.view.subview.destroy();
 						app.view.subview = new app.Views.settingsInstruments();
 					}
