@@ -106,6 +106,37 @@
 						}
 					};
 					break;
+				case 'settings-accounts':
+					options = {
+						right: {
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsAddAccount();
+							},
+							icon: 'f218'
+						}
+					};
+					break;
+				case 'settings-add-account':
+					options = {
+						left: {
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsAccounts();
+							},
+							icon: 'f124',
+							text: 'Cancel'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Add'
+						}
+					}
+					break;
 				case 'settings-add-instrument':
 					options = {
 						left: {
@@ -123,6 +154,26 @@
 								}
 							},
 							text: 'Add'
+						}
+					}
+					break;
+				case 'settings-edit-account':
+					options = {
+						left: {
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsAccounts();
+							},
+							icon: 'f124',
+							text: 'Back'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							text: 'Save'
 						}
 					}
 					break;

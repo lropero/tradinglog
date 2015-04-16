@@ -59,14 +59,14 @@
 								if((type === 1 && size < 0) || (type === 2 && size > 0)) {
 									trade.setPnL(function() {
 										app.cache.delete('main', true);
-										app.cache.delete('trade' + trade_id);
+										app.cache.delete('mainViewTrade' + trade_id);
 										app.loadView('mainViewTrade', {
 											trade_id: trade_id
 										});
 									});
 								} else {
 									app.cache.delete('main');
-									app.cache.delete('trade' + trade_id);
+									app.cache.delete('mainViewTrade' + trade_id);
 									app.loadView('mainViewTrade', {
 										trade_id: trade_id
 									});

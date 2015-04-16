@@ -63,7 +63,7 @@
 						trade.addToComments(1, function() {
 							var isFirst = self.trade.isFirst ? self.trade.isFirst : false;
 							app.cache.delete('main');
-							app.cache.delete('trade' + self.trade.id);
+							app.cache.delete('mainViewTrade' + self.trade.id);
 							app.loadView('mainViewTrade', {
 								trade_id: self.trade.id,
 								isFirst: isFirst

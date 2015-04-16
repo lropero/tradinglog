@@ -290,7 +290,7 @@
 							});
 							app.account.save(null, {
 								success: function() {
-									app.cache.delete('map');
+									app.cache.delete('mainMap');
 									callback();
 								}
 							});
@@ -324,7 +324,7 @@
 									});
 									app.account.save(null, {
 										success: function() {
-											app.cache.delete('map');
+											app.cache.delete('mainMap');
 											callback(true);
 										}
 									});

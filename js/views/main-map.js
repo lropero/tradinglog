@@ -26,7 +26,7 @@
 		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				var template = app.cache.get('map', self.template, {
+				var template = app.cache.get('mainMap', self.template, {
 					trades: self.trades,
 					max: self.max
 				});

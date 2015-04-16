@@ -11,7 +11,7 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function() {
+		initialize: function(cache) {
 			var self = this;
 			this.deferred = $.Deferred();
 			this.instruments = [];
@@ -21,7 +21,7 @@
 			}
 			app.templateLoader.get('main-add-trade').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -30,13 +30,16 @@
 			this.undelegateEvents();
 		},
 
-		render: function() {
+		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				app.trigger('change', 'main-add-trade');
-				self.$el.html(self.template({
+				var template = app.cache.get('mainAddTrade', self.template, {
 					instruments: self.instruments
-				}));
+				});
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main-add-trade');
+					self.$el.html(template);
+				}
 			});
 			return this;
 		},

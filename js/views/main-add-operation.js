@@ -10,14 +10,14 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function() {
+		initialize: function(cache) {
 			var self = this;
 			app.submit = function() {
 				self.submit();
 			}
 			app.templateLoader.get('main-add-operation').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -26,9 +26,12 @@
 			this.undelegateEvents();
 		},
 
-		render: function() {
-			app.trigger('change', 'main-add-operation');
-			this.$el.html(this.template());
+		render: function(cache) {
+			var template = app.cache.get('mainAddOperation', this.template);
+			if(typeof cache !== 'boolean') {
+				app.trigger('change', 'main-add-operation');
+				this.$el.html(template);
+			}
 			return this;
 		},
 

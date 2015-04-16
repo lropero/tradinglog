@@ -42,7 +42,7 @@
 						self.destroy({
 							success: function() {
 								app.cache.delete('main');
-								app.cache.delete('trade' + trade_id);
+								app.cache.delete('mainViewTrade' + trade_id);
 								app.loadView('mainViewTrade', {
 									trade_id: trade_id
 								});

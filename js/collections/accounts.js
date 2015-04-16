@@ -7,6 +7,10 @@
 
 		setActive: function() {
 			this.isActive = true;
+		},
+
+		setName: function(name) {
+			this.name = name;
 		}
 	});
 })();

@@ -43,7 +43,12 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM account WHERE is_active = "1";';
+				var sql = 'SELECT * FROM account WHERE ';
+				if(model.name) {
+					sql += 'name = "' + model.name + '";';
+				} else {
+					sql += 'is_active = "1";';
+				}
 				tx.executeSql(sql, [], function(tx, results) {
 					var accounts = [];
 					for(var i = 0; i < results.rows.length; i++) {

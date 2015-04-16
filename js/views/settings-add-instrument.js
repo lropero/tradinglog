@@ -36,7 +36,7 @@
 					instrument: this.instrument
 				}));
 			} else {
-				var template = app.cache.get('addInstrument', this.template);
+				var template = app.cache.get('settingsAddInstrument', this.template);
 				if(typeof cache !== 'boolean') {
 					app.trigger('change', 'settings-add-instrument');
 					this.$el.html(template);
@@ -108,7 +108,7 @@
 			instruments.setName(name);
 			instruments.fetch({
 				success: function() {
-					if(instruments.length > 0) {
+					if(instruments.length > 0 && name.length) {
 						alertify.error('An instrument with this name already exists');
 					} else {
 						deferred.resolve();

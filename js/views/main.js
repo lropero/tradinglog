@@ -172,15 +172,15 @@
 				this.objects[this.count.open].isFirst = true;
 				if(typeof this.objects[this.count.open].instrument_id === 'undefined') {
 					if(app.firstTrade) {
-						app.cache.delete('trade' + app.firstTrade);
+						app.cache.delete('mainViewTrade' + app.firstTrade);
 						delete(app.firstTrade);
 					}
 				} else if(app.firstTrade !== this.objects[this.count.open].id) {
 					if(app.firstTrade) {
-						app.cache.delete('trade' + app.firstTrade);
+						app.cache.delete('mainViewTrade' + app.firstTrade);
 					}
 					if(typeof cache !== 'boolean' || fromDelete) {
-						app.cache.delete('trade' + this.objects[this.count.open].id);
+						app.cache.delete('mainViewTrade' + this.objects[this.count.open].id);
 					}
 					app.firstTrade = this.objects[this.count.open].id;
 				}

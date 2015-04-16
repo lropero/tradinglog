@@ -37,7 +37,7 @@
 		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				var template = app.cache.get('trade' + self.trade.id, self.template, {
+				var template = app.cache.get('mainViewTrade' + self.trade.id, self.template, {
 					trade: self.trade
 				});
 				if(typeof cache !== 'boolean') {
