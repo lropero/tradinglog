@@ -106,12 +106,15 @@
 	_.extend(app, Backbone.Events);
 
 	window.start = function() {
-		window.welcome = new Image();
-		window.welcome.src = 'img/welcome.gif';
 		if(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
 			document.addEventListener('deviceready', app.init, false);
 		} else {
 			app.init();
 		}
 	}
+
+	$(function() {
+		var welcome = new Image();
+		welcome.src = 'img/welcome.gif';
+	});
 })();
