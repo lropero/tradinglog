@@ -808,6 +808,11 @@ ol {
   background-position: 0 0;
   background-size: contain;
 }
+#complete,
+#isolate {
+  max-width: 400px;
+  margin: 0 auto;
+}
 form,
 input,
 textarea,
@@ -1432,12 +1437,13 @@ select {
 }
 .box-violet input,
 .box-swipe input {
-  border: 1px solid #2c168e;
+  border: 1px solid #9f8fe7;
 }
 .box-violet .wrapper-input .input-icon:before,
 .box-swipe .wrapper-input .input-icon:before {
-  color: #4020d0;
-  background: #2c168e;
+  color: #ffffff;
+  background: #9f8fe7;
+  -webkit-font-smoothing: antialiased;
 }
 .box-violet textarea,
 .box-swipe textarea {
@@ -1472,6 +1478,13 @@ select {
 .box-swipe .button-primary {
   color: #4020d0;
   background-color: #ffffff;
+}
+#start,
+#done {
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4bd763;
+  -webkit-font-smoothing: antialiased;
 }
 .box-violet .checkbox,
 .box-swipe .checkbox {
@@ -1606,7 +1619,7 @@ select {
   left: 0;
   width: 100%;
   min-height: 100%;
-  opacity: .4;
+  opacity: .3;
   background: url('../img/welcome.gif') no-repeat center center fixed;
   -webkit-background-size: cover;
   background-size: cover;

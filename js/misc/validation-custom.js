@@ -35,7 +35,6 @@
 			$('div#isolate').hide();
 			$('div#isolated').append($wrapper).children().unwrap();
 			$('div#complete').show();
-			$('footer').show();
 			$('header #button-left').show();
 			$('header #button-right').show();
 		}
@@ -60,7 +59,6 @@
 			$isolate.wrap('<div id="isolated"></div>');
 			$('header #button-left').hide();
 			$('header #button-right').hide();
-			$('footer').hide();
 			$('div#complete').hide();
 			$('div#isolate').append($isolate).show();
 		}
