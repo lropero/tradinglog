@@ -55,6 +55,7 @@
 		},
 
 		submit: function() {
+			var self = this;
 			var name = this.$el.find('input#name').val().trim();
 			var balance = this.$el.find('input#balance').val().replace(',', '.');
 			var is_active = this.$el.find('div#is_active').hasClass('active') ? 1 : 0;
@@ -65,7 +66,13 @@
 			accounts.setName(name);
 			accounts.fetch({
 				success: function() {
-					if(accounts.length > 0 && name.length) {
+					var same = false;
+					if(self.account) {
+						if(self.account.id === accounts.models[0].id) {
+							same = true;
+						}
+					}
+					if(accounts.length > 0 && name.length && !same) {
 						alertify.error('An account with this name already exists');
 					} else {
 						deferred.resolve();

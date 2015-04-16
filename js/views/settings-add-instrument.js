@@ -68,28 +68,34 @@
 				var type = $radio.data('type');
 				switch(type) {
 					case 1:
-						this.$el.find('input#point_value').val('');
+						var $point_value = this.$el.find('input#point_value');
+						if($point_value.is(':hidden')) {
+							$point_value.val('');
+							$('div#form-point_value').show();
+						}
 						this.$el.find('input#commission').val('');
-						$('div#form-point_value').show();
 						$('div#form-broker_commission').show();
 						$('span#text-currency').hide();
 						$('span#text-stock').hide();
 						break;
 					case 2:
-						this.$el.find('input#point_value').val('');
-						$('div#form-point_value').show();
+						var $point_value = this.$el.find('input#point_value');
+						if($point_value.is(':hidden')) {
+							$point_value.val('');
+							$('div#form-point_value').show();
+						}
 						$('div#form-broker_commission').hide();
+						this.$el.find('input#commission').val('0');
 						$('span#text-currency').show();
 						$('span#text-stock').hide();
-						this.$el.find('input#commission').val('0');
 						break;
 					case 3:
 						$('div#form-point_value').hide();
+						this.$el.find('input#point_value').val('1');
 						$('div#form-broker_commission').hide();
+						this.$el.find('input#commission').val('0');
 						$('span#text-currency').hide();
 						$('span#text-stock').show();
-						this.$el.find('input#point_value').val('1');
-						this.$el.find('input#commission').val('0');
 						break;
 				}
 			}
@@ -108,7 +114,13 @@
 			instruments.setName(name);
 			instruments.fetch({
 				success: function() {
-					if(instruments.length > 0 && name.length) {
+					var same = false;
+					if(self.instrument) {
+						if(self.instrument.id === instruments.models[0].id) {
+							same = true;
+						}
+					}
+					if(instruments.length > 0 && name.length && !same) {
 						alertify.error('An instrument with this name already exists');
 					} else {
 						deferred.resolve();
