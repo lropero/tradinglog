@@ -1437,12 +1437,12 @@ select {
 }
 .box-violet input,
 .box-swipe input {
-  border: 1px solid #9f8fe7;
+  border: 1px solid #2c168e;
 }
 .box-violet .wrapper-input .input-icon:before,
 .box-swipe .wrapper-input .input-icon:before {
-  color: #ffffff;
-  background: #9f8fe7;
+  color: #f6f6f6;
+  background: #2c168e;
   -webkit-font-smoothing: antialiased;
 }
 .box-violet textarea,
@@ -1588,7 +1588,7 @@ select {
   left: 0;
   width: 100%;
   min-height: 100%;
-  background-color: #4020d0;
+  background-color: #222222;
 }
 .welcome .content {
   position: relative;
@@ -1623,6 +1623,16 @@ select {
   background: url('../img/welcome.gif') no-repeat center center fixed;
   -webkit-background-size: cover;
   background-size: cover;
+}
+.welcome .help-block {
+  color: #dadada !important;
+}
+.welcome .input-icon:before {
+  color: #ffffff !important;
+  background: #4020d0 !important;
+}
+.welcome input {
+  border: 1px solid #4020d0;
 }
 .alertify,
 .alertify-show,

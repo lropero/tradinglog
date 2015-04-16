@@ -1559,7 +1559,7 @@ select
 
     text-align: center;
 
-    .smoothing();
+    .smoothing;
 }
 
 .wrapper-feedback .button-feedback
@@ -2008,14 +2008,14 @@ select
 .box-violet input,
 .box-swipe input
 {
-    border: 1px solid @violet-light;
+    border: 1px solid @violet-dark;
 }
 
 .box-violet .wrapper-input .input-icon:before,
 .box-swipe .wrapper-input .input-icon:before
 {
-    color: @white;
-    background: @violet-light;
+    color: @gray-lighter;
+    background: @violet-dark;
 
     .smoothing;
 }
@@ -2272,7 +2272,7 @@ select
     width: 100%;
     min-height: 100%;
 
-    background-color: @violet;
+    background-color: @black;
 }
 
 .welcome .content
@@ -2297,7 +2297,7 @@ select
     text-align: center;
     letter-spacing: 1px;
 
-    .smoothing();
+    .smoothing;
 }
 .welcome .text-body
 {
@@ -2307,7 +2307,7 @@ select
 
     color: @white;
 
-    .smoothing();
+    .smoothing;
 }
 
 .welcome .video
@@ -2323,4 +2323,20 @@ select
     background: url('../img/welcome.gif') no-repeat center center fixed;
     -webkit-background-size: cover;
             background-size: cover;
+}
+
+.welcome .help-block
+{
+    color: @gray-light !important;
+}
+
+.welcome .input-icon:before,
+{
+    color: @white !important;
+    background: @violet !important;
+}
+
+.welcome input,
+{
+    border: 1px solid @violet;
 }
