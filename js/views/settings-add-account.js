@@ -57,8 +57,10 @@
 		submit: function() {
 			var self = this;
 			var name = this.$el.find('input#name').val().trim();
-			var balance = this.$el.find('input#balance').val().replace(',', '.');
-			var is_active = this.$el.find('div#is_active').hasClass('active') ? 1 : 0;
+			if(!this.account) {
+				var balance = this.$el.find('input#balance').val().replace(',', '.');
+				var is_active = this.$el.find('div#is_active').hasClass('active') ? 1 : 0;
+			}
 
 			name = name.charAt(0).toUpperCase() + name.slice(1);
 			var deferred = $.Deferred();
@@ -68,7 +70,7 @@
 				success: function() {
 					var same = false;
 					if(self.account) {
-						if(self.account.id === accounts.models[0].id) {
+						if(accounts.models[0] && self.account.id === accounts.models[0].id) {
 							same = true;
 						}
 					}
@@ -88,28 +90,64 @@
 				account.set({
 					name: name,
 					balance: balance,
-					is_active: 0
+					is_active: is_active
 				});
 			}
 			deferred.done(function() {
-				account.save(null, {
-					success: function(model, insertId) {
-						$('header button').hide();
-						var operation = new app.Models.operation();
-						operation.set({
-							account_id: insertId,
-							amount: balance,
-							description: 'Initial deposit.',
-							created_at: (new Date()).getTime()
+				if(self.account) {
+					account.deferred.done(function() {
+						account.set({
+							name: name
 						});
-						operation.save(null, {
+						account.save(null, {
 							success: function() {
+								$('header button').hide();
 								app.view.subview.destroy();
 								app.view.subview = new app.Views.settingsAccounts();
 							}
 						});
-					}
-				});
+					});
+				} else {
+					account.save(null, {
+						success: function(model, insertId) {
+							$('header button').hide();
+							var operation = new app.Models.operation();
+							operation.set({
+								account_id: insertId,
+								amount: balance,
+								description: 'Initial deposit.',
+								created_at: (new Date()).getTime()
+							});
+							operation.save(null, {
+								success: function() {
+									if(is_active) {
+										app.account.set({
+											is_active: 0
+										});
+										app.account.save(null, {
+											success: function() {
+												var accounts = new app.Collections.accounts();
+												accounts.setActive();
+												accounts.fetch({
+													success: function() {
+														app.account = accounts.models[0];
+														app.cache.delete('main');
+														app.cache.delete('mainMap');
+														app.view.subview.destroy();
+														app.view.subview = new app.Views.settingsAccounts();
+													}
+												});
+											}
+										});
+									} else {
+										app.view.subview.destroy();
+										app.view.subview = new app.Views.settingsAccounts();
+									}
+								}
+							});
+						}
+					});
+				}
 			});
 		},
 

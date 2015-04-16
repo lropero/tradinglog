@@ -62,8 +62,8 @@
 								new app.Views.mainAddOperation(true);
 								new app.Views.mainAddTrade(true);
 								new app.Views.mainMap(true);
-								new app.Views.settingsAddAccount(true);
-								new app.Views.settingsAddInstrument(true);
+								new app.Views.settingsAddAccount(null, true);
+								new app.Views.settingsAddInstrument(null, true);
 
 								/** Load main view */
 								app.view = new app.Views.main();

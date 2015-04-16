@@ -16,38 +16,44 @@
 		},
 
 		set: function(button, options) {
-			var button = $('header #button-' + button);
+			var $button = $('header #button-' + button);
 			if(options.icon) {
-				button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
+				$button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
 			} else {
-				button.removeClass('icon');
+				$button.removeClass('icon');
 			}
 			if(options.text) {
-				button.html(options.text);
+				$button.html(options.text);
 			} else {
-				button.html('');
+				$button.html('');
 			}
 			if(options.rotate) {
-				button.addClass('rotate');
+				$button.addClass('rotate');
 			} else {
-				button.removeClass('rotate');
+				$button.removeClass('rotate');
 			}
 			if(options.action) {
-				button.off().on('touchend', function(e) {
+				$button.off().on('touchend', function(e) {
 					e.preventDefault();
 					options.action();
 				});
 			} else if(options.view) {
-				button.off().on('touchend', function(e) {
+				$button.off().on('touchend', function(e) {
 					e.preventDefault();
 					app.loadView(options.view);
 				});
 			}
-			button.show();
+			$button.show();
+			if(typeof options.animate === 'boolean') {
+				var animated = 'animated rubberBand';
+				$button.addClass(animated).one('webkitAnimationEnd', function() {
+					$button.removeClass(animated);
+				});
+			}
 		},
 
-		remove: function(button) {
-			$('header #button-' + button).off().hide();
+		remove: function($button) {
+			$('header #button-' + $button).off().hide();
 		}
 	};
 })();

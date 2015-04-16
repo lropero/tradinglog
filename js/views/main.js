@@ -189,6 +189,7 @@
 
 		viewOperation: function(e) {
 			e.preventDefault();
+			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			app.loadView('mainViewOperation', {
@@ -198,6 +199,7 @@
 
 		viewTrade: function(e) {
 			e.preventDefault();
+			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var $label = $($wrapper.context);
 			var isOpen = $label.hasClass('open');

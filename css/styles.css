@@ -167,6 +167,7 @@ header bar.navigation button.left.rotate.icon:before {
   font-size: 22px;
 }
 header bar.navigation button.right {
+  -webkit-animation-delay: 0.5s;
   right: 5px;
 }
 header bar.navigation button.right.icon:after {

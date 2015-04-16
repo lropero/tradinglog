@@ -116,7 +116,7 @@
 				success: function() {
 					var same = false;
 					if(self.instrument) {
-						if(self.instrument.id === instruments.models[0].id) {
+						if(instruments.models[0] && self.instrument.id === instruments.models[0].id) {
 							same = true;
 						}
 					}
@@ -131,14 +131,17 @@
 				var instrument = new app.Models.instrument({
 					id: this.instrument.id
 				});
+				var group_id = this.instrument.group_id;
 			} else {
 				var instrument = new app.Models.instrument();
+				var group_id = 0;
 			}
 			instrument.set({
 				type: type,
 				name: name,
 				point_value: point_value,
-				commission: commission
+				commission: commission,
+				group_id: group_id
 			});
 			deferred.done(function() {
 				instrument.save(null, {

@@ -16,6 +16,29 @@
 			});
 		},
 
+		destroy: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'DELETE FROM operation WHERE account_id = "' + model.id + '";';
+				tx.executeSql(sql);
+				var sql = 'SELECT * FROM trade WHERE account_id = "' + model.id + '";';
+				tx.executeSql(sql, [], function(tx, results) {
+					for(var i = 0; i < results.rows.length; i++) {
+						var id = results.rows.item(i).id;
+						var sql = 'DELETE FROM comment WHERE trade_id = "' + results.rows.item(i).id + '";';
+						tx.executeSql(sql);
+						var sql = 'DELETE FROM position WHERE trade_id = "' + results.rows.item(i).id + '";';
+						tx.executeSql(sql);
+					}
+				});
+				var sql = 'DELETE FROM trade WHERE account_id = "' + model.id + '";';
+				tx.executeSql(sql);
+				var sql = 'DELETE FROM account WHERE id = "' + model.id + '";';
+				tx.executeSql(sql);
+			}, null, function(tx) {
+				callback();
+			});
+		},
+
 		find: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM account WHERE id = "' + model.id + '";';

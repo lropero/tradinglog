@@ -139,7 +139,7 @@
 			deferred.done(function() {
 				var trade = new app.Models.trade();
 				trade.set({
-					account_id: 1,
+					account_id: app.account.get('id'),
 					instrument_id: instrument_id,
 					type: type
 				});

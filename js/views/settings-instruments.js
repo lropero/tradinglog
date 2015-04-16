@@ -46,7 +46,6 @@
 		},
 
 		buttonDelete: function(e) {
-			var self = this;
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
@@ -93,6 +92,12 @@
 					});
 					instrument.save(null, {
 						success: function() {
+							for(var i = 0; i < self.instruments.length; i++) {
+								if(self.instruments[i].id === id) {
+									self.instruments[i].group_id = group_id;
+									break;
+								}
+							}
 							$group.html(newGroup);
 						}
 					});
@@ -103,6 +108,7 @@
 		viewInstrument: function(e) {
 			var self = this;
 			e.preventDefault();
+			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var $label = $($wrapper.context);
 			$label.css('backgroundColor', '#333');

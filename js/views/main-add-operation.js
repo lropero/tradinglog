@@ -74,7 +74,7 @@
 			}
 			var operation = new app.Models.operation();
 			operation.set({
-				account_id: 1,
+				account_id: app.account.get('id'),
 				amount: amount,
 				description: description,
 				variation: amount * 100 / app.account.get('balance'),

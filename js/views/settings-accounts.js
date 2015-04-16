@@ -5,6 +5,7 @@
 		el: 'section#settings section#content',
 		events: {
 			'tap div.account:not(.swiped)': 'viewAccount',
+			'tap div.radiobutton': 'activeAccount',
 			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
@@ -44,45 +45,80 @@
 			return this;
 		},
 
+		activeAccount: function(e) {
+			var self = this;
+			e.preventDefault();
+			e.stopPropagation();
+			var $target = $(e.currentTarget);
+			if(!$target.hasClass('active')) {
+				this.$el.find('div.radiobutton.active').removeClass('active');
+				$target.addClass('active');
+				app.account.set({
+					is_active: 0
+				});
+				app.account.save(null, {
+					success: function() {
+						var $wrapper = $target.parents('.wrapper-label');
+						var key = $wrapper.data('key');
+						var account = new app.Models.account({
+							id: self.accounts[key].id
+						});
+						account.deferred.done(function() {
+							account.set({
+								is_active: 1
+							});
+							account.save(null, {
+								success: function(model) {
+									app.account = model;
+									app.cache.delete('main');
+									app.cache.delete('mainMap');
+									app.view.subview.destroy();
+									app.view.subview = new app.Views.settingsAccounts();
+								}
+							});
+						});
+					}
+				});
+			}
+		},
+
 		buttonDelete: function(e) {
-			console.log('buttonDelete');
-			// var self = this;
-			// e.preventDefault();
-			// var id = $(e.currentTarget).data('id');
-			// var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			// alertify.set({
-			// 	buttonFocus: 'none',
-			// 	buttonReverse: true,
-			// 	labels: {
-			// 		cancel: 'No',
-			// 		ok: 'Yes'
-			// 	}
-			// });
-			// alertify.confirm('Are you sure?', function(e) {
-			// 	if(e) {
-			// 		$wrapper.hide();
-			// 		var instrument = new app.Models.instrument({
-			// 			id: id
-			// 		});
-			// 		instrument.delete();
-			// 	}
-			// });
+			e.preventDefault();
+			var id = $(e.currentTarget).data('id');
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			alertify.set({
+				buttonFocus: 'none',
+				buttonReverse: true,
+				labels: {
+					cancel: 'No',
+					ok: 'Yes'
+				}
+			});
+			alertify.confirm('Are you sure?', function(e) {
+				if(e) {
+					$wrapper.hide();
+					var account = new app.Models.account({
+						id: id
+					});
+					account.delete();
+				}
+			});
 		},
 
 		viewAccount: function(e) {
-			console.log('viewAccount');
-			// var self = this;
-			// e.preventDefault();
-			// var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			// var $label = $($wrapper.context);
-			// $label.css('backgroundColor', '#333');
-			// var key = $wrapper.data('key');
-			// setTimeout(function() {
-			// 	app.view.subview.destroy();
-			// 	app.view.subview = new app.Views.settingsAddInstrument({
-			// 		instrument: self.instruments[key]
-			// 	});
-			// }, 10);
+			var self = this;
+			e.preventDefault();
+			$('header button').hide();
+			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var $label = $($wrapper.context);
+			$label.css('backgroundColor', '#333');
+			var key = $wrapper.data('key');
+			setTimeout(function() {
+				app.view.subview.destroy();
+				app.view.subview = new app.Views.settingsAddAccount({
+					account: self.accounts[key]
+				});
+			}, 10);
 		}
 	});
 })();

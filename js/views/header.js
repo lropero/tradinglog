@@ -73,6 +73,7 @@
 									app.submit();
 								}
 							},
+							animate: true,
 							text: 'Add'
 						}
 					}
@@ -91,6 +92,7 @@
 									app.submit();
 								}
 							},
+							animate: true,
 							text: 'Add'
 						}
 					}
@@ -133,6 +135,7 @@
 									app.submit();
 								}
 							},
+							animate: true,
 							text: 'Add'
 						}
 					}
@@ -153,6 +156,7 @@
 									app.submit();
 								}
 							},
+							animate: true,
 							text: 'Add'
 						}
 					}
@@ -173,6 +177,7 @@
 									app.submit();
 								}
 							},
+							animate: true,
 							text: 'Save'
 						}
 					}
@@ -193,6 +198,7 @@
 									app.submit();
 								}
 							},
+							animate: true,
 							text: 'Save'
 						}
 					}
