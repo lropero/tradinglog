@@ -61,15 +61,16 @@
 								/** Load main view */
 								app.view = new app.Views.main();
 
-								/** We hide the initial splash screen once the main view is ready */
-								app.view.deferred.done(function() {
-									if(navigator.splashscreen) {
-										navigator.splashscreen.hide();
-									}
-								});
-
 							});
 						}
+
+						/** We hide the initial splash screen once the main view is ready */
+						app.view.deferred.done(function() {
+							if(navigator.splashscreen) {
+								navigator.splashscreen.hide();
+							}
+						});
+
 					}
 				});
 			});
