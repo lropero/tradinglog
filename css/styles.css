@@ -1612,7 +1612,7 @@ select {
   left: 0;
   width: 100%;
   min-height: 100%;
-  opacity: .5;
+  opacity: .4;
 }
 .alertify,
 .alertify-show,

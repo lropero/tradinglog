@@ -19,7 +19,12 @@
 			if(heightDiff > 0) {
 				$('div.content').css('paddingTop', parseInt(heightDiff / 2, 10) + 'px');
 			}
-			this.deferred.resolve();
+			var interval = setInterval(function() {
+				if(window.welcome.complete) {
+					clearInterval(interval);
+					this.deferred.resolve();
+				}
+			}, 50);
 			return this;
 		},
 	});
