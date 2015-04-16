@@ -19,7 +19,7 @@
 						<span class="help-block">You need to have sufficient funds in order to add trades. You'll be able to deposit or withdraw money at any time.</span>
 					</div>
 				</form>
-				<div class="button-primary" id="start"><b>Start</b></div>
+				<div class="button-primary" id="start">Start</div>
 			</div>
 		</div>
 		<div class="video"></div>

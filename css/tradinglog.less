@@ -975,6 +975,13 @@ ol
 // FORM
 // -------------------------------------------------- //
 
+#complete,
+#isolate
+{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 form,
 input,
 textarea,
@@ -2001,14 +2008,16 @@ select
 .box-violet input,
 .box-swipe input
 {
-    border: 1px solid @violet-dark;
+    border: 1px solid @violet-light;
 }
 
 .box-violet .wrapper-input .input-icon:before,
 .box-swipe .wrapper-input .input-icon:before
 {
-    color: @violet;
-    background: @violet-dark;
+    color: @white;
+    background: @violet-light;
+
+    .smoothing;
 }
 
 .box-violet textarea,
@@ -2074,6 +2083,20 @@ select
 {
     color: @violet;
     background-color: @white;
+}
+
+// BOX-VIOLET / BOX SWIPE - BUTTON PRIMARY / START / DONE
+// -------------------------------------------------- //
+
+#start,
+#done
+{
+    font-weight: 600;
+
+    color: @white;
+    background-color: @green;
+
+    .smoothing;
 }
 
 // BOX-VIOLET / BOX SWIPE - CHECKBOX
