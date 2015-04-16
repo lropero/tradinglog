@@ -59,6 +59,9 @@
 			});
 			account.save(null, {
 				success: function(model, insertId) {
+					if(navigator.splashscreen) {
+						navigator.splashscreen.show();
+					}
 					$('div#start').hide();
 					var operation = new app.Models.operation();
 					operation.set({
