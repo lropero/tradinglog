@@ -1604,16 +1604,15 @@ select {
   text-align: center;
 }
 .welcome .video {
+  background: url('../img/welcome.gif') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100%;
-  opacity: .3;
-  background-image: url('../video/tradinglog.jpg');
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
+  opacity: .5;
 }
 .alertify,
 .alertify-show,
