@@ -18,6 +18,10 @@
 				this.Templates[template] = method(options);
 			}
 			return this.Templates[template];
+		},
+
+		reset: function() {
+			this.Templates = {};
 		}
 	};
 })();
