@@ -1201,10 +1201,8 @@ select {
   margin-left: 33px;
 }
 #map .label.trade .net {
-  min-width: 105px;
   padding: 0 15px;
   text-align: right;
-  background-color: #ffffff;
 }
 #map .label.trade .ball {
   z-index: 10;
@@ -1239,8 +1237,7 @@ select {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-right: 105px;
-  padding-left: 48px;
+  padding-left: 40px;
 }
 #map .label.trade.positive .percentage {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #4bd763), color-stop(100%, rgba(75, 215, 99, 0)));
@@ -1599,20 +1596,20 @@ select {
 }
 .welcome .text-body {
   margin: 30px 15px;
-  -webkit-font-smoothing: antialiased;
-  color: #ffffff;
   text-align: center;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
 }
 .welcome .video {
-  background: url('../img/welcome.gif') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100%;
   opacity: .4;
+  background: url('../img/welcome.gif') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 .alertify,
 .alertify-show,
