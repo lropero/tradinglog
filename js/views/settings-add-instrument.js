@@ -99,9 +99,22 @@
 			var self = this;
 			var type = this.$el.find('ul#type div.active').data('type');
 			var name = this.$el.find('input#name').val().trim();
-			name = name.charAt(0).toUpperCase() + name.slice(1);
 			var point_value = this.$el.find('input#point_value').val().replace(',', '.');
 			var commission = this.$el.find('input#commission').val().replace(',', '.');
+
+			name = name.charAt(0).toUpperCase() + name.slice(1);
+			var deferred = $.Deferred();
+			var instruments = new app.Collections.instruments();
+			instruments.setName(name);
+			instruments.fetch({
+				success: function() {
+					if(instruments.length > 0) {
+						alertify.error('An instrument with this name already exists');
+					} else {
+						deferred.resolve();
+					}
+				}
+			});
 			if(this.instrument) {
 				var instrument = new app.Models.instrument({
 					id: this.instrument.id
@@ -115,12 +128,14 @@
 				point_value: point_value,
 				commission: commission
 			});
-			instrument.save(null, {
-				success: function() {
-					$('header button').hide();
-					app.view.subview.destroy();
-					app.view.subview = new app.Views.settingsInstruments();
-				}
+			deferred.done(function() {
+				instrument.save(null, {
+					success: function() {
+						$('header button').hide();
+						app.view.subview.destroy();
+						app.view.subview = new app.Views.settingsInstruments();
+					}
+				});
 			});
 		}
 	});

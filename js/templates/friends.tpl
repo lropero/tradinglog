@@ -1,4 +1,5 @@
 <script type="text/x-handlebars-template" id="friends-template">
+	<!--
 
 	<div class="welcome box-violet">
 		<div class="content">
@@ -24,7 +25,6 @@
 		<div class="video"></div>
 	</div>
 
-	<!--
 // 06
 <form>
 	<div class="wrapper-input">

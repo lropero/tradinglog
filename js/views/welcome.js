@@ -50,6 +50,7 @@
 			var self = this;
 			var name = this.$el.find('input#name').val().trim();
 			var balance = this.$el.find('input#balance').val().replace(',', '.');
+
 			name = name.charAt(0).toUpperCase() + name.slice(1);
 			var account = new app.Models.account();
 			account.set({

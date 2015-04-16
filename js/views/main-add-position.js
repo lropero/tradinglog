@@ -64,10 +64,11 @@
 			var self = this;
 			var type = this.$el.find('ul#type div.active').data('type');
 			var size = this.$el.find('input#size').val();
+			var price = this.$el.find('input#price').val().replace(',', '.');
+
 			if(type === 2) {
 				size *= -1;
 			}
-			var price = this.$el.find('input#price').val().replace(',', '.');
 			var result = parseInt(size, 10) + this.trade.closeSize;
 			switch(this.trade.type) {
 				case 1:

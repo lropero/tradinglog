@@ -46,6 +46,7 @@
 		submit: function() {
 			var self = this;
 			var body = this.$el.find('textarea#body').val().trim();
+
 			var comment = new app.Models.comment();
 			comment.set({
 				trade_id: this.trade.id,

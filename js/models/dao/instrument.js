@@ -50,6 +50,19 @@
 			});
 		},
 
+		findSet: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT * FROM instrument WHERE name = "' + model.name + '" AND is_deleted = "0";';
+				tx.executeSql(sql, [], function(tx, results) {
+					var instruments = [];
+					for(var i = 0; i < results.rows.length; i++) {
+						instruments.push(results.rows.item(i));
+					}
+					callback(instruments);
+				});
+			});
+		},
+
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {

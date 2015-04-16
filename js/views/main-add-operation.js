@@ -58,11 +58,12 @@
 		submit: function() {
 			var type = this.$el.find('ul#type div.active').data('type');
 			var amount = this.$el.find('input#amount').val().replace(',', '.');
+			var description = this.$el.find('textarea#description').val().trim();
+
 			amount = Math.abs(amount);
 			if(type === 2) {
 				amount *= -1;
 			}
-			var description = this.$el.find('textarea#description').val().trim();
 			var balance = app.account.get('balance') + amount;
 			if(balance < 0) {
 				alertify.error('Withdrawal exceeds your balance');

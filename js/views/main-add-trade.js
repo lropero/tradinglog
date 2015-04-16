@@ -109,11 +109,11 @@
 			var instrument_id = this.$el.find('select#instrument_id').val();
 			var type = this.$el.find('ul#type div.active').data('type');
 			var size = this.$el.find('input#size').val();
+			var price = this.$el.find('input#price').val().replace(',', '.');
+
 			if(type === 2) {
 				size *= -1;
 			}
-			var price = this.$el.find('input#price').val().replace(',', '.');
-
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
