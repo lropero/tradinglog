@@ -6,6 +6,16 @@
 	};
 
 	accountDAO.prototype = {
+		create: function(model, callback) {
+			var fields = ['name', 'balance', 'is_active'];
+			this.db.transaction(function(tx) {
+				var sql = app.databaseController.buildInsert('account', fields, model);
+				tx.executeSql(sql, [], function(tx, results) {
+					callback(results.insertId);
+				});
+			});
+		},
+
 		find: function(model, callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM account WHERE id = "' + model.id + '";';

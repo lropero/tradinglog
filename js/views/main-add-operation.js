@@ -77,7 +77,7 @@
 				created_at: (new Date()).getTime()
 			});
 			operation.save(null, {
-				success: function(model, insertId) {
+				success: function() {
 					$('header button').hide();
 					app.account.set({
 						balance: balance
@@ -89,7 +89,7 @@
 						}
 					});
 				}
-			})
+			});
 		}
 	});
 })();

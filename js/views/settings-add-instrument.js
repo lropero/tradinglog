@@ -98,7 +98,7 @@
 		submit: function() {
 			var self = this;
 			var type = this.$el.find('ul#type div.active').data('type');
-			var name = this.$el.find('input#name').val();
+			var name = this.$el.find('input#name').val().trim();
 			name = name.charAt(0).toUpperCase() + name.slice(1);
 			var point_value = this.$el.find('input#point_value').val().replace(',', '.');
 			var commission = this.$el.find('input#commission').val().replace(',', '.');

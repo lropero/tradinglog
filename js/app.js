@@ -27,6 +27,9 @@
 							/** No active account, load welcome screen */
 							app.view = new app.Views.welcome();
 
+							/** We hide the initial splash screen once the welcome view is ready */
+							app.hideSplash();
+
 						} else {
 
 							/** Get active account */
@@ -61,16 +64,11 @@
 								/** Load main view */
 								app.view = new app.Views.main();
 
+								/** We hide the initial splash screen once the main view is ready */
+								app.hideSplash();
+
 							});
 						}
-
-						/** We hide the initial splash screen once the main view is ready */
-						app.view.deferred.done(function() {
-							if(navigator.splashscreen) {
-								navigator.splashscreen.hide();
-							}
-						});
-
 					}
 				});
 			});
@@ -84,6 +82,14 @@
 		enableScroll: function() {
 			$('section#content').css('-webkit-overflow-scrolling', 'touch');
 			$('section#content').css('overflow-y', 'scroll');
+		},
+
+		hideSplash: function() {
+			app.view.deferred.done(function() {
+				if(navigator.splashscreen) {
+					navigator.splashscreen.hide();
+				}
+			});
 		},
 
 		loadView: function(view, attrs) {
