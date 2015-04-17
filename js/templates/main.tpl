@@ -9,6 +9,9 @@
 								{{#if this.comments}}
 									<div class="globe-comments">{{this.comments}}</div>
 								{{/if}}
+								{{#lt this.commission 0}}
+									<div class="globe-commission"></div>
+								{{/lt}}
 								<div class="icon"></div>
 							</div>
 							<div class="row">

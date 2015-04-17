@@ -183,7 +183,11 @@
 		},
 
 		getNet: function() {
-			var net = this.getGross() - this.get('commission');
+			var commission = this.get('commission');
+			if(commission < 0) {
+				commission = 0;
+			}
+			var net = this.getGross() - commission;
 			return net;
 		},
 
@@ -300,11 +304,11 @@
 					self.set({
 						profit: profit,
 						loss: loss,
-						commission: commission
+						commission: instrument.type === 3 ? -1 : commission
 					});
 					var balance = app.account.get('balance') + self.getNet();
 					if(balance < 0) {
-						alertify.error('Non-sufficient funds to close trade');
+						alertify.error('Non-sufficient funds');
 						var last = self.positions[self.positions.length - 1];
 						var position = new app.Models.position({
 							id: last.id

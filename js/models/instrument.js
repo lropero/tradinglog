@@ -51,7 +51,11 @@
 		delete: function() {
 			var self = this;
 			this.deferred.done(function() {
-				self.destroy();
+				self.destroy({
+					success: function() {
+						app.cache.delete('mainAddTrade');
+					}
+				});
 			});
 		},
 
