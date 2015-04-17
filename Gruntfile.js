@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 					'js/vendor/alertify.js',
 					'js/vendor/backbone-sync.js',
 					'js/vendor/backbone-validation.js',
-					'js/vendor/handlebars-v3.0.0.js',
+					'js/vendor/handlebars-v3.0.1.js',
 					'js/vendor/jquery.cookie.js',
 					'js/vendor/jquery.mobile.events.js',
 					'js/vendor/jquery.pep.js',
