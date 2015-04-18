@@ -51,6 +51,7 @@
 			e.stopPropagation();
 			var $target = $(e.currentTarget);
 			if(!$target.hasClass('active')) {
+				app.view.subview.destroy();
 				this.$el.find('div.radiobutton.active').removeClass('active');
 				$target.addClass('active');
 				app.account.set({
@@ -72,7 +73,6 @@
 									app.account = model;
 									app.cache.delete('main');
 									app.cache.delete('mainMap');
-									app.view.subview.destroy();
 									app.view.subview = new app.Views.settingsAccounts();
 								}
 							});

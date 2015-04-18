@@ -102,6 +102,11 @@
 						account.save(null, {
 							success: function() {
 								$('header button').hide();
+								app.account.set({
+									name: name
+								});
+								app.cache.delete('main');
+								app.cache.delete('mainMap');
 								app.view.subview.destroy();
 								app.view.subview = new app.Views.settingsAccounts();
 							}
