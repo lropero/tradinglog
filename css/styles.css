@@ -168,6 +168,7 @@ header bar.navigation button.left.rotate.icon:before {
 }
 header bar.navigation button.right {
   -webkit-animation-delay: 0.5s;
+  -webkit-animation-duration: 1s;
   right: 5px;
 }
 header bar.navigation button.right.icon:after {
@@ -1334,8 +1335,7 @@ select {
 .header-box-swipe {
   position: fixed;
   z-index: 1000;
-  top: 0;
-  top: 64px;
+  top: 98px;
   left: 0;
   display: block;
   overflow: auto;
@@ -1634,6 +1634,13 @@ select {
 }
 .welcome input {
   border: 1px solid #4020d0;
+}
+.box-swipe canvas {
+  height: 80%;
+  left: 10%;
+  position: relative;
+  top: 10px;
+  width: 80%;
 }
 .alertify,
 .alertify-show,
