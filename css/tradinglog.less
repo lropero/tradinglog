@@ -978,7 +978,10 @@ ol
 #complete,
 #isolate
 {
+    overflow: auto;
+
     max-width: 400px;
+    height: 100%;
     margin: 0 auto;
 }
 
@@ -1989,7 +1992,9 @@ select
 
 .box-violet
 {
-    padding-bottom: 34px;
+    overflow: auto;
+
+    min-height: 100%;
 
     color: @white;
     background-color: @violet;
@@ -2268,6 +2273,8 @@ select
     top: 0;
     left: 0;
 
+    overflow: auto;
+
     width: 100%;
     min-height: 100%;
 
@@ -2278,7 +2285,6 @@ select
 {
     position: relative;
     z-index: 100;
-    top: 0;
     left: 0;
 }
 
@@ -2291,16 +2297,17 @@ select
     display: block;
     clear: both;
 
-    margin: 0 0 30px 0;
+    margin: 15px;
 
     text-align: center;
     letter-spacing: 1px;
 
     .smoothing;
 }
+
 .welcome .text-body
 {
-    margin: 30px 15px;
+    margin: 0 15px 30px 15px;
 
     text-align: center;
 
@@ -2340,10 +2347,12 @@ select
     border: 1px solid @violet;
 }
 
-.box-swipe canvas {
-    height: 80%;
-    left: 10%;
+.box-swipe canvas
+{
     position: relative;
     top: 10px;
+    left: 10%;
+
     width: 80%;
+    height: 80%;
 }
