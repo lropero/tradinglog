@@ -19,8 +19,10 @@
 			var $button = $('header #button-' + button);
 			if(options.icon) {
 				$button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
+				$button.css('bottom', '0');
 			} else {
 				$button.removeClass('icon');
+				$button.css('bottom', '2px');
 			}
 			if(options.text) {
 				$button.html(options.text);

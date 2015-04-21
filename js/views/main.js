@@ -36,6 +36,13 @@
 		destroy: function() {
 			this.drag.destroy();
 			this.undelegateEvents();
+
+			// Remove
+			if(app.shake) {
+				app.shake.stopWatch();
+				delete app.shake;
+			}
+
 		},
 
 		render: function(cache) {
@@ -50,11 +57,71 @@
 					});
 					self.$el.html(template);
 					self.decorate();
+
+					// Remove
+					if(navigator.accelerometer) {
+						this.shake();
+					}
+
 				} else {
 					self.undelegateEvents();
 				}
 			});
 			return this;
+		},
+
+		// Remove
+		addRandomTrade: function() {
+			var instrument_id = 1;
+			var type = Math.floor(Math.random() * 2) + 1;
+			var size = Math.floor(Math.random() * 5) + 1;
+			var price = Math.floor(Math.random() * 11) + 1000;
+
+			if(type === 2) {
+				size *= -1;
+			}
+			var trade = new app.Models.trade();
+			trade.set({
+				account_id: app.account.get('id'),
+				instrument_id: instrument_id,
+				type: type
+			});
+			trade.save(null, {
+				success: function(model, insertId) {
+					var position = new app.Models.position();
+					position.set({
+						trade_id: insertId,
+						size: size,
+						price: price,
+						created_at: (new Date()).getTime()
+					});
+					position.save(null, {
+						success: function() {
+							var price2 = Math.floor(Math.random() * 11) + 1000;
+							var position2 = new app.Models.position();
+							position2.set({
+								trade_id: insertId,
+								size: (size * -1),
+								price: price2,
+								created_at: (new Date()).getTime()
+							});
+							position2.save(null, {
+								success: function() {
+									var trade2 = new app.Models.trade({
+										id: insertId
+									});
+									trade2.deferred.then(function() {
+										trade2.setPnL(function() {
+											app.cache.delete('main');
+											app.loadView('main');
+										});
+									});
+								}
+							});
+						}
+					});
+				}
+			});
 		},
 
 		buttonDelete: function(e) {
@@ -185,6 +252,19 @@
 					app.firstTrade = this.objects[this.count.open].id;
 				}
 			}
+		},
+
+		// Remove
+		shake: function() {
+			var self = this;
+			app.shake = new Shake({
+				frequency: 100,
+				threshold: 30,
+				success: function(magnitude, accelerationDelta, timestamp) {
+					self.addRandomTrade();
+				}
+			});
+			app.shake.startWatch();
 		},
 
 		viewOperation: function(e) {
