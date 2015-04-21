@@ -1371,7 +1371,9 @@ select
     display: block;
     clear: both;
 
-    margin: 15px;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 0 15px;
 }
 
 .wrapper-calendar .calendar
@@ -1979,12 +1981,22 @@ select
 
 .box-swipe
 {
-    min-height: 100%;
+    height: 100%;
     padding-top: 112px;
     padding-bottom: 30px;
 
     color: @white;
     background-color: @violet;
+}
+
+.box-swipe .content-swipe
+{
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
 }
 
 // BOX-VIOLET
@@ -2347,12 +2359,27 @@ select
     border: 1px solid @violet;
 }
 
-.box-swipe canvas
+// CANVAS
+// -------------------------------------------------- //
+
+.box-swipe .content-swipe canvas
 {
     position: relative;
-    top: 10px;
-    left: 10%;
 
-    width: 80%;
-    height: 80%;
+    display: block;
+
+    width: auto;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.box-swipe .content-swipe #legend
+{
+    position: absolute;
+    top: 30%;
+    left: 45%;
+
+    width: 10%;
+
+    background-color: @green;
 }

@@ -22,6 +22,14 @@
 			</li>
 		</ul>
 	</div>
+
+	<ul class="box-swipe">
+		<li class="content-swipe" style="padding-top: 15px;">
+			<canvas id="doughnut"></canvas>
+			<div id="legend">Lorem ipsum<br>dolor pepe</div>
+		</li>
+	</ul>
+
 	<div class="wrapper-control-box-swipe">
 		<ul class="control-box-swipe end-left">
 			<li class="active"></li>
@@ -29,8 +37,5 @@
 			<li></li>
 		</ul>
 	</div>
-				<div class="box-swipe">
-					<canvas id="doughnut" width="100" height="100"></canvas>
-					<div id="legend"></div>
-				</div>
+
 </script>

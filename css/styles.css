@@ -1047,7 +1047,9 @@ select {
   position: relative;
   display: block;
   clear: both;
-  margin: 15px;
+  max-width: 400px;
+  margin: 15px auto;
+  padding: 0 15px;
 }
 .wrapper-calendar .calendar {
   font-size: 12px;
@@ -1423,11 +1425,17 @@ select {
   background-color: #ffffff;
 }
 .box-swipe {
-  min-height: 100%;
+  height: 100%;
   padding-top: 112px;
   padding-bottom: 30px;
   color: #ffffff;
   background-color: #4020d0;
+}
+.box-swipe .content-swipe {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .box-violet {
   overflow: auto;
@@ -1638,12 +1646,19 @@ select {
 .welcome input {
   border: 1px solid #4020d0;
 }
-.box-swipe canvas {
+.box-swipe .content-swipe canvas {
   position: relative;
-  top: 10px;
-  left: 10%;
-  width: 80%;
-  height: 80%;
+  display: block;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+.box-swipe .content-swipe #legend {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  width: 10%;
+  background-color: #4bd763;
 }
 .alertify,
 .alertify-show,
