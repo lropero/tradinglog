@@ -60,7 +60,7 @@
 
 					// Remove
 					if(navigator.accelerometer) {
-						this.shake();
+						self.shake();
 					}
 
 				} else {
