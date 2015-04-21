@@ -261,6 +261,7 @@
 				frequency: 100,
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
+					$('header button').hide();
 					self.addRandomTrade();
 				}
 			});
