@@ -29,8 +29,8 @@
 			<li></li>
 		</ul>
 	</div>
-	<div class="box-swipe">
-		<canvas id="doughnut" width="100" height="100"></canvas>
-		<div id="legend"></div>
-	</div>
+				<div class="box-swipe">
+					<canvas id="doughnut" width="100" height="100"></canvas>
+					<div id="legend"></div>
+				</div>
 </script>
