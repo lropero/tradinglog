@@ -15,22 +15,34 @@
 		render: function() {
 			app.trigger('change', 'stats-numbers');
 			this.$el.html(this.template());
+
+			var width = $('canvas#doughnut').width();
+			var height = $('canvas#doughnut').height();
+			if(width > height) {
+				$('canvas#doughnut').width(height);
+			}
+			var diameter = height * 40 / 100;
+			$('div#center').width(diameter);
+			$('div#center').height(diameter);
+			$('div#center').css('top', $('canvas#doughnut').position().top + (height * 30 / 100) + 'px');
+			$('div#center').css('left', Math.max(0, (($(window).width() - $('div#center').outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
+
 			var ctx = $('#doughnut').get(0).getContext('2d');
 			var data = [
 				{
-					value: 300,
-					color:"#ff3b30",
-					label: "Red"
+					color: '#4bd763',
+					label: 'Profit',
+					value: 50
 				},
 				{
-					value: 50,
-					color: "#4bd763",
-					label: "Green"
+					color:'#ff3b30',
+					label: 'Loss',
+					value: 300
 				},
 				{
-					value: 100,
-					color: "#FDB45C",
-					label: "Yellow"
+					color: '#fdb45c',
+					label: 'Commission',
+					value: 100
 				}
 			];
 			var options = {
@@ -39,7 +51,7 @@
 				segmentStrokeColor: '#4020d0',
 				percentageInnerCutout: 60,
 				segmentStrokeWidth: 5,
-				legendTemplate : "<ul><% for(var i = 0; i < segments.length; i++) { %><li><div class=\"comm-how\"><%=segments[i].value%>%</div><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+				legendTemplate : '<ul><% for(var i = 0; i < segments.length; i++) { %><li><div style="background-color: <%=segments[i].fillColor%>;">&nbsp;</div><span class="title"><%=segments[i].label%></span><br /><span class="money"><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %></ul>'
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
 			// $('#legend').html(doughnut.generateLegend());

@@ -29,8 +29,9 @@
 		render: function() {
 			this.$el.html(this.template());
 			var heightDiff = $(document).height() - $('div.content').height();
-			if(heightDiff > 0) {
-				$('div.content').css('paddingTop', parseInt(heightDiff / 2, 10) - 15 + 'px');
+			var newHeight = parseInt(heightDiff / 2, 10) - 6;
+			if(newHeight > 0) {
+				$('div.content').css('paddingTop', newHeight + 'px');
 			}
 			this.deferred.resolve();
 			return this;

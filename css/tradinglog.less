@@ -141,7 +141,7 @@ ol
 
     text-align: center;
 
-    color: @violet-light;
+    color: @violet-dark;
 }
 
 // TEXT BODY
@@ -2309,7 +2309,7 @@ select
     display: block;
     clear: both;
 
-    margin: 15px;
+    margin: 12px 0 15px 0;
 
     text-align: center;
     letter-spacing: 1px;
@@ -2373,13 +2373,30 @@ select
     margin: 0 auto;
 }
 
-.box-swipe .content-swipe #legend
+.box-swipe .content-swipe #center
 {
     position: absolute;
-    top: 30%;
-    left: 45%;
+}
 
-    width: 10%;
+.box-swipe .content-swipe #legend div
+{
+    width: 20px;
+    height: 20px;
 
-    background-color: @green;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.box-swipe .content-swipe #legend span.title
+{
+    position: relative;
+    top: -20px;
+    left: 25px;
+}
+
+.box-swipe .content-swipe #legend span.money
+{
+    position: relative;
+    top: -20px;
+    left: 25px;
 }

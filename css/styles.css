@@ -57,8 +57,8 @@ control.segmented ul li:not(.active):active {
   background-color: #9f8fe7;
 }
 control.segmented + #content {
-  position: relative;
   padding-top: 34px;
+  position: relative;
 }
 ul.wrapper-button-default + #content {
   padding-bottom: 109px;
@@ -318,7 +318,7 @@ ol {
   width: 100%;
   margin-bottom: 15px;
   text-align: center;
-  color: #9f8fe7;
+  color: #2c168e;
 }
 .text-body {
   display: block;
@@ -1614,7 +1614,7 @@ select {
   line-height: 1;
   display: block;
   clear: both;
-  margin: 15px;
+  margin: 12px 0 15px 0;
   text-align: center;
   letter-spacing: 1px;
   -webkit-font-smoothing: antialiased;
@@ -1653,12 +1653,24 @@ select {
   height: 100%;
   margin: 0 auto;
 }
-.box-swipe .content-swipe #legend {
+.box-swipe .content-swipe #center {
   position: absolute;
-  top: 30%;
-  left: 45%;
-  width: 10%;
-  background-color: #4bd763;
+}
+.box-swipe .content-swipe #legend div {
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.box-swipe .content-swipe #legend span.title {
+  position: relative;
+  top: -20px;
+  left: 25px;
+}
+.box-swipe .content-swipe #legend span.money {
+  position: relative;
+  top: -20px;
+  left: 25px;
 }
 .alertify,
 .alertify-show,

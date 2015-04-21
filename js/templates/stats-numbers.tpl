@@ -26,7 +26,9 @@
 	<ul class="box-swipe">
 		<li class="content-swipe" style="padding-top: 15px;">
 			<canvas id="doughnut"></canvas>
-			<div id="legend">Lorem ipsum<br>dolor pepe</div>
+			<div id="center">
+				<div id="legend"></div>
+			</div>
 		</li>
 	</ul>
 
