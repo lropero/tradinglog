@@ -19,7 +19,6 @@
 		},
 
 		destroy: function() {
-			this.drag.destroy();
 			this.undelegateEvents();
 
 			// Remove

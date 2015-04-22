@@ -14,10 +14,6 @@
 			});
 		},
 
-		destroy: function() {
-			this.drag.destroy();
-		},
-
 		render: function(cache) {
 			var template = app.cache.get('mainMap', this.template, {
 				trades: this.trades,
