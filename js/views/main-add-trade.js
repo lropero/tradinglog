@@ -173,9 +173,7 @@
 									trade.deferred.done(function() {
 										app.objects.unshift(trade.toJSON());
 										app.cache.delete('main');
-										app.loadView('mainViewTrade', {
-											trade_id: insertId
-										});
+										app.loadView('mainViewTrade', '0');
 									});
 								}
 							});

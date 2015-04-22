@@ -10,7 +10,7 @@
 
 		initialize: function(key) {
 			var self = this;
-			this.trade = app.objects[key];
+			this.key = key;
 			// this.deferred = $.Deferred();
 			// if(attrs.trade) {
 			// 	this.trade = attrs.trade;
@@ -37,8 +37,8 @@
 
 		render: function() {
 			// this.deferred.done(function() {
-				var template = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
-					trade: this.trade
+				var template = app.cache.get('mainViewTrade' + app.objects[this.key].id, this.template, {
+					trade: app.objects[this.key]
 				});
 				// if(typeof cache !== 'boolean') {
 					app.trigger('change', 'main-view-trade');
@@ -58,9 +58,7 @@
 			e.preventDefault();
 			var $target = $(e.currentTarget);
 			var view = $target.data('view');
-			app.loadView(view, {
-				trade: this.trade
-			});
+			app.loadView(view, this.key);
 		},
 
 		buttonDelete: function(e) {

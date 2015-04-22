@@ -10,9 +10,10 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(attrs) {
+		initialize: function(key) {
 			var self = this;
-			this.trade = attrs.trade;
+			this.key = key;
+			this.trade = app.objects[key];
 			app.submit = function() {
 				self.submit();
 			}
@@ -29,7 +30,7 @@
 
 		render: function() {
 			app.trigger('change', 'main-add-position', {
-				trade: this.trade
+				key: this.key
 			});
 			this.$el.html(this.template({
 				closeSize: this.trade.closeSize
@@ -94,28 +95,24 @@
 			position.save(null, {
 				success: function() {
 					$('header button').hide();
-					if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
-						var trade = new app.Models.trade({
-							id: self.trade.id
-						});
-						trade.deferred.then(function() {
+					var trade = new app.Models.trade({
+						id: self.trade.id
+					});
+					trade.deferred.then(function() {
+						if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
 							trade.setPnL(function(isFirst) {
-								var isFirst = isFirst ? isFirst : false;
+								app.objects[self.key] = trade.toJSON();
 								app.cache.delete('main');
 								app.cache.delete('mainViewTrade' + self.trade.id);
-								app.loadView('mainViewTrade', {
-									trade_id: self.trade.id,
-									isFirst: isFirst
-								});
+								app.loadView('mainViewTrade', self.key);
 							});
-						});
-					} else {
-						app.cache.delete('main');
-						app.cache.delete('mainViewTrade' + self.trade.id);
-						app.loadView('mainViewTrade', {
-							trade_id: self.trade.id
-						});
-					}
+						} else {
+							app.objects[self.key] = trade.toJSON();
+							app.cache.delete('main');
+							app.cache.delete('mainViewTrade' + self.trade.id);
+							app.loadView('mainViewTrade', self.key);
+						}
+					});
 				}
 			});
 		}

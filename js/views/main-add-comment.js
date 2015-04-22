@@ -8,9 +8,10 @@
 			'tap textarea': 'isolate'
 		},
 
-		initialize: function(attrs) {
+		initialize: function(key) {
 			var self = this;
-			this.trade = attrs.trade;
+			this.key = key;
+			this.trade = app.objects[key];
 			app.submit = function() {
 				self.submit();
 			}
@@ -27,7 +28,7 @@
 
 		render: function() {
 			app.trigger('change', 'main-add-comment', {
-				trade: this.trade
+				key: this.key
 			});
 			this.$el.html(this.template());
 			return this;
@@ -61,13 +62,15 @@
 					});
 					trade.deferred.then(function() {
 						trade.addToComments(1, function() {
-							var isFirst = self.trade.isFirst ? self.trade.isFirst : false;
+							// var isFirst = self.trade.isFirst ? self.trade.isFirst : false;
+							app.objects[self.key] = trade.toJSON();
 							app.cache.delete('main');
 							app.cache.delete('mainViewTrade' + self.trade.id);
-							app.loadView('mainViewTrade', {
-								trade_id: self.trade.id,
-								isFirst: isFirst
-							});
+							app.loadView('mainViewTrade', self.key);
+							// app.loadView('mainViewTrade', {
+							// 	trade_id: self.trade.id,
+							// 	isFirst: isFirst
+							// });
 						});
 					});
 				}

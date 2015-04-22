@@ -48,7 +48,7 @@
 							).done(function() {
 
 								/** Preload some templates to smoothen navigation */
-								app.cache.reset();
+								// app.cache.reset();
 								// var trades = new app.Collections.trades();
 								// trades.setAccountId(app.account.get('id'));
 								// trades.setOpen();

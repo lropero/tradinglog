@@ -60,9 +60,7 @@
 					options = {
 						left: {
 							action: function() {
-								app.loadView('mainViewTrade', {
-									trade: attrs.trade
-								});
+								app.loadView('mainViewTrade', attrs.key);
 							},
 							icon: 'f124',
 							text: 'Cancel'
