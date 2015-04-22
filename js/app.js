@@ -146,7 +146,7 @@
 
 		loadView: function(view, attrs) {
 			var self = this;
-			$('div#drag').hide();
+			$('div#drag').css('display', 'none');
 
 			/** Some views require to undelegate events */
 			if(typeof this.view.destroy === 'function') {
