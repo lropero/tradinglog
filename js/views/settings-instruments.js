@@ -113,8 +113,8 @@
 			var $label = $($wrapper.context);
 			$label.css('backgroundColor', '#333');
 			var key = $wrapper.data('key');
+			app.view.subview.destroy();
 			setTimeout(function() {
-				app.view.subview.destroy();
 				app.view.subview = new app.Views.settingsAddInstrument(self.instruments[key]);
 			}, 10);
 		}

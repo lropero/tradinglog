@@ -153,9 +153,10 @@
 			}
 
 			/** Load view */
+			$('div#drag').hide();
 			setTimeout(function() {
 				self.view = new app.Views[view](attrs);
-			}, 50);
+			}, 10);
 
 		},
 
