@@ -100,7 +100,7 @@
 					});
 					trade.deferred.then(function() {
 						if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
-							trade.setPnL(function(isFirst) {
+							trade.setPnL(function() {
 								app.objects[self.key] = trade.toJSON();
 								app.cache.delete('main');
 								app.cache.delete('mainViewTrade' + self.trade.id);

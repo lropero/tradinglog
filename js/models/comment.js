@@ -30,25 +30,13 @@
 			}
 		},
 
-		delete: function() {
+		delete: function(callback) {
 			var self = this;
 			this.deferred.done(function() {
-				var trade_id = self.get('trade_id');
-				var trade = new app.Models.trade({
-					id: trade_id
-				});
-				trade.deferred.then(function() {
-					trade.addToComments(-1, function() {
-						self.destroy({
-							success: function() {
-								app.cache.delete('main');
-								app.cache.delete('mainViewTrade' + trade_id);
-								app.loadView('mainViewTrade', {
-									trade_id: trade_id
-								});
-							}
-						});
-					});
+				self.destroy({
+					success: function() {
+						callback();
+					}
 				});
 			});
 		}

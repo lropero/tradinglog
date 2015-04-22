@@ -88,7 +88,10 @@
 					});
 					app.account.save(null, {
 						success: function() {
+							app.count.operations++;
+							app.objects[app.count.open].isFirst = false;
 							app.objects.splice(app.count.open, 0, operation.toJSON());
+							app.objects[app.count.open].isFirst = true;
 							app.cache.delete('main');
 							app.loadView('main');
 						}

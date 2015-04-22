@@ -11,10 +11,6 @@
 
 		setInstrumentId: function(instrument_id) {
 			this.instrument_id = instrument_id;
-		},
-
-		setOpen: function() {
-			this.isOpen = true;
 		}
 	});
 })();

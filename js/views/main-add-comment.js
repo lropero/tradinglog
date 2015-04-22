@@ -62,15 +62,10 @@
 					});
 					trade.deferred.then(function() {
 						trade.addToComments(1, function() {
-							// var isFirst = self.trade.isFirst ? self.trade.isFirst : false;
 							app.objects[self.key] = trade.toJSON();
 							app.cache.delete('main');
 							app.cache.delete('mainViewTrade' + self.trade.id);
 							app.loadView('mainViewTrade', self.key);
-							// app.loadView('mainViewTrade', {
-							// 	trade_id: self.trade.id,
-							// 	isFirst: isFirst
-							// });
 						});
 					});
 				}

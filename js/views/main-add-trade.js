@@ -109,7 +109,7 @@
 		},
 
 		submit: function() {
-			var instrument_id = this.$el.find('select#instrument_id').val();
+			var instrument_id = parseInt(this.$el.find('select#instrument_id').val(), 10);
 			var type = this.$el.find('ul#type div.active').data('type');
 			var size = this.$el.find('input#size').val();
 			var price = this.$el.find('input#price').val().replace(',', '.');
@@ -117,26 +117,15 @@
 			if(type === 2) {
 				size *= -1;
 			}
-			var deferred = $.Deferred();
-			var trades = new app.Collections.trades();
-			trades.setAccountId(app.account.get('id'));
-			trades.setInstrumentId(instrument_id);
-			trades.setOpen();
-			trades.deferreds = [];
-			trades.fetch({
-				success: function() {
-					$.when.apply($, trades.deferreds).done(function() {
-						trades = trades.toJSON();
-						if(trades.length > 0) {
-							alertify.error('A trade for this instrument is already open');
-						} else {
-							deferred.resolve();
-						}
-					});
+			var already = false;
+			for(var i = 0; i < app.count.open; i++) {
+				if(app.objects[i].instrument_id === instrument_id) {
+					already = true;
+					alertify.error('A trade for this instrument is already open');
+					break;
 				}
-			});
-
-			deferred.done(function() {
+			}
+			if(!already) {
 				var trade = new app.Models.trade();
 				trade.set({
 					account_id: app.account.get('id'),
@@ -170,7 +159,8 @@
 									var trade = new app.Models.trade({
 										id: insertId
 									});
-									trade.deferred.done(function() {
+									trade.deferred.then(function() {
+										app.count.open++;
 										app.objects.unshift(trade.toJSON());
 										app.cache.delete('main');
 										app.loadView('mainViewTrade', '0');
@@ -180,7 +170,7 @@
 						}
 					});
 				}
-			});
+			}
 		}
 	});
 })();

@@ -71,9 +71,11 @@
 							account.save(null, {
 								success: function(model) {
 									app.account = model;
-									app.cache.delete('main');
-									app.cache.delete('mainMap');
-									app.view.subview = new app.Views.settingsAccounts();
+									app.fetchObjects().done(function() {
+										app.cache.delete('main');
+										app.cache.delete('mainMap');
+										app.view.subview = new app.Views.settingsAccounts();
+									});
 								}
 							});
 						});
@@ -115,9 +117,7 @@
 			var key = $wrapper.data('key');
 			setTimeout(function() {
 				app.view.subview.destroy();
-				app.view.subview = new app.Views.settingsAddAccount({
-					account: self.accounts[key]
-				});
+				app.view.subview = new app.Views.settingsAddAccount(self.accounts[key]);
 			}, 10);
 		}
 	});

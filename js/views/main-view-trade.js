@@ -8,26 +8,13 @@
 			'tap ul.wrapper-button-default li': 'add'
 		},
 
-		initialize: function(key) {
+		initialize: function(key, cache) {
 			var self = this;
 			this.key = key;
-			// this.deferred = $.Deferred();
-			// if(attrs.trade) {
-			// 	this.trade = attrs.trade;
-			// 	this.deferred.resolve();
-			// } else if(attrs.trade_id) {
-			// 	this.trade = new app.Models.trade({
-			// 		id: attrs.trade_id
-			// 	});
-			// 	this.deferred = this.trade.deferred;
-			// 	this.deferred.then(function() {
-			// 		self.trade = self.trade.toJSON();
-			// 		self.trade.isFirst = attrs.isFirst ? attrs.isFirst : false;
-			// 	});
-			// }
+			this.trade = app.objects[key];
 			app.templateLoader.get('main-view-trade').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(cache);
 			});
 		},
 
@@ -35,22 +22,20 @@
 			this.undelegateEvents();
 		},
 
-		render: function() {
-			// this.deferred.done(function() {
-				var template = app.cache.get('mainViewTrade' + app.objects[this.key].id, this.template, {
-					trade: app.objects[this.key]
-				});
-				// if(typeof cache !== 'boolean') {
-					app.trigger('change', 'main-view-trade');
-					this.$el.html(template);
-					app.swipe.init('.swipe');
-					setTimeout(function() {
-						app.enableScroll();
-					}, 10);
-				// } else {
-				// 	self.undelegateEvents();
-				// }
-			// });
+		render: function(cache) {
+			var template = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
+				trade: this.trade
+			});
+			if(typeof cache !== 'boolean') {
+				app.trigger('change', 'main-view-trade');
+				this.$el.html(template);
+				app.swipe.init('.swipe');
+				setTimeout(function() {
+					app.enableScroll();
+				}, 10);
+			} else {
+				this.undelegateEvents();
+			}
 			return this;
 		},
 
@@ -66,8 +51,6 @@
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var $label = $wrapper.children('div');
-			var object = $label.hasClass('comment') ? 'comment' : ($label.hasClass('position') ? 'position' : '');
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,
@@ -77,14 +60,34 @@
 				}
 			});
 			alertify.confirm('Are you sure?', function(e) {
+				$('section#alertify').hide();
+				setTimeout(function() {
+					if($('div#alertify-cover').is(':hidden')) {
+						$('section#alertify').show();
+					}
+				}, 100);
 				if(e) {
 					$wrapper.hide();
+					var $label = $wrapper.children('div');
+					var object = $label.hasClass('comment') ? 'comment' : ($label.hasClass('position') ? 'position' : '');
 					switch(object) {
 						case 'comment':
 							var comment = new app.Models.comment({
 								id: id
 							});
-							comment.delete();
+							comment.delete(function() {
+								var trade = new app.Models.trade({
+									id: self.trade.id
+								});
+								trade.deferred.then(function() {
+									trade.addToComments(-1, function() {
+										app.objects[self.key] = trade.toJSON();
+										app.cache.delete('main');
+										app.cache.delete('mainViewTrade' + self.trade.id);
+										app.loadView('mainViewTrade', self.key);
+									});
+								});
+							});
 							break;
 						case 'position':
 							$('div#top').hide();
@@ -92,7 +95,26 @@
 							var position = new app.Models.position({
 								id: id
 							});
-							position.delete();
+							position.delete(function(size) {
+								var trade = new app.Models.trade({
+									id: self.trade.id
+								});
+								trade.deferred.then(function() {
+									if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
+										trade.setPnL(function() {
+											app.objects[self.key] = trade.toJSON();
+											app.cache.delete('main');
+											app.cache.delete('mainViewTrade' + self.trade.id);
+											app.loadView('mainViewTrade', self.key);
+										});
+									} else {
+										app.objects[self.key] = trade.toJSON();
+										app.cache.delete('main');
+										app.cache.delete('mainViewTrade' + self.trade.id);
+										app.loadView('mainViewTrade', self.key);
+									}
+								});
+							});
 							break;
 					}
 				}

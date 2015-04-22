@@ -41,22 +41,12 @@
 			}
 		},
 
-		delete: function() {
+		delete: function(callback) {
 			var self = this;
 			this.deferred.done(function() {
-				var amount = self.get('amount');
 				self.destroy({
 					success: function() {
-						var balance = app.account.get('balance') - amount;
-						app.account.set({
-							balance: balance
-						});
-						app.account.save(null, {
-							success: function() {
-								app.cache.delete('main', true);
-								app.loadView('main');
-							}
-						});
+						callback(self.get('amount'));
 					}
 				});
 			});

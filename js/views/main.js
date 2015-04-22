@@ -9,7 +9,7 @@
 			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
-		initialize: function(cache, fromDelete) {
+		initialize: function(cache) {
 			var self = this;
 			this.deferred = $.Deferred();
 			app.templateLoader.get('main').done(function(template) {
@@ -112,8 +112,6 @@
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var $label = $wrapper.children('div');
-			var object = $label.hasClass('operation') ? 'operation' : ($label.hasClass('trade') ? 'trade' : '');
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,
@@ -123,20 +121,48 @@
 				}
 			});
 			alertify.confirm('Are you sure?', function(e) {
+				$('section#alertify').hide();
+				setTimeout(function() {
+					if($('div#alertify-cover').is(':hidden')) {
+						$('section#alertify').show();
+					}
+				}, 100);
 				if(e) {
 					$wrapper.hide();
+					var $label = $wrapper.children('div');
+					var object = $label.hasClass('operation') ? 'operation' : ($label.hasClass('trade') ? 'trade' : '');
 					switch(object) {
 						case 'operation':
 							var operation = new app.Models.operation({
 								id: id
 							});
-							operation.delete();
+							operation.delete(function(amount) {
+								var balance = app.account.get('balance') - amount;
+								app.account.set({
+									balance: balance
+								});
+								app.account.save(null, {
+									success: function() {
+										var key = $wrapper.data('key').toString();
+										app.count.operations--;
+										app.objects.splice(key, 1);
+										app.objects[app.count.open].isFirst = true;
+										app.cache.delete('main');
+										app.loadView('main');
+									}
+								});
+							});
 							break;
 						case 'trade':
 							var trade = new app.Models.trade({
 								id: id
 							});
-							trade.delete();
+							trade.delete(function() {
+								var key = $wrapper.data('key').toString();
+								app.count.open--;
+								app.objects.splice(key, 1);
+								app.cache.delete('main');
+							});
 							break;
 					}
 					self.decorate();

@@ -10,10 +10,10 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(attrs, cache) {
+		initialize: function(instrument, cache) {
 			var self = this;
-			if(typeof attrs !== 'undefined') {
-				this.instrument = attrs.instrument;
+			if(typeof instrument !== 'undefined') {
+				this.instrument = instrument;
 			}
 			app.submit = function() {
 				self.submit();

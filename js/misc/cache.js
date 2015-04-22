@@ -4,10 +4,10 @@
 	app.cache = {
 		Templates: {},
 
-		delete: function(template, fromDelete) {
+		delete: function(template) {
 			delete this.Templates[template];
 			if(template === 'main') {
-				new app.Views.main(true, fromDelete);
+				new app.Views.main(true);
 			} else if(template === 'mainAddTrade') {
 				new app.Views.mainAddTrade(true);
 			} else if(template === 'mainMap') {

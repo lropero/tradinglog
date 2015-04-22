@@ -108,18 +108,12 @@
 			return array.length + ' @ ' + accounting.formatMoney(average, '');
 		},
 
-		delete: function() {
+		delete: function(callback) {
 			var self = this;
 			this.deferred.done(function() {
-				for(var i = 0; i < self.positions.length; i++) {
-					var position = new app.Models.position({
-						id: self.positions[i].id
-					});
-					position.delete(true);
-				}
 				self.destroy({
 					success: function() {
-						app.cache.delete('main');
+						callback();
 					}
 				});
 			});

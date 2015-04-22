@@ -9,10 +9,10 @@
 			'tap input': 'isolate'
 		},
 
-		initialize: function(attrs, cache) {
+		initialize: function(account, cache) {
 			var self = this;
-			if(typeof attrs !== 'undefined') {
-				this.account = attrs.account;
+			if(typeof account !== 'undefined') {
+				this.account = account;
 			}
 			app.submit = function() {
 				self.submit();
@@ -136,10 +136,12 @@
 												accounts.fetch({
 													success: function() {
 														app.account = accounts.models[0];
-														app.cache.delete('main');
-														app.cache.delete('mainMap');
-														app.view.subview.destroy();
-														app.view.subview = new app.Views.settingsAccounts();
+														app.fetchObjects().done(function() {
+															app.cache.delete('main');
+															app.cache.delete('mainMap');
+															app.view.subview.destroy();
+															app.view.subview = new app.Views.settingsAccounts();
+														});
 													}
 												});
 											}
