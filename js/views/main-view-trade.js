@@ -8,25 +8,26 @@
 			'tap ul.wrapper-button-default li': 'add'
 		},
 
-		initialize: function(attrs, cache) {
+		initialize: function(key) {
 			var self = this;
-			this.deferred = $.Deferred();
-			if(attrs.trade) {
-				this.trade = attrs.trade;
-				this.deferred.resolve();
-			} else if(attrs.trade_id) {
-				this.trade = new app.Models.trade({
-					id: attrs.trade_id
-				});
-				this.deferred = this.trade.deferred;
-				this.deferred.then(function() {
-					self.trade = self.trade.toJSON();
-					self.trade.isFirst = attrs.isFirst ? attrs.isFirst : false;
-				});
-			}
+			this.trade = app.objects[key];
+			// this.deferred = $.Deferred();
+			// if(attrs.trade) {
+			// 	this.trade = attrs.trade;
+			// 	this.deferred.resolve();
+			// } else if(attrs.trade_id) {
+			// 	this.trade = new app.Models.trade({
+			// 		id: attrs.trade_id
+			// 	});
+			// 	this.deferred = this.trade.deferred;
+			// 	this.deferred.then(function() {
+			// 		self.trade = self.trade.toJSON();
+			// 		self.trade.isFirst = attrs.isFirst ? attrs.isFirst : false;
+			// 	});
+			// }
 			app.templateLoader.get('main-view-trade').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
+				self.render();
 			});
 		},
 
@@ -34,23 +35,26 @@
 			this.undelegateEvents();
 		},
 
-		render: function(cache) {
+		render: function() {
 			var self = this;
-			this.deferred.done(function() {
-				var template = app.cache.get('mainViewTrade' + self.trade.id, self.template, {
-					trade: self.trade
-				});
-				if(typeof cache !== 'boolean') {
+			// this.deferred.done(function() {
+				// var template = app.cache.get('mainViewTrade' + self.trade.id, self.template, {
+				// 	trade: self.trade
+				// });
+				// if(typeof cache !== 'boolean') {
 					app.trigger('change', 'main-view-trade');
-					self.$el.html(template);
+					// self.$el.html(template);
+					this.$el.html(this.template({
+						trade: this.trade
+					}));
 					app.swipe.init('.swipe');
 					setTimeout(function() {
 						app.enableScroll();
 					}, 10);
-				} else {
-					self.undelegateEvents();
-				}
-			});
+				// } else {
+				// 	self.undelegateEvents();
+				// }
+			// });
 			return this;
 		},
 

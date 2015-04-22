@@ -167,9 +167,15 @@
 									$.cookie('cookie', $.param(cookie), {
 										expires: 20
 									});
-									app.cache.delete('main');
-									app.loadView('mainViewTrade', {
-										trade_id: insertId
+									var trade = new app.Models.trade({
+										id: insertId
+									});
+									trade.deferred.done(function() {
+										app.objects.unshift(trade.toJSON());
+										app.cache.delete('main');
+										app.loadView('mainViewTrade', {
+											trade_id: insertId
+										});
 									});
 								}
 							});

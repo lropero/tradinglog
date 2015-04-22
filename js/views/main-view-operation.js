@@ -4,9 +4,9 @@
 	app.Views.mainViewOperation = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 
-		initialize: function(attrs) {
+		initialize: function(key) {
 			var self = this;
-			this.operation = attrs.operation;
+			this.operation = app.objects[key];
 			app.templateLoader.get('main-view-operation').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();

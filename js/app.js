@@ -49,27 +49,27 @@
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();
-								var trades = new app.Collections.trades();
-								trades.setAccountId(app.account.get('id'));
-								trades.setOpen();
-								trades.deferreds = [];
-								trades.fetch({
-									success: function() {
-										$.when.apply($, trades.deferreds).done(function() {
-											trades = trades.toJSON();
-											for(var i = 0; i < trades.length; i++) {
-												new app.Views.mainViewTrade({
-													trade: trades[i]
-												}, true);
-											}
-										});
-									}
-								});
-								new app.Views.mainAddOperation(true);
-								new app.Views.mainAddTrade(true);
-								new app.Views.mainMap(true);
-								new app.Views.settingsAddAccount(null, true);
-								new app.Views.settingsAddInstrument(null, true);
+								// var trades = new app.Collections.trades();
+								// trades.setAccountId(app.account.get('id'));
+								// trades.setOpen();
+								// trades.deferreds = [];
+								// trades.fetch({
+								// 	success: function() {
+								// 		$.when.apply($, trades.deferreds).done(function() {
+								// 			trades = trades.toJSON();
+								// 			for(var i = 0; i < trades.length; i++) {
+								// 				new app.Views.mainViewTrade({
+								// 					trade: trades[i]
+								// 				}, true);
+								// 			}
+								// 		});
+								// 	}
+								// });
+								// new app.Views.mainAddOperation(true);
+								// new app.Views.mainAddTrade(true);
+								// new app.Views.mainMap(true);
+								// new app.Views.settingsAddAccount(null, true);
+								// new app.Views.settingsAddInstrument(null, true);
 
 								/** Load main view */
 								app.view = new app.Views.main();
@@ -206,6 +206,9 @@
 					if(app.firstTrade) {
 						app.cache.delete('mainViewTrade' + app.firstTrade);
 					}
+					// if(typeof cache !== 'boolean' || fromDelete) {
+					// 	app.cache.delete('mainViewTrade' + this.objects[this.count.open].id);
+					// }
 					app.firstTrade = app.objects[app.count.open].id;
 				}
 			}

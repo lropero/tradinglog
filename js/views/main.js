@@ -12,21 +12,6 @@
 		initialize: function(cache, fromDelete) {
 			var self = this;
 			this.deferred = $.Deferred();
-			// this.operations = [];
-			// this.trades = [];
-			// $.when(
-			// 	this.fetchOperations(),
-			// 	this.fetchTrades()
-			// ).done(function() {
-			// 	self.count = {
-			// 		open: 0,
-			// 		closed: 0,
-			// 		operations: 0
-			// 	};
-			// 	self.objects = [];
-			// 	self.prepareObjects(cache, fromDelete);
-			// 	self.deferred.resolve();
-			// });
 			app.templateLoader.get('main').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render(cache);
@@ -46,30 +31,24 @@
 		},
 
 		render: function(cache) {
-			var self = this;
-			// this.deferred.done(function() {
-				// var template = app.cache.get('main', self.template, {
-				// 	objects: app.objects
-				// });
-				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'main', {
-						closed: app.count.closed
-					});
-					// self.$el.html(template);
-					this.$el.html(this.template({
-						objects: app.objects
-					}));
-					self.decorate();
+			var template = app.cache.get('main', this.template, {
+				objects: app.objects
+			});
+			if(typeof cache !== 'boolean') {
+				app.trigger('change', 'main', {
+					closed: app.count.closed
+				});
+				this.$el.html(template);
+				this.decorate();
 
-					// Remove
-					if(navigator.accelerometer) {
-						self.shake();
-					}
-
-				} else {
-					self.undelegateEvents();
+				// Remove
+				if(navigator.accelerometer) {
+					this.shake();
 				}
-			// });
+
+			} else {
+				this.undelegateEvents();
+			}
 			this.deferred.resolve();
 			return this;
 		},
@@ -180,84 +159,6 @@
 			}
 		},
 
-		// fetchOperations: function() {
-		// 	var self = this;
-		// 	var deferred = $.Deferred();
-		// 	var operations = new app.Collections.operations();
-		// 	operations.setAccountId(app.account.get('id'));
-		// 	operations.fetch({
-		// 		success: function() {
-		// 			operations = operations.toJSON();
-		// 			for(var i = 0; i < operations.length; i++) {
-		// 				self.operations.push(operations[i]);
-		// 			}
-		// 			deferred.resolve();
-		// 		}
-		// 	});
-		// 	return deferred;
-		// },
-
-		// fetchTrades: function() {
-		// 	var self = this;
-		// 	var deferred = $.Deferred();
-		// 	var trades = new app.Collections.trades();
-		// 	trades.setAccountId(app.account.get('id'));
-		// 	trades.deferreds = [];
-		// 	trades.fetch({
-		// 		success: function() {
-		// 			$.when.apply($, trades.deferreds).done(function() {
-		// 				trades = trades.toJSON();
-		// 				for(var i = 0; i < trades.length; i++) {
-		// 					self.trades.push(trades[i]);
-		// 				}
-		// 				deferred.resolve();
-		// 			});
-		// 		}
-		// 	});
-		// 	return deferred;
-		// },
-
-		// prepareObjects: function(cache, fromDelete) {
-		// 	while(this.trades.length && this.trades[0].closed_at === 0) {
-		// 		this.objects.push(this.trades.shift());
-		// 		this.count.open++;
-		// 	}
-		// 	while(this.operations.length && this.trades.length) {
-		// 		if(this.operations[0].created_at > this.trades[0].closed_at) {
-		// 			this.objects.push(this.operations.shift());
-		// 			this.count.operations++;
-		// 		} else {
-		// 			this.objects.push(this.trades.shift());
-		// 			this.count.closed++;
-		// 		}
-		// 	}
-		// 	while(this.operations.length) {
-		// 		this.objects.push(this.operations.shift());
-		// 		this.count.operations++;
-		// 	}
-		// 	while(this.trades.length) {
-		// 		this.objects.push(this.trades.shift());
-		// 		this.count.closed++;
-		// 	}
-		// 	if(!(!this.count.closed && this.count.operations === 1)) {
-		// 		this.objects[this.count.open].isFirst = true;
-		// 		if(typeof this.objects[this.count.open].instrument_id === 'undefined') {
-		// 			if(app.firstTrade) {
-		// 				app.cache.delete('mainViewTrade' + app.firstTrade);
-		// 				delete(app.firstTrade);
-		// 			}
-		// 		} else if(app.firstTrade !== this.objects[this.count.open].id) {
-		// 			if(app.firstTrade) {
-		// 				app.cache.delete('mainViewTrade' + app.firstTrade);
-		// 			}
-		// 			if(typeof cache !== 'boolean' || fromDelete) {
-		// 				app.cache.delete('mainViewTrade' + this.objects[this.count.open].id);
-		// 			}
-		// 			app.firstTrade = this.objects[this.count.open].id;
-		// 		}
-		// 	}
-		// },
-
 		// Remove
 		shake: function() {
 			var self = this;
@@ -276,10 +177,8 @@
 			e.preventDefault();
 			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var key = $wrapper.data('key');
-			app.loadView('mainViewOperation', {
-				operation: this.objects[key]
-			});
+			var key = $wrapper.data('key').toString();
+			app.loadView('mainViewOperation', key);
 		},
 
 		viewTrade: function(e) {
@@ -291,10 +190,8 @@
 			if(!isOpen) {
 				$label.css('backgroundColor', '#dadada');
 			}
-			var key = $wrapper.data('key');
-			app.loadView('mainViewTrade', {
-				trade: this.objects[key]
-			});
+			var key = $wrapper.data('key').toString();
+			app.loadView('mainViewTrade', key);
 		}
 	});
 })();

@@ -88,6 +88,7 @@
 					});
 					app.account.save(null, {
 						success: function() {
+							app.objects.splice(app.count.open, 0, operation.toJSON());
 							app.cache.delete('main');
 							app.loadView('main');
 						}
