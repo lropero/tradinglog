@@ -101,10 +101,13 @@
 					trade.deferred.then(function() {
 						if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
 							trade.setPnL(function() {
-								app.objects[self.key] = trade.toJSON();
+								app.count.open--;
+								app.objects.splice(self.key, 1);
+								app.count.closed++;
+								app.objects.splice(app.count.open, 0, trade.toJSON());
 								app.cache.delete('main');
 								app.cache.delete('mainViewTrade' + self.trade.id);
-								app.loadView('mainViewTrade', self.key);
+								app.loadView('mainViewTrade', app.count.open);
 							});
 						} else {
 							app.objects[self.key] = trade.toJSON();

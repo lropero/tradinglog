@@ -95,6 +95,8 @@
 									});
 									trade2.deferred.then(function() {
 										trade2.setPnL(function() {
+											app.count.closed++;
+											app.objects.splice(app.count.open, 0, trade2.toJSON());
 											app.cache.delete('main');
 											app.loadView('main');
 										});
