@@ -146,18 +146,18 @@
 
 		loadView: function(view, attrs) {
 			var self = this;
-			$('div#drag').css('display', 'none');
 
 			/** Some views require to undelegate events */
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
 			}
 
-			/** Load view */
-			setTimeout(function() {
-				self.view = new app.Views[view](attrs);
-			}, 10);
-
+			$('div#drag').hide({
+				complete: function() {
+					self.view = new app.Views[view](attrs);
+				},
+				duration: 0
+			});
 		},
 
 		prepareObjects: function() {
