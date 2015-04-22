@@ -152,12 +152,14 @@
 				this.view.destroy();
 			}
 
-			$('div#drag').hide({
-				complete: function() {
+			if($('div#drag').is(':hidden')) {
+				this.view = new app.Views[view](attrs);
+			} else {
+				$('div#drag').css('display', 'none');
+				setTimeout(function() {
 					self.view = new app.Views[view](attrs);
-				},
-				duration: 0
-			});
+				}, 50);
+			}
 		},
 
 		prepareObjects: function() {
