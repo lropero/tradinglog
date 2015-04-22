@@ -155,7 +155,7 @@
 			/** Load view */
 			setTimeout(function() {
 				self.view = new app.Views[view](attrs);
-			}, 10);
+			}, 50);
 
 		},
 
