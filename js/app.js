@@ -41,7 +41,10 @@
 
 							$.when(
 								layout.deferred,
+
+								/** Fetch operations & trades */
 								app.fetchObjects()
+
 							).done(function() {
 
 								/** Preload some templates to smoothen navigation */
@@ -147,11 +150,11 @@
 		},
 
 		hideSplash: function() {
-			// app.view.deferred.done(function() {
+			app.view.deferred.done(function() {
 				if(navigator.splashscreen) {
 					navigator.splashscreen.hide();
 				}
-			// });
+			});
 		},
 
 		loadView: function(view, attrs) {
