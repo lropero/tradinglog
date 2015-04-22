@@ -36,17 +36,13 @@
 		},
 
 		render: function() {
-			var self = this;
 			// this.deferred.done(function() {
-				// var template = app.cache.get('mainViewTrade' + self.trade.id, self.template, {
-				// 	trade: self.trade
-				// });
+				var template = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
+					trade: this.trade
+				});
 				// if(typeof cache !== 'boolean') {
 					app.trigger('change', 'main-view-trade');
-					// self.$el.html(template);
-					this.$el.html(this.template({
-						trade: this.trade
-					}));
+					this.$el.html(template);
 					app.swipe.init('.swipe');
 					setTimeout(function() {
 						app.enableScroll();
