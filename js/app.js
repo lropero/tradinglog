@@ -146,6 +146,7 @@
 
 		loadView: function(view, attrs) {
 			var self = this;
+			$('div#drag').hide();
 
 			/** Some views require to undelegate events */
 			if(typeof this.view.destroy === 'function') {
@@ -153,7 +154,6 @@
 			}
 
 			/** Load view */
-			$('div#drag').hide();
 			setTimeout(function() {
 				self.view = new app.Views[view](attrs);
 			}, 10);
