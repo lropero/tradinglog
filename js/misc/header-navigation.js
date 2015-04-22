@@ -19,15 +19,16 @@
 			var $button = $('header #button-' + button);
 			if(options.icon) {
 				$button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
-				$button.css('bottom', '0');
+				$button.css('bottom', '-2px');
 			} else {
 				$button.removeClass('icon');
-				$button.css('bottom', '2px');
+				$button.css('bottom', '0');
 			}
 			if(options.text) {
 				$button.html(options.text);
 			} else {
 				$button.html('');
+				$button.css('bottom', '-1px');
 			}
 			if(options.rotate) {
 				$button.addClass('rotate');

@@ -147,7 +147,7 @@ header bar.navigation button {
   bottom: 0;
   color: #ffffff;
   outline: 0;
-  padding: 8px;
+  padding: 0 10px 9px;
   position: absolute;
   z-index: 2000;
 }
