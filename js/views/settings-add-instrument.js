@@ -12,7 +12,7 @@
 
 		initialize: function(instrument, cache) {
 			var self = this;
-			if(typeof instrument !== 'undefined') {
+			if(typeof instrument !== 'string') {
 				this.instrument = instrument;
 			}
 			app.submit = function() {

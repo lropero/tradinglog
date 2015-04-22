@@ -6,13 +6,8 @@
 
 		initialize: function(cache) {
 			var self = this;
-			this.deferred = $.Deferred();
 			this.trades = [];
-			$.when(
-				this.fetchTrades()
-			).done(function() {
-				self.deferred.resolve();
-			});
+			this.fetchTrades()
 			app.templateLoader.get('main-map').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render(cache);
@@ -24,18 +19,15 @@
 		},
 
 		render: function(cache) {
-			var self = this;
-			this.deferred.done(function() {
-				var template = app.cache.get('mainMap', self.template, {
-					trades: self.trades,
-					max: self.max
-				});
-				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'main-map');
-					self.$el.html(template);
-					self.decorate();
-				}
+			var template = app.cache.get('mainMap', this.template, {
+				trades: this.trades,
+				max: this.max
 			});
+			if(typeof cache !== 'boolean') {
+				app.trigger('change', 'main-map');
+				this.$el.html(template);
+				this.decorate();
+			}
 			return this;
 		},
 
@@ -54,30 +46,15 @@
 		},
 
 		fetchTrades: function() {
-			var self = this;
-			var deferred = $.Deferred();
-			var trades = new app.Collections.trades();
-			trades.setAccountId(app.account.get('id'));
-			trades.deferreds = [];
-			trades.fetch({
-				success: function() {
-					$.when.apply($, trades.deferreds).done(function() {
-						trades = trades.toJSON();
-						for(var i = 0; i < trades.length; i++) {
-							if(trades[i].isOpen) {
-								continue;
-							}
-							var abs = Math.abs(trades[i].net);
-							if(!self.max || abs > self.max) {
-								self.max = abs;
-							}
-							self.trades.push(trades[i]);
-						}
-						deferred.resolve();
-					});
+			for(var i = app.count.open; i < app.objects.length; i++) {
+				if(typeof app.objects[i].instrument_id !== 'undefined') {
+					var abs = Math.abs(app.objects[i].net);
+					if(!this.max || abs > this.max) {
+						this.max = abs;
+					}
+					this.trades.push(app.objects[i]);
 				}
-			});
-			return deferred;
+			}
 		}
 	});
 })();

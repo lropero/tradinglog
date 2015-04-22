@@ -23,6 +23,7 @@
 		},
 
 		render: function(cache) {
+			var self = this;
 			var template = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
 				trade: this.trade
 			});
@@ -34,7 +35,9 @@
 					app.enableScroll();
 				}, 10);
 			} else {
-				this.undelegateEvents();
+				setTimeout(function() {
+					self.undelegateEvents();
+				}, 10);
 			}
 			return this;
 		},

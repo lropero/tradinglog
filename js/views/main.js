@@ -31,6 +31,7 @@
 		},
 
 		render: function(cache) {
+			var self = this;
 			var template = app.cache.get('main', this.template, {
 				objects: app.objects
 			});
@@ -47,7 +48,9 @@
 				}
 
 			} else {
-				this.undelegateEvents();
+				setTimeout(function() {
+					self.undelegateEvents();
+				}, 10);
 			}
 			this.deferred.resolve();
 			return this;

@@ -11,7 +11,7 @@
 
 		initialize: function(account, cache) {
 			var self = this;
-			if(typeof account !== 'undefined') {
+			if(typeof account !== 'string') {
 				this.account = account;
 			}
 			app.submit = function() {

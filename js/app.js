@@ -24,7 +24,7 @@
 					success: function() {
 						if(!accounts.length) {
 
-							/** No active account, load welcome screen */
+							/** Load welcome screen */
 							app.view = new app.Views.welcome();
 
 							/** We hide the initial splash screen once the welcome view is ready */
@@ -55,8 +55,8 @@
 								for(var i = 0; i < app.count.open; i++) {
 									new app.Views.mainViewTrade(i.toString(), true);
 								}
-								new app.Views.settingsAddAccount(null, true);
-								new app.Views.settingsAddInstrument(null, true);
+								new app.Views.settingsAddAccount(' ', true);
+								new app.Views.settingsAddInstrument(' ', true);
 
 								/** Load main view */
 								app.view = new app.Views.main();
@@ -147,8 +147,7 @@
 		loadView: function(view, attrs) {
 			var self = this;
 
-			/** Some views require to undelegate events, e.g. those with control
-				segments (i.e. <ul><li>submenus</li></ul>) */
+			/** Some views require to undelegate events */
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
 			}

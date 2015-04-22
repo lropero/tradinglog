@@ -107,7 +107,7 @@
 								app.objects.splice(app.count.open, 0, trade.toJSON());
 								app.cache.delete('main');
 								app.cache.delete('mainViewTrade' + self.trade.id);
-								app.loadView('mainViewTrade', app.count.open);
+								app.loadView('mainViewTrade', app.count.open.toString());
 							});
 						} else {
 							app.objects[self.key] = trade.toJSON();

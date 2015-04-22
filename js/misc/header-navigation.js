@@ -17,6 +17,8 @@
 
 		set: function(button, options) {
 			var $button = $('header #button-' + button);
+			var animated = 'animated rubberBand';
+			$button.removeClass(animated);
 			if(options.icon) {
 				$button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
 				$button.css('bottom', '-2px');
@@ -48,7 +50,6 @@
 			}
 			$button.show();
 			if(typeof options.animate === 'boolean') {
-				var animated = 'animated rubberBand';
 				$button.addClass(animated).one('webkitAnimationEnd', function() {
 					$button.removeClass(animated);
 				});
