@@ -11,22 +11,22 @@
 
 		initialize: function(cache, fromDelete) {
 			var self = this;
-			this.deferred = $.Deferred();
-			this.operations = [];
-			this.trades = [];
-			$.when(
-				this.fetchOperations(),
-				this.fetchTrades()
-			).done(function() {
-				self.count = {
-					open: 0,
-					closed: 0,
-					operations: 0
-				};
-				self.objects = [];
-				self.prepareObjects(cache, fromDelete);
-				self.deferred.resolve();
-			});
+			// this.deferred = $.Deferred();
+			// this.operations = [];
+			// this.trades = [];
+			// $.when(
+			// 	this.fetchOperations(),
+			// 	this.fetchTrades()
+			// ).done(function() {
+			// 	self.count = {
+			// 		open: 0,
+			// 		closed: 0,
+			// 		operations: 0
+			// 	};
+			// 	self.objects = [];
+			// 	self.prepareObjects(cache, fromDelete);
+			// 	self.deferred.resolve();
+			// });
 			app.templateLoader.get('main').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render(cache);
@@ -47,13 +47,13 @@
 
 		render: function(cache) {
 			var self = this;
-			this.deferred.done(function() {
+			// this.deferred.done(function() {
 				var template = app.cache.get('main', self.template, {
-					objects: self.objects
+					objects: app.objects
 				});
 				if(typeof cache !== 'boolean') {
 					app.trigger('change', 'main', {
-						closed: self.count.closed
+						closed: app.count.closed
 					});
 					self.$el.html(template);
 					self.decorate();
@@ -66,7 +66,7 @@
 				} else {
 					self.undelegateEvents();
 				}
-			});
+			// });
 			return this;
 		},
 

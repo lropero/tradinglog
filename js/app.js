@@ -39,7 +39,10 @@
 								header and footer views */
 							var layout = new app.Views.layout();
 
-							layout.deferred.done(function() {
+							$.when(
+								layout.deferred,
+								app.fetchObjects()
+							).done(function() {
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();
@@ -83,17 +86,72 @@
 			$('section#content').css('overflow-y', 'hidden');
 		},
 
+		fetchObjects: function() {
+			var deferred = $.Deferred();
+			app.operations = [];
+			app.trades = [];
+			$.when(
+				app.fetchOperations(),
+				app.fetchTrades()
+			).done(function() {
+				app.count = {
+					open: 0,
+					closed: 0,
+					operations: 0
+				};
+				app.objects = [];
+				app.prepareObjects();
+				deferred.resolve();
+			});
+			return deferred;
+		},
+
+		fetchOperations: function() {
+			var deferred = $.Deferred();
+			var operations = new app.Collections.operations();
+			operations.setAccountId(app.account.get('id'));
+			operations.fetch({
+				success: function() {
+					operations = operations.toJSON();
+					for(var i = 0; i < operations.length; i++) {
+						app.operations.push(operations[i]);
+					}
+					deferred.resolve();
+				}
+			});
+			return deferred;
+		},
+
+		fetchTrades: function() {
+			var deferred = $.Deferred();
+			var trades = new app.Collections.trades();
+			trades.setAccountId(app.account.get('id'));
+			trades.deferreds = [];
+			trades.fetch({
+				success: function() {
+					$.when.apply($, trades.deferreds).done(function() {
+						trades = trades.toJSON();
+						for(var i = 0; i < trades.length; i++) {
+							app.trades.push(trades[i]);
+						}
+						deferred.resolve();
+					});
+				}
+			});
+			return deferred;
+		},
+
 		enableScroll: function() {
 			$('section#content').css('-webkit-overflow-scrolling', 'touch');
 			$('section#content').css('overflow-y', 'scroll');
 		},
 
 		hideSplash: function() {
-			app.view.deferred.done(function() {
+			// app.view.deferred.done(function() {
 				if(navigator.splashscreen) {
 					navigator.splashscreen.hide();
 				}
-			});
+			// });
 		},
 
 		loadView: function(view, attrs) {
@@ -110,6 +168,44 @@
 				self.view = new app.Views[view](attrs);
 			}, 10);
 
+		},
+
+		prepareObjects: function() {
+			while(app.trades.length && app.trades[0].closed_at === 0) {
+				app.objects.push(app.trades.shift());
+				app.count.open++;
+			}
+			while(app.operations.length && app.trades.length) {
+				if(app.operations[0].created_at > app.trades[0].closed_at) {
+					app.objects.push(app.operations.shift());
+					app.count.operations++;
+				} else {
+					app.objects.push(app.trades.shift());
+					app.count.closed++;
+				}
+			}
+			while(app.operations.length) {
+				app.objects.push(app.operations.shift());
+				app.count.operations++;
+			}
+			while(app.trades.length) {
+				app.objects.push(app.trades.shift());
+				app.count.closed++;
+			}
+			if(!(!app.count.closed && app.count.operations === 1)) {
+				app.objects[app.count.open].isFirst = true;
+				if(typeof app.objects[app.count.open].instrument_id === 'undefined') {
+					if(app.firstTrade) {
+						app.cache.delete('mainViewTrade' + app.firstTrade);
+						delete(app.firstTrade);
+					}
+				} else if(app.firstTrade !== app.objects[app.count.open].id) {
+					if(app.firstTrade) {
+						app.cache.delete('mainViewTrade' + app.firstTrade);
+					}
+					app.firstTrade = app.objects[app.count.open].id;
+				}
+			}
 		}
 	};
 
