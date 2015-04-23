@@ -97,10 +97,13 @@
 									});
 									trade2.deferred.then(function() {
 										trade2.setPnL(function() {
+											app.objects[app.count.open].isFirst = false;
 											app.count.closed++;
 											app.objects.splice(app.count.open, 0, trade2.toJSON());
+											app.objects[app.count.open].isFirst = true;
 											app.cache.delete('main');
 											app.cache.delete('mainMap');
+											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
 											app.loadView('main');
 										});
 									});
