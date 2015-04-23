@@ -11,6 +11,9 @@
 						<div class="row">
 							<div class="balance">{{#money this.balance}}{{/money}}</div>
 						</div>
+						{{#unless this.is_active}}
+							<div class="swipe-triangle"></div>
+						{{/unless}}
 					</div>
 					{{#unless this.is_active}}
 						<div class="wrapper-swipe">

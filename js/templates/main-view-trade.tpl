@@ -40,6 +40,13 @@
 							<div class="row">
 								<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
 							</div>
+							{{#or ../../trade.isOpen ../../trade.isFirst}}
+								{{#if this.last}}
+									{{#gt ../../../../trade.positions 1}}
+										<div class="swipe-triangle"></div>
+									{{/gt}}
+								{{/if}}
+							{{/or}}
 						</div>
 						{{#or ../../trade.isOpen ../../trade.isFirst}}
 							{{#if this.last}}

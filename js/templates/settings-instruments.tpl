@@ -16,6 +16,7 @@
 								<div class="commission">{{#money this.commission}}{{/money}}</div>
 							{{/equal}}
 						</div>
+						<div class="swipe-triangle"></div>
 					</div>
 					<div class="wrapper-swipe">
 						<div class="swipe-buttons">

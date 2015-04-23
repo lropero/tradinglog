@@ -24,6 +24,7 @@
 									<div class="variation">{{#variation this.variation}}{{/variation}}</div>
 								{{/if}}
 							</div>
+							<div class="swipe-triangle"></div>
 						</div>
 						<div class="wrapper-swipe">
 							<div class="swipe-buttons">
@@ -49,6 +50,9 @@
 									<div class="variation">{{#variation this.variation}}{{/variation}}</div>
 								{{/if}}
 							</div>
+							{{#if this.isFirst}}
+								<div class="swipe-triangle"></div>
+							{{/if}}
 						</div>
 						{{#if this.isFirst}}
 							<div class="wrapper-swipe">

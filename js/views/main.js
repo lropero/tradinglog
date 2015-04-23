@@ -100,6 +100,7 @@
 											app.count.closed++;
 											app.objects.splice(app.count.open, 0, trade2.toJSON());
 											app.cache.delete('main');
+											app.cache.delete('mainMap');
 											app.loadView('main');
 										});
 									});
