@@ -72,6 +72,7 @@
 							<div class="row">
 								<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
 							</div>
+							<div class="swipe-triangle"></div>
 						</div>
 						<div class="wrapper-swipe">
 							<div class="swipe-buttons">

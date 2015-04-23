@@ -16,10 +16,12 @@
 			app.trigger('change', 'stats-numbers');
 			this.$el.html(this.template());
 
-			var width = $('canvas#doughnut').width();
-			var height = $('canvas#doughnut').height();
+			var $doughnut = $('canvas#doughnut');
+			var width = $doughnut.width();
+			var height = $doughnut.height() - 34;
+			$doughnut.height(height);
 			if(width > height) {
-				$('canvas#doughnut').width(height);
+				$doughnut.width(height);
 			}
 			var diameter = height * 40 / 100;
 			$('div#center').width(diameter);
