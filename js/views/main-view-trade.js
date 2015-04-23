@@ -118,9 +118,12 @@
 											app.objects.splice(self.key, 1);
 											app.count.closed--;
 											app.objects.splice(key, 0, trade.toJSON());
-											app.objects[app.count.open].isFirst = true;
+											if(!(!app.count.closed && app.count.operations === 1)) {
+												app.objects[app.count.open].isFirst = true;
+											}
 											app.cache.delete('main');
 											app.cache.delete('mainMap');
+											app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
 											app.cache.delete('mainViewTrade' + self.trade.id);
 											app.loadView('mainViewTrade', key.toString());
 										});

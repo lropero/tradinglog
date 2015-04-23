@@ -110,6 +110,7 @@
 									app.objects[app.count.open].isFirst = true;
 									app.cache.delete('main');
 									app.cache.delete('mainMap');
+									app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
 									app.cache.delete('mainViewTrade' + self.trade.id);
 									app.loadView('mainViewTrade', app.count.open.toString());
 								} else {

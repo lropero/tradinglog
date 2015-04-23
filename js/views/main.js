@@ -150,7 +150,9 @@
 										var key = $wrapper.data('key').toString();
 										app.count.operations--;
 										app.objects.splice(key, 1);
-										app.objects[app.count.open].isFirst = true;
+										if(!(!app.count.closed && app.count.operations === 1)) {
+											app.objects[app.count.open].isFirst = true;
+										}
 										app.cache.delete('main');
 										if(app.objects[app.count.open].instrument_id) {
 											app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
