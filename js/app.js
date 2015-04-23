@@ -186,20 +186,6 @@
 			}
 			if(!(!app.count.closed && app.count.operations === 1)) {
 				app.objects[app.count.open].isFirst = true;
-				if(typeof app.objects[app.count.open].instrument_id === 'undefined') {
-					if(app.firstTrade) {
-						app.cache.delete('mainViewTrade' + app.firstTrade);
-						delete(app.firstTrade);
-					}
-				} else if(app.firstTrade !== app.objects[app.count.open].id) {
-					if(app.firstTrade) {
-						app.cache.delete('mainViewTrade' + app.firstTrade);
-					}
-					// if(typeof cache !== 'boolean' || fromDelete) {
-					// 	app.cache.delete('mainViewTrade' + this.objects[this.count.open].id);
-					// }
-					app.firstTrade = app.objects[app.count.open].id;
-				}
 			}
 		}
 	};

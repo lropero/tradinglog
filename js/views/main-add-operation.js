@@ -81,18 +81,24 @@
 				created_at: (new Date()).getTime()
 			});
 			operation.save(null, {
-				success: function() {
+				success: function(model, insertId) {
 					$('header button').hide();
 					app.account.set({
 						balance: balance
 					});
 					app.account.save(null, {
 						success: function() {
+							operation.set({
+								id: insertId
+							});
 							app.count.operations++;
 							app.objects[app.count.open].isFirst = false;
 							app.objects.splice(app.count.open, 0, operation.toJSON());
 							app.objects[app.count.open].isFirst = true;
 							app.cache.delete('main');
+							if(app.objects[app.count.open + 1].instrument_id) {
+								app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+							}
 							app.loadView('main');
 						}
 					});

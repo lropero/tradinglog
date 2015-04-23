@@ -46,12 +46,12 @@
 					this.shake();
 				}
 
+				this.deferred.resolve();
 			} else {
 				setTimeout(function() {
 					self.undelegateEvents();
 				}, 10);
 			}
-			this.deferred.resolve();
 			return this;
 		},
 
@@ -152,6 +152,9 @@
 										app.objects.splice(key, 1);
 										app.objects[app.count.open].isFirst = true;
 										app.cache.delete('main');
+										if(app.objects[app.count.open].instrument_id) {
+											app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
+										}
 										app.loadView('main');
 									}
 								});
@@ -166,6 +169,7 @@
 								app.count.open--;
 								app.objects.splice(key, 1);
 								app.cache.delete('main');
+								app.loadView('main');
 							});
 							break;
 					}

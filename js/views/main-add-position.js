@@ -100,14 +100,24 @@
 					});
 					trade.deferred.then(function() {
 						if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
-							trade.setPnL(function() {
-								app.count.open--;
-								app.objects.splice(self.key, 1);
-								app.count.closed++;
-								app.objects.splice(app.count.open, 0, trade.toJSON());
-								app.cache.delete('main');
-								app.cache.delete('mainViewTrade' + self.trade.id);
-								app.loadView('mainViewTrade', app.count.open.toString());
+							trade.setPnL(function(closed) {
+								if(closed) {
+									app.objects[app.count.open].isFirst = false;
+									app.count.open--;
+									app.objects.splice(self.key, 1);
+									app.count.closed++;
+									app.objects.splice(app.count.open, 0, trade.toJSON());
+									app.objects[app.count.open].isFirst = true;
+									app.cache.delete('main');
+									app.cache.delete('mainMap');
+									app.cache.delete('mainViewTrade' + self.trade.id);
+									app.loadView('mainViewTrade', app.count.open.toString());
+								} else {
+									app.objects[self.key] = trade.toJSON();
+									app.cache.delete('main');
+									app.cache.delete('mainViewTrade' + self.trade.id);
+									app.loadView('mainViewTrade', self.key);
+								}
 							});
 						} else {
 							app.objects[self.key] = trade.toJSON();

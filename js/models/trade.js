@@ -64,7 +64,9 @@
 				comments: comments + qty
 			});
 			this.save(null, {
-				success: callback
+				success: function() {
+					callback();
+				}
 			});
 		},
 
@@ -322,7 +324,6 @@
 									});
 									app.account.save(null, {
 										success: function() {
-											app.cache.delete('mainMap');
 											callback(true);
 										}
 									});
@@ -330,7 +331,9 @@
 							});
 						} else {
 							self.save(null, {
-								success: callback
+								success: function() {
+									callback();
+								}
 							});
 						}
 					}
