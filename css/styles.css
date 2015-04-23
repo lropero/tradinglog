@@ -57,11 +57,8 @@ control.segmented ul li:not(.active):active {
   background-color: #9f8fe7;
 }
 control.segmented + #content {
+  padding-top: 34px;
   position: relative;
-  top: 34px;
-}
-ul.wrapper-button-default + #content {
-  padding-bottom: 109px;
 }
 div#drag {
   display: none;
@@ -96,6 +93,9 @@ div#loading span:after {
   content: '\f29d';
   font-family: ionicons;
   font-size: 32px;
+}
+div#top + #content {
+  padding-bottom: 75px;
 }
 footer {
   background-color: #f6f6f6;

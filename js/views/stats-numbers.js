@@ -18,8 +18,7 @@
 
 			var $doughnut = $('canvas#doughnut');
 			var width = $doughnut.width();
-			var height = $doughnut.height() - 34;
-			$doughnut.height(height);
+			var height = $doughnut.height();
 			if(width > height) {
 				$doughnut.width(height);
 			}
