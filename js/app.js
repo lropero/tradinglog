@@ -47,6 +47,10 @@
 
 							).done(function() {
 
+								/** Generate stats */
+								app.stats.update('weekly');
+								app.stats.update('monthly');
+
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();
 								new app.Views.mainAddOperation(true);

@@ -6,6 +6,7 @@
 
 		initialize: function() {
 			var self = this;
+			this.period = $('control.segmented li.active').data('period');
 			app.templateLoader.get('stats-numbers').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
@@ -23,27 +24,28 @@
 				$doughnut.width(height);
 			}
 			var diameter = height * 40 / 100;
-			$('div#center').width(diameter);
-			$('div#center').height(diameter);
-			$('div#center').css('top', $('canvas#doughnut').position().top + (height * 30 / 100) + 'px');
-			$('div#center').css('left', Math.max(0, (($(window).width() - $('div#center').outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
+			var $center = $('div#center');
+			$center.width(diameter);
+			$center.height(diameter);
+			$center.css('top', $doughnut.position().top + (height * 30 / 100) + 'px');
+			$center.css('left', Math.max(0, (($(window).width() - $center.outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
 
-			var ctx = $('#doughnut').get(0).getContext('2d');
+			var ctx = $doughnut.get(0).getContext('2d');
 			var data = [
 				{
 					color: '#4bd763',
 					label: 'Profit',
-					value: 50
+					value: app.stats[this.period].profit
 				},
 				{
 					color:'#ff3b30',
 					label: 'Loss',
-					value: 300
+					value: app.stats[this.period].loss
 				},
 				{
 					color: '#fdb45c',
 					label: 'Commission',
-					value: 100
+					value: app.stats[this.period].commission
 				}
 			];
 			var options = {
@@ -55,7 +57,7 @@
 				legendTemplate : '<ul><% for(var i = 0; i < segments.length; i++) { %><li><div style="background-color: <%=segments[i].fillColor%>;">&nbsp;</div><span class="title"><%=segments[i].label%></span><br /><span class="money"><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %></ul>'
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
-			// $('#legend').html(doughnut.generateLegend());
+			// $('div#legend').html(doughnut.generateLegend());
 			return this;
 		}
 	});
