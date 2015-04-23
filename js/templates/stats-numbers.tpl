@@ -2,22 +2,22 @@
 	<div class="header-box-swipe">
 		<div class="wrapper-calendar">
 			<div class="buttons-calendar">
-				<a href=""></a>
-				<a href=""></a>
+				<span class="button-left"></span>
+				<span class="button-right"></span>
 			</div>
 			<div class="calendar">April 2015</div>
 		</div>
-		<ul class="wrapper-radiobutton">
+		<ul class="wrapper-radiobutton" id="type">
 			<li class="group-radiobutton">
-				<div class="radiobutton active"></div>
+				<div class="radiobutton active" data-type="all"></div>
 				<span>All</span>
 			</li>
 			<li class="group-radiobutton">
-				<div class="radiobutton"></div>
+				<div class="radiobutton" data-type="long"></div>
 				<span>Long</span>
 			</li>
 			<li class="group-radiobutton">
-				<div class="radiobutton"></div>
+				<div class="radiobutton" data-type="short"></div>
 				<span>Short</span>
 			</li>
 		</ul>

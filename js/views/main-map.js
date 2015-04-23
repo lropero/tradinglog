@@ -43,7 +43,7 @@
 
 		fetchTrades: function() {
 			for(var i = app.count.open; i < app.objects.length; i++) {
-				if(typeof app.objects[i].instrument_id !== 'undefined') {
+				if(app.objects[i].instrument_id) {
 					var abs = Math.abs(app.objects[i].net);
 					if(!this.max || abs > this.max) {
 						this.max = abs;

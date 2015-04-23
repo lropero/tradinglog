@@ -48,8 +48,7 @@
 							).done(function() {
 
 								/** Generate stats */
-								app.stats.update('weekly');
-								app.stats.update('monthly');
+								// app.stats.update();
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();

@@ -3,10 +3,20 @@
 
 	app.Views.statsNumbers = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
+		events: {
+			'tap div.buttons-calendar span': 'movePeriod',
+			'tap ul#type div:not(.active)': 'radio',
+			'tap ul#type span': 'radio'
+		},
 
 		initialize: function() {
 			var self = this;
 			this.period = $('control.segmented li.active').data('period');
+			// switch(this.period) {
+			// 	case 'monthly':
+			// 		var
+			// 		break;
+			// }
 			app.templateLoader.get('stats-numbers').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
@@ -30,22 +40,33 @@
 			$center.css('top', $doughnut.position().top + (height * 30 / 100) + 'px');
 			$center.css('left', Math.max(0, (($(window).width() - $center.outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
 
+			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
+			this.drawDoughnut(type);
+			return this;
+		},
+
+		destroy: function() {
+			this.undelegateEvents();
+		},
+
+		drawDoughnut: function(type) {
+			var $doughnut = $('canvas#doughnut');
 			var ctx = $doughnut.get(0).getContext('2d');
 			var data = [
 				{
 					color: '#4bd763',
 					label: 'Profit',
-					value: app.stats[this.period].profit
+					value: app.stats[this.period][type].profit
 				},
 				{
 					color:'#ff3b30',
 					label: 'Loss',
-					value: app.stats[this.period].loss
+					value: app.stats[this.period][type].loss
 				},
 				{
 					color: '#fdb45c',
 					label: 'Commission',
-					value: app.stats[this.period].commission
+					value: app.stats[this.period][type].commission
 				}
 			];
 			var options = {
@@ -58,7 +79,27 @@
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
 			// $('div#legend').html(doughnut.generateLegend());
-			return this;
+		},
+
+		movePeriod: function(e) {
+			e.preventDefault();
+			var $target = $(e.currentTarget);
+		},
+
+		radio: function(e) {
+			e.preventDefault();
+			var $target = $(e.currentTarget);
+			var $radio = $target;
+			if($target.is('span')) {
+				$radio = $target.prev();
+			}
+			if(!$radio.hasClass('active')) {
+				var $active = this.$el.find('ul.wrapper-radiobutton div.active');
+				$active.removeClass('active');
+				$radio.addClass('active');
+				var type = $radio.data('type');
+				this.drawDoughnut(type);
+			}
 		}
 	});
 })();

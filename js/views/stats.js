@@ -16,13 +16,16 @@
 		},
 
 		destroy: function() {
+			if(typeof this.subview.destroy === 'function') {
+				this.subview.destroy();
+			}
 			this.undelegateEvents();
 		},
 
 		render: function() {
 			app.trigger('change', 'stats');
 			this.$el.html(this.template());
-			new app.Views.statsNumbers();
+			this.subview = new app.Views.statsNumbers();
 			return this;
 		},
 
@@ -32,7 +35,10 @@
 			var $target = $(e.currentTarget);
 			$target.addClass('active');
 			var section = $target.data('section');
-			new app.Views['stats' + section]();
+			if(typeof this.subview.destroy === 'function') {
+				this.subview.destroy();
+			}
+			this.subview = new app.Views['stats' + section]();
 		}
 	});
 })();

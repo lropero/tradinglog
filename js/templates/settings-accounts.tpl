@@ -3,7 +3,7 @@
 		<ul>
 			{{#each accounts}}
 				<li class="wrapper-label" data-key="{{@key}}"{{#unless this.is_active}} data-swipe="1"{{/unless}}>
-					<div class="label account swipe">
+					<div class="label account{{#unless this.is_active}} swipe{{/unless}}">
 						<div class="radiobutton{{#if this.is_active}} active{{/if}}"></div>
 						<div class="row">
 							<div class="name">{{this.name}}</div>
