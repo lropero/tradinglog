@@ -1672,16 +1672,24 @@ select {
   top: -20px;
   left: 25px;
 }
-.swipe-triangle {
-  border-color: transparent transparent transparent #9f8fe7;
+.box-violet .swipe-triangle {
+  border-color: transparent transparent transparent #2c168e;
   border-style: solid;
   border-width: 8px 0 0 8px;
   bottom: 0;
   left: 0;
   position: absolute;
 }
-.box-violet .swipe-triangle {
+.open .swipe-triangle {
   border-color: transparent transparent transparent #333333;
+  border-style: solid;
+  border-width: 8px 0 0 8px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+.swipe-triangle {
+  border-color: transparent transparent transparent #dadada;
   border-style: solid;
   border-width: 8px 0 0 8px;
   bottom: 0;
