@@ -34,7 +34,7 @@
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					app.trigger('change', 'easter');
-					$('section#settings section#content').empty().append('<img src="img/easter.jpg" style="width: 100%;" />');
+					$('section#settings section#content').empty().append('<img src="img/easter.jpg" style="width: 100%;" /><span class="copyright">TradingLog &copy; 2015<br />www.tradinglog.com<br />All rights reserved</span>');
 				}
 			});
 			app.shake.startWatch();
