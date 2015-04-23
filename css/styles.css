@@ -61,7 +61,7 @@ control.segmented + #content {
   top: 34px;
 }
 ul.wrapper-button-default + #content {
-  bottom: 109px;
+  padding-bottom: 109px;
 }
 div#drag {
   display: none;
