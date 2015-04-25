@@ -4,7 +4,7 @@
 	app.Views.footer = Backbone.View.extend({
 		el: 'footer',
 		events: {
-			'tap a:not(.active)': 'navigate'
+			'tap a': 'navigate'
 		},
 
 		initialize: function() {
@@ -24,26 +24,29 @@
 
 		navigate: function(e) {
 			e.preventDefault();
-			this.$el.find('a.active').removeClass('active');
 			var $target = $(e.currentTarget);
+			var $currentActive = this.$el.find('a.active');
+			$currentActive.removeClass('active');
 			$target.addClass('active');
 			var view = $target.data('view');
 			app.loadView(view);
 
-			// Trigger/untrigger settings pane
-			var $settings = $('section#settings');
-			if(view === 'settings') {
-				var animated = 'animated bounceInDown';
-				$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
-					$settings.removeClass(animated);
-					$('section#main-stats-friends').empty();
-				});
-			} else if($settings.hasClass('show')) {
-				var animated = 'animated bounceOutUp';
-				$settings.addClass(animated).one('webkitAnimationEnd', function() {
-					$settings.removeClass('show ' + animated);
-					$settings.empty();
-				});
+			if($currentActive.data('view') !== view) {
+				// Trigger/untrigger settings pane
+				var $settings = $('section#settings');
+				if(view === 'settings') {
+					var animated = 'animated bounceInDown';
+					$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
+						$settings.removeClass(animated);
+						$('section#main-stats-friends').empty();
+					});
+				} else if($settings.hasClass('show')) {
+					var animated = 'animated bounceOutUp';
+					$settings.addClass(animated).one('webkitAnimationEnd', function() {
+						$settings.removeClass('show ' + animated);
+						$settings.empty();
+					});
+				}
 			}
 		}
 	});
