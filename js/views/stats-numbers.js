@@ -33,12 +33,6 @@
 			if(width > height) {
 				$doughnut.width(height);
 			}
-			var diameter = height * 70 / 100;
-			var $center = $('div#center');
-			$center.width(diameter);
-			$center.height(diameter);
-			$center.css('top', $doughnut.position().top + (height * 15 / 100) + 'px');
-			$center.css('left', Math.max(0, (($(window).width() - $center.outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
 
 			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
 			this.drawDoughnut(type);
@@ -75,10 +69,10 @@
 				segmentStrokeColor: '#4020d0',
 				percentageInnerCutout: 70,
 				segmentStrokeWidth: 5,
-				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(1000, \'$ \')%></span></li></ul>'
+				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + app.stats[this.period][type].net + ', \'$ \')%></span></li></ul>'
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
-			$('div#legend').html(doughnut.generateLegend());
+			$('div.legend').html(doughnut.generateLegend());
 		},
 
 		movePeriod: function(e) {

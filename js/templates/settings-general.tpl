@@ -1,5 +1,5 @@
 <script type="text/x-handlebars-template" id="settings-general-template">
-	<div id="complete" class="box-violet">
+	<div class="box-violet" id="complete">
 		<div class="button-primary">Feedback</div>
 		<span class="copyright">
 			TradingLog &copy; 2015<br />
