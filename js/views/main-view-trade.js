@@ -63,10 +63,11 @@
 				}
 			});
 			alertify.confirm('Are you sure?', function(e) {
-				$('section#alertify').hide();
+				var $alertify = $('section#alertify');
+				$alertify.hide();
 				setTimeout(function() {
 					if($('div#alertify-cover').is(':hidden')) {
-						$('section#alertify').show();
+						$alertify.show();
 					}
 				}, 100);
 				if(e) {

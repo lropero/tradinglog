@@ -6,17 +6,19 @@
 
 			/** Support all widths */
 			var width = $(document).width();
-			$(selector).each(function() {
-				var $wrapper = $(this).parents('.wrapper-label');
+			var $ele = $(selector);
+			$ele.each(function() {
+				var $this = $(this);
+				var $wrapper = $this.parents('.wrapper-label');
 				var swipe = $wrapper.data('swipe');
 				$wrapper.css('left', (swipe * -80) + 'px');
 				$wrapper.css('width', width + (swipe * 80) + 'px');
-				$(this).css('left', (swipe * 80) + 'px');
-				$(this).css('width', width + 'px');
-				$(this).next().css('width', width + 'px');
+				$this.css('left', (swipe * 80) + 'px');
+				$this.css('width', width + 'px');
+				$this.next().css('width', width + 'px');
 			});
 
-			$(selector).pep({
+			$ele.pep({
 				axis: 'x',
 				constrainTo: 'parent',
 				cssEaseDuration: 250,
