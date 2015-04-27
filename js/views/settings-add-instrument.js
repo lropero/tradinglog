@@ -75,27 +75,30 @@
 						}
 						this.$el.find('input#commission').val('');
 						$('div#form-broker_commission').show();
+						this.$el.find('div#checkbox-active').hide();
 						$('span#text-currency').hide();
 						$('span#text-stock').hide();
 						break;
 					case 2:
+						$('div#form-point_value').hide();
+						this.$el.find('input#point_value').val('1');
+						$('div#form-broker_commission').hide();
+						this.$el.find('input#commission').val('0');
+						this.$el.find('div#checkbox-active').hide();
+						$('span#text-currency').hide();
+						$('span#text-stock').show();
+						break;
+					case 3:
 						var $point_value = this.$el.find('input#point_value');
 						if($point_value.is(':hidden')) {
 							$point_value.val('');
 							$('div#form-point_value').show();
 						}
-						$('div#form-broker_commission').hide();
-						this.$el.find('input#commission').val('0');
+						this.$el.find('input#commission').val('');
+						$('div#form-broker_commission').show();
+						this.$el.find('div#checkbox-active').show();
 						$('span#text-currency').show();
 						$('span#text-stock').hide();
-						break;
-					case 3:
-						$('div#form-point_value').hide();
-						this.$el.find('input#point_value').val('1');
-						$('div#form-broker_commission').hide();
-						this.$el.find('input#commission').val('0');
-						$('span#text-currency').hide();
-						$('span#text-stock').show();
 						break;
 				}
 			}
