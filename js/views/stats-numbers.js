@@ -75,7 +75,7 @@
 				segmentStrokeColor: '#4020d0',
 				percentageInnerCutout: 70,
 				segmentStrokeWidth: 5,
-				legendTemplate : '<ul><% for(var i = 0; i < segments.length; i++) { %><li><div style="background-color: <%=segments[i].fillColor%>;">&nbsp;</div><span class="title"><%=segments[i].label%></span><br /><span class="money"><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li><div style="background-color: #9f8fe7;">&nbsp;</div><span class="title">Net</span><br /><span class="money"><%=accounting.formatMoney(1000, \'$ \')%></span></li></ul>'
+				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(1000, \'$ \')%></span></li></ul>'
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
 			$('div#legend').html(doughnut.generateLegend());
