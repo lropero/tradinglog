@@ -23,8 +23,12 @@
 		</ul>
 	</div>
 	<ul class="box-swipe">
-		<li class="content-swipe">
+		<li class="content-swipe" style="top: 6px;">
+			<span class="help"></span>
 			<canvas id="doughnut"></canvas>
+			<div class="center">
+				<div class="legend"></div>
+			</div>
 		</li>
 	</ul>
 	<div class="wrapper-control-box-swipe">
