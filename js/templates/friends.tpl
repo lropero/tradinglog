@@ -1,4 +1,22 @@
 <script type="text/x-handlebars-template" id="friends-template">
+
+
+	<ul class="graphic">
+		<li class="profit">
+			<span>$ 428.00</span>
+		</li>
+		<li class="loss">
+			<span>$ 428.00</span>
+		</li>
+		<li class="commission">
+			<span>$ 428.00</span>
+		</li>
+		<li class="net">
+			<span>$ 428.00</span>
+		</li>
+	</ul>
+
+
 	<!--
 
 	<div class="welcome box-violet">

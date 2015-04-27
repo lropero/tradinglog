@@ -112,9 +112,9 @@ ol
 
     display: block;
 
-    margin: 15px;
+    margin: 5px 0 0 0!important;
 
-    text-align: left;
+    text-align: justify;
 
     color: @gray;
 }
@@ -730,6 +730,31 @@ ol
     height: 100%;
 }
 
+// SWIPE - TRIANGLE
+// -------------------------------------------------- //
+
+.swipe-triangle
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    border-width: 8px 0 0 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent @gray-light;
+}
+
+.open .swipe-triangle
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    border-width: 8px 0 0 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent @gray-dark;
+}
+
 // SWIPE - BUTTONS
 // -------------------------------------------------- //
 
@@ -1195,9 +1220,9 @@ textarea.error
     clear: both;
 
     width: 100%;
-    margin-top: 5px;
+    margin: 5px 0 0 0!important;
 
-    text-align: left;
+    text-align: justify;
 
     color: @gray;
 }
@@ -1500,7 +1525,6 @@ select
     display: table;
     clear: both;
 
-    width: 100%;
     margin: 15px;
 }
 
@@ -2013,6 +2037,20 @@ select
     background-color: @violet;
 }
 
+// BOX-VIOLET / SWIPE TRIANGLE
+// -------------------------------------------------- //
+
+.box-violet .swipe-triangle
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    border-width: 8px 0 0 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent @violet-dark;
+}
+
 // BOX-VIOLET / BOX SWIPE - FORM
 // -------------------------------------------------- //
 
@@ -2360,7 +2398,22 @@ select
     border: 1px solid @violet;
 }
 
-// CANVAS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// BOX SWIPE - CONTENT SWIPE
 // -------------------------------------------------- //
 
 .box-swipe .content-swipe canvas
@@ -2402,32 +2455,65 @@ select
     left: 25px;
 }
 
-.box-violet .swipe-triangle
+
+
+
+
+
+
+
+// GRAPHIC
+// -------------------------------------------------- //
+
+.graphic li
 {
-    border-color: transparent transparent transparent @violet-dark;
-    border-style: solid;
-    border-width: 8px 0 0 8px;
-    bottom: 0;
-    left: 0;
-    position: absolute;
+    position: relative;
+
+    display: block;
+    clear: both;
 }
 
-.open .swipe-triangle
+.graphic li:before
 {
-    border-color: transparent transparent transparent @gray-dark;
-    border-style: solid;
-    border-width: 8px 0 0 8px;
-    bottom: 0;
-    left: 0;
+    font-family: ionicons;
+    font-size: 12px;
+    line-height: 18px;
+
     position: absolute;
+
+    display: block;
+
+    content: '\f21b';
 }
 
-.swipe-triangle
+.graphic li.profit:before
 {
-    border-color: transparent transparent transparent @gray-light;
-    border-style: solid;
-    border-width: 8px 0 0 8px;
-    bottom: 0;
-    left: 0;
-    position: absolute;
+    color: @green;
+}
+
+.graphic li.loss:before
+{
+    color: @red;
+}
+
+.graphic li.commission:before
+{
+    color: @yellow;
+}
+
+.graphic li.net:before
+{
+    color: @violet-light;
+}
+
+.graphic li span
+{
+    font-size: @small;
+
+    position: relative;
+
+    display: block;
+    clear: both;
+
+    margin-left: 16px;
 }
