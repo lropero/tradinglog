@@ -25,9 +25,7 @@
 	<ul class="box-swipe">
 		<li class="content-swipe" style="top: 7.5px;">
 			<span class="help"></span>
-			<div class="center">
-				<canvas id="doughnut"></canvas>
-			</div>
+			<canvas id="doughnut"></canvas>
 			<div class="center">
 				<div class="legend"></div>
 			</div>
