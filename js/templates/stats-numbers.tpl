@@ -22,16 +22,11 @@
 			</li>
 		</ul>
 	</div>
-
 	<ul class="box-swipe">
-		<li class="content-swipe" style="padding-top: 15px;">
+		<li class="content-swipe">
 			<canvas id="doughnut"></canvas>
-			<div class="center">
-				<div id="legend"></div>
-			</div>
 		</li>
 	</ul>
-
 	<div class="wrapper-control-box-swipe">
 		<ul class="control-box-swipe end-left">
 			<li class="active"></li>
@@ -39,5 +34,4 @@
 			<li></li>
 		</ul>
 	</div>
-
 </script>

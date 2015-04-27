@@ -33,6 +33,12 @@
 			if(width > height) {
 				$doughnut.width(height);
 			}
+			// var diameter = height * 70 / 100;
+			// var $center = $('div.center');
+			// $center.width(diameter);
+			// $center.height(diameter);
+			// $center.css('top', $doughnut.position().top + (height * 15 / 100) + 'px');
+			// $center.css('left', Math.max(0, (($(window).width() - $center.outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
 
 			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
 			this.drawDoughnut(type);
