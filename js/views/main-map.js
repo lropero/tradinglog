@@ -30,7 +30,7 @@
 		decorate: function() {
 			this.drag = new app.Views.mainDrag();
 			var $content = $('section#content');
-			var $ul = $('section#content').children('ul');
+			var $ul = $content.children('ul');
 			if($content.height() > $ul.height()) {
 				$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
 				setTimeout(function() {

@@ -26,23 +26,26 @@
 	});
 
 	app.combine = function() {
-		if($('div#isolate').is(':visible')) {
+		var $isolate = $('div#isolate');
+		if($isolate.is(':visible')) {
 			if(typeof cordova !== 'undefined') {
 				cordova.plugins.Keyboard.close();
 			}
 			var $wrapper = $('div#done').next();
 			$wrapper.find('.field').prop('disabled', true).removeClass('field');
-			$('div#isolate').hide();
+			$isolate.hide();
 			$('div#isolated').append($wrapper).children().unwrap();
 			$('div#complete').show();
-			$('header #button-left').show();
-			$('header #button-right').show();
+			var $header = $('header');
+			$header.find('#button-left').show();
+			$header.find('#button-right').show();
 		}
 	}
 
 	app.isolate = function(e) {
 		var $target = $(e.currentTarget);
-		if($('div#isolate').is(':hidden')) {
+		var $isolate = $('div#isolate');
+		if($isolate.is(':hidden')) {
 			if($target.hasClass('error')) {
 				$target.removeClass('error');
 				var $price = $target.parent('div.price');
@@ -55,12 +58,13 @@
 				}
 			}
 			$target.addClass('field');
-			var $isolate = $target.parents('.isolate');
-			$isolate.wrap('<div id="isolated"></div>');
-			$('header #button-left').hide();
-			$('header #button-right').hide();
+			var $isolated = $target.parents('.isolate');
+			$isolated.wrap('<div id="isolated"></div>');
+			var $header = $('header');
+			$header.find('#button-left').hide();
+			$header.find('#button-right').hide();
 			$('div#complete').hide();
-			$('div#isolate').append($isolate).show();
+			$isolate.append($isolated).show();
 		}
 		setTimeout(function() {
 			$target.prop('disabled', false);
