@@ -1698,7 +1698,7 @@ select {
   max-height: 320px;
   margin: 0 auto;
   padding: 15px;
-  -webkit-transform: translateX(-50%);
+  -webkit-transform: translate(-50%);
   -webkit-transform: translateY(-50%);
   transform: translate(-50%, -50%);
 }
@@ -1706,7 +1706,7 @@ select {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%);
+  -webkit-transform: translate(-50%);
   -webkit-transform: translateY(-50%);
   transform: translate(-50%, -50%);
 }
