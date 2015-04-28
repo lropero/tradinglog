@@ -37,6 +37,7 @@
 
 			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
 			this.drawDoughnut(type);
+			this.drawLine(type);
 			var $swipePanes = $('ul.swipe-panes');
 			$swipePanes.slick({
 				accessibility: false,
@@ -93,13 +94,56 @@
 			var options = {
 				animationEasing: 'easeOutElastic',
 				animationSteps: 50,
-				segmentStrokeColor: '#4020d0',
+				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + app.stats[this.period][type].net + ', \'$ \')%></span></li></ul>',
 				percentageInnerCutout: 60,
+				segmentStrokeColor: '#4020d0',
 				segmentStrokeWidth: 5,
-				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + app.stats[this.period][type].net + ', \'$ \')%></span></li></ul>'
+				showTooltips: false
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
 			$('div.legend#legend-amounts').html(doughnut.generateLegend());
+		},
+
+		drawLine: function(type) {
+			// Remove
+			var balance = app.account.get('balance');
+			var pepe = [];
+			for(var i = 0; i < 22; i++) {
+				var temp = Math.random() * 500;
+				if(Math.floor(Math.random() * 2) === 1) {
+					temp = temp * -1;
+				}
+				balance += temp;
+				pepe.push(balance);
+			}
+
+			var $line = $('canvas#line');
+			var ctx = $line.get(0).getContext('2d');
+			var data = {
+				labels: ['1', '2', '3', '6', '7', '8', '9', '10', '13', '14', '15', '16', '17', '20', '21', '22', '23', '24', '27', '28', '29', '30'],
+				datasets: [
+					{
+						label: 'My First dataset',
+						fillColor: '#2c168e',
+						strokeColor: '#fff',
+						pointColor: '#fff',
+						pointStrokeColor: '#fff',
+						data: pepe
+					}
+				]
+			};
+			var options = {
+				animationEasing: 'easeOutElastic',
+				animationSteps: 50,
+				bezierCurve: false,
+				datasetStrokeWidth: 1,
+				pointDotRadius: 2,
+				scaleFontColor: '#2c168e',
+				scaleLineColor: '#2c168e',
+				scaleShowGridLines: false,
+				showTooltips: false
+			};
+			var line = new Chart(ctx).Line(data, options);
 		},
 
 		movePeriod: function(e) {

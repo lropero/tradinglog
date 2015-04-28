@@ -40,10 +40,81 @@
 				<div class="help">&nbsp;</div>
 			</li>
 			<li class="content-swipe">
-				pepe
+				<ul class="pane">
+					<li>
+						<div class="col-1">Trades</div>
+						<div class="col-2">
+							<span>0</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Winners</div>
+						<div class="col-2">
+							<span>0</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Losers</div>
+						<div class="col-2">
+							<span>0</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Accuracy</div>
+						<div class="col-2">
+							<span>0.00%</span>
+						</div>
+					</li>
+				</ul>
+				<ul class="pane">
+					<li>
+						<div class="col-1">Average time in market</div>
+						<div class="col-2">
+							<span>888d 88h 88m</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Average trade</div>
+						<div class="col-2">
+							<span>$ 0.00</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Average winning trade</div>
+						<div class="col-2">
+							<span>$ 0.00</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Average losing trade</div>
+						<div class="col-2">
+							<span>$ 0.00</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Risk/reward ratio</div>
+						<div class="col-2">
+							<span>0.00</span>
+						</div>
+					</li>
+					<li>
+						<div class="col-1">Sharpe ratio</div>
+						<div class="col-2">
+							<span>0.00</span>
+						</div>
+					</li>
+				</ul>
 			</li>
 			<li class="content-swipe">
-				ganga
+				<canvas id="line"></canvas>
+				<ul class="pane">
+					<li>
+						<div class="col-1">Variation</div>
+						<div class="col-2">
+							<span>0.00%</span>
+						</div>
+					</li>
+				</ul>
 			</li>
 		</ul>
 	</div>
