@@ -5,6 +5,7 @@
 		el: 'section#main-stats-friends section#content',
 		events: {
 			'tap div.buttons-calendar span': 'movePeriod',
+			'tap div.help': 'toggleHelp',
 			'tap ul#type div:not(.active)': 'radio',
 			'tap ul#type span': 'radio'
 		},
@@ -33,12 +34,6 @@
 			if(width > height) {
 				$doughnut.width(height);
 			}
-			// var diameter = height * 70 / 100;
-			// var $center = $('div.center');
-			// $center.width(diameter);
-			// $center.height(diameter);
-			// $center.css('top', $doughnut.position().top + (height * 15 / 100) + 'px');
-			// $center.css('left', Math.max(0, (($(window).width() - $center.outerWidth()) / 2) + $(window).scrollLeft()) + 'px');
 
 			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
 			this.drawDoughnut(type);
@@ -73,12 +68,12 @@
 				animationEasing: 'easeOutElastic',
 				animationSteps: 50,
 				segmentStrokeColor: '#4020d0',
-				percentageInnerCutout: 70,
+				percentageInnerCutout: 60,
 				segmentStrokeWidth: 5,
 				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + app.stats[this.period][type].net + ', \'$ \')%></span></li></ul>'
 			};
 			var doughnut = new Chart(ctx).Doughnut(data, options);
-			$('div.legend').html(doughnut.generateLegend());
+			$('div.legend#legend-amounts').html(doughnut.generateLegend());
 		},
 
 		movePeriod: function(e) {
@@ -99,6 +94,19 @@
 				$radio.addClass('active');
 				var type = $radio.data('type');
 				this.drawDoughnut(type);
+			}
+		},
+
+		toggleHelp: function(e) {
+			e.preventDefault();
+			var $amounts = $('div.legend#legend-amounts');
+			var $titles = $('div.legend#legend-titles');
+			if($amounts.is(':visible')) {
+				$amounts.hide();
+				$titles.show();
+			} else {
+				$amounts.show();
+				$titles.hide();
 			}
 		}
 	});

@@ -24,11 +24,19 @@
 	</div>
 	<ul class="box-swipe">
 		<li class="content-swipe" style="top: 6px;">
-			<span class="help"></span>
 			<canvas id="doughnut"></canvas>
 			<div class="center">
-				<div class="legend"></div>
+				<div class="legend" id="legend-amounts"></div>
+				<div class="legend" id="legend-titles" style="display: none;">
+					<ul class="graphic">
+						<li class="profit"><span>Profit</span></li>
+						<li class="loss"><span>Loss</span></li>
+						<li class="commission"><span>Commission</span></li>
+						<li class="net"><span>Net</span></li>
+					</ul>
+				</div>
 			</div>
+			<div class="help">&nbsp;</div>
 		</li>
 	</ul>
 	<div class="wrapper-control-box-swipe">

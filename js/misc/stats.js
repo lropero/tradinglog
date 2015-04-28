@@ -65,20 +65,20 @@
 			all: {
 				profit: Math.floor(Math.random() * 500),
 				loss: Math.floor(Math.random() * 500),
-				gross: 50,
+				gross: 500,
 				commission: Math.floor(Math.random() * 100),
-				net: 50,
-				variation: 50,
-				trades: 50,
-				winners: 50,
-				losers: 50,
-				accuracy: 50,
-				averageTimeInMarket: 50,
-				averageTrade: 50,
-				averageWinningTrade: 50,
-				averageLosingTrade: 50,
-				riskRewardRatio: 50,
-				sharpeRatio: 50
+				net: 500,
+				variation: 500,
+				trades: 500,
+				winners: 500,
+				losers: 500,
+				accuracy: 500,
+				averageTimeInMarket: 500,
+				averageTrade: 500,
+				averageWinningTrade: 500,
+				averageLosingTrade: 500,
+				riskRewardRatio: 500,
+				sharpeRatio: 500
 			},
 
 			long: {
