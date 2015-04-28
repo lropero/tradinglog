@@ -19,7 +19,6 @@
 		},
 
 		destroy: function() {
-			this.undelegateEvents();
 
 			// Remove
 			if(app.shake) {
@@ -27,6 +26,7 @@
 				delete app.shake;
 			}
 
+			this.undelegateEvents();
 		},
 
 		render: function(cache) {

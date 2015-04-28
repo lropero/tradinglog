@@ -37,10 +37,36 @@
 
 			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
 			this.drawDoughnut(type);
+			var $swipePanes = $('ul.swipe-panes');
+			$swipePanes.slick({
+				accessibility: false,
+				arrows: false,
+				infinite: false
+			});
+			$swipePanes.on('afterChange', function(e, slick, currentSlide) {
+				var $control = $('ul.control-box-swipe');
+				$control.find('li.active').removeClass('active');
+				$('li#swipe-control-' + (currentSlide + 1)).addClass('active');
+				switch(currentSlide) {
+					case 0:
+						$control.addClass('end-left');
+						$control.removeClass('end-right');
+						break;
+					case 1:
+						$control.removeClass('end-left');
+						$control.removeClass('end-right');
+						break;
+					case 2:
+						$control.removeClass('end-left');
+						$control.addClass('end-right');
+						break;
+				}
+			});
 			return this;
 		},
 
 		destroy: function() {
+			$('ul.swipe-panes').off();
 			this.undelegateEvents();
 		},
 
@@ -89,8 +115,7 @@
 				$radio = $target.prev();
 			}
 			if(!$radio.hasClass('active')) {
-				var $active = this.$el.find('ul.wrapper-radiobutton div.active');
-				$active.removeClass('active');
+				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
 				var type = $radio.data('type');
 				this.drawDoughnut(type);

@@ -2,6 +2,7 @@
 @import url("normalize.css");
 @import url("animate.css");
 @import url("ionicons.css");
+@import url("slick.css");
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -1126,7 +1127,7 @@ select {
 }
 .wrapper-calendar .calendar.end-left:before,
 .wrapper-calendar .calendar.end-right:after {
-  opacity: 0!important;
+  visibility: hidden;
 }
 .title-section {
   font-size: 12px;
@@ -1396,7 +1397,7 @@ select {
 }
 .control-box-swipe.end-left:before,
 .control-box-swipe.end-right:after {
-  opacity: 0!important;
+  visibility: hidden;
 }
 .control-box-swipe li {
   position: relative;
