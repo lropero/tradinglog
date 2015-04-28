@@ -7,7 +7,7 @@
 
 	tradeDAO.prototype = {
 		create: function(model, callback) {
-			var fields = ['account_id', 'instrument_id', 'type', 'profit', 'loss', 'commission', 'variation', 'comments', 'closed_at'];
+			var fields = ['account_id', 'instrument_id', 'type', 'profit', 'loss', 'commission', 'edit_commission', 'variation', 'comments', 'closed_at'];
 			this.db.transaction(function(tx) {
 				var sql = app.databaseController.buildInsert('trade', fields, model);
 				tx.executeSql(sql, [], function(tx, results) {
@@ -71,7 +71,7 @@
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE trade SET account_id = "' + model.account_id + '", instrument_id = "' + model.instrument_id + '", type = "' + model.type + '", profit = "' + model.profit + '", loss = "' + model.loss + '", commission = "' + model.commission + '", variation = "' + model.variation + '", comments = "' + model.comments + '", closed_at = "' + model.closed_at + '" WHERE id = "' + model.id + '";';
+				var sql = 'UPDATE trade SET account_id = "' + model.account_id + '", instrument_id = "' + model.instrument_id + '", type = "' + model.type + '", profit = "' + model.profit + '", loss = "' + model.loss + '", commission = "' + model.commission + '", edit_commission = "' + model.edit_commission + '", variation = "' + model.variation + '", comments = "' + model.comments + '", closed_at = "' + model.closed_at + '" WHERE id = "' + model.id + '";';
 				tx.executeSql(sql);
 			}, null, function(tx) {
 				callback();

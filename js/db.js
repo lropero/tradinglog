@@ -46,7 +46,6 @@
 					'trade_id INTEGER,' +
 					'body TEXT,' +
 					'created_at INTEGER' +
-					// 'image TEXT' +
 				');',
 				'CREATE TABLE IF NOT EXISTS configuration (' +
 					'language TEXT,' +
@@ -58,6 +57,7 @@
 					'name TEXT,' +
 					'point_value NUMERIC,' +
 					'commission NUMERIC,' +
+					'alert INTEGER,' +
 					'group_id INTEGER,' +
 					'is_deleted INTEGER' +
 				');',
@@ -84,6 +84,7 @@
 					'profit NUMERIC,' +
 					'loss NUMERIC,' +
 					'commission NUMERIC,' +
+					'edit_commission INTEGER,' +
 					'variation NUMERIC,' +
 					'comments INTEGER,' +
 					'closed_at INTEGER' +
@@ -104,8 +105,8 @@
 
 		populateInstruments: function() {
 			var sqls = [
-				'INSERT INTO instrument VALUES (null, 1, "E-mini S&P 500", 50, 5, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 5, 0, 0);',
+				'INSERT INTO instrument VALUES (null, 1, "E-mini S&P 500", 50, 5, 0, 0, 0);',
+				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 5, 0, 0, 0);',
 			];
 			this.db.transaction(function(tx) {
 				$.each(sqls, function(index, sql) {

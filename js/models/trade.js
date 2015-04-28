@@ -10,6 +10,7 @@
 			profit: 0,
 			loss: 0,
 			commission: 0,
+			edit_commission: 0,
 			variation: 0,
 			comments: 0,
 			closed_at: 0
@@ -280,6 +281,7 @@
 						profit: profit,
 						loss: loss,
 						commission: commission,
+						edit_commission: 0,
 						variation: 0,
 						closed_at: 0
 					});
@@ -300,7 +302,8 @@
 					self.set({
 						profit: profit,
 						loss: loss,
-						commission: instrument.type === 3 ? -1 : commission
+						commission: commission,
+						edit_commission: 0
 					});
 					var balance = app.account.get('balance') + self.getNet();
 					if(balance < 0) {
@@ -313,6 +316,11 @@
 						$('header button').show();
 					} else {
 						if(!array.length && created_at > 0) {
+							if(instrument.alert) {
+								self.set({
+									edit_commission: 1
+								});
+							}
 							self.set({
 								variation: (profit - loss - commission) * 100 / app.account.get('balance'),
 								closed_at: created_at

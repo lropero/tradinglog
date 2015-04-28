@@ -5,6 +5,9 @@
 				<li class="wrapper-label" data-key="{{@key}}" data-swipe="2">
 					<div class="label instrument swipe">
 						<div class="ball">
+							{{#if this.alert}}
+								<div class="globe-commission"></div>
+							{{/if}}
 							<span class="group">{{this.group}}</span>
 						</div>
 						<div class="row">
@@ -12,9 +15,9 @@
 						</div>
 						<div class="row">
 							<div class="type">{{this.typeName}}</div>
-							{{#equal this.type 1}}
+							{{#gt this.commission 0}}
 								<div class="commission">{{#money this.commission}}{{/money}}</div>
-							{{/equal}}
+							{{/gt}}
 						</div>
 						<div class="swipe-triangle"></div>
 					</div>

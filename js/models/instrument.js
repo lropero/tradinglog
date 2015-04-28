@@ -8,6 +8,7 @@
 			name: '',
 			point_value: 1,
 			commission: 0,
+			alert: 0,
 			group_id: 0,
 			is_deleted: 0
 		},
@@ -65,10 +66,10 @@
 					return 'Future';
 					break;
 				case 2:
-					return 'Currency';
+					return 'Stock';
 					break;
 				case 3:
-					return 'Stock';
+					return 'Other';
 					break;
 			}
 		},

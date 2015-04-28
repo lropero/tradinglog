@@ -5,6 +5,7 @@
 		el: 'section#settings section#content',
 		events: {
 			'tap div#done': 'combine',
+			'tap div.checkbox-tap': 'toggleCheckbox',
 			'tap input': 'isolate',
 			'tap ul#type div:not(.active)': 'radio',
 			'tap ul#type span': 'radio'
@@ -42,6 +43,30 @@
 					this.$el.html(template);
 				}
 			}
+			if(this.instrument) {
+				switch(this.instrument.type) {
+					case 1:
+						$('.type-2').hide();
+						$('.type-3').hide();
+						$('.type-1').show();
+						break;
+					case 2:
+						$('.type-1').hide();
+						$('.type-3').hide();
+						$('.type-2').show();
+						break;
+					case 3:
+						$('.type-1').hide();
+						$('.type-2').hide();
+						$('.type-3').show();
+						$('.wrapper-checkbox').css('display', 'table');
+						break;
+				}
+			} else {
+				$('.type-2').hide();
+				$('.type-3').hide();
+				$('.type-1').show();
+			}
 			return this;
 		},
 
@@ -65,40 +90,58 @@
 			if(!$radio.hasClass('active')) {
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
+				this.$el.find('.error').removeClass('error');
 				var type = $radio.data('type');
 				switch(type) {
 					case 1:
 						var $point_value = this.$el.find('input#point_value');
 						if($point_value.is(':hidden')) {
-							$point_value.val('');
-							$('div#form-point_value').show();
+							if(this.instrument) {
+								$point_value.val(this.instrument.point_value);
+							} else {
+								$point_value.val('');
+							}
 						}
-						this.$el.find('input#commission').val('');
-						$('div#form-broker_commission').show();
-						this.$el.find('div#checkbox-active').hide();
-						$('span#text-currency').hide();
-						$('span#text-stock').hide();
+						var $commission = this.$el.find('input#commission');
+						if($commission.is(':hidden')) {
+							if(this.instrument) {
+								$commission.val(this.instrument.commission);
+							} else {
+								$commission.val('');
+							}
+						}
+						$('.type-2').hide();
+						$('.type-3').hide();
+						$('.type-1').show();
 						break;
 					case 2:
-						$('div#form-point_value').hide();
+						$('.type-1').hide();
+						$('.type-3').hide();
+						$('.type-2').show();
 						this.$el.find('input#point_value').val('1');
-						$('div#form-broker_commission').hide();
 						this.$el.find('input#commission').val('0');
-						this.$el.find('div#checkbox-active').hide();
-						$('span#text-currency').hide();
-						$('span#text-stock').show();
 						break;
 					case 3:
 						var $point_value = this.$el.find('input#point_value');
 						if($point_value.is(':hidden')) {
-							$point_value.val('');
-							$('div#form-point_value').show();
+							if(this.instrument) {
+								$point_value.val(this.instrument.point_value);
+							} else {
+								$point_value.val('');
+							}
 						}
-						this.$el.find('input#commission').val('');
-						$('div#form-broker_commission').show();
-						this.$el.find('div#checkbox-active').show();
-						$('span#text-currency').show();
-						$('span#text-stock').hide();
+						var $commission = this.$el.find('input#commission');
+						if($commission.is(':hidden')) {
+							if(this.instrument) {
+								$commission.val(this.instrument.commission);
+							} else {
+								$commission.val('');
+							}
+						}
+						$('.type-1').hide();
+						$('.type-2').hide();
+						$('.type-3').show();
+						$('.wrapper-checkbox').css('display', 'table');
 						break;
 				}
 			}
@@ -110,8 +153,25 @@
 			var name = this.$el.find('input#name').val().trim();
 			var point_value = this.$el.find('input#point_value').val().replace(',', '.');
 			var commission = this.$el.find('input#commission').val().replace(',', '.');
+			var alert = this.$el.find('div#alert').hasClass('active') ? 1 : 0;
 
 			name = name.charAt(0).toUpperCase() + name.slice(1);
+			switch(type) {
+				case 1:
+					alert = 0;
+					break;
+				case 2:
+					alert = 1;
+					break;
+				case 3:
+					if(!point_value) {
+						point_value = 1;
+					}
+					if(!commission) {
+						commission = 0;
+					}
+					break;
+			}
 			var deferred = $.Deferred();
 			var instruments = new app.Collections.instruments();
 			instruments.setName(name);
@@ -144,6 +204,7 @@
 				name: name,
 				point_value: point_value,
 				commission: commission,
+				alert: alert,
 				group_id: group_id
 			});
 			deferred.done(function() {
@@ -156,6 +217,16 @@
 					}
 				});
 			});
+		},
+
+		toggleCheckbox: function(e) {
+			e.preventDefault();
+			var $checkbox = $(e.currentTarget).find('div.checkbox');
+			if($checkbox.hasClass('active')) {
+				$checkbox.removeClass('active');
+			} else {
+				$checkbox.addClass('active');
+			}
 		}
 	});
 })();

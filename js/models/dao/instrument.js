@@ -7,7 +7,7 @@
 
 	instrumentDAO.prototype = {
 		create: function(model, callback) {
-			var fields = ['type', 'name', 'point_value', 'commission', 'group_id', 'is_deleted'];
+			var fields = ['type', 'name', 'point_value', 'commission', 'alert', 'group_id', 'is_deleted'];
 			this.db.transaction(function(tx) {
 				var sql = app.databaseController.buildInsert('instrument', fields, model);
 				tx.executeSql(sql, [], function(tx, results) {
@@ -27,7 +27,7 @@
 
 		find: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM instrument WHERE id = "' + model.id + '";';
+				var sql = 'SELECT * FROM instrument WHERE id = "' + model.id + '" AND is_deleted = "0";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 1) {
 						var instrument = results.rows.item(0);
@@ -66,7 +66,7 @@
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE instrument SET type = "' + model.type + '", name = "' + model.name + '", point_value = "' + model.point_value + '", commission = "' + model.commission + '", group_id = "' + model.group_id + '", is_deleted = "' + model.is_deleted + '" WHERE id = "' + model.id + '";';
+				var sql = 'UPDATE instrument SET type = "' + model.type + '", name = "' + model.name + '", point_value = "' + model.point_value + '", commission = "' + model.commission + '", alert = "' + model.alert + '", group_id = "' + model.group_id + '", is_deleted = "' + model.is_deleted + '" WHERE id = "' + model.id + '";';
 				tx.executeSql(sql);
 			}, null, function(tx) {
 				callback();

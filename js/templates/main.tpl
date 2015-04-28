@@ -9,9 +9,9 @@
 								{{#if this.comments}}
 									<div class="globe-comments">{{this.comments}}</div>
 								{{/if}}
-								{{#lt this.commission 0}}
+								{{#if this.edit_commission}}
 									<div class="globe-commission"></div>
-								{{/lt}}
+								{{/if}}
 								<div class="icon"></div>
 							</div>
 							<div class="row">
@@ -20,9 +20,9 @@
 							</div>
 							<div class="row">
 								<div class="{{#if this.isOpen}}size-price{{else}}date{{/if}}">{{#if this.isOpen}}{{this.sizePrice}}{{else}}{{#date this.closed_at}}{{/date}}{{/if}}</div>
-								{{#if this.variation}}
+								{{#unless this.isOpen}}
 									<div class="variation">{{#variation this.variation}}{{/variation}}</div>
-								{{/if}}
+								{{/unless}}
 							</div>
 							<div class="swipe-triangle"></div>
 						</div>
