@@ -54,22 +54,25 @@
 				body: body,
 				created_at: (new Date()).getTime()
 			});
-			$('header button').hide();
-			comment.save(null, {
-				success: function() {
-					var trade = new app.Models.trade({
-						id: self.trade.id
-					});
-					trade.deferred.then(function() {
-						trade.addToComments(1, function() {
-							app.objects[self.key] = trade.toJSON();
-							app.cache.delete('main');
-							app.cache.delete('mainViewTrade' + self.trade.id);
-							app.loadView('mainViewTrade', self.key);
+			comment.validate();
+			if(comment.isValid()) {
+				$('header button').hide();
+				comment.save(null, {
+					success: function() {
+						var trade = new app.Models.trade({
+							id: self.trade.id
 						});
-					});
-				}
-			})
+						trade.deferred.then(function() {
+							trade.addToComments(1, function() {
+								app.objects[self.key] = trade.toJSON();
+								app.cache.delete('main');
+								app.cache.delete('mainViewTrade' + self.trade.id);
+								app.loadView('mainViewTrade', self.key);
+							});
+						});
+					}
+				});
+			}
 		}
 	});
 })();

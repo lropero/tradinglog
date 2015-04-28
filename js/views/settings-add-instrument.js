@@ -208,14 +208,17 @@
 				group_id: group_id
 			});
 			deferred.done(function() {
-				$('header button').hide();
-				instrument.save(null, {
-					success: function() {
-						app.cache.delete('mainAddTrade');
-						app.view.subview.destroy();
-						app.view.subview = new app.Views.settingsInstruments();
-					}
-				});
+				instrument.validate();
+				if(instrument.isValid()) {
+					$('header button').hide();
+					instrument.save(null, {
+						success: function() {
+							app.cache.delete('mainAddTrade');
+							app.view.subview.destroy();
+							app.view.subview = new app.Views.settingsInstruments();
+						}
+					});
+				}
 			});
 		},
 

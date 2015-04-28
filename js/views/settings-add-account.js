@@ -99,61 +99,67 @@
 						account.set({
 							name: name
 						});
-						$('header button').hide();
-						account.save(null, {
-							success: function() {
-								app.account.set({
-									name: name
-								});
-								app.cache.delete('main');
-								app.cache.delete('mainMap');
-								app.view.subview.destroy();
-								app.view.subview = new app.Views.settingsAccounts();
-							}
-						});
-					});
-				} else {
-					$('header button').hide();
-					account.save(null, {
-						success: function(model, insertId) {
-							var operation = new app.Models.operation();
-							operation.set({
-								account_id: insertId,
-								amount: balance,
-								description: 'Initial deposit.',
-								created_at: (new Date()).getTime()
-							});
-							operation.save(null, {
+						account.validate();
+						if(account.isValid()) {
+							$('header button').hide();
+							account.save(null, {
 								success: function() {
-									if(is_active) {
-										app.account.set({
-											is_active: 0
-										});
-										app.account.save(null, {
-											success: function() {
-												var accounts = new app.Collections.accounts();
-												accounts.setActive();
-												accounts.fetch({
-													success: function() {
-														app.account = accounts.models[0];
-														app.fetchObjects().done(function() {
-															app.cache.delete('main');
-															app.cache.delete('mainMap');
-															app.view.subview.destroy();
-															app.view.subview = new app.Views.settingsAccounts();
-														});
-													}
-												});
-											}
-										});
-									} else {
-										app.view.subview.destroy();
-										app.view.subview = new app.Views.settingsAccounts();
-									}
+									app.account.set({
+										name: name
+									});
+									app.cache.delete('main');
+									app.cache.delete('mainMap');
+									app.view.subview.destroy();
+									app.view.subview = new app.Views.settingsAccounts();
 								}
 							});
 						}
 					});
+				} else {
+					account.validate();
+					if(account.isValid()) {
+						$('header button').hide();
+						account.save(null, {
+							success: function(model, insertId) {
+								var operation = new app.Models.operation();
+								operation.set({
+									account_id: insertId,
+									amount: balance,
+									description: 'Initial deposit.',
+									created_at: (new Date()).getTime()
+								});
+								operation.save(null, {
+									success: function() {
+										if(is_active) {
+											app.account.set({
+												is_active: 0
+											});
+											app.account.save(null, {
+												success: function() {
+													var accounts = new app.Collections.accounts();
+													accounts.setActive();
+													accounts.fetch({
+														success: function() {
+															app.account = accounts.models[0];
+															app.fetchObjects().done(function() {
+																app.cache.delete('main');
+																app.cache.delete('mainMap');
+																app.view.subview.destroy();
+																app.view.subview = new app.Views.settingsAccounts();
+															});
+														}
+													});
+												}
+											});
+										} else {
+											app.view.subview.destroy();
+											app.view.subview = new app.Views.settingsAccounts();
+										}
+									}
+								});
+							}
+						});
+					}
 				}
 			});
 		},
