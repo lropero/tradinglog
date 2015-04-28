@@ -33,20 +33,20 @@
 						self.deferred.resolve();
 					}
 				});
-			} else {
-				this.listenTo(this, 'validated', function(isValid, model, errors) {
-					if(!isValid) {
-						$.each(errors, function(index, error) {
-							var $el = $('#' + index);
-							$el.addClass('error');
-							var $price = $el.parent('div.price');
-							if($price) {
-								$price.addClass('error');
-							}
-						});
-					}
-				});
 			}
+			this.listenTo(this, 'validated', function(isValid, model, errors) {
+				console.log('validate');
+				if(!isValid) {
+					$.each(errors, function(index, error) {
+						var $el = $('#' + index);
+						$el.addClass('error');
+						var $price = $el.parent('div.price');
+						if($price) {
+							$price.addClass('error');
+						}
+					});
+				}
+			});
 		},
 
 		delete: function() {
