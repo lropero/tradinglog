@@ -43,11 +43,11 @@
 				arrows: false,
 				infinite: false
 			});
-			$swipePanes.on('afterChange', function(e, slick, currentSlide) {
+			$swipePanes.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
 				var $control = $('ul.control-box-swipe');
 				$control.find('li.active').removeClass('active');
-				$('li#swipe-control-' + (currentSlide + 1)).addClass('active');
-				switch(currentSlide) {
+				$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
+				switch(nextSlide) {
 					case 0:
 						$control.addClass('end-left');
 						$control.removeClass('end-right');

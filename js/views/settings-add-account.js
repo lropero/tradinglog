@@ -159,6 +159,7 @@
 		},
 
 		toggleCheckbox: function(e) {
+			e.preventDefault();
 			var $checkbox = $(e.currentTarget).find('div.checkbox');
 			if($checkbox.hasClass('active')) {
 				$checkbox.removeClass('active');

@@ -51,6 +51,9 @@
 					this.trades.push(app.objects[i]);
 				}
 			}
+			if(this.max === 0) {
+				this.max = 1;
+			}
 		}
 	});
 })();

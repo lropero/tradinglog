@@ -105,29 +105,38 @@
 								});
 								trade.deferred.then(function() {
 									if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
-										trade.setPnL(function() {
-											var key = 0;
-											for(var i = 0; i < app.count.open; i++) {
-												if(app.objects[i].id > self.trade.id) {
-													key++;
-												} else {
-													break;
+										if(trade.get('closed_at')) {
+											trade.setPnL(function() {
+												var key = 0;
+												for(var i = 0; i < app.count.open; i++) {
+													if(app.objects[i].id > self.trade.id) {
+														key++;
+													} else {
+														break;
+													}
 												}
-											}
-											app.objects[app.count.open].isFirst = false;
-											app.count.open++;
-											app.objects.splice(self.key, 1);
-											app.count.closed--;
-											app.objects.splice(key, 0, trade.toJSON());
-											if(!(!app.count.closed && app.count.operations === 1)) {
-												app.objects[app.count.open].isFirst = true;
-											}
-											app.cache.delete('main');
-											app.cache.delete('mainMap');
-											app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
-											app.cache.delete('mainViewTrade' + self.trade.id);
-											app.loadView('mainViewTrade', key.toString());
-										});
+												app.objects[app.count.open].isFirst = false;
+												app.count.open++;
+												app.objects.splice(self.key, 1);
+												app.count.closed--;
+												app.objects.splice(key, 0, trade.toJSON());
+												if(!(!app.count.closed && app.count.operations === 1)) {
+													app.objects[app.count.open].isFirst = true;
+												}
+												app.cache.delete('main');
+												app.cache.delete('mainMap');
+												app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
+												app.cache.delete('mainViewTrade' + self.trade.id);
+												app.loadView('mainViewTrade', key.toString());
+											});
+										} else {
+											trade.setPnL(function() {
+												app.objects[self.key] = trade.toJSON();
+												app.cache.delete('main');
+												app.cache.delete('mainViewTrade' + self.trade.id);
+												app.loadView('mainViewTrade', self.key);
+											});
+										}
 									} else {
 										app.objects[self.key] = trade.toJSON();
 										app.cache.delete('main');
