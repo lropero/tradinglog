@@ -141,9 +141,9 @@
 				});
 				position.validate();
 				if(trade.isValid() && position.isValid()) {
+					$('header button').hide();
 					trade.save(null, {
 						success: function(model, insertId) {
-							$('header button').hide();
 							position.set({
 								trade_id: insertId
 							});

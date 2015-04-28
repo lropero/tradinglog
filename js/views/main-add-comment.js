@@ -54,9 +54,9 @@
 				body: body,
 				created_at: (new Date()).getTime()
 			});
+			$('header button').hide();
 			comment.save(null, {
 				success: function() {
-					$('header button').hide();
 					var trade = new app.Models.trade({
 						id: self.trade.id
 					});

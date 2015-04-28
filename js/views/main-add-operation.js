@@ -80,9 +80,9 @@
 				variation: amount * 100 / app.account.get('balance'),
 				created_at: (new Date()).getTime()
 			});
+			$('header button').hide();
 			operation.save(null, {
 				success: function(model, insertId) {
-					$('header button').hide();
 					app.account.set({
 						balance: balance
 					});

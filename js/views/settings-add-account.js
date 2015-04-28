@@ -99,9 +99,9 @@
 						account.set({
 							name: name
 						});
+						$('header button').hide();
 						account.save(null, {
 							success: function() {
-								$('header button').hide();
 								app.account.set({
 									name: name
 								});
@@ -113,9 +113,9 @@
 						});
 					});
 				} else {
+					$('header button').hide();
 					account.save(null, {
 						success: function(model, insertId) {
-							$('header button').hide();
 							var operation = new app.Models.operation();
 							operation.set({
 								account_id: insertId,

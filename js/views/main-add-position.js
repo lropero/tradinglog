@@ -92,9 +92,9 @@
 				price: price,
 				created_at: (new Date()).getTime()
 			});
+			$('header button').hide();
 			position.save(null, {
 				success: function() {
-					$('header button').hide();
 					var trade = new app.Models.trade({
 						id: self.trade.id
 					});
