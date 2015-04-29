@@ -3,6 +3,9 @@
 
 	app.Views.settingsGeneral = Backbone.View.extend({
 		el: 'section#settings section#content',
+		events: {
+			'tap div#feedback': 'feedback'
+		},
 
 		initialize: function() {
 			var self = this;
@@ -17,6 +20,14 @@
 				app.shake.stopWatch();
 				delete app.shake;
 			}
+			this.undelegateEvents();
+		},
+
+		feedback: function () {
+			if(typeof app.view.subview.destroy === 'function') {
+				app.view.subview.destroy();
+			}
+			app.view.subview = new app.Views.settingsGeneralFeedback();
 		},
 
 		render: function() {
