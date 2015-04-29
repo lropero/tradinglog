@@ -4,7 +4,7 @@
 	app.Views.statsNumbers = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
-			'tap div.buttons-calendar span': 'movePeriod',
+			'tap div.buttons-calendar span': 'moveDate',
 			'tap div.help': 'toggleHelp',
 			'tap ul#type div:not(.active)': 'radio',
 			'tap ul#type span': 'radio'
@@ -13,11 +13,16 @@
 		initialize: function() {
 			var self = this;
 			this.period = $('control.segmented li.active').data('period');
-			// switch(this.period) {
-			// 	case 'monthly':
-			// 		var
-			// 		break;
-			// }
+			this.date = new Date();
+			switch(this.period) {
+				case 'monthly':
+					this.date.setDate(1);
+					break;
+				case 'weekly':
+					this.date.setDate(this.date.getDate() - this.date.getDay());
+					break;
+			}
+			this.date.setHours(0, 0, 0, 0);
 			app.templateLoader.get('stats-numbers').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
@@ -26,18 +31,12 @@
 
 		render: function() {
 			app.trigger('change', 'stats-numbers');
-			this.$el.html(this.template());
+			this.$el.html(this.template({
+				date: app.date.getString(this.period, this.date)
+			}));
 
-			var $doughnut = $('canvas#doughnut');
-			var width = $doughnut.width();
-			var height = $doughnut.height();
-			if(width > height) {
-				$doughnut.width(height);
-			}
-
-			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
-			this.drawDoughnut(type);
-			this.drawLine(type);
+			this.type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
+			this.stats(this.period, this.date, this.type);
 			var $swipePanes = $('ul.swipe-panes');
 			$swipePanes.slick({
 				accessibility: false,
@@ -48,21 +47,8 @@
 				var $control = $('ul.control-box-swipe');
 				$control.find('li.active').removeClass('active');
 				$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
-				switch(nextSlide) {
-					case 0:
-						$control.addClass('end-left');
-						$control.removeClass('end-right');
-						break;
-					case 1:
-						$control.removeClass('end-left');
-						$control.removeClass('end-right');
-						break;
-					case 2:
-						$control.removeClass('end-left');
-						$control.addClass('end-right');
-						break;
-				}
 			});
+
 			return this;
 		},
 
@@ -71,30 +57,30 @@
 			this.undelegateEvents();
 		},
 
-		drawDoughnut: function(type) {
+		drawDoughnut: function(stats) {
 			var $doughnut = $('canvas#doughnut');
 			var ctx = $doughnut.get(0).getContext('2d');
 			var data = [
 				{
 					color: '#4bd763',
 					label: 'Profit',
-					value: app.stats[this.period][type].profit
+					value: stats.profit
 				},
 				{
 					color:'#ff3b30',
 					label: 'Loss',
-					value: app.stats[this.period][type].loss
+					value: stats.loss
 				},
 				{
 					color: '#fdb45c',
 					label: 'Commission',
-					value: app.stats[this.period][type].commission
+					value: stats.commission
 				}
 			];
 			var options = {
 				animationEasing: 'easeOutElastic',
 				animationSteps: 50,
-				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + app.stats[this.period][type].net + ', \'$ \')%></span></li></ul>',
+				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + stats.net + ', \'$ \')%></span></li></ul>',
 				percentageInnerCutout: 60,
 				segmentStrokeColor: '#4020d0',
 				segmentStrokeWidth: 5,
@@ -104,23 +90,17 @@
 			$('div.legend#legend-amounts').html(doughnut.generateLegend());
 		},
 
-		drawLine: function(type) {
-			// Remove
-			var balance = app.account.get('balance');
-			var pepe = [];
-			for(var i = 0; i < 22; i++) {
-				var temp = Math.random() * 500;
-				if(Math.floor(Math.random() * 2) === 1) {
-					temp = temp * -1;
-				}
-				balance += temp;
-				pepe.push(balance);
-			}
-
+		drawLine: function(stats) {
+			var labels = [];
+			var data = []
+			$.each(stats, function(index, value) {
+				labels.push(index);
+				data.push(value);
+			});
 			var $line = $('canvas#line');
 			var ctx = $line.get(0).getContext('2d');
 			var data = {
-				labels: ['1', '2', '3', '6', '7', '8', '9', '10', '13', '14', '15', '16', '17', '20', '21', '22', '23', '24', '27', '28', '29', '30'],
+				labels: labels,
 				datasets: [
 					{
 						label: 'My First dataset',
@@ -128,7 +108,7 @@
 						strokeColor: '#fff',
 						pointColor: '#fff',
 						pointStrokeColor: '#fff',
-						data: pepe
+						data: data
 					}
 				]
 			};
@@ -146,9 +126,60 @@
 			var line = new Chart(ctx).Line(data, options);
 		},
 
-		movePeriod: function(e) {
+		drawNumbers: function(stats) {
+			$('span#numbers-trades').html(stats.trades);
+			$('span#numbers-winners').html(stats.winners);
+			$('span#numbers-losers').html(stats.losers);
+			$('span#numbers-accuracy').html(stats.accuracy);
+			$('span#numbers-average_time_in_market').html(stats.averageTimeInMarket);
+			$('span#numbers-average_trade').html(stats.averageTrade);
+			$('span#numbers-average_winning_trade').html(stats.averageWinningTrade);
+			$('span#numbers-average_losing_trade').html(stats.averageLosingTrade);
+			$('span#numbers-risk_reward_ratio').html(stats.riskRewardRatio);
+			$('span#numbers-sharpe_ratio').html(stats.sharpeRatio);
+			$('span#line-variation').html(stats.variation);
+		},
+
+		moveDate: function(e) {
 			e.preventDefault();
 			var $target = $(e.currentTarget);
+			var direction = $target.attr('class').replace('button-', '');
+			switch(this.period) {
+				case 'monthly':
+					switch(direction) {
+						case 'left':
+							this.date.setMonth(this.date.getMonth() - 1);
+							$('span.button-right').show();
+							break;
+						case 'right':
+							this.date.setMonth(this.date.getMonth() + 2);
+							var today = new Date();
+							if(today.getTime() < this.date.getTime()) {
+								$('span.button-right').hide();
+							}
+							this.date.setMonth(this.date.getMonth() - 1);
+							break;
+					}
+					break;
+				case 'weekly':
+					switch(direction) {
+						case 'left':
+							this.date.setDate(this.date.getDate() - 7);
+							$('span.button-right').show();
+							break;
+						case 'right':
+							this.date.setDate(this.date.getDate() + 14);
+							var today = new Date();
+							if(today.getTime() < this.date.getTime()) {
+								$('span.button-right').hide();
+							}
+							this.date.setDate(this.date.getDate() - 7);
+							break;
+					}
+					break;
+			}
+			$('div#date').html(app.date.getString(this.period, this.date));
+			this.stats(this.period, this.date, this.type);
 		},
 
 		radio: function(e) {
@@ -161,9 +192,25 @@
 			if(!$radio.hasClass('active')) {
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
-				var type = $radio.data('type');
-				this.drawDoughnut(type);
+				this.type = $radio.data('type');
+				this.stats(this.period, this.date, this.type);
 			}
+		},
+
+		stats: function(period, date, type) {
+			var index;
+			switch(period) {
+				case 'monthly':
+					index = date.getFullYear() + '' + date.getMonth();
+					break;
+				case 'weekly':
+					index = date.getFullYear() + '' + date.getMonth() + '' + date.getDate();
+					break;
+			}
+			var stats = app.stats.get(index);
+			this.drawDoughnut(stats[type]);
+			this.drawNumbers(stats[type]);
+			this.drawLine(stats.balances);
 		},
 
 		toggleHelp: function(e) {

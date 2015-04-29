@@ -3,9 +3,9 @@
 		<div class="wrapper-calendar">
 			<div class="buttons-calendar">
 				<span class="button-left"></span>
-				<span class="button-right"></span>
+				<span class="button-right" style="display: none;"></span>
 			</div>
-			<div class="calendar">April 2015</div>
+			<div class="calendar" id="date">{{this.date}}</div>
 		</div>
 		<ul class="wrapper-radiobutton" id="type">
 			<li class="group-radiobutton">
@@ -13,12 +13,12 @@
 				<span>All</span>
 			</li>
 			<li class="group-radiobutton">
-				<div class="radiobutton" data-type="long"></div>
-				<span>Long</span>
+				<div class="radiobutton" data-type="longs"></div>
+				<span>Longs</span>
 			</li>
 			<li class="group-radiobutton">
-				<div class="radiobutton" data-type="short"></div>
-				<span>Short</span>
+				<div class="radiobutton" data-type="shorts"></div>
+				<span>Shorts</span>
 			</li>
 		</ul>
 	</div>
@@ -44,25 +44,25 @@
 					<li>
 						<div class="col-1">Trades</div>
 						<div class="col-2">
-							<span>0</span>
+							<span id="numbers-trades">0</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Winners</div>
 						<div class="col-2">
-							<span>0</span>
+							<span id="numbers-winners">0</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Losers</div>
 						<div class="col-2">
-							<span>0</span>
+							<span id="numbers-losers">0</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Accuracy</div>
 						<div class="col-2">
-							<span>0.00%</span>
+							<span id="numbers-accuracy">0.00%</span>
 						</div>
 					</li>
 				</ul>
@@ -70,37 +70,37 @@
 					<li>
 						<div class="col-1">Average time in market</div>
 						<div class="col-2">
-							<span>888d 88h 88m</span>
+							<span id="numbers-average_time_in_market">888d 88h 88m</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Average trade</div>
 						<div class="col-2">
-							<span>$ 0.00</span>
+							<span id="numbers-average_trade">$ 0.00</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Average winning trade</div>
 						<div class="col-2">
-							<span>$ 0.00</span>
+							<span id="numbers-average_winning_trade">$ 0.00</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Average losing trade</div>
 						<div class="col-2">
-							<span>$ 0.00</span>
+							<span id="numbers-average_losing_trade">$ 0.00</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Risk/reward ratio</div>
 						<div class="col-2">
-							<span>0.00</span>
+							<span id="numbers-risk_reward_ratio">0.00</span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Sharpe ratio</div>
 						<div class="col-2">
-							<span>0.00</span>
+							<span id="numbers-sharpe_ratio">0.00</span>
 						</div>
 					</li>
 				</ul>
@@ -111,7 +111,7 @@
 					<li>
 						<div class="col-1">Variation</div>
 						<div class="col-2">
-							<span>0.00%</span>
+							<span id="line-variation">0.00%</span>
 						</div>
 					</li>
 				</ul>
@@ -119,7 +119,7 @@
 		</ul>
 	</div>
 	<div class="wrapper-control-box-swipe">
-		<ul class="control-box-swipe end-left">
+		<ul class="control-box-swipe end-left end-right">
 			<li class="active" id="swipe-control-1"></li>
 			<li id="swipe-control-2"></li>
 			<li id="swipe-control-3"></li>
