@@ -2,6 +2,21 @@
 	'use strict';
 
 	app.date = {
+		getAverageTimeInMarketString: function(time) {
+			var days = Math.floor(time / 86400);
+			time -= days * 86400;
+			var hours = Math.floor(time / 3600);
+			time -= hours * 3600;
+			var minutes = Math.floor(time / 60);
+			if(days > 0) {
+				var string = days + 'd ' + hours + 'h ';
+			} else if(hours > 0) {
+				var string = hours + 'h ';
+			}
+			string += minutes + 'm';
+			return string;
+		},
+
 		getMonthString: function(month, short) {
 			var string;
 			switch(month) {

@@ -70,25 +70,25 @@
 					<li>
 						<div class="col-1">Average trade</div>
 						<div class="col-2">
-							<span id="numbers-average_trade">$ 0.00</span>
+							<span id="numbers-average_trade"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Average winning trade</div>
 						<div class="col-2">
-							<span id="numbers-average_winning_trade">$ 0.00</span>
+							<span id="numbers-average_winning_trade"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Average losing trade</div>
 						<div class="col-2">
-							<span id="numbers-average_losing_trade">$ 0.00</span>
+							<span id="numbers-average_losing_trade"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Risk/reward ratio</div>
 						<div class="col-2">
-							<span id="numbers-risk_reward_ratio">0.00</span>
+							<span id="numbers-risk_reward_ratio"></span>
 						</div>
 					</li>
 				</ul>
@@ -96,13 +96,13 @@
 					<li>
 						<div class="col-1">Average time in market</div>
 						<div class="col-2">
-							<span id="numbers-average_time_in_market">888d 88h 88m</span>
+							<span id="numbers-average_time_in_market"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Sharpe ratio</div>
 						<div class="col-2">
-							<span id="numbers-sharpe_ratio">0.00</span>
+							<span id="numbers-sharpe_ratio"></span>
 						</div>
 					</li>
 				</ul>
@@ -113,7 +113,7 @@
 					<li>
 						<div class="col-1">Variation</div>
 						<div class="col-2">
-							<span id="line-variation">0.00%</span>
+							<span id="line-variation"></span>
 						</div>
 					</li>
 				</ul>
