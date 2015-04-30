@@ -3,15 +3,17 @@
 
 	app.date = {
 		getAverageTimeInMarketString: function(time) {
+			time = Math.floor(time / 1000);
 			var days = Math.floor(time / 86400);
 			time -= days * 86400;
 			var hours = Math.floor(time / 3600);
 			time -= hours * 3600;
 			var minutes = Math.floor(time / 60);
+			var string = '';
 			if(days > 0) {
-				var string = days + 'd ' + hours + 'h ';
+				string = days + 'd ' + hours + 'h ';
 			} else if(hours > 0) {
-				var string = hours + 'h ';
+				string = hours + 'h ';
 			}
 			string += minutes + 'm';
 			return string;
