@@ -103,12 +103,11 @@
 				labels: labels,
 				datasets: [
 					{
-						label: 'My First dataset',
-						fillColor: '#2c168e',
-						strokeColor: '#fff',
+						data: data,
+						fillColor: 'rgba(44, 22, 142, .75)',
 						pointColor: '#fff',
 						pointStrokeColor: '#fff',
-						data: data
+						strokeColor: '#fff'
 					}
 				]
 			};
@@ -119,8 +118,10 @@
 				datasetStrokeWidth: 1,
 				pointDotRadius: 2,
 				scaleFontColor: '#2c168e',
+				scaleGridLineColor: 'rgba(44, 22, 142, .25)',
 				scaleLineColor: '#2c168e',
-				scaleShowGridLines: false,
+				scaleShowGridLines: true,
+				scaleShowVerticalLines: false,
 				showTooltips: false
 			};
 			var line = new Chart(ctx).Line(data, options);
