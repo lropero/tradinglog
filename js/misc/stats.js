@@ -4,6 +4,16 @@
 	app.stats = {
 		data: {},
 
+		calculateSharpeRatio: function(nets, average) {
+			var carry = 0;
+			for(var i = 0; i < nets.length; i++) {
+				var difference = nets[i] - average;
+				carry += Math.pow(difference, 2);
+			}
+			var standardDeviation = Math.sqrt(carry / nets.length);
+			return average / standardDeviation;
+		},
+
 		generate: function(index, from, to) {
 			var self = this;
 			var deferred = $.Deferred();
@@ -31,7 +41,7 @@
 								averageLosingTrade: 0,
 								riskRewardRatio: 0,
 								averageTimeInMarket: 0,
-								sharpeRatio: 500,
+								sharpeRatio: 0,
 								variation: 500
 							},
 
@@ -49,7 +59,7 @@
 								averageLosingTrade: 0,
 								riskRewardRatio: 0,
 								averageTimeInMarket: 0,
-								sharpeRatio: 250,
+								sharpeRatio: 0,
 								variation: 250
 							},
 
@@ -67,7 +77,7 @@
 								averageLosingTrade: 0,
 								riskRewardRatio: 0,
 								averageTimeInMarket: 0,
-								sharpeRatio: 250,
+								sharpeRatio: 0,
 								variation: 250
 							},
 
@@ -78,6 +88,12 @@
 								4: 250,
 								5: 320
 							}
+						};
+
+						var nets = {
+							all: [],
+							longs: [],
+							shorts: []
 						};
 
 						for(var i = 0; i < trades.length; i++) {
@@ -94,6 +110,7 @@
 								self.data[index]['all'].averageLosingTrade += trades[i].net
 							}
 							self.data[index]['all'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
+							nets.all.push(trades[i].net);
 							switch(trades[i].type) {
 								case 1:
 									self.data[index]['longs'].profit += trades[i].profit;
@@ -109,6 +126,7 @@
 										self.data[index]['longs'].averageLosingTrade += trades[i].net
 									}
 									self.data[index]['longs'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
+									nets.longs.push(trades[i].net);
 									break;
 								case 2:
 									self.data[index]['shorts'].profit += trades[i].profit;
@@ -124,6 +142,7 @@
 										self.data[index]['shorts'].averageLosingTrade += trades[i].net
 									}
 									self.data[index]['shorts'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
+									nets.shorts.push(trades[i].net);
 									break;
 							}
 						}
@@ -176,6 +195,9 @@
 						if(self.data[index]['shorts'].trades > 0) {
 							self.data[index]['shorts'].averageTimeInMarket /= self.data[index]['shorts'].trades;
 						}
+						self.data[index]['all'].sharpeRatio = self.calculateSharpeRatio(nets.all, self.data[index]['all'].averageTrade);
+						self.data[index]['longs'].sharpeRatio = self.calculateSharpeRatio(nets.longs, self.data[index]['longs'].averageTrade);
+						self.data[index]['shorts'].sharpeRatio = self.calculateSharpeRatio(nets.shorts, self.data[index]['shorts'].averageTrade);
 
 						deferred.resolve(self.data[index]);
 					});
