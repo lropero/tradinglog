@@ -68,12 +68,6 @@
 				</ul>
 				<ul class="pane">
 					<li>
-						<div class="col-1">Average time in market</div>
-						<div class="col-2">
-							<span id="numbers-average_time_in_market">888d 88h 88m</span>
-						</div>
-					</li>
-					<li>
 						<div class="col-1">Average trade</div>
 						<div class="col-2">
 							<span id="numbers-average_trade">$ 0.00</span>
@@ -95,6 +89,14 @@
 						<div class="col-1">Risk/reward ratio</div>
 						<div class="col-2">
 							<span id="numbers-risk_reward_ratio">0.00</span>
+						</div>
+					</li>
+				</ul>
+				<ul class="pane">
+					<li>
+						<div class="col-1">Average time in market</div>
+						<div class="col-2">
+							<span id="numbers-average_time_in_market">888d 88h 88m</span>
 						</div>
 					</li>
 					<li>

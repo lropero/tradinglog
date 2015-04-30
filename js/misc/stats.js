@@ -26,11 +26,11 @@
 								winners: 0,
 								losers: 0,
 								accuracy: 0,
+								averageTrade: 0,
+								averageWinningTrade: 0,
+								averageLosingTrade: 0,
+								riskRewardRatio: 0,
 								averageTimeInMarket: 500,
-								averageTrade: 500,
-								averageWinningTrade: 500,
-								averageLosingTrade: 500,
-								riskRewardRatio: 500,
 								sharpeRatio: 500,
 								variation: 500
 							},
@@ -44,11 +44,11 @@
 								winners: 0,
 								losers: 0,
 								accuracy: 0,
+								averageTrade: 0,
+								averageWinningTrade: 0,
+								averageLosingTrade: 0,
+								riskRewardRatio: 0,
 								averageTimeInMarket: 250,
-								averageTrade: 250,
-								averageWinningTrade: 250,
-								averageLosingTrade: 250,
-								riskRewardRatio: 250,
 								sharpeRatio: 250,
 								variation: 250
 							},
@@ -62,11 +62,11 @@
 								winners: 0,
 								losers: 0,
 								accuracy: 0,
+								averageTrade: 0,
+								averageWinningTrade: 0,
+								averageLosingTrade: 0,
+								riskRewardRatio: 0,
 								averageTimeInMarket: 250,
-								averageTrade: 250,
-								averageWinningTrade: 250,
-								averageLosingTrade: 250,
-								riskRewardRatio: 250,
 								sharpeRatio: 250,
 								variation: 250
 							},
@@ -88,8 +88,10 @@
 							self.data[index]['all'].trades++;
 							if(trades[i].net > 0) {
 								self.data[index]['all'].winners++;
+								self.data[index]['all'].averageWinningTrade += trades[i].net
 							} else if(trades[i].net < 0) {
 								self.data[index]['all'].losers++;
+								self.data[index]['all'].averageLosingTrade += trades[i].net
 							}
 							switch(trades[i].type) {
 								case 1:
@@ -100,8 +102,10 @@
 									self.data[index]['longs'].trades++;
 									if(trades[i].net > 0) {
 										self.data[index]['longs'].winners++;
+										self.data[index]['longs'].averageWinningTrade += trades[i].net
 									} else if(trades[i].net < 0) {
 										self.data[index]['longs'].losers++;
+										self.data[index]['longs'].averageLosingTrade += trades[i].net
 									}
 									break;
 								case 2:
@@ -112,8 +116,10 @@
 									self.data[index]['shorts'].trades++;
 									if(trades[i].net > 0) {
 										self.data[index]['shorts'].winners++;
+										self.data[index]['shorts'].averageWinningTrade += trades[i].net
 									} else if(trades[i].net < 0) {
 										self.data[index]['shorts'].losers++;
+										self.data[index]['shorts'].averageLosingTrade += trades[i].net
 									}
 									break;
 							}
@@ -122,6 +128,36 @@
 						self.data[index]['all'].accuracy = self.data[index]['all'].winners * 100 / self.data[index]['all'].trades;
 						self.data[index]['longs'].accuracy = self.data[index]['longs'].winners * 100 / self.data[index]['longs'].trades;
 						self.data[index]['shorts'].accuracy = self.data[index]['shorts'].winners * 100 / self.data[index]['shorts'].trades;
+						self.data[index]['all'].averageTrade = self.data[index]['all'].net / self.data[index]['all'].trades;
+						self.data[index]['longs'].averageTrade = self.data[index]['longs'].net / self.data[index]['longs'].trades;
+						self.data[index]['shorts'].averageTrade = self.data[index]['shorts'].net / self.data[index]['shorts'].trades;
+						self.data[index]['all'].averageWinningTrade /= self.data[index]['all'].winners;
+						self.data[index]['longs'].averageWinningTrade /= self.data[index]['longs'].winners;
+						self.data[index]['shorts'].averageWinningTrade /= self.data[index]['shorts'].winners;
+						if(self.data[index]['all'].losers > 0) {
+							self.data[index]['all'].averageLosingTrade = Math.abs(self.data[index]['all'].averageLosingTrade / self.data[index]['all'].losers);
+						}
+						if(self.data[index]['longs'].losers > 0) {
+							self.data[index]['longs'].averageLosingTrade = Math.abs(self.data[index]['longs'].averageLosingTrade / self.data[index]['longs'].losers);
+						}
+						if(self.data[index]['shorts'].losers > 0) {
+							self.data[index]['shorts'].averageLosingTrade = Math.abs(self.data[index]['shorts'].averageLosingTrade / self.data[index]['shorts'].losers);
+						}
+						if(self.data[index]['all'].averageLosingTrade === 0) {
+							self.data[index]['all'].riskRewardRatio = 'N/A';
+						} else {
+							self.data[index]['all'].riskRewardRatio = self.data[index]['all'].averageWinningTrade / self.data[index]['all'].averageLosingTrade;
+						}
+						if(self.data[index]['longs'].averageLosingTrade === 0) {
+							self.data[index]['longs'].riskRewardRatio = 'N/A';
+						} else {
+							self.data[index]['longs'].riskRewardRatio = self.data[index]['longs'].averageWinningTrade / self.data[index]['longs'].averageLosingTrade;
+						}
+						if(self.data[index]['shorts'].averageLosingTrade === 0) {
+							self.data[index]['shorts'].riskRewardRatio = 'N/A';
+						} else {
+							self.data[index]['shorts'].riskRewardRatio = self.data[index]['shorts'].averageWinningTrade / self.data[index]['shorts'].averageLosingTrade;
+						}
 
 						deferred.resolve(self.data[index]);
 					});

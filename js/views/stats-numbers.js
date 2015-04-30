@@ -131,11 +131,15 @@
 			$('span#numbers-winners').html(stats.winners);
 			$('span#numbers-losers').html(stats.losers);
 			$('span#numbers-accuracy').html(accounting.toFixed(stats.accuracy, 2) + '%');
+			$('span#numbers-average_trade').html(accounting.formatMoney(stats.averageTrade, '$ '));
+			$('span#numbers-average_winning_trade').html(accounting.formatMoney(stats.averageWinningTrade, '$ '));
+			$('span#numbers-average_losing_trade').html(accounting.formatMoney(stats.averageLosingTrade, '$ '));
+			if(isNaN(stats.riskRewardRatio)) {
+				$('span#numbers-risk_reward_ratio').html(stats.riskRewardRatio);
+			} else {
+				$('span#numbers-risk_reward_ratio').html(accounting.toFixed(stats.riskRewardRatio, 2));
+			}
 			$('span#numbers-average_time_in_market').html(stats.averageTimeInMarket);
-			$('span#numbers-average_trade').html(stats.averageTrade);
-			$('span#numbers-average_winning_trade').html(stats.averageWinningTrade);
-			$('span#numbers-average_losing_trade').html(stats.averageLosingTrade);
-			$('span#numbers-risk_reward_ratio').html(stats.riskRewardRatio);
 			$('span#numbers-sharpe_ratio').html(stats.sharpeRatio);
 			$('span#line-variation').html(stats.variation);
 		},
