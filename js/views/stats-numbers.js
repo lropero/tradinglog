@@ -90,10 +90,10 @@
 			$('div.legend#legend-amounts').html(doughnut.generateLegend());
 		},
 
-		drawLine: function(stats) {
+		drawLine: function(balances) {
 			var labels = [];
 			var data = []
-			$.each(stats, function(index, value) {
+			$.each(balances, function(index, value) {
 				labels.push(index);
 				data.push(value);
 			});
@@ -145,7 +145,7 @@
 			} else {
 				$('span#numbers-sharpe_ratio').html(accounting.toFixed(stats.sharpeRatio, 2));
 			}
-			$('span#line-variation').html(stats.variation);
+			$('span#line-variation').html(accounting.toFixed(stats.variation, 2) + '%');
 		},
 
 		moveDate: function(e) {
@@ -240,7 +240,7 @@
 			deferred.done(function(stats) {
 				self.drawDoughnut(stats[type]);
 				self.drawNumbers(stats[type]);
-				self.drawLine(stats.balances);
+				self.drawLine(stats[type].balances);
 			});
 		}
 	});

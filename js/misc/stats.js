@@ -34,6 +34,7 @@
 
 						self.data[index] = {
 							all: {
+								balances: {},
 								profit: 0,
 								loss: 0,
 								commission: 0,
@@ -48,10 +49,11 @@
 								riskRewardRatio: 0,
 								averageTimeInMarket: 0,
 								sharpeRatio: 0,
-								variation: 500
+								variation: 0
 							},
 
 							longs: {
+								balances: {},
 								profit: 0,
 								loss: 0,
 								commission: 0,
@@ -66,10 +68,11 @@
 								riskRewardRatio: 0,
 								averageTimeInMarket: 0,
 								sharpeRatio: 0,
-								variation: 250
+								variation: 0
 							},
 
 							shorts: {
+								balances: {},
 								profit: 0,
 								loss: 0,
 								commission: 0,
@@ -84,15 +87,7 @@
 								riskRewardRatio: 0,
 								averageTimeInMarket: 0,
 								sharpeRatio: 0,
-								variation: 250
-							},
-
-							balances: {
-								1: 100,
-								2: 200,
-								3: 300,
-								4: 250,
-								5: 320
+								variation: 0
 							}
 						};
 
@@ -103,6 +98,40 @@
 						};
 
 						for(var i = 0; i < trades.length; i++) {
+							if(i === 0) {
+								var initialBalance = trades[i].net * 100 / trades[i].variation;
+								var date = new Date(trades[i].closed_at);
+								var day = date.getDate();
+								var balance = initialBalance + trades[i].net;
+								var balanceLongs = initialBalance;
+								var balanceShorts = initialBalance;
+								self.data[index]['all'].balances[day] = balance;
+								switch(trades[i].type) {
+									case 1:
+										balanceLongs += trades[i].net;
+										self.data[index]['longs'].balances[day] = balanceLongs;
+										break;
+									case 2:
+										balanceShorts += trades[i].net;
+										self.data[index]['shorts'].balances[day] = balanceShorts;
+										break;
+								}
+							} else {
+								var date = new Date(trades[i].closed_at);
+								var day = date.getDate();
+								balance += trades[i].net;
+								self.data[index]['all'].balances[day] = balance;
+								switch(trades[i].type) {
+									case 1:
+										balanceLongs += trades[i].net;
+										self.data[index]['longs'].balances[day] = balanceLongs;
+										break;
+									case 2:
+										balanceShorts += trades[i].net;
+										self.data[index]['shorts'].balances[day] = balanceShorts;
+										break;
+								}
+							}
 							self.data[index]['all'].profit += trades[i].profit;
 							self.data[index]['all'].loss += trades[i].loss;
 							self.data[index]['all'].commission += trades[i].commission;
@@ -204,6 +233,10 @@
 						self.data[index]['all'].sharpeRatio = self.calculateSharpeRatio(nets.all, self.data[index]['all'].averageTrade);
 						self.data[index]['longs'].sharpeRatio = self.calculateSharpeRatio(nets.longs, self.data[index]['longs'].averageTrade);
 						self.data[index]['shorts'].sharpeRatio = self.calculateSharpeRatio(nets.shorts, self.data[index]['shorts'].averageTrade);
+
+						self.data[index]['all'].variation = (balance - initialBalance) * 100 / initialBalance;
+						self.data[index]['longs'].variation = (balanceLongs - initialBalance) * 100 / initialBalance;
+						self.data[index]['shorts'].variation = (balanceShorts - initialBalance) * 100 / initialBalance;
 
 						deferred.resolve(self.data[index]);
 					});
