@@ -5,12 +5,18 @@
 		data: {},
 
 		calculateSharpeRatio: function(nets, average) {
+			if(nets.length < 2) {
+				return 'N/A';
+			}
 			var carry = 0;
 			for(var i = 0; i < nets.length; i++) {
 				var difference = nets[i] - average;
 				carry += Math.pow(difference, 2);
 			}
-			var standardDeviation = Math.sqrt(carry / nets.length);
+			var standardDeviation = Math.sqrt(carry / (nets.length - 1));
+			if(standardDeviation === 0) {
+				return 'N/A';
+			}
 			return average / standardDeviation;
 		},
 
