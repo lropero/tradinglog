@@ -104,7 +104,7 @@
 				datasets: [
 					{
 						data: data,
-						fillColor: 'rgba(44, 22, 142, .75)',
+						fillColor: 'rgba(44, 22, 142, .5)',
 						pointColor: '#fff',
 						pointStrokeColor: '#fff',
 						strokeColor: '#fff'
