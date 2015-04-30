@@ -100,11 +100,15 @@
 						for(var i = 0; i < trades.length; i++) {
 							if(i === 0) {
 								var initialBalance = trades[i].net * 100 / trades[i].variation;
+								var balanceLongs = initialBalance;
+								var balanceShorts = initialBalance;
+								self.data[index]['all'].balances[0] = initialBalance;
+								self.data[index]['longs'].balances[0] = initialBalance;
+								self.data[index]['shorts'].balances[0] = initialBalance;
+
 								var date = new Date(trades[i].closed_at);
 								var day = date.getDate();
 								var balance = initialBalance + trades[i].net;
-								var balanceLongs = initialBalance;
-								var balanceShorts = initialBalance;
 								self.data[index]['all'].balances[day] = balance;
 								switch(trades[i].type) {
 									case 1:
