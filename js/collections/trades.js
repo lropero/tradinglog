@@ -11,6 +11,12 @@
 
 		setInstrumentId: function(instrument_id) {
 			this.instrument_id = instrument_id;
+		},
+
+		setRange: function(from, to) {
+			this.range = true;
+			this.from = from;
+			this.to = to;
 		}
 	});
 })();

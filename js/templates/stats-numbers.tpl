@@ -44,25 +44,25 @@
 					<li>
 						<div class="col-1">Trades</div>
 						<div class="col-2">
-							<span id="numbers-trades">0</span>
+							<span id="numbers-trades"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Winners</div>
 						<div class="col-2">
-							<span id="numbers-winners">0</span>
+							<span id="numbers-winners"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Losers</div>
 						<div class="col-2">
-							<span id="numbers-losers">0</span>
+							<span id="numbers-losers"></span>
 						</div>
 					</li>
 					<li>
 						<div class="col-1">Accuracy</div>
 						<div class="col-2">
-							<span id="numbers-accuracy">0.00%</span>
+							<span id="numbers-accuracy"></span>
 						</div>
 					</li>
 				</ul>

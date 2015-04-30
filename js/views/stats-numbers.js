@@ -130,7 +130,7 @@
 			$('span#numbers-trades').html(stats.trades);
 			$('span#numbers-winners').html(stats.winners);
 			$('span#numbers-losers').html(stats.losers);
-			$('span#numbers-accuracy').html(stats.accuracy);
+			$('span#numbers-accuracy').html(accounting.toFixed(stats.accuracy, 2) + '%');
 			$('span#numbers-average_time_in_market').html(stats.averageTimeInMarket);
 			$('span#numbers-average_trade').html(stats.averageTrade);
 			$('span#numbers-average_winning_trade').html(stats.averageWinningTrade);
@@ -198,19 +198,22 @@
 		},
 
 		stats: function(period, date, type) {
+			var self = this;
 			var index;
 			switch(period) {
 				case 'monthly':
-					index = date.getFullYear() + '' + date.getMonth();
+					index = date.getFullYear() + '-' + date.getMonth();
 					break;
 				case 'weekly':
-					index = date.getFullYear() + '' + date.getMonth() + '' + date.getDate();
+					index = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
 					break;
 			}
-			var stats = app.stats.get(index);
-			this.drawDoughnut(stats[type]);
-			this.drawNumbers(stats[type]);
-			this.drawLine(stats.balances);
+			var deferred = app.stats.get(index);
+			deferred.done(function(stats) {
+				self.drawDoughnut(stats[type]);
+				self.drawNumbers(stats[type]);
+				self.drawLine(stats.balances);
+			});
 		},
 
 		toggleHelp: function(e) {

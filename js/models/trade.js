@@ -174,17 +174,13 @@
 			return deferred;
 		},
 
-		getGross: function() {
-			var gross = this.get('profit') - this.get('loss');
-			return gross;
-		},
-
 		getNet: function() {
 			var commission = this.get('commission');
 			if(commission < 0) {
 				commission = 0;
 			}
-			var net = this.getGross() - commission;
+			var gross = this.get('profit') - this.get('loss');
+			var net = gross - commission;
 			return net;
 		},
 

@@ -43,28 +43,39 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
-				if(model.instrument_id) {
-					sql += 'AND instrument_id == "' + model.instrument_id + '" ';
-				}
-				sql += 'AND closed_at == "0" ORDER BY id DESC;';
-				tx.executeSql(sql, [], function(tx, results) {
-					var trades = [];
-					for(var i = 0; i < results.rows.length; i++) {
-						trades.push(results.rows.item(i));
-					}
-					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
-					if(model.instrument_id) {
-						sql += 'AND instrument_id == "' + model.instrument_id + '" ';
-					}
-					sql += 'AND closed_at > "0" ORDER BY closed_at DESC;';
+				if(model.range) {
+					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at >= "' + model.from + '" AND closed_at <= "' + model.to + '" ORDER BY closed_at;';
 					tx.executeSql(sql, [], function(tx, results) {
+						var trades = [];
 						for(var i = 0; i < results.rows.length; i++) {
 							trades.push(results.rows.item(i));
 						}
 						callback(trades);
 					});
-				});
+				} else {
+					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
+					if(model.instrument_id) {
+						sql += 'AND instrument_id == "' + model.instrument_id + '" ';
+					}
+					sql += 'AND closed_at == "0" ORDER BY id DESC;';
+					tx.executeSql(sql, [], function(tx, results) {
+						var trades = [];
+						for(var i = 0; i < results.rows.length; i++) {
+							trades.push(results.rows.item(i));
+						}
+						var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
+						if(model.instrument_id) {
+							sql += 'AND instrument_id == "' + model.instrument_id + '" ';
+						}
+						sql += 'AND closed_at > "0" ORDER BY closed_at DESC;';
+						tx.executeSql(sql, [], function(tx, results) {
+							for(var i = 0; i < results.rows.length; i++) {
+								trades.push(results.rows.item(i));
+							}
+							callback(trades);
+						});
+					});
+				}
 			});
 		},
 
