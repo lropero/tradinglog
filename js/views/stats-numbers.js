@@ -5,7 +5,7 @@
 		el: 'section#main-stats-friends section#content',
 		events: {
 			'tap div.buttons-calendar span': 'moveDate',
-			'tap div.help': 'toggleHelp',
+			'tap div.help': 'showHelp',
 			'tap ul#type div:not(.active)': 'radio',
 			'tap ul#type span': 'radio'
 		},
@@ -201,6 +201,26 @@
 			}
 		},
 
+		showHelp: function(e) {
+			e.preventDefault();
+			var $amounts = $('div.legend#legend-amounts');
+			var $help = $('div.help');
+			var $titles = $('div.legend#legend-titles');
+			$amounts.hide();
+			$help.hide();
+			$titles.show();
+			setTimeout(function() {
+				$titles.fadeOut(250, function() {
+					$amounts.fadeIn(250);
+					$help.show();
+					var animated = 'animated bounceIn';
+					$help.addClass(animated).one('webkitAnimationEnd', function() {
+						$help.removeClass(animated);
+					});
+				});
+			}, 1000);
+		},
+
 		stats: function(period, date, type) {
 			var self = this;
 			var index;
@@ -218,19 +238,6 @@
 				self.drawNumbers(stats[type]);
 				self.drawLine(stats.balances);
 			});
-		},
-
-		toggleHelp: function(e) {
-			e.preventDefault();
-			var $amounts = $('div.legend#legend-amounts');
-			var $titles = $('div.legend#legend-titles');
-			if($amounts.is(':visible')) {
-				$amounts.hide();
-				$titles.show();
-			} else {
-				$amounts.show();
-				$titles.hide();
-			}
 		}
 	});
 })();

@@ -1672,6 +1672,7 @@ select {
   border: 1px solid #4020d0;
 }
 .box-swipe .content-swipe .help {
+  -webkit-animation-duration: 0.5s;
   position: absolute;
   top: 8px;
   right: 10px;
