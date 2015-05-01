@@ -65,14 +65,20 @@
 			return string;
 		},
 
-		getString: function(period, date) {
+		getString: function(index) {
 			var string;
-			switch(period) {
-				case 'weekly':
-					var month = this.getMonthString(date.getMonth(), true);
-					var digit = date.getDate() % 10;
-					string = month + ' ' + date.getDate() + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + date.getFullYear();
+			var dateValues = index.split('-');
+			switch(dateValues.length) {
+				case 2:
+					string = this.getMonthString(parseInt(dateValues[1], 10));
+					string += ' ' + dateValues[0];
+					break;
+				case 3:
+					var month = this.getMonthString(parseInt(dateValues[1], 10), true);
+					var digit = dateValues[2] % 10;
+					string = month + ' ' + dateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + dateValues[0];
 					string += ' - '
+					var date = new Date(dateValues[0] + '-' + (parseInt(dateValues[1], 10) + 1) + '-' + dateValues[2]);
 					date.setDate(date.getDate() + 6);
 					var today = new Date();
 					if(date.getTime() > today.getTime()) {
@@ -82,11 +88,6 @@
 						var digit = date.getDate() % 10;
 						string += month + ' ' + date.getDate() + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + date.getFullYear();
 					}
-					date.setDate(date.getDate() - 6);
-					break;
-				case 'monthly':
-					string = this.getMonthString(date.getMonth());
-					string += ' ' + date.getFullYear();
 					break;
 			}
 			return string;

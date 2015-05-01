@@ -12,17 +12,8 @@
 
 		initialize: function() {
 			var self = this;
+			this.at = 0;
 			this.period = $('control.segmented li.active').data('period');
-			this.date = new Date();
-			switch(this.period) {
-				case 'monthly':
-					this.date.setDate(1);
-					break;
-				case 'weekly':
-					this.date.setDate(this.date.getDate() - this.date.getDay());
-					break;
-			}
-			this.date.setHours(0, 0, 0, 0);
 			app.templateLoader.get('stats-numbers').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render();
@@ -32,23 +23,25 @@
 		render: function() {
 			app.trigger('change', 'stats-numbers');
 			this.$el.html(this.template({
-				date: app.date.getString(this.period, this.date)
+				date: app.date.getString(app.stats.availables[this.period][this.at])
 			}));
-
-			this.type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
-			this.stats(this.period, this.date, this.type);
-			var $swipePanes = $('ul.swipe-panes');
-			$swipePanes.slick({
-				accessibility: false,
-				arrows: false,
-				infinite: false
+			if(!app.stats.availables[this.period][this.at + 1]) {
+				$('span.button-left').hide();
+			}
+			var deferred = this.stats();
+			deferred.then(function() {
+				var $swipePanes = $('ul.swipe-panes');
+				$swipePanes.slick({
+					accessibility: false,
+					arrows: false,
+					infinite: false
+				});
+				$swipePanes.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
+					var $control = $('ul.control-box-swipe');
+					$control.find('li.active').removeClass('active');
+					$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
+				});
 			});
-			$swipePanes.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
-				var $control = $('ul.control-box-swipe');
-				$control.find('li.active').removeClass('active');
-				$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
-			});
-
 			return this;
 		},
 
@@ -153,42 +146,30 @@
 			e.preventDefault();
 			var $target = $(e.currentTarget);
 			var direction = $target.attr('class').replace('button-', '');
-			switch(this.period) {
-				case 'monthly':
-					switch(direction) {
-						case 'left':
-							this.date.setMonth(this.date.getMonth() - 1);
-							$('span.button-right').show();
-							break;
-						case 'right':
-							this.date.setMonth(this.date.getMonth() + 2);
-							var today = new Date();
-							if(today.getTime() < this.date.getTime()) {
-								$('span.button-right').hide();
-							}
-							this.date.setMonth(this.date.getMonth() - 1);
-							break;
+			switch(direction) {
+				case 'left':
+					if(app.stats.availables[this.period][this.at + 1]) {
+						this.at++;
+						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
+						$('span.button-right').show();
+						if(!app.stats.availables[this.period][this.at + 1]) {
+							$('span.button-left').hide();
+						}
+						this.stats();
 					}
 					break;
-				case 'weekly':
-					switch(direction) {
-						case 'left':
-							this.date.setDate(this.date.getDate() - 7);
-							$('span.button-right').show();
-							break;
-						case 'right':
-							this.date.setDate(this.date.getDate() + 14);
-							var today = new Date();
-							if(today.getTime() < this.date.getTime()) {
-								$('span.button-right').hide();
-							}
-							this.date.setDate(this.date.getDate() - 7);
-							break;
+				case 'right':
+					if(app.stats.availables[this.period][this.at - 1]) {
+						this.at--;
+						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
+						$('span.button-left').show();
+						if(!app.stats.availables[this.period][this.at - 1]) {
+							$('span.button-right').hide();
+						}
+						this.stats();
 					}
 					break;
 			}
-			$('div#date').html(app.date.getString(this.period, this.date));
-			this.stats(this.period, this.date, this.type);
 		},
 
 		radio: function(e) {
@@ -201,8 +182,7 @@
 			if(!$radio.hasClass('active')) {
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
-				this.type = $radio.data('type');
-				this.stats(this.period, this.date, this.type);
+				this.stats();
 			}
 		},
 
@@ -226,23 +206,18 @@
 			}, 1000);
 		},
 
-		stats: function(period, date, type) {
+		stats: function() {
 			var self = this;
-			var index;
-			switch(period) {
-				case 'monthly':
-					index = date.getFullYear() + '-' + date.getMonth();
-					break;
-				case 'weekly':
-					index = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-					break;
-			}
-			var deferred = app.stats.get(index);
+			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
+			var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
 			deferred.done(function(stats) {
-				self.drawDoughnut(stats[type]);
-				self.drawNumbers(stats[type]);
-				self.drawLine(stats[type].balances);
+				if(stats[type].trades) {
+					self.drawDoughnut(stats[type]);
+					self.drawNumbers(stats[type]);
+					self.drawLine(stats[type].balances);
+				}
 			});
+			return deferred;
 		}
 	});
 })();

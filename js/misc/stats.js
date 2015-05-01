@@ -2,6 +2,10 @@
 	'use strict';
 
 	app.stats = {
+		availables:{
+			monthly: [],
+			weekly: []
+		},
 		data: {},
 
 		calculateSharpeRatio: function(nets, average) {
@@ -171,12 +175,18 @@
 							}
 						}
 
-						self.data[index]['all'].accuracy = self.data[index]['all'].winners * 100 / self.data[index]['all'].trades;
-						self.data[index]['longs'].accuracy = self.data[index]['longs'].winners * 100 / self.data[index]['longs'].trades;
-						self.data[index]['shorts'].accuracy = self.data[index]['shorts'].winners * 100 / self.data[index]['shorts'].trades;
-						self.data[index]['all'].averageTrade = self.data[index]['all'].net / self.data[index]['all'].trades;
-						self.data[index]['longs'].averageTrade = self.data[index]['longs'].net / self.data[index]['longs'].trades;
-						self.data[index]['shorts'].averageTrade = self.data[index]['shorts'].net / self.data[index]['shorts'].trades;
+						if(self.data[index]['all'].trades > 0) {
+							self.data[index]['all'].accuracy = self.data[index]['all'].winners * 100 / self.data[index]['all'].trades;
+							self.data[index]['all'].averageTrade = self.data[index]['all'].net / self.data[index]['all'].trades;
+						}
+						if(self.data[index]['longs'].trades > 0) {
+							self.data[index]['longs'].accuracy = self.data[index]['longs'].winners * 100 / self.data[index]['longs'].trades;
+							self.data[index]['longs'].averageTrade = self.data[index]['longs'].net / self.data[index]['longs'].trades;
+						}
+						if(self.data[index]['shorts'].trades > 0) {
+							self.data[index]['shorts'].accuracy = self.data[index]['shorts'].winners * 100 / self.data[index]['shorts'].trades;
+							self.data[index]['shorts'].averageTrade = self.data[index]['shorts'].net / self.data[index]['shorts'].trades;
+						}
 						if(self.data[index]['all'].winners > 0) {
 							self.data[index]['all'].averageWinningTrade /= self.data[index]['all'].winners;
 						}
@@ -222,9 +232,11 @@
 						self.data[index]['all'].sharpeRatio = self.calculateSharpeRatio(nets.all, self.data[index]['all'].averageTrade);
 						self.data[index]['longs'].sharpeRatio = self.calculateSharpeRatio(nets.longs, self.data[index]['longs'].averageTrade);
 						self.data[index]['shorts'].sharpeRatio = self.calculateSharpeRatio(nets.shorts, self.data[index]['shorts'].averageTrade);
-						self.data[index]['all'].variation = (balance - initialBalance) * 100 / initialBalance;
-						self.data[index]['longs'].variation = (balanceLongs - initialBalance) * 100 / initialBalance;
-						self.data[index]['shorts'].variation = (balanceShorts - initialBalance) * 100 / initialBalance;
+						if(initialBalance > 0) {
+							self.data[index]['all'].variation = (balance - initialBalance) * 100 / initialBalance;
+							self.data[index]['longs'].variation = (balanceLongs - initialBalance) * 100 / initialBalance;
+							self.data[index]['shorts'].variation = (balanceShorts - initialBalance) * 100 / initialBalance;
+						}
 
 						deferred.resolve(self.data[index]);
 					});
