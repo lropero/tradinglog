@@ -22,18 +22,15 @@
 
 		render: function() {
 			app.trigger('change', 'stats-numbers');
-			$('footer').html('1');
+			$('footer').html(app.stats.availables[this.period][this.at]);
 			this.$el.html(this.template({
 				date: app.date.getString(app.stats.availables[this.period][this.at])
 			}));
-			$('footer').html('2');
 			if(!app.stats.availables[this.period][this.at + 1]) {
 				$('span.button-left').hide();
 			}
-			$('footer').html('3');
 			var deferred = this.stats();
 			deferred.then(function() {
-				$('footer').html('4');
 				var $swipePanes = $('ul.swipe-panes');
 				$swipePanes.slick({
 					accessibility: false,
