@@ -79,11 +79,10 @@
 					var date = new Date(dateValues[0] + '-' + (parseInt(dateValues[1], 10) + 1) + '-' + dateValues[2]);
 					date.setDate(date.getDate() + 6);
 					var today = new Date();
+					$('footer').html(date);
 					if(date.getTime() > today.getTime()) {
-						$('footer').html('1');
 						string += 'Today';
 					} else {
-						$('footer').html('2');
 						var month = this.getMonthString(date.getMonth(), true);
 						var digit = date.getDate() % 10;
 						string += month + ' ' + date.getDate() + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + date.getFullYear();
