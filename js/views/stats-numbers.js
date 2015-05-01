@@ -144,6 +144,8 @@
 
 		moveDate: function(e) {
 			e.preventDefault();
+			$('span.button-left').hide();
+			$('span.button-right').hide();
 			var $target = $(e.currentTarget);
 			var direction = $target.attr('class').replace('button-', '');
 			switch(direction) {
@@ -151,10 +153,6 @@
 					if(app.stats.availables[this.period][this.at + 1]) {
 						this.at++;
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
-						$('span.button-right').show();
-						if(!app.stats.availables[this.period][this.at + 1]) {
-							$('span.button-left').hide();
-						}
 						this.stats();
 					}
 					break;
@@ -162,10 +160,6 @@
 					if(app.stats.availables[this.period][this.at - 1]) {
 						this.at--;
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
-						$('span.button-left').show();
-						if(!app.stats.availables[this.period][this.at - 1]) {
-							$('span.button-right').hide();
-						}
 						this.stats();
 					}
 					break;
@@ -215,6 +209,12 @@
 					self.drawDoughnut(stats[type]);
 					self.drawNumbers(stats[type]);
 					self.drawLine(stats[type].balances);
+					if(app.stats.availables[self.period][self.at + 1]) {
+						$('span.button-left').show();
+					}
+					if(app.stats.availables[self.period][self.at - 1]) {
+						$('span.button-right').show();
+					}
 				}
 			});
 			return deferred;

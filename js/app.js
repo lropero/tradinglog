@@ -143,7 +143,7 @@
 
 						}
 
-						if(!app.stats.availables.length) {
+						if(!app.stats.availables.monthly.length) {
 							var date = new Date();
 							var monthly = date.getFullYear() + '-' + date.getMonth();
 							date.setDate(date.getDate() - date.getDay());
