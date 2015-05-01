@@ -76,10 +76,9 @@
 					var month = this.getMonthString(parseInt(dateValues[1], 10), true);
 					var digit = dateValues[2] % 10;
 					string = month + ' ' + dateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + dateValues[0] + ' - ';
-					var date = new Date(dateValues[0] + '-' + (parseInt(dateValues[1], 10) + 1) + '-' + dateValues[2]);
+					var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
 					date.setDate(date.getDate() + 6);
 					var today = new Date();
-					$('footer').html(dateValues[0] + '-' + (parseInt(dateValues[1], 10) + 1) + '-' + dateValues[2]);
 					if(date.getTime() > today.getTime()) {
 						string += 'Today';
 					} else {
