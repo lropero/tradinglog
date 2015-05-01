@@ -22,7 +22,6 @@
 
 		render: function() {
 			app.trigger('change', 'stats-numbers');
-			$('footer').html(app.stats.availables[this.period][this.at]);
 			this.$el.html(this.template({
 				date: app.date.getString(app.stats.availables[this.period][this.at])
 			}));
