@@ -79,7 +79,7 @@
 					var date = new Date(dateValues[0] + '-' + (parseInt(dateValues[1], 10) + 1) + '-' + dateValues[2]);
 					date.setDate(date.getDate() + 6);
 					var today = new Date();
-					$('footer').html(date);
+					$('footer').html(dateValues[0] + '-' + (parseInt(dateValues[1], 10) + 1) + '-' + dateValues[2]);
 					if(date.getTime() > today.getTime()) {
 						string += 'Today';
 					} else {
