@@ -143,6 +143,12 @@
 				$('span#numbers-sharpe_ratio').html(accounting.toFixed(stats.sharpeRatio, 2));
 			}
 			$('span#line-variation').html(accounting.toFixed(stats.variation, 2) + '%');
+			$('span.highlight').css('color', '#fff');
+			if(stats.net > 0) {
+				$('span.highlight').css('color', '#4bd763');
+			} else if(stats.net < 0) {
+				$('span.highlight').css('color', '#ff3b30');
+			}
 		},
 
 		moveDate: function(e) {

@@ -63,7 +63,7 @@
 					<li>
 						<div class="col-1">Accuracy</div>
 						<div class="col-2">
-							<span id="numbers-accuracy"></span>
+							<span class="highlight" id="numbers-accuracy"></span>
 						</div>
 					</li>
 				</ul>
@@ -89,7 +89,7 @@
 					<li>
 						<div class="col-1">Risk/reward ratio</div>
 						<div class="col-2">
-							<span id="numbers-risk_reward_ratio"></span>
+							<span class="highlight" id="numbers-risk_reward_ratio"></span>
 						</div>
 					</li>
 				</ul>
