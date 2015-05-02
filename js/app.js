@@ -127,7 +127,7 @@
 						for(var i = 0; i < trades.length; i++) {
 							app.trades.push(trades[i]);
 
-							/** Feed stats availables */
+							/** Feed stats.availables */
 							if(!trades[i].isOpen) {
 								var date = new Date(trades[i].closed_at);
 								var monthly = date.getFullYear() + '-' + date.getMonth();

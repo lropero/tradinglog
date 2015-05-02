@@ -9,19 +9,20 @@
 		</div>
 		<ul class="wrapper-radiobutton" id="type">
 			<li class="group-radiobutton">
-				<div class="radiobutton active" data-type="all"></div>
+				<div class="radiobutton" id="radio-1" data-type="all"></div>
 				<span>All</span>
 			</li>
 			<li class="group-radiobutton">
-				<div class="radiobutton" data-type="longs"></div>
+				<div class="radiobutton" id="radio-2" data-type="longs"></div>
 				<span>Longs</span>
 			</li>
 			<li class="group-radiobutton">
-				<div class="radiobutton" data-type="shorts"></div>
+				<div class="radiobutton" id="radio-3" data-type="shorts"></div>
 				<span>Shorts</span>
 			</li>
 		</ul>
 	</div>
+	<div id="no-stats" style="display: none;"></div>
 	<div class="box-swipe">
 		<ul class="swipe-panes" style="height: 100%;">
 			<li class="content-swipe" style="top: 6px;">

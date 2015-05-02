@@ -10,17 +10,17 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function() {
+		initialize: function(radio, slide) {
 			var self = this;
 			this.at = 0;
 			this.period = $('control.segmented li.active').data('period');
 			app.templateLoader.get('stats-numbers').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
+				self.render(radio, slide);
 			});
 		},
 
-		render: function() {
+		render: function(radio, slide) {
 			app.trigger('change', 'stats-numbers');
 			this.$el.html(this.template({
 				date: app.date.getString(app.stats.availables[this.period][this.at])
@@ -28,20 +28,23 @@
 			if(!app.stats.availables[this.period][this.at + 1]) {
 				$('span.button-left').hide();
 			}
-			var deferred = this.stats();
-			deferred.then(function() {
-				var $swipePanes = $('ul.swipe-panes');
-				$swipePanes.slick({
-					accessibility: false,
-					arrows: false,
-					infinite: false
-				});
-				$swipePanes.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
-					var $control = $('ul.control-box-swipe');
-					$control.find('li.active').removeClass('active');
-					$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
-				});
+			$('div#radio-' + radio).addClass('active');
+			var $swipePanes = $('ul.swipe-panes');
+			$swipePanes.slick({
+				accessibility: false,
+				arrows: false,
+				infinite: false,
+				initialSlide: slide - 1
 			});
+			$swipePanes.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
+				var $control = $('ul.control-box-swipe');
+				$control.find('li.active').removeClass('active');
+				$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
+			});
+			var $control = $('ul.control-box-swipe');
+			$control.find('li.active').removeClass('active');
+			$('li#swipe-control-' + slide).addClass('active');
+			this.stats();
 			return this;
 		},
 
@@ -206,15 +209,20 @@
 			var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
 			deferred.done(function(stats) {
 				if(stats[type].trades) {
+					$('div#no-stats').hide();
+					$('div.wrapper-control-box-swipe').show();
 					self.drawDoughnut(stats[type]);
 					self.drawNumbers(stats[type]);
 					self.drawLine(stats[type].balances);
-					if(app.stats.availables[self.period][self.at + 1]) {
-						$('span.button-left').show();
-					}
-					if(app.stats.availables[self.period][self.at - 1]) {
-						$('span.button-right').show();
-					}
+				} else {
+					$('div#no-stats').show();
+					$('div.wrapper-control-box-swipe').hide();
+				}
+				if(app.stats.availables[self.period][self.at + 1]) {
+					$('span.button-left').show();
+				}
+				if(app.stats.availables[self.period][self.at - 1]) {
+					$('span.button-right').show();
 				}
 			});
 			return deferred;
