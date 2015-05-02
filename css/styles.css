@@ -1765,7 +1765,7 @@ select {
 }
 div#no-stats {
   background-color: #4020d0;
-  height: 100%;
+  bottom: 0;
   position: absolute;
   top: 147px;
   width: 100%;
