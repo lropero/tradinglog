@@ -209,14 +209,14 @@
 			var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
 			deferred.done(function(stats) {
 				if(stats[type].trades) {
-					$('div#no-stats').hide();
-					$('div.wrapper-control-box-swipe').show();
+					$('div#no-stats').css('display', 'none');
+					$('div.wrapper-control-box-swipe').css('display', 'block');
 					self.drawDoughnut(stats[type]);
 					self.drawNumbers(stats[type]);
 					self.drawLine(stats[type].balances);
 				} else {
-					$('div#no-stats').show();
-					$('div.wrapper-control-box-swipe').hide();
+					$('div#no-stats').css('display', 'block');
+					$('div.wrapper-control-box-swipe').css('display', 'none');
 				}
 				if(app.stats.availables[self.period][self.at + 1]) {
 					$('span.button-left').show();
