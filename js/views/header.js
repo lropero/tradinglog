@@ -27,6 +27,7 @@
 					options = {
 						left: {
 							action: function() {
+								$('header button').hide();
 								$('div.label').off();
 								$('div#calculator').off().hide();
 								new app.Views.footer();
