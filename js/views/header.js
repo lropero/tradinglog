@@ -27,13 +27,10 @@
 					options = {
 						left: {
 							action: function() {
-								$('div.swipe-triangle').show();
-								$('div.label.open').css('backgroundColor', '#222222');
-								$('div.label:not(.open)').css('backgroundColor', '#ffffff');
 								$('div.label').off();
 								$('div#calculator').off().hide();
 								new app.Views.footer();
-								app.swipe.init('.swipe');
+								app.loadView('main');
 							},
 							icon: 'f124',
 							text: 'Back'

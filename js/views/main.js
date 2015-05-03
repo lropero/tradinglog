@@ -190,7 +190,7 @@
 			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(sum, '') + '</div>');
 			app.trigger('change', 'calculator');
 			var $calculator = $('div#calculator');
-			$('div.label').off().on('tap', function(e) {
+			$('div.label').on('tap', function(e) {
 				e.preventDefault();
 				var $target = $(e.currentTarget);
 				var net = $target.data('net');
@@ -222,7 +222,7 @@
 					$calculator.html('$ ' + accounting.formatMoney(sum, ''));
 				}
 			});
-			$calculator.off().on('touchend', function() {
+			$calculator.on('tap', function() {
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
@@ -230,6 +230,7 @@
 				$('div.label.open').css('backgroundColor', '#666666');
 				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
 				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
+				$calculator.css('backgroundColor', '#fdb45c');
 			});
 		},
 
