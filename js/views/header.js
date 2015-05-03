@@ -95,6 +95,7 @@
 						}
 					}
 					break;
+				case 'calculator':
 				case 'main-map':
 				case 'main-view-operation':
 				case 'main-view-trade':

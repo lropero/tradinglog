@@ -192,7 +192,9 @@
 				$(this).removeClass('added');
 			});
 			var $calculator = $('div#calculator');
-			$('div.label').off().on('touchend', function(e) {
+			app.trigger('change', 'calculator');
+			$('div.label').off().on('tap', function(e) {
+				e.preventDefault();
 				var $target = $(e.currentTarget);
 				var net = $target.data('net');
 				if(net) {
