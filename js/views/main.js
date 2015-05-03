@@ -188,11 +188,8 @@
 			$('div.label.open').css('backgroundColor', '#666666');
 			$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
 			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(sum, '') + '</div>');
-			$.each($('div.added'), function() {
-				$(this).removeClass('added');
-			});
-			var $calculator = $('div#calculator');
 			app.trigger('change', 'calculator');
+			var $calculator = $('div#calculator');
 			$('div.label').off().on('tap', function(e) {
 				e.preventDefault();
 				var $target = $(e.currentTarget);
@@ -226,7 +223,13 @@
 				}
 			});
 			$calculator.off().on('touchend', function() {
-				self.calculator();
+				$.each($('div.added'), function() {
+					$(this).removeClass('added');
+				});
+				sum = 0;
+				$('div.label.open').css('backgroundColor', '#666666');
+				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
 			});
 		},
 
