@@ -4,7 +4,7 @@
 			{{#each objects}}
 				{{#if this.instrument}}
 					<li class="wrapper-label" data-key="{{@key}}" data-swipe="1">
-						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe">
+						<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe"{{#unless this.isOpen}} data-net="{{this.net}}"{{else}}{{#if this.net}} data-net="{{this.net}}"{{/if}}{{/unless}}>
 							<div class="ball">
 								{{#if this.comments}}
 									<div class="globe-comments">{{this.comments}}</div>

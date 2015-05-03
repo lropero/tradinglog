@@ -19,13 +19,10 @@
 		},
 
 		destroy: function() {
-
-			// Remove
 			if(app.shake) {
 				app.shake.stopWatch();
 				delete app.shake;
 			}
-
 			this.undelegateEvents();
 		},
 
@@ -40,12 +37,9 @@
 				});
 				this.$el.html(template);
 				this.decorate();
-
-				// Remove
 				if(navigator.accelerometer) {
 					this.shake();
 				}
-
 				this.deferred.resolve();
 			} else {
 				setTimeout(function() {
@@ -186,6 +180,54 @@
 			});
 		},
 
+		calculator: function() {
+			var self = this;
+			this.undelegateEvents();
+			var sum = 0;
+			$('div.swipe-triangle').hide();
+			$('div.label.open').css('backgroundColor', '#666666');
+			$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(sum, '') + '</div>');
+			$.each($('div.added'), function() {
+				$(this).removeClass('added');
+			});
+			var $calculator = $('div#calculator');
+			$('div.label').off().on('touchend', function(e) {
+				var $target = $(e.currentTarget);
+				var net = $target.data('net');
+				if(net) {
+					if($target.hasClass('added')) {
+						if($target.hasClass('open')) {
+							$target.css('backgroundColor', '#666666');
+						} else {
+							$target.css('backgroundColor', '#f6f6f6');
+						}
+						sum -= net;
+						$target.removeClass('added');
+					} else {
+						if($target.hasClass('open')) {
+							$target.css('backgroundColor', '#222222');
+						} else {
+							$target.css('backgroundColor', '#ffffff');
+						}
+						sum += net;
+						$target.addClass('added');
+					}
+					if(sum > 0) {
+						$calculator.css('backgroundColor', '#4bd763');
+					} else if(sum < 0) {
+						$calculator.css('backgroundColor', '#ff3b30');
+					} else {
+						$calculator.css('backgroundColor', '#fdb45c');
+					}
+					$calculator.html('$ ' + accounting.formatMoney(sum, ''));
+				}
+			});
+			$calculator.off().on('touchend', function() {
+				self.calculator();
+			});
+		},
+
 		decorate: function() {
 			this.drag = new app.Views.mainDrag();
 			app.swipe.init('.swipe');
@@ -201,15 +243,26 @@
 			}
 		},
 
-		// Remove
 		shake: function() {
 			var self = this;
 			app.shake = new Shake({
 				frequency: 100,
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
-					$('header button').hide();
-					self.addRandomTrade();
+					self.calculator();
+					app.shake.stopWatch();
+					app.shake = new Shake({
+						frequency: 100,
+						threshold: 30,
+						success: function(magnitude, accelerationDelta, timestamp) {
+							$('div.label').off();
+							$('div#calculator').off();
+							new app.Views.main();
+							new app.Views.footer();
+							self.shake();
+						}
+					});
+					app.shake.startWatch();
 				}
 			});
 			app.shake.startWatch();
