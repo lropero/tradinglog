@@ -23,6 +23,19 @@
 		update: function(view, attrs) {
 			var options = {};
 			switch(view) {
+				case 'calculator':
+					options = {
+						left: {
+							action: function() {
+								$('div.label').off();
+								$('div#calculator').off().hide();
+								app.loadView('main');
+							},
+							icon: 'f124',
+							text: 'Back'
+						}
+					};
+					break;
 				case 'easter':
 					options = {
 						left: {
@@ -95,7 +108,6 @@
 						}
 					}
 					break;
-				case 'calculator':
 				case 'main-map':
 				case 'main-view-operation':
 				case 'main-view-trade':

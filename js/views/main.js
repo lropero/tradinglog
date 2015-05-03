@@ -182,7 +182,7 @@
 
 		calculator: function() {
 			var self = this;
-			this.undelegateEvents();
+			this.destroy();
 			var sum = 0;
 			$('div.swipe-triangle').hide();
 			$('div.label.open').css('backgroundColor', '#666666');
@@ -252,19 +252,6 @@
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					self.calculator();
-					app.shake.stopWatch();
-					app.shake = new Shake({
-						frequency: 100,
-						threshold: 30,
-						success: function(magnitude, accelerationDelta, timestamp) {
-							$('div.label').off();
-							$('div#calculator').off();
-							new app.Views.main();
-							new app.Views.footer();
-							self.shake();
-						}
-					});
-					app.shake.startWatch();
 				}
 			});
 			app.shake.startWatch();
