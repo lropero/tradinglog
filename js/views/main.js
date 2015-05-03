@@ -190,7 +190,7 @@
 			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(sum, '') + '</div>');
 			app.trigger('change', 'calculator');
 			var $calculator = $('div#calculator');
-			$('div.label').on('tap', function(e) {
+			$('div.label').off().on('tap', function(e) {
 				e.preventDefault();
 				var $target = $(e.currentTarget);
 				var net = $target.data('net');
