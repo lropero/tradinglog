@@ -185,6 +185,7 @@
 			var sum = 0;
 			var $calculator = $('div#calculator');
 			if($calculator.is(':visible')) {
+				sum = 0;
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
