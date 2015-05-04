@@ -30,6 +30,9 @@
 								app.trigger('change', 'main', {
 									closed: app.count.closed
 								});
+								$.each($('div.added'), function() {
+									$(this).removeClass('added');
+								});
 								$('div.swipe-triangle').show();
 								$('div.label.open').css('backgroundColor', '#222222');
 								$('div.label:not(.open)').css('backgroundColor', '#ffffff');
