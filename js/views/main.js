@@ -183,14 +183,15 @@
 		calculator: function() {
 			var self = this;
 			this.destroy();
-			var sum = 0;
+			$.pep.toggleAll(false);
+			app.trigger('change', 'calculator');
 			$('div.swipe-triangle').hide();
 			$('div.label.open').css('backgroundColor', '#666666');
 			$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+			var sum = 0;
 			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(sum, '') + '</div>');
-			app.trigger('change', 'calculator');
 			var $calculator = $('div#calculator');
-			$('div.label').off().on('tap', function(e) {
+			$('div.label').on('tap.calculator', function(e) {
 				e.preventDefault();
 				var $target = $(e.currentTarget);
 				var net = $target.data('net');

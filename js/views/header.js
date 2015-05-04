@@ -27,11 +27,17 @@
 					options = {
 						left: {
 							action: function() {
-								$('header button').hide();
-								$('div.label').off();
+								app.trigger('change', 'main', {
+									closed: app.count.closed
+								});
+								$('div.swipe-triangle').show();
+								$('div.label.open').css('backgroundColor', '#222222');
+								$('div.label:not(.open)').css('backgroundColor', '#ffffff');
+								$('div.label').off('tap.calculator');
 								$('div#calculator').off().hide();
 								new app.Views.footer();
-								app.loadView('main');
+								$.pep.toggleAll(true);
+								app.view.delegateEvents();
 							},
 							icon: 'f124',
 							text: 'Back'
