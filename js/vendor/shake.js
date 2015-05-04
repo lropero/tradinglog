@@ -82,13 +82,13 @@ function Shake(options) {
 					previousAcceleration = undefined;
 				}
 				options.success.call(shake, magnitude, accelerationDelta, acceleration.timestamp);
-				// if (options.waitBetweenShakes > 0)
-				// 	setTimeout(
-				// 		function() {
-				// 			shake.startWatch();
-				// 		},
-				// 		options.waitBetweenShakes
-				// 	);
+				if (options.waitBetweenShakes > 0)
+					setTimeout(
+						function() {
+							shake.startWatch();
+						},
+						options.waitBetweenShakes
+					);
 			}
 		}
 		else

@@ -33,9 +33,11 @@
 				frequency: 100,
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
+					app.shake.stopWatch();
 					app.trigger('change', 'easter');
 					$('section#settings section#content').empty().append('<img src="img/easter.jpg" style="width: 100%;" /><span class="copyright">TradingLog &copy; 2015<br />www.tradinglog.com<br />All rights reserved</span>');
-				}
+				},
+				waitBetweenShakes: 0
 			});
 			app.shake.startWatch();
 		}
