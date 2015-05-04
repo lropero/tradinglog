@@ -262,6 +262,7 @@
 				threshold: 30,
 				success: function(magnitude, accelerationDelta, timestamp) {
 					self.calculator();
+					app.shake.startWatch();
 				}
 			});
 			app.shake.startWatch();
