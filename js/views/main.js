@@ -185,6 +185,12 @@
 			var sum = 0;
 			var $calculator = $('div#calculator');
 			if($calculator.is(':visible')) {
+				$.each($('div.added'), function() {
+					$(this).removeClass('added');
+				});
+				$('div.label.open').css('backgroundColor', '#666666');
+				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+				$calculator.css('backgroundColor', '#fdb45c');
 				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
 				return;
 			}
@@ -229,14 +235,14 @@
 				}
 			});
 			$calculator.on('tap', function() {
+				sum = 0;
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
-				sum = 0;
 				$('div.label.open').css('backgroundColor', '#666666');
 				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
-				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
 				$calculator.css('backgroundColor', '#fdb45c');
+				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
 			});
 		},
 
