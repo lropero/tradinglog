@@ -182,17 +182,16 @@
 
 		calculator: function() {
 			var self = this;
-			var sum = 0;
+			app.sum = 0;
 			var $calculator = $('div#calculator');
 			if($calculator.is(':visible')) {
-				sum = 0;
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
 				$('div.label.open').css('backgroundColor', '#666666');
 				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
 				$calculator.css('backgroundColor', '#fdb45c');
-				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
+				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 				return;
 			}
 			this.undelegateEvents();
@@ -201,7 +200,7 @@
 			$('div.swipe-triangle').hide();
 			$('div.label.open').css('backgroundColor', '#666666');
 			$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
-			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(sum, '') + '</div>');
+			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(app.sum, '') + '</div>');
 			$calculator = $('div#calculator');
 			$('div.label').on('tap.calculator', function(e) {
 				e.preventDefault();
@@ -214,7 +213,7 @@
 						} else {
 							$target.css('backgroundColor', '#f6f6f6');
 						}
-						sum -= net;
+						app.sum -= net;
 						$target.removeClass('added');
 					} else {
 						if($target.hasClass('open')) {
@@ -222,28 +221,28 @@
 						} else {
 							$target.css('backgroundColor', '#ffffff');
 						}
-						sum += net;
+						app.sum += net;
 						$target.addClass('added');
 					}
-					if(sum > 0) {
+					if(app.sum > 0) {
 						$calculator.css('backgroundColor', '#4bd763');
-					} else if(sum < 0) {
+					} else if(app.sum < 0) {
 						$calculator.css('backgroundColor', '#ff3b30');
 					} else {
 						$calculator.css('backgroundColor', '#fdb45c');
 					}
-					$calculator.html('$ ' + accounting.formatMoney(sum, ''));
+					$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 				}
 			});
 			$calculator.on('tap', function() {
-				sum = 0;
+				app.sum = 0;
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
 				$('div.label.open').css('backgroundColor', '#666666');
 				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
 				$calculator.css('backgroundColor', '#fdb45c');
-				$calculator.html('$ ' + accounting.formatMoney(sum, ''));
+				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 			});
 		},
 
