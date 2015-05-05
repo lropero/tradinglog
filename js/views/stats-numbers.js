@@ -10,9 +10,9 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(radio, slide) {
+		initialize: function(at, radio, slide) {
 			var self = this;
-			this.at = 0;
+			this.at = parseInt(at, 10);
 			this.period = $('control.segmented li.active').data('period');
 			app.templateLoader.get('stats-numbers').done(function(template) {
 				self.template = Handlebars.compile($(template).html().trim());
@@ -50,8 +50,6 @@
 
 		destroy: function() {
 			$('ul.swipe-panes').off();
-			this.doughnut.stop().destroy();
-			this.line.stop().destroy();
 			this.undelegateEvents();
 		},
 
@@ -254,14 +252,31 @@
 						app.stats.get(index);
 					}
 				}
-				// for(var i = 3; i < app.stats.availables[self.period].length; i++) {
-				// 	if(i < self.at - 2 || i > self.at + 2) {
-				// 		delete app.stats.data[app.stats.availables[self.period][i]];
-				// 	}
-				// }
-				// setTimeout(function() {
-				// 	console.log(app.stats.data);
-				// }, 1000);
+				index = app.stats.availables[self.period][self.at];
+				switch(self.period) {
+					case 'monthly':
+						for(var i = app.stats.availables.weekly.length; i > 0; i--) {
+							var dateValues = app.stats.availables.weekly[i - 1].split('-');
+							if(dateValues[0] + '-' + dateValues[1] === index) {
+								if(!app.stats.data[app.stats.availables.weekly[i - 1]]) {
+									app.stats.get(app.stats.availables.weekly[i - 1]);
+								}
+								break;
+							}
+						}
+						break;
+					case 'weekly':
+						var dateValues = index.split('-');
+						for(var i = app.stats.availables.monthly.length; i > 0; i--) {
+							if(dateValues[0] + '-' + dateValues[1] === app.stats.availables.monthly[i - 1]) {
+								if(!app.stats.data[app.stats.availables.monthly[i - 1]]) {
+									app.stats.get(app.stats.availables.monthly[i - 1]);
+								}
+								break;
+							}
+						}
+						break;
+				}
 			});
 			return deferred;
 		}
