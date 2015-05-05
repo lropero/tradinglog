@@ -23,7 +23,7 @@
 		</ul>
 	</div>
 	<div id="no-stats" style="display: none;">
-		<div>
+		<div class="center">
 			<span>No data</span>
 		</div>
 	</div>
