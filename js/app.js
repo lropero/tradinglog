@@ -48,7 +48,14 @@
 							).done(function() {
 
 								/** Generate stats */
-								// app.stats.update();
+								for(var i = 0; i < 3; i++) {
+									if(app.stats.availables.monthly[i]) {
+										app.stats.get(app.stats.availables.monthly[i])
+									};
+									if(app.stats.availables.weekly[i]) {
+										app.stats.get(app.stats.availables.weekly[i])
+									};
+								}
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();

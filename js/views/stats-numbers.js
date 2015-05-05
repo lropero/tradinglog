@@ -226,10 +226,26 @@
 				}
 				if(app.stats.availables[self.period][self.at + 1]) {
 					$('span.button-left').show();
+					app.stats.get(app.stats.availables[self.period][self.at + 1]);
+					if(app.stats.availables[self.period][self.at + 2]) {
+						app.stats.get(app.stats.availables[self.period][self.at + 2]);
+					}
 				}
 				if(app.stats.availables[self.period][self.at - 1]) {
 					$('span.button-right').show();
+					app.stats.get(app.stats.availables[self.period][self.at - 1]);
+					if(app.stats.availables[self.period][self.at - 2]) {
+						app.stats.get(app.stats.availables[self.period][self.at - 2]);
+					}
 				}
+				for(var i = 3; i < app.stats.availables[self.period].length; i++) {
+					if(i < self.at - 2 || i > self.at + 2) {
+						delete app.stats.data[app.stats.availables[self.period][i]];
+					}
+				}
+				// setTimeout(function() {
+				// 	console.log(app.stats.data);
+				// }, 1000);
 			});
 			return deferred;
 		}
