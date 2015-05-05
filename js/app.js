@@ -7,7 +7,7 @@
 		Models: {},
 		Templates: {},
 		Views: {},
-
+		ti: (new Date()).getTime(),
 		init: function() {
 
 			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
@@ -18,10 +18,14 @@
 			}
 
 			app.databaseController.init().done(function() {
+				var tc = (new Date()).getTime();
+				console.log ("db ready: " + tc - app.ti);
 				var accounts = new app.Collections.accounts();
 				accounts.setActive();
 				accounts.fetch({
 					success: function() {
+						var tc = (new Date()).getTime();
+						console.log ("accounts fetch success: " + tc - app.ti);
 						if(!accounts.length) {
 
 							/** Load welcome screen */
@@ -44,9 +48,11 @@
 
 								/** Fetch operations & trades */
 								app.fetchObjects()
-
+								var tc = (new Date()).getTime();
+								console.log ("layout.deferred done: " + tc - app.ti);
 							).done(function() {
-
+								var tc = (new Date()).getTime();
+								console.log ("fetch objects done: " + tc - app.ti);
 								/** Generate stats */
 								if(app.stats.availables.monthly[0]) {
 									app.stats.get(app.stats.availables.monthly[0])
@@ -65,7 +71,8 @@
 								}
 								new app.Views.settingsAddAccount(' ', true);
 								new app.Views.settingsAddInstrument(' ', true);
-
+								var tc = (new Date()).getTime();
+								console.log ("preload views success: " + tc - app.ti);
 								/** Load main view */
 								app.view = new app.Views.main();
 
