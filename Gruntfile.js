@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 					'css/normalize.css',
 					'css/animate.css',
 					'css/ionicons.css',
+					'css/slick.css',
 					'css/styles.css'
 				]
 			},
@@ -29,6 +30,7 @@ module.exports = function(grunt) {
 					'js/vendor/jquery.mobile.events.js',
 					'js/vendor/jquery.pep.js',
 					'js/vendor/shake.js',
+					'js/vendor/slick.js',
 					'js/app.js',
 					'js/db.js',
 					'js/models/dao/*.js',

@@ -39,29 +39,27 @@
 			if(section === 'Numbers') {
 				var $control = $('ul.control-box-swipe');
 				if($control.length) {
-					if(this.subview.at > 0) {
-						var period = $('control.segmented li.active').data('period');
-						var index = app.stats.availables[period][this.subview.at];
-						switch(period) {
-							case 'monthly':
-								for(var i = app.stats.availables.weekly.length; i > 0; i--) {
-									var dateValues = app.stats.availables.weekly[i - 1].split('-');
-									if(dateValues[0] + '-' + dateValues[1] === index) {
-										at = i - 1;
-										break;
-									}
+					var period = $('control.segmented li.active').data('period');
+					var index = app.stats.availables[period][this.subview.at];
+					switch(period) {
+						case 'monthly':
+							for(var i = app.stats.availables.weekly.length; i > 0; i--) {
+								var dateValues = app.stats.availables.weekly[i - 1].split('-');
+								if(dateValues[0] + '-' + dateValues[1] === index) {
+									at = i - 1;
+									break;
 								}
-								break;
-							case 'weekly':
-								var dateValues = index.split('-');
-								for(var i = app.stats.availables.monthly.length; i > 0; i--) {
-									if(dateValues[0] + '-' + dateValues[1] === app.stats.availables.monthly[i - 1]) {
-										at = i - 1;
-										break;
-									}
+							}
+							break;
+						case 'weekly':
+							var dateValues = index.split('-');
+							for(var i = app.stats.availables.monthly.length; i > 0; i--) {
+								if(dateValues[0] + '-' + dateValues[1] === app.stats.availables.monthly[i - 1]) {
+									at = i - 1;
+									break;
 								}
-								break;
-						}
+							}
+							break;
 					}
 					radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
 					slide = $control.find('li.active').attr('id').replace('swipe-control-', '');

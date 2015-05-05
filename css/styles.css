@@ -1759,7 +1759,7 @@ select {
   background-color: #4020d0;
 }
 #no-stats span {
-  font-size: 2em;
+  font-size: 1.6em;
   font-weight: 100;
   font-style: normal;
   line-height: 1;
@@ -1767,7 +1767,7 @@ select {
   display: block;
   clear: both;
   text-align: center;
-  color: #ffffff;
+  color: #2c168e;
   -webkit-font-smoothing: antialiased;
 }
 #no-stats span:before {

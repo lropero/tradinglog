@@ -42,8 +42,8 @@
 					</div>
 					<span class="help-block">We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate. An alert icon <i class="ion-alert-circled"></i> will be shown in every closed trade for this instrument to remind you of doing so. The icon will disappear after you manually edit the commission by swiping the trade to the left.</span>
 				</div>
-				<div class="text-note type-2"><u>Point value</u>: Stock's point value is always $1.</div>
-				<div class="text-note type-2"><u>Commission</u>: Since there are many commission schemas for stocks (flat rate, percentage, etc.), stock's commission is always $0 and such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them to remind you of manually editing the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</div>
+				<div class="text-note type-2"><b>Point value</b>: Stock's point value is always $1.</div>
+				<div class="text-note type-2"><b>Commission</b>: Since there are many commission schemas for stocks (flat rate, percentage, etc.), stock's commission is always $0 and such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them to remind you of manually editing the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</div>
 			</form>
 		</div>
 	</div>
