@@ -22,107 +22,121 @@
 			</li>
 		</ul>
 	</div>
-	<div id="no-stats" style="display: none;"></div>
+	<div id="no-stats" style="display: none;">
+		<div>
+			<span>No data</span>
+		</div>
+	</div>
 	<div class="box-swipe">
 		<ul class="swipe-panes" style="height: 100%;">
 			<li class="content-swipe" style="top: 6px;">
 				<canvas id="doughnut"></canvas>
 				<div class="center">
-					<div class="legend" id="legend-amounts"></div>
-					<div class="legend" id="legend-titles" style="display: none;">
-						<ul class="graphic">
-							<li class="profit"><span>Profit</span></li>
-							<li class="loss"><span>Loss</span></li>
-							<li class="commission"><span>Commission</span></li>
-							<li class="net"><span>Net</span></li>
-						</ul>
+					<div>
+						<div class="legend" id="legend-amounts"></div>
+						<div class="legend" id="legend-titles" style="display: none;">
+							<ul class="graphic">
+								<li class="profit"><span>Profit</span></li>
+								<li class="loss"><span>Loss</span></li>
+								<li class="commission"><span>Commission</span></li>
+								<li class="net"><span>Net</span></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="help">&nbsp;</div>
 			</li>
 			<li class="content-swipe">
-				<ul class="pane">
-					<li>
-						<div class="col-1">Trades</div>
-						<div class="col-2">
-							<span id="numbers-trades"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Winners</div>
-						<div class="col-2">
-							<span id="numbers-winners"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Losers</div>
-						<div class="col-2">
-							<span id="numbers-losers"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Accuracy</div>
-						<div class="col-2">
-							<span class="highlight" id="numbers-accuracy"></span>
-						</div>
-					</li>
-				</ul>
-				<ul class="pane">
-					<li>
-						<div class="col-1">Average trade</div>
-						<div class="col-2">
-							<span id="numbers-average_trade"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Average winning trade</div>
-						<div class="col-2">
-							<span id="numbers-average_winning_trade"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Average losing trade</div>
-						<div class="col-2">
-							<span id="numbers-average_losing_trade"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Risk/reward ratio</div>
-						<div class="col-2">
-							<span class="highlight" id="numbers-risk_reward_ratio"></span>
-						</div>
-					</li>
-				</ul>
-				<ul class="pane">
-					<li>
-						<div class="col-1">Average time in market</div>
-						<div class="col-2">
-							<span id="numbers-average_time_in_market"></span>
-						</div>
-					</li>
-					<li>
-						<div class="col-1">Sharpe ratio</div>
-						<div class="col-2">
-							<span id="numbers-sharpe_ratio"></span>
-						</div>
-					</li>
-				</ul>
+				<div class="center">
+					<div style="width: 100%;">
+						<ul class="pane">
+							<li>
+								<div class="col-1">Trades</div>
+								<div class="col-2">
+									<span id="numbers-trades"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Winners</div>
+								<div class="col-2">
+									<span id="numbers-winners"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Losers</div>
+								<div class="col-2">
+									<span id="numbers-losers"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Accuracy</div>
+								<div class="col-2">
+									<span class="highlight" id="numbers-accuracy"></span>
+								</div>
+							</li>
+						</ul>
+						<ul class="pane">
+							<li>
+								<div class="col-1">Average trade</div>
+								<div class="col-2">
+									<span id="numbers-average_trade"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Average winning trade</div>
+								<div class="col-2">
+									<span id="numbers-average_winning_trade"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Average losing trade</div>
+								<div class="col-2">
+									<span id="numbers-average_losing_trade"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Risk/reward ratio</div>
+								<div class="col-2">
+									<span class="highlight" id="numbers-risk_reward_ratio"></span>
+								</div>
+							</li>
+						</ul>
+						<ul class="pane">
+							<li>
+								<div class="col-1">Average time in market</div>
+								<div class="col-2">
+									<span id="numbers-average_time_in_market"></span>
+								</div>
+							</li>
+							<li>
+								<div class="col-1">Sharpe ratio</div>
+								<div class="col-2">
+									<span id="numbers-sharpe_ratio"></span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</li>
 			<li class="content-swipe">
-				<canvas id="line"></canvas>
-				<ul class="pane">
-					<li>
-						<div class="col-1">Variation</div>
-						<div class="col-2">
-							<span id="line-variation"></span>
-						</div>
-					</li>
-				</ul>
+				<div class="center">
+					<div style="width: 100%; height: 100%; max-height: 400px; padding-bottom: 28px;">
+						<canvas id="line"></canvas>
+						<ul class="pane" style="margin: 0;">
+							<li>
+								<div class="col-1">Variation</div>
+								<div class="col-2">
+									<span id="line-variation"></span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
 	<div class="wrapper-control-box-swipe">
-		<ul class="control-box-swipe end-left end-right">
+		<ul class="control-box-swipe">
 			<li class="active" id="swipe-control-1"></li>
 			<li id="swipe-control-2"></li>
 			<li id="swipe-control-3"></li>
