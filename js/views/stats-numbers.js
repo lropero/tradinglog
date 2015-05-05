@@ -50,10 +50,15 @@
 
 		destroy: function() {
 			$('ul.swipe-panes').off();
+			this.doughnut.stop().destroy();
+			this.line.stop().destroy();
 			this.undelegateEvents();
 		},
 
 		drawDoughnut: function(stats) {
+			if(this.doughnut) {
+				this.doughnut.stop().destroy();
+			}
 			var $doughnut = $('canvas#doughnut');
 			var ctx = $doughnut.get(0).getContext('2d');
 			var data = [
@@ -82,11 +87,14 @@
 				segmentStrokeWidth: 5,
 				showTooltips: false
 			};
-			var doughnut = new Chart(ctx).Doughnut(data, options);
-			$('div.legend#legend-amounts').html(doughnut.generateLegend());
+			this.doughnut = new Chart(ctx).Doughnut(data, options);
+			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
 		},
 
 		drawLine: function(balances) {
+			if(this.line) {
+				this.line.stop().destroy();
+			}
 			var labels = [];
 			var data = []
 			$.each(balances, function(index, value) {
@@ -120,7 +128,7 @@
 				scaleShowVerticalLines: false,
 				showTooltips: false
 			};
-			var line = new Chart(ctx).Line(data, options);
+			this.line = new Chart(ctx).Line(data, options);
 		},
 
 		drawNumbers: function(stats) {
@@ -224,25 +232,33 @@
 					$('div#no-stats').css('display', 'block');
 					$('div.wrapper-control-box-swipe').css('display', 'none');
 				}
-				if(app.stats.availables[self.period][self.at + 1]) {
+				var index = app.stats.availables[self.period][self.at + 1];
+				if(index) {
 					$('span.button-left').show();
-					app.stats.get(app.stats.availables[self.period][self.at + 1]);
-					if(app.stats.availables[self.period][self.at + 2]) {
-						app.stats.get(app.stats.availables[self.period][self.at + 2]);
+					if(!app.stats.data[index]) {
+						app.stats.get(index);
+					}
+					index = app.stats.availables[self.period][self.at + 2];
+					if(index && !app.stats.data[index]) {
+						app.stats.get(index);
 					}
 				}
-				if(app.stats.availables[self.period][self.at - 1]) {
+				index = app.stats.availables[self.period][self.at - 1];
+				if(index) {
 					$('span.button-right').show();
-					app.stats.get(app.stats.availables[self.period][self.at - 1]);
-					if(app.stats.availables[self.period][self.at - 2]) {
-						app.stats.get(app.stats.availables[self.period][self.at - 2]);
+					if(!app.stats.data[index]) {
+						app.stats.get(index);
+					}
+					index = app.stats.availables[self.period][self.at - 2];
+					if(index && !app.stats.data[index]) {
+						app.stats.get(index);
 					}
 				}
-				for(var i = 3; i < app.stats.availables[self.period].length; i++) {
-					if(i < self.at - 2 || i > self.at + 2) {
-						delete app.stats.data[app.stats.availables[self.period][i]];
-					}
-				}
+				// for(var i = 3; i < app.stats.availables[self.period].length; i++) {
+				// 	if(i < self.at - 2 || i > self.at + 2) {
+				// 		delete app.stats.data[app.stats.availables[self.period][i]];
+				// 	}
+				// }
 				// setTimeout(function() {
 				// 	console.log(app.stats.data);
 				// }, 1000);
