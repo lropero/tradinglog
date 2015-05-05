@@ -120,7 +120,7 @@
 			</li>
 			<li class="content-swipe">
 				<div class="center">
-					<div style="width: 100%; height: 100%; max-height: 400px; padding-bottom: 28px;">
+					<div style="height: 100%; max-height: 400px; padding-bottom: 28px; width: 100%;">
 						<canvas id="line"></canvas>
 						<ul class="pane" style="margin: 0;">
 							<li>

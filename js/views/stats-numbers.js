@@ -58,6 +58,11 @@
 				this.doughnut.stop().destroy();
 			}
 			var $doughnut = $('canvas#doughnut');
+            var width = $doughnut.width();
+            var height = $doughnut.height();
+            if(width > height) {
+                $doughnut.width(height);
+            }
 			var ctx = $doughnut.get(0).getContext('2d');
 			var data = [
 				{

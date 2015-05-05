@@ -1787,6 +1787,12 @@ select {
   content: '\f2bf';
   text-align: center;
 }
+#map {
+  margin-bottom: 44px;
+}
+section.map {
+  bottom: 0!important;
+}
 .alertify,
 .alertify-show,
 .alertify-log {

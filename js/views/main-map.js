@@ -24,7 +24,12 @@
 				this.$el.html(template);
 				this.decorate();
 			}
+			$('section#main-stats-friends').addClass('map');
 			return this;
+		},
+
+		destroy: function() {
+			$('section#main-stats-friends').removeClass('map');
 		},
 
 		decorate: function() {
