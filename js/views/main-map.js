@@ -22,9 +22,9 @@
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main-map');
 				this.$el.html(template);
+				$('section#main-stats-friends').addClass('map');
 				this.decorate();
 			}
-			$('section#main-stats-friends').addClass('map');
 			return this;
 		},
 
