@@ -1,6 +1,7 @@
 (function() {
 	'use strict';
 
+	console.log("app.js - lets get started!");
 	window.app = {
 		Collections: {},
 		DAOs: {},
