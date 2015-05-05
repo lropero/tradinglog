@@ -190,7 +190,7 @@
 				});
 				$('div.label.open').css('backgroundColor', '#666666');
 				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
-				$calculator.css('backgroundColor', '#fdb45c');
+				$calculator.css('backgroundColor', '#4020d0');
 				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 				return;
 			}
@@ -198,8 +198,8 @@
 			$.pep.toggleAll(false);
 			app.trigger('change', 'calculator');
 			$('div.swipe-triangle').hide();
-			$('div.label.open').css('backgroundColor', '#666666');
-			$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+			$('div.label.open').css('backgroundColor', '#555555');
+			$('div.label:not(.open)').css('backgroundColor', '#cccccc');
 			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(app.sum, '') + '</div>');
 			$calculator = $('div#calculator');
 			$('div.label').on('tap.calculator', function(e) {
@@ -209,9 +209,9 @@
 				if(net) {
 					if($target.hasClass('added')) {
 						if($target.hasClass('open')) {
-							$target.css('backgroundColor', '#666666');
+							$target.css('backgroundColor', '#555555');
 						} else {
-							$target.css('backgroundColor', '#f6f6f6');
+							$target.css('backgroundColor', '#cccccc');
 						}
 						app.sum -= net;
 						$target.removeClass('added');
@@ -229,7 +229,7 @@
 					} else if(app.sum < 0) {
 						$calculator.css('backgroundColor', '#ff3b30');
 					} else {
-						$calculator.css('backgroundColor', '#fdb45c');
+						$calculator.css('backgroundColor', '#4020d0');
 					}
 					$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 				}
@@ -239,9 +239,9 @@
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
-				$('div.label.open').css('backgroundColor', '#666666');
-				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
-				$calculator.css('backgroundColor', '#fdb45c');
+				$('div.label.open').css('backgroundColor', '#555555');
+				$('div.label:not(.open)').css('backgroundColor', '#cccccc');
+				$calculator.css('backgroundColor', '#4020d0');
 				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 			});
 		},
