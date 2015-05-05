@@ -14,6 +14,12 @@
 			}
 			// this.reset();
 			this.createTables();
+
+			// Remove
+			// for(var i = 0; i < 30; i++) {
+			// 	this.addRandomTrade();
+			// }
+
 			return this.deferred.promise();
 		},
 
@@ -112,6 +118,67 @@
 				$.each(sqls, function(index, sql) {
 					tx.executeSql(sql);
 				});
+			});
+		},
+
+		// Remove
+		addRandomTrade: function() {
+			var instrument_id = 1;
+			var type = Math.floor(Math.random() * 2) + 1;
+			var size = Math.floor(Math.random() * 5) + 1;
+			var price = Math.floor(Math.random() * 11) + 1000;
+
+			if(type === 2) {
+				size *= -1;
+			}
+			var trade = new app.Models.trade();
+			trade.set({
+				account_id: 1,
+				instrument_id: instrument_id,
+				type: type
+			});
+			trade.save(null, {
+				success: function(model, insertId) {
+					var position = new app.Models.position();
+					position.set({
+						trade_id: insertId,
+						size: size,
+						price: price,
+						created_at: 1420081201000
+					});
+					var diff = (new Date()).getTime() - 1420081201000;
+					position.save(null, {
+						success: function() {
+							var price2 = Math.floor(Math.random() * 11) + 1000;
+							var position2 = new app.Models.position();
+							position2.set({
+								trade_id: insertId,
+								size: (size * -1),
+								price: price2,
+								created_at: Math.floor(Math.random() * diff) + 1420081201000
+							});
+							position2.save(null, {
+								success: function() {
+									var trade2 = new app.Models.trade({
+										id: insertId
+									});
+									trade2.deferred.then(function() {
+										trade2.setPnL(function() {
+											app.objects[app.count.open].isFirst = false;
+											app.count.closed++;
+											app.objects.splice(app.count.open, 0, trade2.toJSON());
+											app.objects[app.count.open].isFirst = true;
+											app.cache.delete('main');
+											app.cache.delete('mainMap');
+											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+											app.loadView('main');
+										});
+									});
+								}
+							});
+						}
+					});
+				}
 			});
 		},
 
