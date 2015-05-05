@@ -51,6 +51,9 @@
 								if(app.stats.availables.monthly[0]) {
 									app.stats.get(app.stats.availables.monthly[0])
 								};
+								if(app.stats.availables.weekly[0]) {
+									app.stats.get(app.stats.availables.weekly[0])
+								};
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();

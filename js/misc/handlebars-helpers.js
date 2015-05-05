@@ -83,7 +83,7 @@
 				}
 				var date = then.getDate();
 				var digit = date % 10;
-				var string = month + ' ' + date + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + then.getFullYear();
+				var string = month + '. ' + date + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + then.getFullYear();
 				return string;
 			}
 		}

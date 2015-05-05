@@ -60,7 +60,7 @@
 					break;
 			}
 			if(short) {
-				string = string.slice(0, 3);
+				string = string.slice(0, 3) + '.';
 			}
 			return string;
 		},
