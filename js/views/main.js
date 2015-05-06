@@ -13,6 +13,8 @@
 			var self = this;
 			this.deferred = $.Deferred();
 			app.templateLoader.get('main').done(function(template) {
+				var tc = (new Date()).getTime();
+				console.log ("templateLoader finished: " + (tc - app.ti));
 				self.template = Handlebars.compile($(template).html().trim());
 				self.render(cache);
 			});
@@ -31,6 +33,10 @@
 			var template = app.cache.get('main', this.template, {
 				objects: app.objects
 			});
+
+			var tc = (new Date()).getTime();
+			console.log ("render (cache: " + cache + ") called: " + (tc - app.ti));
+			
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main', {
 					closed: app.count.closed
