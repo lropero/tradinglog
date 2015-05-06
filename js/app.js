@@ -75,9 +75,10 @@
 								/** Load main view */
 								app.view = new app.Views.main();
 
+								console.log ("app.Views.main() called: " + (tc - app.ti));
 								/** We hide the initial splash screen once the main view is ready */
 								app.hideSplash();
-
+								console.log ("hideSplash called: " + (tc - app.ti));
 							});
 						}
 					}
