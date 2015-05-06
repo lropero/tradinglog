@@ -24,12 +24,21 @@
 				this.$el.html(template);
 				$('section#main-stats-friends').addClass('map');
 				this.decorate();
+				this.animate();
 			}
 			return this;
 		},
 
 		destroy: function() {
 			$('section#main-stats-friends').removeClass('map');
+		},
+
+		animate: function() {
+			var $percentage = $('div.percentage');
+			var animated = 'animated flipInX';
+			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
+				$percentage.removeClass(animated);
+			});
 		},
 
 		decorate: function() {

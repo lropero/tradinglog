@@ -1292,6 +1292,7 @@ select {
   width: 100%;
   height: 100%;
   padding-left: 40px;
+  -webkit-animation-duration: 0.2s;
 }
 #map .label.trade.positive .percentage {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #4bd763), color-stop(100%, rgba(75, 215, 99, 0)));
