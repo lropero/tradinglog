@@ -35,7 +35,7 @@
 
 		animate: function() {
 			var $percentage = $('div.percentage');
-			var animated = 'animated flipInX';
+			var animated = 'animated fadeInLeft';
 			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
 				$percentage.removeClass(animated);
 			});
