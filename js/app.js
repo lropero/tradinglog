@@ -192,8 +192,10 @@
 			$('div#drag').css('display', 'none');
 			setTimeout(function() {
 				self.disableScroll();
-				self.view = new app.Views[view](attrs);
-			}, 50);
+				setTimeout(function() {
+					self.view = new app.Views[view](attrs);
+				}, 20);
+			}, 30);
 		},
 
 		prepareObjects: function() {
