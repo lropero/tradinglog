@@ -66,6 +66,9 @@
 								var tc = (new Date()).getTime();
 								console.log ("app.Views.main() called: " + (tc - app.ti));
 								
+								/** We hide the initial splash screen once the main view is ready */
+								app.hideSplash();
+			
 								var tc = (new Date()).getTime();
 								console.log ("hideSplash called: " + (tc - app.ti));
 

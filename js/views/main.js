@@ -39,19 +39,19 @@
 
 			var tc = (new Date()).getTime();
 			console.log ("render main compiled: " + (tc - app.ti));
-				
-			/** We hide the initial splash screen once the main view is ready */
-			app.hideSplash();
-								
+									
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main', {
 					closed: app.count.closed
 				});
 				this.$el.html(template);
+				console.log("decorate");
 				this.decorate();
 				if(navigator.accelerometer) {
+					console.log("shake");
 					this.shake();
 				}
+				console.log("deferred resolve");
 				this.deferred.resolve();
 			} else {
 				setTimeout(function() {
