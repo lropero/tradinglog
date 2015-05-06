@@ -34,8 +34,11 @@
 			});
 
 			var tc = (new Date()).getTime();
-			console.log ("render (cache: " + cache + ") called: " + (tc - app.ti));
-			
+			console.log ("render main (cache: " + cache + ") called: " + (tc - app.ti));
+				
+			/** We hide the initial splash screen once the main view is ready */
+			app.hideSplash();
+								
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main', {
 					closed: app.count.closed

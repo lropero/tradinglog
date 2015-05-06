@@ -60,6 +60,15 @@
 									app.stats.get(app.stats.availables.weekly[0])
 								};
 
+								/** Load main view */
+								app.view = new app.Views.main();
+
+								var tc = (new Date()).getTime();
+								console.log ("app.Views.main() called: " + (tc - app.ti));
+								
+								var tc = (new Date()).getTime();
+								console.log ("hideSplash called: " + (tc - app.ti));
+
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();
 								new app.Views.mainAddOperation(true);
@@ -68,20 +77,11 @@
 								for(var i = 0; i < app.count.open; i++) {
 									new app.Views.mainViewTrade(i.toString(), true);
 								}
-								//new app.Views.settingsAddAccount(' ', true);
-								//new app.Views.settingsAddInstrument(' ', true);
+								new app.Views.settingsAddAccount(' ', true);
+								new app.Views.settingsAddInstrument(' ', true);
 								var tc = (new Date()).getTime();
 								console.log ("preload views success: " + (tc - app.ti));
-								/** Load main view */
-								app.view = new app.Views.main();
-
-								var tc = (new Date()).getTime();
-								console.log ("app.Views.main() called: " + (tc - app.ti));
-								/** We hide the initial splash screen once the main view is ready */
-								app.hideSplash();
 								
-								var tc = (new Date()).getTime();
-								console.log ("hideSplash called: " + (tc - app.ti));
 							});
 						}
 					}
