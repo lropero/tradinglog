@@ -1751,17 +1751,18 @@ select
 {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -30px;
 
     width: 100%;
     height: 100%;
     padding-left: 40px;
 
-    -webkit-animation-duration: 0.2s;
+    -webkit-animation-duration: 0.5s;
 }
 
 #map .label.trade.positive .percentage
 {
+    border-left: 30px solid @green;
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(75,215,99,1)), color-stop(100%,rgba(75,215,99,0))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(left,  rgba(75,215,99,1) 0%,rgba(75,215,99,0) 100%); /* Chrome10+,Safari5.1+ */
     background:         linear-gradient(to right,  rgba(75,215,99,1) 0%,rgba(75,215,99,0) 100%); /* W3C */
@@ -1769,6 +1770,7 @@ select
 
 #map .label.negative .percentage
 {
+    border-left: 30px solid @red;
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,59,48,1)), color-stop(100%,rgba(255,59,48,0))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(left,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* Chrome10+,Safari5.1+ */
     background:         linear-gradient(to right,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* W3C */
@@ -1776,6 +1778,7 @@ select
 
 #map .label.zero .percentage
 {
+    border-left: 30px solid @violet-light;
     background-color: @violet-light;
 }
 
