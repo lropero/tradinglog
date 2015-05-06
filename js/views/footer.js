@@ -8,7 +8,6 @@
 		},
 
 		initialize: function() {
-			this.deferred = $.Deferred();
 			this.template = app.templateLoader.get('footer');
 			this.template = Handlebars.compile(this.template);
 			this.render();
@@ -16,7 +15,6 @@
 
 		render: function() {
 			this.$el.html(this.template());
-			this.deferred.resolve();
 			return this;
 		},
 

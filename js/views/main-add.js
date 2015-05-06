@@ -9,7 +9,7 @@
 
 		initialize: function() {
 			this.template = app.templateLoader.get('main-add');
-			this.template = Handlebars.compile($(template).html().trim());
+			this.template = Handlebars.compile(this.template);
 			this.render();
 		},
 

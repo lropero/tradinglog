@@ -7,7 +7,7 @@
 		initialize: function() {
 			var self = this;
 			this.template = app.templateLoader.get('settings-general');
-			this.template = Handlebars.compile(this);
+			this.template = Handlebars.compile(this.template);
 			this.render();
 		},
 

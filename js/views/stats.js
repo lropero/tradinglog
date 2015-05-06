@@ -10,7 +10,7 @@
 		initialize: function() {
 			var self = this;
 			this.template = app.templateLoader.get('stats');
-			this.template = Handlebars.compile(this);
+			this.template = Handlebars.compile(this.template);
 			this.render();
 		},
 

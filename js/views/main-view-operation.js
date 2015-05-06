@@ -7,7 +7,7 @@
 		initialize: function(key) {
 			this.operation = app.objects[key];
 			this.template = app.templateLoader.get('main-view-operation');
-			this.template = Handlebars.compile($(template).html().trim());
+			this.template = Handlebars.compile(this.template);
 			this.render();
 		},
 

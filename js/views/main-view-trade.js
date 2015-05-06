@@ -12,7 +12,7 @@
 			this.key = key;
 			this.trade = app.objects[key];
 			this.template = app.templateLoader.get('main-view-trade');
-			this.template = Handlebars.compile(this);
+			this.template = Handlebars.compile(this.template);
 			this.render(cache);
 		},
 

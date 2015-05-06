@@ -24,7 +24,7 @@
 				}
 			});
 			this.template = app.templateLoader.get('settings-accounts');
-			this.template = Handlebars.compile(this);
+			this.template = Handlebars.compile(this.template);
 			this.render();
 		},
 
