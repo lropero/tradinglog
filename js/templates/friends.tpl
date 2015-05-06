@@ -1,6 +1,3 @@
-<script type="text/x-handlebars-template" id="friends-template">
-
-
 
 	<!--
 
@@ -999,5 +996,3 @@
 	</ul>
 </div>
 -->
-
-</script>

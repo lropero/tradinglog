@@ -12,10 +12,9 @@
 		initialize: function(cache) {
 			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.get('main').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = app.templateLoader.get('main');
+			this.template = Handlebars.compile(this.template);
+			this.render(cache);
 		},
 
 		destroy: function() {

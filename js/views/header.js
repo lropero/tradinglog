@@ -5,13 +5,11 @@
 		el: 'header',
 
 		initialize: function() {
-			var self = this;
 			this.deferred = $.Deferred();
 			app.listenTo(app, 'change', this.update);
-			app.templateLoader.get('header').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = app.templateLoader.get('header');
+			this.template = Handlebars.compile(this.template);
+			this.render();
 		},
 
 		render: function() {
