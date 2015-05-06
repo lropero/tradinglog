@@ -7,7 +7,8 @@
 		Models: {},
 		Templates: {},
 		Views: {},
-
+		// DEBUG:::TO BE REMOVED
+		t0: (new Date()).getTime(),
 		init: function() {
 
 			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
@@ -46,7 +47,6 @@
 								app.fetchObjects()
 
 							).done(function() {
-
 								/** Generate stats */
 								if(app.stats.availables.monthly[0]) {
 									app.stats.get(app.stats.availables.monthly[0])
@@ -54,6 +54,15 @@
 								if(app.stats.availables.weekly[0]) {
 									app.stats.get(app.stats.availables.weekly[0])
 								};
+								/** Load main view */
+								app.view = new app.Views.main();
+
+								/** We hide the initial splash screen once the main view is ready */
+								app.hideSplash();
+								
+								// DEBUG:::TO BE REMOVED
+								var t1 = (new Date()).getTime() - app.t0;
+								console.log("debug load time:: " + t1);
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();
@@ -65,12 +74,6 @@
 								}
 								new app.Views.settingsAddAccount(' ', true);
 								new app.Views.settingsAddInstrument(' ', true);
-
-								/** Load main view */
-								app.view = new app.Views.main();
-
-								/** We hide the initial splash screen once the main view is ready */
-								app.hideSplash();
 
 							});
 						}

@@ -9,8 +9,7 @@
             var that = this;
             var cachebuster = Math.round(new Date().getTime() / 1000);
             $.get('tmp/output.min.html', function (data) {
-            	console.log("loaded");
-                that.templates = data;
+            	that.templates = data;
                 that.$templates = jQuery(data);
                 jQuery("#preload").append(that.$templates);
                 callback.apply();
