@@ -41,22 +41,38 @@
 				if($control.length) {
 					var period = $('control.segmented li.active').data('period');
 					var index = app.stats.availables[period][this.subview.at];
+					done:
 					switch(period) {
 						case 'monthly':
 							for(var i = app.stats.availables.weekly.length; i > 0; i--) {
 								var dateValues = app.stats.availables.weekly[i - 1].split('-');
 								if(dateValues[0] + '-' + dateValues[1] === index) {
 									at = i - 1;
-									break;
+									break done;
+								}
+							}
+							var dateValues = index.split('-');
+							if(dateValues[1] === '0') {
+								index = (dateValues[0] - 1) + '-11';
+							} else {
+								index = dateValues[0] + '-' + (dateValues[1] - 1);
+							}
+							for(var i = 0; i < app.stats.availables.weekly.length; i++) {
+								var dateValues = app.stats.availables.weekly[i].split('-');
+								if(dateValues[0] + '-' + dateValues[1] === index) {
+									at = i;
+									break done;
 								}
 							}
 							break;
 						case 'weekly':
 							var dateValues = index.split('-');
+							var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+							date.setDate(date.getDate() + 6);
 							for(var i = app.stats.availables.monthly.length; i > 0; i--) {
-								if(dateValues[0] + '-' + dateValues[1] === app.stats.availables.monthly[i - 1]) {
+								if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {
 									at = i - 1;
-									break;
+									break done;
 								}
 							}
 							break;
