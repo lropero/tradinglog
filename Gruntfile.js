@@ -90,6 +90,10 @@ module.exports = function(grunt) {
 			styles: {
 				files: ['css/*', '!css/styles.css', '!css/main.min.css'],
 				tasks: ['css', 'clean']
+			},
+			html: {
+				files: ['js/templates/*.tpl'],
+				tasks: ['concat:html']
 			}
 		}
 	});
