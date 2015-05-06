@@ -20,7 +20,9 @@
 				new app.Views.header().deferred,
 				new app.Views.footer().deferred
 			).done(function() {
-				self.deferred.resolve();
+				self.deferred.resolve();			
+				var tc = (new Date()).getTime();
+				console.log ("layout.deferred done: " + (tc - app.ti));
 			})
 			return this;
 		},
