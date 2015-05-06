@@ -190,8 +190,14 @@
 			}
 
 			this.disableScroll();
-			$('div#drag').css('display', 'none');
-			this.view = new app.Views[view](attrs);
+			if($('div#drag').is(':hidden')) {
+				this.view = new app.Views[view](attrs);
+			} else {
+				$('div#drag').css('display', 'none');
+				setTimeout(function() {
+					self.view = new app.Views[view](attrs);
+				}, 50);
+			}
 		},
 
 		prepareObjects: function() {
