@@ -17,10 +17,9 @@
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('settings-add-account').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = app.templateLoader.get('settings-add-account');
+			this.template = Handlebars.compile(this.template);
+			this.render(cache);
 		},
 
 		destroy: function() {
