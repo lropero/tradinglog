@@ -23,10 +23,9 @@
 					self.deferred.resolve();
 				}
 			});
-			app.templateLoader.get('settings-accounts').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = app.templateLoader.get('settings-accounts');
+			this.template = Handlebars.compile(this);
+			this.render();
 		},
 
 		destroy: function() {

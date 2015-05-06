@@ -11,13 +11,11 @@
 		},
 
 		initialize: function(at, radio, slide) {
-			var self = this;
 			this.at = parseInt(at, 10);
 			this.period = $('control.segmented li.active').data('period');
-			app.templateLoader.get('stats-numbers').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(radio, slide);
-			});
+			this.template = app.templateLoader.get('stats-numbers');
+			this.template = Handlebars.compile(this.template);
+			this.render(radio, slide);
 		},
 
 		render: function(radio, slide) {

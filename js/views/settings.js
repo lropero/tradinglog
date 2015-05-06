@@ -8,11 +8,9 @@
 		},
 
 		initialize: function() {
-			var self = this;
-			app.templateLoader.get('settings').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = app.templateLoader.get('settings');
+			this.template = Handlebars.compile(this.template);
+			this.render();
 		},
 
 		destroy: function() {
