@@ -40,7 +40,7 @@
 					self.$el.html(template);
 				}
 			});
-			//return this;
+			return this;
 		},
 
 		combine: function(e) {

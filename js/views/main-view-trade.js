@@ -38,7 +38,7 @@
 					self.undelegateEvents();
 				}, 10);
 			}
-			//return this;
+			return this;
 		},
 
 		add: function(e) {

@@ -28,13 +28,17 @@
 		},
 
 		render: function(cache) {
+
+			var tc = (new Date()).getTime();
+			console.log ("render main (cache: " + cache + ") called: " + (tc - app.ti));
 			var self = this;
 			var template = app.cache.get('main', this.template, {
 				objects: app.objects
 			});
 
+
 			var tc = (new Date()).getTime();
-			console.log ("render main (cache: " + cache + ") called: " + (tc - app.ti));
+			console.log ("render main compiled: " + (tc - app.ti));
 				
 			/** We hide the initial splash screen once the main view is ready */
 			app.hideSplash();

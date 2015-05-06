@@ -24,7 +24,7 @@
 				$('section#main-stats-friends').addClass('map');
 				this.decorate();
 			}
-			//return this;
+			return this;
 		},
 
 		destroy: function() {

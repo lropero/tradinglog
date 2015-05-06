@@ -31,7 +31,7 @@
 				app.trigger('change', 'main-add-operation');
 				this.$el.html(template);
 			}
-			//return this;
+			return this;
 		},
 
 		combine: function(e) {
