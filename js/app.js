@@ -62,11 +62,11 @@
 
 								/** Preload some templates to smoothen navigation */
 								app.cache.reset();
-								new app.Views.mainAddOperation(true);
-								new app.Views.mainAddTrade(true);
-								new app.Views.mainMap(true);
+								var mAOcache = new app.Views.mainAddOperation(true);
+								var mATcache = new app.Views.mainAddTrade(true);
+								var maMcache = new app.Views.mainMap(true);
 								for(var i = 0; i < app.count.open; i++) {
-									new app.Views.mainViewTrade(i.toString(), true);
+									var mVTcache = new app.Views.mainViewTrade(i.toString(), true);
 								}
 								//new app.Views.settingsAddAccount(' ', true);
 								//new app.Views.settingsAddInstrument(' ', true);
