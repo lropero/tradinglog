@@ -53,15 +53,15 @@
 								var tc = (new Date()).getTime();
 								console.log ("fetch objects done: " + (tc - app.ti));
 								/** Generate stats */
-								/*if(app.stats.availables.monthly[0]) {
+								if(app.stats.availables.monthly[0]) {
 									app.stats.get(app.stats.availables.monthly[0])
 								};
 								if(app.stats.availables.weekly[0]) {
 									app.stats.get(app.stats.availables.weekly[0])
-								};*/
+								};
 
 								/** Preload some templates to smoothen navigation */
-								//app.cache.reset();
+								app.cache.reset();
 								new app.Views.mainAddOperation(true);
 								new app.Views.mainAddTrade(true);
 								new app.Views.mainMap(true);
