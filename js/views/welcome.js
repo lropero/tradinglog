@@ -16,6 +16,7 @@
 				self.submit();
 			}
 			this.template = app.templateLoader.get('welcome');
+			console.log(this.template);
 			this.template = Handlebars.compile(this.template);
 			this.render();
 		},

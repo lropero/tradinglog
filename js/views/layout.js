@@ -7,11 +7,10 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.loadTemplates(function () {
-				self.template = app.templateLoader.get('layout');
-				self.template = Handlebars.compile(self.template);
-				self.render();
-			});
+			
+			this.template = app.templateLoader.get('layout');
+			this.template = Handlebars.compile(this.template);
+			this.render();
 		},
 
 		render: function() {

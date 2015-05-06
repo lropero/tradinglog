@@ -21,63 +21,65 @@
 			app.databaseController.init().done(function() {
 				var accounts = new app.Collections.accounts();
 				accounts.setActive();
-				accounts.fetch({
-					success: function() {
-						if(!accounts.length) {
+				app.templateLoader.loadTemplates(function () {
+					accounts.fetch({
+						success: function() {
+							if(!accounts.length) {
 
-							/** Load welcome screen */
-							app.view = new app.Views.welcome();
+								/** Load welcome screen */
+								app.view = new app.Views.welcome();
 
-							/** We hide the initial splash screen once the welcome view is ready */
-							app.hideSplash();
-
-						} else {
-
-							/** Get active account */
-							app.account = accounts.models[0];
-
-							/** We instantiate the layout view which is in charge of rendering the
-								header and footer views */
-							var layout = new app.Views.layout();
-
-							$.when(
-								layout.deferred,
-
-								/** Fetch operations & trades */
-								app.fetchObjects()
-
-							).done(function() {
-								/** Generate stats */
-								if(app.stats.availables.monthly[0]) {
-									app.stats.get(app.stats.availables.monthly[0])
-								};
-								if(app.stats.availables.weekly[0]) {
-									app.stats.get(app.stats.availables.weekly[0])
-								};
-								/** Load main view */
-								app.view = new app.Views.main();
-
-								/** We hide the initial splash screen once the main view is ready */
+								/** We hide the initial splash screen once the welcome view is ready */
 								app.hideSplash();
-								
-								// DEBUG:::TO BE REMOVED
-								var t1 = (new Date()).getTime() - app.t0;
-								console.log("debug load time:: " + t1);
 
-								/** Preload some templates to smoothen navigation */
-								app.cache.reset();
-								new app.Views.mainAddOperation(true);
-								new app.Views.mainAddTrade(true);
-								new app.Views.mainMap(true);
-								for(var i = 0; i < app.count.open; i++) {
-									new app.Views.mainViewTrade(i.toString(), true);
-								}
-								new app.Views.settingsAddAccount(' ', true);
-								new app.Views.settingsAddInstrument(' ', true);
+							} else {
 
-							});
+								/** Get active account */
+								app.account = accounts.models[0];
+
+								/** We instantiate the layout view which is in charge of rendering the
+									header and footer views */
+								var layout = new app.Views.layout();
+
+								$.when(
+									layout.deferred,
+
+									/** Fetch operations & trades */
+									app.fetchObjects()
+
+								).done(function() {
+									/** Generate stats */
+									if(app.stats.availables.monthly[0]) {
+										app.stats.get(app.stats.availables.monthly[0])
+									};
+									if(app.stats.availables.weekly[0]) {
+										app.stats.get(app.stats.availables.weekly[0])
+									};
+									/** Load main view */
+									app.view = new app.Views.main();
+
+									/** We hide the initial splash screen once the main view is ready */
+									app.hideSplash();
+									
+									// DEBUG:::TO BE REMOVED
+									var t1 = (new Date()).getTime() - app.t0;
+									console.log("debug load time:: " + t1);
+
+									/** Preload some templates to smoothen navigation */
+									app.cache.reset();
+									new app.Views.mainAddOperation(true);
+									new app.Views.mainAddTrade(true);
+									new app.Views.mainMap(true);
+									for(var i = 0; i < app.count.open; i++) {
+										new app.Views.mainViewTrade(i.toString(), true);
+									}
+									new app.Views.settingsAddAccount(' ', true);
+									new app.Views.settingsAddInstrument(' ', true);
+
+								});
+							}
 						}
-					}
+					});
 				});
 			});
 		},
