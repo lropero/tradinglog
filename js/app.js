@@ -48,9 +48,7 @@
 								layout.deferred,
 
 								/** Fetch operations & trades */
-								app.fetchObjects();
-								var tc = (new Date()).getTime();
-								console.log ("layout.deferred done: " + (tc - app.ti));
+								app.fetchObjects()
 							).done(function() {
 								var tc = (new Date()).getTime();
 								console.log ("fetch objects done: " + (tc - app.ti));
