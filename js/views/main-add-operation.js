@@ -15,10 +15,9 @@
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('main-add-operation').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = app.templateLoader.get('main-add-operation');
+			this.template = Handlebars.compile(this.template);
+			this.render(cache);
 		},
 
 		destroy: function() {

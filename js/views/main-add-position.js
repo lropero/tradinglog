@@ -17,10 +17,9 @@
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('main-add-position').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = app.templateLoader.get('main-add-position');
+			this.template = Handlebars.compile(this.template);
+			this.render();
 		},
 
 		destroy: function() {

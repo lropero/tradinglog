@@ -8,10 +8,9 @@
 			var self = this;
 			this.trades = [];
 			this.fetchTrades()
-			app.templateLoader.get('main-map').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = app.templateLoader.get('main-map');
+			this.template = Handlebars.compile(this.template);
+			this.render(cache);
 		},
 
 		render: function(cache) {

@@ -11,13 +11,12 @@
 
 		initialize: function(cache) {
 			var self = this;
-			this.deferred = $.Deferred();
-			app.templateLoader.get('main').done(function(template) {
-				var tc = (new Date()).getTime();
-				console.log ("templateLoader finished: " + (tc - app.ti));
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.deferred = $.Deferred();			
+			var tc = (new Date()).getTime();
+			console.log ("templateLoader finished: " + (tc - app.ti));
+			this.template = app.templateLoader.get('main');
+			this.template = Handlebars.compile(this.template);
+			this.render(cache);
 		},
 
 		destroy: function() {

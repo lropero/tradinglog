@@ -7,8 +7,9 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.get('layout').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
+			app.templateLoader.loadTemplates(function () {
+				self.template = app.templateLoader.get('layout');
+				self.template = Handlebars.compile(self.template);
 				self.render();
 			});
 		},

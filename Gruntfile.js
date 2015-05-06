@@ -4,6 +4,20 @@ module.exports = function(grunt) {
 			'tmp'
 		],
 		concat: {
+			options: {
+				separator: grunt.util.linefeed,
+				process: function(src, filepath) {
+					var filename;
+
+					if (filepath.indexOf(".tpl") > -1) {
+						filename = parseTemplate(filepath);
+						var newSrc = '<script type="text/x-handlebars-template" id="' + filename + '-template">' + src + '</script>';
+						src = newSrc;
+					}
+
+					return src;
+				}
+			},
 			css: {
 				dest: 'tmp/styles.css',
 				src: [
@@ -39,7 +53,13 @@ module.exports = function(grunt) {
 					'js/views/*.js',
 					'js/misc/*.js'
 				]
-			}
+			},
+			html:{
+		        dest: 'tmp/output.min.html',
+		        src: [
+		          'js/templates/*.tpl'
+		        ]
+		    }
 		},
 		cssmin: {
 			target: {
@@ -85,4 +105,12 @@ module.exports = function(grunt) {
 	grunt.registerTask('css', ['less', 'concat:css', 'cssmin']);
 	grunt.registerTask('js', ['concat:js', 'uglify']);
 	grunt.registerTask('default', ['build']);
+
+	function parseTemplate(filepath) {
+		var filename, helper;
+		helper = filepath.split("/");
+		filename = helper[helper.length - 1];
+		filename = filename.replace(".tpl", "");
+		return filename;
+	}
 };

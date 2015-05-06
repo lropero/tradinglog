@@ -68,8 +68,8 @@
 								for(var i = 0; i < app.count.open; i++) {
 									new app.Views.mainViewTrade(i.toString(), true);
 								}
-								new app.Views.settingsAddAccount(' ', true);
-								new app.Views.settingsAddInstrument(' ', true);
+								//new app.Views.settingsAddAccount(' ', true);
+								//new app.Views.settingsAddInstrument(' ', true);
 								var tc = (new Date()).getTime();
 								console.log ("preload views success: " + (tc - app.ti));
 								/** Load main view */
