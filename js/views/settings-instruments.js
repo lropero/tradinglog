@@ -23,10 +23,8 @@
 					self.deferred.resolve();
 				}
 			});
-			app.templateLoader.get('settings-instruments').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('settings-instruments'));
+			this.render();
 		},
 
 		destroy: function() {

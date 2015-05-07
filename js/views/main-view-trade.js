@@ -9,13 +9,10 @@
 		},
 
 		initialize: function(key, cache) {
-			var self = this;
 			this.key = key;
 			this.trade = app.objects[key];
-			app.templateLoader.get('main-view-trade').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main-view-trade'));
+			this.render(cache);
 		},
 
 		destroy: function() {

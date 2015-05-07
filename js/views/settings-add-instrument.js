@@ -19,10 +19,8 @@
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('settings-add-instrument').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('settings-add-instrument'));
+			this.render(cache);
 		},
 
 		destroy: function() {

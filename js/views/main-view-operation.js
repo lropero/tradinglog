@@ -7,10 +7,8 @@
 		initialize: function(key) {
 			var self = this;
 			this.operation = app.objects[key];
-			app.templateLoader.get('main-view-operation').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main-view-operation'));
+			this.render();
 		},
 
 		render: function() {

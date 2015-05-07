@@ -5,12 +5,9 @@
 		el: 'div#drag',
 
 		initialize: function() {
-			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.get('main-drag').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main-drag'));
+			this.render();
 		},
 
 		render: function() {

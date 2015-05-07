@@ -15,10 +15,8 @@
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('main-add-comment').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main-add-comment'));
+			this.render();
 		},
 
 		destroy: function() {

@@ -5,11 +5,8 @@
 		el: 'section#main-stats-friends',
 
 		initialize: function() {
-			var self = this;
-			app.templateLoader.get('friends').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('friends'));
+			this.render();
 		},
 
 		render: function() {

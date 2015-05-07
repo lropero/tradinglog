@@ -19,10 +19,8 @@
 			app.submit = function() {
 				self.submit();
 			}
-			app.templateLoader.get('main-add-trade').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main-add-trade'));
+			this.render(cache);
 		},
 
 		destroy: function() {

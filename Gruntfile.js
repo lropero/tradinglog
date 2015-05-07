@@ -4,6 +4,15 @@ module.exports = function(grunt) {
 			'tmp'
 		],
 		concat: {
+			options: {
+				process: function(src, filepath) {
+					if(filepath.indexOf('.tpl') > -1) {
+						src = '<script type="text/x-handlebars-template" id="' + getFilename(filepath) + '-template">' + src + '</script>';
+					}
+					return src;
+				},
+				separator: grunt.util.linefeed
+			},
 			css: {
 				dest: 'tmp/styles.css',
 				src: [
@@ -12,6 +21,12 @@ module.exports = function(grunt) {
 					'css/ionicons.css',
 					'css/slick.css',
 					'css/styles.css'
+				]
+			},
+			html: {
+				dest: 'dist/min.tpl',
+				src: [
+					'js/templates/*.tpl'
 				]
 			},
 			js: {
@@ -44,7 +59,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			target: {
 				files: [{
-					'css/main.min.css': 'tmp/styles.css'
+					'dist/min.css': 'tmp/styles.css'
 				}]
 			}
 		},
@@ -58,21 +73,30 @@ module.exports = function(grunt) {
 		uglify: {
 			target: {
 				files: {
-					'js/main.min.js': 'tmp/scripts.js'
+					'dist/min.js': 'tmp/scripts.js'
 				}
 			}
 		},
 		watch: {
+			html: {
+				files: ['js/templates/*.tpl'],
+				task: ['concat:html']
+			},
 			scripts: {
-				files: ['js/**/*.js', '!js/main.min.js'],
+				files: ['js/**/*.js'],
 				tasks: ['js', 'clean']
 			},
 			styles: {
-				files: ['css/*', '!css/styles.css', '!css/main.min.css'],
+				files: ['css/*', '!css/styles.css'],
 				tasks: ['css', 'clean']
 			}
 		}
 	});
+
+	function getFilename(filepath) {
+		var split = filepath.split('/');
+		return split[split.length - 1].replace('.tpl', '');
+	}
 
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -81,7 +105,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('build', ['css', 'js', 'clean']);
+	grunt.registerTask('build', ['concat:html', 'css', 'js', 'clean']);
 	grunt.registerTask('css', ['less', 'concat:css', 'cssmin']);
 	grunt.registerTask('js', ['concat:js', 'uglify']);
 	grunt.registerTask('default', ['build']);

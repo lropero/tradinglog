@@ -23,10 +23,8 @@
 					self.deferred.resolve();
 				}
 			});
-			app.templateLoader.get('settings-accounts').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render();
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('settings-accounts'));
+			this.render();
 		},
 
 		destroy: function() {

@@ -3,11 +3,15 @@
 
 	app.templateLoader = {
 		get: function(name) {
-			if(!app.Templates[name]) {
-				var date = new Date();
-				app.Templates[name] = $.get('js/templates/' + name + '.tpl?' + date.getTime());
-			}
-			return app.Templates[name];
+			return $('#' + name + '-template').html();
+		},
+
+		load: function(callback) {
+			var self = this;
+			$.get('dist/min.tpl', function(data) {
+				$('div#preload').html($(data));
+				callback();
+			});
 		}
 	};
 })();

@@ -5,13 +5,10 @@
 		el: 'section#main-stats-friends',
 
 		initialize: function(cache) {
-			var self = this;
 			this.trades = [];
 			this.fetchTrades()
-			app.templateLoader.get('main-map').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main-map'));
+			this.render(cache);
 		},
 
 		render: function(cache) {

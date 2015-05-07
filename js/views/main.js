@@ -10,12 +10,9 @@
 		},
 
 		initialize: function(cache) {
-			var self = this;
 			this.deferred = $.Deferred();
-			app.templateLoader.get('main').done(function(template) {
-				self.template = Handlebars.compile($(template).html().trim());
-				self.render(cache);
-			});
+			this.template = Handlebars.compile(app.templateLoader.get('main'));
+			this.render(cache);
 		},
 
 		destroy: function() {
