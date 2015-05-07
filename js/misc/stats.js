@@ -112,7 +112,7 @@
 								self.data[index]['shorts'].balances[0] = initialBalance;
 							}
 							var date = new Date(trades[i].closed_at);
-							var day = date.getDate();
+							var day = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
 							balance += trades[i].net;
 							self.data[index]['all'].balances[day] = balance;
 							switch(trades[i].type) {

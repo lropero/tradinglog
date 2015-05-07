@@ -98,6 +98,11 @@
 			var labels = [];
 			var data = []
 			$.each(balances, function(index, value) {
+				if(index === '0') {
+					index = '<';
+				} else {
+					index = index.split('-')[2];
+				}
 				labels.push(index);
 				data.push(value);
 			});

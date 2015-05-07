@@ -57,10 +57,6 @@
 									/** We hide the initial splash screen once the main view is ready */
 									app.hideSplash();
 
-									// Remove
-									var t1 = (new Date()).getTime() - app.t0;
-									console.log('debug load time: ' + t1);
-
 									/** Generate stats */
 									if(app.stats.availables.monthly[0]) {
 										app.stats.get(app.stats.availables.monthly[0]);
@@ -156,7 +152,6 @@
 							}
 
 						}
-
 						if(!app.stats.availables.monthly.length) {
 							var date = new Date();
 							var monthly = date.getFullYear() + '-' + date.getMonth();
@@ -169,7 +164,6 @@
 								app.stats.availables.weekly.push(weekly);
 							}
 						}
-
 						deferred.resolve();
 					});
 				}
@@ -187,6 +181,11 @@
 				if(navigator.splashscreen) {
 					navigator.splashscreen.hide();
 				}
+
+				// Remove
+				var t1 = (new Date()).getTime() - app.t0;
+				console.log('debug load time: ' + t1);
+
 			});
 		},
 
