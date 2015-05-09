@@ -1501,11 +1501,11 @@
 		<form>
 			<div class="wrapper-input two-input isolate">
 				<div class="wrapper-input">
-					<input type="text" placeholder="From" disabled />
+					<input id="form-from" type="text" placeholder="From" disabled />
 					<span class="help-block">From and to dates.</span>
 				</div>
 				<div class="wrapper-input">
-					<input type="text" placeholder="To" disabled />
+					<input id="form-to" type="text" placeholder="To" disabled />
 				</div>
 			</div>
 		</form>

@@ -35,10 +35,7 @@
 		},
 
 		showDatePicker: function($target) {
-			datePicker.show({
-				date: new Date(),
-				mode: 'date'
-			}, function(date){
+			function value(date) {
 				var month = date.getMonth() + 1;
 				if(month < 10) {
 					month = '0' + month;
@@ -48,7 +45,34 @@
 					day = '0' + day;
 				}
 				$target.val(date.getFullYear() + '-' + month + '-' + day);
-			});
+			}
+			var date = new Date();
+			var maxDate = date;
+			var minDate = '';
+			var id = $target.attr('id');
+			switch(id) {
+				case 'form-from':
+					var to = $('#form-to').val();
+					if(to) {
+						var dateValues = to.split('-');
+						maxDate = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+					}
+					break;
+				case 'form-to':
+					var from = $('#form-from').val();
+					if(from) {
+						var dateValues = from.split('-');
+						date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+						minDate = date;
+					}
+					break;
+			}
+			datePicker.show({
+				date: date,
+				maxDate: maxDate,
+				minDate: minDate,
+				mode: 'date'
+			}, value);
 		},
 
 		toggleGroup: function(e) {
