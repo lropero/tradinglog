@@ -55,14 +55,14 @@
 					var to = $('#form-to').val();
 					if(to) {
 						var dateValues = to.split('-');
-						maxDate = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+						maxDate = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 					}
 					break;
 				case 'form-to':
 					var from = $('#form-from').val();
 					if(from) {
 						var dateValues = from.split('-');
-						date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 						minDate = date;
 					}
 					break;
