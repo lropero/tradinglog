@@ -52,6 +52,11 @@
 			var id = $target.attr('id');
 			switch(id) {
 				case 'form-from':
+					var from = $('#form-from').val();
+					if(from) {
+						var dateValues = from.split('-');
+						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
+					}
 					var to = $('#form-to').val();
 					if(to) {
 						var dateValues = to.split('-');
@@ -64,6 +69,11 @@
 						var dateValues = from.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 						minDate = date;
+					}
+					var to = $('#form-to').val();
+					if(to) {
+						var dateValues = to.split('-');
+						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 					}
 					break;
 			}
