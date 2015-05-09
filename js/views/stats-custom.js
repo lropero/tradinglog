@@ -77,13 +77,15 @@
 					}
 					break;
 			}
-			$('footer').html(minDate);
-			datePicker.show({
-				date: date,
-				maxDate: maxDate,
-				minDate: minDate,
-				mode: 'date'
-			}, value);
+			// $('footer').html(minDate);
+			setTimeout(function() {
+				datePicker.show({
+					date: date,
+					maxDate: maxDate,
+					minDate: minDate,
+					mode: 'date'
+				}, value);
+			}, 100);
 		},
 
 		toggleGroup: function(e) {
