@@ -12,6 +12,14 @@
 		render: function() {
 			app.trigger('change', 'stats-custom');
 			this.$el.html(this.template());
+			setTimeout(function() {
+				datePicker.show({
+					date: new Date(),
+					mode: 'date'
+				}, function(date){
+					alert('date result ' + date);
+				});
+			}, 1000);
 			return this;
 		}
 	});

@@ -8,7 +8,7 @@
 
 		load: function(callback) {
 			var self = this;
-			$.get('dist/min.tpl', function(data) {
+			$.get('dist/min.tpl?' + (new Date).getTime(), function(data) {
 				$('div#preload').html($(data));
 				callback();
 			});
