@@ -19,17 +19,30 @@
 			this.undelegateEvents();
 		},
 
+		loadTradeObjects: function () {
+			var self = this;
+			var template = Handlebars.compile(app.templateLoader.get('main-view-trade-content'));
+			var template = app.cache.get('mainViewTradeContent' + this.trade.id, template, {
+				trade: this.trade
+			});
+			this.$el.append(template);
+			console.log("loadTradeObjects done");
+		},
+
 		render: function(cache) {
 			var self = this;
 			var template = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
 				trade: this.trade
 			});
+
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main-view-trade');
 				this.$el.html(template);
 				app.swipe.init('.swipe');
 				setTimeout(function() {
 					app.enableScroll();
+					console.log("loadTrade done");
+					self.loadTradeObjects();
 				}, 10);
 			} else {
 				setTimeout(function() {

@@ -26,6 +26,7 @@
 		},
 
 		find: function(model, callback) {
+			console.log("find operation");
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM operation WHERE id = "' + model.id + '";';
 				tx.executeSql(sql, [], function(tx, results) {
@@ -39,7 +40,12 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM operation WHERE account_id = "' + model.account_id + '" ORDER BY created_at DESC;';
+				var sql = 'SELECT * FROM operation WHERE account_id = "' + model.account_id + '" ORDER BY created_at DESC';
+				if(model.limit) {
+					sql += ' LIMIT ' + model.limit; 
+				}
+				sql += ';';
+				console.log(sql);
 				tx.executeSql(sql, [], function(tx, results) {
 					var operations = [];
 					for(var i = 0; i < results.rows.length; i++) {

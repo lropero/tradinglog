@@ -17,15 +17,19 @@
 			}
 		},
 
-		initialize: function() {
+		initialize: function(id) {
 			var self = this;
 			this.deferred = $.Deferred();
 			if(!this.isNew()) {
-				this.fetch({
-					success: function() {
-						self.deferred.resolve();
-					}
-				});
+				if(id !== 'undefined') {
+					this.deferred.resolve();
+				} else {
+					this.fetch({
+						success: function() {
+							self.deferred.resolve();
+						}
+					});
+				}
 			}
 			this.listenTo(this, 'validated', function(isValid, model, errors) {
 				if(!isValid) {

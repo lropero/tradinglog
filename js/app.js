@@ -2,6 +2,7 @@
 	'use strict';
 
 	window.app = {
+		INITIAL_LIMIT: 20,
 		Collections: {},
 		DAOs: {},
 		Models: {},
@@ -47,34 +48,37 @@
 									layout.deferred,
 
 									/** Fetch operations & trades */
-									app.fetchObjects()
+									app.fetchObjects(app.INITIAL_LIMIT)
 
 								).done(function() {
+									// fetch all
 
 									/** Load main view */
 									app.view = new app.Views.main();
 
-									/** We hide the initial splash screen once the main view is ready */
-									app.hideSplash();
+									app.view.deferred.done(function() {
+										/** We hide the initial splash screen once the main view is ready */
+										app.hideSplash();
 
-									/** Generate stats */
-									if(app.stats.availables.monthly[0]) {
-										app.stats.get(app.stats.availables.monthly[0]);
-									};
-									if(app.stats.availables.weekly[0]) {
-										app.stats.get(app.stats.availables.weekly[0]);
-									};
+										/** Generate stats */
+										if(app.stats.availables.monthly[0]) {
+											app.stats.get(app.stats.availables.monthly[0]);
+										};
+										if(app.stats.availables.weekly[0]) {
+											app.stats.get(app.stats.availables.weekly[0]);
+										};
 
-									/** Preload some templates to smoothen navigation */
-									app.cache.reset();
-									new app.Views.mainAddOperation(true);
-									new app.Views.mainAddTrade(true);
-									new app.Views.mainMap(true);
-									for(var i = 0; i < app.count.open; i++) {
-										new app.Views.mainViewTrade(i.toString(), true);
-									}
-									new app.Views.settingsAddAccount(' ', true);
-									new app.Views.settingsAddInstrument(' ', true);
+										/** Preload some templates to smoothen navigation */
+										app.cache.reset();
+										new app.Views.mainAddOperation(true);
+										new app.Views.mainAddTrade(true);
+										new app.Views.mainMap(true);
+										for(var i = 0; i < app.count.open; i++) {
+											new app.Views.mainViewTrade(i.toString(), true);
+										}
+										new app.Views.settingsAddAccount(' ', true);
+										new app.Views.settingsAddInstrument(' ', true);
+									});
 
 								});
 							}
@@ -89,13 +93,13 @@
 			$('section#content').css('overflow-y', 'hidden');
 		},
 
-		fetchObjects: function() {
+		fetchObjects: function(limit) {
 			var deferred = $.Deferred();
 			app.operations = [];
 			app.trades = [];
 			$.when(
-				app.fetchOperations(),
-				app.fetchTrades()
+				app.fetchOperations(limit),
+				app.fetchTrades(limit)
 			).done(function() {
 				app.count = {
 					open: 0,
@@ -103,16 +107,21 @@
 					operations: 0
 				};
 				app.objects = [];
+				app.indices = {
+					trades: [],
+					operations: []
+				};
 				app.prepareObjects();
 				deferred.resolve();
 			});
 			return deferred;
 		},
 
-		fetchOperations: function() {
+		fetchOperations: function (limit) {
 			var deferred = $.Deferred();
 			var operations = new app.Collections.operations();
 			operations.setAccountId(app.account.get('id'));
+			operations.setLimit(limit);
 			operations.fetch({
 				success: function() {
 					operations = operations.toJSON();
@@ -125,10 +134,11 @@
 			return deferred;
 		},
 
-		fetchTrades: function() {
+		fetchTrades: function (limit) {
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
+			trades.setLimit(limit);
 			trades.deferreds = [];
 			trades.fetch({
 				success: function() {
@@ -177,16 +187,13 @@
 		},
 
 		hideSplash: function() {
-			app.view.deferred.done(function() {
-				if(navigator.splashscreen) {
-					navigator.splashscreen.hide();
-				}
+			if(navigator.splashscreen) {
+				navigator.splashscreen.hide();
+			}
 
-				// Remove
-				var t1 = (new Date()).getTime() - app.t0;
-				console.log('debug load time: ' + t1);
-
-			});
+			// Remove
+			var t1 = (new Date()).getTime() - app.t0;
+			console.log('debug load time: ' + t1);
 		},
 
 		loadView: function(view, attrs) {
@@ -209,24 +216,34 @@
 
 		prepareObjects: function() {
 			while(app.trades.length && app.trades[0].closed_at === 0) {
-				app.objects.push(app.trades.shift());
+				var trade = app.trades.shift();
+				app.objects.push(trade);
+				app.indices.trades[trade.id] = app.objects.length - 1;
 				app.count.open++;
 			}
 			while(app.operations.length && app.trades.length) {
 				if(app.operations[0].created_at > app.trades[0].closed_at) {
-					app.objects.push(app.operations.shift());
+					var operation = app.operations.shift();
+					app.objects.push(operation);
+					app.indices.operations[operation.id] = app.objects.length - 1;
 					app.count.operations++;
 				} else {
-					app.objects.push(app.trades.shift());
+					var trade = app.trades.shift();
+					app.objects.push(trade);
+					app.indices.trades[trade.id] = app.objects.length - 1;
 					app.count.closed++;
 				}
 			}
 			while(app.operations.length) {
-				app.objects.push(app.operations.shift());
+				var operation = app.operations.shift();
+				app.objects.push(operation);
+				app.indices.operations[operation.id] = app.objects.length - 1;
 				app.count.operations++;
 			}
 			while(app.trades.length) {
-				app.objects.push(app.trades.shift());
+				var trade = app.trades.shift();
+				app.objects.push(trade);
+				app.indices.trades[trade.id] = app.objects.length - 1;
 				app.count.closed++;
 			}
 			if(!(!app.count.closed && app.count.operations === 1)) {

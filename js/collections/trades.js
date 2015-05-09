@@ -9,6 +9,10 @@
 			this.account_id = account_id;
 		},
 
+		setLimit: function(limit) {
+			this.limit = limit;
+		},
+
 		setRange: function(from, to) {
 			this.range = true;
 			this.from = from;

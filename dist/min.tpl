@@ -1162,38 +1162,7 @@
 </script>
 <script type="text/x-handlebars-template" id="main-view-operation-template"><p class="text-body">{{#nl2br operation.description}}{{/nl2br}}</p>
 </script>
-<script type="text/x-handlebars-template" id="main-view-trade-template"><div id="loading"><span></span></div>
-<div id="top">
-	<ul>
-		<li class="wrapper-label">
-			<div class="label trade {{#if trade.isLong}}long{{else}}short{{/if}} {{#if trade.isOpen}}open {{/if}}full">
-				<div class="ball">
-					{{#if trade.edit_commission}}
-						<div class="globe-commission"></div>
-					{{/if}}
-					<div class="icon"></div>
-				</div>
-				<div class="row">
-					<div class="instrument">{{trade.instrument}}</div>
-					<div class="net {{#gt trade.net 0}}positive{{else}}negative{{/gt}}">{{#unless trade.isOpen}}{{#money trade.net}}{{/money}}{{/unless}}</div>
-				</div>
-				<div class="row">
-					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}{{#date trade.closed_at}}{{/date}}{{/if}}</div>
-					{{#unless trade.isOpen}}
-						<div class="variation">{{#variation trade.variation}}{{/variation}}</div>
-					{{/unless}}
-				</div>
-			</div>
-		</li>
-	</ul>
-	<ul class="wrapper-button-default {{#if trade.isOpen}}two{{else}}one{{/if}}-button-default">
-		{{#if trade.isOpen}}
-			<li class="button-default" data-view="mainAddPosition">Add position</li>
-		{{/if}}
-		<li class="button-default" data-view="mainAddComment">Add comment</li>
-	</ul>
-</div>
-<section id="content">
+<script type="text/x-handlebars-template" id="main-view-trade-content-template"><section id="content">
 	<ul>
 		{{#each trade.objects}}
 			{{#if this.size}}
@@ -1251,8 +1220,38 @@
 			{{/if}}
 		{{/each}}
 	</ul>
-</section>
-</script>
+</section></script>
+<script type="text/x-handlebars-template" id="main-view-trade-template"><div id="loading"><span></span></div>
+<div id="top">
+	<ul>
+		<li class="wrapper-label">
+			<div class="label trade {{#if trade.isLong}}long{{else}}short{{/if}} {{#if trade.isOpen}}open {{/if}}full">
+				<div class="ball">
+					{{#if trade.edit_commission}}
+						<div class="globe-commission"></div>
+					{{/if}}
+					<div class="icon"></div>
+				</div>
+				<div class="row">
+					<div class="instrument">{{trade.instrument}}</div>
+					<div class="net {{#gt trade.net 0}}positive{{else}}negative{{/gt}}">{{#unless trade.isOpen}}{{#money trade.net}}{{/money}}{{/unless}}</div>
+				</div>
+				<div class="row">
+					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}{{#date trade.closed_at}}{{/date}}{{/if}}</div>
+					{{#unless trade.isOpen}}
+						<div class="variation">{{#variation trade.variation}}{{/variation}}</div>
+					{{/unless}}
+				</div>
+			</div>
+		</li>
+	</ul>
+	<ul class="wrapper-button-default {{#if trade.isOpen}}two{{else}}one{{/if}}-button-default">
+		{{#if trade.isOpen}}
+			<li class="button-default" data-view="mainAddPosition">Add position</li>
+		{{/if}}
+		<li class="button-default" data-view="mainAddComment">Add comment</li>
+	</ul>
+</div></script>
 <script type="text/x-handlebars-template" id="main-template"><section id="content">
 	<ul>
 		{{#each objects}}

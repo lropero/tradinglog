@@ -28,21 +28,20 @@
 				if(this.collection) {
 					this.collection.deferreds.push(this.deferred);
 				}
-				this.fetch({
-					success: function() {
-						self.comments = [];
-						self.positions = [];
-						$.when(
-							self.fetchInstrument(),
-							self.fetchPositions(),
-							self.fetchComments()
-						).done(function() {
-							self.objects = [];
-							self.prepareObjects();
-							self.deferred.resolve();
-						});
-					}
-				});
+
+				this.comments = [];
+				this.positions = [];
+
+				
+				if (this.get("id")) {
+					this.fetchObjects();
+				} else {
+					this.fetch({
+					success: function () {
+							self.fetchObjects();
+						}
+					});
+				}
 			} else {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {
 					if(!isValid) {
@@ -154,11 +153,25 @@
 			return deferred;
 		},
 
+		fetchObjects: function () {
+			var self = this;
+			$.when(
+				self.fetchInstrument(),
+				self.fetchPositions(),
+				self.fetchComments()
+			).done(function() {
+				self.objects = [];
+				self.prepareObjects();
+				self.deferred.resolve();
+			});
+		},
+
 		fetchPositions: function() {
 			var self = this;
 			var deferred = $.Deferred();
 			var positions = new app.Collections.positions();
 			positions.setTradeId(this.get('id'));
+			console.log(this.get("id"));
 			positions.fetch({
 				success: function() {
 					positions = positions.toJSON();

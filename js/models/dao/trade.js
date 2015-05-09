@@ -30,6 +30,7 @@
 		},
 
 		find: function(model, callback) {
+			console.log("find " + model.id);
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM trade WHERE id = "' + model.id + '";';
 				tx.executeSql(sql, [], function(tx, results) {
@@ -42,9 +43,14 @@
 		},
 
 		findSet: function(model, callback) {
+			console.log("find set");
 			this.db.transaction(function(tx) {
 				if(model.range) {
-					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at >= "' + model.from + '" AND closed_at <= "' + model.to + '" ORDER BY closed_at;';
+					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at >= "' + model.from + '" AND closed_at <= "' + model.to + '" ORDER BY closed_at';
+					if(model.limit) {
+						sql += ' LIMIT ' + model.limit; 
+					}
+					sql += ';';
 					tx.executeSql(sql, [], function(tx, results) {
 						var trades = [];
 						for(var i = 0; i < results.rows.length; i++) {
@@ -67,7 +73,11 @@
 						if(model.instrument_id) {
 							sql += 'AND instrument_id == "' + model.instrument_id + '" ';
 						}
-						sql += 'AND closed_at > "0" ORDER BY closed_at DESC;';
+						sql += 'AND closed_at > "0" ORDER BY closed_at DESC';
+						if(model.limit) {
+							sql += ' LIMIT ' + model.limit; 
+						}
+						sql += ';';
 						tx.executeSql(sql, [], function(tx, results) {
 							for(var i = 0; i < results.rows.length; i++) {
 								trades.push(results.rows.item(i));
