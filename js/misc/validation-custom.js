@@ -69,6 +69,11 @@
 			$header.find('#button-right').hide();
 			$('div#complete').hide();
 			$isolate.append($isolated).show();
+		} else {
+			var $isolated = $target.parents('.isolate');
+			if($isolated.hasClass('two-input')) {
+				$isolated.find('.field').prop('disabled', true);
+			}
 		}
 		setTimeout(function() {
 			$target.prop('disabled', false);

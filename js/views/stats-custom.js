@@ -77,6 +77,7 @@
 					}
 					break;
 			}
+			$('footer').html(minDate);
 			datePicker.show({
 				date: date,
 				maxDate: maxDate,

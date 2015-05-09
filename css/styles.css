@@ -95,6 +95,9 @@ div#loading span:after {
   font-family: ionicons;
   font-size: 32px;
 }
+div#preload {
+  display: none;
+}
 div#top + #content {
   padding-bottom: 109px;
 }
