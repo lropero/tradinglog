@@ -4,7 +4,8 @@
 	app.Views.statsCustom = Backbone.View.extend({
 		el: 'section#main-stats-friends section#content',
 		events: {
-			// 'tap input': 'showDatePicker',
+			'tap div#done': 'combine',
+			'tap input': 'isolate',
 			'tap ul.wrapper-select-group li': 'toggleGroup'
 		},
 
@@ -17,6 +18,16 @@
 			app.trigger('change', 'stats-custom');
 			this.$el.html(this.template());
 			return this;
+		},
+
+		combine: function(e) {
+			e.preventDefault();
+			app.combine();
+		},
+
+		isolate: function(e) {
+			e.preventDefault();
+			app.isolate(e, this.showDatePicker);
 		},
 
 		showDatePicker: function(e) {

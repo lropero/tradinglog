@@ -12,11 +12,11 @@
 	<form>
 		<div class="wrapper-input two-input">
 			<div class="wrapper-input">
-				<input type="date" placeholder="From" />
+				<input type="text" placeholder="From" disabled />
 				<span class="help-block">From and to dates.</span>
 			</div>
 			<div class="wrapper-input">
-				<input type="date" placeholder="To" />
+				<input type="text" placeholder="To" disabled />
 			</div>
 		</div>
 	</form>

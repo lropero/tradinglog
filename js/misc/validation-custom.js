@@ -42,7 +42,7 @@
 		}
 	}
 
-	app.isolate = function(e) {
+	app.isolate = function(e, action) {
 		var $target = $(e.currentTarget);
 		var $isolate = $('div#isolate');
 		if($isolate.is(':hidden')) {
@@ -68,7 +68,11 @@
 		}
 		setTimeout(function() {
 			$target.prop('disabled', false);
-			$target.focus();
+			if(action) {
+				action();
+			} else {
+				$target.focus();
+			}
 		}, 100);
 	}
 })();
