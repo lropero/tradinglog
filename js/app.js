@@ -140,6 +140,7 @@
 							/** Feed stats.availables */
 							if(!trades[i].isOpen) {
 								var date = new Date(trades[i].closed_at);
+								app.firstDate = date.getTime();
 								var monthly = date.getFullYear() + '-' + date.getMonth();
 								date.setDate(date.getDate() - date.getDay());
 								var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());

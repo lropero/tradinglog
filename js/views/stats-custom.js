@@ -48,7 +48,7 @@
 			}
 			var date = new Date();
 			var maxDate = date;
-			var minDate = '';
+			var minDate = new Date(app.firstDate);
 			var id = $target.attr('id');
 			switch(id) {
 				case 'form-from':
@@ -68,7 +68,7 @@
 					if(from) {
 						var dateValues = from.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
-						minDate = date;
+						minDate = new Date(date.getTime());
 					}
 					var to = $('#form-to').val();
 					if(to) {
@@ -77,15 +77,14 @@
 					}
 					break;
 			}
-			// $('footer').html(minDate);
-			setTimeout(function() {
+			if(datePicker) {
 				datePicker.show({
 					date: date,
 					maxDate: maxDate,
 					minDate: minDate,
 					mode: 'date'
 				}, value);
-			}, 100);
+			}
 		},
 
 		toggleGroup: function(e) {
