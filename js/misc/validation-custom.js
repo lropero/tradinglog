@@ -57,8 +57,12 @@
 					$wrapper.removeClass('error');
 				}
 			}
-			$target.addClass('field');
 			var $isolated = $target.parents('.isolate');
+			if($isolated.hasClass('two-input')) {
+				$isolated.find('input').addClass('field');
+			} else {
+				$target.addClass('field');
+			}
 			$isolated.wrap('<div id="isolated"></div>');
 			var $header = $('header');
 			$header.find('#button-left').hide();
