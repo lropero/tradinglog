@@ -20,6 +20,10 @@
 			return this;
 		},
 
+		destroy: function() {
+			this.undelegateEvents();
+		},
+
 		combine: function(e) {
 			e.preventDefault();
 			app.combine();
@@ -30,12 +34,20 @@
 			app.isolate(e, this.showDatePicker);
 		},
 
-		showDatePicker: function(e) {
+		showDatePicker: function($target) {
 			datePicker.show({
 				date: new Date(),
 				mode: 'date'
 			}, function(date){
-				alert('date result ' + date);
+				var month = date.getMonth() + 1;
+				if(month < 10) {
+					month = '0' + month;
+				}
+				var day = date.getDate();
+				if(day < 10) {
+					day = '0' + day;
+				}
+				$target.val(date.getFullYear() + '-' + month + '-' + day);
 			});
 		},
 

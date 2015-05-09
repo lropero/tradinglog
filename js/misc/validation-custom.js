@@ -69,7 +69,7 @@
 		setTimeout(function() {
 			$target.prop('disabled', false);
 			if(action) {
-				action();
+				action($target);
 			} else {
 				$target.focus();
 			}
