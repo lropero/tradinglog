@@ -224,6 +224,7 @@
 			var array = [];
 			var type = parseInt(this.get('type'), 10);
 			var instruments = new app.Collections.instruments();
+			var positions = new app.Collections.positions();
 
 			for(var i = 0; i < this.positions.length; i++) {
 				var position = this.positions[i];
@@ -300,11 +301,14 @@
 				if(balance < 0) {
 					alertify.error('Non-sufficient funds');
 					var last = self.positions[self.positions.length - 1];
-					var position = new app.Models.position({
-						id: last.id
+					positions.setFetchId(last.id);
+					positions.fetch({
+						success: function () {
+							var position = positions.at(0);
+							position.delete();
+							$('header button').show();
+						}
 					});
-					position.delete(true);
-					$('header button').show();
 				} else {
 					if(!array.length && created_at > 0) {
 						if(instrument.alert) {
