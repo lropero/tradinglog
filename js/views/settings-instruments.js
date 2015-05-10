@@ -45,6 +45,7 @@
 
 		buttonDelete: function(e) {
 			e.preventDefault();
+			var instruments = new app.Models.instruments();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			alertify.set({
@@ -58,10 +59,13 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					var instrument = new app.Models.instrument({
-						id: id
+					instruments.setFetchId(id);
+					instruments.fetch({
+						success: function () {
+							var instrument = instruments.at(0);
+							instrument.delete();
+						}
 					});
-					instrument.delete();
 				}
 			});
 		},
@@ -70,6 +74,8 @@
 			var self = this;
 			e.preventDefault();
 			clearTimeout(this.timeout);
+
+			var instruments = new app.Collections.instruments();
 			var id = $(e.currentTarget).data('id');
 			var $span = $(e.currentTarget).children('span');
 			var group = $span.html();
@@ -81,24 +87,27 @@
 			$span.html(newGroup);
 			var $group = $(e.currentTarget).parents('.wrapper-swipe').prev().find('span.group');
 			this.timeout = setTimeout(function() {
-				var instrument = new app.Models.instrument({
-					id: id
-				});
-				instrument.deferred.then(function() {
-					instrument.set({
-						group_id: group_id
-					});
-					instrument.save(null, {
-						success: function() {
-							for(var i = 0; i < self.instruments.length; i++) {
-								if(self.instruments[i].id === id) {
-									self.instruments[i].group_id = group_id;
-									break;
+				instruments.setFetchId(id);
+				instruments.fetch({
+					success: function () {
+						var instrument = instruments.at(0);
+						instrument.deferred.then(function() {
+							instrument.set({
+								group_id: group_id
+							});
+							instrument.save(null, {
+								success: function() {
+									for(var i = 0; i < self.instruments.length; i++) {
+										if(self.instruments[i].id === id) {
+											self.instruments[i].group_id = group_id;
+											break;
+										}
+									}
+									$group.html(newGroup);
 								}
-							}
-							$group.html(newGroup);
-						}
-					});
+							});
+						});
+					}
 				});
 			}, 1000);
 		},

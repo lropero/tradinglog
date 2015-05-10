@@ -44,6 +44,7 @@
 		},
 
 		findSet: function(model, callback) {
+			var instrumentsCollection = new app.Collections.instruments();
 			this.db.transaction(function(tx) {
 				if(model.range) {
 					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at >= "' + model.from + '" AND closed_at <= "' + model.to + '" ORDER BY closed_at;';
@@ -63,18 +64,21 @@
 						}
 						var deferreds = [];
 						$.each(instruments, function(index, value) {
-							var instrument = new app.Models.instrument({
-								id: index
-							});
-							instrument.deferred.then(function() {
-								var group_id = instrument.get('group_id').toString();
-								for(var i = 0; i < value.length; i++) {
-									if($.inArray(group_id, model.groups) > -1) {
-										trades.push(results.rows.item(value[i]));
-									}
+							instrumentsCollection.setFetchId(index);
+							instrumentsCollection.fetch({
+								success: function () {
+									var instrument = instrumentsCollection.at(0);
+									instrument.deferred.then(function() {
+										var group_id = instrument.get('group_id').toString();
+										for(var i = 0; i < value.length; i++) {
+											if($.inArray(group_id, model.groups) > -1) {
+												trades.push(results.rows.item(value[i]));
+											}
+										}
+									});
+									deferreds.push(instrument.deferred);
 								}
 							});
-							deferreds.push(instrument.deferred);
 						});
 						$.when.apply($, deferreds).done(function() {
 							callback(trades);

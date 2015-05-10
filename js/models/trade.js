@@ -139,15 +139,17 @@
 		fetchInstrument: function() {
 			var self = this;
 			var deferred = $.Deferred();
-			var instrument = new app.Models.instrument({
-				id: this.get('instrument_id')
-			});
-			instrument.fetch({
-				success: function() {
+			var instruments = new app.Collections.instruments();
+
+			instruments.setFetchId(this.get('instrument_id'));
+			instruments.fetch({
+				success: function () {
+					var instrument = instruments.at(0);
+					self.instrumentObj = instrument;
 					self.instrument = instrument.toJSON().name;
 					deferred.resolve();
 				}
-			});
+			})
 			return deferred;
 		},
 
@@ -221,6 +223,7 @@
 			var created_at = 0;
 			var array = [];
 			var type = parseInt(this.get('type'), 10);
+			var instruments = new app.Collections.instruments();
 
 			for(var i = 0; i < this.positions.length; i++) {
 				var position = this.positions[i];
@@ -258,88 +261,82 @@
 				}
 			}
 
-			var instrument = new app.Models.instrument({
-				id: this.get('instrument_id')
-			});
-
-			instrument.deferred.then(function() {
-				instrument = instrument.toJSON();
-				profit *= instrument.point_value;
-				loss *= instrument.point_value;
-				var commission = instrument.commission * count;
-				var closed_at = self.get('closed_at');
-				if(closed_at > 0) {
-					var balance = app.account.get('balance') - self.getNet();
-					self.set({
-						profit: profit,
-						loss: loss,
-						commission: commission,
-						edit_commission: 0,
-						variation: 0,
-						closed_at: 0
+			var instrument = this.instrumentObj.toJSON();
+			profit *= instrument.point_value;
+			loss *= instrument.point_value;
+			var commission = instrument.commission * count;
+			var closed_at = self.get('closed_at');
+			if(closed_at > 0) {
+				var balance = app.account.get('balance') - self.getNet();
+				self.set({
+					profit: profit,
+					loss: loss,
+					commission: commission,
+					edit_commission: 0,
+					variation: 0,
+					closed_at: 0
+				});
+				self.save(null, {
+					success: function() {
+						app.account.set({
+							balance: balance
+						});
+						app.account.save(null, {
+							success: function() {
+								app.cache.delete('mainMap');
+								callback();
+							}
+						});
+					}
+				});
+			} else {
+				self.set({
+					profit: profit,
+					loss: loss,
+					commission: commission,
+					edit_commission: 0
+				});
+				var balance = app.account.get('balance') + self.getNet();
+				if(balance < 0) {
+					alertify.error('Non-sufficient funds');
+					var last = self.positions[self.positions.length - 1];
+					var position = new app.Models.position({
+						id: last.id
 					});
-					self.save(null, {
-						success: function() {
-							app.account.set({
-								balance: balance
-							});
-							app.account.save(null, {
-								success: function() {
-									app.cache.delete('mainMap');
-									callback();
-								}
+					position.delete(true);
+					$('header button').show();
+				} else {
+					if(!array.length && created_at > 0) {
+						if(instrument.alert) {
+							self.set({
+								edit_commission: 1
 							});
 						}
-					});
-				} else {
-					self.set({
-						profit: profit,
-						loss: loss,
-						commission: commission,
-						edit_commission: 0
-					});
-					var balance = app.account.get('balance') + self.getNet();
-					if(balance < 0) {
-						alertify.error('Non-sufficient funds');
-						var last = self.positions[self.positions.length - 1];
-						var position = new app.Models.position({
-							id: last.id
+						self.set({
+							variation: (profit - loss - commission) * 100 / app.account.get('balance'),
+							closed_at: created_at
 						});
-						position.delete(true);
-						$('header button').show();
-					} else {
-						if(!array.length && created_at > 0) {
-							if(instrument.alert) {
-								self.set({
-									edit_commission: 1
+						self.save(null, {
+							success: function() {
+								app.account.set({
+									balance: balance
+								});
+								app.account.save(null, {
+									success: function() {
+										callback(true);
+									}
 								});
 							}
-							self.set({
-								variation: (profit - loss - commission) * 100 / app.account.get('balance'),
-								closed_at: created_at
-							});
-							self.save(null, {
-								success: function() {
-									app.account.set({
-										balance: balance
-									});
-									app.account.save(null, {
-										success: function() {
-											callback(true);
-										}
-									});
-								}
-							});
-						} else {
-							self.save(null, {
-								success: function() {
-									callback();
-								}
-							});
-						}
+						});
+					} else {
+						self.save(null, {
+							success: function() {
+								callback();
+							}
+						});
 					}
 				}
-			});
+			}
 		},
 
 		toJSON: function() {

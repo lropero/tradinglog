@@ -80,10 +80,11 @@
 				}
 			});
 			if(this.account) {
+				var account;
 				accounts.setFetchId(this.account.id);
 				accounts.fetch({
 					success: function () {
-						var account = accounts.at(0);
+						account = accounts.at(0);
 					}
 				});
 			} else {
