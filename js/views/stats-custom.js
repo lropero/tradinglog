@@ -103,6 +103,7 @@
 			});
 			custom.validate();
 			if(custom.isValid()) {
+				$('div#generate').hide();
 				var groups = [];
 				var str = '';
 				$('ul.wrapper-select-group').find('li').each(function(index, value) {

@@ -24,6 +24,32 @@
 			return average / standardDeviation;
 		},
 
+		compress: function(balances) {
+			var steps = 30;
+			var length = Object.keys(balances).length;
+			if(length > steps) {
+				var temp = [];
+				$.each(balances, function(index, value) {
+					for(var i = 0; i < steps - 2; i++) {
+						temp.push(value);
+					}
+				});
+				temp = temp.slice(steps - 3, temp.length - (steps - 3));
+				var balancesNew = [temp[0]];
+				var sum = 0;
+				for(var i = 1; i < temp.length - 1; i++) {
+					sum += temp[i];
+					if(i % (length - 2) === 0) {
+						balancesNew.push(sum / (length - 2));
+						sum = 0;
+					}
+				}
+				balancesNew.push(temp[temp.length - 1]);
+				balances = balancesNew;
+			}
+			return balances;
+		},
+
 		generate: function(index, from, to) {
 			var self = this;
 			var deferred = $.Deferred();
@@ -182,6 +208,10 @@
 									break;
 							}
 						}
+
+						self.data[index]['all'].balances = self.compress(self.data[index]['all'].balances);
+						self.data[index]['longs'].balances = self.compress(self.data[index]['longs'].balances);
+						self.data[index]['shorts'].balances = self.compress(self.data[index]['shorts'].balances);
 
 						if(self.data[index]['all'].trades > 0) {
 							self.data[index]['all'].accuracy = self.data[index]['all'].winners * 100 / self.data[index]['all'].trades;

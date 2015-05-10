@@ -117,14 +117,18 @@
 			var labels = [];
 			var data = []
 			$.each(balances, function(index, value) {
-				if(index === '0') {
-					index = '<';
-				} else {
+				index = index.toString();
+				if(index.indexOf('-') > -1) {
 					index = index.split('-')[2];
+				} else {
+					index = '';
 				}
 				labels.push(index);
 				data.push(value);
 			});
+			if(labels[1].length) {
+				labels[0] = '<';
+			}
 			var $line = $('canvas#line');
 			var ctx = $line.get(0).getContext('2d');
 			var data = {
