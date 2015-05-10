@@ -25,7 +25,7 @@
 		},
 
 		compress: function(balances) {
-			var steps = 30;
+			var steps = 28;
 			var length = Object.keys(balances).length;
 			if(length > steps) {
 				var temp = [];

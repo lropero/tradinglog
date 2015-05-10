@@ -25,7 +25,7 @@
 		}
 	});
 
-	app.combine = function() {
+	app.combine = function(hide) {
 		var $isolate = $('div#isolate');
 		if($isolate.is(':visible')) {
 			if(typeof cordova !== 'undefined') {
@@ -36,7 +36,9 @@
 			$isolate.hide();
 			$('div#isolated').append($wrapper).children().unwrap();
 			$('div#complete').show();
-			$('header button').show();
+			if(!hide) {
+				$('header button').show();
+			}
 		}
 	}
 

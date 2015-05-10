@@ -30,7 +30,7 @@
 
 		combine: function(e) {
 			e.preventDefault();
-			app.combine();
+			app.combine(true);
 		},
 
 		isolate: function(e) {
