@@ -118,6 +118,7 @@
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var trades = new app.Collections.trades();
+			var operations = new app.Collections.operations();
 
 			alertify.set({
 				buttonFocus: 'none',
@@ -144,26 +145,32 @@
 							var operation = new app.Models.operation({
 								id: id
 							});
-							operation.delete(function(amount) {
-								var balance = app.account.get('balance') - amount;
-								app.account.set({
-									balance: balance
-								});
-								app.account.save(null, {
-									success: function() {
-										var key = $wrapper.data('key').toString();
-										app.count.operations--;
-										app.objects.splice(key, 1);
-										if(!(!app.count.closed && app.count.operations === 1)) {
-											app.objects[app.count.open].isNewest = true;
-										}
-										app.cache.delete('main');
-										if(app.objects[app.count.open].instrument_id) {
-											app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
-										}
-										app.loadView('main');
-									}
-								});
+							operations.setFetchId(id);
+							operations.fetch({
+								success: function () {
+									var operation = operations.at(0);
+									operation.delete(function(amount) {
+										var balance = app.account.get('balance') - amount;
+										app.account.set({
+											balance: balance
+										});
+										app.account.save(null, {
+											success: function() {
+												var key = $wrapper.data('key').toString();
+												app.count.operations--;
+												app.objects.splice(key, 1);
+												if(!(!app.count.closed && app.count.operations === 1)) {
+													app.objects[app.count.open].isNewest = true;
+												}
+												app.cache.delete('main');
+												if(app.objects[app.count.open].instrument_id) {
+													app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
+												}
+												app.loadView('main');
+											}
+										});
+									});
+								}
 							});
 							break;
 						case 'trade':
