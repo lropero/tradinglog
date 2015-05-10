@@ -99,7 +99,7 @@
 			];
 			var options = {
 				animationEasing: 'easeOutElastic',
-				animationSteps: 30,
+				animationSteps: 38,
 				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + stats.net + ', \'$ \')%></span></li></ul>',
 				percentageInnerCutout: 60,
 				segmentStrokeColor: '#4020d0',
@@ -145,7 +145,7 @@
 			};
 			var options = {
 				animationEasing: 'easeOutElastic',
-				animationSteps: 30,
+				animationSteps: 38,
 				bezierCurve: false,
 				datasetStrokeWidth: 1,
 				pointDotRadius: 2,
