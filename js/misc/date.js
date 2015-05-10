@@ -67,26 +67,38 @@
 
 		getString: function(index) {
 			var string;
-			var dateValues = index.split('-');
-			switch(dateValues.length) {
-				case 2:
-					string = this.getMonthString(parseInt(dateValues[1], 10)) + ' ' + dateValues[0];
-					break;
-				case 3:
-					var month = this.getMonthString(parseInt(dateValues[1], 10), true);
-					var digit = dateValues[2] % 10;
-					string = month + ' ' + dateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + dateValues[0] + ' - ';
-					var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
-					date.setDate(date.getDate() + 6);
-					var today = new Date();
-					if(date.getTime() > today.getTime()) {
-						string += 'Today';
-					} else {
-						var month = this.getMonthString(date.getMonth(), true);
-						var digit = date.getDate() % 10;
-						string += month + ' ' + date.getDate() + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + date.getFullYear();
-					}
-					break;
+			if(index.indexOf('#') > -1) {
+				var split = index.split('#');
+				var fromDateValues = split[0].split('-');
+				var toDateValues = split[1].split('-');
+				var month = this.getMonthString(parseInt(fromDateValues[1], 10) - 1, true);
+				var digit = fromDateValues[2] % 10;
+				string = month + ' ' + fromDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + fromDateValues[0] + ' - ';
+				month = this.getMonthString(parseInt(toDateValues[1], 10) - 1, true);
+				digit = toDateValues[2] % 10;
+				string += month + ' ' + toDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + toDateValues[0];
+			} else {
+				var dateValues = index.split('-');
+				switch(dateValues.length) {
+					case 2:
+						string = this.getMonthString(parseInt(dateValues[1], 10)) + ' ' + dateValues[0];
+						break;
+					case 3:
+						var month = this.getMonthString(parseInt(dateValues[1], 10), true);
+						var digit = dateValues[2] % 10;
+						string = month + ' ' + dateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + dateValues[0] + ' - ';
+						var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+						date.setDate(date.getDate() + 6);
+						var today = new Date();
+						if(date.getTime() > today.getTime()) {
+							string += 'Today';
+						} else {
+							var month = this.getMonthString(date.getMonth(), true);
+							var digit = date.getDate() % 10;
+							string += month + ' ' + date.getDate() + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + date.getFullYear();
+						}
+						break;
+				}
 			}
 			return string;
 		}

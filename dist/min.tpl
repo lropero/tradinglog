@@ -1197,8 +1197,8 @@
 	<ul>
 		{{#each trade.objects}}
 			{{#if this.size}}
-				<li class="wrapper-label"{{#or ../../trade.isOpen ../../trade.isFirst}}{{#if this.last}}{{#gt ../../../../trade.positions 1}} data-swipe="1"{{/gt}}{{/if}}{{/or}}>
-					<div class="label position {{#gt this.size 0}}buy{{else}}sell{{/gt}}{{#or ../../trade.isOpen ../../trade.isFirst}}{{#if this.last}}{{#gt ../../../../trade.positions 1}} swipe{{/gt}}{{/if}}{{/or}}">
+				<li class="wrapper-label"{{#or ../../trade.isOpen ../../trade.isNewest}}{{#if this.last}}{{#gt ../../../../trade.positions 1}} data-swipe="1"{{/gt}}{{/if}}{{/or}}>
+					<div class="label position {{#gt this.size 0}}buy{{else}}sell{{/gt}}{{#or ../../trade.isOpen ../../trade.isNewest}}{{#if this.last}}{{#gt ../../../../trade.positions 1}} swipe{{/gt}}{{/if}}{{/or}}">
 						<div class="ball"></div>
 						<div class="row">
 							<div class="size-price">{{this.sizePrice}}</div>
@@ -1206,7 +1206,7 @@
 						<div class="row">
 							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
 						</div>
-						{{#or ../../trade.isOpen ../../trade.isFirst}}
+						{{#or ../../trade.isOpen ../../trade.isNewest}}
 							{{#if this.last}}
 								{{#gt ../../../../trade.positions 1}}
 									<div class="swipe-triangle"></div>
@@ -1214,7 +1214,7 @@
 							{{/if}}
 						{{/or}}
 					</div>
-					{{#or ../../trade.isOpen ../../trade.isFirst}}
+					{{#or ../../trade.isOpen ../../trade.isNewest}}
 						{{#if this.last}}
 							{{#gt ../../../../trade.positions 1}}
 								<div class="wrapper-swipe">
@@ -1289,8 +1289,8 @@
 					</div>
 				</li>
 			{{else}}
-				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isFirst}} data-swipe="1"{{/if}}>
-					<div class="label operation {{#gt this.amount 0}}deposit{{else}}withdraw{{/gt}}{{#unless this.description.length}} no-click{{/unless}}{{#if this.isFirst}} swipe{{/if}}" data-net="{{this.amount}}">
+				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isNewest}} data-swipe="1"{{/if}}>
+					<div class="label operation {{#gt this.amount 0}}deposit{{else}}withdraw{{/gt}}{{#unless this.description.length}} no-click{{/unless}}{{#if this.isNewest}} swipe{{/if}}" data-net="{{this.amount}}">
 						<div class="ball">
 							<div class="icon"></div>
 						</div>
@@ -1304,11 +1304,11 @@
 								<div class="variation">{{#variation this.variation}}{{/variation}}</div>
 							{{/if}}
 						</div>
-						{{#if this.isFirst}}
+						{{#if this.isNewest}}
 							<div class="swipe-triangle"></div>
 						{{/if}}
 					</div>
-					{{#if this.isFirst}}
+					{{#if this.isNewest}}
 						<div class="wrapper-swipe">
 							<div class="swipe-buttons">
 								<ul>
@@ -1487,6 +1487,11 @@
 	<div class="button-primary" id="done">Done</div>
 </div>
 <div id="complete">
+	<div id="no-stats" style="display: none;">
+		<div class="center">
+			<span>No data</span>
+		</div>
+	</div>
 	<div class="box-violet">
 		<div class="title-section">Group of instruments</div>
 		<ul class="wrapper-select-group">
@@ -1501,11 +1506,11 @@
 		<form>
 			<div class="wrapper-input two-input isolate">
 				<div class="wrapper-input">
-					<input id="form-from" type="text" placeholder="From" disabled />
+					<input id="from" type="text" placeholder="From" disabled />
 					<span class="help-block">From and to dates.</span>
 				</div>
 				<div class="wrapper-input">
-					<input id="form-to" type="text" placeholder="To" disabled />
+					<input id="to" type="text" placeholder="To" disabled />
 				</div>
 			</div>
 		</form>
@@ -1523,7 +1528,7 @@
 			</div>
 		</form>
 		-->
-		<div class="button-primary">Generate</div>
+		<div class="button-primary" id="generate">Generate</div>
 	</div>
 </div>
 </script>
@@ -1550,7 +1555,7 @@
 		</li>
 	</ul>
 </div>
-<div id="no-stats" style="display: none;">
+<div id="no-stats" style="display: none; top: 147px;">
 	<div class="center">
 		<span>No data</span>
 	</div>
@@ -1664,6 +1669,11 @@
 	</ul>
 </div>
 <div class="wrapper-control-box-swipe">
+	{{#if this.groups}}
+		<ul class="wrapper-active-group">
+			{{#groups this.groups}}{{/groups}}
+		</ul>
+	{{/if}}
 	<ul class="control-box-swipe">
 		<li class="active" id="swipe-control-1"></li>
 		<li id="swipe-control-2"></li>
@@ -1675,7 +1685,7 @@
 	<ul>
 		<li data-period="weekly" data-section="Numbers">Weekly</li>
 		<li class="middle active" data-period="monthly" data-section="Numbers">Monthly</li>
-		<li data-section="Custom">Custom</li>
+		<li data-period="custom" data-section="Custom">Custom</li>
 	</ul>
 </control>
 <section id="content"></section>

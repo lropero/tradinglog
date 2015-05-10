@@ -34,8 +34,8 @@
 					</div>
 				</li>
 			{{else}}
-				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isFirst}} data-swipe="1"{{/if}}>
-					<div class="label operation {{#gt this.amount 0}}deposit{{else}}withdraw{{/gt}}{{#unless this.description.length}} no-click{{/unless}}{{#if this.isFirst}} swipe{{/if}}" data-net="{{this.amount}}">
+				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isNewest}} data-swipe="1"{{/if}}>
+					<div class="label operation {{#gt this.amount 0}}deposit{{else}}withdraw{{/gt}}{{#unless this.description.length}} no-click{{/unless}}{{#if this.isNewest}} swipe{{/if}}" data-net="{{this.amount}}">
 						<div class="ball">
 							<div class="icon"></div>
 						</div>
@@ -49,11 +49,11 @@
 								<div class="variation">{{#variation this.variation}}{{/variation}}</div>
 							{{/if}}
 						</div>
-						{{#if this.isFirst}}
+						{{#if this.isNewest}}
 							<div class="swipe-triangle"></div>
 						{{/if}}
 					</div>
-					{{#if this.isFirst}}
+					{{#if this.isNewest}}
 						<div class="wrapper-swipe">
 							<div class="swipe-buttons">
 								<ul>

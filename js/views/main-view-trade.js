@@ -112,13 +112,13 @@
 														break;
 													}
 												}
-												app.objects[app.count.open].isFirst = false;
+												app.objects[app.count.open].isNewest = false;
 												app.count.open++;
 												app.objects.splice(self.key, 1);
 												app.count.closed--;
 												app.objects.splice(key, 0, trade.toJSON());
 												if(!(!app.count.closed && app.count.operations === 1)) {
-													app.objects[app.count.open].isFirst = true;
+													app.objects[app.count.open].isNewest = true;
 												}
 												app.cache.delete('main');
 												app.cache.delete('mainMap');

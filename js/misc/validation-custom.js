@@ -36,9 +36,7 @@
 			$isolate.hide();
 			$('div#isolated').append($wrapper).children().unwrap();
 			$('div#complete').show();
-			var $header = $('header');
-			$header.find('#button-left').show();
-			$header.find('#button-right').show();
+			$('header button').show();
 		}
 	}
 
@@ -46,8 +44,13 @@
 		var $target = $(e.currentTarget);
 		var $isolate = $('div#isolate');
 		if($isolate.is(':hidden')) {
+			var $isolated = $target.parents('.isolate');
 			if($target.hasClass('error')) {
-				$target.removeClass('error');
+				if($isolated.hasClass('two-input')) {
+					$isolated.find('input').removeClass('error');
+				} else {
+					$target.removeClass('error');
+				}
 				var $price = $target.parent('div.price');
 				if($price) {
 					$price.removeClass('error');
@@ -57,16 +60,13 @@
 					$wrapper.removeClass('error');
 				}
 			}
-			var $isolated = $target.parents('.isolate');
 			if($isolated.hasClass('two-input')) {
 				$isolated.find('input').addClass('field');
 			} else {
 				$target.addClass('field');
 			}
 			$isolated.wrap('<div id="isolated"></div>');
-			var $header = $('header');
-			$header.find('#button-left').hide();
-			$header.find('#button-right').hide();
+			$('header button').hide();
 			$('div#complete').hide();
 			$isolate.append($isolated).show();
 		} else {

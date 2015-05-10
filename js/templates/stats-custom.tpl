@@ -2,6 +2,11 @@
 	<div class="button-primary" id="done">Done</div>
 </div>
 <div id="complete">
+	<div id="no-stats" style="display: none;">
+		<div class="center">
+			<span>No data</span>
+		</div>
+	</div>
 	<div class="box-violet">
 		<div class="title-section">Group of instruments</div>
 		<ul class="wrapper-select-group">
@@ -16,11 +21,11 @@
 		<form>
 			<div class="wrapper-input two-input isolate">
 				<div class="wrapper-input">
-					<input id="form-from" type="text" placeholder="From" disabled />
+					<input id="from" type="text" placeholder="From" disabled />
 					<span class="help-block">From and to dates.</span>
 				</div>
 				<div class="wrapper-input">
-					<input id="form-to" type="text" placeholder="To" disabled />
+					<input id="to" type="text" placeholder="To" disabled />
 				</div>
 			</div>
 		</form>
@@ -38,6 +43,6 @@
 			</div>
 		</form>
 		-->
-		<div class="button-primary">Generate</div>
+		<div class="button-primary" id="generate">Generate</div>
 	</div>
 </div>

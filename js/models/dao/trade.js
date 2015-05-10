@@ -47,27 +47,45 @@
 					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at >= "' + model.from + '" AND closed_at <= "' + model.to + '" ORDER BY closed_at;';
 					tx.executeSql(sql, [], function(tx, results) {
 						var trades = [];
+						var instruments = {};
 						for(var i = 0; i < results.rows.length; i++) {
-							trades.push(results.rows.item(i));
+							if(model.groups) {
+								var instrument_id = results.rows.item(i).instrument_id;
+								if(!instruments[instrument_id]) {
+									instruments[instrument_id] = [];
+								}
+								instruments[instrument_id].push(i);
+							} else {
+								trades.push(results.rows.item(i));
+							}
 						}
-						callback(trades);
+						var deferreds = [];
+						$.each(instruments, function(index, value) {
+							var instrument = new app.Models.instrument({
+								id: index
+							});
+							instrument.deferred.then(function() {
+								var group_id = instrument.get('group_id').toString();
+								for(var i = 0; i < value.length; i++) {
+									if($.inArray(group_id, model.groups) > -1) {
+										trades.push(results.rows.item(value[i]));
+									}
+								}
+							});
+							deferreds.push(instrument.deferred);
+						});
+						$.when.apply($, deferreds).done(function() {
+							callback(trades);
+						});
 					});
 				} else {
-					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
-					if(model.instrument_id) {
-						sql += 'AND instrument_id == "' + model.instrument_id + '" ';
-					}
-					sql += 'AND closed_at == "0" ORDER BY id DESC;';
+					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at == "0" ORDER BY id DESC;';
 					tx.executeSql(sql, [], function(tx, results) {
 						var trades = [];
 						for(var i = 0; i < results.rows.length; i++) {
 							trades.push(results.rows.item(i));
 						}
-						var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" ';
-						if(model.instrument_id) {
-							sql += 'AND instrument_id == "' + model.instrument_id + '" ';
-						}
-						sql += 'AND closed_at > "0" ORDER BY closed_at DESC;';
+						var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at > "0" ORDER BY closed_at DESC;';
 						tx.executeSql(sql, [], function(tx, results) {
 							for(var i = 0; i < results.rows.length; i++) {
 								trades.push(results.rows.item(i));

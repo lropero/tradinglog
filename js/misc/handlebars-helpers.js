@@ -97,6 +97,18 @@
 		}
 	});
 
+	Handlebars.registerHelper('groups', function(groups) {
+		var list = '';
+		for(var i = 0; i < 5; i++) {
+			list += '<li class="group';
+			if($.inArray(i, groups) > -1) {
+				list += ' selected';
+			}
+			list += '">' + String.fromCharCode(i + 65) + '</li>';
+		}
+		return list;
+	});
+
 	Handlebars.registerHelper('gt', function(lvalue, rvalue, options) {
 		if(lvalue > rvalue) {
 			return options.fn(this);

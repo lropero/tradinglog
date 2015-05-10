@@ -22,7 +22,11 @@
 		render: function() {
 			app.trigger('change', 'stats');
 			this.$el.html(this.template());
-			this.subview = new app.Views.statsNumbers('0', 1, 1);
+			this.subview = new app.Views.statsNumbers({
+				at: '0',
+				radio: 1,
+				slide: 1
+			});
 			return this;
 		},
 
@@ -34,9 +38,8 @@
 			var radio = 1;
 			var slide = 1;
 			if(section === 'Numbers') {
-				var $control = $('ul.control-box-swipe');
-				if($control.length) {
-					var period = $('control.segmented li.active').data('period');
+				var period = $('control.segmented li.active').data('period');
+				if(period !== 'custom') {
 					var index = app.stats.availables[period][this.subview.at];
 					done:
 					switch(period) {
@@ -74,6 +77,9 @@
 							}
 							break;
 					}
+				}
+				var $control = $('ul.control-box-swipe');
+				if($control.length) {
 					radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
 					slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
 				}
@@ -83,7 +89,11 @@
 			if(typeof this.subview.destroy === 'function') {
 				this.subview.destroy();
 			}
-			this.subview = new app.Views['stats' + section](at.toString(), radio, slide);
+			this.subview = new app.Views['stats' + section]({
+				at: at.toString(),
+				radio: radio,
+				slide: slide
+			});
 		}
 	});
 })();

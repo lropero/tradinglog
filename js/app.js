@@ -231,7 +231,7 @@
 				app.count.closed++;
 			}
 			if(!(!app.count.closed && app.count.operations === 1)) {
-				app.objects[app.count.open].isFirst = true;
+				app.objects[app.count.open].isNewest = true;
 			}
 		}
 	};

@@ -10,20 +10,39 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(at, radio, slide) {
-			this.at = parseInt(at, 10);
-			this.period = $('control.segmented li.active').data('period');
+		initialize: function(attrs) {
+			if(attrs.index) {
+				this.index = attrs.index;
+				this.groups = attrs.groups;
+				this.stats = attrs.stats;
+				var radio = 1;
+				var slide = 1;
+			} else {
+				this.at = parseInt(attrs.at, 10);
+				this.period = $('control.segmented li.active').data('period');
+				var radio = attrs.radio;
+				var slide = attrs.slide;
+			}
 			this.template = Handlebars.compile(app.templateLoader.get('stats-numbers'));
 			this.render(radio, slide);
 		},
 
 		render: function(radio, slide) {
 			app.trigger('change', 'stats-numbers');
-			this.$el.html(this.template({
-				date: app.date.getString(app.stats.availables[this.period][this.at])
-			}));
-			if(!app.stats.availables[this.period][this.at + 1]) {
+			if(this.index) {
+				this.$el.html(this.template({
+					date: app.date.getString(this.index),
+					groups: this.groups
+				}));
 				$('span.button-left').hide();
+				$('span.button-right').hide();
+			} else {
+				this.$el.html(this.template({
+					date: app.date.getString(app.stats.availables[this.period][this.at])
+				}));
+				if(!app.stats.availables[this.period][this.at + 1]) {
+					$('span.button-left').hide();
+				}
 			}
 			$('div#radio-' + radio).addClass('active');
 			var $swipePanes = $('ul.swipe-panes');
@@ -41,7 +60,7 @@
 			var $control = $('ul.control-box-swipe');
 			$control.find('li.active').removeClass('active');
 			$('li#swipe-control-' + slide).addClass('active');
-			this.stats();
+			this.drawStats();
 			return this;
 		},
 
@@ -164,6 +183,104 @@
 			}
 		},
 
+		drawStats: function() {
+			var self = this;
+			if(this.index) {
+				var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
+				if(this.stats[type].trades) {
+					$('div#no-stats').css('display', 'none');
+					$('div.wrapper-control-box-swipe').css('display', 'block');
+					this.drawDoughnut(this.stats[type]);
+					this.drawNumbers(this.stats[type]);
+					this.drawLine(this.stats[type].balances);
+				} else {
+					$('div#no-stats').css('display', 'block');
+					$('div.wrapper-control-box-swipe').css('display', 'none');
+				}
+			} else {
+				var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
+				deferred.done(function(stats) {
+					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
+					if(stats[type].trades) {
+						$('div#no-stats').css('display', 'none');
+						$('div.wrapper-control-box-swipe').css('display', 'block');
+						self.drawDoughnut(stats[type]);
+						self.drawNumbers(stats[type]);
+						self.drawLine(stats[type].balances);
+					} else {
+						$('div#no-stats').css('display', 'block');
+						$('div.wrapper-control-box-swipe').css('display', 'none');
+					}
+					var index = app.stats.availables[self.period][self.at + 1];
+					if(index) {
+						$('span.button-left').show();
+						if(!app.stats.data[index]) {
+							app.stats.get(index);
+						}
+						index = app.stats.availables[self.period][self.at + 2];
+						if(index && !app.stats.data[index]) {
+							app.stats.get(index);
+						}
+					}
+					index = app.stats.availables[self.period][self.at - 1];
+					if(index) {
+						$('span.button-right').show();
+						if(!app.stats.data[index]) {
+							app.stats.get(index);
+						}
+						index = app.stats.availables[self.period][self.at - 2];
+						if(index && !app.stats.data[index]) {
+							app.stats.get(index);
+						}
+					}
+					index = app.stats.availables[self.period][self.at];
+					done:
+					switch(self.period) {
+						case 'monthly':
+							for(var i = app.stats.availables.weekly.length; i > 0; i--) {
+								var dateValues = app.stats.availables.weekly[i - 1].split('-');
+								if(dateValues[0] + '-' + dateValues[1] === index) {
+									if(!app.stats.data[app.stats.availables.weekly[i - 1]]) {
+										app.stats.get(app.stats.availables.weekly[i - 1]);
+									}
+									break done;
+								}
+							}
+							var dateValues = index.split('-');
+							if(dateValues[1] === '0') {
+								index = (dateValues[0] - 1) + '-11';
+							} else {
+								index = dateValues[0] + '-' + (dateValues[1] - 1);
+							}
+							for(var i = 0; i < app.stats.availables.weekly.length; i++) {
+								var dateValues = app.stats.availables.weekly[i].split('-');
+								if(dateValues[0] + '-' + dateValues[1] === index) {
+									if(!app.stats.data[app.stats.availables.weekly[i]]) {
+										app.stats.get(app.stats.availables.weekly[i]);
+									}
+									break done;
+								}
+							}
+							break;
+						case 'weekly':
+							var dateValues = index.split('-');
+							var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+							date.setDate(date.getDate() + 6);
+							for(var i = app.stats.availables.monthly.length; i > 0; i--) {
+								if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {
+									if(!app.stats.data[app.stats.availables.monthly[i - 1]]) {
+										app.stats.get(app.stats.availables.monthly[i - 1]);
+									}
+									break done;
+								}
+							}
+							break;
+					}
+				});
+			}
+			return deferred;
+		},
+
 		moveDate: function(e) {
 			e.preventDefault();
 			$('span.button-left').hide();
@@ -175,14 +292,14 @@
 					if(app.stats.availables[this.period][this.at + 1]) {
 						this.at++;
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
-						this.stats();
+						this.drawStats();
 					}
 					break;
 				case 'right':
 					if(app.stats.availables[this.period][this.at - 1]) {
 						this.at--;
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
-						this.stats();
+						this.drawStats();
 					}
 					break;
 			}
@@ -198,7 +315,7 @@
 			if(!$radio.hasClass('active')) {
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
-				this.stats();
+				this.drawStats();
 			}
 		},
 
@@ -220,90 +337,6 @@
 					});
 				});
 			}, 1000);
-		},
-
-		stats: function() {
-			var self = this;
-			var type = this.$el.find('ul.wrapper-radiobutton div.active').data('type');
-			var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
-			deferred.done(function(stats) {
-				if(stats[type].trades) {
-					$('div#no-stats').css('display', 'none');
-					$('div.wrapper-control-box-swipe').css('display', 'block');
-					self.drawDoughnut(stats[type]);
-					self.drawNumbers(stats[type]);
-					self.drawLine(stats[type].balances);
-				} else {
-					$('div#no-stats').css('display', 'block');
-					$('div.wrapper-control-box-swipe').css('display', 'none');
-				}
-				var index = app.stats.availables[self.period][self.at + 1];
-				if(index) {
-					$('span.button-left').show();
-					if(!app.stats.data[index]) {
-						app.stats.get(index);
-					}
-					index = app.stats.availables[self.period][self.at + 2];
-					if(index && !app.stats.data[index]) {
-						app.stats.get(index);
-					}
-				}
-				index = app.stats.availables[self.period][self.at - 1];
-				if(index) {
-					$('span.button-right').show();
-					if(!app.stats.data[index]) {
-						app.stats.get(index);
-					}
-					index = app.stats.availables[self.period][self.at - 2];
-					if(index && !app.stats.data[index]) {
-						app.stats.get(index);
-					}
-				}
-				index = app.stats.availables[self.period][self.at];
-				done:
-				switch(self.period) {
-					case 'monthly':
-						for(var i = app.stats.availables.weekly.length; i > 0; i--) {
-							var dateValues = app.stats.availables.weekly[i - 1].split('-');
-							if(dateValues[0] + '-' + dateValues[1] === index) {
-								if(!app.stats.data[app.stats.availables.weekly[i - 1]]) {
-									app.stats.get(app.stats.availables.weekly[i - 1]);
-								}
-								break done;
-							}
-						}
-						var dateValues = index.split('-');
-						if(dateValues[1] === '0') {
-							index = (dateValues[0] - 1) + '-11';
-						} else {
-							index = dateValues[0] + '-' + (dateValues[1] - 1);
-						}
-						for(var i = 0; i < app.stats.availables.weekly.length; i++) {
-							var dateValues = app.stats.availables.weekly[i].split('-');
-							if(dateValues[0] + '-' + dateValues[1] === index) {
-								if(!app.stats.data[app.stats.availables.weekly[i]]) {
-									app.stats.get(app.stats.availables.weekly[i]);
-								}
-								break done;
-							}
-						}
-						break;
-					case 'weekly':
-						var dateValues = index.split('-');
-						var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
-						date.setDate(date.getDate() + 6);
-						for(var i = app.stats.availables.monthly.length; i > 0; i--) {
-							if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {
-								if(!app.stats.data[app.stats.availables.monthly[i - 1]]) {
-									app.stats.get(app.stats.availables.monthly[i - 1]);
-								}
-								break done;
-							}
-						}
-						break;
-				}
-			});
-			return deferred;
 		}
 	});
 })();

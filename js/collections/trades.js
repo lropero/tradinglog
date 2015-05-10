@@ -9,6 +9,10 @@
 			this.account_id = account_id;
 		},
 
+		setGroups: function(groups) {
+			this.groups = groups;
+		},
+
 		setRange: function(from, to) {
 			this.range = true;
 			this.from = from;

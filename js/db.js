@@ -164,10 +164,10 @@
 									});
 									trade2.deferred.then(function() {
 										trade2.setPnL(function() {
-											app.objects[app.count.open].isFirst = false;
+											app.objects[app.count.open].isNewest = false;
 											app.count.closed++;
 											app.objects.splice(app.count.open, 0, trade2.toJSON());
-											app.objects[app.count.open].isFirst = true;
+											app.objects[app.count.open].isNewest = true;
 											app.cache.delete('main');
 											app.cache.delete('mainMap');
 											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);

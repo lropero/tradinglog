@@ -29,6 +29,14 @@
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
+			if(index.indexOf('#') > -1) {
+				var split = index.split('#');
+				var groups = [];
+				for(var i = 0; i < split[2].length; i ++) {
+					groups.push(split[2][i]);
+				}
+				trades.setGroups(groups);
+			}
 			trades.setRange(from, to);
 			trades.deferreds = [];
 			trades.fetch({
@@ -249,28 +257,46 @@
 			var self = this;
 			if(!this.data[index]) {
 				var dateFrom = new Date();
-				dateFrom.setDate(1);
 				dateFrom.setHours(0, 0, 0, 0);
 				var dateTo = new Date();
-				dateTo.setDate(1);
 				dateTo.setHours(23, 59, 59, 999);
-				var dateValues = index.split('-');
-				switch(dateValues.length) {
-					case 2:
-						dateFrom.setFullYear(dateValues[0]);
-						dateFrom.setMonth(dateValues[1]);
-						dateTo.setFullYear(dateValues[0]);
-						dateTo.setMonth(parseInt(dateValues[1], 10) + 1);
-						dateTo.setDate(0);
-						break;
-					case 3:
-						dateFrom.setFullYear(dateValues[0]);
-						dateFrom.setMonth(dateValues[1]);
-						dateFrom.setDate(dateValues[2]);
-						dateTo.setFullYear(dateValues[0]);
-						dateTo.setMonth(dateValues[1]);
-						dateTo.setDate(parseInt(dateValues[2], 10) + 6);
-						break;
+				if(index.indexOf('#') > -1) {
+					var split = index.split('#');
+					var fromDateValues = split[0].split('-');
+					var toDateValues = split[1].split('-');
+					var month = parseInt(fromDateValues[1], 10) - 1;
+					var day = parseInt(fromDateValues[2], 10);
+					dateFrom.setFullYear(fromDateValues[0]);
+					dateFrom.setMonth(month);
+					dateFrom.setDate(day);
+					index = fromDateValues[0] + '-' + month + '-' + day + '#';
+					month = parseInt(toDateValues[1], 10) - 1;
+					day = parseInt(toDateValues[2], 10);
+					dateTo.setFullYear(toDateValues[0]);
+					dateTo.setMonth(month);
+					dateTo.setDate(day);
+					index += toDateValues[0] + '-' + month + '-' + day + '#' + split[2];
+				} else {
+					dateFrom.setDate(1);
+					dateTo.setDate(1);
+					var dateValues = index.split('-');
+					switch(dateValues.length) {
+						case 2:
+							dateFrom.setFullYear(dateValues[0]);
+							dateFrom.setMonth(dateValues[1]);
+							dateTo.setFullYear(dateValues[0]);
+							dateTo.setMonth(parseInt(dateValues[1], 10) + 1);
+							dateTo.setDate(0);
+							break;
+						case 3:
+							dateFrom.setFullYear(dateValues[0]);
+							dateFrom.setMonth(dateValues[1]);
+							dateFrom.setDate(dateValues[2]);
+							dateTo.setFullYear(dateValues[0]);
+							dateTo.setMonth(dateValues[1]);
+							dateTo.setDate(parseInt(dateValues[2], 10) + 6);
+							break;
+					}
 				}
 				var deferred = this.generate(index, dateFrom.getTime(), dateTo.getTime());
 				return deferred;

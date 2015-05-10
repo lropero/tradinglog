@@ -92,9 +92,9 @@
 									id: insertId
 								});
 								app.count.operations++;
-								app.objects[app.count.open].isFirst = false;
+								app.objects[app.count.open].isNewest = false;
 								app.objects.splice(app.count.open, 0, operation.toJSON());
-								app.objects[app.count.open].isFirst = true;
+								app.objects[app.count.open].isNewest = true;
 								app.cache.delete('main');
 								if(app.objects[app.count.open + 1].instrument_id) {
 									app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);

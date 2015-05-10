@@ -21,7 +21,7 @@
 		</li>
 	</ul>
 </div>
-<div id="no-stats" style="display: none;">
+<div id="no-stats" style="display: none; top: 147px;">
 	<div class="center">
 		<span>No data</span>
 	</div>
@@ -135,6 +135,11 @@
 	</ul>
 </div>
 <div class="wrapper-control-box-swipe">
+	{{#if this.groups}}
+		<ul class="wrapper-active-group">
+			{{#groups this.groups}}{{/groups}}
+		</ul>
+	{{/if}}
 	<ul class="control-box-swipe">
 		<li class="active" id="swipe-control-1"></li>
 		<li id="swipe-control-2"></li>

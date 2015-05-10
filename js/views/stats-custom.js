@@ -5,6 +5,7 @@
 		el: 'section#main-stats-friends section#content',
 		events: {
 			'tap div#done': 'combine',
+			'tap div#generate': 'submit',
 			'tap input': 'isolate',
 			'tap ul.wrapper-select-group li': 'toggleGroup'
 		},
@@ -17,6 +18,9 @@
 		render: function() {
 			app.trigger('change', 'stats-custom');
 			this.$el.html(this.template());
+			if(!app.firstDate) {
+				$('div#no-stats').css('display', 'block');
+			}
 			return this;
 		},
 
@@ -51,26 +55,26 @@
 			var minDate = new Date(app.firstDate);
 			var id = $target.attr('id');
 			switch(id) {
-				case 'form-from':
-					var from = $('#form-from').val();
+				case 'from':
+					var from = $('#from').val();
 					if(from) {
 						var dateValues = from.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 					}
-					var to = $('#form-to').val();
+					var to = $('#to').val();
 					if(to) {
 						var dateValues = to.split('-');
 						maxDate = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 					}
 					break;
-				case 'form-to':
-					var from = $('#form-from').val();
+				case 'to':
+					var from = $('#from').val();
 					if(from) {
 						var dateValues = from.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 						minDate = new Date(date.getTime());
 					}
-					var to = $('#form-to').val();
+					var to = $('#to').val();
 					if(to) {
 						var dateValues = to.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
@@ -84,6 +88,40 @@
 					minDate: minDate,
 					mode: 'date'
 				}, value);
+			}
+		},
+
+		submit: function(e) {
+			var self = this;
+			e.preventDefault();
+			var from = this.$el.find('input#from').val();
+			var to = this.$el.find('input#to').val();
+
+			var custom = new app.Models.custom({
+				from: from,
+				to: to
+			});
+			custom.validate();
+			if(custom.isValid()) {
+				var groups = [];
+				var str = '';
+				$('ul.wrapper-select-group').find('li').each(function(index, value) {
+					var $li = $(value);
+					if($li.hasClass('selected')) {
+						groups.push(index);
+						str += index;
+					}
+				});
+				var index = from + '#' + to + '#' + str;
+				var deferred = app.stats.get(index);
+				deferred.done(function(stats) {
+					self.destroy();
+					app.view.subview = new app.Views.statsNumbers({
+						groups: groups,
+						index: index,
+						stats: stats
+					});
+				});
 			}
 		},
 

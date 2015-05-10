@@ -102,12 +102,12 @@
 							if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
 								trade.setPnL(function(closed) {
 									if(closed) {
-										app.objects[app.count.open].isFirst = false;
+										app.objects[app.count.open].isNewest = false;
 										app.count.open--;
 										app.objects.splice(self.key, 1);
 										app.count.closed++;
 										app.objects.splice(app.count.open, 0, trade.toJSON());
-										app.objects[app.count.open].isFirst = true;
+										app.objects[app.count.open].isNewest = true;
 										app.cache.delete('main');
 										app.cache.delete('mainMap');
 										app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
