@@ -80,8 +80,11 @@
 				}
 			});
 			if(this.account) {
-				var account = new app.Models.account({
-					id: this.account.id
+				accounts.setFetchId(this.account.id);
+				accounts.fetch({
+					success: function () {
+						var account = accounts.at(0);
+					}
 				});
 			} else {
 				var account = new app.Models.account();

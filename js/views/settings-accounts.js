@@ -45,6 +45,8 @@
 
 		activeAccount: function(e) {
 			var self = this;
+			var accounts = new app.Collections.accounts();
+
 			e.preventDefault();
 			e.stopPropagation();
 			var $target = $(e.currentTarget);
@@ -59,23 +61,26 @@
 					success: function() {
 						var $wrapper = $target.parents('.wrapper-label');
 						var key = $wrapper.data('key');
-						var account = new app.Models.account({
-							id: self.accounts[key].id
-						});
-						account.deferred.done(function() {
-							account.set({
-								is_active: 1
-							});
-							account.save(null, {
-								success: function(model) {
-									app.account = model;
-									app.fetchObjects().done(function() {
-										app.cache.delete('main');
-										app.cache.delete('mainMap');
-										app.view.subview = new app.Views.settingsAccounts();
+						accounts.setFetchId(self.accounts[key].id);
+						accounts.fetch({
+							success: function () {
+								var account = accounts.at(0);
+								account.deferred.done(function() {
+									account.set({
+										is_active: 1
 									});
-								}
-							});
+									account.save(null, {
+										success: function(model) {
+											app.account = model;
+											app.fetchObjects().done(function() {
+												app.cache.delete('main');
+												app.cache.delete('mainMap');
+												app.view.subview = new app.Views.settingsAccounts();
+											});
+										}
+									});
+								});
+							}
 						});
 					}
 				});
@@ -83,6 +88,7 @@
 		},
 
 		buttonDelete: function(e) {
+			var accounts = new app.Collections.accounts();
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
@@ -97,10 +103,13 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					var account = new app.Models.account({
-						id: id
+					accounts.setFetchId(id);
+					accounts.fetch({
+						success: function () {
+							var account = accounts.at(0);
+							account.delete();
+						}
 					});
-					account.delete();
 				}
 			});
 		},
