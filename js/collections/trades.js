@@ -9,6 +9,10 @@
 			this.account_id = account_id;
 		},
 
+		setFetchId: function (id) {
+			this.id = id;
+		},
+
 		setGroups: function(groups) {
 			this.groups = groups;
 		},

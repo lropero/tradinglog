@@ -45,6 +45,7 @@
 		submit: function() {
 			var self = this;
 			var body = this.$el.find('textarea#body').val().trim();
+			var trades = new app.Collections.trades();
 
 			var comment = new app.Models.comment();
 			comment.set({
@@ -57,16 +58,19 @@
 				$('header button').hide();
 				comment.save(null, {
 					success: function() {
-						var trade = new app.Models.trade({
-							id: self.trade.id
-						});
-						trade.deferred.then(function() {
-							trade.addToComments(1, function() {
-								app.objects[self.key] = trade.toJSON();
-								app.cache.delete('main');
-								app.cache.delete('mainViewTrade' + self.trade.id);
-								app.loadView('mainViewTrade', self.key);
-							});
+						trades.setFetchId(self.trade.id);
+						trades.fetch({
+							success: function () {
+								var trade = trades.at(0);
+								trade.deferred.then(function() {
+									trade.addToComments(1, function() {
+										app.objects[self.key] = trade.toJSON();
+										app.cache.delete('main');
+										app.cache.delete('mainViewTrade' + self.trade.id);
+										app.loadView('mainViewTrade', self.key);
+									});
+								});
+							}
 						});
 					}
 				});

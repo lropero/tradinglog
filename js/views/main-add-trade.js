@@ -111,6 +111,7 @@
 			var type = this.$el.find('ul#type div.active').data('type');
 			var size = this.$el.find('input#size').val();
 			var price = this.$el.find('input#price').val().replace(',', '.');
+			var trades = new app.Collections.trades();
 
 			if(type === 2) {
 				size *= -1;
@@ -154,14 +155,17 @@
 									$.cookie('cookie', $.param(cookie), {
 										expires: 20
 									});
-									var trade = new app.Models.trade({
-										id: insertId
-									});
-									trade.deferred.then(function() {
-										app.count.open++;
-										app.objects.unshift(trade.toJSON());
-										app.cache.delete('main');
-										app.loadView('mainViewTrade', '0');
+									trades.setFetchId(insertId);
+									trades.fetch({
+										success: function () {
+											var trade = trades.at(0);
+											trade.deferred.then(function() {
+												app.count.open++;
+												app.objects.unshift(trade.toJSON());
+												app.cache.delete('main');
+												app.loadView('mainViewTrade', '0');
+											});
+										}
 									});
 								}
 							});

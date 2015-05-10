@@ -25,23 +25,20 @@
 			var self = this;
 			this.deferred = $.Deferred();
 			if(!this.isNew()) {
-				if(this.collection) {
+				if(this.collection && this.collection.deferreds) {
 					this.collection.deferreds.push(this.deferred);
 				}
-				this.fetch({
-					success: function() {
-						self.comments = [];
-						self.positions = [];
-						$.when(
-							self.fetchInstrument(),
-							self.fetchPositions(),
-							self.fetchComments()
-						).done(function() {
-							self.objects = [];
-							self.prepareObjects();
-							self.deferred.resolve();
-						});
-					}
+				this.comments = [];
+				this.positions = [];
+
+				$.when(
+					self.fetchInstrument(),
+					self.fetchPositions(),
+					self.fetchComments()
+				).done(function() {
+					self.objects = [];
+					self.prepareObjects();
+					self.deferred.resolve();
 				});
 			} else {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {

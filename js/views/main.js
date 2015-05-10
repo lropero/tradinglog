@@ -53,6 +53,8 @@
 			var size = Math.floor(Math.random() * 5) + 1;
 			var price = Math.floor(Math.random() * 11) + 1000;
 
+			var trades = new app.Collections.trades();
+
 			if(type === 2) {
 				size *= -1;
 			}
@@ -84,20 +86,23 @@
 							});
 							position2.save(null, {
 								success: function() {
-									var trade2 = new app.Models.trade({
-										id: insertId
-									});
-									trade2.deferred.then(function() {
-										trade2.setPnL(function() {
-											app.objects[app.count.open].isNewest = false;
-											app.count.closed++;
-											app.objects.splice(app.count.open, 0, trade2.toJSON());
-											app.objects[app.count.open].isNewest = true;
-											app.cache.delete('main');
-											app.cache.delete('mainMap');
-											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
-											app.loadView('main');
-										});
+									trades.setFetchId(insertId);
+									trades.fetch({
+										success: function () {
+											var trade2 = trades.at(0);
+											trade2.deferred.then(function() {
+												trade2.setPnL(function() {
+													app.objects[app.count.open].isNewest = false;
+													app.count.closed++;
+													app.objects.splice(app.count.open, 0, trade2.toJSON());
+													app.objects[app.count.open].isNewest = true;
+													app.cache.delete('main');
+													app.cache.delete('mainMap');
+													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+													app.loadView('main');
+												});
+											});
+										}
 									});
 								}
 							});
@@ -112,6 +117,8 @@
 			e.preventDefault();
 			var id = $(e.currentTarget).data('id');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
+			var trades = new app.Collections.trades();
+
 			alertify.set({
 				buttonFocus: 'none',
 				buttonReverse: true,
@@ -160,15 +167,18 @@
 							});
 							break;
 						case 'trade':
-							var trade = new app.Models.trade({
-								id: id
-							});
-							trade.delete(function() {
-								var key = $wrapper.data('key').toString();
-								app.count.open--;
-								app.objects.splice(key, 1);
-								app.cache.delete('main');
-								app.loadView('main');
+							trades.setFetchId(id);
+							trades.fetch({
+								success: function () {
+									var trade = trades.at(0);
+									trade.delete(function() {
+										var key = $wrapper.data('key').toString();
+										app.count.open--;
+										app.objects.splice(key, 1);
+										app.cache.delete('main');
+										app.loadView('main');
+									});
+								}
 							});
 							break;
 					}
