@@ -294,18 +294,12 @@
 					var split = index.split('#');
 					var fromDateValues = split[0].split('-');
 					var toDateValues = split[1].split('-');
-					var month = parseInt(fromDateValues[1], 10) - 1;
-					var day = parseInt(fromDateValues[2], 10);
 					dateFrom.setFullYear(fromDateValues[0]);
-					dateFrom.setMonth(month);
-					dateFrom.setDate(day);
-					index = fromDateValues[0] + '-' + month + '-' + day + '#';
-					month = parseInt(toDateValues[1], 10) - 1;
-					day = parseInt(toDateValues[2], 10);
+					dateFrom.setMonth(fromDateValues[1]);
+					dateFrom.setDate(fromDateValues[2]);
 					dateTo.setFullYear(toDateValues[0]);
-					dateTo.setMonth(month);
-					dateTo.setDate(day);
-					index += toDateValues[0] + '-' + month + '-' + day + '#' + split[2];
+					dateTo.setMonth(toDateValues[1]);
+					dateTo.setDate(toDateValues[2]);
 				} else {
 					dateFrom.setDate(1);
 					dateTo.setDate(1);

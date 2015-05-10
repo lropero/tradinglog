@@ -113,7 +113,14 @@
 						str += index;
 					}
 				});
-				var index = from + '#' + to + '#' + str;
+				var fromDateValues = from.split('-');
+				var toDateValues = to.split('-');
+				var month = parseInt(fromDateValues[1], 10) - 1;
+				var day = parseInt(fromDateValues[2], 10);
+				var index = fromDateValues[0] + '-' + month + '-' + day + '#';
+				month = parseInt(toDateValues[1], 10) - 1;
+				day = parseInt(toDateValues[2], 10);
+				index += toDateValues[0] + '-' + month + '-' + day + '#' + str;
 				var deferred = app.stats.get(index);
 				deferred.done(function(stats) {
 					self.destroy();

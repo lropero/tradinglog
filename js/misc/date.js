@@ -71,10 +71,10 @@
 				var split = index.split('#');
 				var fromDateValues = split[0].split('-');
 				var toDateValues = split[1].split('-');
-				var month = this.getMonthString(parseInt(fromDateValues[1], 10) - 1, true);
+				var month = this.getMonthString(parseInt(fromDateValues[1], 10), true);
 				var digit = fromDateValues[2] % 10;
 				string = month + ' ' + fromDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + fromDateValues[0] + ' - ';
-				month = this.getMonthString(parseInt(toDateValues[1], 10) - 1, true);
+				month = this.getMonthString(parseInt(toDateValues[1], 10), true);
 				digit = toDateValues[2] % 10;
 				string += month + ' ' + toDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + toDateValues[0];
 			} else {
