@@ -13,11 +13,7 @@
 			var self = this;
 			this.deferred = $.Deferred();
 			if(!this.isNew()) {
-				this.fetch({
-					success: function() {
-						self.deferred.resolve();
-					}
-				});
+				this.deferred.resolve();
 			} else {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {
 					if(!isValid) {

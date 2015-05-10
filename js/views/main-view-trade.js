@@ -53,6 +53,7 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var trades = new app.Collections.trades();
 			var positions = new app.Collections.positions();
+			var comments = new app.Collections.comments();
 
 			alertify.set({
 				buttonFocus: 'none',
@@ -76,24 +77,27 @@
 					var object = $label.hasClass('comment') ? 'comment' : ($label.hasClass('position') ? 'position' : '');
 					switch(object) {
 						case 'comment':
-							var comment = new app.Models.comment({
-								id: id
-							});
-							comment.delete(function() {
-								trades.setFetchId(self.trade.id);
-								trades.fetch({
-									success: function () {
-										var trade = trades.at(0);
-										trade.deferred.then(function() {
-											trade.addToComments(-1, function() {
-												app.objects[self.key] = trade.toJSON();
-												app.cache.delete('main');
-												app.cache.delete('mainViewTrade' + self.trade.id);
-												app.loadView('mainViewTrade', self.key);
-											});
+							comments.setFetchId(id);
+							comments.fetch({
+								success: function () {
+									var comment = comments.at(0);
+									comment.delete(function() {
+										trades.setFetchId(self.trade.id);
+										trades.fetch({
+											success: function () {
+												var trade = trades.at(0);
+												trade.deferred.then(function() {
+													trade.addToComments(-1, function() {
+														app.objects[self.key] = trade.toJSON();
+														app.cache.delete('main');
+														app.cache.delete('mainViewTrade' + self.trade.id);
+														app.loadView('mainViewTrade', self.key);
+													});
+												});
+											}
 										});
-									}
-								});
+									});
+								}
 							});
 							break;
 						case 'position':
