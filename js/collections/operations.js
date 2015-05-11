@@ -7,6 +7,10 @@
 
 		setAccountId: function(account_id) {
 			this.account_id = account_id;
+		},
+
+		setFetchId: function(id) {
+			this.id = id;
 		}
 	});
 })();

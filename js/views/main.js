@@ -84,20 +84,24 @@
 							});
 							position2.save(null, {
 								success: function() {
-									var trade2 = new app.Models.trade({
-										id: insertId
-									});
-									trade2.deferred.then(function() {
-										trade2.setPnL(function() {
-											app.objects[app.count.open].isNewest = false;
-											app.count.closed++;
-											app.objects.splice(app.count.open, 0, trade2.toJSON());
-											app.objects[app.count.open].isNewest = true;
-											app.cache.delete('main');
-											app.cache.delete('mainMap');
-											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
-											app.loadView('main');
-										});
+									var trades = new app.Collections.trades();
+									trades.setFetchId(insertId);
+									trades.fetch({
+										success: function() {
+											var trade2 = trades.at(0);
+											trade2.deferred.then(function() {
+												trade2.setPnL(function() {
+													app.objects[app.count.open].isNewest = false;
+													app.count.closed++;
+													app.objects.splice(app.count.open, 0, trade2.toJSON());
+													app.objects[app.count.open].isNewest = true;
+													app.cache.delete('main');
+													app.cache.delete('mainMap');
+													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+													app.loadView('main');
+												});
+											});
+										}
 									});
 								}
 							});
@@ -134,41 +138,49 @@
 					var object = $label.hasClass('operation') ? 'operation' : ($label.hasClass('trade') ? 'trade' : '');
 					switch(object) {
 						case 'operation':
-							var operation = new app.Models.operation({
-								id: id
-							});
-							operation.delete(function(amount) {
-								var balance = app.account.get('balance') - amount;
-								app.account.set({
-									balance: balance
-								});
-								app.account.save(null, {
-									success: function() {
-										var key = $wrapper.data('key').toString();
-										app.count.operations--;
-										app.objects.splice(key, 1);
-										if(!(!app.count.closed && app.count.operations === 1)) {
-											app.objects[app.count.open].isNewest = true;
-										}
-										app.cache.delete('main');
-										if(app.objects[app.count.open].instrument_id) {
-											app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
-										}
-										app.loadView('main');
-									}
-								});
+							var operations = new app.Collections.operations();
+							operations.setFetchId(id);
+							operations.fetch({
+								success: function() {
+									var operation = operations.at(0);
+									operation.delete(function(amount) {
+										var balance = app.account.get('balance') - amount;
+										app.account.set({
+											balance: balance
+										});
+										app.account.save(null, {
+											success: function() {
+												var key = $wrapper.data('key').toString();
+												app.count.operations--;
+												app.objects.splice(key, 1);
+												if(!(!app.count.closed && app.count.operations === 1)) {
+													app.objects[app.count.open].isNewest = true;
+												}
+												app.cache.delete('main');
+												if(app.objects[app.count.open].instrument_id) {
+													app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
+												}
+												app.loadView('main');
+											}
+										});
+									});
+								}
 							});
 							break;
 						case 'trade':
-							var trade = new app.Models.trade({
-								id: id
-							});
-							trade.delete(function() {
-								var key = $wrapper.data('key').toString();
-								app.count.open--;
-								app.objects.splice(key, 1);
-								app.cache.delete('main');
-								app.loadView('main');
+							var trades = new app.Collections.trades();
+							trades.setFetchId(id);
+							trades.fetch({
+								success: function() {
+									var trade = trades.at(0);
+									trade.delete(function() {
+										var key = $wrapper.data('key').toString();
+										app.count.open--;
+										app.objects.splice(key, 1);
+										app.cache.delete('main');
+										app.loadView('main');
+									});
+								}
 							});
 							break;
 					}

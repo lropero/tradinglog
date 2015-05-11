@@ -25,23 +25,19 @@
 			var self = this;
 			this.deferred = $.Deferred();
 			if(!this.isNew()) {
-				if(this.collection) {
+				if(this.collection && this.collection.deferreds) {
 					this.collection.deferreds.push(this.deferred);
 				}
-				this.fetch({
-					success: function() {
-						self.comments = [];
-						self.positions = [];
-						$.when(
-							self.fetchInstrument(),
-							self.fetchPositions(),
-							self.fetchComments()
-						).done(function() {
-							self.objects = [];
-							self.prepareObjects();
-							self.deferred.resolve();
-						});
-					}
+				this.comments = [];
+				this.positions = [];
+				$.when(
+					self.fetchInstrument(),
+					self.fetchPositions(),
+					self.fetchComments()
+				).done(function() {
+					self.objects = [];
+					self.prepareObjects();
+					self.deferred.resolve();
 				});
 			} else {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {
@@ -142,12 +138,11 @@
 		fetchInstrument: function() {
 			var self = this;
 			var deferred = $.Deferred();
-			var instrument = new app.Models.instrument({
-				id: this.get('instrument_id')
-			});
-			instrument.fetch({
+			var instruments = new app.Collections.instruments();
+			instruments.setFetchId(this.get('instrument_id'));
+			instruments.fetch({
 				success: function() {
-					self.instrument = instrument.toJSON().name;
+					self.instrument = instruments.at(0);
 					deferred.resolve();
 				}
 			});
@@ -224,6 +219,7 @@
 			var created_at = 0;
 			var array = [];
 			var type = parseInt(this.get('type'), 10);
+			var positions = new app.Collections.positions();
 
 			for(var i = 0; i < this.positions.length; i++) {
 				var position = this.positions[i];
@@ -261,95 +257,92 @@
 				}
 			}
 
-			var instrument = new app.Models.instrument({
-				id: this.get('instrument_id')
-			});
-
-			instrument.deferred.then(function() {
-				instrument = instrument.toJSON();
-				profit *= instrument.point_value;
-				loss *= instrument.point_value;
-				var commission = instrument.commission * count;
-				var closed_at = self.get('closed_at');
-				if(closed_at > 0) {
-					var balance = app.account.get('balance') - self.getNet();
-					self.set({
-						profit: profit,
-						loss: loss,
-						commission: commission,
-						edit_commission: 0,
-						variation: 0,
-						closed_at: 0
-					});
-					self.save(null, {
+			var instrument = this.instrument.toJSON();
+			profit *= instrument.point_value;
+			loss *= instrument.point_value;
+			var commission = instrument.commission * count;
+			var closed_at = self.get('closed_at');
+			if(closed_at > 0) {
+				var balance = app.account.get('balance') - self.getNet();
+				self.set({
+					profit: profit,
+					loss: loss,
+					commission: commission,
+					edit_commission: 0,
+					variation: 0,
+					closed_at: 0
+				});
+				self.save(null, {
+					success: function() {
+						app.account.set({
+							balance: balance
+						});
+						app.account.save(null, {
+							success: function() {
+								app.cache.delete('mainMap');
+								callback();
+							}
+						});
+					}
+				});
+			} else {
+				self.set({
+					profit: profit,
+					loss: loss,
+					commission: commission,
+					edit_commission: 0
+				});
+				var balance = app.account.get('balance') + self.getNet();
+				if(balance < 0) {
+					alertify.error('Non-sufficient funds');
+					var last = self.positions[self.positions.length - 1];
+					positions.setFetchId(last.id);
+					positions.fetch({
 						success: function() {
-							app.account.set({
-								balance: balance
-							});
-							app.account.save(null, {
-								success: function() {
-									app.cache.delete('mainMap');
-									callback();
-								}
-							});
+							var position = positions.at(0);
+							position.delete();
+							$('header button').show();
 						}
 					});
 				} else {
-					self.set({
-						profit: profit,
-						loss: loss,
-						commission: commission,
-						edit_commission: 0
-					});
-					var balance = app.account.get('balance') + self.getNet();
-					if(balance < 0) {
-						alertify.error('Non-sufficient funds');
-						var last = self.positions[self.positions.length - 1];
-						var position = new app.Models.position({
-							id: last.id
-						});
-						position.delete(true);
-						$('header button').show();
-					} else {
-						if(!array.length && created_at > 0) {
-							if(instrument.alert) {
-								self.set({
-									edit_commission: 1
-								});
-							}
+					if(!array.length && created_at > 0) {
+						if(instrument.alert) {
 							self.set({
-								variation: (profit - loss - commission) * 100 / app.account.get('balance'),
-								closed_at: created_at
-							});
-							self.save(null, {
-								success: function() {
-									app.account.set({
-										balance: balance
-									});
-									app.account.save(null, {
-										success: function() {
-											callback(true);
-										}
-									});
-								}
-							});
-						} else {
-							self.save(null, {
-								success: function() {
-									callback();
-								}
+								edit_commission: 1
 							});
 						}
+						self.set({
+							variation: (profit - loss - commission) * 100 / app.account.get('balance'),
+							closed_at: created_at
+						});
+						self.save(null, {
+							success: function() {
+								app.account.set({
+									balance: balance
+								});
+								app.account.save(null, {
+									success: function() {
+										callback(true);
+									}
+								});
+							}
+						});
+					} else {
+						self.save(null, {
+							success: function() {
+								callback();
+							}
+						});
 					}
 				}
-			});
+			}
 		},
 
 		toJSON: function() {
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			if(this.positions && this.positions.length > 0) {
 				json.closeSize = this.calculateCloseSize();
-				json.instrument = this.instrument;
+				json.instrument = this.instrument.get('name');
 				json.isLong = this.isLong();
 				json.isOpen = this.isOpen();
 				if(this.positions.length > 1) {

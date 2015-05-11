@@ -19,15 +19,7 @@
 		},
 
 		initialize: function() {
-			var self = this;
-			this.deferred = $.Deferred();
-			if(!this.isNew()) {
-				this.fetch({
-					success: function() {
-						self.deferred.resolve();
-					}
-				});
-			} else {
+			if(this.isNew()) {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {
 					if(!isValid) {
 						$.each(errors, function(index, error) {
@@ -44,13 +36,10 @@
 		},
 
 		delete: function(callback) {
-			var self = this;
-			this.deferred.done(function() {
-				self.destroy({
-					success: function() {
-						callback(self.get('size'));
-					}
-				});
+			this.destroy({
+				success: function() {
+					callback(self.get('size'));
+				}
 			});
 		},
 

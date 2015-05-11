@@ -189,8 +189,11 @@
 				}
 			});
 			if(this.instrument) {
-				var instrument = new app.Models.instrument({
-					id: this.instrument.id
+				instruments.setFetchId(this.instrument.id);
+				instruments.fetch({
+					success: function() {
+						var instrument = instruments.at(0);
+					}
 				});
 				var group_id = this.instrument.group_id;
 			} else {

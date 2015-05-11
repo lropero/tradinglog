@@ -25,15 +25,6 @@
 		},
 
 		initialize: function() {
-			var self = this;
-			this.deferred = $.Deferred();
-			if(!this.isNew()) {
-				this.fetch({
-					success: function() {
-						self.deferred.resolve();
-					}
-				});
-			}
 			this.listenTo(this, 'validated', function(isValid, model, errors) {
 				if(!isValid) {
 					$.each(errors, function(index, error) {
@@ -49,13 +40,10 @@
 		},
 
 		delete: function() {
-			var self = this;
-			this.deferred.done(function() {
-				self.destroy({
-					success: function() {
-						app.cache.delete('mainAddTrade');
-					}
-				});
+			this.destroy({
+				success: function() {
+					app.cache.delete('mainAddTrade');
+				}
 			});
 		},
 

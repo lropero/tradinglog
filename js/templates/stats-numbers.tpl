@@ -46,7 +46,7 @@
 			<div class="help">&nbsp;</div>
 		</li>
 		<li class="content-swipe">
-			<div class="center">
+			<div class="center numbers">
 				<div style="width: 100%;">
 					<ul class="pane">
 						<li>

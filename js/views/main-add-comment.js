@@ -57,16 +57,20 @@
 				$('header button').hide();
 				comment.save(null, {
 					success: function() {
-						var trade = new app.Models.trade({
-							id: self.trade.id
-						});
-						trade.deferred.then(function() {
-							trade.addToComments(1, function() {
-								app.objects[self.key] = trade.toJSON();
-								app.cache.delete('main');
-								app.cache.delete('mainViewTrade' + self.trade.id);
-								app.loadView('mainViewTrade', self.key);
-							});
+						var trades = new app.Collections.trades();
+						trades.setFetchId(self.trade.id);
+						trades.fetch({
+							success: function() {
+								var trade = trades.at(0);
+								trade.deferred.then(function() {
+									trade.addToComments(1, function() {
+										app.objects[self.key] = trade.toJSON();
+										app.cache.delete('main');
+										app.cache.delete('mainViewTrade' + self.trade.id);
+										app.loadView('mainViewTrade', self.key);
+									});
+								});
+							}
 						});
 					}
 				});

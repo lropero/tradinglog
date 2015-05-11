@@ -40,15 +40,17 @@
 		},
 
 		find: function(model, callback) {
-			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM account WHERE id = "' + model.id + '";';
-				tx.executeSql(sql, [], function(tx, results) {
-					if(results.rows.length === 1) {
-						var account = results.rows.item(0);
-						callback(account);
-					}
+			if(model.id) {
+				this.db.transaction(function(tx) {
+					var sql = 'SELECT * FROM account WHERE id = "' + model.id + '";';
+					tx.executeSql(sql, [], function(tx, results) {
+						if(results.rows.length === 1) {
+							var account = results.rows.item(0);
+							callback(account);
+						}
+					});
 				});
-			});
+			}
 		},
 
 		findAll: function(callback) {

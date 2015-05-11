@@ -26,15 +26,17 @@
 		},
 
 		find: function(model, callback) {
-			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM position WHERE id = "' + model.id + '";';
-				tx.executeSql(sql, [], function(tx, results) {
-					if(results.rows.length === 1) {
-						var position = results.rows.item(0);
-						callback(position);
-					}
+			if(model.id) {
+				this.db.transaction(function(tx) {
+					var sql = 'SELECT * FROM position WHERE id = "' + model.id + '";';
+					tx.executeSql(sql, [], function(tx, results) {
+						if(results.rows.length === 1) {
+							var position = results.rows.item(0);
+							callback(position);
+						}
+					});
 				});
-			});
+			}
 		},
 
 		findSet: function(model, callback) {
