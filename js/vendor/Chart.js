@@ -1551,23 +1551,23 @@
 				var xGridWidth = Math.floor(this.calculateX(1) - this.calculateX(0)) - 6;
 
 				//Max label rotate should be 90 - also act as a loop counter
-				while ((this.xLabelWidth > xGridWidth && this.xLabelRotation === 0) || (this.xLabelWidth > xGridWidth && this.xLabelRotation <= 90 && this.xLabelRotation > 0)){
-					cosRotation = Math.cos(toRadians(this.xLabelRotation));
+				// while ((this.xLabelWidth > xGridWidth && this.xLabelRotation === 0) || (this.xLabelWidth > xGridWidth && this.xLabelRotation <= 90 && this.xLabelRotation > 0)){
+				// 	cosRotation = Math.cos(toRadians(this.xLabelRotation));
 
-					firstRotated = cosRotation * firstWidth;
-					lastRotated = cosRotation * lastWidth;
+				// 	firstRotated = cosRotation * firstWidth;
+				// 	lastRotated = cosRotation * lastWidth;
 
-					// We're right aligning the text now.
-					if (firstRotated + this.fontSize / 2 > this.yLabelWidth + 8){
-						this.xScalePaddingLeft = firstRotated + this.fontSize / 2;
-					}
-					this.xScalePaddingRight = this.fontSize/2;
+				// 	// We're right aligning the text now.
+				// 	if (firstRotated + this.fontSize / 2 > this.yLabelWidth + 8){
+				// 		this.xScalePaddingLeft = firstRotated + this.fontSize / 2;
+				// 	}
+				// 	this.xScalePaddingRight = this.fontSize/2;
 
 
-					this.xLabelRotation++;
-					this.xLabelWidth = cosRotation * originalLabelWidth;
+				// 	this.xLabelRotation++;
+				// 	this.xLabelWidth = cosRotation * originalLabelWidth;
 
-				}
+				// }
 				if (this.xLabelRotation > 0){
 					this.endPoint -= Math.sin(toRadians(this.xLabelRotation))*originalLabelWidth + 3;
 				}
@@ -3079,7 +3079,7 @@
 			helpers.each(this.segments,function(segment){
 				segment.save();
 			});
-			
+
 			this.reflow();
 			this.render();
 		},

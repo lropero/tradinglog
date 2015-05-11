@@ -110,20 +110,20 @@
 			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
 		},
 
-		drawLine: function(balances) {
+		drawLine: function(balances, noLabels) {
 			if(this.line) {
 				this.line.stop().destroy();
 			}
 			var labels = [];
 			var values = [];
 			$.each(balances, function(index, value) {
-				if(typeof index === 'number') {
-					index = '';
+				if(index.toString() === '0') {
+					index = '<';
 				} else {
-					if(index.indexOf('-') > -1) {
-						index = index.split('-')[2];
+					if(noLabels) {
+						index = '';
 					} else {
-						index = '<';
+						index = index.split('-')[2];
 					}
 				}
 				labels.push(index);
@@ -195,7 +195,7 @@
 					$('div.wrapper-control-box-swipe').css('display', 'block');
 					this.drawDoughnut(this.stats[type]);
 					this.drawNumbers(this.stats[type]);
-					this.drawLine(this.stats[type].balances);
+					this.drawLine(this.stats[type].balances, true);
 				} else {
 					$('div#no-stats').css('display', 'block');
 					$('div.wrapper-control-box-swipe').css('display', 'none');
