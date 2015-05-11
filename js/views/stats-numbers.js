@@ -79,7 +79,6 @@
             if(width > height) {
                 $doughnut.width(height);
             }
-			var ctx = $doughnut.get(0).getContext('2d');
 			var data = [
 				{
 					color: '#4bd763',
@@ -106,6 +105,7 @@
 				segmentStrokeWidth: 5,
 				showTooltips: false
 			};
+			var ctx = $doughnut.get(0).getContext('2d');
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
 			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
 		},
@@ -115,27 +115,25 @@
 				this.line.stop().destroy();
 			}
 			var labels = [];
-			var data = []
+			var values = [];
 			$.each(balances, function(index, value) {
-				index = index.toString();
-				if(index.indexOf('-') > -1) {
-					index = index.split('-')[2];
-				} else {
+				if(typeof index === 'number') {
 					index = '';
+				} else {
+					if(index.indexOf('-') > -1) {
+						index = index.split('-')[2];
+					} else {
+						index = '<';
+					}
 				}
 				labels.push(index);
-				data.push(value);
+				values.push(value);
 			});
-			if(labels[1].length) {
-				labels[0] = '<';
-			}
-			var $line = $('canvas#line');
-			var ctx = $line.get(0).getContext('2d');
 			var data = {
 				labels: labels,
 				datasets: [
 					{
-						data: data,
+						data: values,
 						fillColor: 'rgba(44, 22, 142, .5)',
 						pointColor: '#fff',
 						pointStrokeColor: '#fff',
@@ -156,6 +154,7 @@
 				scaleShowVerticalLines: false,
 				showTooltips: false
 			};
+			var ctx = $('canvas#line').get(0).getContext('2d');
 			this.line = new Chart(ctx).Line(data, options);
 		},
 

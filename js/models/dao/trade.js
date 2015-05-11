@@ -63,23 +63,24 @@
 							}
 						}
 						var deferreds = [];
-						// $.each(instruments, function(index, value) {
-						// 	instrumentsCollection.setFetchId(index);
-						// 	instrumentsCollection.fetch({
-						// 		success: function() {
-						// 			var instrument = instrumentsCollection.at(0);
-						// 			instrument.deferred.then(function() {
-						// 				var group_id = instrument.get('group_id').toString();
-						// 				for(var i = 0; i < value.length; i++) {
-						// 					if($.inArray(group_id, model.groups) > -1) {
-						// 						trades.push(results.rows.item(value[i]));
-						// 					}
-						// 				}
-						// 			});
-						// 			deferreds.push(instrument.deferred);
-						// 		}
-						// 	});
-						// });
+						var instrumentsCollection = new app.Collections.instruments();
+						$.each(instruments, function(index, value) {
+							var deferred = $.Deferred();
+							instrumentsCollection.setFetchId(index);
+							instrumentsCollection.fetch({
+								success: function() {
+									var instrument = instrumentsCollection.at(0);
+									var group_id = instrument.get('group_id').toString();
+									for(var i = 0; i < value.length; i++) {
+										if($.inArray(group_id, model.groups) > -1) {
+											trades.push(results.rows.item(value[i]));
+										}
+									}
+									deferred.resolve();
+								}
+							});
+							deferreds.push(deferred);
+						});
 						$.when.apply($, deferreds).done(function() {
 							callback(trades);
 						});
