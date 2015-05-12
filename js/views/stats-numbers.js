@@ -116,25 +116,30 @@
 			}
 			var labels = [];
 			var values = [];
-			var verticalLines = [];
 			var i = 0;
+			var last = '';
+			var verticalLines = [];
 			$.each(balances, function(index, value) {
 				if(index.toString() === '0') {
 					index = '<';
 				} else {
+					var split = index.split('-');
 					if(noLabels) {
-						if(typeof value === 'string') {
-							var split = value.split('#');
+						index = '';
+					} else {
+						index = split[2];
+					}
+					if(!last.length) {
+						last = split[0] + '-' + split[1];
+					} else if(last !== split[0] + '-' + split[1]) {
+						verticalLines.push(i - 1);
+						if(noLabels) {
 							index = app.date.getMonthString(parseInt(split[1], 10), true);
-						} else {
+							labels.pop();
+							labels.push(index);
 							index = '';
 						}
-					} else {
-						index = index.split('-')[2];
-					}
-					if(typeof value === 'string') {
-						verticalLines.push(i);
-						value = parseInt(value, 10);
+						last = split[0] + '-' + split[1];
 					}
 				}
 				labels.push(index);
