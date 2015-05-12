@@ -1606,7 +1606,7 @@
 			helpers.extend(this, newProps);
 			this.fit();
 		},
-		draw : function(){
+		draw : function(easeDecimal, verticalLines){
 			var ctx = this.ctx,
 				yLabelGap = (this.endPoint - this.startPoint) / this.steps,
 				xStart = Math.round(this.xScalePaddingLeft);
@@ -1671,6 +1671,11 @@
 
 					// This is Y axis, so draw it
 					if (index === 0 && !drawVerticalLine){
+						drawVerticalLine = true;
+					}
+
+					//** TradingLog HACK! :) */
+					if($.inArray(index, verticalLines) > -1) {
 						drawVerticalLine = true;
 					}
 
@@ -2778,7 +2783,7 @@
 				return helpers.findPreviousWhere(collection, hasValue, index) || point;
 			};
 
-			this.scale.draw(easingDecimal);
+			this.scale.draw(easingDecimal, this.options.verticalLines);
 
 
 			helpers.each(this.datasets,function(dataset){

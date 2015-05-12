@@ -29,20 +29,6 @@
 				</div>
 			</div>
 		</form>
-		<!--
-		<div class="title-section">Compare with (optional)</div>
-		<form>
-			<div class="wrapper-input two-input">
-				<div class="wrapper-input">
-					<input type="" placeholder="From">
-					<span class="help-block">From and to compare dates.</span>
-				</div>
-				<div class="wrapper-input">
-					<input type="" placeholder="To">
-				</div>
-			</div>
-		</form>
-		-->
 		<div class="button-primary" id="generate">Generate</div>
 	</div>
 </div>

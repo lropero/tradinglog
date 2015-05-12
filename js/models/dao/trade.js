@@ -44,7 +44,6 @@
 		},
 
 		findSet: function(model, callback) {
-			// var instrumentsCollection = new app.Collections.instruments();
 			this.db.transaction(function(tx) {
 				if(model.range) {
 					var sql = 'SELECT * FROM trade WHERE account_id = "' + model.account_id + '" AND closed_at >= "' + model.from + '" AND closed_at <= "' + model.to + '" ORDER BY closed_at;';

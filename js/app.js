@@ -66,7 +66,6 @@
 									};
 
 									/** Preload some templates to smoothen navigation */
-									app.cache.reset();
 									new app.Views.mainAddOperation(true);
 									new app.Views.mainAddTrade(true);
 									new app.Views.mainMap(true);

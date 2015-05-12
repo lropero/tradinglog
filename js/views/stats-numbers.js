@@ -116,18 +116,31 @@
 			}
 			var labels = [];
 			var values = [];
+			var verticalLines = [];
+			var i = 0;
 			$.each(balances, function(index, value) {
 				if(index.toString() === '0') {
 					index = '<';
 				} else {
 					if(noLabels) {
-						index = '';
+						if(typeof value === 'string') {
+							var split = value.split('#');
+							index = app.date.getMonthString(parseInt(split[1], 10), 1);
+						} else {
+							index = '';
+						}
 					} else {
 						index = index.split('-')[2];
+					}
+					if(typeof value === 'string') {
+						console.log(value);
+						verticalLines.push(i);
+						value = parseInt(value, 10);
 					}
 				}
 				labels.push(index);
 				values.push(value);
+				i++;
 			});
 			var data = {
 				labels: labels,
@@ -152,7 +165,8 @@
 				scaleLineColor: '#2c168e',
 				scaleShowGridLines: true,
 				scaleShowVerticalLines: false,
-				showTooltips: false
+				showTooltips: false,
+				verticalLines: verticalLines
 			};
 			var ctx = $('canvas#line').get(0).getContext('2d');
 			this.line = new Chart(ctx).Line(data, options);

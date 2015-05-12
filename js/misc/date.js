@@ -60,7 +60,10 @@
 					break;
 			}
 			if(short) {
-				string = string.slice(0, 3) + '.';
+				string = string.slice(0, short);
+				if(short > 1) {
+					string += '.';
+				}
 			}
 			return string;
 		},
@@ -71,10 +74,10 @@
 				var split = index.split('#');
 				var fromDateValues = split[0].split('-');
 				var toDateValues = split[1].split('-');
-				var month = this.getMonthString(parseInt(fromDateValues[1], 10), true);
+				var month = this.getMonthString(parseInt(fromDateValues[1], 10), 3);
 				var digit = fromDateValues[2] % 10;
 				string = month + ' ' + fromDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + fromDateValues[0] + ' - ';
-				month = this.getMonthString(parseInt(toDateValues[1], 10), true);
+				month = this.getMonthString(parseInt(toDateValues[1], 10), 3);
 				digit = toDateValues[2] % 10;
 				string += month + ' ' + toDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + toDateValues[0];
 			} else {
@@ -84,7 +87,7 @@
 						string = this.getMonthString(parseInt(dateValues[1], 10)) + ' ' + dateValues[0];
 						break;
 					case 3:
-						var month = this.getMonthString(parseInt(dateValues[1], 10), true);
+						var month = this.getMonthString(parseInt(dateValues[1], 10), 3);
 						var digit = dateValues[2] % 10;
 						string = month + ' ' + dateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + dateValues[0] + ' - ';
 						var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
@@ -93,7 +96,7 @@
 						if(date.getTime() > today.getTime()) {
 							string += 'Today';
 						} else {
-							var month = this.getMonthString(date.getMonth(), true);
+							var month = this.getMonthString(date.getMonth(), 3);
 							var digit = date.getDate() % 10;
 							string += month + ' ' + date.getDate() + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + date.getFullYear();
 						}

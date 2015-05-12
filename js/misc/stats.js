@@ -25,7 +25,7 @@
 		},
 
 		compress: function(balances) {
-			var steps = 28;
+			var steps = Math.floor($(document).width() / 12);
 			var length = Object.keys(balances).length;
 			if(length > steps) {
 				var temp = [];
@@ -37,10 +37,24 @@
 				temp = temp.slice(steps - 3, temp.length - (steps - 3));
 				var balancesNew = [temp[0]];
 				var sum = 0;
+				var verticalLast = '';
+				var verticalLine = false;
 				for(var i = 1; i < temp.length - 1; i++) {
-					sum += temp[i];
+					if(typeof temp[i] === 'string') {
+						if(verticalLast !== temp[i]) {
+							verticalLast = temp[i];
+							verticalLine = true;
+							var split = temp[i].split('#');
+						}
+					}
+					sum += parseInt(temp[i], 10);
 					if(i % (length - 2) === 0) {
-						balancesNew.push(sum / (length - 2));
+						var amount = sum / (length - 2);
+						if(verticalLine) {
+							amount += '#' + split[1];
+							verticalLine = false;
+						}
+						balancesNew.push(amount);
 						sum = 0;
 					}
 				}
@@ -146,9 +160,20 @@
 								self.data[index]['shorts'].balances[0] = initialBalance;
 							}
 							var date = new Date(trades[i].closed_at);
-							var day = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+							var year = date.getFullYear();
+							var month = date.getMonth();
+							var day = year + '-' + month + '-' + date.getDate();
 							balance += trades[i].net;
+							if(typeof self.data[index]['all'].balances[day] === 'string') {
+								last = '#';
+							}
 							self.data[index]['all'].balances[day] = balance;
+							if(!last) {
+								var last = year + '-' + month;
+							} else if(last !== (year + '-' + month)) {
+								self.data[index]['all'].balances[day] += '#' + month;
+								last = year + '-' + month;
+							}
 							switch(trades[i].type) {
 								case 1:
 									balanceLongs += trades[i].net;
