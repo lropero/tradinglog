@@ -168,12 +168,6 @@
 								last = '#';
 							}
 							self.data[index]['all'].balances[day] = balance;
-							if(!last) {
-								var last = year + '-' + month;
-							} else if(last !== (year + '-' + month)) {
-								self.data[index]['all'].balances[day] += '#' + month;
-								last = year + '-' + month;
-							}
 							switch(trades[i].type) {
 								case 1:
 									balanceLongs += trades[i].net;
@@ -183,6 +177,20 @@
 									balanceShorts += trades[i].net;
 									self.data[index]['shorts'].balances[day] = balanceShorts;
 									break;
+							}
+							if(!last) {
+								var last = year + '-' + month;
+							} else if(last !== (year + '-' + month)) {
+								self.data[index]['all'].balances[day] += '#' + month;
+								switch(trades[i].type) {
+									case 1:
+										self.data[index]['longs'].balances[day] += '#' + month;
+										break;
+									case 2:
+										self.data[index]['shorts'].balances[day] += '#' + month;
+										break;
+								}
+								last = year + '-' + month;
 							}
 							self.data[index]['all'].profit += trades[i].profit;
 							self.data[index]['all'].loss += trades[i].loss;

@@ -125,7 +125,7 @@
 					if(noLabels) {
 						if(typeof value === 'string') {
 							var split = value.split('#');
-							index = app.date.getMonthString(parseInt(split[1], 10), 1);
+							index = app.date.getMonthString(parseInt(split[1], 10), true);
 						} else {
 							index = '';
 						}
@@ -133,7 +133,6 @@
 						index = index.split('-')[2];
 					}
 					if(typeof value === 'string') {
-						console.log(value);
 						verticalLines.push(i);
 						value = parseInt(value, 10);
 					}
