@@ -4,7 +4,7 @@
 	app.Views.stats = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 		events: {
-			'tap control.segmented li:not(.active)': 'switch'
+			'tap control.segmented li': 'switch'
 		},
 
 		initialize: function() {
@@ -38,6 +38,9 @@
 			var radio = 1;
 			var slide = 1;
 			if(section === 'Numbers') {
+				if($target.hasClass('active')) {
+					return;
+				}
 				var period = $('control.segmented li.active').data('period');
 				if(period !== 'custom') {
 					var index = app.stats.availables[period][this.subview.at];
@@ -83,17 +86,62 @@
 					radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
 					slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
 				}
+				this.$el.find('li.active').removeClass('active');
+				$target.addClass('active');
+				if(typeof this.subview.destroy === 'function') {
+					this.subview.destroy();
+				}
+				this.subview = new app.Views.statsNumbers({
+					at: at.toString(),
+					radio: radio,
+					slide: slide
+				});
+			} else {
+				if($target.hasClass('active')) {
+					if(app.previousCustom) {
+						delete app.previousCustom;
+						this.$el.find('li.active').removeClass('active');
+						$target.addClass('active');
+						if(typeof this.subview.destroy === 'function') {
+							this.subview.destroy();
+						}
+						this.subview = new app.Views.statsCustom();
+					} else {
+						return;
+					}
+				} else {
+					if(app.previousCustom) {
+						var split = app.previousCustom.split('#');
+						var groups = [];
+						for(var i = 0; i < split[2].length; i++) {
+							groups.push(parseInt(split[2][i], 10));
+						}
+						var $control = $('ul.control-box-swipe');
+						if($control.length) {
+							radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
+							slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
+						}
+						this.$el.find('li.active').removeClass('active');
+						$target.addClass('active');
+						if(typeof this.subview.destroy === 'function') {
+							this.subview.destroy();
+						}
+						this.subview = new app.Views.statsNumbers({
+							index: app.previousCustom,
+							groups: groups,
+							radio: radio,
+							slide: slide
+						});
+					} else {
+						this.$el.find('li.active').removeClass('active');
+						$target.addClass('active');
+						if(typeof this.subview.destroy === 'function') {
+							this.subview.destroy();
+						}
+						this.subview = new app.Views.statsCustom();
+					}
+				}
 			}
-			this.$el.find('li.active').removeClass('active');
-			$target.addClass('active');
-			if(typeof this.subview.destroy === 'function') {
-				this.subview.destroy();
-			}
-			this.subview = new app.Views['stats' + section]({
-				at: at.toString(),
-				radio: radio,
-				slide: slide
-			});
 		}
 	});
 })();

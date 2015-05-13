@@ -14,14 +14,12 @@
 			if(attrs.index) {
 				this.index = attrs.index;
 				this.groups = attrs.groups;
-				var radio = 1;
-				var slide = 1;
 			} else {
 				this.at = parseInt(attrs.at, 10);
 				this.period = $('control.segmented li.active').data('period');
-				var radio = attrs.radio;
-				var slide = attrs.slide;
 			}
+			var radio = attrs.radio;
+			var slide = attrs.slide;
 			this.template = Handlebars.compile(app.templateLoader.get('stats-numbers'));
 			this.render(radio, slide);
 		},
