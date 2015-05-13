@@ -1685,7 +1685,7 @@ select {
 }
 .box-swipe .content-swipe .help {
   position: absolute;
-  top: 8px;
+  top: 6px;
   right: 10px;
   width: 30px;
   height: 30px;
@@ -1849,14 +1849,13 @@ section.map {
 }
 .numbers:before {
   font-family: ionicons;
-  font-size: 200px;
+  font-size: 300px;
   line-height: 1;
   position: relative;
   top: 50%;
   display: block;
-  margin-top: -100px;
-  padding-top: 15px;
-  content: '\f3cd';
+  margin-top: -150px;
+  content: '\f272';
   text-align: center;
   color: #2c168e;
 }

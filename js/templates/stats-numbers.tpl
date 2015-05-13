@@ -33,7 +33,7 @@
 </div>
 <div class="box-swipe">
 	<ul class="swipe-panes" style="height: 100%;">
-		<li class="content-swipe" style="top: 6px;">
+		<li class="content-swipe" style="top: 8px;">
 			<canvas id="doughnut"></canvas>
 			<div class="center">
 				<div>
