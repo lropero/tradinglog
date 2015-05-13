@@ -212,6 +212,9 @@
 				app.objects.push(app.trades.shift());
 				app.count.open++;
 			}
+			if(app.trades.length && !app.lastDate) {
+				app.lastDate = app.trades[0].closed_at;
+			}
 			while(app.operations.length && app.trades.length) {
 				if(app.operations[0].created_at > app.trades[0].closed_at) {
 					app.objects.push(app.operations.shift());

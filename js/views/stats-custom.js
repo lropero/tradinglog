@@ -50,9 +50,13 @@
 				}
 				$target.val(date.getFullYear() + '-' + month + '-' + day);
 			}
-			var date = new Date();
-			var maxDate = date;
+			var date = new Date(app.lastDate);
+			date.setDate(1);
 			var minDate = new Date(app.firstDate);
+			if(date < minDate) {
+				date = minDate;
+			}
+			var maxDate = new Date(app.lastDate);
 			var id = $target.attr('id');
 			switch(id) {
 				case 'from':
@@ -79,13 +83,16 @@
 						var dateValues = to.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 					}
+					if(!from && !to) {
+						date = maxDate;
+					}
 					break;
 			}
-			if(datePicker) {
+			if(typeof datePicker !== 'undefined') {
 				datePicker.show({
 					date: date,
-					maxDate: maxDate,
 					minDate: minDate,
+					maxDate: maxDate,
 					mode: 'date'
 				}, value);
 			}
