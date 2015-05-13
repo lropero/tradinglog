@@ -1479,28 +1479,27 @@ select
 .wrapper-calendar .buttons-calendar .button-left,
 .wrapper-calendar .buttons-calendar .button-right
 {
-    position: relative;
+    position: absolute;
+    top: -15px;
 
     width: 80px;
     height: 100%;
+    padding: 30px;
 }
 
 .wrapper-calendar .buttons-calendar .button-left
 {
-    float: left;
+    left: 0;
 }
 
 .wrapper-calendar .buttons-calendar .button-left:before
 {
     font-family: ionicons;
     font-size: 16px;
-    line-height: 30px;
+    line-height: 0;
 
     position: absolute;
-    left: 0;
-
-    height: 100%;
-    padding: 0 10px;
+    left: 30px;
 
     content: '\f107';
 
@@ -1509,20 +1508,17 @@ select
 
 .wrapper-calendar .buttons-calendar .button-right
 {
-    float: right;
+    right: 0;
 }
 
 .wrapper-calendar .buttons-calendar .button-right:after
 {
     font-family: ionicons;
     font-size: 16px;
-    line-height: 30px;
+    line-height: 0;
 
     position: absolute;
-    right: 0;
-
-    height: 100%;
-    padding: 0 10px;
+    right: 30px;
 
     content: '\f10a';
 
@@ -1700,14 +1696,24 @@ select
 
 #map .label.trade .net
 {
+    position: relative;
+    z-index: 10;
+
     padding: 0 15px;
 
     text-align: right;
 }
 
+#map .label.trade .instrument,
+#map .label.operation .instrument
+{
+    position: relative;
+    z-index: 10;
+}
+
 #map .label.trade .ball
 {
-    z-index: 10;
+    z-index: 100;
 
     width: 18px;
     height: 18px;
@@ -1755,23 +1761,19 @@ select
 
     width: 100%;
     height: 100%;
-    padding-left: 40px;
+    padding-left: 48px;
 
-    -webkit-animation-duration: 0.2s;
+    -webkit-animation-duration: .3s;
 }
 
 #map .label.trade.positive .percentage
 {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(75,215,99,1)), color-stop(100%,rgba(75,215,99,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left,  rgba(75,215,99,1) 0%,rgba(75,215,99,0) 100%); /* Chrome10+,Safari5.1+ */
-    background:         linear-gradient(to right,  rgba(75,215,99,1) 0%,rgba(75,215,99,0) 100%); /* W3C */
+    background: @green;
 }
 
 #map .label.negative .percentage
 {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,59,48,1)), color-stop(100%,rgba(255,59,48,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* Chrome10+,Safari5.1+ */
-    background:         linear-gradient(to right,  rgba(255,59,48,1) 0%,rgba(255,59,48,0) 100%); /* W3C */
+    background: @red;
 }
 
 #map .label.zero .percentage
@@ -1781,6 +1783,8 @@ select
 
 #map .bar-percentage
 {
+    z-index: 1;
+
     float: right;
 
     width: 100%;
@@ -2628,10 +2632,79 @@ select
 // MAP
 // -------------------------------------------------- //
 
-#map {
+#map
+{
     margin-bottom: 44px;
 }
 
-section.map {
+section.map
+{
     bottom: 0!important;
+}
+
+#map .label .row:before
+{
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 30px;
+
+    content: '';
+
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,100) 100%);
+}
+
+#map .label.positive:before
+{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+
+    width: 48px;
+    height: 30px;
+
+    content: '';
+
+    background: @green;
+}
+
+#map .label.negative:before
+{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+
+    width: 48px;
+    height: 30px;
+
+    content: '';
+
+    background: @red;
+}
+
+// NUMBERS
+// -------------------------------------------------- //
+.numbers:before
+{
+    font-family: ionicons;
+    font-size: 200px;
+    line-height: 1;
+
+    position: relative;
+    top: 50%;
+
+    display: block;
+
+    margin-top: -100px;
+    padding-top: 15px;
+
+    content: '\f3cd';
+    text-align: center;
+
+    color: @violet-dark;
 }
