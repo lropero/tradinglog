@@ -97,6 +97,15 @@
 							}
 						}
 					}
+					var last = temp[temp.length - 1];
+					if(typeof last === 'string') {
+						var split = last.split('#');
+						last = parseInt(split[0], 10);
+						split = split[1].split('-');
+						if(at !== split[0] + '-' + split[1] + '-') {
+							at = split[0] + '-' + split[1] + '-';
+						}
+					}
 					balancesNew[at + j] = parseInt(temp[temp.length - 1], 10);
 					this.data[index][type].balances = balancesNew;
 				}
