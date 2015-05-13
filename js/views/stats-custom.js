@@ -102,7 +102,6 @@
 		},
 
 		submit: function(e) {
-			var self = this;
 			e.preventDefault();
 			var from = this.$el.find('input#from').val();
 			var to = this.$el.find('input#to').val();
@@ -131,14 +130,10 @@
 				month = parseInt(toDateValues[1], 10) - 1;
 				day = parseInt(toDateValues[2], 10);
 				index += toDateValues[0] + '-' + month + '-' + day + '#' + str;
-				var deferred = app.stats.get(index);
-				deferred.done(function(stats) {
-					self.destroy();
-					app.view.subview = new app.Views.statsNumbers({
-						groups: groups,
-						index: index,
-						stats: stats
-					});
+				this.destroy();
+				app.view.subview = new app.Views.statsNumbers({
+					index: index,
+					groups: groups
 				});
 			}
 		},
