@@ -220,6 +220,7 @@
 						self.drawNumbers(stats[type]);
 						self.drawLine(stats[type].balances, true);
 					} else {
+						delete app.previousCustom;
 						$('div#no-stats').css('display', 'block');
 						$('div.wrapper-control-box-swipe').css('display', 'none');
 					}
