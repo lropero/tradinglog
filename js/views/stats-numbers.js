@@ -17,6 +17,7 @@
 			} else {
 				this.at = parseInt(attrs.at, 10);
 				this.period = $('control.segmented li.active').data('period');
+				this.setPreviousCustom();
 			}
 			var radio = attrs.radio;
 			var slide = attrs.slide;
@@ -326,6 +327,7 @@
 				case 'left':
 					if(app.stats.availables[this.period][this.at + 1]) {
 						this.at++;
+						this.setPreviousCustom();
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
 						this.drawStats();
 					}
@@ -333,6 +335,7 @@
 				case 'right':
 					if(app.stats.availables[this.period][this.at - 1]) {
 						this.at--;
+						this.setPreviousCustom();
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
 						this.drawStats();
 					}
@@ -351,6 +354,21 @@
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
 				this.drawStats();
+			}
+		},
+
+		setPreviousCustom: function() {
+			if(app.previousCustom) {
+				switch(this.period) {
+					case 'monthly':
+						app.previousCustom.monthly = this.at;
+						delete app.previousCustom.weekly;
+						break;
+					case 'weekly':
+						delete app.previousCustom.monthly;
+						app.previousCustom.weekly = this.at;
+						break;
+				}
 			}
 		},
 
