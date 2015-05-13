@@ -173,7 +173,7 @@
 				datasetStrokeWidth: 1,
 				pointDotRadius: 2,
 				scaleFontColor: '#2c168e',
-				scaleGridLineColor: 'rgba(44, 22, 142, .25)',
+				scaleGridLineColor: 'rgba(44, 22, 142, .3)',
 				scaleLineColor: '#2c168e',
 				scaleShowGridLines: true,
 				scaleShowVerticalLines: false,
