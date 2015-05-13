@@ -1151,7 +1151,7 @@
 						<div class="instrument">{{this.instrument}}</div>
 						<div class="net {{#gt this.net 0}}positive{{else}}{{#lt this.net 0}}negative{{else}}zero{{/lt}}{{/gt}}">{{#money this.net}}{{/money}}</div>
 					</div>
-					<div class="percentage" style="-webkit-animation-delay: {{multiply @index 0.01}}s;">
+					<div class="percentage" style="-webkit-animation-delay: {{multiply @index 0.02}}s;">
 						<div class="bar-percentage" style="width: {{#map this.net ../this.max}}{{/map}}%;"></div>
 					</div>
 				</div>
@@ -1679,7 +1679,7 @@
 		<li data-period="custom" data-section="Custom">Custom</li>
 	</ul>
 </control>
-<section id="content"></section>
+<section id="content" style="background-color: #4020d0;"></section>
 </script>
 <script type="text/x-handlebars-template" id="welcome-template"><div class="welcome box-violet">
 	<div class="content">

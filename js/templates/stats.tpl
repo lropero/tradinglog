@@ -5,4 +5,4 @@
 		<li data-period="custom" data-section="Custom">Custom</li>
 	</ul>
 </control>
-<section id="content"></section>
+<section id="content" style="background-color: #4020d0;"></section>
