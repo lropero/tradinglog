@@ -69,6 +69,9 @@
 					if(to) {
 						var dateValues = to.split('-');
 						maxDate = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
+						if(!from) {
+							date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
+						}
 					}
 					break;
 				case 'to':

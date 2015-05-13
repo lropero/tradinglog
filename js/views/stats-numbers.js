@@ -146,6 +146,10 @@
 				values.push(value);
 				i++;
 			});
+			if(noLabels && !verticalLines.length) {
+				var split = last.split('-');
+				labels[0] = app.date.getMonthString(parseInt(split[1], 10), true);
+			}
 			var data = {
 				labels: labels,
 				datasets: [
