@@ -44,6 +44,7 @@
 				}
 			}
 			$('div#radio-' + radio).addClass('active');
+			this.drawStats();
 			var $swipePanes = $('ul.swipe-panes');
 			$swipePanes.slick({
 				accessibility: false,
@@ -59,7 +60,6 @@
 			var $control = $('ul.control-box-swipe');
 			$control.find('li.active').removeClass('active');
 			$('li#swipe-control-' + slide).addClass('active');
-			this.drawStats();
 			return this;
 		},
 
@@ -220,7 +220,7 @@
 						$('div.wrapper-control-box-swipe').css('display', 'block');
 						self.drawDoughnut(stats[type]);
 						self.drawNumbers(stats[type]);
-						self.drawLine(stats[type].balances);
+						self.drawLine(stats[type].balances, true);
 					} else {
 						$('div#no-stats').css('display', 'block');
 						$('div.wrapper-control-box-swipe').css('display', 'none');
