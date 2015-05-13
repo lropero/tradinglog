@@ -223,6 +223,8 @@
 					$('div.wrapper-control-box-swipe').css('display', 'none');
 				}
 			} else {
+				$('div#processing').css('display', 'block');
+				$('div.wrapper-control-box-swipe').css('display', 'none');
 				var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
@@ -301,9 +303,9 @@
 							}
 							break;
 					}
+					$('div#processing').css('display', 'none');
 				});
 			}
-			return deferred;
 		},
 
 		moveDate: function(e) {

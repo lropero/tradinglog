@@ -10,7 +10,7 @@
 
 	<gap:platform name="ios" />
 
-	<content src="index.min.html" />
+	<content src="index.dist.html" />
 
 	<preference name="applicationSupportsShakeToEdit" value="no" />
 	<preference name="AutoHideSplashScreen" value="false" />

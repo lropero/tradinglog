@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 				]
 			},
 			html: {
-				dest: 'dist/min.tpl',
+				dest: 'dist/templates.tpl',
 				src: [
 					'js/templates/*.tpl'
 				]
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			target: {
 				files: [{
-					'dist/min.css': 'tmp/styles.css'
+					'dist/styles.css': 'tmp/styles.css'
 				}]
 			}
 		},
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 		uglify: {
 			target: {
 				files: {
-					'dist/min.js': 'tmp/scripts.js'
+					'dist/scripts.js': 'tmp/scripts.js'
 				}
 			}
 		},

@@ -1541,6 +1541,11 @@
 		</li>
 	</ul>
 </div>
+<div id="processing" style="display: none; top: 147px;">
+	<div class="center">
+		<span>Processing</span>
+	</div>
+</div>
 <div id="no-stats" style="display: none; top: 147px;">
 	<div class="center">
 		<span>No data</span>
