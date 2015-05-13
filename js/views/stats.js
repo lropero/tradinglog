@@ -81,17 +81,17 @@
 					if(app.previousCustom) {
 						switch($target.data('period')) {
 							case 'monthly':
-								if(app.previousCustom.monthly) {
+								if(typeof app.previousCustom.monthly === 'number') {
 									at = app.previousCustom.monthly;
-								} else if(app.previousCustom.weekly) {
+								} else if(typeof app.previousCustom.weekly === 'number') {
 									var index = app.stats.availables.weekly[app.previousCustom.weekly];
 									at = this.convertWeekly(app.previousCustom.weekly, index);
 								}
 								break;
 							case 'weekly':
-								if(app.previousCustom.weekly) {
+								if(typeof app.previousCustom.weekly === 'number') {
 									at = app.previousCustom.weekly;
-								} else if(app.previousCustom.monthly) {
+								} else if(typeof app.previousCustom.monthly === 'number') {
 									var index = app.stats.availables.monthly[app.previousCustom.monthly];
 									at = this.convertMonthly(app.previousCustom.monthly, index);
 								}
