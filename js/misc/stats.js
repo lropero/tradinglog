@@ -42,71 +42,62 @@
 				var length = Object.keys(balances).length;
 				if(length > steps) {
 					var temp = [];
-					var j = 0;
-					var last = '';
-					var month = '';
-					var verticalLines = [];
 					$.each(balances, function(index, value) {
-						if(index.toString() !== '0') {
-							var split = index.split('-');
-							if(!last.length) {
-								last = split[0] + '-' + split[1];
-							} else if(last !== split[0] + '-' + split[1]) {
-								verticalLines.push(j);
-								last = split[0] + '-' + split[1];
-							}
-							if(j === 1) {
-								month = split[1];
+						for(var j = 0; j < steps - 2; j++) {
+							if(j === 0) {
+								temp.push(value + '#' + index);
+							} else {
+								temp.push(value);
 							}
 						}
-						for(var k = 0; k < steps - 2; k++) {
-							temp.push(value);
-						}
-						j++;
 					});
 					temp = temp.slice(steps - 3, temp.length - (steps - 3));
 					var balancesNew = {
 						0: temp[0]
 					};
-					var sum = 0;
-					var at = '0-' + month + '-';
+					var at = '';
+					var counter = -1;
 					var j = 0;
-					var saracatunga = -1;
+					var sum = 0;
 					for(var k = 1; k < temp.length - 1; k++) {
-						sum += temp[k];
-						if(k % (steps - 2) === 0) {
-							if($.inArray(k / (steps - 2), verticalLines) > -1) {
-								var saracatunga = 0;
+						if(typeof temp[k] === 'string') {
+							var split = temp[k].split('#');
+							temp[k] = parseInt(split[0], 10);
+							split = split[1].split('-');
+							if(!at.length) {
+								at = split[0] + '-' + split[1] + '-';
+							} else if(at !== split[0] + '-' + split[1] + '-') {
+								counter = 0;
 							}
+						}
+						sum += temp[k];
+						if(counter > -1) {
+							counter++;
 						}
 						if(k % (length - 2) === 0) {
 							var halfStep = (steps - 2) / 2;
-							if(saracatunga > -1) {
-								if(saracatunga === halfStep) {
-									halfStep += Math.round(Math.random()) * 2 - 1;
+							if(counter > -1) {
+								if(counter === halfStep) {
+									// Schrödinger's cat
+									counter += Math.round(Math.random()) * 2 - 1;
 								}
-								if(saracatunga < halfStep) {
-									var split = at.split('-');
-									at = '0-' + (parseInt(split[1], 10) + 1) + '-';
-									j = 0;
-								}
+							}
+							if(counter >= halfStep) {
+								at = split[0] + '-' + split[1] + '-';
+								j = 0;
 							}
 							balancesNew[at + j++] = sum / (length - 2);
 							sum = 0;
-							if(saracatunga > -1) {
-								if(saracatunga > halfStep) {
-									var split = at.split('-');
-									at = '0-' + (parseInt(split[1], 10) + 1) + '-';
+							if(counter > -1) {
+								if(counter < halfStep) {
+									at = split[0] + '-' + split[1] + '-';
 									j = 0;
 								}
-								saracatunga = -1;
+								counter = -1;
 							}
 						}
-						if(saracatunga > -1) {
-							saracatunga++;
-						}
 					}
-					balancesNew[at + j] = temp[temp.length - 1];
+					balancesNew[at + j] = parseInt(temp[temp.length - 1], 10);
 					this.data[index][type].balances = balancesNew;
 				}
 			}
