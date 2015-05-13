@@ -115,6 +115,7 @@
 			var values = [];
 			var i = 0;
 			var last = '';
+			var noMonth = false;
 			var verticalLines = [];
 			$.each(balances, function(index, value) {
 				if(index.toString() === '0') {
@@ -125,6 +126,11 @@
 						index = '';
 					} else {
 						index = split[2];
+						if(index.toString() === '0') {
+							index = '';
+							noLabels = true;
+							noMonth = true;
+						}
 					}
 					if(!last.length) {
 						last = split[0] + '-' + split[1];
@@ -143,7 +149,7 @@
 				values.push(value);
 				i++;
 			});
-			if(noLabels && !verticalLines.length) {
+			if(!verticalLines.length && noLabels && !noMonth) {
 				var split = last.split('-');
 				labels[0] = app.date.getMonthString(parseInt(split[1], 10), true);
 			}
