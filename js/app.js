@@ -7,7 +7,6 @@
 		Models: {},
 		Templates: {},
 		Views: {},
-
 		// Remove
 		t0: (new Date()).getTime(),
 
@@ -53,28 +52,20 @@
 
 									/** Load main view */
 									app.view = new app.Views.main();
+									app.view.deferred.done(function() {
+										/** We hide the initial splash screen once the main view is ready */
+										app.hideSplash();
 
-									/** We hide the initial splash screen once the main view is ready */
-									app.hideSplash();
+										/** Generate stats */
+										if(app.stats.availables.monthly[0]) {
+											app.stats.get(app.stats.availables.monthly[0]);
+										};
+										if(app.stats.availables.weekly[0]) {
+											app.stats.get(app.stats.availables.weekly[0]);
+										};
 
-									/** Generate stats */
-									if(app.stats.availables.monthly[0]) {
-										app.stats.get(app.stats.availables.monthly[0]);
-									};
-									if(app.stats.availables.weekly[0]) {
-										app.stats.get(app.stats.availables.weekly[0]);
-									};
-
-									/** Preload some templates to smoothen navigation */
-									new app.Views.mainAddOperation(true);
-									new app.Views.mainAddTrade(true);
-									new app.Views.mainMap(true);
-									for(var i = 0; i < app.count.open; i++) {
-										new app.Views.mainViewTrade(i.toString(), true);
-									}
-									new app.Views.settingsAddAccount(' ', true);
-									new app.Views.settingsAddInstrument(' ', true);
-
+										app.preLoadTemplates();
+									});
 								});
 							}
 						}
@@ -84,8 +75,9 @@
 		},
 
 		disableScroll: function() {
-			$('section#content').css('-webkit-overflow-scrolling', 'auto');
-			$('section#content').css('overflow-y', 'hidden');
+			var $sectionContent = $('section#content');
+			$sectionContent.css('-webkit-overflow-scrolling', 'auto');
+			$sectionContent.css('overflow-y', 'hidden');
 		},
 
 		fetchObjects: function() {
@@ -172,21 +164,18 @@
 		},
 
 		enableScroll: function() {
-			$('section#content').css('-webkit-overflow-scrolling', 'touch');
-			$('section#content').css('overflow-y', 'scroll');
+			var $sectionContent = $('section#content');
+			$sectionContent.css('-webkit-overflow-scrolling', 'touch');
+			$sectionContent.css('overflow-y', 'scroll');
 		},
 
 		hideSplash: function() {
-			app.view.deferred.done(function() {
-				if(navigator.splashscreen) {
-					navigator.splashscreen.hide();
-				}
-
-				// Remove
-				var t1 = (new Date()).getTime() - app.t0;
-				console.log('debug load time: ' + t1);
-
-			});
+			if(navigator.splashscreen) {
+				navigator.splashscreen.hide();
+			}
+			// Remove
+			var t1 = (new Date()).getTime() - app.t0;
+			console.log('debug load time: ' + t1);
 		},
 
 		loadView: function(view, attrs) {
@@ -205,6 +194,20 @@
 					self.view = new app.Views[view](attrs);
 				}, 50);
 			}
+		},
+
+		preLoadTemplates: function() {
+			//debug only
+			console.log("preLoadTemplates");
+			/** Preload some templates to smoothen navigation */
+			new app.Views.mainAddOperation(true);
+			new app.Views.mainAddTrade(true);
+			new app.Views.mainMap(true);
+			for(var i = 0; i < app.count.open; i++) {
+				new app.Views.mainViewTrade(i.toString(), true);
+			}
+			new app.Views.settingsAddAccount(' ', true);
+			new app.Views.settingsAddInstrument(' ', true);
 		},
 
 		prepareObjects: function() {

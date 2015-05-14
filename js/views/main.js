@@ -98,6 +98,7 @@
 													app.cache.delete('main');
 													app.cache.delete('mainMap');
 													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+													app.cache.delete('mainViewTradeContent' + app.objects[app.count.open + 1].id);
 													app.loadView('main');
 												});
 											});
@@ -159,6 +160,7 @@
 												app.cache.delete('main');
 												if(app.objects[app.count.open].instrument_id) {
 													app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
+													app.cache.delete('mainViewTradeContent' + app.objects[app.count.open + 1].id);
 												}
 												app.loadView('main');
 											}

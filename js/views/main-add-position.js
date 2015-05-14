@@ -114,11 +114,13 @@
 												app.cache.delete('mainMap');
 												app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
 												app.cache.delete('mainViewTrade' + self.trade.id);
+												app.cache.delete('mainViewTradeContent' + self.trade.id);
 												app.loadView('mainViewTrade', app.count.open.toString());
 											} else {
 												app.objects[self.key] = trade.toJSON();
 												app.cache.delete('main');
 												app.cache.delete('mainViewTrade' + self.trade.id);
+												app.cache.delete('mainViewTradeContent' + self.trade.id);
 												app.loadView('mainViewTrade', self.key);
 											}
 										});

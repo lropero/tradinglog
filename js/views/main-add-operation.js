@@ -98,6 +98,7 @@
 								app.cache.delete('main');
 								if(app.objects[app.count.open + 1].instrument_id) {
 									app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+									app.cache.delete('mainViewTradeContent' + app.objects[app.count.open + 1].id);
 								}
 								app.loadView('main');
 							}
