@@ -142,9 +142,7 @@
 					radio: 1,
 					slide: 1
 				});
-				var $custom = $('li#control-custom');
-				$custom.css('backgroundColor', '#989898');
-				$custom.html('Reset');
+				$('li#control-custom').html('Reset');
 			}
 		},
 
