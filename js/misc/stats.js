@@ -389,6 +389,40 @@
 			var deferred = $.Deferred();
 			deferred.resolve(this.data[index]);
 			return deferred;
+		},
+
+		toMonthly: function(index) {
+			var dateValues = index.split('-');
+			var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
+			date.setDate(date.getDate() + 6);
+			for(var i = app.stats.availables.monthly.length; i > 0; i--) {
+				if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {
+					return i - 1;
+				}
+			}
+			return false;
+		},
+
+		toWeekly: function(index) {
+			for(var i = app.stats.availables.weekly.length; i > 0; i--) {
+				var dateValues = app.stats.availables.weekly[i - 1].split('-');
+				if(dateValues[0] + '-' + dateValues[1] === index) {
+					return i - 1;
+				}
+			}
+			var dateValues = index.split('-');
+			if(dateValues[1] === '0') {
+				index = (dateValues[0] - 1) + '-11';
+			} else {
+				index = dateValues[0] + '-' + (dateValues[1] - 1);
+			}
+			for(var i = 0; i < app.stats.availables.weekly.length; i++) {
+				var dateValues = app.stats.availables.weekly[i].split('-');
+				if(dateValues[0] + '-' + dateValues[1] === index) {
+					return i;
+				}
+			}
+			return false;
 		}
 	};
 })();

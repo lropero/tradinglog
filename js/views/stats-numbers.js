@@ -293,46 +293,12 @@
 						}
 					}
 					index = app.stats.availables[self.period][self.at];
-					done:
 					switch(self.period) {
 						case 'monthly':
-							for(var i = app.stats.availables.weekly.length; i > 0; i--) {
-								var dateValues = app.stats.availables.weekly[i - 1].split('-');
-								if(dateValues[0] + '-' + dateValues[1] === index) {
-									if(!app.stats.data[app.stats.availables.weekly[i - 1]]) {
-										app.stats.get(app.stats.availables.weekly[i - 1]);
-									}
-									break done;
-								}
-							}
-							var dateValues = index.split('-');
-							if(dateValues[1] === '0') {
-								index = (dateValues[0] - 1) + '-11';
-							} else {
-								index = dateValues[0] + '-' + (dateValues[1] - 1);
-							}
-							for(var i = 0; i < app.stats.availables.weekly.length; i++) {
-								var dateValues = app.stats.availables.weekly[i].split('-');
-								if(dateValues[0] + '-' + dateValues[1] === index) {
-									if(!app.stats.data[app.stats.availables.weekly[i]]) {
-										app.stats.get(app.stats.availables.weekly[i]);
-									}
-									break done;
-								}
-							}
+							app.stats.get(app.stats.availables.weekly[app.stats.toWeekly(index)]);
 							break;
 						case 'weekly':
-							var dateValues = index.split('-');
-							var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
-							date.setDate(date.getDate() + 6);
-							for(var i = app.stats.availables.monthly.length; i > 0; i--) {
-								if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {
-									if(!app.stats.data[app.stats.availables.monthly[i - 1]]) {
-										app.stats.get(app.stats.availables.monthly[i - 1]);
-									}
-									break done;
-								}
-							}
+							app.stats.get(app.stats.availables.monthly[app.stats.toMonthly(index)]);
 							break;
 					}
 					$('div#processing').css('display', 'none');
@@ -385,10 +351,10 @@
 				switch(this.period) {
 					case 'monthly':
 						app.previousCustom.monthly = this.at;
-						delete app.previousCustom.weekly;
+						app.previousCustom.weekly = app.stats.toWeekly(app.stats.availables.monthly[this.at]);
 						break;
 					case 'weekly':
-						delete app.previousCustom.monthly;
+						app.previousCustom.monthly = app.stats.toMonthly(app.stats.availables.weekly[this.at]);
 						app.previousCustom.weekly = this.at;
 						break;
 				}

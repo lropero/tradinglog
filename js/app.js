@@ -58,11 +58,10 @@
 									app.hideSplash();
 
 									/** Generate stats */
-									if(app.stats.availables.monthly[0]) {
-										app.stats.get(app.stats.availables.monthly[0]);
-									};
-									if(app.stats.availables.weekly[0]) {
-										app.stats.get(app.stats.availables.weekly[0]);
+									var monthly = app.stats.availables.monthly[0];
+									if(monthly) {
+										app.stats.get(monthly);
+										app.stats.get(app.stats.availables.weekly[app.stats.toWeekly(monthly)]);
 									};
 
 									/** Preload some templates to smoothen navigation */
