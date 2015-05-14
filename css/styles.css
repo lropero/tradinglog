@@ -238,6 +238,14 @@ section#settings {
 ::-webkit-scrollbar {
   display: none;
 }
+@-webkit-keyframes ball {
+  from {
+    background-color: #222222;
+  }
+  to {
+    background-color: #ffffff;
+  }
+}
 @-webkit-keyframes loading {
   from {
     -webkit-transform: rotate(0deg);
@@ -1270,17 +1278,9 @@ select {
   z-index: 100;
   width: 18px;
   height: 18px;
+  background-color: #222222;
 }
-@-webkit-keyframes ball {
-  from {
-    background-color: #222222;
-  }
-  to {
-    background-color: #ffffff;
-  }
-}
-#map .label.trade.long .ball,
-#map .label.trade.short .ball {
+#map .label.trade .ball.animate {
   background-color: #ffffff;
   -webkit-animation-duration: .2s;
   -webkit-animation-name: ball;
@@ -1306,18 +1306,16 @@ select {
 #map .percentage {
   position: absolute;
   top: 0;
-  left: -30px;
+  left: 0;
   width: 100%;
   height: 100%;
   padding-left: 48px;
   -webkit-animation-duration: .2s;
 }
 #map .label.trade.positive .percentage {
-  border-left: 30px solid #4bd763;
   background: #4bd763;
 }
 #map .label.negative .percentage {
-  border-left: 30px solid #ff3b30;
   background: #ff3b30;
 }
 #map .label.zero .percentage {

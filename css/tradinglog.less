@@ -1717,18 +1717,11 @@ select
 
     width: 18px;
     height: 18px;
+
+    background-color: @black;
 }
 
-@-webkit-keyframes ball {
-    from {
-        background-color: @black;
-    } to {
-        background-color: @white;
-    }
-}
-
-#map .label.trade.long .ball,
-#map .label.trade.short .ball
+#map .label.trade .ball.animate
 {
     background-color: @white;
 
@@ -1768,7 +1761,7 @@ select
 {
     position: absolute;
     top: 0;
-    left: -30px;
+    left: 0;
 
     width: 100%;
     height: 100%;
@@ -1779,13 +1772,11 @@ select
 
 #map .label.trade.positive .percentage
 {
-    border-left: 30px solid @green;
     background: @green;
 }
 
 #map .label.negative .percentage
 {
-    border-left: 30px solid @red;
     background: @red;
 }
 

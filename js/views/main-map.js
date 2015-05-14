@@ -36,6 +36,7 @@
 			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
 				$percentage.removeClass(animated);
 			});
+			$('div.ball').addClass('animate');
 		},
 
 		decorate: function() {
