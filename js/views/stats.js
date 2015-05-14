@@ -45,6 +45,9 @@
 				if(period === 'custom') {
 					if(app.previousCustom) {
 						at = app.previousCustom[$target.data('period')];
+						var $custom = $('li#control-custom');
+						$custom.removeAttr('style');
+						$custom.html('Custom');
 					}
 				} else {
 					var index = app.stats.availables[period][this.subview.at];
@@ -78,6 +81,8 @@
 						delete app.previousCustom;
 						this.$el.find('li.active').removeClass('active');
 						$target.addClass('active');
+						$target.removeAttr('style');
+						$target.html('Custom');
 						if(typeof this.subview.destroy === 'function') {
 							this.subview.destroy();
 						}
@@ -99,6 +104,8 @@
 						}
 						this.$el.find('li.active').removeClass('active');
 						$target.addClass('active');
+						$target.css('backgroundColor', '#9f8fe7');
+						$target.html('Reset');
 						if(typeof this.subview.destroy === 'function') {
 							this.subview.destroy();
 						}

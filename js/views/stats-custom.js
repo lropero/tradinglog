@@ -142,6 +142,9 @@
 					radio: 1,
 					slide: 1
 				});
+				var $custom = $('li#control-custom');
+				$custom.css('backgroundColor', '#9f8fe7');
+				$custom.html('Reset');
 			}
 		},
 
