@@ -1284,6 +1284,7 @@ select {
   background-color: #ffffff;
   -webkit-animation-duration: .2s;
   -webkit-animation-name: ball;
+  -webkit-animation-timing-function: ease-out;
 }
 #map .label.trade .ball .icon {
   font-size: 12px;
