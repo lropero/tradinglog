@@ -135,6 +135,10 @@
 		return accounting.formatMoney(money, '$ ');
 	});
 
+	Handlebars.registerHelper('multiply', function(lvalue, rvalue) {
+		return lvalue * rvalue;
+	});
+
 	Handlebars.registerHelper('nl2br', function(string) {
 		return string.replace(/(\r\n|\n\r|\r|\n)/g, '<br />')
 	});

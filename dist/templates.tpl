@@ -1151,7 +1151,7 @@
 						<div class="instrument">{{this.instrument}}</div>
 						<div class="net {{#gt this.net 0}}positive{{else}}{{#lt this.net 0}}negative{{else}}zero{{/lt}}{{/gt}}">{{#money this.net}}{{/money}}</div>
 					</div>
-					<div class="percentage">
+					<div class="percentage" style="-webkit-animation-delay: {{multiply @index 2}}s;">
 						<div class="bar-percentage" style="width: {{#map this.net ../this.max}}{{/map}}%;"></div>
 					</div>
 				</div>
