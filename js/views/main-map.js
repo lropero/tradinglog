@@ -20,8 +20,8 @@
 				app.trigger('change', 'main-map');
 				this.$el.html(template);
 				$('section#main-stats-friends').addClass('map');
-				this.animate();
 				this.decorate();
+				this.animate();
 			}
 			return this;
 		},
