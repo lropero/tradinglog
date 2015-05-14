@@ -131,7 +131,9 @@
 				day = parseInt(toDateValues[2], 10);
 				index += toDateValues[0] + '-' + month + '-' + day + '#' + str;
 				app.previousCustom = {
-					index: index
+					index: index,
+					monthly: 0,
+					weekly: app.stats.toWeekly(app.stats.availables.monthly[0])
 				};
 				this.destroy();
 				app.view.subview = new app.Views.statsNumbers({

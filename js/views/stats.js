@@ -44,18 +44,7 @@
 				var period = $('control.segmented li.active').data('period');
 				if(period === 'custom') {
 					if(app.previousCustom) {
-						switch($target.data('period')) {
-							case 'monthly':
-								if(typeof app.previousCustom.monthly === 'number') {
-									at = app.previousCustom.monthly;
-								}
-								break;
-							case 'weekly':
-								if(typeof app.previousCustom.weekly === 'number') {
-									at = app.previousCustom.weekly;
-								}
-								break;
-						}
+						at = app.previousCustom[$target.data('period')];
 					}
 				} else {
 					var index = app.stats.availables[period][this.subview.at];
