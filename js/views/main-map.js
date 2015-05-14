@@ -35,8 +35,8 @@
 			var animated = 'animated fadeInLeft';
 			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
 				$percentage.removeClass(animated);
-				$percentage.prev().prev('div.ball').addClass('animate');
 			});
+			$('div.ball').addClass('animate');
 		},
 
 		decorate: function() {
