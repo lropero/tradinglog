@@ -46,6 +46,8 @@
 					if(app.previousCustom) {
 						at = app.previousCustom[$target.data('period')];
 						$('li#control-custom').html('Custom');
+					} else if($target.data('period') === 'weekly') {
+						at = app.stats.toWeekly(app.stats.availables.monthly[0]);
 					}
 				} else {
 					var index = app.stats.availables[period][this.subview.at];
