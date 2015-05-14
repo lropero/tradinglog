@@ -205,10 +205,17 @@
 			}
 			$('span#line-variation').html(accounting.toFixed(stats.variation, 2) + '%');
 			$('span.highlight').css('color', '#fff');
-			if(stats.net > 0) {
-				$('span.highlight').css('color', '#4bd763');
-			} else if(stats.net < 0) {
-				$('span.highlight').css('color', '#ff3b30');
+			if(stats.accuracy >= 50) {
+				$('span#numbers-accuracy').css('color', '#4bd763');
+			} else {
+				$('span#numbers-accuracy').css('color', '#ff3b30');
+			}
+			if(stats.riskRewardRatio !== 'N/A') {
+				if(stats.riskRewardRatio >= 1) {
+					$('span#numbers-risk_reward_ratio').css('color', '#4bd763');
+				} else {
+					$('span#numbers-risk_reward_ratio').css('color', '#ff3b30');
+				}
 			}
 		},
 
