@@ -226,6 +226,14 @@
 						self.drawDoughnut(stats[type]);
 						self.drawNumbers(stats[type]);
 						self.drawLine(stats[type].balances, true);
+						var $numbers = $('div.numbers');
+						if(stats[type].net > 0) {
+							$numbers.addClass('positive');
+							$numbers.removeClass('negative');
+						} else if(stats[type].net < 0) {
+							$numbers.addClass('negative');
+							$numbers.removeClass('positive');
+						}
 					} else {
 						delete app.previousCustom;
 						$('div#no-stats').css('display', 'block');
@@ -243,6 +251,14 @@
 						self.drawDoughnut(stats[type]);
 						self.drawNumbers(stats[type]);
 						self.drawLine(stats[type].balances);
+						var $numbers = $('div.numbers');
+						if(stats[type].net > 0) {
+							$numbers.addClass('positive');
+							$numbers.removeClass('negative');
+						} else if(stats[type].net < 0) {
+							$numbers.addClass('negative');
+							$numbers.removeClass('positive');
+						}
 					} else {
 						$('div#no-stats').css('display', 'block');
 						$('div.wrapper-control-box-swipe').css('display', 'none');

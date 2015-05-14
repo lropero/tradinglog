@@ -1848,15 +1848,27 @@ section.map {
   height: 30px;
   content: '';
 }
-.numbers:before {
+.numbers.positive:before {
   font-family: ionicons;
-  font-size: 300px;
+  font-size: 260px;
   line-height: 1;
   position: relative;
   top: 50%;
   display: block;
-  margin-top: -150px;
-  content: '\f272';
+  margin-top: -130px;
+  content: '\f262';
+  text-align: center;
+  color: #2c168e;
+}
+.numbers.negative:before {
+  font-family: ionicons;
+  font-size: 260px;
+  line-height: 1;
+  position: relative;
+  top: 50%;
+  display: block;
+  margin-top: -130px;
+  content: '\f260';
   text-align: center;
   color: #2c168e;
 }
