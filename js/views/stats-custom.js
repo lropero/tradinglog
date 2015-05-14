@@ -143,7 +143,7 @@
 					slide: 1
 				});
 				var $custom = $('li#control-custom');
-				$custom.css('backgroundColor', '#fdb45c');
+				$custom.css('backgroundColor', '#989898');
 				$custom.html('Reset');
 			}
 		},
