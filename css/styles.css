@@ -240,7 +240,7 @@ section#settings {
 }
 @-webkit-keyframes ball {
   from {
-    background-color: #4020d0;
+    background-color: #333333;
   }
   to {
     background-color: #ffffff;
@@ -1278,7 +1278,7 @@ select {
   z-index: 100;
   width: 18px;
   height: 18px;
-  background-color: #4020d0;
+  background-color: #333333;
 }
 #map .label.trade .ball.animate {
   background-color: #ffffff;
