@@ -284,11 +284,35 @@ section#settings {
 	display: none;
 }
 
-@-webkit-keyframes ball {
+@-webkit-keyframes ball-long {
     from {
-        background-color: @gray-dark;
+        background-color: @green;
     } to {
         background-color: @white;
+    }
+}
+
+@-webkit-keyframes ball-short {
+    from {
+        background-color: @red;
+    } to {
+        background-color: @white;
+    }
+}
+
+@-webkit-keyframes icon-long {
+    from {
+        color: @white;
+    } to {
+        color: @green;
+    }
+}
+
+@-webkit-keyframes icon-short {
+    from {
+        color: @white;
+    } to {
+        color: @red;
     }
 }
 
