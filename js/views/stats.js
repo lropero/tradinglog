@@ -104,7 +104,7 @@
 						}
 						this.$el.find('li.active').removeClass('active');
 						$target.addClass('active');
-						$target.css('backgroundColor', '#9f8fe7');
+						$target.css('backgroundColor', '#ff3b30');
 						$target.html('Reset');
 						if(typeof this.subview.destroy === 'function') {
 							this.subview.destroy();
