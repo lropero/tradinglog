@@ -49,15 +49,13 @@
 						$('li#control-custom').html('Custom');
 					}
 					monthly = false;
-				} else {
-					var $control = $('ul.control-box-swipe');
-					if($control) {
-						radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
-						slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
-					}
-					if($active.data('period') === 'weekly') {
-						monthly = false;
-					}
+				} else if($active.data('period') === 'weekly') {
+					monthly = false;
+				}
+				var $control = $('ul.control-box-swipe');
+				if($control) {
+					radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
+					slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
 				}
 				$active.removeClass('active');
 				$target.addClass('active');
