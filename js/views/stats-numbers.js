@@ -17,7 +17,11 @@
 			} else {
 				this.at = parseInt(attrs.at, 10);
 				this.period = $('control.segmented li.active').data('period');
-				this.setPreviousCustom();
+				var monthly = true;
+				if(typeof attrs.monthly !== 'undefined' && !attrs.monthly) {
+					monthly = false;
+				}
+				this.setAts(monthly);
 			}
 			var radio = attrs.radio;
 			var slide = attrs.slide;
@@ -316,7 +320,7 @@
 				case 'left':
 					if(app.stats.availables[this.period][this.at + 1]) {
 						this.at++;
-						this.setPreviousCustom();
+						this.setAts(true);
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
 						this.drawStats();
 					}
@@ -324,7 +328,7 @@
 				case 'right':
 					if(app.stats.availables[this.period][this.at - 1]) {
 						this.at--;
-						this.setPreviousCustom();
+						this.setAts(true);
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
 						this.drawStats();
 					}
@@ -346,18 +350,27 @@
 			}
 		},
 
-		setPreviousCustom: function() {
-			if(app.previousCustom) {
-				switch(this.period) {
-					case 'monthly':
-						app.previousCustom.monthly = this.at;
-						app.previousCustom.weekly = app.stats.toWeekly(app.stats.availables.monthly[this.at]);
-						break;
-					case 'weekly':
-						app.previousCustom.monthly = app.stats.toMonthly(app.stats.availables.weekly[this.at]);
-						app.previousCustom.weekly = this.at;
-						break;
-				}
+		setAts: function(monthly) {
+			switch(this.period) {
+				case 'monthly':
+					if(monthly) {
+						app.stats.ats = {
+							monthly: this.at,
+							weekly: app.stats.toWeekly(app.stats.availables.monthly[this.at])
+						};
+					}
+					break;
+				case 'weekly':
+					var monthly = app.stats.toMonthly(app.stats.availables.weekly[this.at]);
+					if(app.stats.ats.monthly !== monthly) {
+						app.stats.ats = {
+							monthly: monthly,
+							weekly: this.at
+						};
+					} else {
+						app.stats.ats.weekly = this.at;
+					}
+					break;
 			}
 		},
 

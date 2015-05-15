@@ -41,37 +41,32 @@
 				if($target.hasClass('active')) {
 					return;
 				}
-				var period = $('control.segmented li.active').data('period');
-				if(period === 'custom') {
+				at = app.stats.ats[$target.data('period')];
+				var monthly = true;
+				var $active = this.$el.find('li.active');
+				if($active.data('period') === 'custom') {
 					if(app.previousCustom) {
-						at = app.previousCustom[$target.data('period')];
 						$('li#control-custom').html('Custom');
-					} else if($target.data('period') === 'weekly') {
-						at = app.stats.toWeekly(app.stats.availables.monthly[0]);
 					}
+					monthly = false;
 				} else {
-					var index = app.stats.availables[period][this.subview.at];
-					switch(period) {
-						case 'monthly':
-							at = app.stats.toWeekly(index);
-							break;
-						case 'weekly':
-							at = app.stats.toMonthly(index);
-							break;
+					var $control = $('ul.control-box-swipe');
+					if($control) {
+						radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
+						slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
+					}
+					if($active.data('period') === 'weekly') {
+						monthly = false;
 					}
 				}
-				var $control = $('ul.control-box-swipe');
-				if($control.length) {
-					radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
-					slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
-				}
-				this.$el.find('li.active').removeClass('active');
+				$active.removeClass('active');
 				$target.addClass('active');
 				if(typeof this.subview.destroy === 'function') {
 					this.subview.destroy();
 				}
 				this.subview = new app.Views.statsNumbers({
 					at: at.toString(),
+					monthly: monthly,
 					radio: radio,
 					slide: slide
 				});

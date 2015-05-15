@@ -60,8 +60,12 @@
 									/** Generate stats */
 									var monthly = app.stats.availables.monthly[0];
 									if(monthly) {
+										app.stats.ats = {
+											monthly: 0,
+											weekly: app.stats.toWeekly(monthly)
+										};
 										app.stats.get(monthly);
-										app.stats.get(app.stats.availables.weekly[app.stats.toWeekly(monthly)]);
+										app.stats.get(app.stats.availables.weekly[app.stats.ats.weekly]);
 									};
 
 									/** Preload some templates to smoothen navigation */
