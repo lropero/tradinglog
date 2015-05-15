@@ -70,7 +70,7 @@
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT * FROM account WHERE ';
 				if(model.name) {
-					sql += 'name = "' + model.name + '";';
+					sql += 'lower(name) = "' + model.name.toLowerCase() + '";';
 				} else {
 					sql += 'is_active = "1";';
 				}

@@ -188,37 +188,54 @@
 					}
 				}
 			});
-			if(this.instrument) {
-				instruments.setFetchId(this.instrument.id);
-				instruments.fetch({
-					success: function() {
-						var instrument = instruments.at(0);
-					}
-				});
-				var group_id = this.instrument.group_id;
-			} else {
-				var instrument = new app.Models.instrument();
-				var group_id = 0;
-			}
-			instrument.set({
-				type: type,
-				name: name,
-				point_value: point_value,
-				commission: commission,
-				alert: alert,
-				group_id: group_id
-			});
 			deferred.done(function() {
-				instrument.validate();
-				if(instrument.isValid()) {
-					$('header button').hide();
-					instrument.save(null, {
+				if(self.instrument) {
+					instruments.setFetchId(self.instrument.id);
+					instruments.fetch({
 						success: function() {
-							app.cache.delete('mainAddTrade');
-							app.view.subview.destroy();
-							app.view.subview = new app.Views.settingsInstruments();
+							var instrument = instruments.at(0);
+							instrument.set({
+								type: type,
+								name: name,
+								point_value: point_value,
+								commission: commission,
+								alert: alert,
+								group_id: self.instrument.group_id
+							});
+							instrument.validate();
+							if(instrument.isValid()) {
+								$('header button').hide();
+								instrument.save(null, {
+									success: function() {
+										app.cache.delete('mainAddTrade');
+										app.view.subview.destroy();
+										app.view.subview = new app.Views.settingsInstruments();
+									}
+								});
+							}
 						}
 					});
+				} else {
+					var instrument = new app.Models.instrument();
+					instrument.set({
+						type: type,
+						name: name,
+						point_value: point_value,
+						commission: commission,
+						alert: alert,
+						group_id: 0
+					});
+					instrument.validate();
+					if(instrument.isValid()) {
+						$('header button').hide();
+						instrument.save(null, {
+							success: function() {
+								app.cache.delete('mainAddTrade');
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsInstruments();
+							}
+						});
+					}
 				}
 			});
 		},

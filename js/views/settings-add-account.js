@@ -79,44 +79,39 @@
 					}
 				}
 			});
-			if(this.account) {
-				accounts.setFetchId(this.account.id);
-				accounts.fetch({
-					success: function() {
-						var account = accounts.at(0);
-					}
-				});
-			} else {
-				var account = new app.Models.account();
-				account.set({
-					name: name,
-					balance: balance,
-					is_active: is_active
-				});
-			}
 			deferred.done(function() {
 				if(self.account) {
-					account.deferred.done(function() {
-						account.set({
-							name: name
-						});
-						account.validate();
-						if(account.isValid()) {
-							$('header button').hide();
-							account.save(null, {
-								success: function() {
-									app.account.set({
-										name: name
-									});
-									app.cache.delete('main');
-									app.cache.delete('mainMap');
-									app.view.subview.destroy();
-									app.view.subview = new app.Views.settingsAccounts();
-								}
+					accounts.setFetchId(self.account.id);
+					accounts.fetch({
+						success: function() {
+							var account = accounts.at(0);
+							account.set({
+								name: name
 							});
+							account.validate();
+							if(account.isValid()) {
+								$('header button').hide();
+								account.save(null, {
+									success: function() {
+										app.account.set({
+											name: name
+										});
+										app.cache.delete('main');
+										app.cache.delete('mainMap');
+										app.view.subview.destroy();
+										app.view.subview = new app.Views.settingsAccounts();
+									}
+								});
+							}
 						}
 					});
 				} else {
+					var account = new app.Models.account();
+					account.set({
+						name: name,
+						balance: balance,
+						is_active: is_active
+					});
 					account.validate();
 					if(account.isValid()) {
 						$('header button').hide();
