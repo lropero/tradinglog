@@ -53,7 +53,7 @@
 					monthly = false;
 				}
 				var $control = $('ul.control-box-swipe');
-				if($control) {
+				if($control.length) {
 					radio = this.$el.find('ul.wrapper-radiobutton div.active').attr('id').replace('radio-', '');
 					slide = $control.find('li.active').attr('id').replace('swipe-control-', '');
 				}
