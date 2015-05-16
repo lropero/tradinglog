@@ -14,6 +14,8 @@
 			if(attrs.name) {
 				this.name = attrs.name;
 				this.groups = attrs.groups;
+				app.stats.ats.radio = attrs.radio;
+				app.stats.ats.slide = attrs.slide;
 			} else {
 				this.at = parseInt(attrs.at, 10);
 				this.period = $('control.segmented li.active').data('period');
@@ -21,15 +23,13 @@
 				if(typeof attrs.monthly !== 'undefined' && !attrs.monthly) {
 					monthly = false;
 				}
-				this.setAts(monthly);
+				this.setAts(monthly, attrs.radio, attrs.slide);
 			}
-			var radio = attrs.radio;
-			var slide = attrs.slide;
 			this.template = Handlebars.compile(app.templateLoader.get('stats-numbers'));
-			this.render(radio, slide);
+			this.render();
 		},
 
-		render: function(radio, slide) {
+		render: function() {
 			app.trigger('change', 'stats-numbers');
 			if(this.name) {
 				this.$el.html(this.template({
@@ -46,23 +46,23 @@
 					$('span.button-left').hide();
 				}
 			}
-			$('div#radio-' + radio).addClass('active');
+			$('div#radio-' + app.stats.ats.radio).addClass('active');
 			this.drawStats();
 			var $swipePanes = $('ul.swipe-panes');
 			$swipePanes.slick({
 				accessibility: false,
 				arrows: false,
 				infinite: false,
-				initialSlide: slide - 1
+				initialSlide: app.stats.ats.slide - 1
 			});
+			var $control = $('ul.control-box-swipe');
 			$swipePanes.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
-				var $control = $('ul.control-box-swipe');
+				app.stats.ats.slide = nextSlide + 1;
 				$control.find('li.active').removeClass('active');
 				$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
 			});
-			var $control = $('ul.control-box-swipe');
 			$control.find('li.active').removeClass('active');
-			$('li#swipe-control-' + slide).addClass('active');
+			$('li#swipe-control-' + app.stats.ats.slide).addClass('active');
 			return this;
 		},
 
@@ -320,7 +320,7 @@
 				case 'left':
 					if(app.stats.availables[this.period][this.at + 1]) {
 						this.at++;
-						this.setAts(true);
+						this.setAts(true, app.stats.ats.radio, app.stats.ats.slide);
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
 						this.drawStats();
 					}
@@ -328,7 +328,7 @@
 				case 'right':
 					if(app.stats.availables[this.period][this.at - 1]) {
 						this.at--;
-						this.setAts(true);
+						this.setAts(true, app.stats.ats.radio, app.stats.ats.slide);
 						$('div#date').html(app.date.getString(app.stats.availables[this.period][this.at]));
 						this.drawStats();
 					}
@@ -344,19 +344,22 @@
 				$radio = $target.prev();
 			}
 			if(!$radio.hasClass('active')) {
+				app.stats.ats.radio = $radio.attr('id').replace('radio-', '');
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
 				this.drawStats();
 			}
 		},
 
-		setAts: function(monthly) {
+		setAts: function(monthly, radio, slide) {
 			switch(this.period) {
 				case 'monthly':
 					if(monthly) {
 						app.stats.ats = {
 							monthly: this.at,
-							weekly: app.stats.toWeekly(app.stats.availables.monthly[this.at])
+							weekly: app.stats.toWeekly(app.stats.availables.monthly[this.at]),
+							radio: radio,
+							slide: slide
 						};
 					}
 					break;
@@ -365,7 +368,9 @@
 					if(app.stats.ats.monthly !== monthly) {
 						app.stats.ats = {
 							monthly: monthly,
-							weekly: this.at
+							weekly: this.at,
+							radio: radio,
+							slide: slide
 						};
 					} else {
 						app.stats.ats.weekly = this.at;

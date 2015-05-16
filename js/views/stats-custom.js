@@ -139,8 +139,8 @@
 				app.view.subview = new app.Views.statsNumbers({
 					name: name,
 					groups: groups,
-					radio: 1,
-					slide: 1
+					radio: app.stats.ats.radio,
+					slide: app.stats.ats.slide
 				});
 				$('li#control-custom').html('Reset');
 			}
