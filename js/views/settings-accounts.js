@@ -64,20 +64,18 @@
 						accounts.fetch({
 							success: function() {
 								var account = accounts.at(0);
-								account.deferred.done(function() {
-									account.set({
-										is_active: 1
-									});
-									account.save(null, {
-										success: function(model) {
-											app.account = model;
-											app.fetchObjects().done(function() {
-												app.cache.delete('main');
-												app.cache.delete('mainMap');
-												app.view.subview = new app.Views.settingsAccounts();
-											});
-										}
-									});
+								account.set({
+									is_active: 1
+								});
+								account.save(null, {
+									success: function(model) {
+										app.account = model;
+										app.fetchObjects().done(function() {
+											app.cache.delete('main');
+											app.cache.delete('mainMap');
+											app.view.subview = new app.Views.settingsAccounts();
+										});
+									}
 								});
 							}
 						});
