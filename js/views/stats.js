@@ -84,7 +84,7 @@
 					}
 				} else {
 					if(app.previousCustom) {
-						var split = app.previousCustom.index.split('#');
+						var split = app.previousCustom.name.split('#');
 						var groups = [];
 						for(var i = 0; i < split[2].length; i++) {
 							groups.push(parseInt(split[2][i], 10));
@@ -101,7 +101,7 @@
 							this.subview.destroy();
 						}
 						this.subview = new app.Views.statsNumbers({
-							index: app.previousCustom.index,
+							name: app.previousCustom.name,
 							groups: groups,
 							radio: radio,
 							slide: slide

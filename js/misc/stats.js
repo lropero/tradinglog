@@ -24,7 +24,7 @@
 			return average / standardDeviation;
 		},
 
-		compress: function(index) {
+		compress: function(name) {
 			var steps = Math.floor($(document).width() / 12);
 			for(var i = 0; i < 3; i++) {
 				switch(i) {
@@ -38,7 +38,7 @@
 						var type = 'shorts';
 						break;
 				}
-				var balances = this.data[index][type].balances;
+				var balances = this.data[name][type].balances;
 				var length = Object.keys(balances).length;
 				if(length > steps) {
 					var temp = [];
@@ -107,18 +107,18 @@
 						}
 					}
 					balancesNew[at + j] = parseInt(temp[temp.length - 1], 10);
-					this.data[index][type].balances = balancesNew;
+					this.data[name][type].balances = balancesNew;
 				}
 			}
 		},
 
-		generate: function(index, from, to) {
+		generate: function(name, from, to) {
 			var self = this;
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
-			if(index.indexOf('#') > -1) {
-				var split = index.split('#');
+			if(name.indexOf('#') > -1) {
+				var split = name.split('#');
 				var groups = [];
 				for(var i = 0; i < split[2].length; i ++) {
 					groups.push(split[2][i]);
@@ -132,7 +132,7 @@
 					$.when.apply($, trades.deferreds).done(function() {
 						trades = trades.toJSON();
 
-						self.data[index] = {
+						self.data[name] = {
 							all: {
 								profit: 0,
 								loss: 0,
@@ -198,51 +198,51 @@
 						};
 
 						for(var i = 0; i < trades.length; i++) {
-							self.data[index]['all'].profit += trades[i].profit;
-							self.data[index]['all'].loss += trades[i].loss;
-							self.data[index]['all'].commission += trades[i].commission;
-							self.data[index]['all'].net += trades[i].net;
-							self.data[index]['all'].trades++;
+							self.data[name]['all'].profit += trades[i].profit;
+							self.data[name]['all'].loss += trades[i].loss;
+							self.data[name]['all'].commission += trades[i].commission;
+							self.data[name]['all'].net += trades[i].net;
+							self.data[name]['all'].trades++;
 							if(trades[i].net > 0) {
-								self.data[index]['all'].winners++;
-								self.data[index]['all'].averageWinningTrade += trades[i].net
+								self.data[name]['all'].winners++;
+								self.data[name]['all'].averageWinningTrade += trades[i].net
 							} else if(trades[i].net < 0) {
-								self.data[index]['all'].losers++;
-								self.data[index]['all'].averageLosingTrade += trades[i].net
+								self.data[name]['all'].losers++;
+								self.data[name]['all'].averageLosingTrade += trades[i].net
 							}
-							self.data[index]['all'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
+							self.data[name]['all'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
 							nets.all.push(trades[i].net);
 							switch(trades[i].type) {
 								case 1:
-									self.data[index]['longs'].profit += trades[i].profit;
-									self.data[index]['longs'].loss += trades[i].loss;
-									self.data[index]['longs'].commission += trades[i].commission;
-									self.data[index]['longs'].net += trades[i].net;
-									self.data[index]['longs'].trades++;
+									self.data[name]['longs'].profit += trades[i].profit;
+									self.data[name]['longs'].loss += trades[i].loss;
+									self.data[name]['longs'].commission += trades[i].commission;
+									self.data[name]['longs'].net += trades[i].net;
+									self.data[name]['longs'].trades++;
 									if(trades[i].net > 0) {
-										self.data[index]['longs'].winners++;
-										self.data[index]['longs'].averageWinningTrade += trades[i].net
+										self.data[name]['longs'].winners++;
+										self.data[name]['longs'].averageWinningTrade += trades[i].net
 									} else if(trades[i].net < 0) {
-										self.data[index]['longs'].losers++;
-										self.data[index]['longs'].averageLosingTrade += trades[i].net
+										self.data[name]['longs'].losers++;
+										self.data[name]['longs'].averageLosingTrade += trades[i].net
 									}
-									self.data[index]['longs'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
+									self.data[name]['longs'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
 									nets.longs.push(trades[i].net);
 									break;
 								case 2:
-									self.data[index]['shorts'].profit += trades[i].profit;
-									self.data[index]['shorts'].loss += trades[i].loss;
-									self.data[index]['shorts'].commission += trades[i].commission;
-									self.data[index]['shorts'].net += trades[i].net;
-									self.data[index]['shorts'].trades++;
+									self.data[name]['shorts'].profit += trades[i].profit;
+									self.data[name]['shorts'].loss += trades[i].loss;
+									self.data[name]['shorts'].commission += trades[i].commission;
+									self.data[name]['shorts'].net += trades[i].net;
+									self.data[name]['shorts'].trades++;
 									if(trades[i].net > 0) {
-										self.data[index]['shorts'].winners++;
-										self.data[index]['shorts'].averageWinningTrade += trades[i].net
+										self.data[name]['shorts'].winners++;
+										self.data[name]['shorts'].averageWinningTrade += trades[i].net
 									} else if(trades[i].net < 0) {
-										self.data[index]['shorts'].losers++;
-										self.data[index]['shorts'].averageLosingTrade += trades[i].net
+										self.data[name]['shorts'].losers++;
+										self.data[name]['shorts'].averageLosingTrade += trades[i].net
 									}
-									self.data[index]['shorts'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
+									self.data[name]['shorts'].averageTimeInMarket += trades[i].closed_at - trades[i].objects[0].created_at;
 									nets.shorts.push(trades[i].net);
 									break;
 							}
@@ -251,148 +251,239 @@
 								var balance = initialBalance;
 								var balanceLongs = initialBalance;
 								var balanceShorts = initialBalance;
-								self.data[index]['all'].balances[0] = initialBalance;
-								self.data[index]['longs'].balances[0] = initialBalance;
-								self.data[index]['shorts'].balances[0] = initialBalance;
+								self.data[name]['all'].balances[0] = initialBalance;
+								self.data[name]['longs'].balances[0] = initialBalance;
+								self.data[name]['shorts'].balances[0] = initialBalance;
 							}
 							var date = new Date(trades[i].closed_at);
 							var year = date.getFullYear();
 							var month = date.getMonth();
 							var day = year + '-' + month + '-' + date.getDate();
 							balance += trades[i].net;
-							self.data[index]['all'].balances[day] = balance;
+							self.data[name]['all'].balances[day] = balance;
 							switch(trades[i].type) {
 								case 1:
 									balanceLongs += trades[i].net;
-									self.data[index]['longs'].balances[day] = balanceLongs;
+									self.data[name]['longs'].balances[day] = balanceLongs;
 									break;
 								case 2:
 									balanceShorts += trades[i].net;
-									self.data[index]['shorts'].balances[day] = balanceShorts;
+									self.data[name]['shorts'].balances[day] = balanceShorts;
 									break;
 							}
 						}
 
-						if(self.data[index]['all'].trades > 0) {
-							self.data[index]['all'].accuracy = self.data[index]['all'].winners * 100 / self.data[index]['all'].trades;
-							self.data[index]['all'].averageTrade = self.data[index]['all'].net / self.data[index]['all'].trades;
+						if(self.data[name]['all'].trades > 0) {
+							self.data[name]['all'].accuracy = self.data[name]['all'].winners * 100 / self.data[name]['all'].trades;
+							self.data[name]['all'].averageTrade = self.data[name]['all'].net / self.data[name]['all'].trades;
 						}
-						if(self.data[index]['longs'].trades > 0) {
-							self.data[index]['longs'].accuracy = self.data[index]['longs'].winners * 100 / self.data[index]['longs'].trades;
-							self.data[index]['longs'].averageTrade = self.data[index]['longs'].net / self.data[index]['longs'].trades;
+						if(self.data[name]['longs'].trades > 0) {
+							self.data[name]['longs'].accuracy = self.data[name]['longs'].winners * 100 / self.data[name]['longs'].trades;
+							self.data[name]['longs'].averageTrade = self.data[name]['longs'].net / self.data[name]['longs'].trades;
 						}
-						if(self.data[index]['shorts'].trades > 0) {
-							self.data[index]['shorts'].accuracy = self.data[index]['shorts'].winners * 100 / self.data[index]['shorts'].trades;
-							self.data[index]['shorts'].averageTrade = self.data[index]['shorts'].net / self.data[index]['shorts'].trades;
+						if(self.data[name]['shorts'].trades > 0) {
+							self.data[name]['shorts'].accuracy = self.data[name]['shorts'].winners * 100 / self.data[name]['shorts'].trades;
+							self.data[name]['shorts'].averageTrade = self.data[name]['shorts'].net / self.data[name]['shorts'].trades;
 						}
-						if(self.data[index]['all'].winners > 0) {
-							self.data[index]['all'].averageWinningTrade /= self.data[index]['all'].winners;
+						if(self.data[name]['all'].winners > 0) {
+							self.data[name]['all'].averageWinningTrade /= self.data[name]['all'].winners;
 						}
-						if(self.data[index]['longs'].winners > 0) {
-							self.data[index]['longs'].averageWinningTrade /= self.data[index]['longs'].winners;
+						if(self.data[name]['longs'].winners > 0) {
+							self.data[name]['longs'].averageWinningTrade /= self.data[name]['longs'].winners;
 						}
-						if(self.data[index]['shorts'].winners > 0) {
-							self.data[index]['shorts'].averageWinningTrade /= self.data[index]['shorts'].winners;
+						if(self.data[name]['shorts'].winners > 0) {
+							self.data[name]['shorts'].averageWinningTrade /= self.data[name]['shorts'].winners;
 						}
-						if(self.data[index]['all'].losers > 0) {
-							self.data[index]['all'].averageLosingTrade = Math.abs(self.data[index]['all'].averageLosingTrade / self.data[index]['all'].losers);
+						if(self.data[name]['all'].losers > 0) {
+							self.data[name]['all'].averageLosingTrade = Math.abs(self.data[name]['all'].averageLosingTrade / self.data[name]['all'].losers);
 						}
-						if(self.data[index]['longs'].losers > 0) {
-							self.data[index]['longs'].averageLosingTrade = Math.abs(self.data[index]['longs'].averageLosingTrade / self.data[index]['longs'].losers);
+						if(self.data[name]['longs'].losers > 0) {
+							self.data[name]['longs'].averageLosingTrade = Math.abs(self.data[name]['longs'].averageLosingTrade / self.data[name]['longs'].losers);
 						}
-						if(self.data[index]['shorts'].losers > 0) {
-							self.data[index]['shorts'].averageLosingTrade = Math.abs(self.data[index]['shorts'].averageLosingTrade / self.data[index]['shorts'].losers);
+						if(self.data[name]['shorts'].losers > 0) {
+							self.data[name]['shorts'].averageLosingTrade = Math.abs(self.data[name]['shorts'].averageLosingTrade / self.data[name]['shorts'].losers);
 						}
-						if(self.data[index]['all'].averageLosingTrade === 0) {
-							self.data[index]['all'].riskRewardRatio = 'N/A';
+						if(self.data[name]['all'].averageLosingTrade === 0) {
+							self.data[name]['all'].riskRewardRatio = 'N/A';
 						} else {
-							self.data[index]['all'].riskRewardRatio = self.data[index]['all'].averageWinningTrade / self.data[index]['all'].averageLosingTrade;
+							self.data[name]['all'].riskRewardRatio = self.data[name]['all'].averageWinningTrade / self.data[name]['all'].averageLosingTrade;
 						}
-						if(self.data[index]['longs'].averageLosingTrade === 0) {
-							self.data[index]['longs'].riskRewardRatio = 'N/A';
+						if(self.data[name]['longs'].averageLosingTrade === 0) {
+							self.data[name]['longs'].riskRewardRatio = 'N/A';
 						} else {
-							self.data[index]['longs'].riskRewardRatio = self.data[index]['longs'].averageWinningTrade / self.data[index]['longs'].averageLosingTrade;
+							self.data[name]['longs'].riskRewardRatio = self.data[name]['longs'].averageWinningTrade / self.data[name]['longs'].averageLosingTrade;
 						}
-						if(self.data[index]['shorts'].averageLosingTrade === 0) {
-							self.data[index]['shorts'].riskRewardRatio = 'N/A';
+						if(self.data[name]['shorts'].averageLosingTrade === 0) {
+							self.data[name]['shorts'].riskRewardRatio = 'N/A';
 						} else {
-							self.data[index]['shorts'].riskRewardRatio = self.data[index]['shorts'].averageWinningTrade / self.data[index]['shorts'].averageLosingTrade;
+							self.data[name]['shorts'].riskRewardRatio = self.data[name]['shorts'].averageWinningTrade / self.data[name]['shorts'].averageLosingTrade;
 						}
-						if(self.data[index]['all'].trades > 0) {
-							self.data[index]['all'].averageTimeInMarket /= self.data[index]['all'].trades;
+						if(self.data[name]['all'].trades > 0) {
+							self.data[name]['all'].averageTimeInMarket /= self.data[name]['all'].trades;
 						}
-						if(self.data[index]['longs'].trades > 0) {
-							self.data[index]['longs'].averageTimeInMarket /= self.data[index]['longs'].trades;
+						if(self.data[name]['longs'].trades > 0) {
+							self.data[name]['longs'].averageTimeInMarket /= self.data[name]['longs'].trades;
 						}
-						if(self.data[index]['shorts'].trades > 0) {
-							self.data[index]['shorts'].averageTimeInMarket /= self.data[index]['shorts'].trades;
+						if(self.data[name]['shorts'].trades > 0) {
+							self.data[name]['shorts'].averageTimeInMarket /= self.data[name]['shorts'].trades;
 						}
-						self.data[index]['all'].sharpeRatio = self.calculateSharpeRatio(nets.all, self.data[index]['all'].averageTrade);
-						self.data[index]['longs'].sharpeRatio = self.calculateSharpeRatio(nets.longs, self.data[index]['longs'].averageTrade);
-						self.data[index]['shorts'].sharpeRatio = self.calculateSharpeRatio(nets.shorts, self.data[index]['shorts'].averageTrade);
+						self.data[name]['all'].sharpeRatio = self.calculateSharpeRatio(nets.all, self.data[name]['all'].averageTrade);
+						self.data[name]['longs'].sharpeRatio = self.calculateSharpeRatio(nets.longs, self.data[name]['longs'].averageTrade);
+						self.data[name]['shorts'].sharpeRatio = self.calculateSharpeRatio(nets.shorts, self.data[name]['shorts'].averageTrade);
 						if(initialBalance > 0) {
-							self.data[index]['all'].variation = (balance - initialBalance) * 100 / initialBalance;
-							self.data[index]['longs'].variation = (balanceLongs - initialBalance) * 100 / initialBalance;
-							self.data[index]['shorts'].variation = (balanceShorts - initialBalance) * 100 / initialBalance;
+							self.data[name]['all'].variation = (balance - initialBalance) * 100 / initialBalance;
+							self.data[name]['longs'].variation = (balanceLongs - initialBalance) * 100 / initialBalance;
+							self.data[name]['shorts'].variation = (balanceShorts - initialBalance) * 100 / initialBalance;
 						}
-						self.compress(index);
+						self.compress(name);
 
-						deferred.resolve(self.data[index]);
+						if(name.indexOf('#') > -1) {
+							deferred.resolve(self.data[name]);
+						} else {
+							var stats = new app.Models.stats();
+							stats.set({
+								name: name,
+								data: self.stringify(self.data[name]),
+								created_at: (new Date()).getTime()
+							});
+							stats.save(null, {
+								success: function() {
+									deferred.resolve(self.data[name]);
+								}
+							});
+						}
 					});
 				}
 			});
 			return deferred;
 		},
 
-		get: function(index) {
+		get: function(name) {
 			var self = this;
-			if(!this.data[index]) {
-				var dateFrom = new Date();
-				dateFrom.setHours(0, 0, 0, 0);
-				var dateTo = new Date();
-				dateTo.setHours(23, 59, 59, 999);
-				if(index.indexOf('#') > -1) {
-					var split = index.split('#');
-					var fromDateValues = split[0].split('-');
-					var toDateValues = split[1].split('-');
-					dateFrom.setFullYear(fromDateValues[0]);
-					dateFrom.setMonth(fromDateValues[1]);
-					dateFrom.setDate(fromDateValues[2]);
-					dateTo.setFullYear(toDateValues[0]);
-					dateTo.setMonth(toDateValues[1]);
-					dateTo.setDate(toDateValues[2]);
-				} else {
-					dateFrom.setDate(1);
-					dateTo.setDate(1);
-					var dateValues = index.split('-');
-					switch(dateValues.length) {
-						case 2:
-							dateFrom.setFullYear(dateValues[0]);
-							dateFrom.setMonth(dateValues[1]);
-							dateTo.setFullYear(dateValues[0]);
-							dateTo.setMonth(parseInt(dateValues[1], 10) + 1);
-							dateTo.setDate(0);
-							break;
-						case 3:
-							dateFrom.setFullYear(dateValues[0]);
-							dateFrom.setMonth(dateValues[1]);
-							dateFrom.setDate(dateValues[2]);
-							dateTo.setFullYear(dateValues[0]);
-							dateTo.setMonth(dateValues[1]);
-							dateTo.setDate(parseInt(dateValues[2], 10) + 6);
-							break;
-					}
-				}
-				var deferred = this.generate(index, dateFrom.getTime(), dateTo.getTime());
-				return deferred;
-			}
 			var deferred = $.Deferred();
-			deferred.resolve(this.data[index]);
+			if(this.data[name]) {
+				deferred.resolve(this.data[name]);
+			} else {
+				var statss = new app.Collections.statss();
+				statss.setName(name);
+				statss.fetch({
+					success: function() {
+						var stats = statss.at(0);
+						if(typeof stats === 'undefined') {
+							var dateFrom = new Date();
+							dateFrom.setHours(0, 0, 0, 0);
+							var dateTo = new Date();
+							dateTo.setHours(23, 59, 59, 999);
+							if(name.indexOf('#') > -1) {
+								var split = name.split('#');
+								var fromDateValues = split[0].split('-');
+								var toDateValues = split[1].split('-');
+								dateFrom.setFullYear(fromDateValues[0]);
+								dateFrom.setMonth(fromDateValues[1]);
+								dateFrom.setDate(fromDateValues[2]);
+								dateTo.setFullYear(toDateValues[0]);
+								dateTo.setMonth(toDateValues[1]);
+								dateTo.setDate(toDateValues[2]);
+							} else {
+								dateFrom.setDate(1);
+								dateTo.setDate(1);
+								var dateValues = name.split('-');
+								switch(dateValues.length) {
+									case 2:
+										dateFrom.setFullYear(dateValues[0]);
+										dateFrom.setMonth(dateValues[1]);
+										dateTo.setFullYear(dateValues[0]);
+										dateTo.setMonth(parseInt(dateValues[1], 10) + 1);
+										dateTo.setDate(0);
+										break;
+									case 3:
+										dateFrom.setFullYear(dateValues[0]);
+										dateFrom.setMonth(dateValues[1]);
+										dateFrom.setDate(dateValues[2]);
+										dateTo.setFullYear(dateValues[0]);
+										dateTo.setMonth(dateValues[1]);
+										dateTo.setDate(parseInt(dateValues[2], 10) + 6);
+										break;
+								}
+							}
+							var deferred2 = self.generate(name, dateFrom.getTime(), dateTo.getTime());
+							deferred2.then(function(stats) {
+								deferred.resolve(stats);
+							});
+						} else {
+							stats = stats.toJSON();
+							self.recover(stats);
+							deferred.resolve(self.data[stats.name]);
+						}
+					}
+				});
+			}
 			return deferred;
 		},
 
-		toMonthly: function(index) {
-			var dateValues = index.split('-');
+		recover: function(stats) {
+			var name = stats.name;
+			var data = stats.data.split('#');
+			var stats = {};
+			for(var i = 0; i < 3; i++) {
+				switch(i) {
+					case 0:
+						var type = 'all';
+						break;
+					case 1:
+						var type = 'longs';
+						break;
+					case 2:
+						var type = 'shorts';
+						break;
+				}
+				var split = data[i].split('&');
+				var properties = split[0].substring(0, split[0].length - 1).split(',');
+				var balances = JSON.parse(split[1].replace(/'/g, '"'));
+				stats[type] = {};
+				var fields = ['profit', 'loss', 'commission', 'net', 'trades', 'winners', 'losers', 'accuracy', 'averageTrade', 'averageWinningTrade', 'averageLosingTrade', 'riskRewardRatio', 'averageTimeInMarket', 'sharpeRatio', 'variation', 'balances'];
+				for(var j = 0; j <= properties.length; j++) {
+					if(j < properties.length) {
+						stats[type][fields[j]] = properties[j];
+					} else {
+						stats[type][fields[j]] = balances;
+					}
+				}
+			}
+			this.data[name] = stats;
+		},
+
+		stringify: function(stats) {
+			var string = '';
+			for(var i = 0; i < 3; i++) {
+				switch(i) {
+					case 0:
+						var type = 'all';
+						break;
+					case 1:
+						var type = 'longs';
+						string += '#';
+						break;
+					case 2:
+						var type = 'shorts';
+						string += '#';
+						break;
+				}
+				$.each(stats[type], function(index, value) {
+					if(typeof value === 'object') {
+						string += '&' + JSON.stringify(value).replace(/"/g, '\'');
+					} else {
+						string += value;
+					}
+					string += ',';
+				});
+				string = string.substring(0, string.length - 1);
+			}
+			return string;
+		},
+
+		toMonthly: function(name) {
+			var dateValues = name.split('-');
 			var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
 			date.setDate(date.getDate() + 6);
 			for(var i = app.stats.availables.monthly.length; i > 0; i--) {
@@ -403,22 +494,22 @@
 			return false;
 		},
 
-		toWeekly: function(index) {
+		toWeekly: function(name) {
 			for(var i = app.stats.availables.weekly.length; i > 0; i--) {
 				var dateValues = app.stats.availables.weekly[i - 1].split('-');
-				if(dateValues[0] + '-' + dateValues[1] === index) {
+				if(dateValues[0] + '-' + dateValues[1] === name) {
 					return i - 1;
 				}
 			}
-			var dateValues = index.split('-');
+			var dateValues = name.split('-');
 			if(dateValues[1] === '0') {
-				index = (dateValues[0] - 1) + '-11';
+				name = (dateValues[0] - 1) + '-11';
 			} else {
-				index = dateValues[0] + '-' + (dateValues[1] - 1);
+				name = dateValues[0] + '-' + (dateValues[1] - 1);
 			}
 			for(var i = 0; i < app.stats.availables.weekly.length; i++) {
 				var dateValues = app.stats.availables.weekly[i].split('-');
-				if(dateValues[0] + '-' + dateValues[1] === index) {
+				if(dateValues[0] + '-' + dateValues[1] === name) {
 					return i;
 				}
 			}

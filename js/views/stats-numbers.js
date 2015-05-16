@@ -11,8 +11,8 @@
 		},
 
 		initialize: function(attrs) {
-			if(attrs.index) {
-				this.index = attrs.index;
+			if(attrs.name) {
+				this.name = attrs.name;
 				this.groups = attrs.groups;
 			} else {
 				this.at = parseInt(attrs.at, 10);
@@ -31,9 +31,9 @@
 
 		render: function(radio, slide) {
 			app.trigger('change', 'stats-numbers');
-			if(this.index) {
+			if(this.name) {
 				this.$el.html(this.template({
-					date: app.date.getString(this.index),
+					date: app.date.getString(this.name),
 					groups: this.groups
 				}));
 				$('span.button-left').hide();
@@ -227,8 +227,8 @@
 			var self = this;
 			$('div#processing').css('display', 'block');
 			$('div.wrapper-control-box-swipe').css('display', 'none');
-			if(this.index) {
-				var deferred = app.stats.get(this.index);
+			if(this.name) {
+				var deferred = app.stats.get(this.name);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
 					if(stats[type].trades) {
@@ -274,35 +274,35 @@
 						$('div#no-stats').css('display', 'block');
 						$('div.wrapper-control-box-swipe').css('display', 'none');
 					}
-					var index = app.stats.availables[self.period][self.at + 1];
-					if(index) {
+					var name = app.stats.availables[self.period][self.at + 1];
+					if(name) {
 						$('span.button-left').show();
-						if(!app.stats.data[index]) {
-							app.stats.get(index);
+						if(!app.stats.data[name]) {
+							app.stats.get(name);
 						}
-						index = app.stats.availables[self.period][self.at + 2];
-						if(index && !app.stats.data[index]) {
-							app.stats.get(index);
+						name = app.stats.availables[self.period][self.at + 2];
+						if(name && !app.stats.data[name]) {
+							app.stats.get(name);
 						}
 					}
-					index = app.stats.availables[self.period][self.at - 1];
-					if(index) {
+					name = app.stats.availables[self.period][self.at - 1];
+					if(name) {
 						$('span.button-right').show();
-						if(!app.stats.data[index]) {
-							app.stats.get(index);
+						if(!app.stats.data[name]) {
+							app.stats.get(name);
 						}
-						index = app.stats.availables[self.period][self.at - 2];
-						if(index && !app.stats.data[index]) {
-							app.stats.get(index);
+						name = app.stats.availables[self.period][self.at - 2];
+						if(name && !app.stats.data[name]) {
+							app.stats.get(name);
 						}
 					}
-					index = app.stats.availables[self.period][self.at];
+					name = app.stats.availables[self.period][self.at];
 					switch(self.period) {
 						case 'monthly':
-							app.stats.get(app.stats.availables.weekly[app.stats.toWeekly(index)]);
+							app.stats.get(app.stats.availables.weekly[app.stats.toWeekly(name)]);
 							break;
 						case 'weekly':
-							app.stats.get(app.stats.availables.monthly[app.stats.toMonthly(index)]);
+							app.stats.get(app.stats.availables.monthly[app.stats.toMonthly(name)]);
 							break;
 					}
 					$('div#processing').css('display', 'none');

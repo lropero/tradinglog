@@ -82,6 +82,12 @@
 					'price NUMERIC,' +
 					'created_at INTEGER' +
 				');',
+				'CREATE TABLE IF NOT EXISTS stats (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'name TEXT,' +
+					'data TEXT,' +
+					'created_at INTEGER' +
+				');',
 				'CREATE TABLE IF NOT EXISTS trade (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'account_id INTEGER,' +

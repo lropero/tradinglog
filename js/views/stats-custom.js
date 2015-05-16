@@ -126,18 +126,18 @@
 				var toDateValues = to.split('-');
 				var month = parseInt(fromDateValues[1], 10) - 1;
 				var day = parseInt(fromDateValues[2], 10);
-				var index = fromDateValues[0] + '-' + month + '-' + day + '#';
+				var name = fromDateValues[0] + '-' + month + '-' + day + '#';
 				month = parseInt(toDateValues[1], 10) - 1;
 				day = parseInt(toDateValues[2], 10);
-				index += toDateValues[0] + '-' + month + '-' + day + '#' + str;
+				name += toDateValues[0] + '-' + month + '-' + day + '#' + str;
 				app.previousCustom = {
-					index: index,
+					name: name,
 					monthly: 0,
 					weekly: app.stats.toWeekly(app.stats.availables.monthly[0])
 				};
 				this.destroy();
 				app.view.subview = new app.Views.statsNumbers({
-					index: index,
+					name: name,
 					groups: groups,
 					radio: 1,
 					slide: 1

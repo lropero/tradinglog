@@ -65,10 +65,10 @@
 			return string;
 		},
 
-		getString: function(index) {
+		getString: function(name) {
 			var string;
-			if(index.indexOf('#') > -1) {
-				var split = index.split('#');
+			if(name.indexOf('#') > -1) {
+				var split = name.split('#');
 				var fromDateValues = split[0].split('-');
 				var toDateValues = split[1].split('-');
 				var month = this.getMonthString(parseInt(fromDateValues[1], 10), true) + '.';
@@ -78,7 +78,7 @@
 				digit = toDateValues[2] % 10;
 				string += month + ' ' + toDateValues[2] + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + toDateValues[0];
 			} else {
-				var dateValues = index.split('-');
+				var dateValues = name.split('-');
 				switch(dateValues.length) {
 					case 2:
 						string = this.getMonthString(parseInt(dateValues[1], 10)) + ' ' + dateValues[0];

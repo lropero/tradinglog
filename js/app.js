@@ -57,16 +57,9 @@
 									/** We hide the initial splash screen once the main view is ready */
 									app.hideSplash();
 
-									/** Generate stats */
-									var monthly = app.stats.availables.monthly[0];
-									if(monthly) {
-										app.stats.ats = {
-											monthly: 0,
-											weekly: app.stats.toWeekly(monthly)
-										};
-										app.stats.get(monthly);
-										app.stats.get(app.stats.availables.weekly[app.stats.ats.weekly]);
-									};
+									/** Delete old stats */
+									var statsDAO = new app.DAOs.stats();
+									statsDAO.sweep();
 
 									/** Preload some templates to smoothen navigation */
 									new app.Views.mainAddOperation(true);
