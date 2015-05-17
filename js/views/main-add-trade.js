@@ -31,12 +31,12 @@
 		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				var template = app.cache.get('mainAddTrade', self.template, {
+				var html = app.cache.get('mainAddTrade', self.template, {
 					instruments: self.instruments
 				});
 				if(typeof cache !== 'boolean') {
 					app.trigger('change', 'main-add-trade');
-					self.$el.html(template);
+					self.$el.html(html);
 				}
 			});
 			return this;

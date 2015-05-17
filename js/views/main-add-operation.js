@@ -25,10 +25,10 @@
 		},
 
 		render: function(cache) {
-			var template = app.cache.get('mainAddOperation', this.template);
+			var html = app.cache.get('mainAddOperation', this.template);
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main-add-operation');
-				this.$el.html(template);
+				this.$el.html(html);
 			}
 			return this;
 		},

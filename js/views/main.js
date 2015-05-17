@@ -25,14 +25,14 @@
 
 		render: function(cache) {
 			var self = this;
-			var template = app.cache.get('main', this.template, {
+			var html = app.cache.get('main', this.template, {
 				objects: app.objects
 			});
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main', {
 					closed: app.count.closed
 				});
-				this.$el.html(template);
+				this.$el.html(html);
 				this.decorate();
 				if(navigator.accelerometer) {
 					this.shake();

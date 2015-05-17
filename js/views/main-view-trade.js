@@ -21,12 +21,12 @@
 
 		render: function(cache) {
 			var self = this;
-			var template = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
+			var html = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
 				trade: this.trade
 			});
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main-view-trade');
-				this.$el.html(template);
+				this.$el.html(html);
 				app.swipe.init('.swipe');
 				setTimeout(function() {
 					app.enableScroll();

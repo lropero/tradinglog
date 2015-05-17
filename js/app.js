@@ -8,9 +8,6 @@
 		Templates: {},
 		Views: {},
 
-		// Remove
-		t0: (new Date()).getTime(),
-
 		init: function() {
 
 			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
@@ -85,6 +82,7 @@
 		},
 
 		fetchObjects: function() {
+			var timer = app.debug.start();
 			var deferred = $.Deferred();
 			app.operations = [];
 			app.trades = [];
@@ -100,6 +98,7 @@
 				app.objects = [];
 				app.prepareObjects();
 				deferred.resolve();
+				app.debug.stop(timer, 'app fetchObjects');
 			});
 			return deferred;
 		},
@@ -177,11 +176,6 @@
 				if(navigator.splashscreen) {
 					navigator.splashscreen.hide();
 				}
-
-				// Remove
-				var t1 = (new Date()).getTime() - app.t0;
-				console.log('debug load time: ' + t1);
-
 			});
 		},
 

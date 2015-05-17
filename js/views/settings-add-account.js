@@ -33,10 +33,10 @@
 					account: this.account
 				}));
 			} else {
-				var template = app.cache.get('settingsAddAccount', this.template);
+				var html = app.cache.get('settingsAddAccount', this.template);
 				if(typeof cache !== 'boolean') {
 					app.trigger('change', 'settings-add-account');
-					this.$el.html(template);
+					this.$el.html(html);
 				}
 			}
 			return this;

@@ -12,13 +12,13 @@
 		},
 
 		render: function(cache) {
-			var template = app.cache.get('mainMap', this.template, {
+			var html = app.cache.get('mainMap', this.template, {
 				trades: this.trades,
 				max: this.max
 			});
 			if(typeof cache !== 'boolean') {
 				app.trigger('change', 'main-map');
-				this.$el.html(template);
+				this.$el.html(html);
 				$('section#main-stats-friends').addClass('map');
 				this.decorate();
 				this.animate();

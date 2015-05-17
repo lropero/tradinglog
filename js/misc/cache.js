@@ -17,7 +17,9 @@
 
 		get: function(template, method, options) {
 			if(!this.Templates[template]) {
+				var timer = app.debug.start();
 				this.Templates[template] = method(options);
+				app.debug.stop(timer, template + ' -> html');
 			}
 			return this.Templates[template];
 		},

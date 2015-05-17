@@ -48,7 +48,7 @@
 		},
 
 		sweep: function() {
-			var timestamp = (new Date()).getTime() - (100 * 24 * 60 * 60 * 1000);
+			var timestamp = (new Date()).getTime() - (200 * 24 * 60 * 60 * 1000);
 			this.db.transaction(function(tx) {
 				var sql = 'DELETE FROM stats WHERE created_at < "' + timestamp + '";';
 				tx.executeSql(sql);

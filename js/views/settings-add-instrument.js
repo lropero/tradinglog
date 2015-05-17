@@ -35,10 +35,10 @@
 					instrument: this.instrument
 				}));
 			} else {
-				var template = app.cache.get('settingsAddInstrument', this.template);
+				var html = app.cache.get('settingsAddInstrument', this.template);
 				if(typeof cache !== 'boolean') {
 					app.trigger('change', 'settings-add-instrument');
-					this.$el.html(template);
+					this.$el.html(html);
 				}
 			}
 			if(this.instrument) {
