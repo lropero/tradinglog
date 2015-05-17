@@ -82,7 +82,7 @@
 		},
 
 		fetchObjects: function() {
-			var timer = app.debug.start();
+			var timer = app.debug.start('app fetchObjects');
 			var deferred = $.Deferred();
 			app.operations = [];
 			app.trades = [];
@@ -98,7 +98,7 @@
 				app.objects = [];
 				app.prepareObjects();
 				deferred.resolve();
-				timer.stop('app fetchObjects');
+				timer.stop();
 			});
 			return deferred;
 		},

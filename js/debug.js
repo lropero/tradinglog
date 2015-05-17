@@ -2,13 +2,14 @@
 	'use strict';
 
 	app.debug = {
-		start: function() {
+		start: function(name) {
 			var timer = {
+				name: name,
 				time: (new Date()).getTime(),
 
-				stop: function(message) {
+				stop: function() {
 					var now = (new Date()).getTime();
-					console.log(message + ': ' + (now - this.time));
+					console.log(this.name + ': ' + (now - this.time));
 				}
 			}
 			return timer;
