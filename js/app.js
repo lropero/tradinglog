@@ -9,6 +9,7 @@
 		Views: {},
 
 		init: function() {
+			var timer = app.debug.start('app init');
 
 			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
 				shown */
@@ -68,6 +69,7 @@
 									new app.Views.settingsAddAccount(' ', true);
 									new app.Views.settingsAddInstrument(' ', true);
 
+									timer.stop();
 								});
 							}
 						}
