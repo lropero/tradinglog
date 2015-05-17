@@ -3,12 +3,15 @@
 
 	app.debug = {
 		start: function() {
-			return (new Date()).getTime();
-		},
+			var timer = {
+				time: (new Date()).getTime(),
 
-		stop: function(timer, message) {
-			var now = (new Date()).getTime();
-			console.log(message + ': ' + (now - timer));
+				stop: function(message) {
+					var now = (new Date()).getTime();
+					console.log(message + ': ' + (now - this.time));
+				}
+			}
+			return timer;
 		}
 	}
 })();

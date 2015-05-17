@@ -98,7 +98,7 @@
 				app.objects = [];
 				app.prepareObjects();
 				deferred.resolve();
-				app.debug.stop(timer, 'app fetchObjects');
+				timer.stop('app fetchObjects');
 			});
 			return deferred;
 		},
