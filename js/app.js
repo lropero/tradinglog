@@ -57,14 +57,14 @@
 									statsDAO.sweep();
 
 									/** Preload some templates to smoothen navigation */
-									new app.Views.mainAddOperation(true);
-									new app.Views.mainAddTrade(true);
-									new app.Views.mainMap(true);
+									// new app.Views.mainAddOperation(true);
+									// new app.Views.mainAddTrade(true);
+									// new app.Views.mainMap(true);
 									// for(var i = 0; i < app.count.open; i++) {
 									// 	new app.Views.mainViewTrade(i.toString(), true);
 									// }
-									new app.Views.settingsAddAccount(' ', true);
-									new app.Views.settingsAddInstrument(' ', true);
+									// new app.Views.settingsAddAccount(' ', true);
+									// new app.Views.settingsAddInstrument(' ', true);
 
 									timer.stop();
 								});
