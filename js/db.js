@@ -101,13 +101,13 @@
 					'variation NUMERIC,' +
 					'comments INTEGER,' +
 					'closed_at INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS view (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'name TEXT,' +
+					'html TEXT,' +
+					'extra TEXT' +
 				');'
-				// 'CREATE TABLE IF NOT EXISTS view (' +
-				// 	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
-				// 	'name TEXT,' +
-				// 	'html TEXT,' +
-				// 	'extra TEXT' +
-				// ');'
 			];
 			this.db.transaction(function(tx) {
 				$.each(sqls, function(index, sql) {
