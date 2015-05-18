@@ -9,7 +9,7 @@
 		Views: {},
 
 		init: function() {
-			var timer = app.debug.start('app init');
+			// var timer = app.debug.start('app init');
 
 			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
 				shown */
@@ -41,7 +41,7 @@
 									header and footer views */
 								var layout = new app.Views.layout();
 
-								layout.deferred.done(function() {
+								layout.deferred.then(function() {
 
 									/** Load main view */
 									app.view = new app.Views.main();
@@ -66,7 +66,7 @@
 									// new app.Views.settingsAddAccount(' ', true);
 									// new app.Views.settingsAddInstrument(' ', true);
 
-									timer.stop();
+									// timer.stop();
 								});
 							}
 						}
@@ -81,7 +81,7 @@
 		},
 
 		fetchObjects: function() {
-			var timer = app.debug.start('app fetchObjects');
+			// var timer = app.debug.start('app fetchObjects');
 			var deferred = $.Deferred();
 			app.operations = [];
 			app.trades = [];
@@ -97,13 +97,13 @@
 				app.objects = [];
 				app.prepareObjects();
 				deferred.resolve();
-				timer.stop();
+				// timer.stop();
 			});
 			return deferred;
 		},
 
 		fetchOperations: function() {
-			var timer = app.debug.start('app fetchOperations');
+			// var timer = app.debug.start('app fetchOperations');
 			var deferred = $.Deferred();
 			var operations = new app.Collections.operations();
 			operations.setAccountId(app.account.get('id'));
@@ -114,14 +114,14 @@
 						app.operations.push(operations[i]);
 					}
 					deferred.resolve();
-					timer.stop();
+					// timer.stop();
 				}
 			});
 			return deferred;
 		},
 
 		fetchTrades: function() {
-			var timer = app.debug.start('app fetchTrades');
+			// var timer = app.debug.start('app fetchTrades');
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
@@ -162,7 +162,7 @@
 							}
 						}
 						deferred.resolve();
-						timer.stop();
+						// timer.stop();
 					});
 				}
 			});

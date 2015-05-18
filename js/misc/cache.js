@@ -46,7 +46,6 @@
 							var html = LZString.decompressFromBase64(view.html);
 							deferred.resolve(html, self.HTMLs[view.name].extra);
 						} else {
-							// var timer = app.debug.start(template + ' -> html');
 							switch(name) {
 								case 'main':
 									app.ready.then(function() {
@@ -59,7 +58,6 @@
 										self.HTMLs[name].extra = {
 											closed: app.count.closed
 										};
-										// timer.stop();
 										var view = new app.Models.view();
 										view.set({
 											name: name,
@@ -97,7 +95,6 @@
 										self.HTMLs[name] = {};
 										self.HTMLs[name].html = LZString.compressToBase64(html);
 										self.HTMLs[name].extra = {};
-										// timer.stop();
 										var view = new app.Models.view();
 										view.set({
 											name: name,
@@ -117,7 +114,6 @@
 									self.HTMLs[name] = {};
 									self.HTMLs[name].html = LZString.compressToBase64(html);
 									self.HTMLs[name].extra = {};
-									// timer.stop();
 									var view = new app.Models.view();
 									view.set({
 										name: name,

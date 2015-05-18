@@ -20,7 +20,7 @@
 			// 	this.addRandomTrade();
 			// }
 
-			return this.deferred.promise();
+			return this.deferred;
 		},
 
 		buildInsert: function(table, fields, model) {
