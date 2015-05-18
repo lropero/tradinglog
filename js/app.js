@@ -47,10 +47,13 @@
 									app.view = new app.Views.main();
 
 									/** We hide the initial splash screen once the main view is ready */
-									app.hideSplash();
+									// app.hideSplash();
+				if(navigator.splashscreen) {
+					navigator.splashscreen.hide();
+				}
 
 									/** Fetch operations & trades */
-									app.ready = app.fetchObjects()
+									app.ready = app.fetchObjects();
 
 									/** Delete old stats */
 									var statsDAO = new app.DAOs.stats();
