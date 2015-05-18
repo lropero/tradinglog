@@ -41,7 +41,7 @@
 									header and footer views */
 								var layout = new app.Views.layout();
 
-								layout.deferred.then(function() {
+								layout.deferred.done(function() {
 
 									/** Load main view */
 									app.view = new app.Views.main();
