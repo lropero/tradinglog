@@ -43,14 +43,14 @@
 
 								layout.deferred.done(function() {
 
+									/** Fetch operations & trades */
+									app.ready = app.fetchObjects();
+
 									/** Load main view */
 									app.view = new app.Views.main();
 
 									/** We hide the initial splash screen once the main view is ready */
 									app.hideSplash();
-
-									/** Fetch operations & trades */
-									app.ready = app.fetchObjects();
 
 									/** Delete old stats */
 									var statsDAO = new app.DAOs.stats();
