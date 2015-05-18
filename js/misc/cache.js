@@ -6,13 +6,13 @@
 
 		delete: function(name) {
 			var self = this;
-			var views = new app.Collections.views();
-			views.setName(name);
-			views.fetch({
-				success: function() {
-					if(views.length) {
-						var view = views.at(0);
-						view.delete(function() {
+			// var views = new app.Collections.views();
+			// views.setName(name);
+			// views.fetch({
+			// 	success: function() {
+			// 		if(views.length) {
+			// 			var view = views.at(0);
+			// 			view.delete(function() {
 							delete self.HTMLs[name];
 							if(name === 'main') {
 								new app.Views.main(true);
@@ -21,10 +21,10 @@
 							} else if(name === 'mainMap') {
 								new app.Views.mainMap(true);
 							}
-						});
-					}
-				}
-			});
+			// 			});
+			// 		}
+			// 	}
+			// });
 		},
 
 		get: function(name, method, options) {
@@ -38,14 +38,14 @@
 				views.setName(name);
 				views.fetch({
 					success: function() {
-						if(views.length) {
-							var view = views.at(0).toJSON();
-							self.HTMLs[view.name] = {};
-							self.HTMLs[view.name].html = view.html;
-							self.HTMLs[view.name].extra = JSON.parse(view.extra.replace(/'/g, '"'));
-							var html = LZString.decompressFromBase64(view.html);
-							deferred.resolve(html, self.HTMLs[view.name].extra);
-						} else {
+						// if(views.length) {
+						// 	var view = views.at(0).toJSON();
+						// 	self.HTMLs[view.name] = {};
+						// 	self.HTMLs[view.name].html = view.html;
+						// 	self.HTMLs[view.name].extra = JSON.parse(view.extra.replace(/'/g, '"'));
+						// 	var html = LZString.decompressFromBase64(view.html);
+						// 	deferred.resolve(html, self.HTMLs[view.name].extra);
+						// } else {
 							switch(name) {
 								case 'main':
 									app.ready.then(function() {
@@ -58,17 +58,17 @@
 										self.HTMLs[name].extra = {
 											closed: app.count.closed
 										};
-										var view = new app.Models.view();
-										view.set({
-											name: name,
-											html: self.HTMLs[name].html,
-											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
-										});
-										view.save(null, {
-											success: function() {
+										// var view = new app.Models.view();
+										// view.set({
+										// 	name: name,
+										// 	html: self.HTMLs[name].html,
+										// 	extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
+										// });
+										// view.save(null, {
+										// 	success: function() {
 												deferred.resolve(html, self.HTMLs[name].extra);
-											}
-										});
+										// 	}
+										// });
 									});
 									break;
 								case 'mainMap':
@@ -95,17 +95,17 @@
 										self.HTMLs[name] = {};
 										self.HTMLs[name].html = LZString.compressToBase64(html);
 										self.HTMLs[name].extra = {};
-										var view = new app.Models.view();
-										view.set({
-											name: name,
-											html: self.HTMLs[name].html,
-											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
-										});
-										view.save(null, {
-											success: function() {
+										// var view = new app.Models.view();
+										// view.set({
+										// 	name: name,
+										// 	html: self.HTMLs[name].html,
+										// 	extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
+										// });
+										// view.save(null, {
+										// 	success: function() {
 												deferred.resolve(html, self.HTMLs[name].extra);
-											}
-										});
+										// 	}
+										// });
 									});
 									break;
 								default:
@@ -114,19 +114,19 @@
 									self.HTMLs[name] = {};
 									self.HTMLs[name].html = LZString.compressToBase64(html);
 									self.HTMLs[name].extra = {};
-									var view = new app.Models.view();
-									view.set({
-										name: name,
-										html: self.HTMLs[name].html,
-										extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
-									});
-									view.save(null, {
-										success: function() {
+									// var view = new app.Models.view();
+									// view.set({
+									// 	name: name,
+									// 	html: self.HTMLs[name].html,
+									// 	extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
+									// });
+									// view.save(null, {
+									// 	success: function() {
 											deferred.resolve(html, self.HTMLs[name].extra);
-										}
-									});
+										// }
+									// });
 							}
-						}
+						// }
 					}
 				});
 			}
