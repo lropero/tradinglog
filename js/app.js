@@ -47,10 +47,7 @@
 									app.view = new app.Views.main();
 
 									/** We hide the initial splash screen once the main view is ready */
-									// app.hideSplash();
-				if(navigator.splashscreen) {
-					navigator.splashscreen.hide();
-				}
+									app.hideSplash();
 
 									/** Fetch operations & trades */
 									app.ready = app.fetchObjects();
