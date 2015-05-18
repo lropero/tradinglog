@@ -106,6 +106,7 @@
 		},
 
 		fetchOperations: function() {
+			var timer = app.debug.start('app fetchOperations');
 			var deferred = $.Deferred();
 			var operations = new app.Collections.operations();
 			operations.setAccountId(app.account.get('id'));
@@ -116,12 +117,14 @@
 						app.operations.push(operations[i]);
 					}
 					deferred.resolve();
+					timer.stop();
 				}
 			});
 			return deferred;
 		},
 
 		fetchTrades: function() {
+			var timer = app.debug.start('app fetchTrades');
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
@@ -162,6 +165,7 @@
 							}
 						}
 						deferred.resolve();
+						timer.stop();
 					});
 				}
 			});

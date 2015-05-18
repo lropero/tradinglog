@@ -58,7 +58,7 @@
 			alertify.confirm('Are you sure?', function(e) {
 				if(e) {
 					$wrapper.hide();
-					var instruments = new app.Models.instruments();
+					var instruments = new app.Collections.instruments();
 					instruments.setFetchId(id);
 					instruments.fetch({
 						success: function() {
@@ -90,21 +90,19 @@
 				instruments.fetch({
 					success: function() {
 						var instrument = instruments.at(0);
-						instrument.deferred.then(function() {
-							instrument.set({
-								group_id: group_id
-							});
-							instrument.save(null, {
-								success: function() {
-									for(var i = 0; i < self.instruments.length; i++) {
-										if(self.instruments[i].id === id) {
-											self.instruments[i].group_id = group_id;
-											break;
-										}
+						instrument.set({
+							group_id: group_id
+						});
+						instrument.save(null, {
+							success: function() {
+								for(var i = 0; i < self.instruments.length; i++) {
+									if(self.instruments[i].id === id) {
+										self.instruments[i].group_id = group_id;
+										break;
 									}
-									$group.html(newGroup);
 								}
-							});
+								$group.html(newGroup);
+							}
 						});
 					}
 				});
