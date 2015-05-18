@@ -12,7 +12,7 @@
 			} else {
 				this.db = window.openDatabase('TradingLog', '1.0', 'TradingLog v1.0', 1024 * 1024);
 			}
-			this.reset();
+			// this.reset();
 			this.createTables();
 
 			// Remove
