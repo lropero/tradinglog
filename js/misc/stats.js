@@ -368,8 +368,11 @@
 				statss.setName(name);
 				statss.fetch({
 					success: function() {
-						var stats = statss.at(0);
-						if(typeof stats === 'undefined') {
+						if(statss.length) {
+							var stats = statss.at(0).toJSON();
+							self.recover(stats);
+							deferred.resolve(self.data[stats.name]);
+						} else {
 							var dateFrom = new Date();
 							dateFrom.setHours(0, 0, 0, 0);
 							var dateTo = new Date();
@@ -410,10 +413,6 @@
 							deferred2.then(function(stats) {
 								deferred.resolve(stats);
 							});
-						} else {
-							stats = stats.toJSON();
-							self.recover(stats);
-							deferred.resolve(self.data[stats.name]);
 						}
 					}
 				});

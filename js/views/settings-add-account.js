@@ -27,17 +27,20 @@
 		},
 
 		render: function(cache) {
+			var self = this;
 			if(this.account) {
 				app.trigger('change', 'settings-edit-account');
 				this.$el.html(this.template({
 					account: this.account
 				}));
 			} else {
-				var html = app.cache.get('settingsAddAccount', this.template);
-				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'settings-add-account');
-					this.$el.html(html);
-				}
+				var deferred = app.cache.get('settingsAddAccount', this.template);
+				deferred.then(function(html) {
+					if(typeof cache !== 'boolean') {
+						app.trigger('change', 'settings-add-account');
+						self.$el.html(html);
+					}
+				});
 			}
 			return this;
 		},

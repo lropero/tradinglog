@@ -25,11 +25,14 @@
 		},
 
 		render: function(cache) {
-			var html = app.cache.get('mainAddOperation', this.template);
-			if(typeof cache !== 'boolean') {
-				app.trigger('change', 'main-add-operation');
-				this.$el.html(html);
-			}
+			var self = this;
+			var deferred = app.cache.get('mainAddOperation', this.template);
+			deferred.then(function(html) {
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main-add-operation');
+					self.$el.html(html);
+				}
+			});
 			return this;
 		},
 

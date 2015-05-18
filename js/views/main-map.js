@@ -6,23 +6,22 @@
 
 		initialize: function(cache) {
 			this.trades = [];
-			this.fetchTrades()
 			this.template = Handlebars.compile(app.templateLoader.get('main-map'));
 			this.render(cache);
 		},
 
 		render: function(cache) {
-			var html = app.cache.get('mainMap', this.template, {
-				trades: this.trades,
-				max: this.max
+			var self = this;
+			var deferred = app.cache.get('mainMap', this.template);
+			deferred.then(function(html) {
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main-map');
+					self.$el.html(html);
+					$('section#main-stats-friends').addClass('map');
+					self.decorate();
+					self.animate();
+				}
 			});
-			if(typeof cache !== 'boolean') {
-				app.trigger('change', 'main-map');
-				this.$el.html(html);
-				$('section#main-stats-friends').addClass('map');
-				this.decorate();
-				this.animate();
-			}
 			return this;
 		},
 
@@ -50,21 +49,6 @@
 				}, 10);
 			} else {
 				app.enableScroll();
-			}
-		},
-
-		fetchTrades: function() {
-			for(var i = app.count.open; i < app.objects.length; i++) {
-				if(app.objects[i].instrument_id) {
-					var abs = Math.abs(app.objects[i].net);
-					if(!this.max || abs > this.max) {
-						this.max = abs;
-					}
-					this.trades.push(app.objects[i]);
-				}
-			}
-			if(this.max === 0) {
-				this.max = 1;
 			}
 		}
 	});

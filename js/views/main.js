@@ -25,24 +25,24 @@
 
 		render: function(cache) {
 			var self = this;
-			var html = app.cache.get('main', this.template, {
-				objects: app.objects
-			});
-			if(typeof cache !== 'boolean') {
-				app.trigger('change', 'main', {
-					closed: app.count.closed
-				});
-				this.$el.html(html);
-				this.decorate();
-				if(navigator.accelerometer) {
-					this.shake();
+			var deferred = app.cache.get('main', this.template);
+			deferred.then(function(html, extra) {
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main', {
+						closed: extra.closed
+					});
+					self.$el.html(html);
+					self.decorate();
+					if(navigator.accelerometer) {
+						self.shake();
+					}
+					self.deferred.resolve();
+				} else {
+					// setTimeout(function() {
+						self.undelegateEvents();
+					// }, 10);
 				}
-				this.deferred.resolve();
-			} else {
-				setTimeout(function() {
-					self.undelegateEvents();
-				}, 10);
-			}
+			});
 			return this;
 		},
 

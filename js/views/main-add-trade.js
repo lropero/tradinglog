@@ -31,13 +31,15 @@
 		render: function(cache) {
 			var self = this;
 			this.deferred.done(function() {
-				var html = app.cache.get('mainAddTrade', self.template, {
+				var deferred = app.cache.get('mainAddTrade', self.template, {
 					instruments: self.instruments
 				});
-				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'main-add-trade');
-					self.$el.html(html);
-				}
+				deferred.then(function(html) {
+					if(typeof cache !== 'boolean') {
+						app.trigger('change', 'main-add-trade');
+						self.$el.html(html);
+					}
+				});
 			});
 			return this;
 		},

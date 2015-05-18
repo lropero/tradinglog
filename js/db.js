@@ -53,10 +53,11 @@
 					'body TEXT,' +
 					'created_at INTEGER' +
 				');',
-				'CREATE TABLE IF NOT EXISTS configuration (' +
-					'language TEXT,' +
-					'numeric_format INTEGER' +
-				');',
+				// 'CREATE TABLE IF NOT EXISTS indices (' +
+				// 	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+				// 	'type INTEGER,' +
+				// 	'map INTEGER' +
+				// ');',
 				'CREATE TABLE IF NOT EXISTS instrument (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'type INTEGER,' +
@@ -100,6 +101,12 @@
 					'variation NUMERIC,' +
 					'comments INTEGER,' +
 					'closed_at INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS view (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'name TEXT,' +
+					'html TEXT,' +
+					'extra TEXT' +
 				');'
 			];
 			this.db.transaction(function(tx) {

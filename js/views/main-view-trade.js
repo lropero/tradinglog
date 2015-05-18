@@ -21,21 +21,23 @@
 
 		render: function(cache) {
 			var self = this;
-			var html = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
+			var deferred = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
 				trade: this.trade
 			});
-			if(typeof cache !== 'boolean') {
-				app.trigger('change', 'main-view-trade');
-				this.$el.html(html);
-				app.swipe.init('.swipe');
-				setTimeout(function() {
-					app.enableScroll();
-				}, 10);
-			} else {
-				setTimeout(function() {
-					self.undelegateEvents();
-				}, 10);
-			}
+			deferred.then(function(html) {
+				if(typeof cache !== 'boolean') {
+					app.trigger('change', 'main-view-trade');
+					self.$el.html(html);
+					app.swipe.init('.swipe');
+					setTimeout(function() {
+						app.enableScroll();
+					}, 10);
+				} else {
+					// setTimeout(function() {
+						self.undelegateEvents();
+					// }, 10);
+				}
+			});
 			return this;
 		},
 

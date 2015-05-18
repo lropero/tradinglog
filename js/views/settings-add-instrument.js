@@ -29,17 +29,20 @@
 		},
 
 		render: function(cache) {
+			var self = this;
 			if(this.instrument) {
 				app.trigger('change', 'settings-edit-instrument');
 				this.$el.html(this.template({
 					instrument: this.instrument
 				}));
 			} else {
-				var html = app.cache.get('settingsAddInstrument', this.template);
-				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'settings-add-instrument');
-					this.$el.html(html);
-				}
+				var deferred = app.cache.get('settingsAddInstrument', this.template);
+				deferred.then(function(html) {
+					if(typeof cache !== 'boolean') {
+						app.trigger('change', 'settings-add-instrument');
+						self.$el.html(html);
+					}
+				});
 			}
 			if(this.instrument) {
 				switch(this.instrument.type) {
