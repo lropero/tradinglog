@@ -9,7 +9,6 @@
 		Views: {},
 
 		init: function() {
-			// var timer = app.debug.start('app init');
 
 			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
 				shown */
@@ -66,7 +65,6 @@
 									// new app.Views.settingsAddAccount(' ', true);
 									// new app.Views.settingsAddInstrument(' ', true);
 
-									// timer.stop();
 								});
 							}
 						}
@@ -81,7 +79,6 @@
 		},
 
 		fetchObjects: function() {
-			// var timer = app.debug.start('app fetchObjects');
 			var deferred = $.Deferred();
 			app.operations = [];
 			app.trades = [];
@@ -97,13 +94,11 @@
 				app.objects = [];
 				app.prepareObjects();
 				deferred.resolve();
-				// timer.stop();
 			});
 			return deferred;
 		},
 
 		fetchOperations: function() {
-			// var timer = app.debug.start('app fetchOperations');
 			var deferred = $.Deferred();
 			var operations = new app.Collections.operations();
 			operations.setAccountId(app.account.get('id'));
@@ -114,14 +109,12 @@
 						app.operations.push(operations[i]);
 					}
 					deferred.resolve();
-					// timer.stop();
 				}
 			});
 			return deferred;
 		},
 
 		fetchTrades: function() {
-			// var timer = app.debug.start('app fetchTrades');
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
 			trades.setAccountId(app.account.get('id'));
@@ -149,20 +142,7 @@
 							}
 
 						}
-						if(!app.stats.availables.monthly.length) {
-							var date = new Date();
-							var monthly = date.getFullYear() + '-' + date.getMonth();
-							date.setDate(date.getDate() - date.getDay());
-							var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-							if(app.stats.availables.monthly[app.stats.availables.monthly.length - 1] !== monthly) {
-								app.stats.availables.monthly.push(monthly);
-							}
-							if(app.stats.availables.weekly[app.stats.availables.weekly.length - 1] !== weekly) {
-								app.stats.availables.weekly.push(weekly);
-							}
-						}
 						deferred.resolve();
-						// timer.stop();
 					});
 				}
 			});
@@ -228,6 +208,14 @@
 			if(!(!app.count.closed && app.count.operations === 1)) {
 				app.objects[app.count.open].isNewest = true;
 			}
+
+			// Remove
+			if(app.objects[app.count.open].closed_at) {
+				app.timestamp = app.objects[app.count.open].closed_at;
+			} else {
+				app.timestamp = app.objects[app.count.open].created_at;
+			}
+
 		}
 	};
 

@@ -1186,9 +1186,11 @@
 			</div>
 		</li>
 	</ul>
-	<ul class="wrapper-button-default {{#if trade.isOpen}}two{{else}}one{{/if}}-button-default">
+	<ul class="wrapper-button-default two-button-default">
 		{{#if trade.isOpen}}
 			<li class="button-default" data-view="mainAddPosition">Add position</li>
+		{{else}}
+			<li class="button-default" data-view="mainEditCommission">Edit commission</li>
 		{{/if}}
 		<li class="button-default" data-view="mainAddComment">Add comment</li>
 	</ul>
@@ -1258,7 +1260,7 @@
 		{{#each objects}}
 			{{#if this.instrument}}
 				<li class="wrapper-label" data-key="{{@key}}" data-swipe="1">
-					<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe"{{#unless this.isOpen}} data-net="{{this.net}}"{{else}}{{#if this.net}} data-net="{{this.net}}"{{/if}}{{/unless}}>
+					<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}}{{#if this.isOpen}} open swipe{{/if}}"{{#unless this.isOpen}} data-net="{{this.net}}"{{else}}{{#if this.net}} data-net="{{this.net}}"{{/if}}{{/unless}}>
 						<div class="ball">
 							{{#if this.comments}}
 								<div class="globe-comments">{{this.comments}}</div>
@@ -1278,15 +1280,19 @@
 								<div class="variation">{{#variation this.variation}}{{/variation}}</div>
 							{{/unless}}
 						</div>
-						<div class="swipe-triangle"></div>
+						{{#if this.isOpen}}
+							<div class="swipe-triangle"></div>
+						{{/if}}
 					</div>
-					<div class="wrapper-swipe">
-						<div class="swipe-buttons">
-							<ul>
-								<li class="button-swipe {{#if this.isOpen}}delete{{else}}commission{{/if}}" data-id="{{this.id}}"></li>
-							</ul>
+					{{#if this.isOpen}}
+						<div class="wrapper-swipe">
+							<div class="swipe-buttons">
+								<ul>
+									<li class="button-swipe delete" data-id="{{this.id}}"></li>
+								</ul>
+							</div>
 						</div>
-					</div>
+					{{/if}}
 				</li>
 			{{else}}
 				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isNewest}} data-swipe="1"{{/if}}>
@@ -1679,7 +1685,13 @@
 		<li data-period="custom" data-section="Custom" id="control-custom">Custom</li>
 	</ul>
 </control>
-<section id="content" style="background-color: #4020d0;"></section>
+<section id="content" style="background-color: #4020d0;">
+	<div id="no-stats" style="display: none;">
+		<div class="center">
+			<span>No data</span>
+		</div>
+	</div>
+</section>
 </script>
 <script type="text/x-handlebars-template" id="welcome-template"><div class="welcome box-violet">
 	<div class="content">

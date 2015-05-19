@@ -130,11 +130,7 @@
 				month = parseInt(toDateValues[1], 10) - 1;
 				day = parseInt(toDateValues[2], 10);
 				name += toDateValues[0] + '-' + month + '-' + day + '#' + str;
-				app.previousCustom = {
-					name: name,
-					monthly: 0,
-					weekly: app.stats.toWeekly(app.stats.availables.monthly[0])
-				};
+				app.previousCustom = name;
 				this.destroy();
 				app.view.subview = new app.Views.statsNumbers({
 					name: name,

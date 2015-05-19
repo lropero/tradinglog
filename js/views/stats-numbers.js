@@ -231,7 +231,7 @@
 				var deferred = app.stats.get(this.name);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
-					if(stats[type].trades) {
+					if(parseInt(stats[type].trades, 10)) {
 						$('div#no-stats').css('display', 'none');
 						$('div.wrapper-control-box-swipe').css('display', 'block');
 						self.drawDoughnut(stats[type]);

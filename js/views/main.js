@@ -69,9 +69,9 @@
 						trade_id: insertId,
 						size: size,
 						price: price,
-						created_at: 1420081201000
+						created_at: app.timestamp
 					});
-					var diff = (new Date()).getTime() - 1420081201000;
+					app.timestamp += Math.floor(Math.random() * 864000000);
 					position.save(null, {
 						success: function() {
 							var price2 = Math.floor(Math.random() * 11) + 1000;
@@ -80,7 +80,7 @@
 								trade_id: insertId,
 								size: (size * -1),
 								price: price2,
-								created_at: Math.floor(Math.random() * diff) + 1420081201000
+								created_at: app.timestamp
 							});
 							position2.save(null, {
 								success: function() {
@@ -292,13 +292,18 @@
 
 		viewTrade: function(e) {
 			e.preventDefault();
-			$('header button').hide();
+			$('div#drag').css('display', 'none');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var $label = $($wrapper.context);
-			var isOpen = $label.hasClass('open');
-			if(!isOpen) {
-				$label.css('backgroundColor', '#dadada');
-			}
+
+			// Preload
+			this.destroy();
+			this.$el.empty();
+			$label.addClass('full');
+			$label.find('div.globe-comments').hide();
+			app.trigger('change', 'main-view-trade');
+			this.$el.append($wrapper);
+
 			var key = $wrapper.data('key').toString();
 			app.loadView('mainViewTrade', key);
 		}

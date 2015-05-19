@@ -317,6 +317,10 @@
 						});
 						self.save(null, {
 							success: function() {
+								var date = new Date(created_at);
+								date.setDate(date.getDate() - date.getDay());
+								var name = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+								app.stats.delete(name);
 								app.account.set({
 									balance: balance
 								});

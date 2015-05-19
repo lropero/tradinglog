@@ -5,4 +5,10 @@
 		<li data-period="custom" data-section="Custom" id="control-custom">Custom</li>
 	</ul>
 </control>
-<section id="content" style="background-color: #4020d0;"></section>
+<section id="content" style="background-color: #4020d0;">
+	<div id="no-stats" style="display: none;">
+		<div class="center">
+			<span>No data</span>
+		</div>
+	</div>
+</section>

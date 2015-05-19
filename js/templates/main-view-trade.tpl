@@ -22,9 +22,11 @@
 			</div>
 		</li>
 	</ul>
-	<ul class="wrapper-button-default {{#if trade.isOpen}}two{{else}}one{{/if}}-button-default">
+	<ul class="wrapper-button-default two-button-default">
 		{{#if trade.isOpen}}
 			<li class="button-default" data-view="mainAddPosition">Add position</li>
+		{{else}}
+			<li class="button-default" data-view="mainEditCommission">Edit commission</li>
 		{{/if}}
 		<li class="button-default" data-view="mainAddComment">Add comment</li>
 	</ul>

@@ -3,7 +3,7 @@
 		{{#each objects}}
 			{{#if this.instrument}}
 				<li class="wrapper-label" data-key="{{@key}}" data-swipe="1">
-					<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}} {{#if this.isOpen}}open {{/if}}swipe"{{#unless this.isOpen}} data-net="{{this.net}}"{{else}}{{#if this.net}} data-net="{{this.net}}"{{/if}}{{/unless}}>
+					<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}}{{#if this.isOpen}} open swipe{{/if}}"{{#unless this.isOpen}} data-net="{{this.net}}"{{else}}{{#if this.net}} data-net="{{this.net}}"{{/if}}{{/unless}}>
 						<div class="ball">
 							{{#if this.comments}}
 								<div class="globe-comments">{{this.comments}}</div>
@@ -23,15 +23,19 @@
 								<div class="variation">{{#variation this.variation}}{{/variation}}</div>
 							{{/unless}}
 						</div>
-						<div class="swipe-triangle"></div>
+						{{#if this.isOpen}}
+							<div class="swipe-triangle"></div>
+						{{/if}}
 					</div>
-					<div class="wrapper-swipe">
-						<div class="swipe-buttons">
-							<ul>
-								<li class="button-swipe {{#if this.isOpen}}delete{{else}}commission{{/if}}" data-id="{{this.id}}"></li>
-							</ul>
+					{{#if this.isOpen}}
+						<div class="wrapper-swipe">
+							<div class="swipe-buttons">
+								<ul>
+									<li class="button-swipe delete" data-id="{{this.id}}"></li>
+								</ul>
+							</div>
 						</div>
-					</div>
+					{{/if}}
 				</li>
 			{{else}}
 				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isNewest}} data-swipe="1"{{/if}}>

@@ -157,9 +157,9 @@
 						trade_id: insertId,
 						size: size,
 						price: price,
-						created_at: 1420081201000
+						created_at: app.timestamp
 					});
-					var diff = (new Date()).getTime() - 1420081201000;
+					app.timestamp += Math.floor(Math.random() * 864000000);
 					position.save(null, {
 						success: function() {
 							var price2 = Math.floor(Math.random() * 11) + 1000;
@@ -168,7 +168,7 @@
 								trade_id: insertId,
 								size: (size * -1),
 								price: price2,
-								created_at: Math.floor(Math.random() * diff) + 1420081201000
+								created_at: app.timestamp
 							});
 							position2.save(null, {
 								success: function() {
