@@ -44,6 +44,7 @@ module.exports = function(grunt) {
 					'js/vendor/jquery.cookie.js',
 					'js/vendor/jquery.mobile.events.js',
 					'js/vendor/jquery.pep.js',
+					'js/vendor/lz-string.js',
 					'js/vendor/shake.js',
 					'js/vendor/slick.js',
 					'js/app.js',
