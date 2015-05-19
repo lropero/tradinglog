@@ -6,6 +6,7 @@
 
 		delete: function(name) {
 			var self = this;
+			var deferred = $.Deferred();
 			var views = new app.Collections.views();
 			views.setName(name);
 			views.fetch({
@@ -21,10 +22,12 @@
 							} else if(name === 'mainMap') {
 								new app.Views.mainMap(true);
 							}
+							deferred.resolve();
 						});
 					}
 				}
 			});
+			return deferred;
 		},
 
 		get: function(name, method, options) {

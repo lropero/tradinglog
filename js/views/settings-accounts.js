@@ -73,6 +73,7 @@
 										app.fetchObjects().done(function() {
 											app.cache.delete('main');
 											app.cache.delete('mainMap');
+											app.view.subview.destroy();
 											app.view.subview = new app.Views.settingsAccounts();
 										});
 									}

@@ -90,8 +90,9 @@
 													trade.addToComments(-1, function() {
 														app.objects[self.key] = trade.toJSON();
 														app.cache.delete('main');
-														app.cache.delete('mainViewTrade' + self.trade.id);
-														app.loadView('mainViewTrade', self.key);
+														app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
+															app.loadView('mainViewTrade', self.key);
+														});
 													});
 												});
 											}
@@ -137,22 +138,25 @@
 																app.cache.delete('main');
 																app.cache.delete('mainMap');
 																app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
-																app.cache.delete('mainViewTrade' + self.trade.id);
-																app.loadView('mainViewTrade', key.toString());
+																app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
+																	app.loadView('mainViewTrade', key.toString());
+																});
 															});
 														} else {
 															trade.setPnL(function() {
 																app.objects[self.key] = trade.toJSON();
 																app.cache.delete('main');
-																app.cache.delete('mainViewTrade' + self.trade.id);
-																app.loadView('mainViewTrade', self.key);
+																app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
+																	app.loadView('mainViewTrade', self.key);
+																});
 															});
 														}
 													} else {
 														app.objects[self.key] = trade.toJSON();
 														app.cache.delete('main');
-														app.cache.delete('mainViewTrade' + self.trade.id);
-														app.loadView('mainViewTrade', self.key);
+														app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
+															app.loadView('mainViewTrade', self.key);
+														});
 													}
 												});
 											}

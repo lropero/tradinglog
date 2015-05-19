@@ -71,7 +71,7 @@
 						price: price,
 						created_at: app.timestamp
 					});
-					app.timestamp += Math.floor(Math.random() * 864000000);
+					app.timestamp += Math.floor(Math.random() * 432000000);
 					position.save(null, {
 						success: function() {
 							var price2 = Math.floor(Math.random() * 11) + 1000;
@@ -95,10 +95,11 @@
 													app.count.closed++;
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
 													app.objects[app.count.open].isNewest = true;
-													app.cache.delete('main');
 													app.cache.delete('mainMap');
 													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
-													app.loadView('main');
+													app.cache.delete('main').done(function() {
+														app.loadView('main');
+													});
 												});
 											});
 										}
@@ -156,11 +157,12 @@
 												if(!(!app.count.closed && app.count.operations === 1)) {
 													app.objects[app.count.open].isNewest = true;
 												}
-												app.cache.delete('main');
 												if(app.objects[app.count.open].instrument_id) {
 													app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
 												}
-												app.loadView('main');
+												app.cache.delete('main').done(function() {
+													app.loadView('main');
+												});
 											}
 										});
 									});
@@ -177,8 +179,9 @@
 										var key = $wrapper.data('key').toString();
 										app.count.open--;
 										app.objects.splice(key, 1);
-										app.cache.delete('main');
-										app.loadView('main');
+										app.cache.delete('main').done(function() {
+											app.loadView('main');
+										});
 									});
 								}
 							});
