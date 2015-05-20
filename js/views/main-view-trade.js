@@ -35,9 +35,9 @@
 						app.enableScroll();
 					}, 10);
 				} else {
-					// setTimeout(function() {
+					setTimeout(function() {
 						self.undelegateEvents();
-					// }, 10);
+					}, 10);
 				}
 			});
 			return this;
