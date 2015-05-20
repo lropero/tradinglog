@@ -301,7 +301,7 @@
 				if(this.key) {
 					var $wrapper = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
 					var $ball = $wrapper.find('div.ball');
-					var animated = 'animated jello';
+					var animated = 'animated bounceIn';
 					$ball.addClass(animated).one('webkitAnimationEnd', function() {
 						$ball.removeClass(animated);
 						setTimeout(function() {
@@ -322,7 +322,7 @@
 						top = 0;
 					}
 					$content.scrollTop(top);
-					var animated = 'animated jello';
+					var animated = 'animated bounceIn';
 					$ball.addClass(animated).one('webkitAnimationEnd', function() {
 						$ball.removeClass(animated);
 						setTimeout(function() {
