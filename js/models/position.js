@@ -36,6 +36,7 @@
 		},
 
 		delete: function(callback) {
+			var self = this;
 			this.destroy({
 				success: function() {
 					callback(self.get('size'));

@@ -93,7 +93,7 @@
 												trade2.setPnL(function() {
 
 													// Stats
-													var date = new Date(trade.get('closed_at'));
+													var date = new Date(app.timestamp);
 													if(!app.firstDate) {
 														app.firstDate = date.getTime();
 													}

@@ -83,12 +83,13 @@
 					}
 					break;
 			}
+			var created_at = (new Date()).getTime();
 			var position = new app.Models.position();
 			position.set({
 				trade_id: this.trade.id,
 				size: size,
 				price: price,
-				created_at: (new Date()).getTime()
+				created_at: created_at
 			});
 			position.validate();
 			if(position.isValid()) {
@@ -106,7 +107,7 @@
 											if(closed) {
 
 												// Stats
-												var date = new Date(trade.get('closed_at'));
+												var date = new Date(created_at);
 												if(!app.firstDate) {
 													app.firstDate = date.getTime();
 												}
