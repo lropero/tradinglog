@@ -305,11 +305,7 @@
 				if(this.key) {
 					var $label = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
 					app.disableScroll();
-					$content.animate({
-						scrollTop: $label.position().top
-					}, 100, 'swing', function() {
-						app.enableScroll();
-					});
+					$content.scrollTop($label.position().top);
 				}
 				app.enableScroll();
 			}
