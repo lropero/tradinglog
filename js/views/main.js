@@ -302,7 +302,9 @@
 					var $wrapper = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
 					var $ball = $wrapper.find('div.ball');
 					var animated = 'animated bounceIn';
-					$ball.addClass(animated);
+					$ball.addClass(animated).one('webkitAnimationEnd', function() {
+						$ball.removeClass(animated);
+					});
 					setTimeout(function() {
 						app.enableScroll();
 					}, 10);
@@ -321,7 +323,9 @@
 					}
 					$content.scrollTop(top);
 					var animated = 'animated bounceIn';
-					$ball.addClass(animated);
+					$ball.addClass(animated).one('webkitAnimationEnd', function() {
+						$ball.removeClass(animated);
+					});
 					setTimeout(function() {
 						app.enableScroll();
 					}, 10);
