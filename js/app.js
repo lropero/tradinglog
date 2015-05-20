@@ -176,7 +176,7 @@
 				$('div#drag').css('display', 'none');
 				setTimeout(function() {
 					self.view = new app.Views[view](attrs);
-				}, 10);
+				}, 30);
 			}
 		},
 
