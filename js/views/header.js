@@ -137,13 +137,25 @@
 					}
 					break;
 				case 'main-map':
-				case 'main-view-operation':
-				case 'main-view-trade':
 					options = {
 						left: {
 							icon: 'f124',
 							text: 'Back',
 							view: 'main'
+						}
+					};
+					break;
+				case 'main-view-operation':
+				case 'main-view-trade':
+					options = {
+						left: {
+							action: function() {
+								app.loadView('main', {
+									key: attrs.key
+								});
+							},
+							icon: 'f124',
+							text: 'Back'
 						}
 					};
 					break;

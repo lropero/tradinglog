@@ -16,7 +16,9 @@
 						view.delete(function() {
 							delete self.HTMLs[name];
 							if(name === 'main') {
-								new app.Views.main(true);
+								new app.Views.main({
+									cache: true
+								});
 							} else if(name === 'mainAddTrade') {
 								new app.Views.mainAddTrade(true);
 							} else if(name === 'mainMap') {

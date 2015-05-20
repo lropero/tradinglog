@@ -26,7 +26,9 @@
 			});
 			deferred.then(function(html) {
 				if(typeof cache !== 'boolean') {
-					app.trigger('change', 'main-view-trade');
+					app.trigger('change', 'main-view-trade', {
+						key: self.key
+					});
 					self.$el.html(html);
 					app.swipe.init('.swipe');
 					setTimeout(function() {

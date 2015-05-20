@@ -46,7 +46,7 @@
 									app.ready = app.fetchObjects();
 
 									/** Load main view */
-									app.view = new app.Views.main();
+									app.view = new app.Views.main({});
 
 									/** We hide the initial splash screen once the main view is ready */
 									app.hideSplash();
@@ -74,8 +74,9 @@
 		},
 
 		disableScroll: function() {
-			$('section#content').css('-webkit-overflow-scrolling', 'auto');
-			$('section#content').css('overflow-y', 'hidden');
+			var $content = $('section#content');
+			$content.css('-webkit-overflow-scrolling', 'auto');
+			$content.css('overflow-y', 'hidden');
 		},
 
 		fetchObjects: function() {
@@ -150,8 +151,9 @@
 		},
 
 		enableScroll: function() {
-			$('section#content').css('-webkit-overflow-scrolling', 'touch');
-			$('section#content').css('overflow-y', 'scroll');
+			var $content = $('section#content');
+			$content.css('-webkit-overflow-scrolling', 'touch');
+			$content.css('overflow-y', 'scroll');
 		},
 
 		hideSplash: function() {

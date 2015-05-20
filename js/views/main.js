@@ -9,10 +9,17 @@
 			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
-		initialize: function(cache) {
+		initialize: function(attrs) {
 			this.deferred = $.Deferred();
+			this.cache = false;
+			if(attrs.cache) {
+				this.cache = true;
+			}
+			if(attrs.key) {
+				this.key = attrs.key;
+			}
 			this.template = Handlebars.compile(app.templateLoader.get('main'));
-			this.render(cache);
+			this.render();
 		},
 
 		destroy: function() {
@@ -23,11 +30,11 @@
 			this.undelegateEvents();
 		},
 
-		render: function(cache) {
+		render: function() {
 			var self = this;
 			var deferred = app.cache.get('main', this.template);
 			deferred.then(function(html, extra) {
-				if(typeof cache !== 'boolean') {
+				if(!this.cache) {
 					app.trigger('change', 'main', {
 						closed: extra.closed
 					});
@@ -295,6 +302,15 @@
 					app.enableScroll();
 				}, 10);
 			} else {
+				if(this.key) {
+					var $label = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
+					app.disableScroll();
+					$content.animate({
+						scrollTop: $label.position().top
+					}, 100, 'swing', function() {
+						app.enableScroll();
+					});
+				}
 				app.enableScroll();
 			}
 		},
