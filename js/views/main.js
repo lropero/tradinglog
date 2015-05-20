@@ -303,14 +303,16 @@
 				}, 10);
 			} else {
 				if(this.key) {
-					var $label = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
-					var top = $label.position().top - 10;
+					var $wrapper = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
+					var $ball = $wrapper.find('div.ball');
+					var top = $wrapper.position().top - 10;
 					if(top < 0) {
 						top = 0;
 					}
-					$content.animate({
-						scrollTop: top
-					}, 100, 'swing', function() {
+					$content.scrollTop(top);
+					var animated = 'animated jello';
+					$ball.addClass(animated).one('webkitAnimationEnd', function() {
+						$ball.removeClass(animated);
 						setTimeout(function() {
 							app.enableScroll();
 						}, 10);
