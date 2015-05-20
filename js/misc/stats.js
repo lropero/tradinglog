@@ -455,8 +455,10 @@
 						var halfStep = (steps - 2) / 2;
 						if(counter > -1) {
 							if(counter === halfStep) {
+
 								// Schrödinger's cat
 								counter += Math.round(Math.random()) * 2 - 1;
+
 							}
 						}
 						if(counter >= halfStep) {
