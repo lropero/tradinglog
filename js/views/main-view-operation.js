@@ -14,7 +14,7 @@
 
 		render: function() {
 			app.trigger('change', 'main-view-operation', {
-				key: this.key
+				key: this.key.toString()
 			});
 			this.$el.html(this.template({
 				operation: this.operation

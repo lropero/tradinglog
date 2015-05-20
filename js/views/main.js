@@ -308,10 +308,13 @@
 					if(top < 0) {
 						top = 0;
 					}
-					$content.scrollTop(top);
-					setTimeout(function() {
-						app.enableScroll();
-					}, 10);
+					$content.animate({
+						scrollTop: top
+					}, 100, 'swing', function() {
+						setTimeout(function() {
+							app.enableScroll();
+						}, 10);
+					});
 				} else {
 					app.enableScroll();
 				}

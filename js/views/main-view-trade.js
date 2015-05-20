@@ -27,7 +27,7 @@
 			deferred.then(function(html) {
 				if(typeof cache !== 'boolean') {
 					app.trigger('change', 'main-view-trade', {
-						key: self.key
+						key: self.key.toString()
 					});
 					self.$el.html(html);
 					app.swipe.init('.swipe');
