@@ -1139,6 +1139,7 @@
 	<div class="peeking"></div>
 </div>
 </script>
+<script type="text/x-handlebars-template" id="main-edit-commission-template">EDIT COMMISSION</script>
 <script type="text/x-handlebars-template" id="main-map-template"><section id="content">
 	<ul id="map">
 		{{#each trades}}

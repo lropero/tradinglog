@@ -116,6 +116,26 @@
 						}
 					}
 					break;
+				case 'main-edit-commission':
+					options = {
+						left: {
+							action: function() {
+								app.loadView('mainViewTrade', attrs.key);
+							},
+							icon: 'f124',
+							text: 'Cancel'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							animate: true,
+							text: 'Save'
+						}
+					}
+					break;
 				case 'main-map':
 				case 'main-view-operation':
 				case 'main-view-trade':
