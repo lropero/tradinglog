@@ -112,7 +112,11 @@
 												app.objects[app.count.open].isNewest = true;
 												app.cache.delete('main');
 												app.cache.delete('mainMap');
-												app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+												if(app.objects[app.count.open + 1].instrument_id) {
+													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
+														new app.Views.mainViewTrade(app.count.open + 1, true);
+													});
+												}
 												app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
 													app.loadView('mainViewTrade', app.count.open.toString());
 												});

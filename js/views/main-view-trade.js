@@ -137,7 +137,11 @@
 																}
 																app.cache.delete('main');
 																app.cache.delete('mainMap');
-																app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
+																if(app.objects[app.count.open].instrument_id) {
+																	app.cache.delete('mainViewTrade' + app.objects[app.count.open].id).done(function() {
+																		new app.Views.mainViewTrade(app.count.open, true);
+																	});
+																}
 																app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
 																	app.loadView('mainViewTrade', key.toString());
 																});
