@@ -91,6 +91,9 @@
 					}
 					break;
 			}
+			$('header').html(date);
+			$('control.segmented').html(minDate);
+			$('footer').html(maxDate);
 			if(typeof datePicker !== 'undefined') {
 				datePicker.show({
 					date: date,
