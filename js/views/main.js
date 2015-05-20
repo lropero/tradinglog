@@ -304,10 +304,17 @@
 			} else {
 				if(this.key) {
 					var $label = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
-					app.disableScroll();
-					$content.scrollTop($label.position().top);
+					var top = $label.position().top - 10;
+					if(top < 0) {
+						top = 0;
+					}
+					$content.scrollTop(top);
+					setTimeout(function() {
+						app.enableScroll();
+					}, 10);
+				} else {
+					app.enableScroll();
 				}
-				app.enableScroll();
 			}
 		},
 
