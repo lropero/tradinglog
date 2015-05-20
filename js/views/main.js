@@ -298,9 +298,21 @@
 			var $ul = $content.children('ul');
 			if($content.height() > $ul.height()) {
 				$ul.append('<li style="background: #ffffff; height: ' + ($content.height() - $ul.height() + 5) + 'px; width: 100%;"></li>');
-				setTimeout(function() {
-					app.enableScroll();
-				}, 10);
+				if(this.key) {
+					var $wrapper = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
+					var $ball = $wrapper.find('div.ball');
+					var animated = 'animated jello';
+					$ball.addClass(animated).one('webkitAnimationEnd', function() {
+						$ball.removeClass(animated);
+						setTimeout(function() {
+							app.enableScroll();
+						}, 10);
+					});
+				} else {
+					setTimeout(function() {
+						app.enableScroll();
+					}, 10);
+				}
 			} else {
 				if(this.key) {
 					var $wrapper = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
