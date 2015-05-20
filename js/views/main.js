@@ -325,10 +325,10 @@
 					var animated = 'animated bounceIn';
 					$ball.addClass(animated).one('webkitAnimationEnd', function() {
 						$ball.removeClass(animated);
-						setTimeout(function() {
-							app.enableScroll();
-						}, 10);
 					});
+					setTimeout(function() {
+						app.enableScroll();
+					}, 10);
 				} else {
 					app.enableScroll();
 				}

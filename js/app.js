@@ -178,7 +178,7 @@
 				$('div#drag').css('display', 'none');
 				setTimeout(function() {
 					self.view = new app.Views[view](attrs);
-				}, 30);
+				}, 3000);
 			}
 
 			if(typeof callback === 'function') {

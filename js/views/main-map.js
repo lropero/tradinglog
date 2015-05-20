@@ -18,7 +18,6 @@
 					app.trigger('change', 'main-map');
 					self.$el.html(html);
 					$('section#main-stats-friends').addClass('map');
-					self.decorate();
 					self.animate();
 				}
 			});
@@ -30,10 +29,12 @@
 		},
 
 		animate: function() {
+			var self = this;
 			var $percentage = $('div.percentage');
 			var animated = 'animated fadeInLeft';
 			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
 				$percentage.removeClass(animated);
+				self.decorate();
 			});
 			$('div.ball').addClass('animate');
 		},
