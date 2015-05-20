@@ -96,10 +96,12 @@
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
 													app.objects[app.count.open].isNewest = true;
 													app.cache.delete('mainMap');
-													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
-														new app.Views.mainViewTrade('0', true);
-														new app.Views.mainViewTrade('1', true);
-													});
+													new app.Views.mainViewTrade(app.count.open.toString(), true);
+													if(app.objects[app.count.open + 1].instrument_id) {
+														app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
+															new app.Views.mainViewTrade(app.count.open + 1, true);
+														});
+													}
 													app.cache.delete('main').done(function() {
 														app.loadView('main');
 													});
