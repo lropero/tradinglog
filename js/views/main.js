@@ -95,9 +95,11 @@
 													app.count.closed++;
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
 													app.objects[app.count.open].isNewest = true;
-													new app.Views.mainViewTrade('0', true);
 													app.cache.delete('mainMap');
-													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
+														new app.Views.mainViewTrade('0', true);
+														new app.Views.mainViewTrade('1', true);
+													});
 													app.cache.delete('main').done(function() {
 														app.loadView('main');
 													});

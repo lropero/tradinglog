@@ -85,26 +85,22 @@
 		},
 
 		delete: function(name) {
+			var self = this;
+			var deferred = $.Deferred();
 			var statss = new app.Collections.statss();
-			statss.setName(app.stats.availables.monthly[app.stats.toMonthly(name)]);
+			statss.setName(name);
 			statss.fetch({
 				success: function() {
 					if(statss.length) {
 						var stats = statss.at(0);
 						stats.delete(function() {
-							statss.setName(name);
-							statss.fetch({
-								success: function() {
-									if(statss.length) {
-										var stats = statss.at(0);
-										stats.delete();
-									}
-								}
-							});
+							delete self.data[name];
+							deferred.resolve();
 						});
 					}
 				}
 			});
+			return deferred;
 		},
 
 		generate: function(name, from, to) {

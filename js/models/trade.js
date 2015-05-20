@@ -317,10 +317,25 @@
 						});
 						self.save(null, {
 							success: function() {
+
+								// Stats
 								var date = new Date(created_at);
+								if(!app.firstDate) {
+									app.firstDate = date.getTime();
+								}
+								var monthly = date.getFullYear() + '-' + date.getMonth();
 								date.setDate(date.getDate() - date.getDay());
-								var name = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-								app.stats.delete(name);
+								var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+								if(app.stats.availables.monthly[0] !== monthly) {
+									app.stats.availables.monthly.unshift(monthly);
+								}
+								if(app.stats.availables.weekly[0] !== weekly) {
+									app.stats.availables.weekly.unshift(weekly);
+								}
+								app.stats.delete(monthly).done(function() {
+									app.stats.delete(weekly);
+								});
+
 								app.account.set({
 									balance: balance
 								});
