@@ -91,6 +91,26 @@
 											var trade2 = trades.at(0);
 											trade2.deferred.then(function() {
 												trade2.setPnL(function() {
+
+													// Stats
+													var date = new Date(trade.get('closed_at'));
+													if(!app.firstDate) {
+														app.firstDate = date.getTime();
+													}
+													app.lastDate = date.getTime();
+													var monthly = date.getFullYear() + '-' + date.getMonth();
+													date.setDate(date.getDate() - date.getDay());
+													var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+													if(app.stats.availables.monthly[0] !== monthly) {
+														app.stats.availables.monthly.unshift(monthly);
+													}
+													if(app.stats.availables.weekly[0] !== weekly) {
+														app.stats.availables.weekly.unshift(weekly);
+													}
+													app.stats.delete(monthly).done(function() {
+														app.stats.delete(weekly);
+													});
+
 													app.objects[app.count.open].isNewest = false;
 													app.count.closed++;
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
