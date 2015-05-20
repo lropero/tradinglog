@@ -163,21 +163,14 @@
 		},
 
 		loadView: function(view, attrs) {
-			var self = this;
+			$('div#drag').css('display', 'none');
 
 			/** Some views require to undelegate events */
 			if(typeof this.view.destroy === 'function') {
 				this.view.destroy();
 			}
 
-			if($('div#drag').is(':hidden')) {
-				this.view = new app.Views[view](attrs);
-			} else {
-				$('div#drag').css('display', 'none');
-				setTimeout(function() {
-					self.view = new app.Views[view](attrs);
-				}, 50);
-			}
+			this.view = new app.Views[view](attrs);
 		},
 
 		prepareObjects: function() {
