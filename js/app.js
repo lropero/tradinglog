@@ -177,8 +177,9 @@
 			} else {
 				$('div#drag').css('display', 'none');
 				setTimeout(function() {
+					self.disableScroll();
 					self.view = new app.Views[view](attrs);
-				}, 3000);
+				}, 30);
 			}
 
 			if(typeof callback === 'function') {
