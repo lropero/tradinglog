@@ -164,8 +164,9 @@
 											trade.deferred.then(function() {
 												app.count.open++;
 												app.objects.unshift(trade.toJSON());
-												app.cache.delete('main');
-												app.loadView('mainViewTrade', '0');
+												app.loadView('mainViewTrade', '0', function() {
+													app.cache.delete('main');
+												});
 											});
 										}
 									});

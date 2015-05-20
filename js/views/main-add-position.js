@@ -105,55 +105,58 @@
 									if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
 										trade.setPnL(function(closed) {
 											if(closed) {
-
-												// Stats
-												var date = new Date(created_at);
-												if(!app.firstDate) {
-													app.firstDate = date.getTime();
-												}
-												app.lastDate = date.getTime();
-												var monthly = date.getFullYear() + '-' + date.getMonth();
-												date.setDate(date.getDate() - date.getDay());
-												var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-												if(app.stats.availables.monthly[0] !== monthly) {
-													app.stats.availables.monthly.unshift(monthly);
-												}
-												if(app.stats.availables.weekly[0] !== weekly) {
-													app.stats.availables.weekly.unshift(weekly);
-												}
-												app.stats.delete(monthly).done(function() {
-													app.stats.delete(weekly);
-												});
-
 												app.objects[app.count.open].isNewest = false;
 												app.count.open--;
 												app.objects.splice(self.key, 1);
 												app.count.closed++;
 												app.objects.splice(app.count.open, 0, trade.toJSON());
 												app.objects[app.count.open].isNewest = true;
-												app.cache.delete('main');
-												app.cache.delete('mainMap');
 												if(app.objects[app.count.open + 1].instrument_id) {
 													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
 														new app.Views.mainViewTrade(app.count.open + 1, true);
 													});
 												}
 												app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-													app.loadView('mainViewTrade', app.count.open.toString());
+													app.loadView('mainViewTrade', app.count.open.toString(), function() {
+
+														// Stats
+														var date = new Date(created_at);
+														if(!app.firstDate) {
+															app.firstDate = date.getTime();
+														}
+														app.lastDate = date.getTime();
+														var monthly = date.getFullYear() + '-' + date.getMonth();
+														date.setDate(date.getDate() - date.getDay());
+														var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+														if(app.stats.availables.monthly[0] !== monthly) {
+															app.stats.availables.monthly.unshift(monthly);
+														}
+														if(app.stats.availables.weekly[0] !== weekly) {
+															app.stats.availables.weekly.unshift(weekly);
+														}
+														app.stats.delete(monthly).done(function() {
+															app.stats.delete(weekly);
+														});
+
+														app.cache.delete('main');
+														app.cache.delete('mainMap');
+													});
 												});
 											} else {
 												app.objects[self.key] = trade.toJSON();
-												app.cache.delete('main');
 												app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-													app.loadView('mainViewTrade', self.key);
+													app.loadView('mainViewTrade', self.key, function() {
+														app.cache.delete('main');
+													});
 												});
 											}
 										});
 									} else {
 										app.objects[self.key] = trade.toJSON();
-										app.cache.delete('main');
 										app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-											app.loadView('mainViewTrade', self.key);
+											app.loadView('mainViewTrade', self.key, function() {
+												app.cache.delete('main');
+											});
 										});
 									}
 								});

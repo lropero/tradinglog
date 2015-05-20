@@ -65,9 +65,10 @@
 								trade.deferred.then(function() {
 									trade.addToComments(1, function() {
 										app.objects[self.key] = trade.toJSON();
-										app.cache.delete('main');
 										app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-											app.loadView('mainViewTrade', self.key);
+											app.loadView('mainViewTrade', self.key, function() {
+												app.cache.delete('main');
+											});
 										});
 									});
 								});

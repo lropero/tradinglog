@@ -98,11 +98,12 @@
 								app.objects[app.count.open].isNewest = false;
 								app.objects.splice(app.count.open, 0, operation.toJSON());
 								app.objects[app.count.open].isNewest = true;
-								if(app.objects[app.count.open + 1].instrument_id) {
-									app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
-								}
 								app.cache.delete('main').done(function() {
-									app.loadView('main');
+									app.loadView('main', {}, function() {
+										if(app.objects[app.count.open + 1].instrument_id) {
+											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
+										}
+									});
 								});
 							}
 						});

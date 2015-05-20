@@ -162,7 +162,7 @@
 			});
 		},
 
-		loadView: function(view, attrs) {
+		loadView: function(view, attrs, callback) {
 			var self = this;
 
 			/** Some views require to undelegate events */
@@ -177,6 +177,10 @@
 				setTimeout(function() {
 					self.view = new app.Views[view](attrs);
 				}, 30);
+			}
+
+			if(typeof callback === 'function') {
+				callback();
 			}
 		},
 
