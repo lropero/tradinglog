@@ -34,7 +34,7 @@
 			var self = this;
 			var deferred = app.cache.get('main', this.template);
 			deferred.then(function(html, extra) {
-				if(!this.cache) {
+				if(!self.cache) {
 					app.trigger('change', 'main', {
 						closed: extra.closed
 					});
