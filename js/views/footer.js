@@ -26,24 +26,25 @@
 			$currentActive.removeClass('active');
 			$target.addClass('active');
 			var view = $target.data('view');
-			app.loadView(view);
-			if($currentActive.data('view') !== view) {
+			app.loadView(view, {}, function() {
+				if($currentActive.data('view') !== view) {
 
-				// Trigger/untrigger settings pane
-				var $settings = $('section#settings');
-				if(view === 'settings') {
-					var animated = 'animated bounceInDown';
-					$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
-						$settings.removeClass(animated);
-					});
-				} else if($settings.hasClass('show')) {
-					var animated = 'animated bounceOutUp';
-					$settings.addClass(animated).one('webkitAnimationEnd', function() {
-						$settings.removeClass('show ' + animated);
-					});
+					// Trigger/untrigger settings pane
+					var $settings = $('section#settings');
+					if(view === 'settings') {
+						var animated = 'animated bounceInDown';
+						$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
+							$settings.removeClass(animated);
+						});
+					} else if($settings.hasClass('show')) {
+						var animated = 'animated bounceOutUp';
+						$settings.addClass(animated).one('webkitAnimationEnd', function() {
+							$settings.removeClass('show ' + animated);
+						});
+					}
+
 				}
-
-			}
+			});
 		}
 	});
 })();
