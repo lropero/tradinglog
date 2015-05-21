@@ -11,7 +11,7 @@
 				</div>
 				<div class="row">
 					<div class="instrument">{{trade.instrument}}</div>
-					<div class="net {{#gt trade.net 0}}positive{{else}}negative{{/gt}}">{{#unless trade.isOpen}}{{#money trade.net}}{{/money}}{{else}}{{#if trade.net}}{{#money trade.net}}{{/money}}{{/if}}{{/unless}}</div>
+					<div class="net {{#gt trade.net 0}}positive{{else}}{{#lt trade.net 0}}negative{{else}}zero{{/lt}}{{/gt}}">{{#unless trade.isOpen}}{{#money trade.net}}{{/money}}{{else}}{{#if trade.hasClosedPositions}}{{#money trade.net}}{{/money}}{{/if}}{{/unless}}</div>
 				</div>
 				<div class="row">
 					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}{{#date trade.closed_at}}{{/date}}{{/if}}</div>

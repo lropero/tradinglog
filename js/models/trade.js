@@ -73,7 +73,16 @@
 				var position = this.positions[i];
 				var size = parseInt(position.size, 10);
 				counter += size;
+				if(i === 0) {
+					var firstSize = size;
+				}
 			}
+
+			this.hasClosedPositions = false;
+			if(counter > 0 && counter !== firstSize) {
+				this.hasClosedPositions = true;
+			}
+
 			return counter;
 		},
 
@@ -342,6 +351,7 @@
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			if(this.positions && this.positions.length > 0) {
 				json.closeSize = this.calculateCloseSize();
+				json.hasClosedPositions = this.hasClosedPositions;
 				json.instrument = this.instrument.get('name');
 				json.isLong = this.isLong();
 				json.isOpen = this.isOpen();
