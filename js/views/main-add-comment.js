@@ -8,10 +8,11 @@
 			'tap textarea': 'isolate'
 		},
 
-		initialize: function(key) {
+		initialize: function(attrs) {
 			var self = this;
-			this.key = key;
-			this.trade = app.objects[key];
+			this.key = attrs.key;
+			this.top = attrs.top;
+			this.trade = app.objects[this.key];
 			app.submit = function() {
 				self.submit();
 			}
@@ -26,7 +27,8 @@
 
 		render: function() {
 			app.trigger('change', 'main-add-comment', {
-				key: this.key
+				key: this.key,
+				top: this.top
 			});
 			this.$el.html(this.template());
 			return this;
@@ -46,11 +48,17 @@
 			var self = this;
 			var body = this.$el.find('textarea#body').val().trim();
 
+			// var created_at = (new Date()).getTime();
+
+			// Remove & uncomment previous line
+			app.timestamp += Math.floor(Math.random() * 432000000);
+			var created_at = app.timestamp;
+
 			var comment = new app.Models.comment();
 			comment.set({
 				trade_id: this.trade.id,
 				body: body,
-				created_at: (new Date()).getTime()
+				created_at: created_at
 			});
 			comment.validate();
 			if(comment.isValid()) {
@@ -66,7 +74,10 @@
 									trade.addToComments(1, function() {
 										app.objects[self.key] = trade.toJSON();
 										app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-											app.loadView('mainViewTrade', self.key, function() {
+											app.loadView('mainViewTrade', {
+												key: self.key,
+												top: self.top
+											}, function() {
 												app.cache.delete('main');
 											});
 										});

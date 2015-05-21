@@ -81,7 +81,10 @@
 					options = {
 						left: {
 							action: function() {
-								app.loadView('mainViewTrade', attrs.key);
+								app.loadView('mainViewTrade', {
+									key: attrs.key,
+									top: attrs.top
+								});
 							},
 							icon: 'f124',
 							text: 'Cancel'
@@ -120,7 +123,10 @@
 					options = {
 						left: {
 							action: function() {
-								app.loadView('mainViewTrade', attrs.key);
+								app.loadView('mainViewTrade', {
+									key: attrs.key,
+									top: attrs.top
+								});
 							},
 							icon: 'f124',
 							text: 'Cancel'
@@ -151,7 +157,8 @@
 						left: {
 							action: function() {
 								app.loadView('main', {
-									key: attrs.key
+									key: attrs.key,
+									top: attrs.top
 								});
 							},
 							icon: 'f124',

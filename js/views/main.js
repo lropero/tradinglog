@@ -14,9 +14,9 @@
 			this.cache = false;
 			if(attrs.cache) {
 				this.cache = true;
-			}
-			if(attrs.key) {
+			} else if(attrs.key) {
 				this.key = attrs.key;
+				this.top = attrs.top;
 			}
 			this.template = Handlebars.compile(app.templateLoader.get('main'));
 			this.render();
@@ -125,10 +125,16 @@
 															});
 
 															app.cache.delete('mainMap');
-															new app.Views.mainViewTrade(app.count.open.toString(), true);
+															new app.Views.mainViewTrade({
+																cache: true,
+																key: app.count.open
+															});
 															if(app.objects[app.count.open + 1].instrument_id) {
 																app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
-																	new app.Views.mainViewTrade(app.count.open + 1, true);
+																	new app.Views.mainViewTrade({
+																		cache: true,
+																		key: app.count.open + 1
+																	});
 																});
 															}
 														});
@@ -317,11 +323,7 @@
 				if(this.key) {
 					var $wrapper = $ul.find('li.wrapper-label' + '[data-key="' + this.key + '"]');
 					var $ball = $wrapper.find('div.ball');
-					var top = $wrapper.position().top - 10;
-					if(top < 0) {
-						top = 0;
-					}
-					$content.scrollTop(top);
+					$content.scrollTop(this.top);
 					var animated = 'animated bounceIn';
 					$ball.addClass(animated).one('webkitAnimationEnd', function() {
 						$ball.removeClass(animated);
@@ -351,26 +353,24 @@
 			e.preventDefault();
 			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var key = $wrapper.data('key').toString();
-			app.loadView('mainViewOperation', key);
+			var key = $wrapper.data('key');
+			var top = $('section#content').scrollTop();
+			app.loadView('mainViewOperation', {
+				key: key,
+				top: top
+			});
 		},
 
 		viewTrade: function(e) {
 			e.preventDefault();
 			$('div#drag').css('display', 'none');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var $label = $($wrapper.context);
-
-			// Preload
-			this.destroy();
-			this.$el.empty();
-			$label.addClass('full');
-			$label.find('div.globe-comments').hide();
-			app.trigger('change', 'main-view-trade');
-			this.$el.append($wrapper);
-
-			var key = $wrapper.data('key').toString();
-			app.loadView('mainViewTrade', key);
+			var key = $wrapper.data('key');
+			var top = $('section#content').scrollTop();
+			app.loadView('mainViewTrade', {
+				key: key,
+				top: top
+			});
 		}
 	});
 })();

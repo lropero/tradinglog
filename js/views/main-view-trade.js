@@ -8,26 +8,33 @@
 			'tap ul.wrapper-button-default li': 'add'
 		},
 
-		initialize: function(key, cache) {
-			this.key = key;
-			this.trade = app.objects[key];
+		initialize: function(attrs) {
+			this.cache = false;
+			if(attrs.cache) {
+				this.cache = true;
+			} else {
+				this.top = attrs.top;
+			}
+			this.key = attrs.key.toString();
+			this.trade = app.objects[this.key];
 			this.template = Handlebars.compile(app.templateLoader.get('main-view-trade'));
-			this.render(cache);
+			this.render();
 		},
 
 		destroy: function() {
 			this.undelegateEvents();
 		},
 
-		render: function(cache) {
+		render: function() {
 			var self = this;
 			var deferred = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
 				trade: this.trade
 			});
 			deferred.then(function(html) {
-				if(typeof cache !== 'boolean') {
+				if(!self.cache) {
 					app.trigger('change', 'main-view-trade', {
-						key: self.key
+						key: self.key,
+						top: self.top
 					});
 					self.$el.html(html);
 					app.swipe.init('.swipe');
@@ -47,7 +54,10 @@
 			e.preventDefault();
 			var $target = $(e.currentTarget);
 			var view = $target.data('view');
-			app.loadView(view, this.key);
+			app.loadView(view, {
+				key: this.key,
+				top: this.top
+			});
 		},
 
 		buttonDelete: function(e) {
@@ -92,7 +102,10 @@
 													trade.addToComments(-1, function() {
 														app.objects[self.key] = trade.toJSON();
 														app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-															app.loadView('mainViewTrade', self.key, function() {
+															app.loadView('mainViewTrade', {
+																key: self.key,
+																top: self.top
+															}, function() {
 																app.cache.delete('main');
 															});
 														});
@@ -142,11 +155,17 @@
 																app.cache.delete('mainMap');
 																if(app.objects[app.count.open].instrument_id) {
 																	app.cache.delete('mainViewTrade' + app.objects[app.count.open].id).done(function() {
-																		new app.Views.mainViewTrade(app.count.open, true);
+																		new app.Views.mainViewTrade({
+																			key: app.count.open,
+																			top: self.top
+																		}, true);
 																	});
 																}
 																app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-																	app.loadView('mainViewTrade', key.toString());
+																	app.loadView('mainViewTrade', {
+																		key: key,
+																		top: self.top
+																	});
 																});
 															});
 														} else {
@@ -162,7 +181,10 @@
 														app.objects[self.key] = trade.toJSON();
 														app.cache.delete('main');
 														app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-															app.loadView('mainViewTrade', self.key);
+															app.loadView('mainViewTrade', {
+																key: self.key,
+																top: self.top
+															});
 														});
 													}
 												});

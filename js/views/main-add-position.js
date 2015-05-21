@@ -10,10 +10,11 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(key) {
+		initialize: function(attrs) {
 			var self = this;
-			this.key = key;
-			this.trade = app.objects[key];
+			this.key = attrs.key;
+			this.top = attrs.top;
+			this.trade = app.objects[this.key];
 			app.submit = function() {
 				self.submit();
 			}
@@ -28,7 +29,8 @@
 
 		render: function() {
 			app.trigger('change', 'main-add-position', {
-				key: this.key
+				key: this.key,
+				top: this.top
 			});
 			this.$el.html(this.template({
 				closeSize: this.trade.closeSize
@@ -118,11 +120,17 @@
 												app.objects[app.count.open].isNewest = true;
 												if(app.objects[app.count.open + 1].instrument_id) {
 													app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
-														new app.Views.mainViewTrade(app.count.open + 1, true);
+														new app.Views.mainViewTrade({
+															cache: true,
+															key: app.count.open + 1
+														});
 													});
 												}
 												app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-													app.loadView('mainViewTrade', app.count.open.toString(), function() {
+													app.loadView('mainViewTrade', {
+														key: app.count.open,
+														top: self.top
+													}, function() {
 
 														// Stats
 														var date = new Date(created_at);
@@ -150,7 +158,10 @@
 											} else {
 												app.objects[self.key] = trade.toJSON();
 												app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-													app.loadView('mainViewTrade', self.key, function() {
+													app.loadView('mainViewTrade', {
+														key: self.key,
+														top: self.top
+													}, function() {
 														app.cache.delete('main');
 													});
 												});
@@ -159,7 +170,10 @@
 									} else {
 										app.objects[self.key] = trade.toJSON();
 										app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-											app.loadView('mainViewTrade', self.key, function() {
+											app.loadView('mainViewTrade', {
+												key: self.key,
+												top: self.top
+											}, function() {
 												app.cache.delete('main');
 											});
 										});

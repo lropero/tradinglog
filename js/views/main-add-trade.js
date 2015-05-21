@@ -133,11 +133,17 @@
 					type: type
 				});
 				trade.validate();
+				// var created_at = (new Date()).getTime();
+
+				// Remove & uncomment previous line
+				app.timestamp += Math.floor(Math.random() * 432000000);
+				var created_at = app.timestamp;
+
 				var position = new app.Models.position();
 				position.set({
 					size: size,
 					price: price,
-					created_at: (new Date()).getTime()
+					created_at: created_at
 				});
 				position.validate();
 				if(trade.isValid() && position.isValid()) {
@@ -164,7 +170,10 @@
 											trade.deferred.then(function() {
 												app.count.open++;
 												app.objects.unshift(trade.toJSON());
-												app.loadView('mainViewTrade', '0', function() {
+												app.loadView('mainViewTrade', {
+													key: 0,
+													top: 0
+												}, function() {
 													app.cache.delete('main');
 												});
 											});
