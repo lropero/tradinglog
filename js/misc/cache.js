@@ -13,7 +13,7 @@
 				success: function() {
 					if(views.length) {
 						var view = views.at(0);
-						view.delete(function() {
+						view.obsolete(function() {
 							delete self.HTMLs[name];
 							if(name === 'main') {
 								new app.Views.main({
@@ -67,7 +67,9 @@
 										view.set({
 											name: name,
 											html: self.HTMLs[name].html,
-											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
+											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
+											is_obsolete: 0,
+											created_at: (new Date()).getTime()
 										});
 										view.save(null, {
 											success: function() {
@@ -104,7 +106,9 @@
 										view.set({
 											name: name,
 											html: self.HTMLs[name].html,
-											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
+											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
+											is_obsolete: 0,
+											created_at: (new Date()).getTime()
 										});
 										view.save(null, {
 											success: function() {
@@ -123,7 +127,9 @@
 									view.set({
 										name: name,
 										html: self.HTMLs[name].html,
-										extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\'')
+										extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
+										is_obsolete: 0,
+										created_at: (new Date()).getTime()
 									});
 									view.save(null, {
 										success: function() {

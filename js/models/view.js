@@ -4,7 +4,7 @@
 	app.Models.view = Backbone.Model.extend({
 		dao: app.DAOs.view,
 
-		delete: function(callback) {
+		obsolete: function(callback) {
 			this.destroy({
 				success: function() {
 					callback();

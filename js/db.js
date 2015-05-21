@@ -81,7 +81,7 @@
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'name TEXT,' +
 					'data TEXT,' +
-					'created_at INTEGER' +
+					'is_obsolete INTEGER' +
 				');',
 				'CREATE TABLE IF NOT EXISTS trade (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
@@ -100,7 +100,9 @@
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'name TEXT,' +
 					'html TEXT,' +
-					'extra TEXT' +
+					'extra TEXT,' +
+					'is_obsolete INTEGER,' +
+					'created_at INTEGER' +
 				');'
 			];
 			this.db.transaction(function(tx) {

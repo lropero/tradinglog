@@ -52,18 +52,14 @@
 									app.hideSplash();
 
 									/** Delete old stats */
-									var statsDAO = new app.DAOs.stats();
-									statsDAO.sweep();
+									// var statsDAO = new app.DAOs.stats();
+									// statsDAO.sweep();
 
 									/** Preload some templates to smoothen navigation */
-									// new app.Views.mainAddOperation(true);
-									// new app.Views.mainAddTrade(true);
-									// new app.Views.mainMap(true);
-									// for(var i = 0; i < app.count.open; i++) {
-									// 	new app.Views.mainViewTrade(i.toString(), true);
-									// }
-									// new app.Views.settingsAddAccount(' ', true);
-									// new app.Views.settingsAddInstrument(' ', true);
+									new app.Views.mainAddOperation(true);
+									new app.Views.mainAddTrade(true);
+									new app.Views.settingsAddAccount(' ', true);
+									new app.Views.settingsAddInstrument(' ', true);
 
 								});
 							}
@@ -214,6 +210,8 @@
 			if(!(!app.count.closed && app.count.operations === 1)) {
 				app.objects[app.count.open].isNewest = true;
 			}
+			delete app.operations;
+			delete app.trades;
 
 			// Remove
 			if(app.objects[app.count.open].closed_at) {

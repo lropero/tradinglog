@@ -93,7 +93,7 @@
 				success: function() {
 					if(statss.length) {
 						var stats = statss.at(0);
-						stats.delete(function() {
+						stats.obsolete(function() {
 							delete self.data[name];
 							deferred.resolve();
 						});
@@ -338,7 +338,7 @@
 							stats.set({
 								name: name,
 								data: self.data[name],
-								created_at: (new Date()).getTime()
+								is_obsolete: 0
 							});
 							stats.save(null, {
 								success: function() {

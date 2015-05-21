@@ -12,7 +12,7 @@
 				var sql = 'SELECT * FROM view WHERE name = "' + model.get('name') + '";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 0) {
-						var fields = ['name', 'html', 'extra'];
+						var fields = ['name', 'html', 'extra', 'is_obsolete', 'created_at'];
 						sql = app.databaseController.buildInsert('view', fields, model);
 						tx.executeSql(sql, [], function(tx, results) {
 							callback();
@@ -26,7 +26,7 @@
 
 		destroy: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'DELETE FROM view WHERE name = "' + model.get('name') + '";';
+				var sql = 'UPDATE view SET is_obsolete = "1" WHERE name = "' + model.get('name') + '";';
 				tx.executeSql(sql);
 			}, null, function(tx) {
 				callback();
@@ -35,7 +35,7 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM view WHERE name = "' + model.name + '";';
+				var sql = 'SELECT * FROM view WHERE name = "' + model.name + '" AND is_obsolete = "0";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 1) {
 						var view = results.rows.item(0);
@@ -47,10 +47,18 @@
 			});
 		},
 
+		// sweep: function() {
+		// 	var timestamp = (new Date()).getTime() - (200 * 24 * 60 * 60 * 1000);
+		// 	this.db.transaction(function(tx) {
+		// 		var sql = 'DELETE FROM views WHERE created_at < "' + timestamp + '";';
+		// 		tx.executeSql(sql);
+		// 	});
+		// },
+
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE view SET html = "' + model.html + '", extra = "' + model.extra + '" WHERE name = "' + model.name + '";';
+				var sql = 'UPDATE view SET html = "' + model.html + '", extra = "' + model.extra + '", is_obsolete = "0", created_at = "' + model.created_at + '" WHERE name = "' + model.name + '";';
 				tx.executeSql(sql);
 				callback();
 			});

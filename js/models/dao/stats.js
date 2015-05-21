@@ -12,7 +12,7 @@
 				var sql = 'SELECT * FROM stats WHERE name = "' + model.get('name') + '";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 0) {
-						var fields = ['name', 'data', 'created_at'];
+						var fields = ['name', 'data', 'is_obsolete'];
 						sql = app.databaseController.buildInsert('stats', fields, model);
 						tx.executeSql(sql, [], function(tx, results) {
 							callback();
@@ -26,7 +26,7 @@
 
 		destroy: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'DELETE FROM stats WHERE name = "' + model.get('name') + '";';
+				var sql = 'UPDATE stats SET is_obsolete = "1" WHERE name = "' + model.get('name') + '";';
 				tx.executeSql(sql);
 			}, null, function(tx) {
 				callback();
@@ -35,7 +35,7 @@
 
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM stats WHERE name = "' + model.name + '";';
+				var sql = 'SELECT * FROM stats WHERE name = "' + model.name + '" AND is_obsolete = "0";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 1) {
 						var stats = results.rows.item(0);
@@ -47,18 +47,10 @@
 			});
 		},
 
-		sweep: function() {
-			var timestamp = (new Date()).getTime() - (200 * 24 * 60 * 60 * 1000);
-			this.db.transaction(function(tx) {
-				var sql = 'DELETE FROM stats WHERE created_at < "' + timestamp + '";';
-				tx.executeSql(sql);
-			});
-		},
-
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE stats SET data = "' + model.data + '", created_at = "' + model.created_at + '" WHERE name = "' + model.name + '";';
+				var sql = 'UPDATE stats SET data = "' + model.data + '", is_obsolete = "' + model.is_obsolete + '" WHERE name = "' + model.name + '";';
 				tx.executeSql(sql);
 				callback();
 			});
