@@ -59,6 +59,7 @@
 			});
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
+				$('header button').hide();
 				var trades = new app.Collections.trades();
 				trades.setFetchId(app.objects[this.key].id);
 				trades.fetch({
