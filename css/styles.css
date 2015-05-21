@@ -75,7 +75,7 @@ div#layout {
   height: 100%;
 }
 div#loading {
-  background: #9f8fe7;
+  background: #222222;
   display: none;
   height: 109px;
   text-align: center;
