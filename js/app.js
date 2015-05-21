@@ -44,6 +44,14 @@
 
 									/** Fetch operations & trades */
 									app.ready = app.fetchObjects();
+									// app.ready.then(function() {
+									// 	var availables = LZString.compressToBase64(JSON.stringify(app.stats.availables));
+									// 	var count = LZString.compressToBase64(JSON.stringify(app.count));
+									// 	var objects = LZString.compressToBase64(JSON.stringify(app.objects));
+									// 	console.log(availables.length);
+									// 	console.log(count.length);
+									// 	console.log(objects.length);
+									// });
 
 									/** Load main view */
 									app.view = new app.Views.main({});

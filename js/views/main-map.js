@@ -19,6 +19,7 @@
 					self.$el.html(html);
 					$('section#main-stats-friends').addClass('map');
 					self.animate();
+					self.decorate();
 				}
 			});
 			return this;
@@ -34,7 +35,6 @@
 			var animated = 'animated fadeInLeft';
 			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
 				$percentage.removeClass(animated);
-				self.decorate();
 			});
 			$('div.ball').addClass('animate');
 		},
