@@ -13,8 +13,8 @@
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 0) {
 						var fields = ['name', 'data', 'is_obsolete'];
-						sql = app.databaseController.buildInsert('stats', fields, model);
-						tx.executeSql(sql, [], function(tx, results) {
+						var insert = app.databaseController.buildInsert('stats', fields, model);
+						tx.executeSql(insert.sql, insert.parameters, function(tx, results) {
 							callback();
 						});
 					} else {
@@ -50,8 +50,8 @@
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE stats SET data = "' + model.data + '", is_obsolete = "' + model.is_obsolete + '" WHERE name = "' + model.name + '";';
-				tx.executeSql(sql);
+				var sql = 'UPDATE stats SET data = ?, is_obsolete = ? WHERE name = "' + model.name + '";';
+				tx.executeSql(sql, [model.data, model.is_obsolete]);
 				callback();
 			});
 		}

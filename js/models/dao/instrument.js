@@ -9,8 +9,8 @@
 		create: function(model, callback) {
 			var fields = ['type', 'name', 'point_value', 'commission', 'alert', 'group_id', 'is_deleted'];
 			this.db.transaction(function(tx) {
-				var sql = app.databaseController.buildInsert('instrument', fields, model);
-				tx.executeSql(sql, [], function(tx, results) {
+				var insert = app.databaseController.buildInsert('instrument', fields, model);
+				tx.executeSql(insert.sql, insert.parameters, function(tx, results) {
 					callback(results.insertId);
 				});
 			});
@@ -68,8 +68,8 @@
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE instrument SET type = "' + model.type + '", name = "' + model.name + '", point_value = "' + model.point_value + '", commission = "' + model.commission + '", alert = "' + model.alert + '", group_id = "' + model.group_id + '", is_deleted = "' + model.is_deleted + '" WHERE id = "' + model.id + '";';
-				tx.executeSql(sql);
+				var sql = 'UPDATE instrument SET type = ?, name = ?, point_value = ?, commission = ?, alert = ?, group_id = ?, is_deleted = ? WHERE id = "' + model.id + '";';
+				tx.executeSql(sql, [model.type, model.name, model.point_value, model.commission, model.alert, model.group_id, model.is_deleted]);
 			}, null, function(tx) {
 				callback();
 			});

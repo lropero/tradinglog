@@ -20,16 +20,21 @@
 		buildInsert: function(table, fields, model) {
 			model = model.toJSON();
 			var sql = 'INSERT INTO ' + table + ' VALUES (null, ';
+			var parameters = [];
 			for(var i = 0; i < fields.length; i++) {
 				if(model.hasOwnProperty(fields[i])) {
-					sql += '"' + model[fields[i]] + '"';
+					sql += '?';
 					if(i < fields.length - 1) {
 						sql += ', ';
 					}
+					parameters.push(model[fields[i]]);
 				}
 			}
 			sql += ');';
-			return sql;
+			return {
+				sql: sql,
+				parameters: parameters
+			};
 		},
 
 		createTables: function() {

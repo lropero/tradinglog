@@ -9,8 +9,8 @@
 		create: function(model, callback) {
 			var fields = ['trade_id', 'size', 'price', 'created_at'];
 			this.db.transaction(function(tx) {
-				var sql = app.databaseController.buildInsert('position', fields, model);
-				tx.executeSql(sql, [], function(tx, results) {
+				var insert = app.databaseController.buildInsert('position', fields, model);
+				tx.executeSql(insert.sql, insert.parameters, function(tx, results) {
 					callback(results.insertId);
 				});
 			});

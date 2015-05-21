@@ -13,8 +13,8 @@
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 0) {
 						var fields = ['name', 'html', 'extra', 'is_obsolete', 'created_at'];
-						sql = app.databaseController.buildInsert('view', fields, model);
-						tx.executeSql(sql, [], function(tx, results) {
+						var insert = app.databaseController.buildInsert('view', fields, model);
+						tx.executeSql(insert.sql, insert.parameters, function(tx, results) {
 							callback();
 						});
 					} else {
@@ -58,8 +58,8 @@
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE view SET html = "' + model.html + '", extra = "' + model.extra + '", is_obsolete = "0", created_at = "' + model.created_at + '" WHERE name = "' + model.name + '";';
-				tx.executeSql(sql);
+				var sql = 'UPDATE view SET html = ?, extra = ?, is_obsolete = ?, created_at = ? WHERE name = "' + model.name + '";';
+				tx.executeSql(sql, [model.html, model.extra, model.is_obsolete, model.created_at]);
 				callback();
 			});
 		}
