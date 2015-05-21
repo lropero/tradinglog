@@ -1,13 +1,10 @@
 (function() {
 	'use strict';
 
-	app.Models.custom = Backbone.Model.extend({
+	app.Models.commission = Backbone.Model.extend({
 		validation: {
-			from: {
-				required: true
-			},
-			to: {
-				required: true
+			commission: {
+				min: 0
 			}
 		},
 
@@ -17,6 +14,10 @@
 					$.each(errors, function(index) {
 						var $el = $('#' + index);
 						$el.addClass('error');
+						var $price = $el.parent('div.price');
+						if($price) {
+							$price.addClass('error');
+						}
 					});
 				}
 			});

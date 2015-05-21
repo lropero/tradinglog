@@ -42,7 +42,7 @@
 			} else {
 				this.listenTo(this, 'validated', function(isValid, model, errors) {
 					if(!isValid) {
-						$.each(errors, function(index, error) {
+						$.each(errors, function(index) {
 							var $el = $('#' + index);
 							$el.addClass('error');
 							var $wrapper = $el.parents('div.wrapper-select');

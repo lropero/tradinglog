@@ -1139,7 +1139,20 @@
 	<div class="peeking"></div>
 </div>
 </script>
-<script type="text/x-handlebars-template" id="main-edit-commission-template">EDIT COMMISSION</script>
+<script type="text/x-handlebars-template" id="main-edit-commission-template"><div id="isolate">
+	<div class="button-primary" id="done">Done</div>
+</div>
+<div id="complete">
+	<form>
+		<div class="wrapper-input isolate">
+			<div class="input-icon price">
+				<input id="commission" type="number" placeholder="{{#money this.commission}}{{/money}}" disabled />
+			</div>
+			<span class="help-block">Commission total amount.</span>
+		</div>
+	</form>
+</div>
+</script>
 <script type="text/x-handlebars-template" id="main-map-template"><section id="content">
 	<ul id="map">
 		{{#each trades}}
@@ -1412,13 +1425,13 @@
 				<input id="name" type="text" placeholder="Instrument name" {{#if this.instrument}}value="{{this.instrument.name}}" {{/if}}disabled />
 				<span class="help-block"><span class="type-1 type-2">For example, <span class="type-1">'E-mini S&P 500' or 'ES'</span><span class="type-2">'Apple' or 'AAPL'</span>. </span>You can use any name as long as it lets you identify which trading vehicle refers to.</span>
 			</div>
-			<div class="wrapper-input isolate type-1 type-3" id="form-point_value">
+			<div class="wrapper-input isolate type-1 type-3">
 				<div class="input-icon price">
 					<input id="point_value" type="number" placeholder="Point value" {{#if this.instrument}}value="{{this.instrument.point_value}}" {{/if}}disabled />
 				</div>
 				<span class="help-block">A point is the smallest possible price change on the left side of the decimal point (i.e. the integer part) and its value is the difference in money that is affected by this movement.<span class="type-1"> For example, a point variation in the ES (four 0.25 movements) represents a gain or loss of $50.</span><span class="type-3"> Defaults to $1.</span></span>
 			</div>
-			<div class="wrapper-input isolate type-1 type-3" id="form-commission">
+			<div class="wrapper-input isolate type-1 type-3">
 				<div class="input-icon price">
 					<input id="commission" type="number" placeholder="Commission" {{#if this.instrument}}value="{{this.instrument.commission}}" {{/if}}disabled />
 				</div>
