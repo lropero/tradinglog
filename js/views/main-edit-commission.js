@@ -43,7 +43,9 @@
 		isolate: function(e) {
 			e.preventDefault();
 			var $target = $(e.currentTarget);
-			$target.val(app.objects[this.key].commission);
+			if(app.objects[this.key].commission > 0) {
+				$target.val(app.objects[this.key].commission);
+			}
 			app.isolate(e);
 		},
 
