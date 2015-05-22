@@ -9,6 +9,10 @@
 					dao.find(model, function(data) {
 						options.success(data);
 					});
+				} else if(model.ids) {
+					dao.findIds(model, function(data) {
+						options.success(data);
+					});
 				} else if(model.account_id || model.isActive || model.name || model.trade_id) {
 					dao.findSet(model, function(data) {
 						options.success(data);

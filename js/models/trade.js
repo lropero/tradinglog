@@ -180,9 +180,6 @@
 
 		getNet: function() {
 			var commission = this.get('commission');
-			if(commission < 0) {
-				commission = 0;
-			}
 			var gross = this.get('profit') - this.get('loss');
 			var net = gross - commission;
 			return net;
@@ -360,7 +357,9 @@
 				}
 				json.objects = this.objects;
 				json.positions = this.positions.length;
-				json.sizePrice = this.calculateSizePrice();
+				if(this.isOpen()) {
+					json.sizePrice = this.calculateSizePrice();
+				}
 			}
 			return json;
 		}

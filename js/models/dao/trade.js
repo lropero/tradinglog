@@ -43,6 +43,26 @@
 			}
 		},
 
+		findIds: function(model, callback) {
+			this.db.transaction(function(tx) {
+				var sql = 'SELECT * FROM trade WHERE ';
+				for(var i = 0; i < model.ids.length; i++) {
+					sql += 'id = "' + model.ids[i] + '"';
+					if(i + 1 < model.ids.length) {
+						sql += ' OR ';
+					}
+				}
+				sql += ';';
+				tx.executeSql(sql, [], function(tx, results) {
+					var trades = [];
+					for(var i = 0; i < results.rows.length; i++) {
+						trades.push(results.rows.item(i));
+					}
+					callback(trades);
+				});
+			});
+		},
+
 		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
 				if(model.range) {
