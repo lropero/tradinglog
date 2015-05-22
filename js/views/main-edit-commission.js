@@ -62,22 +62,29 @@
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
 				$('header button').hide();
+				var previousBalance = app.objects[this.key].net * 100 / app.objects[this.key].variation;
+				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
+				var newVariation = newNet * 100 / previousBalance;
+				var ids = [];
+				var keys = [];
+				var newBalance = previousBalance + newNet;
+				for(var i = this.key - 1; i >= 0; i--) {
+					ids.push(app.objects[i].id);
+					keys[app.objects[i].id] = i;
+					app.objects[i].variation = app.objects[i].net * 100 / newBalance;
+					newBalance += app.objects[i].net;
+				}
+				app.cache.delete('main');
 				var trades = new app.Collections.trades();
 				trades.setFetchId(app.objects[this.key].id);
 				trades.fetch({
 					success: function() {
 						var trade = trades.at(0);
-						var previousBalance = trade.getNet() * 100 / trade.get('variation');
 						trade.set({
 							commission: parseFloat(commission),
-							edit_commission: 0
-						});
-						var newNet = trade.getNet();
-						var newVariation = newNet * 100 / previousBalance;
-						trade.set({
+							edit_commission: 0,
 							variation: newVariation
 						});
-						var newBalance = previousBalance + newNet;
 						trade.save(null, {
 							success: function() {
 								app.objects[self.key] = trade.toJSON();
@@ -86,14 +93,6 @@
 										key: self.key,
 										top: self.top
 									}, function() {
-										var ids = [];
-										var keys = [];
-										for(var i = self.key - 1; i >= 0; i--) {
-											ids.push(app.objects[i].id);
-											keys[app.objects[i].id] = i;
-											app.objects[i].variation = app.objects[i].net * 100 / newBalance;
-											newBalance += app.objects[i].net;
-										}
 										var trades = new app.Collections.trades();
 										trades.setFetchIds(ids);
 										trades.fetch({
@@ -116,7 +115,6 @@
 												}
 											}
 										});
-										app.cache.delete('main');
 									});
 								});
 							}
