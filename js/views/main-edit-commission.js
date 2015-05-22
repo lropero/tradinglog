@@ -86,15 +86,12 @@
 										key: self.key,
 										top: self.top
 									}, function() {
-										var deferreds = [];
 										var ids = [];
 										var keys = [];
-										var variations = [];
 										for(var i = self.key - 1; i >= 0; i--) {
-											deferreds[app.objects[i].id] = new $.Deferred();
 											ids.push(app.objects[i].id);
 											keys[app.objects[i].id] = i;
-											variations[app.objects[i].id] = app.objects[i].net * 100 / newBalance;
+											app.objects[i].variation = app.objects[i].net * 100 / newBalance;
 											newBalance += app.objects[i].net;
 										}
 										var trades = new app.Collections.trades();
@@ -104,26 +101,22 @@
 												for(var i = 0; i < trades.length; i++) {
 													var trade = trades.at(i);
 													trade.set({
-														variation: variations[trade.id]
+														variation: app.objects[keys[trade.id]].variation
 													});
 													trade.save(null, {
 														success: function(trade) {
-															app.objects[keys[trade.id]] = trade.toJSON();
 															app.cache.delete('mainViewTrade' + trade.id).done(function() {
 																new app.Views.mainViewTrade({
 																	cache: true,
 																	key: keys[trade.id]
 																});
 															});
-															deferreds[trade.id].resolve();
 														}
 													});
 												}
 											}
 										});
-										$.when.apply($, deferreds).done(function() {
-											app.cache.delete('main');
-										});
+										app.cache.delete('main');
 									});
 								});
 							}
