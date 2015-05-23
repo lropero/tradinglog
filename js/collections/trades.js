@@ -9,6 +9,10 @@
 			this.account_id = account_id;
 		},
 
+		setAffected: function(affected) {
+			this.affected = affected;
+		},
+
 		setFetchId: function(id) {
 			this.id = id;
 		},

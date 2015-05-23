@@ -5,16 +5,20 @@
 		var dao = new model.dao();
 		switch(method) {
 			case 'read':
-				if(model.id) {
+				if(model.account_id || model.isActive || model.name || model.trade_id) {
+					dao.findSet(model, function(data) {
+						options.success(data);
+					});
+				} else if(model.affected) {
+					dao.setVariations(model, function(data) {
+						options.success(data);
+					});
+				} else if(model.id) {
 					dao.find(model, function(data) {
 						options.success(data);
 					});
 				} else if(model.ids) {
 					dao.findIds(model, function(data) {
-						options.success(data);
-					});
-				} else if(model.account_id || model.isActive || model.name || model.trade_id) {
-					dao.findSet(model, function(data) {
 						options.success(data);
 					});
 				} else {

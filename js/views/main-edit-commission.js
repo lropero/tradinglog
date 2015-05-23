@@ -62,17 +62,33 @@
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
 				$('header button').hide();
+				var affected = {
+					operations: [],
+					trades: []
+				};
 				var previousBalance = app.objects[this.key].net * 100 / app.objects[this.key].variation;
 				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
 				var newVariation = newNet * 100 / previousBalance;
-				var ids = [];
-				var keys = [];
+				app.objects[this.key].commission = parseFloat(commission);
+				app.objects[this.key].edit_commission = 0;
+				app.objects[this.key].variation = newVariation;
 				var newBalance = previousBalance + newNet;
 				for(var i = this.key - 1; i >= 0; i--) {
-					ids.push(app.objects[i].id);
-					keys[app.objects[i].id] = i;
-					app.objects[i].variation = app.objects[i].net * 100 / newBalance;
-					newBalance += app.objects[i].net;
+					if(app.objects[i].instrument_id) {
+						app.objects[i].variation = app.objects[i].net * 100 / newBalance;
+						newBalance += app.objects[i].net;
+						affected.trades.push({
+							id: app.objects[i].id,
+							variation: app.objects[i].variation
+						});
+					} else {
+						app.objects[i].variation = app.objects[i].amount * 100 / newBalance;
+						newBalance += app.objects[i].amount;
+						affected.operations.push({
+							id: app.objects[i].id,
+							variation: app.objects[i].variation
+						});
+					}
 				}
 				app.cache.delete('main');
 				var trades = new app.Collections.trades();
@@ -81,40 +97,23 @@
 					success: function() {
 						var trade = trades.at(0);
 						trade.set({
-							commission: parseFloat(commission),
+							commission: app.objects[self.key].commission,
 							edit_commission: 0,
 							variation: newVariation
 						});
 						trade.save(null, {
 							success: function() {
-								app.objects[self.key] = trade.toJSON();
 								app.cache.delete('mainViewTrade' + app.objects[self.key].id).done(function() {
 									app.loadView('mainViewTrade', {
 										key: self.key,
 										top: self.top
 									}, function() {
+										var operations = new app.Collections.operations();
+										operations.setAffected(affected.operations);
+										operations.fetch();
 										var trades = new app.Collections.trades();
-										trades.setFetchIds(ids);
-										trades.fetch({
-											success: function() {
-												for(var i = 0; i < trades.length; i++) {
-													var trade = trades.at(i);
-													trade.set({
-														variation: app.objects[keys[trade.id]].variation
-													});
-													trade.save(null, {
-														success: function(trade) {
-															app.cache.delete('mainViewTrade' + trade.id).done(function() {
-																new app.Views.mainViewTrade({
-																	cache: true,
-																	key: keys[trade.id]
-																});
-															});
-														}
-													});
-												}
-											}
-										});
+										trades.setAffected(affected.trades);
+										trades.fetch();
 									});
 								});
 							}

@@ -50,6 +50,19 @@
 					callback(operations);
 				});
 			});
+		},
+
+		setVariations: function(model, callback) {
+			var sqls = [];
+			for(var i = 0; i < model.affected.length; i++) {
+				var sql = 'UPDATE operation SET variation = "' + model.affected[i].variation + '" WHERE id = "' + model.affected[i].id + '";';
+				sqls.push(sql);
+			}
+			this.db.transaction(function(tx) {
+				$.each(sqls, function(index, sql) {
+					tx.executeSql(sql);
+				});
+			});
 		}
 	};
 
