@@ -15,6 +15,7 @@
 
 	<preference name="applicationSupportsShakeToEdit" value="no" />
 	<preference name="AutoHideSplashScreen" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 	<preference name="detect-data-types" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="fullscreen" value="true" />
