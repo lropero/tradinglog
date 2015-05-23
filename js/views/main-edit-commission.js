@@ -65,35 +65,48 @@
 				var previousBalance = app.objects[this.key].net * 100 / app.objects[this.key].variation;
 				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
 				var newVariation = newNet * 100 / previousBalance;
-				app.objects[this.key].commission = parseFloat(commission);
-				app.objects[this.key].edit_commission = 0;
-				app.objects[this.key].net = newNet;
-				app.objects[this.key].variation = newVariation;
 				var newBalance = previousBalance + newNet;
 				if(newBalance < 0) {
 					alertify.error('Non-sufficient funds');
 					$('header button').show();
 					return;
 				}
+				for(var i = this.key - 1; i >= 0; i--) {
+					if(app.objects[i].instrument_id) {
+						newBalance += app.objects[i].net;
+					} else {
+						newBalance += app.objects[i].amount;
+					}
+					if(newBalance < 0) {
+						alertify.error('Non-sufficient funds in subsequent account movements');
+						$('header button').show();
+						return;
+					}
+				}
+				app.objects[this.key].commission = parseFloat(commission);
+				app.objects[this.key].edit_commission = 0;
+				app.objects[this.key].net = newNet;
+				app.objects[this.key].variation = newVariation;
 				var affected = {
 					operations: [],
 					trades: []
 				};
+				newBalance = previousBalance + newNet;
 				for(var i = this.key - 1; i >= 0; i--) {
 					if(app.objects[i].instrument_id) {
 						app.objects[i].variation = app.objects[i].net * 100 / newBalance;
-						newBalance += app.objects[i].net;
 						affected.trades.push({
 							id: app.objects[i].id,
 							variation: app.objects[i].variation
 						});
+						newBalance += app.objects[i].net;
 					} else {
 						app.objects[i].variation = app.objects[i].amount * 100 / newBalance;
-						newBalance += app.objects[i].amount;
 						affected.operations.push({
 							id: app.objects[i].id,
 							variation: app.objects[i].variation
 						});
+						newBalance += app.objects[i].amount;
 					}
 				}
 				app.cache.delete('main');
