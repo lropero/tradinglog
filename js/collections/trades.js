@@ -17,10 +17,6 @@
 			this.id = id;
 		},
 
-		setFetchIds: function(ids) {
-			this.ids = ids;
-		},
-
 		setGroups: function(groups) {
 			this.groups = groups;
 		},

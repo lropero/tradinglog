@@ -17,10 +17,6 @@
 					dao.find(model, function(data) {
 						options.success(data);
 					});
-				} else if(model.ids) {
-					dao.findIds(model, function(data) {
-						options.success(data);
-					});
 				} else {
 					dao.findAll(function(data) {
 						options.success(data);
