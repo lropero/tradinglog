@@ -62,10 +62,6 @@
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
 				$('header button').hide();
-				var affected = {
-					operations: [],
-					trades: []
-				};
 				var previousBalance = app.objects[this.key].net * 100 / app.objects[this.key].variation;
 				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
 				var newVariation = newNet * 100 / previousBalance;
@@ -74,6 +70,15 @@
 				app.objects[this.key].net = newNet;
 				app.objects[this.key].variation = newVariation;
 				var newBalance = previousBalance + newNet;
+				if(newBalance < 0) {
+					alertify.error('Non-sufficient funds');
+					$('header button').show();
+					return;
+				}
+				var affected = {
+					operations: [],
+					trades: []
+				};
 				for(var i = this.key - 1; i >= 0; i--) {
 					if(app.objects[i].instrument_id) {
 						app.objects[i].variation = app.objects[i].net * 100 / newBalance;
