@@ -71,6 +71,7 @@
 				var newVariation = newNet * 100 / previousBalance;
 				app.objects[this.key].commission = parseFloat(commission);
 				app.objects[this.key].edit_commission = 0;
+				app.objects[this.key].net = newNet;
 				app.objects[this.key].variation = newVariation;
 				var newBalance = previousBalance + newNet;
 				for(var i = this.key - 1; i >= 0; i--) {
@@ -103,7 +104,7 @@
 						});
 						trade.save(null, {
 							success: function() {
-								app.cache.delete('mainViewTrade' + app.objects[self.key].id).done(function() {
+								app.cache.delete('mainViewTrade' + trade.id).done(function() {
 									app.loadView('mainViewTrade', {
 										key: self.key,
 										top: self.top
