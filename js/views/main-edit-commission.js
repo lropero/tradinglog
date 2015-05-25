@@ -110,7 +110,6 @@
 					}
 				}
 				app.storeCache().done(function() {
-					app.cache.delete('main');
 					var trades = new app.Collections.trades();
 					trades.setFetchId(app.objects[self.key].id);
 					trades.fetch({
@@ -133,6 +132,8 @@
 										var trades = new app.Collections.trades();
 										trades.setAffected(affected.trades);
 										trades.fetch();
+										app.cache.delete('main');
+										app.cache.delete('mainMap');
 									});
 								}
 							});
