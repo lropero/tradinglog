@@ -13,10 +13,10 @@
 			if(attrs.cache) {
 				this.cache = true;
 			} else {
+				this.key = attrs.key.toString();
+				this.trade = app.objects[this.key];
 				this.top = attrs.top;
 			}
-			this.key = attrs.key.toString();
-			this.trade = app.objects[this.key];
 			this.template = Handlebars.compile(app.templateLoader.get('main-view-trade'));
 			this.render();
 		},
@@ -27,9 +27,7 @@
 
 		render: function() {
 			var self = this;
-			var deferred = app.cache.get('mainViewTrade' + this.trade.id, this.template, {
-				trade: this.trade
-			});
+			var deferred = app.cache.get('mainViewTrade', this.template);
 			deferred.then(function(html) {
 				if(!self.cache) {
 					app.trigger('change', 'main-view-trade', {
@@ -37,6 +35,82 @@
 						top: self.top
 					});
 					self.$el.html(html);
+
+					var $info = $('div#info');
+					var $label = $('div.label');
+					var $net = $('div.net');
+					if(self.trade.isLong) {
+						$label.addClass('long');
+					} else {
+						$label.addClass('short');
+					}
+					if(self.trade.isOpen) {
+						$label.addClass('open');
+						if(self.trade.hasClosedPositions) {
+							$net.html('$ ' + accounting.formatMoney(self.trade.net, ''));
+						}
+						$info.addClass('size-price');
+						$info.html(self.trade.sizePrice);
+						$('li#edit-commission').remove();
+					} else {
+						if(!self.trade.edit_commission) {
+							$('div.globe-commission').hide();
+						}
+						$net.html('$ ' + accounting.formatMoney(self.trade.net, ''));
+						$info.addClass('date');
+						$info.html(app.date.toDate(self.trade.closed_at));
+						$('div.variation').html(accounting.toFixed(self.trade.variation, 2) + '%');
+						$('li#add-position').remove();
+					}
+					$('div.instrument').html(self.trade.instrument);
+					if(self.trade.net > 0) {
+						$net.addClass('positive');
+					} else if(self.trade.net < 0) {
+						$net.addClass('negative');
+					} else {
+						$net.addClass('zero');
+					}
+					var $ul = $('section#content ul');
+					for(var i = 0; i < self.trade.objects.length; i++) {
+						var object = self.trade.objects[i];
+						if(object.size) {
+							var li = '<li class="wrapper-label"';
+							if(self.trade.isOpen || self.trade.isNewest) {
+								if(object.last && self.trade.positions > 1) {
+									li += 'data-swipe="1"';
+								}
+							}
+							li += '><div class="label position ';
+							if(object.size > 0) {
+								li += 'buy';
+							} else {
+								li += 'sell';
+							}
+							if(self.trade.isOpen || self.trade.isNewest) {
+								if(object.last && self.trade.positions > 1) {
+									li += ' swipe';
+								}
+							}
+							li += '"><div class="ball"></div><div class="row"><div class="size-price">' + object.sizePrice + '</div></div><div class="row"><div class="date">' + app.date.toDate(object.created_at) + ' - ' + app.date.toTime(object.created_at) + '</div></div>';
+							if(self.trade.isOpen || self.trade.isNewest) {
+								if(object.last && self.trade.positions > 1) {
+									li += '<div class="swipe-triangle"></div>';
+								}
+							}
+							li += '</div>';
+							if(self.trade.isOpen || self.trade.isNewest) {
+								if(object.last && self.trade.positions > 1) {
+									li += '<div class="wrapper-swipe"><div class="swipe-buttons"><ul><li class="button-swipe delete" data-id="' + object.id + '"></li></ul></div></div>';
+								}
+							}
+							li += '</li>';
+						} else {
+							var li = '<li class="wrapper-label" data-swipe="1"><div class="label comment swipe"><div class="ball"></div><div class="row"><div class="body">' + object.body.replace(/(\r\n|\n\r|\r|\n)/g, '<br />') + '</div></div><div class="row"><div class="date">' + app.date.toDate(object.created_at) + ' - ' + app.date.toTime(object.created_at) + '</div></div><div class="swipe-triangle"></div></div><div class="wrapper-swipe"><div class="swipe-buttons"><ul><li class="button-swipe delete" data-id="' + object.id + '"></li></ul></div></div></li>';
+						}
+						$ul.append(li);
+					}
+					$('div#view').show();
+
 					app.swipe.init('.swipe');
 					setTimeout(function() {
 						app.enableScroll();
@@ -101,13 +175,11 @@
 												trade.deferred.then(function() {
 													trade.addToComments(-1, function() {
 														app.objects[self.key] = trade.toJSON();
-														app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-															app.loadView('mainViewTrade', {
-																key: self.key,
-																top: self.top
-															}, function() {
-																app.cache.delete('main');
-															});
+														app.loadView('mainViewTrade', {
+															key: self.key,
+															top: self.top
+														}, function() {
+															app.cache.delete('main');
 														});
 													});
 												});
@@ -153,41 +225,27 @@
 																}
 																app.cache.delete('main');
 																app.cache.delete('mainMap');
-																if(app.objects[app.count.open].instrument_id) {
-																	app.cache.delete('mainViewTrade' + app.objects[app.count.open].id).done(function() {
-																		new app.Views.mainViewTrade({
-																			key: app.count.open,
-																			top: self.top
-																		}, true);
-																	});
-																}
-																app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-																	app.loadView('mainViewTrade', {
-																		key: key,
-																		top: self.top
-																	});
+																app.loadView('mainViewTrade', {
+																	key: key,
+																	top: self.top
 																});
 															});
 														} else {
 															trade.setPnL(function() {
 																app.objects[self.key] = trade.toJSON();
 																app.cache.delete('main');
-																app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-																	app.loadView('mainViewTrade', {
-																		key: self.key,
-																		top: self.top
-																	});
+																app.loadView('mainViewTrade', {
+																	key: self.key,
+																	top: self.top
 																});
 															});
 														}
 													} else {
 														app.objects[self.key] = trade.toJSON();
 														app.cache.delete('main');
-														app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-															app.loadView('mainViewTrade', {
-																key: self.key,
-																top: self.top
-															});
+														app.loadView('mainViewTrade', {
+															key: self.key,
+															top: self.top
 														});
 													}
 												});

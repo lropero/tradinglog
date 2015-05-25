@@ -84,7 +84,7 @@
 			} else {
 				$target.focus();
 				if(typeof cordova !== 'undefined') {
-					cordova.plugins.Keyboard.show()
+					cordova.plugins.Keyboard.show();
 				}
 			}
 		}, 100);

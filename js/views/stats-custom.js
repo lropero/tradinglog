@@ -18,7 +18,7 @@
 		render: function() {
 			app.trigger('change', 'stats-custom');
 			this.$el.html(this.template());
-			if(!app.firstDate) {
+			if(!app.dates.firstDate) {
 				$('div#no-stats').css('display', 'block');
 			}
 			return this;
@@ -50,13 +50,13 @@
 				}
 				$target.val(date.getFullYear() + '-' + month + '-' + day);
 			}
-			var date = new Date(app.lastDate);
+			var date = new Date(app.dates.lastDate);
 			date.setDate(1);
-			var minDate = new Date(app.firstDate);
+			var minDate = new Date(app.dates.firstDate);
 			if(date < minDate) {
 				date = minDate;
 			}
-			var maxDate = new Date(app.lastDate);
+			var maxDate = new Date(app.dates.lastDate);
 			var id = $target.attr('id');
 			switch(id) {
 				case 'from':

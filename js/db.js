@@ -46,6 +46,13 @@
 					'balance NUMERIC,' +
 					'is_active INTEGER' +
 				');',
+				'CREATE TABLE IF NOT EXISTS cache (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'availables TEXT,' +
+					'count TEXT,' +
+					'dates TEXT,' +
+					'objects TEXT' +
+				');',
 				'CREATE TABLE IF NOT EXISTS comment (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'trade_id INTEGER,' +
@@ -106,8 +113,7 @@
 					'name TEXT,' +
 					'html TEXT,' +
 					'extra TEXT,' +
-					'is_obsolete INTEGER,' +
-					'created_at INTEGER' +
+					'is_obsolete INTEGER' +
 				');'
 			];
 			this.db.transaction(function(tx) {

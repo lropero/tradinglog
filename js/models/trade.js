@@ -344,13 +344,16 @@
 			}
 		},
 
-		toJSON: function() {
+		toJSON: function(noNewest) {
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			if(this.positions && this.positions.length > 0) {
 				json.closeSize = this.calculateCloseSize();
 				json.hasClosedPositions = this.hasClosedPositions;
 				json.instrument = this.instrument.get('name');
 				json.isLong = this.isLong();
+				if(!noNewest && this.id === app.objects[app.count.open].id) {
+					json.isNewest = true;
+				}
 				json.isOpen = this.isOpen();
 				if(this.positions.length > 1) {
 					json.net = this.getNet();

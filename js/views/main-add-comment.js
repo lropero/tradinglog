@@ -73,13 +73,11 @@
 								trade.deferred.then(function() {
 									trade.addToComments(1, function() {
 										app.objects[self.key] = trade.toJSON();
-										app.cache.delete('mainViewTrade' + self.trade.id).done(function() {
-											app.loadView('mainViewTrade', {
-												key: self.key,
-												top: self.top
-											}, function() {
-												app.cache.delete('main');
-											});
+										app.loadView('mainViewTrade', {
+											key: self.key,
+											top: self.top
+										}, function() {
+											app.cache.delete('main');
 										});
 									});
 								});

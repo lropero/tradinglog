@@ -26,6 +26,8 @@
 							}
 							deferred.resolve();
 						});
+					} else {
+						deferred.resolve();
 					}
 				}
 			});
@@ -53,68 +55,62 @@
 						} else {
 							switch(name) {
 								case 'main':
-									app.ready.then(function() {
-										var html = method({
-											objects: app.objects
-										});
-										html = html.replace(/\t/g, '').replace(/(\r\n|\r|\n)/g, '');
-										self.HTMLs[name] = {};
-										self.HTMLs[name].html = LZString.compressToBase64(html);
-										self.HTMLs[name].extra = {
-											closed: app.count.closed
-										};
-										var view = new app.Models.view();
-										view.set({
-											name: name,
-											html: self.HTMLs[name].html,
-											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
-											is_obsolete: 0,
-											created_at: (new Date()).getTime()
-										});
-										view.save(null, {
-											success: function() {
-												deferred.resolve(html, self.HTMLs[name].extra);
-											}
-										});
+									var html = method({
+										objects: app.objects
+									});
+									html = html.replace(/\t/g, '').replace(/(\r\n|\r|\n)/g, '');
+									self.HTMLs[name] = {};
+									self.HTMLs[name].html = LZString.compressToBase64(html);
+									self.HTMLs[name].extra = {
+										closed: app.count.closed
+									};
+									var view = new app.Models.view();
+									view.set({
+										name: name,
+										html: self.HTMLs[name].html,
+										extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
+										is_obsolete: 0
+									});
+									view.save(null, {
+										success: function() {
+											deferred.resolve(html, self.HTMLs[name].extra);
+										}
 									});
 									break;
 								case 'mainMap':
-									app.ready.then(function() {
-										var max = 0;
-										var trades = [];
-										for(var i = app.count.open; i < app.objects.length; i++) {
-											if(app.objects[i].instrument_id) {
-												var abs = Math.abs(app.objects[i].net);
-												if(abs > max) {
-													max = abs;
-												}
-												trades.push(app.objects[i]);
+									var max = 0;
+									var trades = [];
+									for(var i = app.count.open; i < app.objects.length; i++) {
+										if(app.objects[i].instrument_id) {
+											var abs = Math.abs(app.objects[i].net);
+											if(abs > max) {
+												max = abs;
 											}
+											trades.push(app.objects[i]);
 										}
-										if(max === 0) {
-											max = 1;
+									}
+									if(max === 0) {
+										max = 1;
+									}
+									var html = method({
+										max: max,
+										trades: trades
+									});
+									html = html.replace(/\t/g, '').replace(/(\r\n|\r|\n)/g, '');
+									self.HTMLs[name] = {};
+									self.HTMLs[name].html = LZString.compressToBase64(html);
+									self.HTMLs[name].extra = {};
+									var view = new app.Models.view();
+									view.set({
+										name: name,
+										html: self.HTMLs[name].html,
+										extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
+										is_obsolete: 0
+									});
+									view.save(null, {
+										success: function() {
+											deferred.resolve(html, self.HTMLs[name].extra);
 										}
-										var html = method({
-											max: max,
-											trades: trades
-										});
-										html = html.replace(/\t/g, '').replace(/(\r\n|\r|\n)/g, '');
-										self.HTMLs[name] = {};
-										self.HTMLs[name].html = LZString.compressToBase64(html);
-										self.HTMLs[name].extra = {};
-										var view = new app.Models.view();
-										view.set({
-											name: name,
-											html: self.HTMLs[name].html,
-											extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
-											is_obsolete: 0,
-											created_at: (new Date()).getTime()
-										});
-										view.save(null, {
-											success: function() {
-												deferred.resolve(html, self.HTMLs[name].extra);
-											}
-										});
 									});
 									break;
 								default:
@@ -128,8 +124,7 @@
 										name: name,
 										html: self.HTMLs[name].html,
 										extra: JSON.stringify(self.HTMLs[name].extra).replace(/"/g, '\''),
-										is_obsolete: 0,
-										created_at: (new Date()).getTime()
+										is_obsolete: 0
 									});
 									view.save(null, {
 										success: function() {

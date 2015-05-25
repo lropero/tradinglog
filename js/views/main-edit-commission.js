@@ -122,18 +122,16 @@
 						});
 						trade.save(null, {
 							success: function() {
-								app.cache.delete('mainViewTrade' + trade.id).done(function() {
-									app.loadView('mainViewTrade', {
-										key: self.key,
-										top: self.top
-									}, function() {
-										var operations = new app.Collections.operations();
-										operations.setAffected(affected.operations);
-										operations.fetch();
-										var trades = new app.Collections.trades();
-										trades.setAffected(affected.trades);
-										trades.fetch();
-									});
+								app.loadView('mainViewTrade', {
+									key: self.key,
+									top: self.top
+								}, function() {
+									var operations = new app.Collections.operations();
+									operations.setAffected(affected.operations);
+									operations.fetch();
+									var trades = new app.Collections.trades();
+									trades.setAffected(affected.trades);
+									trades.fetch();
 								});
 							}
 						});

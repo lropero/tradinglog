@@ -22,7 +22,7 @@
 		render: function() {
 			app.trigger('change', 'stats');
 			this.$el.html(this.template());
-			if(!app.firstDate) {
+			if(!app.dates.firstDate) {
 				$('div#no-stats').css('display', 'block');
 			} else {
 				this.subview = new app.Views.statsNumbers({

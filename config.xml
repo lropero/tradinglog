@@ -15,7 +15,6 @@
 
 	<preference name="applicationSupportsShakeToEdit" value="no" />
 	<preference name="AutoHideSplashScreen" value="false" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 	<preference name="detect-data-types" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="fullscreen" value="true" />
@@ -25,6 +24,7 @@
 	<preference name="show-splash-screen-spinner" value="false" />
 	<preference name="target-device" value="universal" />
 	<preference name="webviewbounce" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 
 	<gap:config-file platform="ios" parent="UISupportedInterfaceOrientations" mode="replace">
 		<array>

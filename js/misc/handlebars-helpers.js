@@ -136,7 +136,7 @@
 	});
 
 	Handlebars.registerHelper('nl2br', function(string) {
-		return string.replace(/(\r\n|\n\r|\r|\n)/g, '<br />')
+		return string.replace(/(\r\n|\n\r|\r|\n)/g, '<br />');
 	});
 
 	Handlebars.registerHelper('notequal', function(lvalue, rvalue, options) {
@@ -145,29 +145,6 @@
 		} else {
 			return options.inverse(this);
 		}
-	});
-
-	Handlebars.registerHelper('or', function(cond1, cond2, options) {
-		if(cond1 || cond2) {
-			return options.fn(this);
-		} else {
-			return options.inverse(this);
-		}
-	});
-
-	Handlebars.registerHelper('time', function(timestamp) {
-		var then = new Date(timestamp);
-		var hours = then.getHours();
-		var minutes = then.getMinutes();
-		if(minutes < 10) {
-			minutes = '0' + minutes;
-		}
-		var meridiem = 'am';
-		if(hours > 12) {
-			hours -= 12;
-			meridiem = 'pm';
-		}
-		return hours + ':' + minutes + meridiem;
 	});
 
 	Handlebars.registerHelper('variation', function(variation) {
