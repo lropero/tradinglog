@@ -71,12 +71,18 @@
 					} else {
 						$net.addClass('zero');
 					}
+					var swipe = true;
+					for(var i = 0; i < app.count.open; i++) {
+						if(app.objects[i].instrument_id === self.trade.instrument_id) {
+							swipe = false;
+						}
+					}
 					var $ul = $('section#content ul');
 					for(var i = 0; i < self.trade.objects.length; i++) {
 						var object = self.trade.objects[i];
 						if(object.size) {
 							var li = '<li class="wrapper-label"';
-							if(self.trade.isOpen || self.trade.isNewest) {
+							if((self.trade.isOpen || self.trade.isNewest) && swipe) {
 								if(object.last && self.trade.positions > 1) {
 									li += 'data-swipe="1"';
 								}
@@ -87,19 +93,19 @@
 							} else {
 								li += 'sell';
 							}
-							if(self.trade.isOpen || self.trade.isNewest) {
+							if((self.trade.isOpen || self.trade.isNewest) && swipe) {
 								if(object.last && self.trade.positions > 1) {
 									li += ' swipe';
 								}
 							}
 							li += '"><div class="ball"></div><div class="row"><div class="size-price">' + object.sizePrice + '</div></div><div class="row"><div class="date">' + app.date.toDate(object.created_at) + ' - ' + app.date.toTime(object.created_at) + '</div></div>';
-							if(self.trade.isOpen || self.trade.isNewest) {
+							if((self.trade.isOpen || self.trade.isNewest) && swipe) {
 								if(object.last && self.trade.positions > 1) {
 									li += '<div class="swipe-triangle"></div>';
 								}
 							}
 							li += '</div>';
-							if(self.trade.isOpen || self.trade.isNewest) {
+							if((self.trade.isOpen || self.trade.isNewest) && swipe) {
 								if(object.last && self.trade.positions > 1) {
 									li += '<div class="wrapper-swipe"><div class="swipe-buttons"><ul><li class="button-swipe delete" data-id="' + object.id + '"></li></ul></div></div>';
 								}
