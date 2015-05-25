@@ -62,7 +62,14 @@
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
 				$('header button').hide();
-				var previousBalance = app.objects[this.key].net * 100 / app.objects[this.key].variation;
+				var previousBalance = app.account.get('balance');
+				for(var i = app.count.open; i <= this.key; i++) {
+					if(app.objects[i].instrument_id) {
+						previousBalance -= app.objects[i].net;
+					} else {
+						previousBalance -= app.objects[i].amount;
+					}
+				}
 				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
 				var newVariation = newNet * 100 / previousBalance;
 				var newBalance = previousBalance + newNet;
