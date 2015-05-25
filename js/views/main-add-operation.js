@@ -104,8 +104,10 @@
 								app.objects[app.count.open].isNewest = false;
 								app.objects.splice(app.count.open, 0, operation.toJSON());
 								app.objects[app.count.open].isNewest = true;
-								app.cache.delete('main').done(function() {
-									app.loadView('main', {});
+								app.storeCache().done(function() {
+									app.cache.delete('main').done(function() {
+										app.loadView('main', {});
+									});
 								});
 							}
 						});

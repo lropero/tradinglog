@@ -45,22 +45,23 @@
 						$label.addClass('short');
 					}
 					if(self.trade.isOpen) {
+						$('div.globe-commission').hide();
+						$('li#edit-commission').remove();
+						$info.addClass('size-price');
+						$info.html(self.trade.sizePrice);
 						$label.addClass('open');
 						if(self.trade.hasClosedPositions) {
 							$net.html('$ ' + accounting.formatMoney(self.trade.net, ''));
 						}
-						$info.addClass('size-price');
-						$info.html(self.trade.sizePrice);
-						$('li#edit-commission').remove();
 					} else {
+						$('div.variation').html(accounting.toFixed(self.trade.variation, 2) + '%');
+						$('li#add-position').remove();
+						$info.addClass('date');
+						$info.html(app.date.toDate(self.trade.closed_at));
+						$net.html('$ ' + accounting.formatMoney(self.trade.net, ''));
 						if(!self.trade.edit_commission) {
 							$('div.globe-commission').hide();
 						}
-						$net.html('$ ' + accounting.formatMoney(self.trade.net, ''));
-						$info.addClass('date');
-						$info.html(app.date.toDate(self.trade.closed_at));
-						$('div.variation').html(accounting.toFixed(self.trade.variation, 2) + '%');
-						$('li#add-position').remove();
 					}
 					$('div.instrument').html(self.trade.instrument);
 					if(self.trade.net > 0) {
@@ -175,11 +176,13 @@
 												trade.deferred.then(function() {
 													trade.addToComments(-1, function() {
 														app.objects[self.key] = trade.toJSON();
-														app.loadView('mainViewTrade', {
-															key: self.key,
-															top: self.top
-														}, function() {
-															app.cache.delete('main');
+														app.storeCache().done(function() {
+															app.loadView('mainViewTrade', {
+																key: self.key,
+																top: self.top
+															}, function() {
+																app.cache.delete('main');
+															});
 														});
 													});
 												});
@@ -223,29 +226,35 @@
 																if(!(!app.count.closed && app.count.operations === 1)) {
 																	app.objects[app.count.open].isNewest = true;
 																}
-																app.cache.delete('main');
-																app.cache.delete('mainMap');
-																app.loadView('mainViewTrade', {
-																	key: key,
-																	top: self.top
+																app.storeCache().done(function() {
+																	app.cache.delete('main');
+																	app.cache.delete('mainMap');
+																	app.loadView('mainViewTrade', {
+																		key: key,
+																		top: self.top
+																	});
 																});
 															});
 														} else {
 															trade.setPnL(function() {
 																app.objects[self.key] = trade.toJSON();
-																app.cache.delete('main');
-																app.loadView('mainViewTrade', {
-																	key: self.key,
-																	top: self.top
+																app.storeCache().done(function() {
+																	app.cache.delete('main');
+																	app.loadView('mainViewTrade', {
+																		key: self.key,
+																		top: self.top
+																	});
 																});
 															});
 														}
 													} else {
 														app.objects[self.key] = trade.toJSON();
-														app.cache.delete('main');
-														app.loadView('mainViewTrade', {
-															key: self.key,
-															top: self.top
+														app.storeCache().done(function() {
+															app.cache.delete('main');
+															app.loadView('mainViewTrade', {
+																key: self.key,
+																top: self.top
+															});
 														});
 													}
 												});

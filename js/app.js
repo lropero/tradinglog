@@ -45,11 +45,21 @@
 									app.fetchObjects().done(function() {
 
 										// Remove
-										if(app.objects[app.count.open].closed_at) {
-											app.timestamp = app.objects[app.count.open].closed_at;
-										} else {
-											app.timestamp = app.objects[app.count.open].created_at;
+										var timestamp = 0;
+										for(var i = 0; i < app.objects.length; i++) {
+											if(app.objects[i].objects) {
+												for(var j = 0; j < app.objects[i].objects.length; j++) {
+													if(app.objects[i].objects[j].created_at > timestamp) {
+														timestamp = app.objects[i].objects[j].created_at;
+													}
+												}
+											} else {
+												if(app.objects[i].created_at > timestamp) {
+													timestamp = app.objects[i].created_at;
+												}
+											}
 										}
+										app.timestamp = timestamp;
 
 										/** Load main view */
 										app.view = new app.Views.main({});

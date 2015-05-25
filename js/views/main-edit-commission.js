@@ -109,33 +109,35 @@
 						newBalance += app.objects[i].amount;
 					}
 				}
-				app.cache.delete('main');
-				var trades = new app.Collections.trades();
-				trades.setFetchId(app.objects[this.key].id);
-				trades.fetch({
-					success: function() {
-						var trade = trades.at(0);
-						trade.set({
-							commission: app.objects[self.key].commission,
-							edit_commission: 0,
-							variation: newVariation
-						});
-						trade.save(null, {
-							success: function() {
-								app.loadView('mainViewTrade', {
-									key: self.key,
-									top: self.top
-								}, function() {
-									var operations = new app.Collections.operations();
-									operations.setAffected(affected.operations);
-									operations.fetch();
-									var trades = new app.Collections.trades();
-									trades.setAffected(affected.trades);
-									trades.fetch();
-								});
-							}
-						});
-					}
+				app.storeCache().done(function() {
+					app.cache.delete('main');
+					var trades = new app.Collections.trades();
+					trades.setFetchId(app.objects[this.key].id);
+					trades.fetch({
+						success: function() {
+							var trade = trades.at(0);
+							trade.set({
+								commission: app.objects[self.key].commission,
+								edit_commission: 0,
+								variation: newVariation
+							});
+							trade.save(null, {
+								success: function() {
+									app.loadView('mainViewTrade', {
+										key: self.key,
+										top: self.top
+									}, function() {
+										var operations = new app.Collections.operations();
+										operations.setAffected(affected.operations);
+										operations.fetch();
+										var trades = new app.Collections.trades();
+										trades.setAffected(affected.trades);
+										trades.fetch();
+									});
+								}
+							});
+						}
+					});
 				});
 			}
 		}

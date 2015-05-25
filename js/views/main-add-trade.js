@@ -170,11 +170,13 @@
 											trade.deferred.then(function() {
 												app.count.open++;
 												app.objects.unshift(trade.toJSON());
-												app.loadView('mainViewTrade', {
-													key: 0,
-													top: 0
-												}, function() {
-													app.cache.delete('main');
+												app.storeCache().done(function() {
+													app.loadView('mainViewTrade', {
+														key: 0,
+														top: 0
+													}, function() {
+														app.cache.delete('main');
+													});
 												});
 											});
 										}

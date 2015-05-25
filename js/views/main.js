@@ -102,29 +102,29 @@
 													app.count.closed++;
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
 													app.objects[app.count.open].isNewest = true;
+
+													// Stats
+													var date = new Date(app.timestamp);
+													if(!app.dates.firstDate) {
+														app.dates.firstDate = date.getTime();
+													}
+													app.dates.lastDate = date.getTime();
+													var monthly = date.getFullYear() + '-' + date.getMonth();
+													date.setDate(date.getDate() - date.getDay());
+													var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+													if(app.stats.availables.monthly[0] !== monthly) {
+														app.stats.availables.monthly.unshift(monthly);
+													}
+													if(app.stats.availables.weekly[0] !== weekly) {
+														app.stats.availables.weekly.unshift(weekly);
+													}
+													app.stats.delete(monthly).done(function() {
+														app.stats.delete(weekly);
+													});
+
 													app.storeCache().done(function() {
 														app.cache.delete('main').done(function() {
 															app.loadView('main', {}, function() {
-
-																// Stats
-																var date = new Date(app.timestamp);
-																if(!app.dates.firstDate) {
-																	app.dates.firstDate = date.getTime();
-																}
-																app.dates.lastDate = date.getTime();
-																var monthly = date.getFullYear() + '-' + date.getMonth();
-																date.setDate(date.getDate() - date.getDay());
-																var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-																if(app.stats.availables.monthly[0] !== monthly) {
-																	app.stats.availables.monthly.unshift(monthly);
-																}
-																if(app.stats.availables.weekly[0] !== weekly) {
-																	app.stats.availables.weekly.unshift(weekly);
-																}
-																app.stats.delete(monthly).done(function() {
-																	app.stats.delete(weekly);
-																});
-
 																app.cache.delete('mainMap');
 															});
 														});
@@ -186,8 +186,10 @@
 												if(!(!app.count.closed && app.count.operations === 1)) {
 													app.objects[app.count.open].isNewest = true;
 												}
-												app.cache.delete('main').done(function() {
-													app.loadView('main');
+												app.storeCache().done(function() {
+													app.cache.delete('main').done(function() {
+														app.loadView('main');
+													});
 												});
 											}
 										});
@@ -205,8 +207,10 @@
 										var key = $wrapper.data('key').toString();
 										app.count.open--;
 										app.objects.splice(key, 1);
-										app.cache.delete('main').done(function() {
-											app.loadView('main');
+										app.storeCache().done(function() {
+											app.cache.delete('main').done(function() {
+												app.loadView('main');
+											});
 										});
 									});
 								}
