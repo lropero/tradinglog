@@ -112,7 +112,7 @@
 				app.storeCache().done(function() {
 					app.cache.delete('main');
 					var trades = new app.Collections.trades();
-					trades.setFetchId(app.objects[this.key].id);
+					trades.setFetchId(app.objects[self.key].id);
 					trades.fetch({
 						success: function() {
 							var trade = trades.at(0);
