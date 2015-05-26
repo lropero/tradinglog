@@ -31,30 +31,28 @@
 
 					// Trigger/untrigger settings pane
 					var $settings = $('section#settings');
+					if(app.timeout) {
+						clearTimeout(app.timeout);
+						delete app.timeout;
+						$settings.removeClass('bounceInDown');
+						$settings.removeClass('bounceOutUp');
+					}
 					if(view === 'settings') {
 						var animated = 'animated bounceInDown';
-						$settings.addClass('show ' + animated).one('webkitAnimationEnd', function() {
+						$settings.addClass('show ' + animated);
+						app.timeout = setTimeout(function() {
 							$settings.removeClass(animated);
-							if(app.timeout) {
-								clearTimeout(app.timeout);
-							}
-							app.timeout = setTimeout(function() {
-								$('section#main-stats-friends').empty();
-								delete app.timeout;
-							}, 1000);
-						});
+							$('section#main-stats-friends').empty();
+							delete app.timeout;
+						}, 1000);
 					} else if($settings.hasClass('show')) {
 						var animated = 'animated bounceOutUp';
-						$settings.addClass(animated).one('webkitAnimationEnd', function() {
+						$settings.addClass(animated);
+						app.timeout = setTimeout(function() {
 							$settings.removeClass('show ' + animated);
-							if(app.timeout) {
-								clearTimeout(app.timeout);
-							}
-							app.timeout = setTimeout(function() {
-								$settings.empty();
-								delete app.timeout;
-							}, 1000);
-						});
+							$settings.empty();
+							delete app.timeout;
+						}, 1000);
 					}
 
 				}
