@@ -110,6 +110,12 @@
 									}
 								}
 								$group.html(newGroup);
+								for(var i = 0; i < app.objects.length; i++) {
+									if(app.objects[i].instrument_id === id) {
+										app.objects[i].group_id = group_id;
+									}
+								}
+								app.storeCache();
 							}
 						});
 					}

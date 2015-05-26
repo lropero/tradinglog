@@ -15,16 +15,6 @@
 
 		setFetchId: function(id) {
 			this.id = id;
-		},
-
-		setGroups: function(groups) {
-			this.groups = groups;
-		},
-
-		setRange: function(from, to) {
-			this.range = true;
-			this.from = from;
-			this.to = to;
 		}
 	});
 })();

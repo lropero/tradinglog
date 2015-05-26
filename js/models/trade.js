@@ -350,6 +350,7 @@
 			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
 			if(this.positions && this.positions.length > 0) {
 				json.closeSize = this.calculateCloseSize();
+				json.group_id = this.instrument.get('group_id');
 				json.hasClosedPositions = this.hasClosedPositions;
 				json.instrument = this.instrument.get('name');
 				json.isLong = this.isLong();
