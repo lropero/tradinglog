@@ -38,7 +38,7 @@
 				self.$el.html(self.template({
 					instruments: self.instruments
 				}));
-				// app.swipe.init('.swipe');
+				app.swipe.init('.swipe');
 			});
 			return this;
 		},
