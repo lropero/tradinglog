@@ -12,6 +12,7 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
+			this.timeouts = [];
 			this.instruments = [];
 			var instruments = new app.Collections.instruments();
 			instruments.fetch({
@@ -80,8 +81,8 @@
 		buttonGroup: function(e) {
 			var self = this;
 			e.preventDefault();
-			clearTimeout(this.timeout);
 			var id = $(e.currentTarget).data('id');
+			clearTimeout(this.timeouts[id]);
 			var $span = $(e.currentTarget).children('span');
 			var group = $span.html();
 			var group_id = group.charCodeAt(0) - 65;
@@ -91,7 +92,7 @@
 			var newGroup = String.fromCharCode(group_id + 65);
 			$span.html(newGroup);
 			var $group = $(e.currentTarget).parents('.wrapper-swipe').prev().find('span.group');
-			this.timeout = setTimeout(function() {
+			this.timeouts[id] = setTimeout(function() {
 				var instruments = new app.Collections.instruments();
 				instruments.setFetchId(id);
 				instruments.fetch({
