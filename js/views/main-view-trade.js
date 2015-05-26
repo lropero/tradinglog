@@ -72,9 +72,12 @@
 						$net.addClass('zero');
 					}
 					var swipe = true;
-					for(var i = 0; i < app.count.open; i++) {
-						if(app.objects[i].instrument_id === self.trade.instrument_id) {
-							swipe = false;
+					if(!self.trade.isOpen) {
+						for(var i = 0; i < app.count.open; i++) {
+							if(app.objects[i].instrument_id === self.trade.instrument_id) {
+								swipe = false;
+								break;
+							}
 						}
 					}
 					var $ul = $('section#content ul');
