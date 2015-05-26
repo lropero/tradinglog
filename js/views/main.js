@@ -46,7 +46,7 @@
 					self.deferred.resolve();
 				} else {
 					setTimeout(function() {
-						self.undelegateEvents();
+						self.destroy();
 					}, 10);
 				}
 			});

@@ -48,6 +48,7 @@
 				');',
 				'CREATE TABLE IF NOT EXISTS cache (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'account_id INTEGER,' +
 					'availables TEXT,' +
 					'count TEXT,' +
 					'dates TEXT,' +

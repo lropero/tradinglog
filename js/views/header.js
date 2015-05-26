@@ -171,7 +171,7 @@
 						right: {
 							action: function() {
 								app.view.subview.destroy();
-								app.view.subview = new app.Views.settingsAddAccount();
+								app.view.subview = new app.Views.settingsAddAccount({});
 							},
 							icon: 'f218'
 						}
@@ -266,7 +266,7 @@
 						right: {
 							action: function() {
 								app.view.subview.destroy();
-								app.view.subview = new app.Views.settingsAddInstrument();
+								app.view.subview = new app.Views.settingsAddInstrument({});
 							},
 							icon: 'f218'
 						}

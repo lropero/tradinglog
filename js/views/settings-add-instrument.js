@@ -11,16 +11,19 @@
 			'tap ul#type span': 'radio'
 		},
 
-		initialize: function(instrument, cache) {
+		initialize: function(attrs) {
 			var self = this;
-			if(typeof instrument !== 'string') {
-				this.instrument = instrument;
+			this.cache = false;
+			if(attrs.cache) {
+				this.cache = true;
+			} else if(attrs.instrument) {
+				this.instrument = attrs.instrument;
 			}
 			app.submit = function() {
 				self.submit();
 			}
 			this.template = Handlebars.compile(app.templateLoader.get('settings-add-instrument'));
-			this.render(cache);
+			this.render();
 		},
 
 		destroy: function() {
@@ -28,45 +31,60 @@
 			this.undelegateEvents();
 		},
 
-		render: function(cache) {
+		render: function() {
 			var self = this;
-			if(this.instrument) {
-				app.trigger('change', 'settings-edit-instrument');
-				this.$el.html(this.template({
-					instrument: this.instrument
-				}));
-			} else {
-				var deferred = app.cache.get('settingsAddInstrument', this.template);
+			var deferred = app.cache.get('settingsAddInstrument', this.template);
+			if(!this.cache) {
 				deferred.then(function(html) {
-					if(typeof cache !== 'boolean') {
+					if(self.instrument) {
+						app.trigger('change', 'settings-edit-instrument');
+						self.$el.html(html);
+
+						switch(self.instrument.type) {
+							case 1:
+								$('.type-2').hide();
+								$('.type-3').hide();
+								$('.type-1').show();
+								break;
+							case 2:
+								$('#radio-1').removeClass('active');
+								$('#radio-2').addClass('active');
+								$('#radio-3').removeClass('active');
+								$('.type-1').hide();
+								$('.type-3').hide();
+								$('.type-2').show();
+								break;
+							case 3:
+								$('#radio-1').removeClass('active');
+								$('#radio-2').removeClass('active');
+								$('#radio-3').addClass('active');
+								$('.type-1').hide();
+								$('.type-2').hide();
+								$('.type-3').show();
+								$('.wrapper-checkbox').css('display', 'table');
+								break;
+						}
+						$('input#name').val(self.instrument.name);
+						$('input#point_value').val(self.instrument.point_value);
+						$('input#commission').val(self.instrument.commission);
+						if(!self.instrument.alert) {
+							$('div.checkbox').removeClass('active');
+						}
+
+						$('div#view').show();
+					} else {
 						app.trigger('change', 'settings-add-instrument');
 						self.$el.html(html);
-					}
-				});
-			}
-			if(this.instrument) {
-				switch(this.instrument.type) {
-					case 1:
 						$('.type-2').hide();
 						$('.type-3').hide();
 						$('.type-1').show();
-						break;
-					case 2:
-						$('.type-1').hide();
-						$('.type-3').hide();
-						$('.type-2').show();
-						break;
-					case 3:
-						$('.type-1').hide();
-						$('.type-2').hide();
-						$('.type-3').show();
-						$('.wrapper-checkbox').css('display', 'table');
-						break;
-				}
+						$('div#view').show();
+					}
+				});
 			} else {
-				$('.type-2').hide();
-				$('.type-3').hide();
-				$('.type-1').show();
+				setTimeout(function() {
+					self.destroy();
+				}, 10);
 			}
 			return this;
 		},
@@ -193,6 +211,7 @@
 			});
 			deferred.done(function() {
 				if(self.instrument) {
+					instruments = new app.Collections.instruments();
 					instruments.setFetchId(self.instrument.id);
 					instruments.fetch({
 						success: function() {

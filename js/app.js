@@ -74,8 +74,12 @@
 										new app.Views.mainViewTrade({
 											cache: true
 										});
-										new app.Views.settingsAddAccount(' ', true);
-										new app.Views.settingsAddInstrument(' ', true);
+										new app.Views.settingsAddAccount({
+											cache: true
+										});
+										new app.Views.settingsAddInstrument({
+											cache: true
+										});
 
 									});
 								});
@@ -95,6 +99,7 @@
 		fetchObjects: function() {
 			var deferred = $.Deferred();
 			var caches = new app.Collections.caches();
+			caches.setAccountId(app.account.id);
 			caches.fetch({
 				success: function() {
 					if(caches.length) {
@@ -252,6 +257,7 @@
 			var objects = LZString.compressToBase64(JSON.stringify(app.objects));
 			var cache = new app.Models.cache();
 			cache.set({
+				account_id: app.account.id,
 				availables: availables,
 				count: count,
 				dates: dates,

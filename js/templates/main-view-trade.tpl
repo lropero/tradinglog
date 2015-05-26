@@ -1,5 +1,5 @@
-<div id="loading"><span></span></div>
 <div id="view" style="display: none;">
+	<div id="loading"><span></span></div>
 	<div id="top">
 		<ul>
 			<li class="wrapper-label">

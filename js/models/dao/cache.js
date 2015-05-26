@@ -9,10 +9,10 @@
 		create: function(model, callback) {
 			var self = this;
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM cache;';
+				var sql = 'SELECT * FROM cache WHERE account_id = "' + model.get('account_id') + '";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 0) {
-						var fields = ['availables', 'count', 'dates', 'objects'];
+						var fields = ['account_id', 'availables', 'count', 'dates', 'objects'];
 						var insert = app.databaseController.buildInsert('cache', fields, model);
 						tx.executeSql(insert.sql, insert.parameters, function(tx, results) {
 							callback();
@@ -24,9 +24,9 @@
 			});
 		},
 
-		findAll: function(callback) {
+		findSet: function(model, callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM cache;';
+				var sql = 'SELECT * FROM cache WHERE account_id = "' + model.account_id + '";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 1) {
 						var cache = results.rows.item(0);
@@ -41,7 +41,7 @@
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE cache SET availables = ?, count = ?, dates = ?, objects = ? WHERE id = "1";';
+				var sql = 'UPDATE cache SET availables = ?, count = ?, dates = ?, objects = ? WHERE account_id = "' + model.account_id + '";';
 				tx.executeSql(sql, [model.availables, model.count, model.dates, model.objects]);
 				callback();
 			});

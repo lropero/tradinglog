@@ -39,7 +39,9 @@
 			var self = this;
 			this.destroy({
 				success: function() {
-					callback(self.get('size'));
+					if(typeof callback === 'function') {
+						callback(self.get('size'));
+					}
 				}
 			});
 		},

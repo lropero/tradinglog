@@ -126,7 +126,9 @@
 			var key = $wrapper.data('key');
 			app.view.subview.destroy();
 			setTimeout(function() {
-				app.view.subview = new app.Views.settingsAddInstrument(self.instruments[key]);
+				app.view.subview = new app.Views.settingsAddInstrument({
+					instrument: self.instruments[key]
+				});
 			}, 10);
 		}
 	});

@@ -28,8 +28,8 @@
 		render: function() {
 			var self = this;
 			var deferred = app.cache.get('mainViewTrade', this.template);
-			deferred.then(function(html) {
-				if(!self.cache) {
+			if(!this.cache) {
+				deferred.then(function(html) {
 					app.trigger('change', 'main-view-trade', {
 						key: self.key,
 						top: self.top
@@ -119,18 +119,18 @@
 						}
 						$ul.append(li);
 					}
-					$('div#view').show();
 
+					$('div#view').show();
 					app.swipe.init('.swipe');
 					setTimeout(function() {
 						app.enableScroll();
 					}, 10);
-				} else {
-					setTimeout(function() {
-						self.undelegateEvents();
-					}, 10);
-				}
-			});
+				});
+			} else {
+				setTimeout(function() {
+					self.destroy();
+				}, 10);
+			}
 			return this;
 		},
 

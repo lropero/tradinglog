@@ -9,16 +9,19 @@
 			'tap input': 'isolate'
 		},
 
-		initialize: function(account, cache) {
+		initialize: function(attrs) {
 			var self = this;
-			if(typeof account !== 'string') {
-				this.account = account;
+			this.cache = false;
+			if(attrs.cache) {
+				this.cache = true;
+			} else if(attrs.account) {
+				this.account = attrs.account;
 			}
 			app.submit = function() {
 				self.submit();
 			}
 			this.template = Handlebars.compile(app.templateLoader.get('settings-add-account'));
-			this.render(cache);
+			this.render();
 		},
 
 		destroy: function() {
@@ -26,7 +29,7 @@
 			this.undelegateEvents();
 		},
 
-		render: function(cache) {
+		render: function() {
 			var self = this;
 			if(this.account) {
 				app.trigger('change', 'settings-edit-account');
@@ -36,7 +39,7 @@
 			} else {
 				var deferred = app.cache.get('settingsAddAccount', this.template);
 				deferred.then(function(html) {
-					if(typeof cache !== 'boolean') {
+					if(!self.cache) {
 						app.trigger('change', 'settings-add-account');
 						self.$el.html(html);
 					}
@@ -84,6 +87,7 @@
 			});
 			deferred.done(function() {
 				if(self.account) {
+					accounts = new app.Collections.accounts();
 					accounts.setFetchId(self.account.id);
 					accounts.fetch({
 						success: function() {

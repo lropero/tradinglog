@@ -5,7 +5,7 @@
 		el: 'section#settings section#content',
 		events: {
 			'tap div.account:not(.swiped)': 'viewAccount',
-			'tap div.radiobutton': 'activeAccount',
+			'tap div.radiobutton': 'activateAccount',
 			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
@@ -43,7 +43,7 @@
 			return this;
 		},
 
-		activeAccount: function(e) {
+		activateAccount: function(e) {
 			var self = this;
 			e.preventDefault();
 			e.stopPropagation();
@@ -129,7 +129,9 @@
 			var key = $wrapper.data('key');
 			app.view.subview.destroy();
 			setTimeout(function() {
-				app.view.subview = new app.Views.settingsAddAccount(self.accounts[key]);
+				app.view.subview = new app.Views.settingsAddAccount({
+					account: self.accounts[key]
+				});
 			}, 10);
 		}
 	});
