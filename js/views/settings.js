@@ -24,7 +24,7 @@
 			this.$el.html(this.template({
 				section: 'instruments'
 			}));
-			this.subview = new app.Views.settingsGeneral();
+			this.subview = new app.Views.settingsInstruments();
 			return this;
 		},
 
