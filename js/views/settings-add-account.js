@@ -145,10 +145,11 @@
 														success: function() {
 															app.account = accounts.models[0];
 															app.fetchObjects().done(function() {
-																app.cache.delete('main');
 																app.cache.delete('mainMap');
-																app.view.subview.destroy();
-																app.view.subview = new app.Views.settingsAccounts();
+																app.cache.delete('main').done(function() {
+																	app.view.subview.destroy();
+																	app.view.subview = new app.Views.settingsAccounts();
+																});
 															});
 														}
 													});
