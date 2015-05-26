@@ -246,7 +246,9 @@
 							$numbers.removeClass('positive');
 						}
 					} else {
-						delete app.previousCustom;
+						if(type === 0) {
+							delete app.previousCustom;
+						}
 						$('div#no-stats').css('display', 'block');
 						$('div.wrapper-control-box-swipe').css('display', 'none');
 					}
