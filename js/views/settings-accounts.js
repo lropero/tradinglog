@@ -47,6 +47,7 @@
 			var self = this;
 			e.preventDefault();
 			e.stopPropagation();
+			$('header button').hide();
 			var $target = $(e.currentTarget);
 			if(!$target.hasClass('active')) {
 				app.view.subview.destroy();
