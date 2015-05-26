@@ -246,7 +246,7 @@
 							$numbers.removeClass('positive');
 						}
 					} else {
-						if(type === 'all') {
+						if(!parseInt(stats['all'].trades, 10)) {
 							delete app.previousCustom;
 						}
 						$('div#no-stats').css('display', 'block');
