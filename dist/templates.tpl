@@ -1005,7 +1005,7 @@
 </script>
 <script type="text/x-handlebars-template" id="header-template"><bar class="navigation">
 	<button class="left" id="button-left"></button>
-	<div class="logo"><div onclick="if($('section#settings').is(':visible')) { app.databaseController.reset(); app.init(); } else { $('header button').hide(); app.view.addRandomTrade(); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>
+	<div class="logo"><div onclick="if($('section#settings').is(':hidden')) { $('header button').hide(); app.view.addRandomTrade(); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>
 	<button class="right" id="button-right"></button>
 </bar>
 </script>
@@ -1391,6 +1391,8 @@
 </script>
 <script type="text/x-handlebars-template" id="settings-general-template"><div class="box-violet" id="complete">
 	<div class="button-primary">Feedback</div>
+	<div class="button-primary">Help</div>
+	<div class="button-primary" id="button-reset" style="color: #ff3b30;">Reset DB</div>
 	<span class="copyright">
 		TradingLog &copy; 2015<br />
 		www.tradinglog.com<br />

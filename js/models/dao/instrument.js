@@ -41,7 +41,7 @@
 
 		findAll: function(callback) {
 			this.db.transaction(function(tx) {
-				var sql = 'SELECT * FROM instrument WHERE is_deleted = "0" ORDER BY name;';
+				var sql = 'SELECT * FROM instrument WHERE is_deleted = "0" ORDER BY type, name;';
 				tx.executeSql(sql, [], function(tx, results) {
 					var instruments = [];
 					for(var i = 0; i < results.rows.length; i++) {

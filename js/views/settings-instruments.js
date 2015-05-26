@@ -56,6 +56,13 @@
 				}
 			});
 			alertify.confirm('Are you sure?', function(e) {
+				var $alertify = $('section#alertify');
+				$alertify.hide();
+				setTimeout(function() {
+					if($('div#alertify-cover').is(':hidden')) {
+						$alertify.show();
+					}
+				}, 100);
 				if(e) {
 					$wrapper.hide();
 					var instruments = new app.Collections.instruments();

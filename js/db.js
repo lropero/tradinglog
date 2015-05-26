@@ -59,11 +59,6 @@
 					'body TEXT,' +
 					'created_at INTEGER' +
 				');',
-				// 'CREATE TABLE IF NOT EXISTS indices (' +
-				// 	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
-				// 	'type INTEGER,' +
-				// 	'map INTEGER' +
-				// ');',
 				'CREATE TABLE IF NOT EXISTS instrument (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'type INTEGER,' +
@@ -144,7 +139,7 @@
 			});
 		},
 
-		reset: function() {
+		reset: function(callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT name FROM sqlite_master WHERE type = "table" AND name NOT LIKE "sqlite_%";';
 				tx.executeSql(sql, [], function(tx, results) {
@@ -156,6 +151,8 @@
 						tx.executeSql('DROP TABLE ' + name + ';');
 					}
 				});
+			}, null, function() {
+				callback();
 			});
 		}
 	};

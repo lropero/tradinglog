@@ -2,7 +2,7 @@
 	'use strict';
 
 	app.stats = {
-		availables:{
+		availables: {
 			monthly: [],
 			weekly: []
 		},
