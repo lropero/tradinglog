@@ -57,16 +57,8 @@
 							}
 						}, 100);
 						if(e) {
-							app.cache.reset();
-							app.dates = {};
-							app.stats.availables = {
-								monthly: [],
-								weekly: []
-							};
-							app.stats.data = {};
 							delete app.account;
-							delete app.count;
-							delete app.previousCustom;
+							app.cache.reset();
 							app.databaseController.reset(app.init);
 						}
 					});

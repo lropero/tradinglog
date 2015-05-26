@@ -41,7 +41,6 @@
 								var layout = new app.Views.layout();
 
 								layout.deferred.done(function() {
-									app.dates = {};
 									app.fetchObjects().done(function() {
 
 										// Remove
@@ -110,7 +109,15 @@
 						app.objects = JSON.parse(LZString.decompressFromBase64(cache.objects));
 						deferred.resolve();
 					} else {
+						delete app.count;
+						delete app.previousCustom;
+						app.dates = {};
 						app.operations = [];
+						app.stats.availables = {
+							monthly: [],
+							weekly: []
+						};
+						app.stats.data = {};
 						app.trades = [];
 						$.when(
 							app.fetchOperations(),
@@ -136,7 +143,7 @@
 		fetchOperations: function() {
 			var deferred = $.Deferred();
 			var operations = new app.Collections.operations();
-			operations.setAccountId(app.account.get('id'));
+			operations.setAccountId(app.account.id);
 			operations.fetch({
 				success: function() {
 					operations = operations.toJSON();
@@ -152,7 +159,7 @@
 		fetchTrades: function() {
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
-			trades.setAccountId(app.account.get('id'));
+			trades.setAccountId(app.account.id);
 			trades.deferreds = [];
 			trades.fetch({
 				success: function() {

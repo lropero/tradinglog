@@ -87,6 +87,7 @@
 				');',
 				'CREATE TABLE IF NOT EXISTS stats (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'account_id INTEGER,' +
 					'name TEXT,' +
 					'data TEXT,' +
 					'is_obsolete INTEGER' +

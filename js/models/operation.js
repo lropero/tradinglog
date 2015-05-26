@@ -34,9 +34,12 @@
 		},
 
 		delete: function(callback) {
+			var self = this;
 			this.destroy({
 				success: function() {
-					callback(self.get('amount'));
+					if(typeof callback === 'function') {
+						callback(self.get('amount'));
+					}
 				}
 			});
 		}

@@ -107,7 +107,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			var trades = new app.Collections.trades();
-			trades.setAccountId(app.account.get('id'));
+			trades.setAccountId(app.account.id);
 			if(name.indexOf('#') > -1) {
 				var split = name.split('#');
 				var groups = [];
@@ -336,6 +336,7 @@
 						} else {
 							var stats = new app.Models.stats();
 							stats.set({
+								account_id: app.account.id,
 								name: name,
 								data: self.data[name],
 								is_obsolete: 0
@@ -359,6 +360,7 @@
 				deferred.resolve(this.decompress(this.data[name]));
 			} else {
 				var statss = new app.Collections.statss();
+				statss.setAccountId(app.account.id);
 				statss.setName(name);
 				statss.fetch({
 					success: function() {

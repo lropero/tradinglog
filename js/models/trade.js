@@ -121,7 +121,9 @@
 			this.deferred.done(function() {
 				self.destroy({
 					success: function() {
-						callback();
+						if(typeof callback === 'function') {
+							callback();
+						}
 					}
 				});
 			});

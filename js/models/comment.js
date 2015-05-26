@@ -25,7 +25,9 @@
 		delete: function(callback) {
 			this.destroy({
 				success: function() {
-					callback();
+					if(typeof callback === 'function') {
+						callback();
+					}
 				}
 			});
 		}
