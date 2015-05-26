@@ -246,7 +246,7 @@
 							$numbers.removeClass('positive');
 						}
 					} else {
-						if(type === 0) {
+						if(type === 'all') {
 							delete app.previousCustom;
 						}
 						$('div#no-stats').css('display', 'block');
