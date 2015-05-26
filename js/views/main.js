@@ -230,8 +230,8 @@
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
-				$('div.label.open').css('backgroundColor', '#666666');
-				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+				$('div.label.open').css('backgroundColor', '#555555');
+				$('div.label:not(.open)').css('backgroundColor', '#cccccc');
 				$calculator.css('backgroundColor', '#4020d0');
 				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 				return;
