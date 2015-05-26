@@ -117,19 +117,14 @@
 		},
 
 		viewInstrument: function(e) {
-			var self = this;
 			e.preventDefault();
 			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var $label = $($wrapper.context);
-			$label.css('backgroundColor', '#333');
 			var key = $wrapper.data('key');
 			app.view.subview.destroy();
-			setTimeout(function() {
-				app.view.subview = new app.Views.settingsAddInstrument({
-					instrument: self.instruments[key]
-				});
-			}, 10);
+			app.view.subview = new app.Views.settingsAddInstrument({
+				instrument: this.instruments[key]
+			});
 		}
 	});
 })();
