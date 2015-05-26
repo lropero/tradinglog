@@ -1573,6 +1573,10 @@ select {
 .box-swipe .radiobutton.active:after {
   color: #ffffff;
 }
+.box-violet .radiobutton.active.activating:after,
+.box-swipe .radiobutton.active.activating:after {
+  color: #fdb45c;
+}
 .box-violet .button-primary,
 .box-swipe .button-primary {
   color: #4020d0;

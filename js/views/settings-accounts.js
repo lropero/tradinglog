@@ -52,7 +52,7 @@
 			if(!$target.hasClass('active')) {
 				app.view.subview.destroy();
 				this.$el.find('div.radiobutton.active').removeClass('active');
-				$target.addClass('active');
+				$target.addClass('active activating');
 				app.account.set({
 					is_active: 0
 				});
