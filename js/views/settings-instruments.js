@@ -117,14 +117,17 @@
 		},
 
 		viewInstrument: function(e) {
+			var self = this;
 			e.preventDefault();
 			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
-			app.view.subview.destroy();
-			app.view.subview = new app.Views.settingsAddInstrument({
-				instrument: this.instruments[key]
-			});
+			setTimeout(function() {
+				app.view.subview.destroy();
+				app.view.subview = new app.Views.settingsAddInstrument({
+					instrument: self.instruments[key]
+				});
+			}, 10);
 		}
 	});
 })();
