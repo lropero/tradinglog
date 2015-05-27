@@ -1259,13 +1259,13 @@ select {
   content: '\f3c6';
 }
 .wrapper-feedback .button-feedback.happy.active:after {
-  color: #4bd763;
+  content: '\f31c';
 }
 .wrapper-feedback .button-feedback.sad:after {
   content: '\f4d7';
 }
 .wrapper-feedback .button-feedback.sad.active:after {
-  color: #ff3b30;
+  content: '\f34a';
 }
 #map .wrapper-label {
   height: 30px;
@@ -1863,6 +1863,37 @@ select {
   display: block;
   margin-bottom: 15px;
   content: '\f27b';
+  text-align: center;
+}
+#thank-you {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #4020d0;
+}
+#thank-you span {
+  font-size: 1.6em;
+  font-weight: 100;
+  font-style: normal;
+  line-height: 1;
+  position: relative;
+  display: block;
+  clear: both;
+  text-align: center;
+  color: #2c168e;
+  -webkit-font-smoothing: antialiased;
+}
+#thank-you span:before {
+  font-family: ionicons;
+  font-size: 30px;
+  line-height: 1;
+  position: relative;
+  display: block;
+  margin-bottom: 15px;
+  content: '\f2c3';
   text-align: center;
 }
 #map {

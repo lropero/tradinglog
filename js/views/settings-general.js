@@ -4,6 +4,7 @@
 	app.Views.settingsGeneral = Backbone.View.extend({
 		el: 'section#settings section#content',
 		events: {
+			'tap div#button-feedback': 'buttonFeedback',
 			'tap div#button-reset': 'buttonReset'
 		},
 
@@ -27,6 +28,12 @@
 				this.shake();
 			}
 			return this;
+		},
+
+		buttonFeedback: function(e) {
+			e.preventDefault();
+			app.view.subview.destroy();
+			app.view.subview = new app.Views.settingsGeneralFeedback();
 		},
 
 		buttonReset: function(e) {

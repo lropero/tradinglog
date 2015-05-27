@@ -366,9 +366,9 @@
 			data['longs'].sharpeRatio = self.calculateSharpeRatio(nets.longs, data['longs'].averageTrade);
 			data['shorts'].sharpeRatio = self.calculateSharpeRatio(nets.shorts, data['shorts'].averageTrade);
 			if(initialBalance > 0) {
-				data['all'].variation = (balance - initialBalance) * 100 / initialBalance;
-				data['longs'].variation = (balanceLongs - initialBalance) * 100 / initialBalance;
-				data['shorts'].variation = (balanceShorts - initialBalance) * 100 / initialBalance;
+				data['all'].variation = data['all'].net * 100 / initialBalance;
+				data['longs'].variation = data['longs'].net * 100 / initialBalance;
+				data['shorts'].variation = data['shorts'].net * 100 / initialBalance;
 			}
 			data['all'].balances = self.rebalance(data['all'].balances);
 			data['longs'].balances = self.rebalance(data['longs'].balances);
@@ -392,19 +392,19 @@
 		get: function(name) {
 			var self = this;
 			var deferred = $.Deferred();
-			if(this.data[name]) {
-				deferred.resolve(this.decompress(this.data[name]));
-			} else {
-				var statss = new app.Collections.statss();
-				statss.setAccountId(app.account.id);
-				statss.setName(name);
-				statss.fetch({
-					success: function() {
-						if(statss.length) {
-							var stats = statss.at(0).toJSON();
-							self.data[stats.name] = stats.data;
-							deferred.resolve(self.decompress(stats.data));
-						} else {
+			// if(this.data[name]) {
+			// 	deferred.resolve(this.decompress(this.data[name]));
+			// } else {
+			// 	var statss = new app.Collections.statss();
+			// 	statss.setAccountId(app.account.id);
+			// 	statss.setName(name);
+			// 	statss.fetch({
+			// 		success: function() {
+			// 			if(statss.length) {
+			// 				var stats = statss.at(0).toJSON();
+			// 				self.data[stats.name] = stats.data;
+			// 				deferred.resolve(self.decompress(stats.data));
+			// 			} else {
 							var dateFrom = new Date();
 							dateFrom.setHours(0, 0, 0, 0);
 							var dateTo = new Date();
@@ -443,10 +443,10 @@
 							}
 							var stats = self.generate(name, dateFrom.getTime(), dateTo.getTime());
 							deferred.resolve(stats);
-						}
-					}
-				});
-			}
+			// 			}
+			// 		}
+			// 	});
+			// }
 			return deferred;
 		},
 

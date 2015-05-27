@@ -261,6 +261,27 @@
 						}
 					}
 					break;
+				case 'settings-general-feedback':
+					options = {
+						left: {
+							action: function() {
+								app.view.subview.destroy();
+								app.view.subview = new app.Views.settingsGeneral();
+							},
+							icon: 'f124',
+							text: 'Cancel'
+						},
+						right: {
+							action: function() {
+								if(app.submit) {
+									app.submit();
+								}
+							},
+							animate: true,
+							text: 'Send'
+						}
+					}
+					break;
 				case 'settings-instruments':
 					options = {
 						right: {
