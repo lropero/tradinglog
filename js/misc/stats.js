@@ -88,6 +88,7 @@
 			var self = this;
 			var deferred = $.Deferred();
 			var statss = new app.Collections.statss();
+			statss.setAccountId(app.account.id);
 			statss.setName(name);
 			statss.fetch({
 				success: function() {
