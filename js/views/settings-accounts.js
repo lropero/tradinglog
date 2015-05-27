@@ -5,7 +5,7 @@
 		el: 'section#settings section#content',
 		events: {
 			'tap div.account:not(.swiped)': 'viewAccount',
-			'tap div.radiobutton': 'activeAccount',
+			'tap div.radiobutton': 'activateAccount',
 			'tap li.button-swipe.delete': 'buttonDelete'
 		},
 
@@ -43,15 +43,16 @@
 			return this;
 		},
 
-		activeAccount: function(e) {
+		activateAccount: function(e) {
 			var self = this;
 			e.preventDefault();
 			e.stopPropagation();
+			$('header button').hide();
 			var $target = $(e.currentTarget);
 			if(!$target.hasClass('active')) {
 				app.view.subview.destroy();
 				this.$el.find('div.radiobutton.active').removeClass('active');
-				$target.addClass('active');
+				$target.addClass('active activating');
 				app.account.set({
 					is_active: 0
 				});
@@ -71,10 +72,11 @@
 									success: function(model) {
 										app.account = model;
 										app.fetchObjects().done(function() {
-											app.cache.delete('main');
 											app.cache.delete('mainMap');
-											app.view.subview.destroy();
-											app.view.subview = new app.Views.settingsAccounts();
+											app.cache.delete('main').done(function() {
+												app.view.subview.destroy();
+												app.view.subview = new app.Views.settingsAccounts();
+											});
 										});
 									}
 								});
@@ -98,6 +100,13 @@
 				}
 			});
 			alertify.confirm('Are you sure?', function(e) {
+				var $alertify = $('section#alertify');
+				$alertify.hide();
+				setTimeout(function() {
+					if($('div#alertify-cover').is(':hidden')) {
+						$alertify.show();
+					}
+				}, 100);
 				if(e) {
 					$wrapper.hide();
 					var accounts = new app.Collections.accounts();
@@ -113,17 +122,14 @@
 		},
 
 		viewAccount: function(e) {
-			var self = this;
 			e.preventDefault();
 			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var $label = $($wrapper.context);
-			$label.css('backgroundColor', '#333');
 			var key = $wrapper.data('key');
 			app.view.subview.destroy();
-			setTimeout(function() {
-				app.view.subview = new app.Views.settingsAddAccount(self.accounts[key]);
-			}, 10);
+			app.view.subview = new app.Views.settingsAddAccount({
+				account: this.accounts[key]
+			});
 		}
 	});
 })();

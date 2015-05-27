@@ -101,6 +101,105 @@
 				}
 			}
 			return string;
+		},
+
+		toDate: function(timestamp) {
+			var today = new Date();
+			today.setHours(0, 0, 0, 0);
+			var time = today.getTime();
+			if(timestamp > time) {
+				return 'Today';
+			} else if(timestamp > time - (24 * 60 * 60 * 1000)) {
+				return 'Yesterday';
+			} else {
+				var week = new Date(today.getTime());
+				week.setDate(today.getDate() - 6);
+				if(timestamp > week.getTime()) {
+					switch((new Date(timestamp)).getDay()) {
+						case 0:
+							return 'Sunday';
+							break;
+						case 1:
+							return 'Monday';
+							break;
+						case 2:
+							return 'Tuesday';
+							break;
+						case 3:
+							return 'Wednesday';
+							break;
+						case 4:
+							return 'Thursday';
+							break;
+						case 5:
+							return 'Friday';
+							break;
+						case 6:
+							return 'Saturday';
+							break;
+					}
+				} else {
+					var then = new Date(timestamp);
+					var month = '';
+					switch(then.getMonth()) {
+						case 0:
+							month = 'Jan';
+							break;
+						case 1:
+							month = 'Feb';
+							break;
+						case 2:
+							month = 'Mar';
+							break;
+						case 3:
+							month = 'Apr';
+							break;
+						case 4:
+							month = 'May';
+							break;
+						case 5:
+							month = 'Jun';
+							break;
+						case 6:
+							month = 'Jul';
+							break;
+						case 7:
+							month = 'Aug';
+							break;
+						case 8:
+							month = 'Sep';
+							break;
+						case 9:
+							month = 'Oct';
+							break;
+						case 10:
+							month = 'Nov';
+							break;
+						case 11:
+							month = 'Dec';
+							break;
+					}
+					var date = then.getDate();
+					var digit = date % 10;
+					var string = month + '. ' + date + (digit === 1 ? 'st' : (digit === 2 ? 'nd' : (digit === 3 ? 'rd' : 'th'))) + ', ' + then.getFullYear();
+					return string;
+				}
+			}
+		},
+
+		toTime: function(timestamp) {
+			var then = new Date(timestamp);
+			var hours = then.getHours();
+			var minutes = then.getMinutes();
+			if(minutes < 10) {
+				minutes = '0' + minutes;
+			}
+			var meridiem = 'am';
+			if(hours > 12) {
+				hours -= 12;
+				meridiem = 'pm';
+			}
+			return hours + ':' + minutes + meridiem;
 		}
 	};
 })();

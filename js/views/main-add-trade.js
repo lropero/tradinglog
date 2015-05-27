@@ -128,7 +128,7 @@
 			if(!already) {
 				var trade = new app.Models.trade();
 				trade.set({
-					account_id: app.account.get('id'),
+					account_id: app.account.id,
 					instrument_id: instrument_id,
 					type: type
 				});
@@ -170,11 +170,13 @@
 											trade.deferred.then(function() {
 												app.count.open++;
 												app.objects.unshift(trade.toJSON());
-												app.loadView('mainViewTrade', {
-													key: 0,
-													top: 0
-												}, function() {
-													app.cache.delete('main');
+												app.storeCache().done(function() {
+													app.loadView('mainViewTrade', {
+														key: 0,
+														top: 0
+													}, function() {
+														app.cache.delete('main');
+													});
 												});
 											});
 										}

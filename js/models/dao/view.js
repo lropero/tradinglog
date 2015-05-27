@@ -12,7 +12,7 @@
 				var sql = 'SELECT * FROM view WHERE name = "' + model.get('name') + '";';
 				tx.executeSql(sql, [], function(tx, results) {
 					if(results.rows.length === 0) {
-						var fields = ['name', 'html', 'extra', 'is_obsolete', 'created_at'];
+						var fields = ['name', 'html', 'extra', 'is_obsolete'];
 						var insert = app.databaseController.buildInsert('view', fields, model);
 						tx.executeSql(insert.sql, insert.parameters, function(tx, results) {
 							callback();
@@ -47,19 +47,11 @@
 			});
 		},
 
-		// sweep: function() {
-		// 	var timestamp = (new Date()).getTime() - (200 * 24 * 60 * 60 * 1000);
-		// 	this.db.transaction(function(tx) {
-		// 		var sql = 'DELETE FROM views WHERE created_at < "' + timestamp + '";';
-		// 		tx.executeSql(sql);
-		// 	});
-		// },
-
 		update: function(model, callback) {
 			model = model.toJSON();
 			this.db.transaction(function(tx) {
-				var sql = 'UPDATE view SET html = ?, extra = ?, is_obsolete = ?, created_at = ? WHERE name = "' + model.name + '";';
-				tx.executeSql(sql, [model.html, model.extra, model.is_obsolete, model.created_at]);
+				var sql = 'UPDATE view SET html = ?, extra = ?, is_obsolete = ? WHERE name = "' + model.name + '";';
+				tx.executeSql(sql, [model.html, model.extra, model.is_obsolete]);
 				callback();
 			});
 		}

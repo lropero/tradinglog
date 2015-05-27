@@ -246,7 +246,9 @@
 							$numbers.removeClass('positive');
 						}
 					} else {
-						delete app.previousCustom;
+						if(!parseInt(stats['all'].trades, 10)) {
+							delete app.previousCustom;
+						}
 						$('div#no-stats').css('display', 'block');
 						$('div.wrapper-control-box-swipe').css('display', 'none');
 					}

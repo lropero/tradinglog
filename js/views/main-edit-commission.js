@@ -62,7 +62,14 @@
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
 				$('header button').hide();
-				var previousBalance = app.objects[this.key].net * 100 / app.objects[this.key].variation;
+				var previousBalance = app.account.get('balance');
+				for(var i = app.count.open; i <= this.key; i++) {
+					if(app.objects[i].instrument_id) {
+						previousBalance -= app.objects[i].net;
+					} else {
+						previousBalance -= app.objects[i].amount;
+					}
+				}
 				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
 				var newVariation = newNet * 100 / previousBalance;
 				var newBalance = previousBalance + newNet;
@@ -109,20 +116,19 @@
 						newBalance += app.objects[i].amount;
 					}
 				}
-				app.cache.delete('main');
-				var trades = new app.Collections.trades();
-				trades.setFetchId(app.objects[this.key].id);
-				trades.fetch({
-					success: function() {
-						var trade = trades.at(0);
-						trade.set({
-							commission: app.objects[self.key].commission,
-							edit_commission: 0,
-							variation: newVariation
-						});
-						trade.save(null, {
-							success: function() {
-								app.cache.delete('mainViewTrade' + trade.id).done(function() {
+				app.storeCache().done(function() {
+					var trades = new app.Collections.trades();
+					trades.setFetchId(app.objects[self.key].id);
+					trades.fetch({
+						success: function() {
+							var trade = trades.at(0);
+							trade.set({
+								commission: app.objects[self.key].commission,
+								edit_commission: 0,
+								variation: newVariation
+							});
+							trade.save(null, {
+								success: function() {
 									app.loadView('mainViewTrade', {
 										key: self.key,
 										top: self.top
@@ -133,11 +139,13 @@
 										var trades = new app.Collections.trades();
 										trades.setAffected(affected.trades);
 										trades.fetch();
+										app.cache.delete('main');
+										app.cache.delete('mainMap');
 									});
-								});
-							}
-						});
-					}
+								}
+							});
+						}
+					});
 				});
 			}
 		}

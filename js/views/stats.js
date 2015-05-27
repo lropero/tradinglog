@@ -8,12 +8,13 @@
 		},
 
 		initialize: function() {
+			this.subview = {};
 			this.template = Handlebars.compile(app.templateLoader.get('stats'));
 			this.render();
 		},
 
 		destroy: function() {
-			if(app.stats.availables.monthly.length && typeof this.subview.destroy === 'function') {
+			if(typeof this.subview.destroy === 'function') {
 				this.subview.destroy();
 			}
 			this.undelegateEvents();
@@ -22,7 +23,7 @@
 		render: function() {
 			app.trigger('change', 'stats');
 			this.$el.html(this.template());
-			if(!app.firstDate) {
+			if(!app.dates.firstDate) {
 				$('div#no-stats').css('display', 'block');
 			} else {
 				this.subview = new app.Views.statsNumbers({

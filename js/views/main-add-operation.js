@@ -81,7 +81,7 @@
 
 			var operation = new app.Models.operation();
 			operation.set({
-				account_id: app.account.get('id'),
+				account_id: app.account.id,
 				amount: amount,
 				description: description,
 				variation: amount * 100 / app.account.get('balance'),
@@ -104,11 +104,9 @@
 								app.objects[app.count.open].isNewest = false;
 								app.objects.splice(app.count.open, 0, operation.toJSON());
 								app.objects[app.count.open].isNewest = true;
-								app.cache.delete('main').done(function() {
-									app.loadView('main', {}, function() {
-										if(app.objects[app.count.open + 1].instrument_id) {
-											app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id);
-										}
+								app.storeCache().done(function() {
+									app.cache.delete('main').done(function() {
+										app.loadView('main', {});
 									});
 								});
 							}

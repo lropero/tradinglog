@@ -11,10 +11,11 @@
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
 	</span>
 	<img id="twitter-connect" src="./img/twitter_singin.png"/>
-</section></script>
+</section>
+</script>
 <script type="text/x-handlebars-template" id="header-template"><bar class="navigation">
 	<button class="left" id="button-left"></button>
-	<div class="logo"><div onclick="if($('section#settings').is(':visible')) { app.databaseController.reset(); app.init(); } else { $('header button').hide(); app.view.addRandomTrade(); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>
+	<div class="logo"><div onclick="if($('section#settings').is(':hidden') && typeof app.view.addRandomTrade === 'function') { $('header button').hide(); app.view.addRandomTrade(); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>
 	<button class="right" id="button-right"></button>
 </bar>
 </script>
@@ -244,98 +245,37 @@
 		{{/each}}
 	</ul>
 </section></script>
-<script type="text/x-handlebars-template" id="main-view-trade-template"><div id="loading"><span></span></div>
-<div id="top">
-	<ul>
-		<li class="wrapper-label">
-			<div class="label trade {{#if trade.isLong}}long{{else}}short{{/if}} {{#if trade.isOpen}}open {{/if}}full">
-				<div class="ball">
-					{{#if trade.edit_commission}}
+<script type="text/x-handlebars-template" id="main-view-trade-template"><div id="view" style="display: none;">
+	<div id="loading"><span></span></div>
+	<div id="top">
+		<ul>
+			<li class="wrapper-label">
+				<div class="label trade full">
+					<div class="ball">
 						<div class="globe-commission"></div>
-					{{/if}}
-					<div class="icon"></div>
+						<div class="icon"></div>
+					</div>
+					<div class="row">
+						<div class="instrument"></div>
+						<div class="net"></div>
+					</div>
+					<div class="row">
+						<div id="info"></div>
+						<div class="variation"></div>
+					</div>
 				</div>
-				<div class="row">
-					<div class="instrument">{{trade.instrument}}</div>
-					<div class="net {{#gt trade.net 0}}positive{{else}}{{#lt trade.net 0}}negative{{else}}zero{{/lt}}{{/gt}}">{{#unless trade.isOpen}}{{#money trade.net}}{{/money}}{{else}}{{#if trade.hasClosedPositions}}{{#money trade.net}}{{/money}}{{/if}}{{/unless}}</div>
-				</div>
-				<div class="row">
-					<div class="{{#if trade.isOpen}}size-price{{else}}date{{/if}}">{{#if trade.isOpen}}{{trade.sizePrice}}{{else}}{{#date trade.closed_at}}{{/date}}{{/if}}</div>
-					{{#unless trade.isOpen}}
-						<div class="variation">{{#variation trade.variation}}{{/variation}}</div>
-					{{/unless}}
-				</div>
-			</div>
-		</li>
-	</ul>
-	<ul class="wrapper-button-default two-button-default">
-		{{#if trade.isOpen}}
-			<li class="button-default" data-view="mainAddPosition">Add position</li>
-		{{else}}
-			<li class="button-default" data-view="mainEditCommission">Edit commission</li>
-		{{/if}}
-		<li class="button-default" data-view="mainAddComment">Add comment</li>
-	</ul>
+			</li>
+		</ul>
+		<ul class="wrapper-button-default two-button-default">
+			<li class="button-default" data-view="mainAddPosition" id="add-position">Add position</li>
+			<li class="button-default" data-view="mainEditCommission" id="edit-commission">Edit commission</li>
+			<li class="button-default" data-view="mainAddComment">Add comment</li>
+		</ul>
+	</div>
+	<section id="content">
+		<ul></ul>
+	</section>
 </div>
-<section id="content">
-	<ul>
-		{{#each trade.objects}}
-			{{#if this.size}}
-				<li class="wrapper-label"{{#or ../../trade.isOpen ../../trade.isNewest}}{{#if this.last}}{{#gt ../../../../trade.positions 1}} data-swipe="1"{{/gt}}{{/if}}{{/or}}>
-					<div class="label position {{#gt this.size 0}}buy{{else}}sell{{/gt}}{{#or ../../trade.isOpen ../../trade.isNewest}}{{#if this.last}}{{#gt ../../../../trade.positions 1}} swipe{{/gt}}{{/if}}{{/or}}">
-						<div class="ball"></div>
-						<div class="row">
-							<div class="size-price">{{this.sizePrice}}</div>
-						</div>
-						<div class="row">
-							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
-						</div>
-						{{#or ../../trade.isOpen ../../trade.isNewest}}
-							{{#if this.last}}
-								{{#gt ../../../../trade.positions 1}}
-									<div class="swipe-triangle"></div>
-								{{/gt}}
-							{{/if}}
-						{{/or}}
-					</div>
-					{{#or ../../trade.isOpen ../../trade.isNewest}}
-						{{#if this.last}}
-							{{#gt ../../../../trade.positions 1}}
-								<div class="wrapper-swipe">
-									<div class="swipe-buttons">
-										<ul>
-											<li class="button-swipe delete" data-id="{{this.id}}"></li>
-										</ul>
-									</div>
-								</div>
-							{{/gt}}
-						{{/if}}
-					{{/or}}
-				</li>
-			{{else}}
-				<li class="wrapper-label" data-swipe="1">
-					<div class="label comment swipe">
-						<div class="ball"></div>
-						<div class="row">
-							<div class="body">{{#nl2br this.body}}{{/nl2br}}</div>
-						</div>
-						<div class="row">
-							<div class="date">{{#date this.created_at}}{{/date}} - {{#time this.created_at}}{{/time}}</div>
-						</div>
-						<div class="swipe-triangle"></div>
-					</div>
-					<div class="wrapper-swipe">
-						<div class="swipe-buttons">
-							<ul>
-								<li class="button-swipe delete" data-id="{{this.id}}"></li>
-							</ul>
-						</div>
-					</div>
-				</li>
-			{{/if}}
-		{{/each}}
-	</ul>
-</section>
 </script>
 <script type="text/x-handlebars-template" id="main-template"><section id="content">
 	<ul>
@@ -469,57 +409,62 @@
 	</div>
 </div>
 </script>
-<script type="text/x-handlebars-template" id="settings-add-instrument-template"><div class="box-violet" id="isolate">
-	<div class="button-primary" id="done">Done</div>
-</div>
-<div id="complete">
-	<div class="box-violet">
-		<ul class="wrapper-radiobutton" id="type">
-			<li class="group-radiobutton">
-				<div class="radiobutton{{#if this.instrument}}{{#equal this.instrument.type 1}} active{{/equal}}{{/if}}{{#unless this.instrument}} active{{/unless}}" data-type="1"></div>
-				<span>Future</span>
-			</li>
-			<li class="group-radiobutton">
-				<div class="radiobutton{{#if this.instrument}}{{#equal this.instrument.type 2}} active{{/equal}}{{/if}}" data-type="2"></div>
-				<span>Stock</span>
-			</li>
-			<li class="group-radiobutton">
-				<div class="radiobutton{{#if this.instrument}}{{#equal this.instrument.type 3}} active{{/equal}}{{/if}}" data-type="3"></div>
-				<span>Other</span>
-			</li>
-		</ul>
-		<form>
-			<div class="wrapper-input isolate">
-				<input id="name" type="text" placeholder="Instrument name" {{#if this.instrument}}value="{{this.instrument.name}}" {{/if}}disabled />
-				<span class="help-block"><span class="type-1 type-2">For example, <span class="type-1">'E-mini S&P 500' or 'ES'</span><span class="type-2">'Apple' or 'AAPL'</span>. </span>You can use any name as long as it lets you identify which trading vehicle refers to.</span>
-			</div>
-			<div class="wrapper-input isolate type-1 type-3">
-				<div class="input-icon price">
-					<input id="point_value" type="number" placeholder="Point value" {{#if this.instrument}}value="{{this.instrument.point_value}}" {{/if}}disabled />
+<script type="text/x-handlebars-template" id="settings-add-instrument-template"><div id="view" style="display: none;">
+	<div class="box-violet" id="isolate">
+		<div class="button-primary" id="done">Done</div>
+	</div>
+	<div id="complete">
+		<div class="box-violet">
+			<ul class="wrapper-radiobutton" id="type">
+				<li class="group-radiobutton">
+					<div class="radiobutton active" data-type="1" id="radio-1"></div>
+					<span>Future</span>
+				</li>
+				<li class="group-radiobutton">
+					<div class="radiobutton" data-type="2" id="radio-2"></div>
+					<span>Stock</span>
+				</li>
+				<li class="group-radiobutton">
+					<div class="radiobutton" data-type="3" id="radio-3"></div>
+					<span>Other</span>
+				</li>
+			</ul>
+			<form>
+				<div class="wrapper-input isolate">
+					<input id="name" type="text" placeholder="Instrument name" disabled />
+					<span class="help-block"><span class="type-1 type-2">For example, <span class="type-1">'E-mini S&P 500' or 'ES'</span><span class="type-2">'Apple' or 'AAPL'</span>. </span>You can use any name as long as it lets you identify which trading vehicle refers to.</span>
 				</div>
-				<span class="help-block">A point is the smallest possible price change on the left side of the decimal point (i.e. the integer part) and its value is the difference in money that is affected by this movement.<span class="type-1"> For example, a point variation in the ES (four 0.25 movements) represents a gain or loss of $50.</span><span class="type-3"> Defaults to $1.</span></span>
-			</div>
-			<div class="wrapper-input isolate type-1 type-3">
-				<div class="input-icon price">
-					<input id="commission" type="number" placeholder="Commission" {{#if this.instrument}}value="{{this.instrument.commission}}" {{/if}}disabled />
+				<div class="wrapper-input isolate type-1 type-3">
+					<div class="input-icon price">
+						<input id="point_value" type="number" placeholder="Point value" disabled />
+					</div>
+					<span class="help-block">A point is the smallest possible price change on the left side of the decimal point (i.e. the integer part) and its value is the difference in money that is affected by this movement.<span class="type-1"> For example, a point variation in the ES (four 0.25 movements) represents a gain or loss of $50.</span><span class="type-3"> Defaults to $1.</span></span>
 				</div>
-				<span class="help-block">This is a round-trip commission (charged once per buy/sell match). You'll be able to manually edit the commission by swiping the trade to the left once it's closed.<span class="type-3"> Defaults to $0.</span></span>
-			</div>
-			<div class="wrapper-checkbox type-3">
-				<div class="checkbox-tap">
-					<div class="checkbox{{#if this.instrument}}{{#equal this.instrument.alert 1}} active{{/equal}}{{/if}}{{#unless this.instrument}} active{{/unless}}" id="alert"></div>
-					<span>Commission alert icon <i class="ion-alert-circled"></i></span>
+				<div class="wrapper-input isolate type-1 type-3">
+					<div class="input-icon price">
+						<input id="commission" type="number" placeholder="Commission" disabled />
+					</div>
+					<span class="help-block">This is a round-trip commission (charged once per buy/sell match). You'll be able to manually edit the commission by swiping the trade to the left once it's closed.<span class="type-3"> Defaults to $0.</span></span>
 				</div>
-				<span class="help-block">We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate. An alert icon <i class="ion-alert-circled"></i> will be shown in every closed trade for this instrument to remind you of doing so. The icon will disappear after you manually edit the commission by swiping the trade to the left.</span>
-			</div>
-			<div class="text-note type-2"><b>Point value</b>: Stock's point value is always $1.</div>
-			<div class="text-note type-2"><b>Commission</b>: Since there are many commission schemas for stocks (flat rate, percentage, etc.), stock's commission is always $0 and such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them to remind you of manually editing the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</div>
-		</form>
+				<div class="wrapper-checkbox type-3">
+					<div class="checkbox-tap">
+						<div class="checkbox active" id="alert"></div>
+						<span>Commission alert icon <i class="ion-alert-circled"></i></span>
+					</div>
+					<span class="help-block">We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate. An alert icon <i class="ion-alert-circled"></i> will be shown in every closed trade for this instrument to remind you of doing so. The icon will disappear after you manually edit the commission by swiping the trade to the left.</span>
+				</div>
+				<div class="text-note type-2"><b>Point value</b>: Stock's point value is always $1.</div>
+				<div class="text-note type-2"><b>Commission</b>: Since there are many commission schemas for stocks (flat rate, percentage, etc.), stock's commission is always $0 and such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them to remind you of manually editing the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</div>
+			</form>
+		</div>
 	</div>
 </div>
 </script>
 <script type="text/x-handlebars-template" id="settings-general-template"><div class="box-violet" id="complete">
 	<div class="button-primary">Feedback</div>
+	<div class="button-primary">Help</div>
+	<br />
+	<div class="button-primary" id="button-reset" style="color: #ff3b30;">Reset DB</div>
 	<span class="copyright">
 		TradingLog &copy; 2015<br />
 		www.tradinglog.com<br />

@@ -46,17 +46,20 @@
 					'balance NUMERIC,' +
 					'is_active INTEGER' +
 				');',
+				'CREATE TABLE IF NOT EXISTS cache (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'account_id INTEGER,' +
+					'availables TEXT,' +
+					'count TEXT,' +
+					'dates TEXT,' +
+					'objects TEXT' +
+				');',
 				'CREATE TABLE IF NOT EXISTS comment (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'trade_id INTEGER,' +
 					'body TEXT,' +
 					'created_at INTEGER' +
 				');',
-				// 'CREATE TABLE IF NOT EXISTS indices (' +
-				// 	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
-				// 	'type INTEGER,' +
-				// 	'map INTEGER' +
-				// ');',
 				'CREATE TABLE IF NOT EXISTS instrument (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'type INTEGER,' +
@@ -84,6 +87,7 @@
 				');',
 				'CREATE TABLE IF NOT EXISTS stats (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'account_id INTEGER,' +
 					'name TEXT,' +
 					'data TEXT,' +
 					'is_obsolete INTEGER' +
@@ -106,8 +110,7 @@
 					'name TEXT,' +
 					'html TEXT,' +
 					'extra TEXT,' +
-					'is_obsolete INTEGER,' +
-					'created_at INTEGER' +
+					'is_obsolete INTEGER' +
 				');'
 			];
 			this.db.transaction(function(tx) {
@@ -126,10 +129,10 @@
 		populateInstruments: function() {
 			var sqls = [
 				'INSERT INTO instrument VALUES (null, 1, "E-mini S&P 500", 50, 5, 0, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 5, 0, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 2, "Apple Inc.", 1, 0, 1, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 2, "Google Inc.", 1, 0, 1, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 2, "Microsoft Corporation", 1, 0, 1, 0, 0);'
+				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 5, 0, 1, 0);',
+				'INSERT INTO instrument VALUES (null, 2, "Apple Inc.", 1, 0, 1, 2, 0);',
+				'INSERT INTO instrument VALUES (null, 2, "Google Inc.", 1, 0, 1, 3, 0);',
+				'INSERT INTO instrument VALUES (null, 2, "Microsoft Corporation", 1, 0, 1, 4, 0);'
 			];
 			this.db.transaction(function(tx) {
 				$.each(sqls, function(index, sql) {
@@ -138,7 +141,7 @@
 			});
 		},
 
-		reset: function() {
+		reset: function(callback) {
 			this.db.transaction(function(tx) {
 				var sql = 'SELECT name FROM sqlite_master WHERE type = "table" AND name NOT LIKE "sqlite_%";';
 				tx.executeSql(sql, [], function(tx, results) {
@@ -150,6 +153,8 @@
 						tx.executeSql('DROP TABLE ' + name + ';');
 					}
 				});
+			}, null, function() {
+				callback();
 			});
 		}
 	};

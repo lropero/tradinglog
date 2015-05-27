@@ -12,6 +12,7 @@
 		initialize: function() {
 			var self = this;
 			this.deferred = $.Deferred();
+			this.timeouts = [];
 			this.instruments = [];
 			var instruments = new app.Collections.instruments();
 			instruments.fetch({
@@ -56,6 +57,13 @@
 				}
 			});
 			alertify.confirm('Are you sure?', function(e) {
+				var $alertify = $('section#alertify');
+				$alertify.hide();
+				setTimeout(function() {
+					if($('div#alertify-cover').is(':hidden')) {
+						$alertify.show();
+					}
+				}, 100);
 				if(e) {
 					$wrapper.hide();
 					var instruments = new app.Collections.instruments();
@@ -73,8 +81,8 @@
 		buttonGroup: function(e) {
 			var self = this;
 			e.preventDefault();
-			clearTimeout(this.timeout);
 			var id = $(e.currentTarget).data('id');
+			clearTimeout(this.timeouts[id]);
 			var $span = $(e.currentTarget).children('span');
 			var group = $span.html();
 			var group_id = group.charCodeAt(0) - 65;
@@ -84,7 +92,7 @@
 			var newGroup = String.fromCharCode(group_id + 65);
 			$span.html(newGroup);
 			var $group = $(e.currentTarget).parents('.wrapper-swipe').prev().find('span.group');
-			this.timeout = setTimeout(function() {
+			this.timeouts[id] = setTimeout(function() {
 				var instruments = new app.Collections.instruments();
 				instruments.setFetchId(id);
 				instruments.fetch({
@@ -102,6 +110,12 @@
 									}
 								}
 								$group.html(newGroup);
+								for(var i = 0; i < app.objects.length; i++) {
+									if(app.objects[i].instrument_id === id) {
+										app.objects[i].group_id = group_id;
+									}
+								}
+								app.storeCache();
 							}
 						});
 					}
@@ -114,12 +128,12 @@
 			e.preventDefault();
 			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
-			var $label = $($wrapper.context);
-			$label.css('backgroundColor', '#333');
 			var key = $wrapper.data('key');
-			app.view.subview.destroy();
 			setTimeout(function() {
-				app.view.subview = new app.Views.settingsAddInstrument(self.instruments[key]);
+				app.view.subview.destroy();
+				app.view.subview = new app.Views.settingsAddInstrument({
+					instrument: self.instruments[key]
+				});
 			}, 10);
 		}
 	});

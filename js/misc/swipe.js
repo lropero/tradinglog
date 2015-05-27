@@ -37,9 +37,11 @@
 							$el.removeClass('swiped');
 						}
 						clearTimeout(app.timeout);
+						delete app.timeout;
 						app.enableScroll();
 					} else {
 						clearTimeout(app.timeout);
+						delete app.timeout;
 					}
 				},
 
@@ -54,6 +56,7 @@
 
 				start: function() {
 					clearTimeout(app.timeout);
+					delete app.timeout;
 					app.disableScroll();
 					var $el = $(this.el);
 					if(!$el.hasClass('swiped')) {
@@ -67,9 +70,11 @@
 					var left = $el.position().left;
 					if(left < parseInt(this.offset.left, 10)) {
 						clearTimeout(app.timeout);
+						delete app.timeout;
 						app.disableScroll();
 						app.timeout = setTimeout(function() {
 							app.enableScroll();
+							delete app.timeout;
 						}, 500);
 					}
 				}

@@ -46,7 +46,7 @@
 					self.deferred.resolve();
 				} else {
 					setTimeout(function() {
-						self.undelegateEvents();
+						self.destroy();
 					}, 10);
 				}
 			});
@@ -65,7 +65,7 @@
 			}
 			var trade = new app.Models.trade();
 			trade.set({
-				account_id: app.account.get('id'),
+				account_id: app.account.id,
 				instrument_id: instrument_id,
 				type: type
 			});
@@ -102,41 +102,31 @@
 													app.count.closed++;
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
 													app.objects[app.count.open].isNewest = true;
-													app.cache.delete('main').done(function() {
-														app.loadView('main', {}, function() {
 
-															// Stats
-															var date = new Date(app.timestamp);
-															if(!app.firstDate) {
-																app.firstDate = date.getTime();
-															}
-															app.lastDate = date.getTime();
-															var monthly = date.getFullYear() + '-' + date.getMonth();
-															date.setDate(date.getDate() - date.getDay());
-															var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-															if(app.stats.availables.monthly[0] !== monthly) {
-																app.stats.availables.monthly.unshift(monthly);
-															}
-															if(app.stats.availables.weekly[0] !== weekly) {
-																app.stats.availables.weekly.unshift(weekly);
-															}
-															app.stats.delete(monthly).done(function() {
-																app.stats.delete(weekly);
-															});
+													// Stats
+													var date = new Date(app.timestamp);
+													if(!app.dates.firstDate) {
+														app.dates.firstDate = date.getTime();
+													}
+													app.dates.lastDate = date.getTime();
+													var monthly = date.getFullYear() + '-' + date.getMonth();
+													date.setDate(date.getDate() - date.getDay());
+													var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+													if(app.stats.availables.monthly[0] !== monthly) {
+														app.stats.availables.monthly.unshift(monthly);
+													}
+													if(app.stats.availables.weekly[0] !== weekly) {
+														app.stats.availables.weekly.unshift(weekly);
+													}
+													app.stats.delete(monthly).done(function() {
+														app.stats.delete(weekly);
+													});
 
-															app.cache.delete('mainMap');
-															new app.Views.mainViewTrade({
-																cache: true,
-																key: app.count.open
+													app.storeCache().done(function() {
+														app.cache.delete('main').done(function() {
+															app.loadView('main', {}, function() {
+																app.cache.delete('mainMap');
 															});
-															if(app.objects[app.count.open + 1].instrument_id) {
-																app.cache.delete('mainViewTrade' + app.objects[app.count.open + 1].id).done(function() {
-																	new app.Views.mainViewTrade({
-																		cache: true,
-																		key: app.count.open + 1
-																	});
-																});
-															}
 														});
 													});
 												});
@@ -196,11 +186,10 @@
 												if(!(!app.count.closed && app.count.operations === 1)) {
 													app.objects[app.count.open].isNewest = true;
 												}
-												if(app.objects[app.count.open].instrument_id) {
-													app.cache.delete('mainViewTrade' + app.objects[app.count.open].id);
-												}
-												app.cache.delete('main').done(function() {
-													app.loadView('main');
+												app.storeCache().done(function() {
+													app.cache.delete('main').done(function() {
+														app.loadView('main');
+													});
 												});
 											}
 										});
@@ -218,8 +207,10 @@
 										var key = $wrapper.data('key').toString();
 										app.count.open--;
 										app.objects.splice(key, 1);
-										app.cache.delete('main').done(function() {
-											app.loadView('main');
+										app.storeCache().done(function() {
+											app.cache.delete('main').done(function() {
+												app.loadView('main');
+											});
 										});
 									});
 								}
@@ -239,8 +230,8 @@
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
-				$('div.label.open').css('backgroundColor', '#666666');
-				$('div.label:not(.open)').css('backgroundColor', '#f6f6f6');
+				$('div.label.open').css('backgroundColor', '#555555');
+				$('div.label:not(.open)').css('backgroundColor', '#cccccc');
 				$calculator.css('backgroundColor', '#4020d0');
 				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
 				return;
