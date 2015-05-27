@@ -45,12 +45,27 @@
 		},
 
 		persistUser: function (uid) {
+			console.log(HOST + "/api/v.1/users/" + uid[1]);
 			jQuery.get(HOST + "/api/v.1/users/" + uid[1], function (data) {
 				var userData = data[0];
 				var user = new app.Models.user();
-				user.set(userData);
-				user.set("device", window.device.uuid);
-				
+				user.set({
+					mongo_id: userData._id,
+					name: userData.name,
+					screen_name: userData.screen_name,
+					picture: userData.profile_image,
+					location: "",
+					device: window.device.uuid
+				});
+				console.log(user.toJSON());
+				user.save(null, {
+					success: function (model, insertId) {
+						console.log("user " + insertId + " inserted");
+						app.loadView('friendsProfile', {
+							key: insertId
+						});
+					}
+				});
 			});
 		}
 	});

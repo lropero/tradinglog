@@ -5,14 +5,21 @@
 	<a class="item" data-view="settings"><span class="icon ion-ios-gear"></span></a>
 </bar>
 </script>
+<script type="text/x-handlebars-template" id="friends-profile-template"><section id="content" class="friends-profile-container">
+	<div class="friends-profile-head">
+		<img src="{{ user.picture }}" />
+	</div>
+	<p>
+		@{{ user.screen_name }}
+	</p>
+</section></script>
 <script type="text/x-handlebars-template" id="friends-template"><section id="content" class="friends-container">
 	<div class="friends-head ion-ios-people"></div>
 	<span class="text-note">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
 	</span>
 	<img id="twitter-connect" src="./img/twitter_singin.png"/>
-</section>
-</script>
+</section></script>
 <script type="text/x-handlebars-template" id="header-template"><bar class="navigation">
 	<button class="left" id="button-left"></button>
 	<div class="logo"><div onclick="if($('section#settings').is(':hidden') && typeof app.view.addRandomTrade === 'function') { $('header button').hide(); app.view.addRandomTrade(); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>

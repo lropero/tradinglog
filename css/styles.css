@@ -2116,3 +2116,17 @@ section.map {
   display: block;
   margin: 30px auto;
 }
+
+.friends-profile-container .friends-head {
+  font-size: 35px;
+  color: #989898;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.friends-profile-container img {
+  display: block;
+  border-radius: 300px;
+  border: 3px solid #989898;
+  margin: 0 auto;
+}

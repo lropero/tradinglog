@@ -4,11 +4,12 @@
 	app.Models.user = Backbone.Model.extend({
 		dao: app.DAOs.user,
 		defaults: {
-			location: ""
-			name: ""
-			profile_image: ""
+			mongo_id: "",
+			name: "",
 			screen_name: "",
-			device: null
+			picture: "",
+			location: "",
+			device: ""
 		},
 
 		initialize: function() {
@@ -17,6 +18,12 @@
 
 		delete: function() {
 			this.destroy();
+		},
+
+		toJSON: function() {
+			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
+			json.picture = json.picture.replace("_normal.", ".");
+			return json;
 		}
 	});
 })();

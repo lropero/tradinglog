@@ -111,6 +111,15 @@
 					'html TEXT,' +
 					'extra TEXT,' +
 					'is_obsolete INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS tl_user (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'mongo_id TEXT,' +
+					'name TEXT,' +
+					'screen_name TEXT,' +
+					'picture TEXT,' +
+					'location TEXT,' +
+					'device TEXT' +
 				');'
 			];
 			this.db.transaction(function(tx) {
