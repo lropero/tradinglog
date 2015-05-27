@@ -2094,3 +2094,21 @@ section.map {
 .alertify-message {
   margin: 15px 0;
 }
+
+/* friends */
+.friends-container .friends-head {
+  font-size: 18em;
+  color: #989898;
+  display: block;
+  margin: -60px auto 0;
+  text-align: center;
+}
+
+.friends-container .text-note {
+  margin-top: -60px;
+}
+
+.friends-container img {
+  display: block;
+  margin: 30px auto;
+}

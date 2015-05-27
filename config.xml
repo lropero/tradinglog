@@ -39,6 +39,10 @@
 	<gap:plugin name="org.apache.cordova.device-motion" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 	<gap:plugin name="org.apache.cordova.statusbar" />
+	<!-- added for friends -->
+	<gap:plugin name="org.apache.cordova.network-information" />
+	<gap:plugin name="org.apache.cordova.device" />
+	<gap:plugin name="org.apache.cordova.InAppBrowser" />
 
 	<icon src="img/res/ios/icon/icon-29.png" gap:platform="ios" width="29" height="29" />
 	<icon src="img/res/ios/icon/icon-29@2x.png" gap:platform="ios" width="58" height="58" />
