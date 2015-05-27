@@ -392,19 +392,19 @@
 		get: function(name) {
 			var self = this;
 			var deferred = $.Deferred();
-			// if(this.data[name]) {
-			// 	deferred.resolve(this.decompress(this.data[name]));
-			// } else {
-			// 	var statss = new app.Collections.statss();
-			// 	statss.setAccountId(app.account.id);
-			// 	statss.setName(name);
-			// 	statss.fetch({
-			// 		success: function() {
-			// 			if(statss.length) {
-			// 				var stats = statss.at(0).toJSON();
-			// 				self.data[stats.name] = stats.data;
-			// 				deferred.resolve(self.decompress(stats.data));
-			// 			} else {
+			if(this.data[name]) {
+				deferred.resolve(this.decompress(this.data[name]));
+			} else {
+				var statss = new app.Collections.statss();
+				statss.setAccountId(app.account.id);
+				statss.setName(name);
+				statss.fetch({
+					success: function() {
+						if(statss.length) {
+							var stats = statss.at(0).toJSON();
+							self.data[stats.name] = stats.data;
+							deferred.resolve(self.decompress(stats.data));
+						} else {
 							var dateFrom = new Date();
 							dateFrom.setHours(0, 0, 0, 0);
 							var dateTo = new Date();
@@ -443,10 +443,10 @@
 							}
 							var stats = self.generate(name, dateFrom.getTime(), dateTo.getTime());
 							deferred.resolve(stats);
-			// 			}
-			// 		}
-			// 	});
-			// }
+						}
+					}
+				});
+			}
 			return deferred;
 		},
 
