@@ -8,10 +8,10 @@
 <script type="text/x-handlebars-template" id="friends-profile-template"><section id="content" class="friends-profile-container">
 	<div class="friends-profile-head">
 		<img src="{{ user.picture }}" />
+		<p>
+			@{{ user.screen_name }}
+		</p>
 	</div>
-	<p>
-		@{{ user.screen_name }}
-	</p>
 </section></script>
 <script type="text/x-handlebars-template" id="friends-template"><section id="content" class="friends-container">
 	<div class="friends-head ion-ios-people"></div>

@@ -2117,7 +2117,7 @@ section.map {
   margin: 30px auto;
 }
 
-.friends-profile-container .friends-head {
+.friends-profile-container .friends-profile-head p {
   font-size: 35px;
   color: #989898;
   margin: 0 auto;
@@ -2128,5 +2128,5 @@ section.map {
   display: block;
   border-radius: 300px;
   border: 3px solid #989898;
-  margin: 0 auto;
+  margin: 40px auto;
 }
