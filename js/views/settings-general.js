@@ -42,33 +42,27 @@
 			alertify.confirm('Are you sure?<br />All your data will be deleted!', function(e) {
 				var $alertify = $('section#alertify');
 				if(e) {
-					$alertify.hide();
-					setTimeout(function() {
-						if($('div#alertify-cover').is(':hidden')) {
-							$alertify.show();
+					alertify.set({
+						buttonReverse: false,
+						labels: {
+							cancel: 'No',
+							ok: 'Yes, DELETE EVERYTHING'
 						}
-						alertify.set({
-							buttonReverse: false,
-							labels: {
-								cancel: 'No',
-								ok: 'Yes, DELETE EVERYTHING'
+					});
+					alertify.confirm('Are you REALLY sure?<br />This action cannot be undone!', function(e) {
+						$alertify.hide();
+						setTimeout(function() {
+							if($('div#alertify-cover').is(':hidden')) {
+								$alertify.show();
 							}
-						});
-						alertify.confirm('Are you REALLY sure?<br />This action cannot be undone!', function(e) {
-							$alertify.hide();
-							setTimeout(function() {
-								if($('div#alertify-cover').is(':hidden')) {
-									$alertify.show();
-								}
-							}, 100);
-							if(e) {
-								delete app.account;
-								app.cache.reset();
-								app.databaseController.reset(app.init);
-							}
-						});
-						$('button#alertify-ok').css('backgroundColor', '#ff3b30');
-					}, 500);
+						}, 100);
+						if(e) {
+							delete app.account;
+							app.cache.reset();
+							app.databaseController.reset(app.init);
+						}
+					});
+					$('button#alertify-ok').css('backgroundColor', '#ff3b30');
 				} else {
 					$alertify.hide();
 					setTimeout(function() {
