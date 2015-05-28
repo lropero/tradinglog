@@ -519,7 +519,7 @@
 							i = 0;
 						}
 						balancesNew[at + i++] = parseFloat(sum.div(length - 2).toString());
-						sum = 0;
+						sum = Big(0);
 						if(counter > -1) {
 							if(counter < halfStep) {
 								at = split[0] + '-' + split[1] + '-';
