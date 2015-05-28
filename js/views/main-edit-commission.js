@@ -56,41 +56,42 @@
 			if(!commission.length) {
 				commission = $commission.attr('placeholder').replace('$', '').trim();
 			}
+			commission = parseFloat(commission);
 			var commissionModel = new app.Models.commission({
 				commission: commission
 			});
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
 				$('header button').hide();
-				var previousBalance = app.account.get('balance');
+				var previousBalance = Big(app.account.get('balance'));
 				for(var i = app.count.open; i <= this.key; i++) {
 					if(app.objects[i].instrument_id) {
-						previousBalance -= app.objects[i].net;
+						previousBalance = previousBalance.minus(app.objects[i].net);
 					} else {
-						previousBalance -= app.objects[i].amount;
+						previousBalance = previousBalance.minus(app.objects[i].amount);
 					}
 				}
-				var newNet = app.objects[this.key].profit - app.objects[this.key].loss - commission;
-				var newVariation = newNet * 100 / previousBalance;
-				var newBalance = previousBalance + newNet;
-				if(newBalance < 0) {
+				var newNet = parseFloat(Big(app.objects[this.key].profit).minus(app.objects[this.key].loss).minus(commission).toString());
+				var newVariation = parseFloat(Big(newNet * 100).div(previousBalance).toString());
+				var newBalance = previousBalance.plus(newNet);
+				if(parseFloat(newBalance.toString()) < 0) {
 					alertify.error('Non-sufficient funds');
 					$('header button').show();
 					return;
 				}
 				for(var i = this.key - 1; i >= 0; i--) {
 					if(app.objects[i].instrument_id) {
-						newBalance += app.objects[i].net;
+						newBalance = newBalance.plus(app.objects[i].net);
 					} else {
-						newBalance += app.objects[i].amount;
+						newBalance = newBalance.plus(app.objects[i].amount);
 					}
-					if(newBalance < 0) {
+					if(parseFloat(newBalance.toString()) < 0) {
 						alertify.error('Non-sufficient funds in subsequent account movements');
 						$('header button').show();
 						return;
 					}
 				}
-				app.objects[this.key].commission = parseFloat(commission);
+				app.objects[this.key].commission = commission;
 				app.objects[this.key].edit_commission = 0;
 				app.objects[this.key].net = newNet;
 				app.objects[this.key].variation = newVariation;
@@ -98,22 +99,22 @@
 					operations: [],
 					trades: []
 				};
-				newBalance = previousBalance + newNet;
+				newBalance = previousBalance.plus(newNet);
 				for(var i = this.key - 1; i >= 0; i--) {
 					if(app.objects[i].instrument_id) {
-						app.objects[i].variation = app.objects[i].net * 100 / newBalance;
+						app.objects[i].variation = parseFloat(Big(app.objects[i].net * 100).div(newBalance).toString());
 						affected.trades.push({
 							id: app.objects[i].id,
 							variation: app.objects[i].variation
 						});
-						newBalance += app.objects[i].net;
+						newBalance = newBalance.plus(app.objects[i].net);
 					} else {
-						app.objects[i].variation = app.objects[i].amount * 100 / newBalance;
+						app.objects[i].variation = parseFloat(Big(app.objects[i].amount * 100).div(newBalance).toString());
 						affected.operations.push({
 							id: app.objects[i].id,
 							variation: app.objects[i].variation
 						});
-						newBalance += app.objects[i].amount;
+						newBalance = newBalance.plus(app.objects[i].amount);
 					}
 				}
 				app.storeCache().done(function() {

@@ -44,7 +44,7 @@
 					return;
 				}
 				var monthly = true;
-				var $active = this.$el.find('li.active');
+				var $active = $('control.segmented').find('li.active');
 				if($active.data('period') === 'custom') {
 					$('li#control-custom').html('Custom');
 					monthly = false;
@@ -68,7 +68,7 @@
 				if($target.hasClass('active')) {
 					if(app.previousCustom) {
 						delete app.previousCustom;
-						this.$el.find('li.active').removeClass('active');
+						$('control.segmented').find('li.active').removeClass('active');
 						$target.addClass('active');
 						$target.html('Custom');
 						if(typeof this.subview.destroy === 'function') {
@@ -89,7 +89,7 @@
 						for(var i = 0; i < split[2].length; i++) {
 							groups.push(parseInt(split[2][i], 10));
 						}
-						this.$el.find('li.active').removeClass('active');
+						$('control.segmented').find('li.active').removeClass('active');
 						$target.addClass('active');
 						$target.html('Reset');
 						if(typeof this.subview.destroy === 'function') {
@@ -102,7 +102,7 @@
 							slide: app.stats.ats.slide
 						});
 					} else {
-						this.$el.find('li.active').removeClass('active');
+						$('control.segmented').find('li.active').removeClass('active');
 						$target.addClass('active');
 						if(app.stats.availables.monthly.length) {
 							if(typeof this.subview.destroy === 'function') {

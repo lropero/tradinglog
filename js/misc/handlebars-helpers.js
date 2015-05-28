@@ -127,7 +127,7 @@
 
 	Handlebars.registerHelper('map', function(net, max) {
 		var abs = Math.abs(net);
-		var percentage = accounting.toFixed(100 - (abs * 100 / max), 2);
+		var percentage = accounting.toFixed(100 - parseFloat(Big(abs * 100).div(max).toString()), 2);
 		return percentage;
 	});
 

@@ -108,11 +108,11 @@
 					}
 				}
 			}
-			var price = 0;
+			var price = Big(0);
 			for(var i = 0; i < array.length; i++) {
-				price += array[i];
+				price = price.plus(array[i]);
 			}
-			var average = price / array.length;
+			var average = parseFloat(price.div(array.length).toString());
 			return array.length + ' @ ' + accounting.formatMoney(average, '');
 		},
 
@@ -181,10 +181,7 @@
 		},
 
 		getNet: function() {
-			var commission = this.get('commission');
-			var gross = this.get('profit') - this.get('loss');
-			var net = gross - commission;
-			return net;
+			return parseFloat(Big(this.get('profit')).minus(this.get('loss')).minus(this.get('commission')).toString());
 		},
 
 		isLong: function() {
@@ -221,8 +218,8 @@
 
 		setPnL: function(callback) {
 			var self = this;
-			var profit = 0;
-			var loss = 0;
+			var profit = Big(0);
+			var loss = Big(0);
 			var count = 0;
 			var created_at = 0;
 			var array = [];
@@ -238,11 +235,11 @@
 							array.push(position.price);
 						} else {
 							count++;
-							var pnl = position.price - array[0];
+							var pnl = parseFloat(Big(position.price).minus(array[0]).toString());
 							if(pnl > 0) {
-								profit += pnl;
+								profit = profit.plus(pnl);
 							} else {
-								loss += Math.abs(pnl);
+								loss = loss.minus(pnl);
 							}
 							created_at = position.created_at;
 							array.shift();
@@ -252,11 +249,11 @@
 							array.push(position.price);
 						} else {
 							count++;
-							var pnl = array[0] - position.price;
+							var pnl = parseFloat(Big(array[0]).minus(position.price).toString());
 							if(pnl > 0) {
-								profit += pnl;
+								profit = profit.plus(pnl);
 							} else {
-								loss += Math.abs(pnl);
+								loss = loss.minus(pnl);
 							}
 							created_at = position.created_at;
 							array.shift();
@@ -266,15 +263,15 @@
 			}
 
 			var instrument = this.instrument.toJSON();
-			profit *= instrument.point_value;
-			loss *= instrument.point_value;
-			var commission = instrument.commission * count;
+			profit = profit.times(instrument.point_value);
+			loss = loss.times(instrument.point_value);
+			var commission = parseFloat(Big(instrument.commission).times(count).toString());
 			var closed_at = self.get('closed_at');
 			if(closed_at > 0) {
-				var balance = app.account.get('balance') - self.getNet();
+				var balance = parseFloat(Big(app.account.get('balance')).minus(self.getNet()).toString());
 				self.set({
-					profit: profit,
-					loss: loss,
+					profit: parseFloat(profit.toString()),
+					loss: parseFloat(loss.toString()),
 					commission: commission,
 					edit_commission: 0,
 					variation: 0,
@@ -295,12 +292,12 @@
 				});
 			} else {
 				self.set({
-					profit: profit,
-					loss: loss,
+					profit: parseFloat(profit.toString()),
+					loss: parseFloat(loss.toString()),
 					commission: commission,
 					edit_commission: 0
 				});
-				var balance = app.account.get('balance') + self.getNet();
+				var balance = parseFloat(Big(app.account.get('balance')).plus(self.getNet()).toString());
 				if(balance < 0) {
 					alertify.error('Non-sufficient funds');
 					var last = self.positions[self.positions.length - 1];
@@ -320,7 +317,7 @@
 							});
 						}
 						self.set({
-							variation: (profit - loss - commission) * 100 / app.account.get('balance'),
+							variation: parseFloat(profit.minus(loss).minus(commission).times(100).div(app.account.get('balance')).toString()),
 							closed_at: created_at
 						});
 						self.save(null, {
@@ -354,8 +351,10 @@
 				json.hasClosedPositions = this.hasClosedPositions;
 				json.instrument = this.instrument.get('name');
 				json.isLong = this.isLong();
-				if(!noNewest && this.id === app.objects[app.count.open].id) {
-					json.isNewest = true;
+				if(!noNewest) {
+					if(app.objects[app.count.open] && this.id === app.objects[app.count.open].id) {
+						json.isNewest = true;
+					}
 				}
 				json.isOpen = this.isOpen();
 				if(this.positions.length > 1) {

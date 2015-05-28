@@ -68,7 +68,7 @@
 			if(type === 2) {
 				amount *= -1;
 			}
-			var balance = app.account.get('balance') + amount;
+			var balance = parseFloat(Big(app.account.get('balance')).plus(amount).toString());
 			if(balance < 0) {
 				alertify.error('Withdrawal exceeds your balance');
 				return;
@@ -84,7 +84,7 @@
 				account_id: app.account.id,
 				amount: amount,
 				description: description,
-				variation: amount * 100 / app.account.get('balance'),
+				variation: parseFloat(Big(amount * 100).div(app.account.get('balance')).toString()),
 				created_at: created_at
 			});
 			operation.validate();

@@ -174,7 +174,7 @@
 								success: function() {
 									var operation = operations.at(0);
 									operation.delete(function(amount) {
-										var balance = app.account.get('balance') - amount;
+										var balance = parseFloat(Big(app.account.get('balance')).minus(amount).toString());
 										app.account.set({
 											balance: balance
 										});
@@ -224,7 +224,7 @@
 
 		calculator: function() {
 			var self = this;
-			app.sum = 0;
+			app.sum = Big(0);
 			var $calculator = $('div#calculator');
 			if($calculator.is(':visible')) {
 				$.each($('div.added'), function() {
@@ -233,7 +233,7 @@
 				$('div.label.open').css('backgroundColor', '#555555');
 				$('div.label:not(.open)').css('backgroundColor', '#cccccc');
 				$calculator.css('backgroundColor', '#4020d0');
-				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
+				$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
 				return;
 			}
 			this.undelegateEvents();
@@ -242,7 +242,7 @@
 			$('div.swipe-triangle').hide();
 			$('div.label.open').css('backgroundColor', '#555555');
 			$('div.label:not(.open)').css('backgroundColor', '#cccccc');
-			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(app.sum, '') + '</div>');
+			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(app.sum.toString(), '') + '</div>');
 			$calculator = $('div#calculator');
 			$('div.label').on('tap.calculator', function(e) {
 				e.preventDefault();
@@ -255,7 +255,7 @@
 						} else {
 							$target.css('backgroundColor', '#cccccc');
 						}
-						app.sum -= net;
+						app.sum = app.sum.minus(net);
 						$target.removeClass('added');
 					} else {
 						if($target.hasClass('open')) {
@@ -263,28 +263,28 @@
 						} else {
 							$target.css('backgroundColor', '#ffffff');
 						}
-						app.sum += net;
+						app.sum = app.sum.plus(net);
 						$target.addClass('added');
 					}
-					if(app.sum > 0) {
+					if(parseFloat(app.sum.toString()) > 0) {
 						$calculator.css('backgroundColor', '#4bd763');
-					} else if(app.sum < 0) {
+					} else if(parseFloat(app.sum.toString()) < 0) {
 						$calculator.css('backgroundColor', '#ff3b30');
 					} else {
 						$calculator.css('backgroundColor', '#4020d0');
 					}
-					$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
+					$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
 				}
 			});
 			$calculator.on('tap', function() {
-				app.sum = 0;
+				app.sum = Big(0);
 				$.each($('div.added'), function() {
 					$(this).removeClass('added');
 				});
 				$('div.label.open').css('backgroundColor', '#555555');
 				$('div.label:not(.open)').css('backgroundColor', '#cccccc');
 				$calculator.css('backgroundColor', '#4020d0');
-				$calculator.html('$ ' + accounting.formatMoney(app.sum, ''));
+				$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
 			});
 		},
 

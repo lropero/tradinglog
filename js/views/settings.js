@@ -32,7 +32,7 @@
 			e.preventDefault();
 			var $target = $(e.currentTarget);
 			var section = $target.data('section');
-			this.$el.find('li.active').removeClass('active');
+			$('control.segmented').find('li.active').removeClass('active');
 			$target.addClass('active');
 			if(typeof this.subview.destroy === 'function') {
 				this.subview.destroy();
