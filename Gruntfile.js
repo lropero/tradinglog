@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 			js: {
 				dest: 'tmp/scripts.js',
 				src: [
-					'js/vendor/jquery-2.1.3.js',
+					'js/vendor/jquery-2.1.4.js',
 					'js/vendor/underscore.js',
 					'js/vendor/backbone.js',
 					'js/vendor/accounting.js',
