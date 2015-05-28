@@ -76,8 +76,10 @@
 				for(var j = 0; j < fields.length; j++) {
 					if(j === 0) {
 						data[type][fields[j]] = balances;
-					} else {
+					} else if(properties[j - 1] !== 'N/A') {
 						data[type][fields[j]] = parseFloat(properties[j - 1]);
+					} else {
+						data[type][fields[j]] = properties[j - 1];
 					}
 				}
 			}

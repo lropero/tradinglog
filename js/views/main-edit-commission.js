@@ -53,6 +53,7 @@
 			var self = this;
 			var $commission = $('input#commission');
 			var commission = $commission.val();
+
 			if(!commission.length) {
 				commission = $commission.attr('placeholder').replace('$', '').trim();
 			}
@@ -130,24 +131,31 @@
 							});
 							trade.save(null, {
 								success: function() {
-									app.loadView('mainViewTrade', {
-										key: self.key,
-										top: self.top
-									}, function() {
-										var operations = new app.Collections.operations();
-										operations.setAffected(affected.operations);
-										operations.fetch();
-										var trades = new app.Collections.trades();
-										trades.setAffected(affected.trades);
-										trades.fetch();
-										var date = new Date(app.objects[self.key].closed_at);
-										var monthly = date.getFullYear() + '-' + date.getMonth();
-										date.setDate(date.getDate() - date.getDay());
-										var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-										app.stats.delete(monthly);
-										app.stats.delete(weekly);
-										app.cache.delete('main');
-										app.cache.delete('mainMap');
+									app.account.set({
+										balance: parseFloat(newBalance.toString())
+									});
+									app.account.save(null, {
+										success: function() {
+											app.loadView('mainViewTrade', {
+												key: self.key,
+												top: self.top
+											}, function() {
+												var operations = new app.Collections.operations();
+												operations.setAffected(affected.operations);
+												operations.fetch();
+												var trades = new app.Collections.trades();
+												trades.setAffected(affected.trades);
+												trades.fetch();
+												var date = new Date(app.objects[self.key].closed_at);
+												var monthly = date.getFullYear() + '-' + date.getMonth();
+												date.setDate(date.getDate() - date.getDay());
+												var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+												app.stats.delete(monthly);
+												app.stats.delete(weekly);
+												app.cache.delete('main');
+												app.cache.delete('mainMap');
+											});
+										}
 									});
 								}
 							});
