@@ -25,6 +25,11 @@
 				}
 				this.setAts(monthly, attrs.radio, attrs.slide);
 			}
+
+			if (window.device && window.device.platform) {
+				this.platform = window.device.platform;
+			}
+
 			this.template = Handlebars.compile(app.templateLoader.get('stats-numbers'));
 			this.render();
 		},
@@ -98,6 +103,7 @@
 					value: stats.commission
 				}
 			];
+
 			var options = {
 				animationEasing: 'easeOutElastic',
 				animationSteps: 38,
@@ -107,6 +113,10 @@
 				segmentStrokeWidth: 5,
 				showTooltips: false
 			};
+
+			if (this.platform === "Android")
+				options.animation = false;
+
 			var ctx = $doughnut.get(0).getContext('2d');
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
 			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
@@ -184,6 +194,10 @@
 				showTooltips: false,
 				verticalLines: verticalLines
 			};
+
+			if (this.platform === "Android")
+				options.animation = false;
+
 			var ctx = $('canvas#line').get(0).getContext('2d');
 			this.line = new Chart(ctx).Line(data, options);
 		},
