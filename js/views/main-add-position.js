@@ -110,6 +110,7 @@
 								var trade = trades.at(0);
 								trade.deferred.then(function() {
 									if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
+										delete app.previousCustom;
 										trade.setPnL(function(closed) {
 											if(closed) {
 												app.objects[app.count.open].isNewest = false;

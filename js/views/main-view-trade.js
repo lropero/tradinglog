@@ -217,6 +217,7 @@
 												var trade = trades.at(0);
 												trade.deferred.then(function() {
 													if((self.trade.type === 1 && size < 0) || (self.trade.type === 2 && size > 0)) {
+														delete app.previousCustom;
 														if(trade.get('closed_at')) {
 															trade.setPnL(function() {
 																var key = 0;

@@ -97,6 +97,7 @@
 										success: function() {
 											var trade2 = trades.at(0);
 											trade2.deferred.then(function() {
+												delete app.previousCustom;
 												trade2.setPnL(function() {
 													app.objects[app.count.open].isNewest = false;
 													app.count.closed++;
