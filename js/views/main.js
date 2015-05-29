@@ -88,42 +88,44 @@
 					app.timestamp += Math.floor(Math.random() * 432000000);
 					position.save(null, {
 						success: function() {
-							var price2 = Math.floor(Math.random() * 11) + 1000;
-							var position2 = new app.Models.position();
-							position2.set({
-								trade_id: insertId,
-								size: (size * -1),
-								price: price2,
-								created_at: app.timestamp
-							});
-							position2.save(null, {
-								success: function() {
-									var trades = new app.Collections.trades();
-									trades.setFetchId(insertId);
-									trades.fetch({
-										success: function() {
-											var trade2 = trades.at(0);
-											trade2.deferred.then(function() {
-												delete app.previousCustom;
-												trade2.setPnL(function() {
-													app.objects[app.count.open].isNewest = false;
-													app.count.closed++;
-													app.objects.splice(app.count.open, 0, trade2.toJSON());
-													app.objects[app.count.open].isNewest = true;
-													app.stats.affect(app.timestamp);
-													app.storeCache().done(function() {
-														app.cache.delete('main').done(function() {
-															app.loadView('main', {}, function() {
-																app.cache.delete('mainMap');
+							setTimeout(function() {
+								var price2 = Math.floor(Math.random() * 11) + 1000;
+								var position2 = new app.Models.position();
+								position2.set({
+									trade_id: insertId,
+									size: (size * -1),
+									price: price2,
+									created_at: app.timestamp
+								});
+								position2.save(null, {
+									success: function() {
+										var trades = new app.Collections.trades();
+										trades.setFetchId(insertId);
+										trades.fetch({
+											success: function() {
+												var trade2 = trades.at(0);
+												trade2.deferred.then(function() {
+													delete app.previousCustom;
+													trade2.setPnL(function() {
+														app.objects[app.count.open].isNewest = false;
+														app.count.closed++;
+														app.objects.splice(app.count.open, 0, trade2.toJSON());
+														app.objects[app.count.open].isNewest = true;
+														app.stats.affect(app.timestamp);
+														app.storeCache().done(function() {
+															app.cache.delete('main').done(function() {
+																app.loadView('main', {}, function() {
+																	app.cache.delete('mainMap');
+																});
 															});
 														});
 													});
 												});
-											});
-										}
-									});
-								}
-							});
+											}
+										});
+									}
+								});
+							}, 50);
 						}
 					});
 				}
