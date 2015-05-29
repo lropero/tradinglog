@@ -70,24 +70,19 @@
 					if(to) {
 						var dateValues = to.split('-');
 						maxDate = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
-						if(!from) {
-							date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
-						}
 					}
 					break;
 				case 'to':
 					var from = $('#from').val();
 					if(from) {
 						var dateValues = from.split('-');
-						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 						minDate = new Date(date.getTime());
 					}
 					var to = $('#to').val();
 					if(to) {
 						var dateValues = to.split('-');
 						date = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
-					}
-					if(!from && !to) {
+					} else {
 						date = maxDate;
 					}
 					break;
