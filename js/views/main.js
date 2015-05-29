@@ -285,15 +285,9 @@
 						$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
 					}
 				});
-				$calculator.on('tap', function() {
-					app.sum = Big(0);
-					$.each($('div.added'), function() {
-						$(this).removeClass('added');
-					});
-					$('div.label.open').css('backgroundColor', '#555555');
-					$('div.label:not(.open)').css('backgroundColor', '#cccccc');
-					$calculator.css('backgroundColor', '#4020d0');
-					$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
+				$calculator.on('tap', function(e) {
+					e.preventDefault();
+					$('button.left').trigger('touchend');
 				});
 			}, 10);
 		},

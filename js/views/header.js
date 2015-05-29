@@ -41,6 +41,20 @@
 							},
 							icon: 'f124',
 							text: 'Back'
+						},
+						right: {
+							action: function() {
+								app.sum = Big(0);
+								$.each($('div.added'), function() {
+									$(this).removeClass('added');
+								});
+								$('div.label.open').css('backgroundColor', '#555555');
+								$('div.label:not(.open)').css('backgroundColor', '#cccccc');
+								var $calculator = $('div#calculator');
+								$calculator.css('backgroundColor', '#4020d0');
+								$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
+							},
+							text: 'Clear'
 						}
 					};
 					break;
