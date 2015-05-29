@@ -76,7 +76,7 @@
 					var from = $('#from').val();
 					if(from) {
 						var dateValues = from.split('-');
-						minDate = new Date(date.getTime());
+						minDate = new Date(dateValues[0], parseInt(dateValues[1], 10) - 1, dateValues[2], 0, 0, 0, 0);
 					}
 					var to = $('#to').val();
 					if(to) {
