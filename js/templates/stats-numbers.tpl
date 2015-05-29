@@ -43,6 +43,7 @@
 							<li class="profit"><span>Profit</span></li>
 							<li class="loss"><span>Loss</span></li>
 							<li class="commission"><span>Commission</span></li>
+							<li class="operations"><span>Operations</span></li>
 							<li class="net"><span>Net</span></li>
 						</ul>
 					</div>

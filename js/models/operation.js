@@ -38,7 +38,7 @@
 			this.destroy({
 				success: function() {
 					if(typeof callback === 'function') {
-						callback(self.get('amount'));
+						callback();
 					}
 				}
 			});

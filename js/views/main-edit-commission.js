@@ -118,6 +118,7 @@
 						newBalance = newBalance.plus(app.objects[i].amount);
 					}
 				}
+				app.stats.affect(app.objects[this.key].closed_at);
 				app.storeCache().done(function() {
 					var trades = new app.Collections.trades();
 					trades.setFetchId(app.objects[self.key].id);
@@ -142,12 +143,6 @@
 									});
 									app.account.save(null, {
 										success: function() {
-											var date = new Date(app.objects[self.key].closed_at);
-											var monthly = date.getFullYear() + '-' + date.getMonth();
-											date.setDate(date.getDate() - date.getDay());
-											var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-											app.stats.delete(monthly);
-											app.stats.delete(weekly);
 											app.cache.delete('main');
 											app.cache.delete('mainMap');
 											app.loadView('mainViewTrade', {

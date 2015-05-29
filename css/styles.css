@@ -1786,6 +1786,9 @@ select {
 .box-swipe .content-swipe .center .legend .graphic li.commission:before {
   color: #fdb45c;
 }
+.box-swipe .content-swipe .center .legend .graphic li.operations:before {
+  color: #989898;
+}
 .box-swipe .content-swipe .center .legend .graphic li.net:before {
   color: #9f8fe7;
 }

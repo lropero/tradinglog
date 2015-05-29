@@ -110,26 +110,7 @@
 													app.count.closed++;
 													app.objects.splice(app.count.open, 0, trade2.toJSON());
 													app.objects[app.count.open].isNewest = true;
-
-													// Stats
-													var date = new Date(app.timestamp);
-													if(!app.dates.firstDate) {
-														app.dates.firstDate = date.getTime();
-													}
-													app.dates.lastDate = date.getTime();
-													var monthly = date.getFullYear() + '-' + date.getMonth();
-													date.setDate(date.getDate() - date.getDay());
-													var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-													if(app.stats.availables.monthly[0] !== monthly) {
-														app.stats.availables.monthly.unshift(monthly);
-													}
-													if(app.stats.availables.weekly[0] !== weekly) {
-														app.stats.availables.weekly.unshift(weekly);
-													}
-													app.stats.delete(monthly).done(function() {
-														app.stats.delete(weekly);
-													});
-
+													app.stats.affect(app.timestamp);
 													app.storeCache().done(function() {
 														app.cache.delete('main').done(function() {
 															app.loadView('main', {}, function() {
@@ -181,7 +162,9 @@
 							operations.fetch({
 								success: function() {
 									var operation = operations.at(0);
-									operation.delete(function(amount) {
+									var amount = operation.get('amount');
+									var created_at = operation.get('created_at');
+									operation.delete(function() {
 										var balance = parseFloat(Big(app.account.get('balance')).minus(amount).toString());
 										app.account.set({
 											balance: balance
@@ -194,6 +177,7 @@
 												if(!(!app.count.closed && app.count.operations === 1)) {
 													app.objects[app.count.open].isNewest = true;
 												}
+												app.stats.affect(created_at);
 												app.storeCache().done(function() {
 													app.cache.delete('main').done(function() {
 														app.loadView('main');

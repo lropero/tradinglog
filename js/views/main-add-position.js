@@ -119,26 +119,7 @@
 												app.count.closed++;
 												app.objects.splice(app.count.open, 0, trade.toJSON());
 												app.objects[app.count.open].isNewest = true;
-
-												// Stats
-												var date = new Date(created_at);
-												if(!app.dates.firstDate) {
-													app.dates.firstDate = date.getTime();
-												}
-												app.dates.lastDate = date.getTime();
-												var monthly = date.getFullYear() + '-' + date.getMonth();
-												date.setDate(date.getDate() - date.getDay());
-												var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-												if(app.stats.availables.monthly[0] !== monthly) {
-													app.stats.availables.monthly.unshift(monthly);
-												}
-												if(app.stats.availables.weekly[0] !== weekly) {
-													app.stats.availables.weekly.unshift(weekly);
-												}
-												app.stats.delete(monthly).done(function() {
-													app.stats.delete(weekly);
-												});
-
+												app.stats.affect(created_at);
 												app.storeCache().done(function() {
 													app.loadView('mainViewTrade', {
 														key: app.count.open,

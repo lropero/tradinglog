@@ -8,6 +8,44 @@
 		},
 		data: {},
 
+		affect: function(timestamp) {
+			var date = new Date(timestamp);
+			var monthly = date.getFullYear() + '-' + date.getMonth();
+			date.setDate(date.getDate() - date.getDay());
+			var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+			if($.inArray(monthly, app.stats.availables.monthly) > -1) {
+				app.stats.delete(monthly);
+			}
+			if($.inArray(weekly, app.stats.availables.weekly) > -1) {
+				app.stats.delete(weekly);
+			}
+			delete app.dates.firstDate;
+			delete app.dates.lastDate;
+			app.stats.availables.monthly = [];
+			app.stats.availables.weekly = [];
+			for(var i = app.count.open; i < app.objects.length - 1; i++) {
+				if(app.objects[i].instrument_id) {
+					var timestamp = app.objects[i].closed_at;
+				} else {
+					var timestamp = app.objects[i].created_at;
+				}
+				app.dates.firstDate = timestamp;
+				if(!app.dates.lastDate) {
+					app.dates.lastDate = timestamp;
+				}
+				var date = new Date(timestamp);
+				var monthly = date.getFullYear() + '-' + date.getMonth();
+				date.setDate(date.getDate() - date.getDay());
+				var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
+				if(!app.stats.availables.monthly.length || app.stats.availables.monthly[app.stats.availables.monthly.length - 1] !== monthly) {
+					app.stats.availables.monthly.push(monthly);
+				}
+				if(!app.stats.availables.weekly.length || app.stats.availables.weekly[app.stats.availables.weekly.length - 1] !== weekly) {
+					app.stats.availables.weekly.push(weekly);
+				}
+			}
+		},
+
 		calculateSharpeRatio: function(nets, average) {
 			if(nets.length < 2) {
 				return 'N/A';
@@ -72,7 +110,7 @@
 				var balances = JSON.parse(split[0].replace(/'/g, '"'));
 				var properties = split[1].substring(1, split[1].length).split(',');
 				data[type] = {};
-				var fields = ['balances', 'profit', 'loss', 'commission', 'net', 'trades', 'winners', 'losers', 'accuracy', 'averageTrade', 'averageWinningTrade', 'averageLosingTrade', 'riskRewardRatio', 'averageTimeInMarket', 'sharpeRatio', 'variation'];
+				var fields = ['balances', 'profit', 'loss', 'commission', 'operations', 'net', 'trades', 'winners', 'losers', 'accuracy', 'averageTrade', 'averageWinningTrade', 'averageLosingTrade', 'riskRewardRatio', 'averageTimeInMarket', 'sharpeRatio', 'variation'];
 				for(var j = 0; j < fields.length; j++) {
 					if(j === 0) {
 						data[type][fields[j]] = balances;
@@ -155,11 +193,12 @@
 					profit: Big(0),
 					loss: Big(0),
 					commission: Big(0),
+					operations: Big(0),
 					net: Big(0),
 					trades: 0,
 					winners: 0,
 					losers: 0,
-					accuracy: 0,
+					accuracy: 'N/A',
 					averageTrade: 0,
 					averageWinningTrade: Big(0),
 					averageLosingTrade: Big(0),
@@ -174,11 +213,12 @@
 					profit: Big(0),
 					loss: Big(0),
 					commission: Big(0),
+					operations: Big(0),
 					net: Big(0),
 					trades: 0,
 					winners: 0,
 					losers: 0,
-					accuracy: 0,
+					accuracy: 'N/A',
 					averageTrade: 0,
 					averageWinningTrade: Big(0),
 					averageLosingTrade: Big(0),
@@ -193,11 +233,12 @@
 					profit: Big(0),
 					loss: Big(0),
 					commission: Big(0),
+					operations: Big(0),
 					net: Big(0),
 					trades: 0,
 					winners: 0,
 					losers: 0,
-					accuracy: 0,
+					accuracy: 'N/A',
 					averageTrade: 0,
 					averageWinningTrade: Big(0),
 					averageLosingTrade: Big(0),
@@ -306,6 +347,12 @@
 					data['longs'].balances[day] = parseFloat(balanceLongs.toString());
 					balanceShorts = balanceShorts.plus(object.amount);
 					data['shorts'].balances[day] = parseFloat(balanceShorts.toString());
+					data['all'].operations = data['all'].operations.plus(object.amount);
+					data['longs'].operations = data['longs'].operations.plus(object.amount);
+					data['shorts'].operations = data['shorts'].operations.plus(object.amount);
+					data['all'].net = data['all'].net.plus(object.amount);
+					data['longs'].net = data['longs'].net.plus(object.amount);
+					data['shorts'].net = data['shorts'].net.plus(object.amount);
 				}
 			});
 
@@ -390,6 +437,7 @@
 				data[type].profit = parseFloat(data[type].profit.toString());
 				data[type].loss = parseFloat(data[type].loss.toString());
 				data[type].commission = parseFloat(data[type].commission.toString());
+				data[type].operations = parseFloat(data[type].operations.toString());
 				data[type].net = parseFloat(data[type].net.toString());
 				data[type].averageWinningTrade = parseFloat(data[type].averageWinningTrade.toString());
 				data[type].averageLosingTrade = parseFloat(data[type].averageLosingTrade.toString());

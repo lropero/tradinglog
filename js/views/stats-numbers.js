@@ -81,53 +81,37 @@
 			if(width > height) {
 				$doughnut.width(height);
 			}
-			if(!stats.profit && !stats.loss && !stats.commission) {
-				$('div.help').hide();
-				var data = [
-					{
-						color: '#9f8fe7',
-						label: 'Operations',
-						value: 1
-					}
-				];
-				var options = {
-					animationEasing: 'easeOutElastic',
-					animationSteps: 38,
-					legendTemplate : '<ul class="graphic"><li class="net"><span>Operations</span></li></ul>',
-					percentageInnerCutout: 60,
-					segmentStrokeColor: '#4020d0',
-					segmentStrokeWidth: 5,
-					showTooltips: false
-				};
-			} else {
-				$('div.help').show();
-				var data = [
-					{
-						color: '#4bd763',
-						label: 'Profit',
-						value: stats.profit
-					},
-					{
-						color:'#ff3b30',
-						label: 'Loss',
-						value: stats.loss
-					},
-					{
-						color: '#fdb45c',
-						label: 'Commission',
-						value: stats.commission
-					}
-				];
-				var options = {
-					animationEasing: 'easeOutElastic',
-					animationSteps: 38,
-					legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + stats.net + ', \'$ \')%></span></li></ul>',
-					percentageInnerCutout: 60,
-					segmentStrokeColor: '#4020d0',
-					segmentStrokeWidth: 5,
-					showTooltips: false
-				};
-			}
+			var data = [
+				{
+					color: '#4bd763',
+					label: 'Profit',
+					value: stats.profit
+				},
+				{
+					color:'#ff3b30',
+					label: 'Loss',
+					value: stats.loss
+				},
+				{
+					color: '#fdb45c',
+					label: 'Commission',
+					value: stats.commission
+				},
+				{
+					color: '#989898',
+					label: 'Operations',
+					value: stats.operations
+				},
+			];
+			var options = {
+				animationEasing: 'easeOutElastic',
+				animationSteps: 38,
+				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + stats.net + ', \'$ \')%></span></li></ul>',
+				percentageInnerCutout: 60,
+				segmentStrokeColor: '#4020d0',
+				segmentStrokeWidth: 5,
+				showTooltips: false
+			};
 			var ctx = $doughnut.get(0).getContext('2d');
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
 			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
@@ -213,7 +197,11 @@
 			$('span#numbers-trades').html(stats.trades);
 			$('span#numbers-winners').html(stats.winners);
 			$('span#numbers-losers').html(stats.losers);
-			$('span#numbers-accuracy').html(accounting.toFixed(stats.accuracy, 2) + '%');
+			if(isNaN(stats.accuracy)) {
+				$('span#numbers-accuracy').html(stats.accuracy);
+			} else {
+				$('span#numbers-accuracy').html(accounting.toFixed(stats.accuracy, 2) + '%');
+			}
 			$('span#numbers-average_trade').html(accounting.formatMoney(stats.averageTrade, '$ '));
 			$('span#numbers-average_winning_trade').html(accounting.formatMoney(stats.averageWinningTrade, '$ '));
 			$('span#numbers-average_losing_trade').html(accounting.formatMoney(stats.averageLosingTrade, '$ '));
@@ -230,10 +218,12 @@
 			}
 			$('span#line-variation').html(accounting.toFixed(stats.variation, 2) + '%');
 			$('span.highlight').css('color', '#fff');
-			if(stats.accuracy >= 50) {
-				$('span#numbers-accuracy').css('color', '#4bd763');
-			} else {
-				$('span#numbers-accuracy').css('color', '#ff3b30');
+			if(stats.accuracy !== 'N/A') {
+				if(stats.accuracy >= 50) {
+					$('span#numbers-accuracy').css('color', '#4bd763');
+				} else {
+					$('span#numbers-accuracy').css('color', '#ff3b30');
+				}
 			}
 			if(stats.riskRewardRatio !== 'N/A') {
 				if(stats.riskRewardRatio >= 1) {
