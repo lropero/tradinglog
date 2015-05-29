@@ -28,7 +28,7 @@
 			if(navigator.accelerometer) {
 				setTimeout(function() {
 					self.shake();
-				});
+				}, 100);
 			}
 			return this;
 		},

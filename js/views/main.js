@@ -43,7 +43,7 @@
 					if(navigator.accelerometer) {
 						setTimeout(function() {
 							self.shake();
-						}, 10);
+						}, 100);
 					}
 					self.deferred.resolve();
 				} else {
