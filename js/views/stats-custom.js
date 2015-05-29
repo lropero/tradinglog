@@ -51,7 +51,7 @@
 				$target.val(date.getFullYear() + '-' + month + '-' + day);
 			}
 			var date = new Date(app.dates.lastDate);
-			date.setDate(1);
+			date.setMonth(date.getMonth() - 1);
 			var minDate = new Date(app.dates.firstDate);
 			if(date < minDate) {
 				date = minDate;
