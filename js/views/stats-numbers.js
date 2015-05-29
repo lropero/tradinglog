@@ -257,7 +257,7 @@
 							$numbers.removeClass('positive');
 						}
 					} else {
-						if(!Object.keys(stats[type].balances).length) {
+						if(!Object.keys(stats['all'].balances).length) {
 							delete app.previousCustom;
 						}
 						$('div#no-stats').css('display', 'block');
