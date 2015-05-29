@@ -89,24 +89,20 @@
 		delete: function(name) {
 			var self = this;
 			var deferred = $.Deferred();
-			if(this.data[name]) {
-				var statss = new app.Collections.statss();
-				statss.setAccountId(app.account.id);
-				statss.setName(name);
-				statss.fetch({
-					success: function() {
-						if(statss.length) {
-							var stats = statss.at(0);
-							stats.obsolete(function() {
-								delete self.data[name];
-								deferred.resolve();
-							});
-						}
+			var statss = new app.Collections.statss();
+			statss.setAccountId(app.account.id);
+			statss.setName(name);
+			statss.fetch({
+				success: function() {
+					if(statss.length) {
+						var stats = statss.at(0);
+						stats.obsolete(function() {
+							delete self.data[name];
+							deferred.resolve();
+						});
 					}
-				});
-			} else {
-				deferred.resolve();
-			}
+				}
+			});
 			return deferred;
 		},
 
