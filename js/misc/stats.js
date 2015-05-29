@@ -110,7 +110,7 @@
 				var balances = JSON.parse(split[0].replace(/'/g, '"'));
 				var properties = split[1].substring(1, split[1].length).split(',');
 				data[type] = {};
-				var fields = ['balances', 'profit', 'loss', 'commission', 'operations', 'net', 'trades', 'winners', 'losers', 'accuracy', 'averageTrade', 'averageWinningTrade', 'averageLosingTrade', 'riskRewardRatio', 'averageTimeInMarket', 'sharpeRatio', 'variation'];
+				var fields = ['balances', 'profit', 'loss', 'commissions', 'operations', 'net', 'trades', 'winners', 'losers', 'accuracy', 'averageTrade', 'averageWinningTrade', 'averageLosingTrade', 'riskRewardRatio', 'averageTimeInMarket', 'sharpeRatio', 'variation'];
 				for(var j = 0; j < fields.length; j++) {
 					if(j === 0) {
 						data[type][fields[j]] = balances;
@@ -192,7 +192,7 @@
 					balances: {},
 					profit: Big(0),
 					loss: Big(0),
-					commission: Big(0),
+					commissions: Big(0),
 					operations: Big(0),
 					net: Big(0),
 					trades: 0,
@@ -212,7 +212,7 @@
 					balances: {},
 					profit: Big(0),
 					loss: Big(0),
-					commission: Big(0),
+					commissions: Big(0),
 					operations: Big(0),
 					net: Big(0),
 					trades: 0,
@@ -232,7 +232,7 @@
 					balances: {},
 					profit: Big(0),
 					loss: Big(0),
-					commission: Big(0),
+					commissions: Big(0),
 					operations: Big(0),
 					net: Big(0),
 					trades: 0,
@@ -290,7 +290,7 @@
 					}
 					data['all'].profit = data['all'].profit.plus(object.profit);
 					data['all'].loss = data['all'].loss.plus(object.loss);
-					data['all'].commission = data['all'].commission.plus(object.commission);
+					data['all'].commissions = data['all'].commissions.plus(object.commission);
 					data['all'].net = data['all'].net.plus(object.net);
 					data['all'].trades++;
 					if(object.net > 0) {
@@ -306,7 +306,7 @@
 						case 1:
 							data['longs'].profit = data['longs'].profit.plus(object.profit);
 							data['longs'].loss = data['longs'].loss.plus(object.loss);
-							data['longs'].commission = data['longs'].commission.plus(object.commission);
+							data['longs'].commissions = data['longs'].commissions.plus(object.commission);
 							data['longs'].net = data['longs'].net.plus(object.net);
 							data['longs'].trades++;
 							if(object.net > 0) {
@@ -322,7 +322,7 @@
 						case 2:
 							data['shorts'].profit = data['shorts'].profit.plus(object.profit);
 							data['shorts'].loss = data['shorts'].loss.plus(object.loss);
-							data['shorts'].commission = data['shorts'].commission.plus(object.commission);
+							data['shorts'].commissions = data['shorts'].commissions.plus(object.commission);
 							data['shorts'].net = data['shorts'].net.plus(object.net);
 							data['shorts'].trades++;
 							if(object.net > 0) {
@@ -436,7 +436,7 @@
 				}
 				data[type].profit = parseFloat(data[type].profit.toString());
 				data[type].loss = parseFloat(data[type].loss.toString());
-				data[type].commission = parseFloat(data[type].commission.toString());
+				data[type].commissions = parseFloat(data[type].commissions.toString());
 				data[type].operations = parseFloat(data[type].operations.toString());
 				data[type].net = parseFloat(data[type].net.toString());
 				data[type].averageWinningTrade = parseFloat(data[type].averageWinningTrade.toString());

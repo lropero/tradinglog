@@ -73,11 +73,11 @@
 				alertify.error('Withdrawal exceeds your balance');
 				return;
 			}
-			// var created_at = (new Date()).getTime();
+			var created_at = (new Date()).getTime();
 
 			// Remove & uncomment previous line
 			app.timestamp += Math.floor(Math.random() * 432000000);
-			var created_at = app.timestamp;
+			created_at = app.timestamp;
 
 			var operation = new app.Models.operation();
 			operation.set({

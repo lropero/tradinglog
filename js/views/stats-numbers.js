@@ -94,8 +94,8 @@
 				},
 				{
 					color: '#fdb45c',
-					label: 'Commission',
-					value: stats.commission
+					label: 'Commissions',
+					value: stats.commissions
 				},
 				{
 					color: '#989898',

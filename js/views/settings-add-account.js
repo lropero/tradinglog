@@ -129,7 +129,7 @@
 									account_id: insertId,
 									amount: balance,
 									description: 'Initial deposit.',
-									created_at: 1420081200000//(new Date()).getTime()
+									created_at: 1420081200000// Remove (new Date()).getTime()
 								});
 								operation.save(null, {
 									success: function() {
