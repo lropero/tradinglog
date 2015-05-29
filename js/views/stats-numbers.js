@@ -76,37 +76,58 @@
 				this.doughnut.stop().destroy();
 			}
 			var $doughnut = $('canvas#doughnut');
-            var width = $doughnut.width();
-            var height = $doughnut.height();
-            if(width > height) {
-                $doughnut.width(height);
-            }
-			var data = [
-				{
-					color: '#4bd763',
-					label: 'Profit',
-					value: stats.profit
-				},
-				{
-					color:'#ff3b30',
-					label: 'Loss',
-					value: stats.loss
-				},
-				{
-					color: '#fdb45c',
-					label: 'Commission',
-					value: stats.commission
-				}
-			];
-			var options = {
-				animationEasing: 'easeOutElastic',
-				animationSteps: 38,
-				legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + stats.net + ', \'$ \')%></span></li></ul>',
-				percentageInnerCutout: 60,
-				segmentStrokeColor: '#4020d0',
-				segmentStrokeWidth: 5,
-				showTooltips: false
-			};
+			var width = $doughnut.width();
+			var height = $doughnut.height();
+			if(width > height) {
+				$doughnut.width(height);
+			}
+			if(!stats.profit && !stats.loss && !stats.commission) {
+				$('div.help').hide();
+				var data = [
+					{
+						color: '#9f8fe7',
+						label: 'Operations',
+						value: 1
+					}
+				];
+				var options = {
+					animationEasing: 'easeOutElastic',
+					animationSteps: 38,
+					legendTemplate : '<ul class="graphic"><li class="net"><span>Operations</span></li></ul>',
+					percentageInnerCutout: 60,
+					segmentStrokeColor: '#4020d0',
+					segmentStrokeWidth: 5,
+					showTooltips: false
+				};
+			} else {
+				$('div.help').show();
+				var data = [
+					{
+						color: '#4bd763',
+						label: 'Profit',
+						value: stats.profit
+					},
+					{
+						color:'#ff3b30',
+						label: 'Loss',
+						value: stats.loss
+					},
+					{
+						color: '#fdb45c',
+						label: 'Commission',
+						value: stats.commission
+					}
+				];
+				var options = {
+					animationEasing: 'easeOutElastic',
+					animationSteps: 38,
+					legendTemplate : '<ul class="graphic"><% for(var i = 0; i < segments.length; i++) { %><li class="<%=segments[i].label.charAt(0).toLowerCase() + segments[i].label.slice(1)%>"><span><%=accounting.formatMoney(segments[i].value, \'$ \')%></span></li><% } %><li class="net"><span><%=accounting.formatMoney(' + stats.net + ', \'$ \')%></span></li></ul>',
+					percentageInnerCutout: 60,
+					segmentStrokeColor: '#4020d0',
+					segmentStrokeWidth: 5,
+					showTooltips: false
+				};
+			}
 			var ctx = $doughnut.get(0).getContext('2d');
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
 			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
@@ -231,7 +252,7 @@
 				var deferred = app.stats.get(this.name);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
-					if(parseInt(stats[type].trades, 10)) {
+					if(Object.keys(stats[type].balances).length) {
 						$('div#no-stats').css('display', 'none');
 						$('div.wrapper-control-box-swipe').css('display', 'block');
 						self.drawDoughnut(stats[type]);
@@ -246,7 +267,7 @@
 							$numbers.removeClass('positive');
 						}
 					} else {
-						if(!parseInt(stats['all'].trades, 10)) {
+						if(!Object.keys(stats[type].balances).length) {
 							delete app.previousCustom;
 						}
 						$('div#no-stats').css('display', 'block');
@@ -258,7 +279,7 @@
 				var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
-					if(parseInt(stats[type].trades, 10)) {
+					if(Object.keys(stats[type].balances).length) {
 						$('div#no-stats').css('display', 'none');
 						$('div.wrapper-control-box-swipe').css('display', 'block');
 						self.drawDoughnut(stats[type]);
