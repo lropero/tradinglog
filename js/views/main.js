@@ -237,56 +237,58 @@
 				$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
 				return;
 			}
-			this.undelegateEvents();
-			$.pep.toggleAll(false);
-			app.trigger('change', 'calculator');
-			$('div.swipe-triangle').hide();
-			$('div.label.open').css('backgroundColor', '#555555');
-			$('div.label:not(.open)').css('backgroundColor', '#cccccc');
-			$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(app.sum.toString(), '') + '</div>');
-			$calculator = $('div#calculator');
-			$('div.label').on('tap.calculator', function(e) {
-				e.preventDefault();
-				var $target = $(e.currentTarget);
-				var net = $target.data('net');
-				if(net) {
-					if($target.hasClass('added')) {
-						if($target.hasClass('open')) {
-							$target.css('backgroundColor', '#555555');
-						} else {
-							$target.css('backgroundColor', '#cccccc');
-						}
-						app.sum = app.sum.minus(net);
-						$target.removeClass('added');
-					} else {
-						if($target.hasClass('open')) {
-							$target.css('backgroundColor', '#222222');
-						} else {
-							$target.css('backgroundColor', '#ffffff');
-						}
-						app.sum = app.sum.plus(net);
-						$target.addClass('added');
-					}
-					if(parseFloat(app.sum.toString()) > 0) {
-						$calculator.css('backgroundColor', '#4bd763');
-					} else if(parseFloat(app.sum.toString()) < 0) {
-						$calculator.css('backgroundColor', '#ff3b30');
-					} else {
-						$calculator.css('backgroundColor', '#4020d0');
-					}
-					$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
-				}
-			});
-			$calculator.on('tap', function() {
-				app.sum = Big(0);
-				$.each($('div.added'), function() {
-					$(this).removeClass('added');
-				});
+			setTimeout(function() {
+				self.undelegateEvents();
+				$.pep.toggleAll(false);
+				app.trigger('change', 'calculator');
+				$('div.swipe-triangle').hide();
 				$('div.label.open').css('backgroundColor', '#555555');
 				$('div.label:not(.open)').css('backgroundColor', '#cccccc');
-				$calculator.css('backgroundColor', '#4020d0');
-				$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
-			});
+				$('footer').off().html('<div id="calculator">$ ' + accounting.formatMoney(app.sum.toString(), '') + '</div>');
+				$calculator = $('div#calculator');
+				$('div.label').on('tap.calculator', function(e) {
+					e.preventDefault();
+					var $target = $(e.currentTarget);
+					var net = $target.data('net');
+					if(net) {
+						if($target.hasClass('added')) {
+							if($target.hasClass('open')) {
+								$target.css('backgroundColor', '#555555');
+							} else {
+								$target.css('backgroundColor', '#cccccc');
+							}
+							app.sum = app.sum.minus(net);
+							$target.removeClass('added');
+						} else {
+							if($target.hasClass('open')) {
+								$target.css('backgroundColor', '#222222');
+							} else {
+								$target.css('backgroundColor', '#ffffff');
+							}
+							app.sum = app.sum.plus(net);
+							$target.addClass('added');
+						}
+						if(parseFloat(app.sum.toString()) > 0) {
+							$calculator.css('backgroundColor', '#4bd763');
+						} else if(parseFloat(app.sum.toString()) < 0) {
+							$calculator.css('backgroundColor', '#ff3b30');
+						} else {
+							$calculator.css('backgroundColor', '#4020d0');
+						}
+						$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
+					}
+				});
+				$calculator.on('tap', function() {
+					app.sum = Big(0);
+					$.each($('div.added'), function() {
+						$(this).removeClass('added');
+					});
+					$('div.label.open').css('backgroundColor', '#555555');
+					$('div.label:not(.open)').css('backgroundColor', '#cccccc');
+					$calculator.css('backgroundColor', '#4020d0');
+					$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
+				});
+			}, 10);
 		},
 
 		decorate: function() {
