@@ -26,9 +26,14 @@
 			app.trigger('change', 'settings-general');
 			this.$el.html(this.template());
 			if(navigator.accelerometer) {
-				setTimeout(function() {
-					self.shake();
-				}, 100);
+				var interval = setInterval(function() {
+					if(app.shake) {
+						clearInterval(interval);
+					} else {
+						clearInterval(interval);
+						self.shake();
+					}
+				}, 500);
 			}
 			return this;
 		},
