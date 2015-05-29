@@ -41,7 +41,9 @@
 					self.$el.html(html);
 					self.decorate();
 					if(navigator.accelerometer) {
-						self.shake();
+						setTimeout(function() {
+							self.shake();
+						}, 10);
 					}
 					self.deferred.resolve();
 				} else {

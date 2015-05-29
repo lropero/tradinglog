@@ -22,10 +22,13 @@
 		},
 
 		render: function() {
+			var self = this;
 			app.trigger('change', 'settings-general');
 			this.$el.html(this.template());
 			if(navigator.accelerometer) {
-				this.shake();
+				setTimeout(function() {
+					self.shake();
+				});
 			}
 			return this;
 		},
