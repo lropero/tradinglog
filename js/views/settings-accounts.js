@@ -76,9 +76,7 @@
 											app.cache.delete('main').done(function() {
 												setTimeout(function() {
 													app.view.subview = new app.Views.settingsAccounts();
-													return false;
 												}, 10);
-												return false;
 											});
 										});
 									}
