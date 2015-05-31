@@ -15,16 +15,22 @@
 
 	<preference name="applicationSupportsShakeToEdit" value="no" />
 	<preference name="AutoHideSplashScreen" value="false" />
+	<preference name="BackupWebStorage" value="none" />
 	<preference name="detect-data-types" value="false" />
 	<preference name="DisallowOverscroll" value="true" />
+	<preference name="FadeSplashScreen" value="false" />
 	<preference name="fullscreen" value="true" />
+	<preference name="HideKeyboardFormAccessoryBar" value="true" />
+	<preference name="KeyboardDisplayRequiresUserAction" value="false" />
+	<preference name="KeyboardShrinksView" value="true" />
 	<preference name="orientation" value="portrait" />
 	<preference name="phonegap-version" value="3.7.0" />
 	<preference name="prerendered-icon" value="true" />
 	<preference name="show-splash-screen-spinner" value="false" />
+	<preference name="ShowSplashScreenSpinner" value="false" />
+	<preference name="SuppressesIncrementalRendering" value="true" />
 	<preference name="target-device" value="universal" />
 	<preference name="webviewbounce" value="false" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 
 	<gap:config-file platform="ios" parent="UISupportedInterfaceOrientations" mode="replace">
 		<array>
