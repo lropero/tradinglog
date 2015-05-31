@@ -24,7 +24,6 @@
 	<preference name="KeyboardDisplayRequiresUserAction" value="false" />
 	<preference name="KeyboardShrinksView" value="true" />
 	<preference name="orientation" value="portrait" />
-	<preference name="PaginationMode" value="topToBottom" />
 	<preference name="phonegap-version" value="3.7.0" />
 	<preference name="prerendered-icon" value="true" />
 	<preference name="show-splash-screen-spinner" value="false" />
