@@ -36,6 +36,7 @@
 				this.subview.destroy();
 			}
 			this.subview = new app.Views['main' + section]();
+			return false;
 		}
 	});
 })();

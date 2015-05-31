@@ -51,11 +51,13 @@
 		combine: function(e) {
 			e.preventDefault();
 			app.combine();
+			return false;
 		},
 
 		isolate: function(e) {
 			e.preventDefault();
 			app.isolate(e);
+			return false;
 		},
 
 		submit: function() {
@@ -176,6 +178,7 @@
 			} else {
 				$checkbox.addClass('active');
 			}
+			return false;
 		}
 	});
 })();

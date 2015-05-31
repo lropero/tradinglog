@@ -92,11 +92,13 @@
 		combine: function(e) {
 			e.preventDefault();
 			app.combine();
+			return false;
 		},
 
 		isolate: function(e) {
 			e.preventDefault();
 			app.isolate(e);
+			return false;
 		},
 
 		radio: function(e) {
@@ -164,6 +166,7 @@
 						break;
 				}
 			}
+			return false;
 		},
 
 		submit: function() {
@@ -270,6 +273,7 @@
 			} else {
 				$checkbox.addClass('active');
 			}
+			return false;
 		}
 	});
 })();

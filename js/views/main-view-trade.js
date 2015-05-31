@@ -142,6 +142,7 @@
 				key: this.key,
 				top: this.top
 			});
+			return false;
 		},
 
 		buttonDelete: function(e) {
@@ -278,6 +279,7 @@
 					}
 				}
 			});
+			return false;
 		}
 	});
 })();

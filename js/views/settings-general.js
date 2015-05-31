@@ -42,6 +42,7 @@
 			e.preventDefault();
 			app.view.subview.destroy();
 			app.view.subview = new app.Views.settingsGeneralFeedback();
+			return false;
 		},
 
 		buttonReset: function(e) {
@@ -87,6 +88,7 @@
 					}, 100);
 				}
 			});
+			return false;
 		},
 
 		shake: function() {

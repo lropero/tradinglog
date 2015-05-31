@@ -32,11 +32,13 @@
 		combine: function(e) {
 			e.preventDefault();
 			app.combine();
+			return false;
 		},
 
 		isolate: function(e) {
 			e.preventDefault();
 			app.isolate(e);
+			return false;
 		},
 
 		radio: function(e) {
@@ -44,6 +46,7 @@
 			var $target = $(e.currentTarget);
 			$('ul.wrapper-feedback').find('li.active').removeClass('active');
 			$target.addClass('active');
+			return false;
 		},
 
 		submit: function() {

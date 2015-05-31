@@ -38,6 +38,7 @@
 		combine: function(e) {
 			e.preventDefault();
 			app.combine();
+			return false;
 		},
 
 		isolate: function(e) {
@@ -47,6 +48,7 @@
 				$target.val(app.objects[this.key].commission);
 			}
 			app.isolate(e);
+			return false;
 		},
 
 		submit: function() {

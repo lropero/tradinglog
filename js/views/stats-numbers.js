@@ -60,6 +60,7 @@
 				app.stats.ats.slide = nextSlide + 1;
 				$control.find('li.active').removeClass('active');
 				$('li#swipe-control-' + (nextSlide + 1)).addClass('active');
+				return false;
 			});
 			$control.find('li.active').removeClass('active');
 			$('li#swipe-control-' + app.stats.ats.slide).addClass('active');
@@ -347,6 +348,7 @@
 					}
 					break;
 			}
+			return false;
 		},
 
 		radio: function(e) {
@@ -362,6 +364,7 @@
 				$radio.addClass('active');
 				this.drawStats();
 			}
+			return false;
 		},
 
 		setAts: function(monthly, radio, slide) {
@@ -410,6 +413,7 @@
 					});
 				});
 			}, 1000);
+			return false;
 		}
 	});
 })();

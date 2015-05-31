@@ -214,6 +214,7 @@
 					self.decorate();
 				}
 			});
+			return false;
 		},
 
 		calculator: function() {
@@ -270,10 +271,12 @@
 						}
 						$calculator.html('$ ' + accounting.formatMoney(app.sum.toString(), ''));
 					}
+					return false;
 				});
 				$calculator.on('tap', function(e) {
 					e.preventDefault();
 					$('button.left').trigger('touchend');
+					return false;
 				});
 			}, 10);
 		},
@@ -340,6 +343,7 @@
 				key: key,
 				top: top
 			});
+			return false;
 		},
 
 		viewTrade: function(e) {
@@ -352,6 +356,7 @@
 				key: key,
 				top: top
 			});
+			return false;
 		}
 	});
 })();

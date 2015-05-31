@@ -47,6 +47,7 @@
 		combine: function(e) {
 			e.preventDefault();
 			app.combine();
+			return false;
 		},
 
 		fetchInstruments: function() {
@@ -93,6 +94,7 @@
 				}
 			}
 			app.isolate(e);
+			return false;
 		},
 
 		radio: function(e) {
@@ -106,6 +108,7 @@
 				this.$el.find('ul.wrapper-radiobutton div.active').removeClass('active');
 				$radio.addClass('active');
 			}
+			return false;
 		},
 
 		submit: function() {

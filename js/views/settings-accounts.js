@@ -86,6 +86,7 @@
 					}
 				});
 			}
+			return false;
 		},
 
 		buttonDelete: function(e) {
@@ -120,6 +121,7 @@
 					});
 				}
 			});
+			return false;
 		},
 
 		viewAccount: function(e) {
@@ -131,6 +133,7 @@
 			app.view.subview = new app.Views.settingsAddAccount({
 				account: this.accounts[key]
 			});
+			return false;
 		}
 	});
 })();

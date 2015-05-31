@@ -76,6 +76,7 @@
 					});
 				}
 			});
+			return false;
 		},
 
 		buttonGroup: function(e) {
@@ -121,6 +122,7 @@
 					}
 				});
 			}, 1000);
+			return false;
 		},
 
 		viewInstrument: function(e) {
@@ -135,6 +137,7 @@
 					instrument: self.instruments[key]
 				});
 			}, 10);
+			return false;
 		}
 	});
 })();

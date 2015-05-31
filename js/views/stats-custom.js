@@ -31,11 +31,13 @@
 		combine: function(e) {
 			e.preventDefault();
 			app.combine(true);
+			return false;
 		},
 
 		isolate: function(e) {
 			e.preventDefault();
 			app.isolate(e, this.showDatePicker);
+			return false;
 		},
 
 		showDatePicker: function($target) {
@@ -136,6 +138,7 @@
 				});
 				$('li#control-custom').html('Reset');
 			}
+			return false;
 		},
 
 		toggleGroup: function(e) {
@@ -148,6 +151,7 @@
 			} else {
 				$target.addClass('selected');
 			}
+			return false;
 		}
 	});
 })();
