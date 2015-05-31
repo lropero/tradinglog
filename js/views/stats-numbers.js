@@ -117,6 +117,15 @@
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
 			var $legend = $('div.legend#legend-amounts');
 			$legend.html(this.doughnut.generateLegend());
+			if(stats.profit > 0) {
+				$legend.find('li.profit').addClass('positive');
+			}
+			if(stats.loss > 0) {
+				$legend.find('li.loss').addClass('negative');
+			}
+			if(stats.commissions > 0) {
+				$legend.find('li.commissions').addClass('negative');
+			}
 			if(stats.operations > 0) {
 				$legend.find('li.operations').addClass('positive');
 			} else if(stats.operations < 0) {

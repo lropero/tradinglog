@@ -1777,16 +1777,25 @@ select {
   display: block;
 }
 .box-swipe .content-swipe .center .legend .graphic li.profit:before {
-  content: '\f216';
+  content: '\f21b';
   color: #4bd763;
 }
+.box-swipe .content-swipe .center .legend .graphic li.profit.positive:before {
+  content: '\f216';
+}
 .box-swipe .content-swipe .center .legend .graphic li.loss:before {
-  content: '\f207';
+  content: '\f21b';
   color: #ff3b30;
 }
-.box-swipe .content-swipe .center .legend .graphic li.commissions:before {
+.box-swipe .content-swipe .center .legend .graphic li.loss.negative:before {
   content: '\f207';
+}
+.box-swipe .content-swipe .center .legend .graphic li.commissions:before {
+  content: '\f21b';
   color: #fdb45c;
+}
+.box-swipe .content-swipe .center .legend .graphic li.commissions.negative:before {
+  content: '\f207';
 }
 .box-swipe .content-swipe .center .legend .graphic li.operations:before {
   content: '\f21b';
