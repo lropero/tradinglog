@@ -101,7 +101,7 @@
 				{
 					color: '#989898',
 					label: 'Operations',
-					value: stats.operations
+					value: Math.abs(stats.operations)
 				},
 			];
 			var options = {
@@ -115,7 +115,13 @@
 			};
 			var ctx = $doughnut.get(0).getContext('2d');
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
-			$('div.legend#legend-amounts').html(this.doughnut.generateLegend());
+			var $legend = $('div.legend#legend-amounts');
+			$legend.html(this.doughnut.generateLegend());
+			if(stats.operations > 0) {
+				$legend.find('li.operations').addClass('positive');
+			} else if(stats.operations < 0) {
+				$legend.find('li.operations').addClass('negative');
+			}
 		},
 
 		drawLine: function(balances, noLabels) {

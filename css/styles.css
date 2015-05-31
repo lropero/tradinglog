@@ -1775,21 +1775,31 @@ select {
   line-height: 18px;
   position: absolute;
   display: block;
-  content: '\f21b';
 }
 .box-swipe .content-swipe .center .legend .graphic li.profit:before {
+  content: '\f216';
   color: #4bd763;
 }
 .box-swipe .content-swipe .center .legend .graphic li.loss:before {
+  content: '\f207';
   color: #ff3b30;
 }
 .box-swipe .content-swipe .center .legend .graphic li.commissions:before {
+  content: '\f207';
   color: #fdb45c;
 }
 .box-swipe .content-swipe .center .legend .graphic li.operations:before {
+  content: '\f21b';
   color: #989898;
 }
+.box-swipe .content-swipe .center .legend .graphic li.operations.positive:before {
+  content: '\f216';
+}
+.box-swipe .content-swipe .center .legend .graphic li.operations.negative:before {
+  content: '\f207';
+}
 .box-swipe .content-swipe .center .legend .graphic li.net:before {
+  content: '\f21b';
   color: #9f8fe7;
 }
 .box-swipe .content-swipe .center .legend .graphic li span {
