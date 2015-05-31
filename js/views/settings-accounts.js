@@ -74,8 +74,9 @@
 										app.fetchObjects().done(function() {
 											app.cache.delete('mainMap');
 											app.cache.delete('main').done(function() {
-												app.view.subview.destroy();
-												app.view.subview = new app.Views.settingsAccounts();
+												setTimeout(function() {
+													app.view.subview = new app.Views.settingsAccounts();
+												}, 10);
 											});
 										});
 									}

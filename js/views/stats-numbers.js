@@ -242,7 +242,7 @@
 				var deferred = app.stats.get(this.name);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
-					if(Object.keys(stats[type].balances).length - 1) {
+					if(type === 'all' && Object.keys(stats[type].balances).length - 1 || type !== 'all' && stats[type].trades) {
 						$('div#no-stats').css('display', 'none');
 						$('div.wrapper-control-box-swipe').css('display', 'block');
 						self.drawDoughnut(stats[type]);
@@ -269,7 +269,7 @@
 				var deferred = app.stats.get(app.stats.availables[this.period][this.at]);
 				deferred.done(function(stats) {
 					var type = self.$el.find('ul.wrapper-radiobutton div.active').data('type');
-					if(Object.keys(stats[type].balances).length - 1) {
+					if(type === 'all' && Object.keys(stats[type].balances).length - 1 || type !== 'all' && stats[type].trades) {
 						$('div#no-stats').css('display', 'none');
 						$('div.wrapper-control-box-swipe').css('display', 'block');
 						self.drawDoughnut(stats[type]);
