@@ -119,17 +119,25 @@
 			$legend.html(this.doughnut.generateLegend());
 			if(stats.profit > 0) {
 				$legend.find('li.profit').addClass('positive');
+			} else {
+				$legend.find('li.profit span').css('color', '#dadada');
 			}
 			if(stats.loss > 0) {
 				$legend.find('li.loss').addClass('negative');
+			} else {
+				$legend.find('li.loss span').css('color', '#dadada');
 			}
 			if(stats.commissions > 0) {
 				$legend.find('li.commissions').addClass('negative');
+			} else {
+				$legend.find('li.commissions span').css('color', '#dadada');
 			}
 			if(stats.operations > 0) {
 				$legend.find('li.operations').addClass('positive');
 			} else if(stats.operations < 0) {
 				$legend.find('li.operations').addClass('negative');
+			} else {
+				$legend.find('li.operations span').css('color', '#dadada');
 			}
 		},
 
