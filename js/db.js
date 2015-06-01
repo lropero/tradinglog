@@ -130,9 +130,10 @@
 			var sqls = [
 				'INSERT INTO instrument VALUES (null, 1, "E-mini S&P 500", 50, 5, 0, 0, 0);',
 				'INSERT INTO instrument VALUES (null, 1, "Light Sweet Crude Oil", 1000, 5, 0, 0, 0);',
-				'INSERT INTO instrument VALUES (null, 2, "Apple Inc.", 1, 0, 1, 1, 0);',
+				'INSERT INTO instrument VALUES (null, 2, "Apple Inc.", 1, 0, 1, 0, 0);',
 				'INSERT INTO instrument VALUES (null, 2, "Google Inc.", 1, 0, 1, 1, 0);',
-				'INSERT INTO instrument VALUES (null, 2, "Microsoft Corporation", 1, 0, 1, 2, 0);',
+				'INSERT INTO instrument VALUES (null, 2, "Microsoft Corporation", 1, 0, 1, 1, 0);',
+				'INSERT INTO instrument VALUES (null, 3, "EUR/USD", 1, 0, 0, 2, 0);',
 
 				'INSERT INTO trade VALUES (null, 1, 1, 1, 225, 0, 4.32, 0, 2.21, 0, 1424869200000);',
 				'INSERT INTO position VALUES (null, 1, 1, 1000, 1424869200000);',
@@ -200,7 +201,7 @@
 				'INSERT INTO position VALUES (null, 16, 1, 1000, 1429102800000);',
 				'INSERT INTO position VALUES (null, 16, -1, 1000, 1429102800000);',
 
-				'INSERT INTO trade VALUES (null, 1, 2, 2, 270, 0, 9.76, 0, 2.41, 0, 1429106400000);',
+				'INSERT INTO trade VALUES (null, 1, 6, 2, 260.24, 0, 0, 0, 2.41, 0, 1429106400000);',
 				'INSERT INTO position VALUES (null, 17, 1, 1000, 1429106400000);',
 				'INSERT INTO position VALUES (null, 17, -1, 1000, 1429106400000);',
 
