@@ -234,7 +234,7 @@
 			} else {
 				$('span#numbers-risk_reward_ratio').html(accounting.toFixed(stats.riskRewardRatio, 2));
 			}
-			$('span#numbers-average_time_in_market').html(app.date.getAverageTimeInMarketString(stats.averageTimeInMarket));
+			$('span#numbers-average_time_in_market').html(app.date.getAverageTimeInMarketString(6420000));
 			if(isNaN(stats.sharpeRatio)) {
 				$('span#numbers-sharpe_ratio').html(stats.sharpeRatio);
 			} else {

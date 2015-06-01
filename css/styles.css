@@ -192,11 +192,6 @@ header bar.navigation button:active {
   color: #9f8fe7;
 }
 header bar.navigation div.logo {
-  -webkit-animation-direction: alternate;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-name: logo;
-  -webkit-animation-timing-function: ease-in-out;
   background: url('../img/logo.png') no-repeat center 0;
   background-size: auto 100%;
   height: 28px;
