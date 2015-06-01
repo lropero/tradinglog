@@ -208,9 +208,11 @@
 				'INSERT INTO position VALUES (null, 18, 1, 1000, 1429275600000);',
 				'INSERT INTO position VALUES (null, 18, -1, 1000, 1429275600000);',
 
-				'INSERT INTO trade VALUES (null, 1, 1, 1, 112.5, 0, 4.32, 0, 0.99, 0, 1429621200000);',
-				'INSERT INTO position VALUES (null, 19, 1, 1000, 1429621200000);',
-				'INSERT INTO position VALUES (null, 19, -1, 1000, 1429621200000);',
+				'INSERT INTO trade VALUES (null, 1, 1, 1, 112.5, 0, 4.32, 0, 0.99, 1, 1429627260000);',
+				'INSERT INTO position VALUES (null, 19, 1, 2103.25, 1429621380000);',
+				'INSERT INTO position VALUES (null, 19, -1, 2105.5, 1429627260000);',
+
+				'INSERT INTO comment VALUES (null, 19, "Higher volume with no progress to the upside.", 1429627440000);',
 
 				'INSERT INTO trade VALUES (null, 1, 3, 1, 199.97, 0, 5, 0, 1.76, 0, 1429707600000);',
 				'INSERT INTO position VALUES (null, 20, 1, 1000, 1429707600000);',
