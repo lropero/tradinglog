@@ -215,7 +215,7 @@
 	<ul>
 		{{#each objects}}
 			{{#if this.instrument}}
-				<li class="wrapper-label" data-key="{{@key}}" data-swipe="1">
+				<li class="wrapper-label" data-key="{{@key}}"{{#if this.isOpen}} data-swipe="1"{{/if}}>
 					<div class="label trade {{#if this.isLong}}long{{else}}short{{/if}}{{#if this.isOpen}} open swipe{{/if}}"{{#unless this.isOpen}} data-net="{{this.net}}"{{else}}{{#if this.net}} data-net="{{this.net}}"{{/if}}{{/unless}}>
 						<div class="ball">
 							{{#if this.comments}}
