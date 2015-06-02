@@ -36,5 +36,6 @@
 			</div>
 			<span class="help-block">Buy or sell price.</span>
 		</div>
+		<span class="text-note">Note: The trade will remain open in order to allow trade management (i.e. add positions) until you close it by adding an exit position which results in zero open shares or contracts. Reversing a trade is accomplished by closing the trade and opening a new one in opposite direction.</span>
 	</form>
 </div>

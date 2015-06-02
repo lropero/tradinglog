@@ -80,10 +80,10 @@
 
 		fetchObjects: function() {
 			var deferred = $.Deferred();
-			// var caches = new app.Collections.caches();
-			// caches.setAccountId(app.account.id);
-			// caches.fetch({
-			// 	success: function() {
+			var caches = new app.Collections.caches();
+			caches.setAccountId(app.account.id);
+			caches.fetch({
+				success: function() {
 					delete app.count;
 					delete app.previousCustom;
 					app.dates = {};
@@ -92,32 +92,32 @@
 						weekly: []
 					};
 					app.stats.data = {};
-			// 		if(caches.length) {
-			// 			var cache = caches.at(0).toJSON();
-			// 			app.stats.availables = JSON.parse(LZString.decompressFromBase64(cache.availables));
-			// 			app.count = JSON.parse(LZString.decompressFromBase64(cache.count));
-			// 			app.dates = JSON.parse(LZString.decompressFromBase64(cache.dates));
-			// 			app.objects = JSON.parse(LZString.decompressFromBase64(cache.objects));
+					if(caches.length) {
+						var cache = caches.at(0).toJSON();
+						app.stats.availables = JSON.parse(LZString.decompressFromBase64(cache.availables));
+						app.count = JSON.parse(LZString.decompressFromBase64(cache.count));
+						app.dates = JSON.parse(LZString.decompressFromBase64(cache.dates));
+						app.objects = JSON.parse(LZString.decompressFromBase64(cache.objects));
 
-			// 			// Remove
-			// 			var timestamp = 0;
-			// 			for(var i = 0; i < app.objects.length; i++) {
-			// 				if(app.objects[i].objects) {
-			// 					for(var j = 0; j < app.objects[i].objects.length; j++) {
-			// 						if(app.objects[i].objects[j].created_at > timestamp) {
-			// 							timestamp = app.objects[i].objects[j].created_at;
-			// 						}
-			// 					}
-			// 				} else {
-			// 					if(app.objects[i].created_at > timestamp) {
-			// 						timestamp = app.objects[i].created_at;
-			// 					}
-			// 				}
-			// 			}
-			// 			app.timestamp = timestamp;
+						// Remove
+						var timestamp = 0;
+						for(var i = 0; i < app.objects.length; i++) {
+							if(app.objects[i].objects) {
+								for(var j = 0; j < app.objects[i].objects.length; j++) {
+									if(app.objects[i].objects[j].created_at > timestamp) {
+										timestamp = app.objects[i].objects[j].created_at;
+									}
+								}
+							} else {
+								if(app.objects[i].created_at > timestamp) {
+									timestamp = app.objects[i].created_at;
+								}
+							}
+						}
+						app.timestamp = timestamp;
 
-			// 			deferred.resolve();
-			// 		} else {
+						deferred.resolve();
+					} else {
 						app.operations = [];
 						app.trades = [];
 						$.when(
@@ -153,9 +153,9 @@
 								deferred.resolve();
 							});
 						});
-			// 		}
-			// 	}
-			// });
+					}
+				}
+			});
 			return deferred;
 		},
 
@@ -186,22 +186,6 @@
 						trades = trades.toJSON(true);
 						for(var i = 0; i < trades.length; i++) {
 							app.trades.push(trades[i]);
-
-							/** Feed stats.availables */
-							if(!trades[i].isOpen) {
-								var date = new Date(trades[i].closed_at);
-								app.dates.firstDate = date.getTime();
-								var monthly = date.getFullYear() + '-' + date.getMonth();
-								date.setDate(date.getDate() - date.getDay());
-								var weekly = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate());
-								if(app.stats.availables.monthly[app.stats.availables.monthly.length - 1] !== monthly) {
-									app.stats.availables.monthly.push(monthly);
-								}
-								if(app.stats.availables.weekly[app.stats.availables.weekly.length - 1] !== weekly) {
-									app.stats.availables.weekly.push(weekly);
-								}
-							}
-
 						}
 						deferred.resolve();
 					});

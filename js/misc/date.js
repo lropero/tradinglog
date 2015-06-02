@@ -104,7 +104,7 @@
 		},
 
 		toDate: function(timestamp) {
-			var today = new Date(1429707600000);
+			var today = new Date();
 			today.setHours(0, 0, 0, 0);
 			var time = today.getTime();
 			if(timestamp > time) {
