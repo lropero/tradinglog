@@ -265,38 +265,6 @@ section#settings {
 ::-webkit-scrollbar {
   display: none;
 }
-@-webkit-keyframes ball-long {
-  from {
-    background-color: #4bd763;
-  }
-  to {
-    background-color: #ffffff;
-  }
-}
-@-webkit-keyframes ball-short {
-  from {
-    background-color: #ff3b30;
-  }
-  to {
-    background-color: #ffffff;
-  }
-}
-@-webkit-keyframes icon-long {
-  from {
-    color: #ffffff;
-  }
-  to {
-    color: #4bd763;
-  }
-}
-@-webkit-keyframes icon-short {
-  from {
-    color: #ffffff;
-  }
-  to {
-    color: #ff3b30;
-  }
-}
 @-webkit-keyframes loading {
   from {
     -webkit-transform: rotate(0deg);
@@ -1329,46 +1297,22 @@ select {
   z-index: 100;
   width: 18px;
   height: 18px;
-}
-#map .label.trade.long .ball {
-  background-color: #4bd763;
-}
-#map .label.trade.short .ball {
-  background-color: #ff3b30;
-}
-#map .label.trade .ball.animate {
   background-color: #ffffff;
-  -webkit-animation-duration: .2s;
-}
-#map .label.trade.long .ball.animate {
-  -webkit-animation-name: ball-long;
-}
-#map .label.trade.short .ball.animate {
-  -webkit-animation-name: ball-short;
 }
 #map .label.trade .ball .icon {
   font-size: 12px;
   line-height: 18px;
   color: #ffffff;
 }
-#map .label.trade .ball.animate .icon {
-  -webkit-animation-duration: .2s;
-}
-#map .label.trade.long .ball.animate .icon {
-  color: #4bd763;
-  -webkit-animation-name: icon-long;
-}
-#map .label.trade.short .ball.animate .icon {
-  color: #ff3b30;
-  -webkit-animation-name: icon-short;
-}
 #map .label.trade.long .ball .icon:after {
   font-size: 12px!important;
   line-height: 18px!important;
+  color: #4bd763;
 }
 #map .label.trade.short .ball .icon:after {
   font-size: 12px!important;
   line-height: 20px!important;
+  color: #ff3b30;
 }
 #map .percentage {
   position: absolute;

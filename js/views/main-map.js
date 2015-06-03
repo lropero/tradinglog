@@ -44,7 +44,6 @@
 					return false;
 				}
 			});
-			$('div.ball').addClass('animate');
 		},
 
 		decorate: function() {
