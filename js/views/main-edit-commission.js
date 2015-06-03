@@ -82,7 +82,7 @@
 					$('header button').show();
 					return;
 				}
-				for(var i = this.key - 1; i >= 0; i--) {
+				for(var i = this.key - 1; i >= app.count.open; i--) {
 					if(app.objects[i].instrument_id) {
 						newBalance = newBalance.plus(app.objects[i].net);
 					} else {
@@ -103,7 +103,7 @@
 					trades: []
 				};
 				newBalance = previousBalance.plus(newNet);
-				for(var i = this.key - 1; i >= 0; i--) {
+				for(var i = this.key - 1; i >= app.count.open; i--) {
 					if(app.objects[i].instrument_id) {
 						app.objects[i].variation = parseFloat(Big(app.objects[i].net * 100).div(newBalance).toString());
 						affected.trades.push({
