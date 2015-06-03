@@ -31,17 +31,20 @@
 
 		animate: function() {
 			var self = this;
-			var $content = $('section#content');
 			var animated = 'animated fadeInLeft';
-			var height = $content.height();
+			var current = 0;
+			var height = $('section#content').height();
 			$.each($('div.percentage'), function(index, value) {
-				if($(this).parent().parent().position().top < height) {
+				if(current < height) {
 					$(this).addClass(animated).one('webkitAnimationEnd', function() {
 						$(this).removeClass(animated);
 					});
+					current += 30;
+				} else {
+					return false;
 				}
-				$(this).prev().prev().addClass('animate');
 			});
+			$('div.ball').addClass('animate');
 		},
 
 		decorate: function() {
