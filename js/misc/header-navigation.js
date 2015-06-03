@@ -17,8 +17,8 @@
 
 		set: function(button, options) {
 			var $button = $('header #button-' + button);
-			var animated = 'animated rubberBand';
-			$button.removeClass(animated);
+			var remove = 'animated loading rubberBand';
+			$button.removeClass(remove);
 			if(options.icon) {
 				$button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
 				$button.css('bottom', '-2px');
@@ -48,8 +48,12 @@
 					app.loadView(options.view);
 				});
 			}
+			if(typeof options.loading === 'boolean') {
+				$button.addClass('loading');
+			}
 			$button.show();
 			if(typeof options.animate === 'boolean') {
+				var animated = 'animated rubberBand';
 				$button.addClass(animated).one('webkitAnimationEnd', function() {
 					$button.removeClass(animated);
 				});

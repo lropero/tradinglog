@@ -68,6 +68,22 @@
 						}
 					};
 					break;
+				case 'loading-left':
+					options = {
+						left: {
+							icon: 'f29d',
+							loading: true
+						}
+					}
+					break;
+				case 'loading-right':
+					options = {
+						right: {
+							icon: 'f29d',
+							loading: true
+						}
+					}
+					break;
 				case 'main':
 					if(attrs.closed > 0) {
 						options = {

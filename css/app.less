@@ -31,6 +31,21 @@ body {
 	width: 100%;
 }
 
+button.loading {
+	bottom: -5px !important;
+}
+
+button.loading:after,
+button.loading:before {
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-name: loading;
+	-webkit-animation-timing-function: linear;
+	font-size: 24px !important;
+	padding: 0 !important;
+	vertical-align: 0 !important;
+}
+
 control.segmented {
 	border-collapse: collapse;
 	border: none;
@@ -206,6 +221,10 @@ header bar.navigation button.left.icon:before {
 	vertical-align: -1px;
 }
 
+header bar.navigation button.left.loading {
+	left: 3px !important;
+}
+
 header bar.navigation button.left.rotate.icon:before {
 	-webkit-transform: scaleX(-1) rotate(-90deg);
 	display: inline-block;
@@ -226,8 +245,16 @@ header bar.navigation button.right.icon:after {
 	vertical-align: -1px;
 }
 
+header bar.navigation button.right.loading {
+	right: 3px !important;
+}
+
 header bar.navigation button:active {
 	color: @violet-light;
+}
+
+header bar.navigation button.loading:active {
+	color: @white !important;
 }
 
 header bar.navigation div.logo {

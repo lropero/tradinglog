@@ -63,7 +63,7 @@
 			});
 			comment.validate();
 			if(comment.isValid()) {
-				$('header button').hide();
+				app.trigger('change', 'loading-right');
 				comment.save(null, {
 					success: function() {
 						var trades = new app.Collections.trades();
