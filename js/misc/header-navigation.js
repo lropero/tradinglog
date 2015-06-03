@@ -3,22 +3,18 @@
 
 	app.headerNavigation = {
 		update: function(options) {
-			if(!options['left']) {
-				this.remove('left');
-			} else {
+			this.remove('left');
+			this.remove('right');
+			if(options['left']) {
 				this.set('left', options['left']);
 			}
-			if(!options['right']) {
-				this.remove('right');
-			} else {
+			if(options['right']) {
 				this.set('right', options['right']);
 			}
 		},
 
 		set: function(button, options) {
 			var $button = $('header #button-' + button);
-			var remove = 'animated loading rubberBand';
-			$button.removeClass(remove);
 			if(options.icon) {
 				$button.attr('data-icon', String.fromCharCode(parseInt(options.icon, 16))).addClass('icon');
 				$button.css('bottom', '-2px');
@@ -48,20 +44,22 @@
 					app.loadView(options.view);
 				});
 			}
-			if(typeof options.loading === 'boolean') {
-				$button.addClass('loading');
-			}
 			$button.show();
-			if(typeof options.animate === 'boolean') {
-				var animated = 'animated rubberBand';
-				$button.addClass(animated).one('webkitAnimationEnd', function() {
-					$button.removeClass(animated);
-				});
-			}
+			setTimeout(function() {
+				if(typeof options.animate === 'boolean') {
+					var animated = 'animated rubberBand';
+					$button.addClass(animated).one('webkitAnimationEnd', function() {
+						$button.removeClass(animated);
+					});
+				} else if(typeof options.loading === 'boolean') {
+					$button.addClass('loading');
+				}
+			}, 10);
 		},
 
-		remove: function($button) {
-			$('header #button-' + $button).off().hide();
+		remove: function(button) {
+			var remove = 'animated loading rubberBand';
+			$('header #button-' + button).off().hide().removeClass(remove);
 		}
 	};
 })();
