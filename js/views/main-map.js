@@ -31,12 +31,17 @@
 
 		animate: function() {
 			var self = this;
-			var $percentage = $('div.percentage');
+			var $content = $('section#content');
 			var animated = 'animated fadeInLeft';
-			$percentage.addClass(animated).one('webkitAnimationEnd', function() {
-				$percentage.removeClass(animated);
+			var height = $content.height();
+			$.each($('div.percentage'), function(index, value) {
+				if($(this).parent().parent().position().top < height) {
+					$(this).addClass(animated).one('webkitAnimationEnd', function() {
+						$(this).removeClass(animated);
+					});
+				}
+				$(this).prev().prev().addClass('animate');
 			});
-			$('div.ball').addClass('animate');
 		},
 
 		decorate: function() {
