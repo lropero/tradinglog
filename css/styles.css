@@ -24,14 +24,13 @@ body {
   width: 100%;
 }
 button.loading {
-  bottom: -5px !important;
-}
-button.loading:after,
-button.loading:before {
-  -webkit-animation-duration: 2s;
+  -webkit-animation-duration: 1.8s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-name: loading;
   -webkit-animation-timing-function: linear;
+}
+button.loading:after,
+button.loading:before {
   font-size: 24px !important;
   padding: 0 !important;
   vertical-align: 0 !important;
@@ -185,7 +184,9 @@ header bar.navigation button.left.icon:before {
   vertical-align: -1px;
 }
 header bar.navigation button.left.loading {
-  left: 3px !important;
+  bottom: 4px !important;
+  left: 13px !important;
+  padding: 0 !important;
 }
 header bar.navigation button.left.rotate.icon:before {
   -webkit-transform: scaleX(-1) rotate(-90deg);
@@ -193,9 +194,11 @@ header bar.navigation button.left.rotate.icon:before {
   font-size: 22px;
 }
 header bar.navigation button.right {
+  right: 5px;
+}
+header bar.navigation button.right.animated {
   -webkit-animation-delay: 0.5s;
   -webkit-animation-duration: 1s;
-  right: 5px;
 }
 header bar.navigation button.right.icon:after {
   content: attr(data-icon);
@@ -205,7 +208,9 @@ header bar.navigation button.right.icon:after {
   vertical-align: -1px;
 }
 header bar.navigation button.right.loading {
-  right: 3px !important;
+  bottom: 4px !important;
+  padding: 0 !important;
+  right: 13px !important;
 }
 header bar.navigation button:active {
   color: #9f8fe7;

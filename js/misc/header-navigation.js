@@ -45,16 +45,14 @@
 				});
 			}
 			$button.show();
-			setTimeout(function() {
-				if(typeof options.animate === 'boolean') {
-					var animated = 'animated rubberBand';
-					$button.addClass(animated).one('webkitAnimationEnd', function() {
-						$button.removeClass(animated);
-					});
-				} else if(typeof options.loading === 'boolean') {
-					$button.addClass('loading');
-				}
-			}, 10);
+			if(typeof options.animate === 'boolean') {
+				var animated = 'animated rubberBand';
+				$button.addClass(animated).one('webkitAnimationEnd', function() {
+					$button.removeClass(animated);
+				});
+			} else if(typeof options.loading === 'boolean') {
+				$button.addClass('loading');
+			}
 		},
 
 		remove: function(button) {
