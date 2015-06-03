@@ -229,7 +229,7 @@
 							});
 							instrument.validate();
 							if(instrument.isValid()) {
-								$('header button').hide();
+								app.trigger('change', 'loading-right');
 								instrument.save(null, {
 									success: function() {
 										app.cache.delete('mainAddTrade');
@@ -252,7 +252,7 @@
 					});
 					instrument.validate();
 					if(instrument.isValid()) {
-						$('header button').hide();
+						app.trigger('change', 'loading-right');
 						instrument.save(null, {
 							success: function() {
 								app.cache.delete('mainAddTrade');

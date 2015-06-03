@@ -103,7 +103,7 @@
 			});
 			position.validate();
 			if(position.isValid()) {
-				$('header button').hide();
+				app.trigger('change', 'loading-right');
 				position.save(null, {
 					success: function() {
 						var trades = new app.Collections.trades();

@@ -128,7 +128,6 @@
 		viewInstrument: function(e) {
 			var self = this;
 			e.preventDefault();
-			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			setTimeout(function() {

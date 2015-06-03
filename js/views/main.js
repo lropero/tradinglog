@@ -335,7 +335,7 @@
 
 		viewOperation: function(e) {
 			e.preventDefault();
-			$('header button').hide();
+			$('div#drag').css('display', 'none');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();

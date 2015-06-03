@@ -65,7 +65,7 @@
 			});
 			commissionModel.validate();
 			if(commissionModel.isValid()) {
-				$('header button').hide();
+				app.trigger('change', 'loading-right');
 				var previousBalance = Big(app.account.get('balance'));
 				for(var i = app.count.open; i <= this.key; i++) {
 					if(app.objects[i].instrument_id) {

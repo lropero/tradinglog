@@ -99,7 +99,7 @@
 							});
 							account.validate();
 							if(account.isValid()) {
-								$('header button').hide();
+								app.trigger('change', 'loading-right');
 								account.save(null, {
 									success: function() {
 										app.account.set({
@@ -123,7 +123,7 @@
 					});
 					account.validate();
 					if(account.isValid()) {
-						$('header button').hide();
+						app.trigger('change', 'loading-right');
 						account.save(null, {
 							success: function(model, insertId) {
 								var operation = new app.Models.operation();

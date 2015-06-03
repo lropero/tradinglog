@@ -126,7 +126,6 @@
 
 		viewAccount: function(e) {
 			e.preventDefault();
-			$('header button').hide();
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			app.view.subview.destroy();

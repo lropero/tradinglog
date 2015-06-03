@@ -92,7 +92,7 @@
 			});
 			operation.validate();
 			if(operation.isValid()) {
-				$('header button').hide();
+				app.trigger('change', 'loading-right');
 				operation.save(null, {
 					success: function(model, insertId) {
 						app.account.set({

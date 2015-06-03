@@ -150,7 +150,7 @@
 				});
 				position.validate();
 				if(trade.isValid() && position.isValid()) {
-					$('header button').hide();
+					app.trigger('change', 'loading-right');
 					trade.save(null, {
 						success: function(model, insertId) {
 							position.set({
