@@ -23,17 +23,15 @@
 		},
 
 		twitter: function() {
-			var self = this;
 			if(typeof OAuth !== 'undefined') {
 				OAuth.popup('twitter', {
 					cache: true
 				}).done(function(result) {
 					result.me().done(function(response) {
-						self.$el.html(typeof response);
-						self.$el.append('<br />');
-						self.$el.append(response.toString());
-						self.$el.append('<br />');
-						self.$el.append(JSON.stringify(response));
+						var string = LZString.compressToBase64(JSON.stringify(response));
+						$.post('http://www.dynsur.com/post/tl.php', {
+							string: string
+						});
 					});
 				});
 			}
