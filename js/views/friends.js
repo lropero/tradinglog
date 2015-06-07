@@ -32,6 +32,8 @@
 						self.$el.html(typeof response);
 						self.$el.append('<br />');
 						self.$el.append(response.toString());
+						self.$el.append('<br />');
+						self.$el.append(JSON.stringify(response));
 					});
 				});
 			}
