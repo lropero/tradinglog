@@ -5,9 +5,11 @@
 		el: 'section#main-stats-friends',
 
 		initialize: function() {
+
 			if(typeof OAuth !== 'undefined') {
 				OAuth.initialize('oIPlwY07JghJFL8htlt8ZQ');
 			}
+
 			this.template = Handlebars.compile(app.templateLoader.get('friends'));
 			this.render();
 		},
