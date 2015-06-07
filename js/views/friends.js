@@ -29,7 +29,9 @@
 					cache: true
 				}).done(function(result) {
 					result.me().done(function(response) {
-						self.$el.html(response);
+						self.$el.html(typeof response);
+						self.$el.append('<br />');
+						self.$el.append(response.toString());
 					});
 				});
 			}
