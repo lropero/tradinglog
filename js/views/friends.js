@@ -23,6 +23,7 @@
 		},
 
 		twitter: function() {
+			var self = this;
 			if(typeof OAuth !== 'undefined') {
 				OAuth.popup('twitter').done(function(result) {
 					self.$el.html(result);
