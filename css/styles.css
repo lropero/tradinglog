@@ -833,6 +833,15 @@ ol {
   border-radius: 4px;
   background-color: #4020d0;
 }
+.button-primary.twitter {
+  line-height: 42px;
+  background-color: #1c95d0;
+}
+.button-primary.twitter i {
+  font-size: 22px;
+  position: relative;
+  top: 2px;
+}
 .button-primary.add-photo:after {
   font-family: ionicons;
   font-size: 21px;

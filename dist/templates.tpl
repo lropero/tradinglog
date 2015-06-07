@@ -5,7 +5,10 @@
 	<a class="item" data-view="settings"><span class="icon ion-ios-gear"></span></a>
 </bar>
 </script>
-<script type="text/x-handlebars-template" id="friends-template">FRIENDS</script>
+<script type="text/x-handlebars-template" id="friends-template"><div class="content">
+	<div class="button-primary twitter" id="button-help"><i class="ion-social-twitter"></i> Connect with Twitter</div>
+</div>
+</script>
 <script type="text/x-handlebars-template" id="header-template"><bar class="navigation">
 	<button class="left" id="button-left"></button>
 	<div class="logo"><div onclick="if($('section#settings').is(':hidden') && typeof app.view.addRandomTrade === 'function') { $('header button').hide(); app.view.addRandomTrade(); }" style="height: 100%; margin: auto; width: 20%;">&nbsp;</div></div>

@@ -4,31 +4,31 @@
 html,
 body
 {
-    overflow-x: hidden;
+	overflow-x: hidden;
 
-    height: 100%;
+	height: 100%;
 }
 
 ul,
 ol
 {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 
-    list-style: none;
+	list-style: none;
 }
 
 *
 {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;
 }
 
 *:before,
 *:after
 {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;
 }
 
 // FONT SIZE
@@ -42,57 +42,57 @@ ol
 
 .black
 {
-    color: @black;
+	color: @black;
 }
 
 .gray-dark
 {
-    color: @gray-dark;
+	color: @gray-dark;
 }
 
 .gray-light
 {
-    color: #dadada;
+	color: #dadada;
 }
 
 .gray-lighter
 {
-    color: @gray-lighter;
+	color: @gray-lighter;
 }
 
 .gray
 {
-    color: @gray;
+	color: @gray;
 }
 
 .green
 {
-    color: @green;
+	color: @green;
 }
 
 .red
 {
-    color: @red;
+	color: @red;
 }
 
 .violet-dark
 {
-    color: @violet-dark;
+	color: @violet-dark;
 }
 
 .violet-light
 {
-    color: @violet-light;
+	color: @violet-light;
 }
 
 .violet
 {
-    color: @violet;
+	color: @violet;
 }
 
 .white
 {
-    color: @white;
+	color: @white;
 }
 
 // SMOOTHING
@@ -100,7 +100,7 @@ ol
 
 .smoothing
 {
-    -webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
 }
 
 // TEXT NOTE
@@ -108,20 +108,20 @@ ol
 
 .text-note
 {
-    font-size: @small;
+	font-size: @small;
 
-    display: block;
+	display: block;
 
-    margin: 15px;
+	margin: 15px;
 
-    text-align: justify;
+	text-align: justify;
 
-    color: @gray;
+	color: @gray;
 }
 
 .text-note.header
 {
-    text-align: center;
+	text-align: center;
 }
 
 // COPYRIGHT
@@ -129,19 +129,19 @@ ol
 
 .copyright
 {
-    font-size: @small;
+	font-size: @small;
 
-    position: absolute;
-    bottom: 0;
+	position: absolute;
+	bottom: 0;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    margin-bottom: 15px;
+	width: 100%;
+	margin-bottom: 15px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @violet-dark;
+	color: @violet-dark;
 }
 
 // TEXT BODY
@@ -149,9 +149,9 @@ ol
 
 .text-body
 {
-    display: block;
+	display: block;
 
-    margin: 15px;
+	margin: 15px;
 }
 
 // CENTER
@@ -159,25 +159,25 @@ ol
 
 .center
 {
-    position: absolute;
-    top: 0;
+	position: absolute;
+	top: 0;
 
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    -webkit-transform-style: preserve-3d;
-       -moz-transform-style: preserve-3d;
-            transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+			transform-style: preserve-3d;
 }
 
 .center > *
 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
 }
 
 // LABEL
@@ -185,46 +185,46 @@ ol
 
 .wrapper-label
 {
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    width: 100%;
-    min-height: 65px;
+	width: 100%;
+	min-height: 65px;
 }
 
 .label
 {
-    position: relative;
-    z-index: 100;
+	position: relative;
+	z-index: 100;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    min-height: 65px;
-    padding: 10px 40px 10px 15px;
+	width: 100%;
+	min-height: 65px;
+	padding: 10px 40px 10px 15px;
 
-    color: @black;
-    border-bottom: 1px solid @gray-light;
-    background-color: @white;
+	color: @black;
+	border-bottom: 1px solid @gray-light;
+	background-color: @white;
 }
 
 .label:after
 {
-    font-family: ionicons;
-    font-size: 14px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 14px;
+	line-height: 1;
 
-    position: absolute;
-    top: 50%;
-    right: 15px;
+	position: absolute;
+	top: 50%;
+	right: 15px;
 
-    margin-top: -5px;
+	margin-top: -5px;
 
-    content: '\f125';
+	content: '\f125';
 
-    color: @gray;
+	color: @gray;
 }
 
 // LABEL > FULL
@@ -232,14 +232,14 @@ ol
 
 .label.full
 {
-    padding-right: 15px;
+	padding-right: 15px;
 }
 
 .label.full:after
 {
-    display: none;
+	display: none;
 
-    content: '';
+	content: '';
 }
 
 // LABEL > NO-CLICK
@@ -247,9 +247,9 @@ ol
 
 .label.no-click:after
 {
-    display: none;
+	display: none;
 
-    content: '';
+	content: '';
 }
 
 // LABEL - ROW
@@ -257,10 +257,10 @@ ol
 
 .label .row
 {
-    position: relative;
+	position: relative;
 
-    clear: both;
-    overflow: hidden;
+	clear: both;
+	overflow: hidden;
 }
 
 // LABEL > POSITON / COMMENT
@@ -269,21 +269,21 @@ ol
 .label.position,
 .label.comment
 {
-    padding: 10px 15px;
+	padding: 10px 15px;
 }
 
 .label.position:after,
 .label.comment:after
 {
-    display: none;
+	display: none;
 
-    content: '';
+	content: '';
 }
 
 .label.position .row,
 .label.comment .row
 {
-    margin-left: 33px;
+	margin-left: 33px;
 }
 
 .label.position .size-price,
@@ -291,33 +291,33 @@ ol
 .label.comment .size-price,
 .label.comment .body
 {
-    float: left;
+	float: left;
 
-    color: @black;
+	color: @black;
 }
 
 .label.position .date,
 .label.comment .date
 {
-    float: left;
+	float: left;
 
-    color: @gray;
+	color: @gray;
 }
 
 .label.position .ball,
 .label.comment .ball
 {
-    position: absolute;
+	position: absolute;
 
-    width: 18px;
-    height: 18px;
-    margin-top: 15px;
+	width: 18px;
+	height: 18px;
+	margin-top: 15px;
 
-    text-align: center;
+	text-align: center;
 
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
-    background-color: @black;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
+	background-color: @black;
 }
 
 // LABEL > COMMENT > PHOTO
@@ -325,23 +325,23 @@ ol
 
 .comment.photo
 {
-    margin: 15px;
+	margin: 15px;
 }
 
 .row .comment.photo
 {
-    margin-top: 15px;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
+	margin-top: 15px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
 }
 
 .comment.photo img
 {
-    width: 100%;
+	width: 100%;
 
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
 }
 
 // LABEL > COMMENT > LONG
@@ -349,7 +349,7 @@ ol
 
 .label.position.buy .ball
 {
-    background-color: @green;
+	background-color: @green;
 }
 
 // LABEL > COMMENT > SHORT
@@ -357,7 +357,7 @@ ol
 
 .label.position.sell .ball
 {
-    background-color: @red;
+	background-color: @red;
 }
 
 // LABEL > COMMENT > WITHDRAW
@@ -365,7 +365,7 @@ ol
 
 .label.comment .ball
 {
-    background-color: @gray;
+	background-color: @gray;
 }
 
 // LABEL > ACCOUNT
@@ -373,28 +373,28 @@ ol
 
 .label.account .row
 {
-    margin-left: 50px;
+	margin-left: 50px;
 }
 
 .label.account .name
 {
-    float: left;
+	float: left;
 
-    color: @black;
+	color: @black;
 }
 
 .label.account .balance
 {
-    float: left;
+	float: left;
 
-    color: @gray;
+	color: @gray;
 }
 
 .label.account .radiobutton
 {
-    position: absolute;
+	position: absolute;
 
-    margin-top: 6px;
+	margin-top: 6px;
 }
 
 // LABEL > INSTRUMENT
@@ -402,76 +402,76 @@ ol
 
 .label.instrument .row
 {
-    margin-left: 50px;
+	margin-left: 50px;
 }
 
 .label.instrument .name
 {
-    float: left;
+	float: left;
 
-    color: @black;
+	color: @black;
 }
 
 .label.instrument .net.positive
 {
-    float: right;
+	float: right;
 
-    color: @violet;
+	color: @violet;
 }
 
 .label.instrument .net.negative
 {
-    float: right;
+	float: right;
 
-    color: @black;
+	color: @black;
 }
 
 .label.instrument .type
 {
-    float: left;
+	float: left;
 
-    color: @gray;
+	color: @gray;
 }
 
 .label.instrument .commission
 {
-    float: right;
+	float: right;
 
-    color: @gray;
+	color: @gray;
 }
 
 .label.instrument .ball
 {
-    position: absolute;
+	position: absolute;
 
-    width: 32px;
-    height: 32px;
-    margin-top: 6px;
+	width: 32px;
+	height: 32px;
+	margin-top: 6px;
 
-    text-align: center;
+	text-align: center;
 
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
-    background-color: @violet;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
+	background-color: @violet;
 }
 
 .label.instrument .ball .group
 {
-    font-size: 15px;
-    line-height: 30px;
+	font-size: 15px;
+	line-height: 30px;
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
 
-    display: block;
+	display: block;
 
-    height: 32px;
-    margin-right: auto;
-    margin-left: auto;
+	height: 32px;
+	margin-right: auto;
+	margin-left: auto;
 
-    color: @white;
+	color: @white;
 }
 
 // LABEL > TRADE / OPERATION
@@ -480,39 +480,39 @@ ol
 .label.trade .row,
 .label.operation .row
 {
-    margin-left: 50px;
+	margin-left: 50px;
 }
 
 .label.trade .instrument,
 .label.operation .instrument
 {
-    float: left;
+	float: left;
 
-    color: @black;
+	color: @black;
 }
 
 .label.trade .net.positive,
 .label.operation .net.positive
 {
-    float: right;
+	float: right;
 
-    color: @violet;
+	color: @violet;
 }
 
 .label.trade .net.negative,
 .label.operation .net.negative
 {
-    float: right;
+	float: right;
 
-    color: @black;
+	color: @black;
 }
 
 .label.trade .net.zero,
 .label.operation .net.zero
 {
-    float: right;
+	float: right;
 
-    color: @violet-light;
+	color: @violet-light;
 }
 
 .label.trade .size-price,
@@ -520,106 +520,106 @@ ol
 .label.trade .date,
 .label.operation .date
 {
-    float: left;
+	float: left;
 
-    color: @gray;
+	color: @gray;
 }
 
 .label.trade .variation,
 .label.operation .variation
 {
-    float: right;
+	float: right;
 
-    color: @gray;
+	color: @gray;
 }
 
 .label.trade .ball,
 .label.operation .ball
 {
-    position: absolute;
+	position: absolute;
 
-    width: 32px;
-    height: 32px;
-    margin-top: 6px;
+	width: 32px;
+	height: 32px;
+	margin-top: 6px;
 
-    text-align: center;
+	text-align: center;
 
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
-    background-color: @black;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
+	background-color: @black;
 }
 
 .label.trade .ball .globe-comments,
 .label.operation .ball .globe-comments
 {
-    font-size: 12px;
-    line-height: 17px;
+	font-size: 12px;
+	line-height: 17px;
 
-    position: absolute;
-    top: -5px;
-    right: -5px;
+	position: absolute;
+	top: -5px;
+	right: -5px;
 
-    height: 17px;
-    padding: 0 5px;
+	height: 17px;
+	padding: 0 5px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
-    -webkit-border-radius: 100px;
-            border-radius: 100px;
-    background-color: @gray-dark;
+	color: @white;
+	-webkit-border-radius: 100px;
+			border-radius: 100px;
+	background-color: @gray-dark;
 }
 
 .globe-commission
 {
-    font-size: 12px;
-    line-height: 17px;
+	font-size: 12px;
+	line-height: 17px;
 
-    position: absolute;
-    bottom: -5px;
-    left: -5px;
+	position: absolute;
+	bottom: -5px;
+	left: -5px;
 
-    min-width: 17px;
-    height: 17px;
+	min-width: 17px;
+	height: 17px;
 
-    color: @black;
-    -webkit-border-radius: 100px;
-            border-radius: 100px;
-    background-color: @white;
+	color: @black;
+	-webkit-border-radius: 100px;
+			border-radius: 100px;
+	background-color: @white;
 }
 
 .box-violet .globe-commission
 {
-    color: @white;
-    background-color: @violet;
+	color: @white;
+	background-color: @violet;
 }
 
 .globe-commission:after
 {
-    font-family: ionicons;
+	font-family: ionicons;
 
-    content: '\f100';
+	content: '\f100';
 }
 
 .label.trade .ball .icon,
 .label.operation .ball .icon
 {
-    font-family: ionicons;
-    font-size: 16px;
-    line-height: 32px;
+	font-family: ionicons;
+	font-size: 16px;
+	line-height: 32px;
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
 
-    display: block;
+	display: block;
 
-    height: 32px;
-    margin-right: auto;
-    margin-left: auto;
+	height: 32px;
+	margin-right: auto;
+	margin-left: auto;
 
-    color: @white;
+	color: @white;
 }
 
 // LABEL > TRADE > OPEN
@@ -627,8 +627,8 @@ ol
 
 .label.trade.open
 {
-    border-bottom: 1px solid @gray-dark;
-    background-color: @black;
+	border-bottom: 1px solid @gray-dark;
+	background-color: @black;
 }
 
 .label.trade.open .instrument,
@@ -636,7 +636,7 @@ ol
 .label.trade.open .net.negative,
 .label.trade.open .net.zero
 {
-    color: @white;
+	color: @white;
 }
 
 // LABEL > TRADE > LONG
@@ -644,15 +644,15 @@ ol
 
 .label.trade.long .ball
 {
-    background-color: @green;
+	background-color: @green;
 }
 
 .label.trade.long .ball .icon:after
 {
-    font-size: 16px;
-    line-height: 32px;
+	font-size: 16px;
+	line-height: 32px;
 
-    content: '\f10d';
+	content: '\f10d';
 }
 
 // LABEL > TRADE > SHORT
@@ -660,15 +660,15 @@ ol
 
 .label.trade.short .ball
 {
-    background-color: @red;
+	background-color: @red;
 }
 
 .label.trade.short .ball .icon:after
 {
-    font-size: 16px;
-    line-height: 35px;
+	font-size: 16px;
+	line-height: 35px;
 
-    content: '\f104';
+	content: '\f104';
 }
 
 // LABEL > OPERATION > WITHDRAW
@@ -676,15 +676,15 @@ ol
 
 .label.operation.withdraw .ball
 {
-    background-color: @gray;
+	background-color: @gray;
 }
 
 .label.operation.withdraw .ball .icon:after
 {
-    font-size: 16px;
-    line-height: 32px;
+	font-size: 16px;
+	line-height: 32px;
 
-    content: '\f107';
+	content: '\f107';
 }
 
 // LABEL > OPERATION > DEPOSIT
@@ -692,15 +692,15 @@ ol
 
 .label.operation.deposit .ball
 {
-    background-color: @gray;
+	background-color: @gray;
 }
 
 .label.operation.deposit .ball .icon:after
 {
-    font-size: 16px;
-    line-height: 32px;
+	font-size: 16px;
+	line-height: 32px;
 
-    content: '\f10a';
+	content: '\f10a';
 }
 
 // WRAPPER LABEL - SWIPE
@@ -708,56 +708,56 @@ ol
 
 .wrapper-swipe
 {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	right: 0;
 
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    background-color: @violet-light;
+	background-color: @violet-light;
 }
 
 .swipe-buttons
 {
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    height: 65px;
+	height: 65px;
 
-    background-color: @violet-dark;
+	background-color: @violet-dark;
 }
 
 .swipe-buttons:before
 {
-    position: absolute;
-    top: 0;
-    left: 65px;
+	position: absolute;
+	top: 0;
+	left: 65px;
 
-    width: 100%;
-    height: 1px;
+	width: 100%;
+	height: 1px;
 
-    background-color: @violet-light;
+	background-color: @violet-light;
 }
 
 .swipe-buttons ul
 {
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    height: 100%;
+	height: 100%;
 }
 
 .swipe-buttons ul li
 {
-    display: inline-block;
-    float: right;
+	display: inline-block;
+	float: right;
 
-    width: 80px;
-    height: 100%;
+	width: 80px;
+	height: 100%;
 }
 
 // SWIPE - TRIANGLE
@@ -765,24 +765,24 @@ ol
 
 .swipe-triangle
 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 
-    border-width: 8px 0 0 8px;
-    border-style: solid;
-    border-color: transparent transparent transparent @gray-light;
+	border-width: 8px 0 0 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent @gray-light;
 }
 
 .open .swipe-triangle
 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 
-    border-width: 8px 0 0 8px;
-    border-style: solid;
-    border-color: transparent transparent transparent @gray-dark;
+	border-width: 8px 0 0 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent @gray-dark;
 }
 
 // SWIPE - BUTTONS
@@ -790,83 +790,83 @@ ol
 
 .swipe-buttons .button-swipe
 {
-    font-family: ionicons;
-    font-size: 26px;
+	font-family: ionicons;
+	font-size: 26px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
+	color: @white;
 }
 
 .swipe-buttons .button-swipe.delete:after
 {
-    font-size: 25px;
-    line-height: 66px;
+	font-size: 25px;
+	line-height: 66px;
 
-    content: '\f4c5';
+	content: '\f4c5';
 }
 
 .swipe-buttons .button-swipe.add-photo:after
 {
-    font-size: 21px;
-    line-height: 66px;
+	font-size: 21px;
+	line-height: 66px;
 
-    content: '\f2d3';
+	content: '\f2d3';
 }
 
 .swipe-buttons .button-swipe.delete-photo:after
 {
-    font-size: 21px;
-    line-height: 66px;
+	font-size: 21px;
+	line-height: 66px;
 
-    content: '\f2d3';
+	content: '\f2d3';
 }
 
 .swipe-buttons .button-swipe.delete-photo:before
 {
-    font-size: 24px;
-    line-height: 66px;
+	font-size: 24px;
+	line-height: 66px;
 
-    position: absolute;
-    z-index: 10;
+	position: absolute;
+	z-index: 10;
 
-    content: '\f12a';
+	content: '\f12a';
 
-    color: @violet!important;
+	color: @violet!important;
 }
 
 .swipe-buttons .button-swipe.commission:after
 {
-    font-size: 21px;
-    line-height: 66px;
+	font-size: 21px;
+	line-height: 66px;
 
-    content: '\f353';
+	content: '\f353';
 }
 
 .swipe-buttons .button-swipe.group
 {
-    text-align: left;
+	text-align: left;
 }
 
 .swipe-buttons .button-swipe.group span
 {
-    font-size: @medium;
-    line-height: 20px;
+	font-size: @medium;
+	line-height: 20px;
 
-    position: absolute;
+	position: absolute;
 
-    width: 20px;
-    height: 20px;
-    margin-top: 22px;
-    margin-left: 30px;
+	width: 20px;
+	height: 20px;
+	margin-top: 22px;
+	margin-left: 30px;
 
-    content: '';
-    text-align: center;
+	content: '';
+	text-align: center;
 
-    color: @violet;
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
-    background-color: @white;
+	color: @violet;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
+	background-color: @white;
 }
 
 
@@ -877,7 +877,7 @@ ol
 .type-2,
 .type-3
 {
-    display: none;
+	display: none;
 }
 
 // BUTTON DEFAULT
@@ -885,53 +885,53 @@ ol
 
 .wrapper-button-default
 {
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    min-height: 44px;
+	width: 100%;
+	min-height: 44px;
 }
 
 .wrapper-button-default .button-default
 {
-    line-height: 44px;
+	line-height: 44px;
 
-    position: relative;
-    z-index: 100;
+	position: relative;
+	z-index: 100;
 
-    display: inline-block;
-    float: left;
+	display: inline-block;
+	float: left;
 
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
-    background-color: @violet;
+	color: @white;
+	background-color: @violet;
 }
 
 .wrapper-button-default.one-button-default .button-default
 {
-    width: 100%;
+	width: 100%;
 }
 
 .wrapper-button-default.two-button-default .button-default
 {
-    float: left;
+	float: left;
 
-    width: 50%;
+	width: 50%;
 }
 
 .wrapper-button-default.two-button-default .button-default:first-child
 {
-    border-right: 1px solid @violet-dark;
+	border-right: 1px solid @violet-dark;
 }
 
 .wrapper-button-default.two-button-default .button-default:nth-child(2)
 {
-    border-left: 1px solid @violet-dark;
+	border-left: 1px solid @violet-dark;
 }
 
 // BUTTON PRIMARY
@@ -939,57 +939,70 @@ ol
 
 .button-primary
 {
-    line-height: 44px;
+	line-height: 44px;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    height: 44px;
-    margin: 15px;
+	height: 44px;
+	margin: 15px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
-    background-color: @violet;
+	color: @white;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
+	background-color: @violet;
+}
+
+.button-primary.twitter {
+	line-height: 42px;
+
+	background-color: #1c95d0;
+}
+
+.button-primary.twitter i {
+	font-size: 22px;
+
+	position: relative;
+	top: 2px;
 }
 
 .button-primary.add-photo:after
 {
-    font-family: ionicons;
-    font-size: 21px;
-    line-height: 46px;
+	font-family: ionicons;
+	font-size: 21px;
+	line-height: 46px;
 
-    content: '\f2d3';
-    text-align: center;
+	content: '\f2d3';
+	text-align: center;
 }
 
 .button-primary.delete-photo:after
 {
-    font-family: ionicons;
-    font-size: 21px;
-    line-height: 46px;
+	font-family: ionicons;
+	font-size: 21px;
+	line-height: 46px;
 
-    content: '\f2d3';
-    text-align: center;
+	content: '\f2d3';
+	text-align: center;
 }
 
 .button-primary.delete-photo:before
 {
-    font-family: ionicons;
-    font-size: 24px;
-    line-height: 46px;
+	font-family: ionicons;
+	font-size: 24px;
+	line-height: 46px;
 
-    position: absolute;
-    z-index: 10;
+	position: absolute;
+	z-index: 10;
 
-    content: '\f12a';
-    text-align: center;
+	content: '\f12a';
+	text-align: center;
 
-    color: @violet!important;
+	color: @violet!important;
 }
 
 // DRAG ACCOUNT
@@ -997,45 +1010,45 @@ ol
 
 .drag-account
 {
-    font-size: @small;
-    line-height: 30px;
+	font-size: @small;
+	line-height: 30px;
 
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    height: 30px;
-    padding: 0 15px;
+	width: 100%;
+	height: 30px;
+	padding: 0 15px;
 
-    color: @white;
-    background-color: @violet-light;
+	color: @white;
+	background-color: @violet-light;
 }
 
 .drag-account .account
 {
-    float: left;
+	float: left;
 }
 
 .drag-account .balance
 {
-    float: right;
+	float: right;
 }
 
 .drag-account .peeking
 {
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
+	position: absolute;
+	bottom: -6px;
+	left: 50%;
 
-    width: 242px;
-    height: 84px;
-    margin-left: -121px;
+	width: 242px;
+	height: 84px;
+	margin-left: -121px;
 
-    background-image: url('../img/peeking.png');
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: contain;
+	background-image: url('../img/peeking.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: contain;
 }
 
 // FORM
@@ -1044,11 +1057,11 @@ ol
 #complete,
 #isolate
 {
-    overflow: auto;
+	overflow: auto;
 
-    max-width: 400px;
-    height: 100%;
-    margin: 0 auto;
+	max-width: 400px;
+	height: 100%;
+	margin: 0 auto;
 }
 
 form,
@@ -1056,63 +1069,63 @@ input,
 textarea,
 select
 {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
 
-    text-decoration: none;
-    text-transform: none;
+	text-decoration: none;
+	text-transform: none;
 
-    color: @black;
-    background-color: transparent;
-    background-image: none;
-    -webkit-box-shadow: none!important;
-            box-shadow: none!important;
+	color: @black;
+	background-color: transparent;
+	background-image: none;
+	-webkit-box-shadow: none!important;
+			box-shadow: none!important;
 
-    -webkit-appearance: none;
-            appearance: none;
+	-webkit-appearance: none;
+			appearance: none;
 }
 
 input:disabled,
 textarea:disabled,
 select:disabled
 {
-    opacity: 1;
+	opacity: 1;
 }
 
 form
 {
-    width: 100%;
+	width: 100%;
 }
 
 input
 {
-    line-height: 40px;
+	line-height: 40px;
 
-    width: 100%;
-    height: 45px;
-    padding: 0 15px;
+	width: 100%;
+	height: 45px;
+	padding: 0 15px;
 
-    border: 1px solid @gray;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
-    background-color: @white;
+	border: 1px solid @gray;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
+	background-color: @white;
 }
 
 textarea
 {
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    width: 100%;
-    padding: 10px 15px;
+	width: 100%;
+	padding: 10px 15px;
 
-    resize: none;
+	resize: none;
 
-    border: 1px solid @gray;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
-    background-color: @white;
+	border: 1px solid @gray;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
+	background-color: @white;
 }
 
 // FORM TEXT COLOR
@@ -1120,25 +1133,25 @@ textarea
 
 select
 {
-    color: @gray;
+	color: @gray;
 }
 
 input,
 textarea
 {
-    color: @black;
+	color: @black;
 }
 
 input:focus,
 textarea:focus,
 select:focus
 {
-    color: @black;
+	color: @black;
 }
 
 ::-webkit-input-placeholder
 {
-    color: @gray!important;
+	color: @gray!important;
 }
 
 // FORM > ERROR
@@ -1148,17 +1161,17 @@ input.error,
 select.error,
 textarea.error
 {
-    border-color: @red !important;
+	border-color: @red !important;
 }
 
 .wrapper-input .input-icon.error:before
 {
-    background-color: @red !important;
+	background-color: @red !important;
 }
 
 .wrapper-select.error:after
 {
-    background-color: @red !important;
+	background-color: @red !important;
 }
 
 // FORM - COMMENT
@@ -1166,13 +1179,13 @@ textarea.error
 
 .wrapper-comment
 {
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
-    clear: both;
+	display: block;
+	clear: both;
+	clear: both;
 
-    margin: 15px;
+	margin: 15px;
 }
 
 // FORM - INPUT
@@ -1180,12 +1193,12 @@ textarea.error
 
 .wrapper-input
 {
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    margin: 15px;
+	margin: 15px;
 }
 
 // FORM - TWO INPUT
@@ -1193,17 +1206,17 @@ textarea.error
 
 .wrapper-input.two-input
 {
-    display: block;
+	display: block;
 
-    margin: 15px 7.5px;
+	margin: 15px 7.5px;
 }
 
 .wrapper-input.two-input .wrapper-input
 {
-    display: table-cell;
-    clear: none;
+	display: table-cell;
+	clear: none;
 
-    padding: 0 7.5px;
+	padding: 0 7.5px;
 }
 
 // FORM - INPUT > ICON
@@ -1211,30 +1224,30 @@ textarea.error
 
 .wrapper-input .input-icon input
 {
-    padding-left: 65px;
+	padding-left: 65px;
 }
 
 .wrapper-input .input-icon:before
 {
-    font-family: ionicons;
-    font-size: 26px;
-    line-height: 45px;
+	font-family: ionicons;
+	font-size: 26px;
+	line-height: 45px;
 
-    position: absolute;
-    top: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 
-    width: 50px;
-    height: 45px;
+	width: 50px;
+	height: 45px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
-    -webkit-border-top-left-radius: 4px;
-            border-top-left-radius: 4px;
-    -webkit-border-bottom-left-radius: 4px;
-            border-bottom-left-radius: 4px;
-    background-color: @gray;
+	color: @white;
+	-webkit-border-top-left-radius: 4px;
+			border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+			border-bottom-left-radius: 4px;
+	background-color: @gray;
 }
 
 // FORM - FORM INPUT > ICONS
@@ -1242,10 +1255,10 @@ textarea.error
 
 .wrapper-input .input-icon.price:before
 {
-    font-size: 26px;
-    line-height: 45px;
+	font-size: 26px;
+	line-height: 45px;
 
-    content: '\f353';
+	content: '\f353';
 }
 
 // HELP BLOCK
@@ -1253,27 +1266,27 @@ textarea.error
 
 .help-block
 {
-    font-size: @small;
+	font-size: @small;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    width: 100%;
-    margin: 5px 0 0 0!important;
+	width: 100%;
+	margin: 5px 0 0 0!important;
 
-    text-align: justify;
+	text-align: justify;
 
-    color: @gray;
+	color: @gray;
 }
 
 .help-block.header
 {
-    margin-top: 0;
-    margin-bottom: 15px;
+	margin-top: 0;
+	margin-bottom: 15px;
 
-    text-align: center;
+	text-align: center;
 }
 
 // RADIO BUTTON
@@ -1281,38 +1294,38 @@ textarea.error
 
 .radiobutton
 {
-    position: relative;
+	position: relative;
 
-    width: 32px;
-    height: 32px;
+	width: 32px;
+	height: 32px;
 
-    text-align: center;
+	text-align: center;
 
-    border: 2px solid @violet;
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
+	border: 2px solid @violet;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
 }
 
 .radiobutton.active:after
 {
-    font-family: ionicons;
-    font-size: 15px;
-    line-height: 30px;
+	font-family: ionicons;
+	font-size: 15px;
+	line-height: 30px;
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
 
-    display: block;
+	display: block;
 
-    height: 32px;
-    margin-right: auto;
-    margin-left: auto;
+	height: 32px;
+	margin-right: auto;
+	margin-left: auto;
 
-    content: '\f21b';
+	content: '\f21b';
 
-    color: @violet;
+	color: @violet;
 }
 
 // RADIO BUTTON (IN LINE)
@@ -1320,42 +1333,42 @@ textarea.error
 
 .wrapper-radiobutton
 {
-    position: relative;
+	position: relative;
 
-    display: table;
-    clear: both;
+	display: table;
+	clear: both;
 
-    width: 100%;
-    margin: 15px 0;
+	width: 100%;
+	margin: 15px 0;
 
-    text-align: center;
+	text-align: center;
 }
 
 .wrapper-radiobutton .group-radiobutton
 {
-    position: relative;
+	position: relative;
 
-    display: inline-block;
+	display: inline-block;
 
-    margin-left: 15px;
+	margin-left: 15px;
 }
 
 .wrapper-radiobutton .group-radiobutton:first-child
 {
-    margin-left: 0;
+	margin-left: 0;
 }
 
 .wrapper-radiobutton .group-radiobutton .radiobutton
 {
-    float: left;
+	float: left;
 }
 
 .wrapper-radiobutton .group-radiobutton span
 {
-    float: left;
+	float: left;
 
-    margin-top: 5px;
-    margin-left: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
 }
 
 // SELECT
@@ -1363,68 +1376,68 @@ textarea.error
 
 .wrapper-select
 {
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    margin: 15px;
+	margin: 15px;
 }
 
 .wrapper-select:after
 {
-    font-family: ionicons;
-    font-size: 16px;
-    line-height: 30px;
+	font-family: ionicons;
+	font-size: 16px;
+	line-height: 30px;
 
-    position: absolute;
-    top: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
 
-    height: 30px;
-    padding: 0 10px;
+	height: 30px;
+	padding: 0 10px;
 
-    content: '\f104';
+	content: '\f104';
 
-    color: @white;
-    -webkit-border-top-right-radius: 4px;
-            border-top-right-radius: 4px;
-    -webkit-border-bottom-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-    background-color: @violet;
+	color: @white;
+	-webkit-border-top-right-radius: 4px;
+			border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+	background-color: @violet;
 }
 
 .select
 {
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    width: 100%;
+	width: 100%;
 
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
-    background-color: @white;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
+	background-color: @white;
 }
 
 select
 {
-    font-size: @small;
-    line-height: 28px;
+	font-size: @small;
+	line-height: 28px;
 
-    position: relative;
-    z-index: 10;
+	position: relative;
+	z-index: 10;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    height: 30px;
-    padding-right: 40px;
-    padding-left: 10px;
+	width: 100%;
+	height: 30px;
+	padding-right: 40px;
+	padding-left: 10px;
 
-    border: 1px solid @violet;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
+	border: 1px solid @violet;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
 }
 
 // CALENDAR
@@ -1432,97 +1445,97 @@ select
 
 .wrapper-calendar
 {
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    max-width: 400px;
-    margin: 15px auto;
-    padding: 0 15px;
+	max-width: 400px;
+	margin: 15px auto;
+	padding: 0 15px;
 }
 
 .wrapper-calendar .calendar
 {
-    font-size: @small;
-    line-height: 30px;
+	font-size: @small;
+	line-height: 30px;
 
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    height: 30px;
-    padding: 0 15px;
+	height: 30px;
+	padding: 0 15px;
 
-    text-align: center;
-    text-decoration: none;
+	text-align: center;
+	text-decoration: none;
 
-    color: @white;
-    border: 1px solid @black;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
-    background-color: @black;
+	color: @white;
+	border: 1px solid @black;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
+	background-color: @black;
 }
 
 .wrapper-calendar .buttons-calendar
 {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    left: 0;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	left: 0;
 
-    width: 100%;
-    height: 100%;
-    padding: 0 15px;
+	width: 100%;
+	height: 100%;
+	padding: 0 15px;
 }
 
 .wrapper-calendar .buttons-calendar .button-left,
 .wrapper-calendar .buttons-calendar .button-right
 {
-    position: absolute;
-    top: -15px;
+	position: absolute;
+	top: -15px;
 
-    width: 80px;
-    height: 100%;
-    padding: 30px;
+	width: 80px;
+	height: 100%;
+	padding: 30px;
 }
 
 .wrapper-calendar .buttons-calendar .button-left
 {
-    left: 0;
+	left: 0;
 }
 
 .wrapper-calendar .buttons-calendar .button-left:before
 {
-    font-family: ionicons;
-    font-size: 16px;
-    line-height: 0;
+	font-family: ionicons;
+	font-size: 16px;
+	line-height: 0;
 
-    position: absolute;
-    left: 30px;
+	position: absolute;
+	left: 30px;
 
-    content: '\f107';
+	content: '\f107';
 
-    color: @white;
+	color: @white;
 }
 
 .wrapper-calendar .buttons-calendar .button-right
 {
-    right: 0;
+	right: 0;
 }
 
 .wrapper-calendar .buttons-calendar .button-right:after
 {
-    font-family: ionicons;
-    font-size: 16px;
-    line-height: 0;
+	font-family: ionicons;
+	font-size: 16px;
+	line-height: 0;
 
-    position: absolute;
-    right: 30px;
+	position: absolute;
+	right: 30px;
 
-    content: '\f10a';
+	content: '\f10a';
 
-    color: @white;
+	color: @white;
 }
 
 // TITLE SECTION
@@ -1530,21 +1543,21 @@ select
 
 .title-section
 {
-    font-size: @small;
-    line-height: 30px;
+	font-size: @small;
+	line-height: 30px;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    width: 100%;
-    height: 30px;
-    margin-bottom: 15px;
-    padding: 0 15px;
+	width: 100%;
+	height: 30px;
+	margin-bottom: 15px;
+	padding: 0 15px;
 
-    color: @black;
-    background-color: @gray-lighter;
+	color: @black;
+	background-color: @gray-lighter;
 }
 
 // CHECKBOX
@@ -1552,58 +1565,58 @@ select
 
 .wrapper-checkbox
 {
-    position: relative;
+	position: relative;
 
-    display: table;
-    clear: both;
+	display: table;
+	clear: both;
 
-    margin: 15px;
+	margin: 15px;
 }
 
 .checkbox
 {
-    position: relative;
+	position: relative;
 
-    float: left;
+	float: left;
 
-    width: 32px;
-    height: 32px;
+	width: 32px;
+	height: 32px;
 
-    text-align: center;
+	text-align: center;
 
-    border: 2px solid @violet;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
+	border: 2px solid @violet;
+	-webkit-border-radius: 4px;
+			border-radius: 4px;
 }
 
 .checkbox.active:after
 {
-    font-family: ionicons;
-    font-size: 18px;
-    line-height: 29px;
+	font-family: ionicons;
+	font-size: 18px;
+	line-height: 29px;
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
 
-    display: block;
+	display: block;
 
-    height: 32px;
-    margin-right: auto;
-    margin-left: auto;
+	height: 32px;
+	margin-right: auto;
+	margin-left: auto;
 
-    content: '\f122';
+	content: '\f122';
 
-    color: @violet;
+	color: @violet;
 }
 
 .wrapper-checkbox span
 {
-    float: left;
+	float: left;
 
-    margin-top: 5px;
-    margin-left: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
 }
 
 // FEEDBACK
@@ -1611,52 +1624,52 @@ select
 
 .wrapper-feedback
 {
-    position: relative;
+	position: relative;
 
-    display: table;
-    clear: both;
+	display: table;
+	clear: both;
 
-    width: 100%;
-    margin: 15px 0;
+	width: 100%;
+	margin: 15px 0;
 
-    text-align: center;
+	text-align: center;
 
-    .smoothing;
+	.smoothing;
 }
 
 .wrapper-feedback .button-feedback
 {
-    font-family: ionicons;
-    font-size: 36px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 36px;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: inline-block;
+	display: inline-block;
 
-    margin: 0 30px;
+	margin: 0 30px;
 
-    color: @gray;
+	color: @gray;
 }
 
 .wrapper-feedback .button-feedback.happy:after
 {
-    content: '\f3c6';
+	content: '\f3c6';
 }
 
 .wrapper-feedback .button-feedback.happy.active:after
 {
-    content: '\f31c';
+	content: '\f31c';
 }
 
 .wrapper-feedback .button-feedback.sad:after
 {
-    content: '\f4d7';
+	content: '\f4d7';
 }
 
 .wrapper-feedback .button-feedback.sad.active:after
 {
-    content: '\f34a';
+	content: '\f34a';
 }
 
 // MAP
@@ -1664,125 +1677,125 @@ select
 
 #map .wrapper-label
 {
-    height: 30px;
-    min-height: inherit;
+	height: 30px;
+	min-height: inherit;
 }
 
 #map .label
 {
-    font-size: 12px;
-    line-height: 30px;
+	font-size: 12px;
+	line-height: 30px;
 
-    height: 30px;
-    min-height: inherit;
-    padding: 0 0 0 15px;
+	height: 30px;
+	min-height: inherit;
+	padding: 0 0 0 15px;
 
-    border-bottom: transparent;
+	border-bottom: transparent;
 }
 
 #map .label:after
 {
-    display: none;
+	display: none;
 
-    content: '';
+	content: '';
 }
 
 #map .label.trade .row
 {
-    z-index: 10;
+	z-index: 10;
 
-    margin-left: 33px;
+	margin-left: 33px;
 }
 
 #map .label.trade .net
 {
-    position: relative;
-    z-index: 10;
+	position: relative;
+	z-index: 10;
 
-    padding: 0 15px;
+	padding: 0 15px;
 
-    text-align: right;
+	text-align: right;
 }
 
 #map .label.trade .instrument,
 #map .label.operation .instrument
 {
-    position: relative;
-    z-index: 10;
+	position: relative;
+	z-index: 10;
 }
 
 #map .label.trade .ball
 {
-    z-index: 100;
+	z-index: 100;
 
-    width: 18px;
-    height: 18px;
+	width: 18px;
+	height: 18px;
 
-    background-color: @white;
+	background-color: @white;
 }
 
 #map .label.trade .ball .icon
 {
-    font-size: 12px;
-    line-height: 18px;
+	font-size: 12px;
+	line-height: 18px;
 
-    color: @white;
+	color: @white;
 }
 
 #map .label.trade.long .ball .icon:after
 {
-    font-size: 12px!important;
-    line-height: 18px!important;
+	font-size: 12px!important;
+	line-height: 18px!important;
 
-    color: @green;
+	color: @green;
 }
 
 #map .label.trade.short .ball .icon:after
 {
-    font-size: 12px!important;
-    line-height: 20px!important;
+	font-size: 12px!important;
+	line-height: 20px!important;
 
-    color: @red;
+	color: @red;
 }
 
 #map .percentage
 {
-    position: absolute;
-    top: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 
-    width: 100%;
-    height: 100%;
-    padding-left: 48px;
+	width: 100%;
+	height: 100%;
+	padding-left: 48px;
 
-    -webkit-animation-duration: .3s;
+	-webkit-animation-duration: .3s;
 }
 
 #map .label.trade.positive .percentage
 {
-    background: @green;
+	background: @green;
 }
 
 #map .label.negative .percentage
 {
-    background: @red;
+	background: @red;
 }
 
 #map .label.zero .percentage
 {
-    background-color: @violet-light;
+	background-color: @violet-light;
 }
 
 #map .bar-percentage
 {
-    z-index: 1;
+	z-index: 1;
 
-    float: right;
+	float: right;
 
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    background-color: @white;
+	background-color: @white;
 }
 
 // PANE
@@ -1790,64 +1803,64 @@ select
 
 .pane
 {
-    font-size: @small;
+	font-size: @small;
 
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    margin: 15px 0;
+	width: 100%;
+	margin: 15px 0;
 }
 
 .pane li
 {
-    position: relative;
+	position: relative;
 
-    display: table;
-    clear: both;
+	display: table;
+	clear: both;
 
-    width: 100%;
-    padding: 0 15px;
+	width: 100%;
+	padding: 0 15px;
 }
 
 .pane li .col-1,
 .pane li .col-2
 {
-    position: relative;
+	position: relative;
 
-    display: table-cell;
+	display: table-cell;
 
-    width: 50%;
+	width: 50%;
 }
 
 .pane li .col-1
 {
-    padding-right: 7.5px;
+	padding-right: 7.5px;
 
-    text-align: right;
+	text-align: right;
 }
 
 .pane li .col-2
 {
-    padding-left: 7.5px;
+	padding-left: 7.5px;
 
-    text-align: left;
+	text-align: left;
 }
 
 .pane li .col-2 .percentage
 {
-    float: right;
+	float: right;
 
-    text-align: right;
+	text-align: right;
 }
 
 @media (max-height: 480px)
 {
-    .pane
-    {
-        margin: 5px 0;
-    }
+	.pane
+	{
+		margin: 5px 0;
+	}
 }
 
 // SELECT GROUP
@@ -1855,47 +1868,47 @@ select
 
 .wrapper-select-group
 {
-    position: relative;
+	position: relative;
 
-    display: table;
-    clear: both;
+	display: table;
+	clear: both;
 
-    width: 100%;
-    margin: 15px 0;
-    padding: 0 15px;
+	width: 100%;
+	margin: 15px 0;
+	padding: 0 15px;
 
-    text-align: center;
+	text-align: center;
 }
 
 .wrapper-select-group .group
 {
-    font-size: 15px;
-    line-height: 30px;
+	font-size: 15px;
+	line-height: 30px;
 
-    position: relative;
+	position: relative;
 
-    display: inline-block;
+	display: inline-block;
 
-    width: 32px;
-    height: 32px;
-    margin-left: 15px;
+	width: 32px;
+	height: 32px;
+	margin-left: 15px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
-    background-color: @violet-light;
+	color: @white;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
+	background-color: @violet-light;
 }
 
 .wrapper-select-group .group.selected
 {
-    background-color: @violet;
+	background-color: @violet;
 }
 
 .wrapper-select-group .group:first-child
 {
-    margin-left: 0;
+	margin-left: 0;
 }
 
 // HEADER - BOX SWIPE
@@ -1903,17 +1916,17 @@ select
 
 .header-box-swipe
 {
-    position: fixed;
-    z-index: 1000;
-    top: 98px;
-    left: 0;
+	position: fixed;
+	z-index: 1000;
+	top: 98px;
+	left: 0;
 
-    display: block;
-    overflow: auto;
+	display: block;
+	overflow: auto;
 
-    width: 100%;
+	width: 100%;
 
-    background-color: @white;
+	background-color: @white;
 }
 
 // CONTROL - BOX SWIPE
@@ -1921,56 +1934,56 @@ select
 
 .wrapper-control-box-swipe
 {
-    position: fixed;
-    z-index: 1000;
-    bottom: 44px;
+	position: fixed;
+	z-index: 1000;
+	bottom: 44px;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    width: 100%;
-    height: 30px;
+	width: 100%;
+	height: 30px;
 
-    background-color: @violet;
+	background-color: @violet;
 }
 
 .control-box-swipe
 {
-    position: relative;
+	position: relative;
 
-    display: table;
+	display: table;
 
-    width: 100%;
-    height: 30px;
+	width: 100%;
+	height: 30px;
 
-    text-align: center;
+	text-align: center;
 }
 
 .control-box-swipe li
 {
-    position: relative;
+	position: relative;
 
-    display: inline-block;
+	display: inline-block;
 
-    padding: 0 5px;
+	padding: 0 5px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @violet-light;
+	color: @violet-light;
 }
 
 .control-box-swipe li:after
 {
-    font-family: ionicons;
-    font-size: 12px;
-    line-height: 30px;
+	font-family: ionicons;
+	font-size: 12px;
+	line-height: 30px;
 
-    content: '\f21b';
+	content: '\f21b';
 }
 
 .control-box-swipe li.active
 {
-    color: @white!important;
+	color: @white!important;
 }
 
 // CONTROL - BOX SWIPE - ACTIVE GROUP
@@ -1978,39 +1991,39 @@ select
 
 .wrapper-control-box-swipe .wrapper-active-group
 {
-    position: absolute;
-    top: 0;
-    left: -3px;
+	position: absolute;
+	top: 0;
+	left: -3px;
 
-    width: 100%;
-    height: 30px;
-    margin: 0 15px;
+	width: 100%;
+	height: 30px;
+	margin: 0 15px;
 }
 
 .wrapper-control-box-swipe .wrapper-active-group .group
 {
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 14px;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 14px;
 
-    float: left;
+	float: left;
 
-    width: 14px;
-    height: 14px;
-    margin-top: 8px;
-    margin-left: 3px;
+	width: 14px;
+	height: 14px;
+	margin-top: 8px;
+	margin-left: 3px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @violet;
-    -webkit-border-radius: 50%;
-            border-radius: 50%;
-    background-color: @violet-light;
+	color: @violet;
+	-webkit-border-radius: 50%;
+			border-radius: 50%;
+	background-color: @violet-light;
 }
 
 .wrapper-control-box-swipe .wrapper-active-group .group.selected
 {
-    background-color: @white;
+	background-color: @white;
 }
 
 // BOX SWIPE
@@ -2018,22 +2031,22 @@ select
 
 .box-swipe
 {
-    height: 100%;
-    padding-top: 112px;
-    padding-bottom: 30px;
+	height: 100%;
+	padding-top: 112px;
+	padding-bottom: 30px;
 
-    color: @white;
-    background-color: @violet;
+	color: @white;
+	background-color: @violet;
 }
 
 .box-swipe .content-swipe
 {
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 // BOX-VIOLET
@@ -2041,12 +2054,12 @@ select
 
 .box-violet
 {
-    overflow: auto;
+	overflow: auto;
 
-    min-height: 100%;
+	min-height: 100%;
 
-    color: @white;
-    background-color: @violet;
+	color: @white;
+	background-color: @violet;
 }
 
 // BOX-VIOLET / SWIPE TRIANGLE
@@ -2054,13 +2067,13 @@ select
 
 .box-violet .swipe-triangle
 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 
-    border-width: 8px 0 0 8px;
-    border-style: solid;
-    border-color: transparent transparent transparent @violet-dark;
+	border-width: 8px 0 0 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent @violet-dark;
 }
 
 // BOX-VIOLET / BOX SWIPE - FORM
@@ -2069,28 +2082,28 @@ select
 .box-violet form,
 .box-swipe form
 {
-    color: @white;
+	color: @white;
 }
 
 .box-violet input,
 .box-swipe input
 {
-    border: 1px solid @violet-dark;
+	border: 1px solid @violet-dark;
 }
 
 .box-violet .wrapper-input .input-icon:before,
 .box-swipe .wrapper-input .input-icon:before
 {
-    color: @gray-lighter;
-    background: @violet-dark;
+	color: @gray-lighter;
+	background: @violet-dark;
 
-    .smoothing;
+	.smoothing;
 }
 
 .box-violet textarea,
 .box-swipe textarea
 {
-    border: 1px solid @violet-dark;
+	border: 1px solid @violet-dark;
 }
 
 // BOX-VIOLET / BOX SWIPE - HELP BLOCK
@@ -2099,7 +2112,7 @@ select
 .box-violet .help-block,
 .box-swipe .help-block
 {
-    color: @violet-light;
+	color: @violet-light;
 }
 
 // BOX-VIOLET / BOX SWIPE - TEXT NOTE
@@ -2108,7 +2121,7 @@ select
 .box-violet .text-note,
 .box-swipe .text-note
 {
-    color: @violet-light;
+	color: @violet-light;
 }
 
 // BOX-VIOLET / BOX SWIPE - SELECT
@@ -2117,14 +2130,14 @@ select
 .box-violet .wrapper-select:after,
 .box-swipe .wrapper-select:after
 {
-    color: @white;
-    background-color: @violet-dark;
+	color: @white;
+	background-color: @violet-dark;
 }
 
 .box-violet select,
 .box-swipe select
 {
-    border: 1px solid @violet-dark;
+	border: 1px solid @violet-dark;
 }
 
 // BOX-VIOLET / BOX SWIPE - RADIO BUTTON
@@ -2133,19 +2146,19 @@ select
 .box-violet .radiobutton,
 .box-swipe .radiobutton
 {
-    border: 2px solid @white;
+	border: 2px solid @white;
 }
 
 .box-violet .radiobutton.active:after,
 .box-swipe .radiobutton.active:after
 {
-    color: @white;
+	color: @white;
 }
 
 .box-violet .radiobutton.active.activating:after,
 .box-swipe .radiobutton.active.activating:after
 {
-    color: @yellow;
+	color: @yellow;
 }
 
 // BOX-VIOLET / BOX SWIPE - BUTTON PRIMARY
@@ -2154,8 +2167,8 @@ select
 .box-violet .button-primary,
 .box-swipe .button-primary
 {
-    color: @violet;
-    background-color: @white;
+	color: @violet;
+	background-color: @white;
 }
 
 // BOX-VIOLET / BOX SWIPE - BUTTON PRIMARY / START / DONE
@@ -2164,12 +2177,12 @@ select
 #start,
 #done
 {
-    font-weight: 600;
+	font-weight: 600;
 
-    color: @white;
-    background-color: @green;
+	color: @white;
+	background-color: @green;
 
-    .smoothing;
+	.smoothing;
 }
 
 // BOX-VIOLET / BOX SWIPE - CHECKBOX
@@ -2178,13 +2191,13 @@ select
 .box-violet .checkbox,
 .box-swipe .checkbox
 {
-    border: 2px solid @white;
+	border: 2px solid @white;
 }
 
 .box-violet .checkbox.active:after,
 .box-swipe .checkbox.active:after
 {
-    color: @white;
+	color: @white;
 }
 
 // BOX-VIOLET / BOX SWIPE - LABEL
@@ -2193,52 +2206,52 @@ select
 .box-violet .label:after,
 .box-swipe .label:after
 {
-    color: @violet-dark;
+	color: @violet-dark;
 }
 
 .box-violet .label,
 .box-swipe .label
 {
-    color: @white;
-    border-bottom: 1px solid @violet-dark;
-    background-color: @violet;
+	color: @white;
+	border-bottom: 1px solid @violet-dark;
+	background-color: @violet;
 }
 
 .box-violet .label.account .name,
 .box-swipe .label.account .name
 {
-    color: @white;
+	color: @white;
 }
 
 .box-violet .label.account .balance,
 .box-swipe .label.account .balance
 {
-    color: @violet-light;
+	color: @violet-light;
 }
 
 .box-violet .label.instrument .ball,
 .box-swipe .label.instrument .ball
 {
-    background-color: @white;
+	background-color: @white;
 }
 
 .box-violet .label.instrument .ball .group,
 .box-swipe .label.instrument .ball .group
 {
-    color: @violet;
+	color: @violet;
 }
 
 .box-violet .label.instrument .name,
 .box-swipe .label.instrument .name
 {
-    color: @white;
+	color: @white;
 }
 .box-violet .label.instrument .type,
 .box-violet .label.instrument .commission,
 .box-swipe .label.instrument .type,
 .box-swipe .label.instrument .commission
 {
-    color: @violet-light;
+	color: @violet-light;
 }
 
 // BOX-VIOLET / BOX SWIPE - SWIPE BUTTONS
@@ -2247,7 +2260,7 @@ select
 .box-violet .swipe-buttons,
 .box-swipe .swipe-buttons
 {
-    background-color: @violet-dark;
+	background-color: @violet-dark;
 }
 
 // BOX-VIOLET / BOX SWIPE - MAP
@@ -2258,26 +2271,26 @@ select
 .box-swipe .label.trade .instrument,
 .box-swipe .label.operation .instrument
 {
-    color: @white;
+	color: @white;
 }
 
 .box-violet #map .bar-percentage,
 .box-swipe #map .bar-percentage
 {
-    background-color: @violet;
+	background-color: @violet;
 }
 
 .box-violet #map .label.trade .net,
 .box-swipe #map .label.trade .net
 {
-    color: @white;
-    background-color: @violet;
+	color: @white;
+	background-color: @violet;
 }
 
 .box-violet #map .label,
 .box-swipe #map .label
 {
-    border-bottom: transparent;
+	border-bottom: transparent;
 }
 
 // BOX-VIOLET / BOX SWIPE - PANE
@@ -2286,7 +2299,7 @@ select
 .box-violet .pane,
 .box-swipe .pane
 {
-    color: @white;
+	color: @white;
 }
 
 // BOX-VIOLET / BOX SWIPE - FEEDBACK
@@ -2295,7 +2308,7 @@ select
 .box-violet .wrapper-feedback .button-feedback,
 .box-swipe .wrapper-feedback .button-feedback
 {
-    color: @violet-light;
+	color: @violet-light;
 }
 
 .box-violet .wrapper-feedback .button-feedback.happy.active:after,
@@ -2303,7 +2316,7 @@ select
 .box-swipe .wrapper-feedback .button-feedback.happy.active:after,
 .box-swipe .wrapper-feedback .button-feedback.sad.active:after
 {
-    color: @white;
+	color: @white;
 }
 
 // BOX-VIOLET / BOX SWIPE - TITLE SECTION
@@ -2312,8 +2325,8 @@ select
 .box-violet .title-section,
 .box-swipe .title-section
 {
-    color: @white;
-    background-color: @violet-dark;
+	color: @white;
+	background-color: @violet-dark;
 }
 
 // BOX-VIOLET / BOX SWIPE - SELECT GROUP
@@ -2322,15 +2335,15 @@ select
 .box-violet .wrapper-select-group .group,
 .box-swipe .wrapper-select-group .group
 {
-    color: @white;
-    background-color: @violet-light;
+	color: @white;
+	background-color: @violet-light;
 }
 
 .box-violet .wrapper-select-group .group.selected,
 .box-swipe .wrapper-select-group .group.selected
 {
-    color: @violet;
-    background-color: @white;
+	color: @violet;
+	background-color: @white;
 }
 
 // WELCOME
@@ -2338,82 +2351,82 @@ select
 
 .welcome
 {
-    position: relative;
-    top: 0;
-    left: 0;
+	position: relative;
+	top: 0;
+	left: 0;
 
-    overflow: auto;
+	overflow: auto;
 
-    width: 100%;
-    min-height: 100%;
+	width: 100%;
+	min-height: 100%;
 
-    background-color: @black;
+	background-color: @black;
 }
 
 .welcome .content
 {
-    position: relative;
-    z-index: 100;
-    left: 0;
+	position: relative;
+	z-index: 100;
+	left: 0;
 }
 
 .welcome h1
 {
-    font-weight: 100;
-    font-style: normal;
-    line-height: 1;
+	font-weight: 100;
+	font-style: normal;
+	line-height: 1;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    margin: 12px 0 15px 0;
+	margin: 12px 0 15px 0;
 
-    text-align: center;
-    letter-spacing: 1px;
+	text-align: center;
+	letter-spacing: 1px;
 
-    .smoothing;
+	.smoothing;
 }
 
 .welcome .text-body
 {
-    margin: 0 15px 30px 15px;
+	margin: 0 15px 30px 15px;
 
-    text-align: center;
+	text-align: center;
 
-    color: @white;
+	color: @white;
 
-    .smoothing;
+	.smoothing;
 }
 
 .welcome .video
 {
-    position: absolute;
-    top: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 
-    width: 100%;
-    min-height: 100%;
+	width: 100%;
+	min-height: 100%;
 
-    opacity: .3;
-    background: url('../img/welcome.gif') no-repeat center center fixed;
-    -webkit-background-size: cover;
-            background-size: cover;
+	opacity: .3;
+	background: url('../img/welcome.gif') no-repeat center center fixed;
+	-webkit-background-size: cover;
+			background-size: cover;
 }
 
 .welcome .help-block
 {
-    color: @gray-light !important;
+	color: @gray-light !important;
 }
 
 .welcome .input-icon:before,
 {
-    color: @white !important;
-    background: @violet !important;
+	color: @white !important;
+	background: @violet !important;
 }
 
 .welcome input,
 {
-    border: 1px solid @violet;
+	border: 1px solid @violet;
 }
 
 // GRAPHIC DOUGHNUT
@@ -2421,132 +2434,132 @@ select
 
 .box-swipe .content-swipe .help
 {
-    position: absolute;
-    top: 6px;
-    right: 10px;
+	position: absolute;
+	top: 6px;
+	right: 10px;
 
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 
-    -webkit-animation-duration: .5s;
+	-webkit-animation-duration: .5s;
 }
 
 .box-swipe .content-swipe .help:before
 {
-    font-family: ionicons;
-    font-size: 28px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 28px;
+	line-height: 1;
 
-    content: '\f142';
+	content: '\f142';
 
-    color: @white;
+	color: @white;
 }
 
 .box-swipe .content-swipe canvas#doughnut
 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 
-    width: 100%;
-    height: 100%;
-    max-height: 320px;
-    margin: 0 auto;
-    padding: 15px;
+	width: 100%;
+	height: 100%;
+	max-height: 320px;
+	margin: 0 auto;
+	padding: 15px;
 
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
 }
 
 .box-swipe .content-swipe .center .legend .graphic li
 {
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li:before
 {
-    font-family: ionicons;
-    font-size: 12px;
-    line-height: 18px;
+	font-family: ionicons;
+	font-size: 12px;
+	line-height: 18px;
 
-    position: absolute;
+	position: absolute;
 
-    display: block;
+	display: block;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.profit:before
 {
-    content: '\f21b';
+	content: '\f21b';
 
-    color: @green;
+	color: @green;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.profit.positive:before
 {
-    content: '\f216';
+	content: '\f216';
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.loss:before
 {
-    content: '\f21b';
+	content: '\f21b';
 
-    color: @red;
+	color: @red;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.loss.negative:before
 {
-    content: '\f207';
+	content: '\f207';
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.commissions:before
 {
-    content: '\f21b';
+	content: '\f21b';
 
-    color: @yellow;
+	color: @yellow;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.commissions.negative:before
 {
-    content: '\f207';
+	content: '\f207';
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.operations:before
 {
-    content: '\f21b';
+	content: '\f21b';
 
-    color: @gray;
+	color: @gray;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.operations.positive:before
 {
-    content: '\f216';
+	content: '\f216';
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.operations.negative:before
 {
-    content: '\f207';
+	content: '\f207';
 }
 
 .box-swipe .content-swipe .center .legend .graphic li.net:before
 {
-    content: '\f21b';
+	content: '\f21b';
 
-    color: @violet-light;
+	color: @violet-light;
 }
 
 .box-swipe .content-swipe .center .legend .graphic li span
 {
-    font-size: @small;
+	font-size: @small;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    margin-left: 16px;
+	margin-left: 16px;
 }
 
 // GRAPHIC LINE
@@ -2554,11 +2567,11 @@ select
 
 .box-swipe .content-swipe canvas#line
 {
-    width: 100%;
-    height: 100%;
-    max-height: 400px;
-    margin: 0 auto;
-    padding: 15px 15px 0 15px;
+	width: 100%;
+	height: 100%;
+	max-height: 400px;
+	margin: 0 auto;
+	padding: 15px 15px 0 15px;
 }
 
 // NO STATS
@@ -2566,51 +2579,51 @@ select
 
 #no-stats
 {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	bottom: 0;
 
-    width: 100%;
+	width: 100%;
 
-    text-align: center;
+	text-align: center;
 
-    background-color: @violet;
+	background-color: @violet;
 }
 
 #no-stats span
 {
-    font-size: 1.6em;
-    font-weight: 100;
-    font-style: normal;
-    line-height: 1;
+	font-size: 1.6em;
+	font-weight: 100;
+	font-style: normal;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    text-align: center;
+	text-align: center;
 
-    color: @violet-dark;
+	color: @violet-dark;
 
-    .smoothing;
+	.smoothing;
 }
 
 #no-stats span:before
 {
-    font-family: ionicons;
-    font-size: 30px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 30px;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 
-    content: '\f2bf';
-    text-align: center;
+	content: '\f2bf';
+	text-align: center;
 }
 
 // PROCESSING
@@ -2618,51 +2631,51 @@ select
 
 #processing
 {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	bottom: 0;
 
-    width: 100%;
+	width: 100%;
 
-    text-align: center;
+	text-align: center;
 
-    background-color: @violet;
+	background-color: @violet;
 }
 
 #processing span
 {
-    font-size: 1.6em;
-    font-weight: 100;
-    font-style: normal;
-    line-height: 1;
+	font-size: 1.6em;
+	font-weight: 100;
+	font-style: normal;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    text-align: center;
+	text-align: center;
 
-    color: @violet-dark;
+	color: @violet-dark;
 
-    .smoothing;
+	.smoothing;
 }
 
 #processing span:before
 {
-    font-family: ionicons;
-    font-size: 30px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 30px;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 
-    content: '\f27b';
-    text-align: center;
+	content: '\f27b';
+	text-align: center;
 }
 
 // THANK YOU
@@ -2670,51 +2683,51 @@ select
 
 #thank-you
 {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	bottom: 0;
 
-    width: 100%;
+	width: 100%;
 
-    text-align: center;
+	text-align: center;
 
-    background-color: @violet;
+	background-color: @violet;
 }
 
 #thank-you span
 {
-    font-size: 1.6em;
-    font-weight: 100;
-    font-style: normal;
-    line-height: 1;
+	font-size: 1.6em;
+	font-weight: 100;
+	font-style: normal;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: block;
-    clear: both;
+	display: block;
+	clear: both;
 
-    text-align: center;
+	text-align: center;
 
-    color: @violet-dark;
+	color: @violet-dark;
 
-    .smoothing;
+	.smoothing;
 }
 
 #thank-you span:before
 {
-    font-family: ionicons;
-    font-size: 30px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 30px;
+	line-height: 1;
 
-    position: relative;
+	position: relative;
 
-    display: block;
+	display: block;
 
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 
-    content: '\f2c3';
-    text-align: center;
+	content: '\f2c3';
+	text-align: center;
 }
 
 // MAP
@@ -2722,78 +2735,78 @@ select
 
 #map
 {
-    margin-bottom: 44px;
+	margin-bottom: 44px;
 }
 
 section.map
 {
-    bottom: 0!important;
+	bottom: 0!important;
 }
 
 #map .label .row:before
 {
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    right: 0;
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	right: 0;
 
-    width: 100%;
-    height: 30px;
+	width: 100%;
+	height: 30px;
 
-    content: '';
+	content: '';
 
-    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,100) 100%);
+	background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,100) 100%);
 }
 
 #map .label:before
 {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
 
-    width: 48px;
-    height: 30px;
+	width: 48px;
+	height: 30px;
 
-    content: '';
+	content: '';
 }
 
 // NUMBERS
 // -------------------------------------------------- //
 .numbers.positive:before
 {
-    font-family: ionicons;
-    font-size: 260px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 260px;
+	line-height: 1;
 
-    position: relative;
-    top: 50%;
+	position: relative;
+	top: 50%;
 
-    display: block;
+	display: block;
 
-    margin-top: -130px;
+	margin-top: -130px;
 
-    content: '\f262';
-    text-align: center;
+	content: '\f262';
+	text-align: center;
 
-    color: @violet-dark;
+	color: @violet-dark;
 }
 
 .numbers.negative:before
 {
-    font-family: ionicons;
-    font-size: 260px;
-    line-height: 1;
+	font-family: ionicons;
+	font-size: 260px;
+	line-height: 1;
 
-    position: relative;
-    top: 50%;
+	position: relative;
+	top: 50%;
 
-    display: block;
+	display: block;
 
-    margin-top: -130px;
+	margin-top: -130px;
 
-    content: '\f260';
-    text-align: center;
+	content: '\f260';
+	text-align: center;
 
-    color: @violet-dark;
+	color: @violet-dark;
 }
