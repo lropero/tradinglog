@@ -7,7 +7,7 @@
 		initialize: function() {
 
 			if(typeof OAuth !== 'undefined') {
-				OAuth.initialize('oIPlwY07JghJFL8htlt8ZQ');
+				OAuth.initialize('XGd3qcRd_gxD3WLkEV6987jkpfs');
 			}
 
 			this.template = Handlebars.compile(app.templateLoader.get('friends'));
