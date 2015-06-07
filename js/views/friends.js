@@ -5,11 +5,6 @@
 		el: 'section#main-stats-friends',
 
 		initialize: function() {
-
-			if(typeof OAuth !== 'undefined') {
-				OAuth.initialize('XGd3qcRd_gxD3WLkEV6987jkpfs');
-			}
-
 			this.template = Handlebars.compile(app.templateLoader.get('friends'));
 			this.render();
 		},

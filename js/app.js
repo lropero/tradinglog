@@ -17,6 +17,11 @@
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
+			/** Twitter */
+			if(typeof OAuth !== 'undefined') {
+				OAuth.initialize('_PATekA0POUmb4bhgncFMXoQsxE');
+			}
+
 			app.databaseController.init().done(function() {
 				app.templateLoader.load(function() {
 					var accounts = new app.Collections.accounts();
