@@ -40,6 +40,7 @@
 	<gap:plugin name="com.brodysoft.sqliteplugin" />
 	<gap:plugin name="com.ionic.keyboard" />
 	<gap:plugin name="com.jchalan.cordova.ios.disableshaketoundo" />
+	<gap:plugin name="com.oauthio.plugins.oauthio" />
 	<gap:plugin name="com.plugin.datepicker" />
 	<gap:plugin name="org.apache.cordova.device-motion" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
