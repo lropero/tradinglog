@@ -6,7 +6,9 @@
 </bar>
 </script>
 <script type="text/x-handlebars-template" id="friends-connect-template"><div class="content">
-	<div class="button-primary twitter" id="button-help"><i class="ion-social-twitter"></i> Connect with Twitter</div>
+	<div class="center">
+		<div class="button-primary twitter"><i class="ion-social-twitter"></i> Sign in with Twitter</div>
+	</div>
 </div>
 </script>
 <script type="text/x-handlebars-template" id="friends-template"><section id="content">
