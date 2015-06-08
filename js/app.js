@@ -17,6 +17,20 @@
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
+			/** Internet connection */
+			app.internet = true;
+			if(navigator.connection) {
+				if(navigator.connection.type === Connection.NONE) {
+					app.internet = false;
+				}
+				document.addEventListener('offline', function() {
+					app.internet = false;
+				}, false);
+				document.addEventListener('online', function() {
+					app.internet = true;
+				}, false);
+			}
+
 			app.databaseController.init().done(function() {
 				app.templateLoader.load(function() {
 					var accounts = new app.Collections.accounts();
@@ -55,7 +69,9 @@
 														avatar: user.avatar,
 														name: user.name
 													}
-													$('<img />')[0].src = user.avatar;
+													if(app.internet) {
+														$('<img />')[0].src = user.avatar;
+													}
 												}
 											}
 										});
