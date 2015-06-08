@@ -28,7 +28,7 @@
 							var user = users.at(0).toJSON();
 							app.user = {
 								alias: user.alias,
-								avatar: user.data,
+								avatar: user.avatar,
 								name: user.name
 							}
 						}

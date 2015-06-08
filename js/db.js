@@ -108,7 +108,7 @@
 				'CREATE TABLE IF NOT EXISTS user (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'alias TEXT,' +
-					'avatar BLOB,' +
+					'avatar TEXT,' +
 					'name TEXT,' +
 					'me INTEGER' +
 				');',

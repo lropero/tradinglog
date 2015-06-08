@@ -29,25 +29,21 @@
 					cache: true
 				}).done(function(result) {
 					result.me(['alias', 'avatar', 'name']).done(function(response) {
-						$.ajax(avatar, {
-							success: function(data) {
-								var user = new app.Models.user();
-								user.set({
+						var user = new app.Models.user();
+						user.set({
+							alias: alias,
+							avatar: avatar,
+							name: name,
+							me: 1
+						});
+						user.save(null, {
+							success: function() {
+								app.user = {
 									alias: alias,
-									avatar: data,
-									name: name,
-									me: 1
-								});
-								user.save(null, {
-									success: function() {
-										app.user = {
-											alias: alias,
-											avatar: data,
-											name: name
-										}
-										app.loadView('friends');
-									}
-								});
+									avatar: avatar,
+									name: name
+								}
+								app.loadView('friends');
 							}
 						});
 					});
