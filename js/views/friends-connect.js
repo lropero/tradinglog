@@ -31,17 +31,17 @@
 					result.me(['alias', 'avatar', 'name']).done(function(response) {
 						var user = new app.Models.user();
 						user.set({
-							alias: alias,
-							avatar: avatar,
-							name: name,
+							alias: response.alias,
+							avatar: response.avatar,
+							name: response.name,
 							me: 1
 						});
 						user.save(null, {
 							success: function() {
 								app.user = {
-									alias: alias,
-									avatar: avatar,
-									name: name
+									alias: response.alias,
+									avatar: response.avatar,
+									name: response.name
 								}
 								app.loadView('friends');
 							}
