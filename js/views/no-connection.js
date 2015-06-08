@@ -1,16 +1,16 @@
 (function() {
 	'use strict';
 
-	app.Views.friendsNoConnection = Backbone.View.extend({
+	app.Views.noConnection = Backbone.View.extend({
 		el: 'section#main-stats-friends',
 
 		initialize: function() {
-			this.template = Handlebars.compile(app.templateLoader.get('friends-no-connection'));
+			this.template = Handlebars.compile(app.templateLoader.get('no-connection'));
 			this.render();
 		},
 
 		render: function() {
-			app.trigger('change', 'friends-no-connection');
+			app.trigger('change', 'no-connection');
 			this.$el.html(this.template());
 			return this;
 		}
