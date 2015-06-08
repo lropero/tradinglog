@@ -5,9 +5,11 @@
 	<a class="item" data-view="settings"><span class="icon ion-ios-gear"></span></a>
 </bar>
 </script>
-<script type="text/x-handlebars-template" id="friends-template"><div class="content">
+<script type="text/x-handlebars-template" id="friends-connect-template"><div class="content">
 	<div class="button-primary twitter" id="button-help"><i class="ion-social-twitter"></i> Connect with Twitter</div>
 </div>
+</script>
+<script type="text/x-handlebars-template" id="friends-template"><img src="{{this.avatar}}" />{{this.name}} ({{this.alias}})
 </script>
 <script type="text/x-handlebars-template" id="header-template"><bar class="navigation">
 	<button class="left" id="button-left"></button>

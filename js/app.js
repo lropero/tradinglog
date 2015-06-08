@@ -17,12 +17,24 @@
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
-			/** Twitter */
-			if(typeof OAuth !== 'undefined') {
-				OAuth.initialize('_PATekA0POUmb4bhgncFMXoQsxE');
-			}
-
 			app.databaseController.init().done(function() {
+
+				/** User */
+				var users = new app.Collections.users();
+				users.setMe(true);
+				users.fetch({
+					success: function() {
+						if(users.length) {
+							var user = users.at(0).toJSON();
+							app.user = {
+								alias: user.alias,
+								avatar: user.data,
+								name: user.name
+							}
+						}
+					}
+				});
+
 				app.templateLoader.load(function() {
 					var accounts = new app.Collections.accounts();
 					accounts.setActive();

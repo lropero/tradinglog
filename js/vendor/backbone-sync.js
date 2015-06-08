@@ -13,7 +13,7 @@
 					dao.setVariations(model, function(data) {
 						options.success(data);
 					});
-				} else if(model.id) {
+				} else if(model.id || model.me) {
 					dao.find(model, function(data) {
 						options.success(data);
 					});

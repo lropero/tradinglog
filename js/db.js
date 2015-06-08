@@ -12,7 +12,7 @@
 			} else {
 				this.db = window.openDatabase('TradingLog', '1.0', 'TradingLog v1.0', 1024 * 1024);
 			}
-			// this.reset();
+			// this.reset(function() {});
 			this.createTables();
 			return this.deferred;
 		},
@@ -104,6 +104,13 @@
 					'variation NUMERIC,' +
 					'comments INTEGER,' +
 					'closed_at INTEGER' +
+				');',
+				'CREATE TABLE IF NOT EXISTS user (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'alias TEXT,' +
+					'avatar BLOB,' +
+					'name TEXT,' +
+					'me INTEGER' +
 				');',
 				'CREATE TABLE IF NOT EXISTS view (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
