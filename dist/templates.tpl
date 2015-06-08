@@ -9,7 +9,17 @@
 	<div class="button-primary twitter" id="button-help"><i class="ion-social-twitter"></i> Connect with Twitter</div>
 </div>
 </script>
-<script type="text/x-handlebars-template" id="friends-template"><img src="{{this.avatar}}" />{{this.name}} ({{this.alias}})
+<script type="text/x-handlebars-template" id="friends-no-connection-template"><section id="content">
+	<div id="no-connection">
+		<div class="center">
+			<span>No connection</span>
+		</div>
+	</div>
+</section>
+</script>
+<script type="text/x-handlebars-template" id="friends-template"><section id="content">
+	<img src="{{this.avatar}}" />{{this.name}} ({{this.alias}})
+</section>
 </script>
 <script type="text/x-handlebars-template" id="header-template"><bar class="navigation">
 	<button class="left" id="button-left"></button>

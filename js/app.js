@@ -18,23 +18,6 @@
 			}
 
 			app.databaseController.init().done(function() {
-
-				/** User */
-				var users = new app.Collections.users();
-				users.setMe(true);
-				users.fetch({
-					success: function() {
-						if(users.length) {
-							var user = users.at(0).toJSON();
-							app.user = {
-								alias: user.alias,
-								avatar: user.avatar,
-								name: user.name
-							}
-						}
-					}
-				});
-
 				app.templateLoader.load(function() {
 					var accounts = new app.Collections.accounts();
 					accounts.setActive();
@@ -59,6 +42,22 @@
 
 								layout.deferred.done(function() {
 									app.fetchObjects().done(function() {
+
+										/** User */
+										var users = new app.Collections.users();
+										users.setMe(true);
+										users.fetch({
+											success: function() {
+												if(users.length) {
+													var user = users.at(0).toJSON();
+													app.user = {
+														alias: user.alias,
+														avatar: user.avatar,
+														name: user.name
+													}
+												}
+											}
+										});
 
 										/** Load main view */
 										app.view = new app.Views.main({});
@@ -103,6 +102,7 @@
 				success: function() {
 					delete app.count;
 					delete app.previousCustom;
+					delete app.user;
 					app.dates = {};
 					app.stats.availables = {
 						monthly: [],

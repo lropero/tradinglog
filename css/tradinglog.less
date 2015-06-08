@@ -2574,6 +2574,58 @@ select
 	padding: 15px 15px 0 15px;
 }
 
+// NO CONNECTION
+// -------------------------------------------------- //
+
+#no-connection
+{
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	bottom: 0;
+
+	width: 100%;
+
+	text-align: center;
+
+	background-color: @white;
+}
+
+#no-connection span
+{
+	font-size: 1.6em;
+	font-weight: 100;
+	font-style: normal;
+	line-height: 1;
+
+	position: relative;
+
+	display: block;
+	clear: both;
+
+	text-align: center;
+
+	color: @gray-light;
+
+	.smoothing;
+}
+
+#no-connection span:before
+{
+	font-family: ionicons;
+	font-size: 30px;
+	line-height: 1;
+
+	position: relative;
+
+	display: block;
+
+	margin-bottom: 15px;
+
+	content: '\f342';
+	text-align: center;
+}
+
 // NO STATS
 // -------------------------------------------------- //
 

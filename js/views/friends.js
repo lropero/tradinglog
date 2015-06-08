@@ -5,21 +5,30 @@
 		el: 'section#main-stats-friends',
 
 		initialize: function() {
-			if(!app.user) {
-				app.loadView('friendsConnect');
-			} else {
-				this.template = Handlebars.compile(app.templateLoader.get('friends'));
-				this.render();
-			}
+			this.template = Handlebars.compile(app.templateLoader.get('friends'));
+			this.render();
 		},
 
 		render: function() {
-			app.trigger('change', 'friends');
-			this.$el.html(this.template({
-				alias: app.user.alias,
-				avatar: app.user.avatar,
-				name: app.user.name
-			}));
+			var self = this;
+			if(typeof networkinterface !== 'undefined') {
+				networkinterface.getIPAddress(function(ip) {
+					if(!app.user) {
+						app.loadView('friendsConnect');
+					} else {
+						app.trigger('change', 'friends');
+						self.$el.html(self.template({
+							alias: app.user.alias,
+							avatar: app.user.avatar,
+							name: app.user.name
+						}));
+					}
+				}, function() {
+					app.loadView('friendsNoConnection');
+				});
+			} else {
+				app.loadView('friendsNoConnection');
+			}
 			return this;
 		}
 	});

@@ -37,6 +37,7 @@
 		</array>
 	</gap:config-file>
 
+	<gap:plugin name="com.albahra.plugin.networkinterface" />
 	<gap:plugin name="com.brodysoft.sqliteplugin" />
 	<gap:plugin name="com.ionic.keyboard" />
 	<gap:plugin name="com.jchalan.cordova.ios.disableshaketoundo" />
