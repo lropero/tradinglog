@@ -55,6 +55,7 @@
 														avatar: user.avatar,
 														name: user.name
 													}
+													$('<img />')[0].src = user.avatar;
 												}
 											}
 										});
