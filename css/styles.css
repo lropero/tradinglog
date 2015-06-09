@@ -1805,7 +1805,7 @@ select {
   margin: 0 auto;
   padding: 15px 15px 0 15px;
 }
-#no-connection {
+#no-internet {
   position: absolute;
   z-index: 10;
   top: 0;
@@ -1814,7 +1814,7 @@ select {
   text-align: center;
   background-color: #ffffff;
 }
-#no-connection span {
+#no-internet span {
   font-size: 1.6em;
   font-weight: 100;
   font-style: normal;
@@ -1826,14 +1826,14 @@ select {
   color: #dadada;
   -webkit-font-smoothing: antialiased;
 }
-#no-connection span:before {
+#no-internet span:before {
   font-family: ionicons;
   font-size: 30px;
   line-height: 1;
   position: relative;
   display: block;
   margin-bottom: 15px;
-  content: '\f342';
+  content: '\f12b';
   text-align: center;
 }
 #no-stats {

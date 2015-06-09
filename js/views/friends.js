@@ -6,7 +6,7 @@
 
 		initialize: function() {
 			if(!app.internet) {
-				app.loadView('noConnection');
+				app.loadView('noInternet');
 			} else {
 				this.template = Handlebars.compile(app.templateLoader.get('friends'));
 				this.render();

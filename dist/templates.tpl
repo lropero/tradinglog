@@ -292,10 +292,10 @@
 	</ul>
 </section>
 </script>
-<script type="text/x-handlebars-template" id="no-connection-template"><section id="content">
-	<div id="no-connection">
+<script type="text/x-handlebars-template" id="no-internet-template"><section id="content">
+	<div id="no-internet">
 		<div class="center">
-			<span>No connection</span>
+			<span>No Internet</span>
 		</div>
 	</div>
 </section>

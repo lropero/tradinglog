@@ -1,7 +1,7 @@
 <section id="content">
-	<div id="no-connection">
+	<div id="no-internet">
 		<div class="center">
-			<span>No connection</span>
+			<span>No Internet</span>
 		</div>
 	</div>
 </section>
