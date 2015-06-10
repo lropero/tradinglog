@@ -79,7 +79,10 @@
 				var newBalance = previousBalance.plus(newNet);
 				if(parseFloat(newBalance.toString()) < 0) {
 					alertify.error('Non-sufficient funds');
-					$('header button').show();
+					app.trigger('change', 'main-edit-commission', {
+						key: this.key,
+						top: this.top
+					});
 					return;
 				}
 				for(var i = this.key - 1; i >= app.count.open; i--) {
@@ -90,7 +93,10 @@
 					}
 					if(parseFloat(newBalance.toString()) < 0) {
 						alertify.error('Non-sufficient funds in subsequent account movements');
-						$('header button').show();
+						app.trigger('change', 'main-edit-commission', {
+							key: this.key,
+							top: this.top
+						});
 						return;
 					}
 				}

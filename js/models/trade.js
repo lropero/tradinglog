@@ -306,7 +306,7 @@
 						success: function() {
 							var position = positions.at(0);
 							position.delete();
-							$('header button').show();
+							app.trigger('change', 'main-add-trade');
 						}
 					});
 				} else {
