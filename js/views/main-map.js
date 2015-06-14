@@ -6,7 +6,7 @@
 
 		initialize: function(cache) {
 			this.trades = [];
-			this.template = Handlebars.compile(app.templateLoader.get('main-map'));
+			this.template = Handlebars.compile(app.templateLoader.get('framework'));
 			this.render(cache);
 		},
 
@@ -47,7 +47,7 @@
 		},
 
 		decorate: function() {
-			this.drag = new app.Views.mainDrag();
+			// this.drag = new app.Views.mainDrag();
 			var $content = $('section#content');
 			var $ul = $content.children('ul');
 			if($content.height() > $ul.height()) {
