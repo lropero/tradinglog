@@ -83,11 +83,16 @@
 			created_at = app.timestamp;
 
 			var operation = new app.Models.operation();
+			if(app.account.get('balance') > 0) {
+				var variation = parseFloat(Big(amount * 100).div(app.account.get('balance')).toString());
+			} else {
+				var variation = 0;
+			}
 			operation.set({
 				account_id: app.account.id,
 				amount: amount,
 				description: description,
-				variation: parseFloat(Big(amount * 100).div(app.account.get('balance')).toString()),
+				variation: variation,
 				created_at: created_at
 			});
 			operation.validate();

@@ -59,8 +59,14 @@
 				balance: balance,
 				is_active: 1
 			});
+			account.validation.balance = {
+				gt: 0
+			};
 			account.save(null, {
 				success: function(model, insertId) {
+					account.validation.balance = {
+						min: 0
+					};
 					if(navigator.splashscreen) {
 						navigator.splashscreen.show();
 					}

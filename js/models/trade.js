@@ -316,8 +316,13 @@
 								edit_commission: 1
 							});
 						}
+						if(app.account.get('balance') > 0) {
+							var variation = parseFloat(profit.minus(loss).minus(commission).times(100).div(app.account.get('balance')).toString());
+						} else {
+							var variation = 0;
+						}
 						self.set({
-							variation: parseFloat(profit.minus(loss).minus(commission).times(100).div(app.account.get('balance')).toString()),
+							variation: variation,
 							closed_at: created_at
 						});
 						self.save(null, {

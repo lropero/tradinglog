@@ -13,7 +13,7 @@
 				required: true
 			},
 			balance: {
-				gt: 0
+				min: 0
 			}
 		},
 
