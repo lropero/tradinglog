@@ -218,43 +218,43 @@
 		},
 
 		drawNumbers: function(stats) {
-			$('span#numbers-trades').html(1000);
-			$('span#numbers-winners').html(743);
-			$('span#numbers-losers').html(257);
-			// if(isNaN(stats.accuracy)) {
-			// 	$('span#numbers-accuracy').html(stats.accuracy);
-			// } else {
-				$('span#numbers-accuracy').html(accounting.toFixed(74.3, 2) + '%');
-			// }
-			$('span#numbers-average_trade').html(accounting.formatMoney(43.5, '$ '));
-			$('span#numbers-average_winning_trade').html(accounting.formatMoney(187, '$ '));
-			$('span#numbers-average_losing_trade').html(accounting.formatMoney(100, '$ '));
-			// if(isNaN(stats.riskRewardRatio)) {
-			// 	$('span#numbers-risk_reward_ratio').html(stats.riskRewardRatio);
-			// } else {
-				$('span#numbers-risk_reward_ratio').html(accounting.toFixed(1.87, 2));
-			// }
-			$('span#numbers-average_time_in_market').html(app.date.getAverageTimeInMarketString(6420000));
+			$('span#numbers-trades').html(stats.trades);
+			$('span#numbers-winners').html(stats.winners);
+			$('span#numbers-losers').html(stats.losers);
+			if(isNaN(stats.accuracy)) {
+				$('span#numbers-accuracy').html(stats.accuracy);
+			} else {
+				$('span#numbers-accuracy').html(accounting.toFixed(stats.accuracy, 2) + '%');
+			}
+			$('span#numbers-average_trade').html(accounting.formatMoney(stats.averageTrade, '$ '));
+			$('span#numbers-average_winning_trade').html(accounting.formatMoney(stats.averageWinningTrade, '$ '));
+			$('span#numbers-average_losing_trade').html(accounting.formatMoney(stats.averageLosingTrade, '$ '));
+			if(isNaN(stats.riskRewardRatio)) {
+				$('span#numbers-risk_reward_ratio').html(stats.riskRewardRatio);
+			} else {
+				$('span#numbers-risk_reward_ratio').html(accounting.toFixed(stats.riskRewardRatio, 2));
+			}
+			$('span#numbers-average_time_in_market').html(app.date.getAverageTimeInMarketString(stats.averageTimeInMarket));
 			if(isNaN(stats.sharpeRatio)) {
 				$('span#numbers-sharpe_ratio').html(stats.sharpeRatio);
 			} else {
-				$('span#numbers-sharpe_ratio').html(accounting.toFixed(0.57, 2));
+				$('span#numbers-sharpe_ratio').html(accounting.toFixed(stats.sharpeRatio, 2));
 			}
 			$('span#line-variation').html(accounting.toFixed(stats.variation, 2) + '%');
 			$('span.highlight').css('color', '#fff');
 			if(stats.accuracy !== 'N/A') {
-				// if(stats.accuracy >= 50) {
+				if(stats.accuracy >= 50) {
 					$('span#numbers-accuracy').css('color', '#4bd763');
-				// } else {
-				// 	$('span#numbers-accuracy').css('color', '#ff3b30');
-				// }
+				} else {
+					$('span#numbers-accuracy').css('color', '#ff3b30');
+				}
 			}
 			if(stats.riskRewardRatio !== 'N/A') {
-				// if(stats.riskRewardRatio >= 1) {
+				if(stats.riskRewardRatio >= 1) {
 					$('span#numbers-risk_reward_ratio').css('color', '#4bd763');
-				// } else {
-				// 	$('span#numbers-risk_reward_ratio').css('color', '#ff3b30');
-				// }
+				} else {
+					$('span#numbers-risk_reward_ratio').css('color', '#ff3b30');
+				}
 			}
 		},
 
