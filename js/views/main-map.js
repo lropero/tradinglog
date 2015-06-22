@@ -6,7 +6,7 @@
 
 		initialize: function(cache) {
 			this.trades = [];
-			this.template = Handlebars.compile(app.templateLoader.get('framework'));
+			this.template = Handlebars.compile(app.templateLoader.get('main-map'));
 			this.render(cache);
 		},
 

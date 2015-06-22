@@ -37,22 +37,22 @@
 		get: function(name, method, options) {
 			var self = this;
 			var deferred = $.Deferred();
-			// if(this.HTMLs[name]) {
-			// 	var html = LZString.decompressFromBase64(this.HTMLs[name].html);
-			// 	deferred.resolve(html, this.HTMLs[name].extra);
-			// } else {
-			// 	var views = new app.Collections.views();
-			// 	views.setName(name);
-			// 	views.fetch({
-			// 		success: function() {
-			// 			if(views.length) {
-			// 				var view = views.at(0).toJSON();
-			// 				self.HTMLs[view.name] = {};
-			// 				self.HTMLs[view.name].html = view.html;
-			// 				self.HTMLs[view.name].extra = JSON.parse(view.extra.replace(/'/g, '"'));
-			// 				var html = LZString.decompressFromBase64(view.html);
-			// 				deferred.resolve(html, self.HTMLs[view.name].extra);
-			// 			} else {
+			if(this.HTMLs[name]) {
+				var html = LZString.decompressFromBase64(this.HTMLs[name].html);
+				deferred.resolve(html, this.HTMLs[name].extra);
+			} else {
+				var views = new app.Collections.views();
+				views.setName(name);
+				views.fetch({
+					success: function() {
+						if(views.length) {
+							var view = views.at(0).toJSON();
+							self.HTMLs[view.name] = {};
+							self.HTMLs[view.name].html = view.html;
+							self.HTMLs[view.name].extra = JSON.parse(view.extra.replace(/'/g, '"'));
+							var html = LZString.decompressFromBase64(view.html);
+							deferred.resolve(html, self.HTMLs[view.name].extra);
+						} else {
 							switch(name) {
 								case 'main':
 									var html = method({
@@ -132,10 +132,10 @@
 										}
 									});
 							}
-			// 			}
-			// 		}
-			// 	});
-			// }
+						}
+					}
+				});
+			}
 			return deferred;
 		},
 
