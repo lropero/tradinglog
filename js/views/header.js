@@ -88,9 +88,12 @@
 					if(attrs.closed > 0) {
 						options = {
 							left: {
+								action: function() {
+									$('footer').html(app.platform);
+								},
 								icon: 'f274',
 								rotate: true,
-								view: 'mainMap'
+								// view: 'mainMap'
 							},
 							right: {
 								icon: 'f218',
