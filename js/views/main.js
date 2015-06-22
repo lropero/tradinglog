@@ -27,7 +27,9 @@
 				app.shake.stopWatch();
 				delete app.shake;
 			}
-			this.drag.destroy();
+			if(this.drag) {
+				this.drag.destroy();
+			}
 			this.undelegateEvents();
 		},
 

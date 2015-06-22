@@ -27,7 +27,9 @@
 
 		destroy: function() {
 			$('section#main-stats-friends').removeClass('map');
-			this.drag.destroy();
+			if(this.drag) {
+				this.drag.destroy();
+			}
 		},
 
 		animate: function() {
