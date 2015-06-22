@@ -113,6 +113,9 @@
 				segmentStrokeWidth: 5,
 				showTooltips: false
 			};
+			if(app.platform === 'Android') {
+				options.animation = false;
+			}
 			var ctx = $doughnut.get(0).getContext('2d');
 			this.doughnut = new Chart(ctx).Doughnut(data, options);
 			var $legend = $('div.legend#legend-amounts');
@@ -213,6 +216,9 @@
 				showTooltips: false,
 				verticalLines: verticalLines
 			};
+			if(app.platform === 'Android') {
+				options.animation = false;
+			}
 			var ctx = $('canvas#line').get(0).getContext('2d');
 			this.line = new Chart(ctx).Line(data, options);
 		},

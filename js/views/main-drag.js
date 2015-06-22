@@ -10,6 +10,10 @@
 			this.render();
 		},
 
+		destroy: function() {
+			this.$el.empty();
+		},
+
 		render: function() {
 			this.$el.html(this.template({
 				account: app.account.get('name'),

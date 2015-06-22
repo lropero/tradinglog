@@ -27,6 +27,7 @@
 				app.shake.stopWatch();
 				delete app.shake;
 			}
+			this.drag.destroy();
 			this.undelegateEvents();
 		},
 
@@ -335,7 +336,6 @@
 
 		viewOperation: function(e) {
 			e.preventDefault();
-			$('div#drag').css('display', 'none');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();
@@ -348,7 +348,6 @@
 
 		viewTrade: function(e) {
 			e.preventDefault();
-			$('div#drag').css('display', 'none');
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();

@@ -27,6 +27,7 @@
 
 		destroy: function() {
 			$('section#main-stats-friends').removeClass('map');
+			this.drag.destroy();
 		},
 
 		animate: function() {
@@ -47,7 +48,7 @@
 		},
 
 		decorate: function() {
-			// this.drag = new app.Views.mainDrag();
+			this.drag = new app.Views.mainDrag();
 			var $content = $('section#content');
 			var $ul = $content.children('ul');
 			if($content.height() > $ul.height()) {

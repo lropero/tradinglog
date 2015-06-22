@@ -17,6 +17,12 @@
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
+			/** Platform */
+			app.platform = '';
+			if(window.device && window.device.platform) {
+				app.platform = window.device.platform;
+			}
+
 			/** Internet connection */
 			app.internet = true;
 			if(navigator.connection) {
@@ -77,7 +83,7 @@
 										});
 
 										/** Load main view */
-										app.view = new app.Views.main({});
+										app.loadView('main', {});
 
 										/** We hide the initial splash screen once the main view is ready */
 										app.hideSplash();
@@ -246,15 +252,34 @@
 			var self = this;
 
 			/** Some views require to undelegate events */
-			if(typeof this.view.destroy === 'function') {
+			if(this.view && typeof this.view.destroy === 'function') {
 				this.view.destroy();
+				this.view = '';
 			}
 
 			if($('div#drag').is(':hidden')) {
+				if(app.platform !== 'iOS') {
+					$('section#main-stats-friends').css('top', '94px');
+				}
 				this.view = new app.Views[view](attrs);
 			} else {
-				$('div#drag').css('display', 'none');
+				$('div.peeking').css('display', 'none');
 				setTimeout(function() {
+					if(app.platform !== 'iOS') {
+						switch(view) {
+							case 'main':
+							case 'mainMap':
+								$('section#main-stats-friends').css('top', '94px');
+								break;
+							case 'settings':
+								setTimeout(function() {
+									$('section#main-stats-friends').css('top', '64px');
+								}, 1000);
+								break;
+							default:
+								$('section#main-stats-friends').css('top', '64px');
+						}
+					}
 					self.view = new app.Views[view](attrs);
 				}, 30);
 			}
