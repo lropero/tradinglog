@@ -56,8 +56,8 @@
 		},
 
 		remove: function(button) {
-			var remove = 'animated loading rubberBand';
-			$('header #button-' + button).off().hide().removeClass(remove);
+			var animated = 'animated rubberBand';
+			$('header #button-' + button).off().hide().removeClass(animated).removeClass('loading');
 		}
 	};
 })();
