@@ -3,14 +3,17 @@
 
 	app.headerNavigation = {
 		update: function(options) {
-			this.remove('left');
-			this.remove('right');
-			if(options['left']) {
-				this.set('left', options['left']);
-			}
-			if(options['right']) {
-				this.set('right', options['right']);
-			}
+			var self = this;
+			setTimeout(function() {
+				self.remove('left');
+				self.remove('right');
+				if(options['left']) {
+					self.set('left', options['left']);
+				}
+				if(options['right']) {
+					self.set('right', options['right']);
+				}
+			}, 10);
 		},
 
 		set: function(button, options) {
@@ -56,8 +59,8 @@
 		},
 
 		remove: function(button) {
-			var animated = 'animated rubberBand';
-			$('header #button-' + button).off().hide().removeClass(animated).removeClass('loading');
+			var remove = 'animated loading rubberBand';
+			$('header #button-' + button).off().hide().removeClass(remove);
 		}
 	};
 })();
