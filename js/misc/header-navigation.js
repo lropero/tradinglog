@@ -3,17 +3,14 @@
 
 	app.headerNavigation = {
 		update: function(options) {
-			var self = this;
-			setTimeout(function() {
-				self.remove('left');
-				self.remove('right');
-				if(options['left']) {
-					self.set('left', options['left']);
-				}
-				if(options['right']) {
-					self.set('right', options['right']);
-				}
-			}, 10);
+			this.remove('left');
+			this.remove('right');
+			if(options['left']) {
+				this.set('left', options['left']);
+			}
+			if(options['right']) {
+				this.set('right', options['right']);
+			}
 		},
 
 		set: function(button, options) {
