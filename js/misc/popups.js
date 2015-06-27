@@ -38,8 +38,8 @@
 							guider.title = 'Map';
 							break;
 						case 'open':
-							guider.description = 'The trade will remain open in order to allow trade management (i.e. add positions) until you close it by adding an exit position which results in zero open shares or contracts. Reversing a trade is accomplished by closing the trade and opening a new one in opposite direction.';
-							guider.title = 'Trade is now open';
+							guider.description = 'A trade will remain open in order to allow trade management (i.e. add positions) until you close it by adding an exit position which results in zero open shares or contracts. Reversing a trade is accomplished by closing the trade and opening a new one in opposite direction.';
+							guider.title = 'Opening trades';
 							break;
 					}
 					setTimeout(function() {
