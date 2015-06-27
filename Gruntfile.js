@@ -18,6 +18,7 @@ module.exports = function(grunt) {
 				src: [
 					'css/normalize.css',
 					'css/animate.css',
+					'css/guiders.css',
 					'css/ionicons.css',
 					'css/slick.css',
 					'css/styles.css'
