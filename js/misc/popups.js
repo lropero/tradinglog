@@ -15,7 +15,7 @@
 							break;
 						case 'delete':
 							guider.attachTo = 'header';
-							guider.description = 'Because of how TradingLog works, you\'ll be able to delete trades, operations, positions and others under certain conditions only. We added a small triangle at the bottom left of every element that is swipeable for your convenience.';
+							guider.description = 'You\'ll be able to delete trades, operations, positions and others under certain conditions only. We added a small triangle at the bottom left of every element that is swipeable for your convenience.';
 							guider.offset = {
 								left: 0,
 								top: 70
