@@ -38,6 +38,7 @@
 					if(typeof cache !== 'boolean') {
 						app.trigger('change', 'main-add-trade');
 						self.$el.html(html);
+						app.popups.show('open');
 					}
 				});
 			});
@@ -179,7 +180,6 @@
 														top: 0
 													}, function() {
 														app.cache.delete('main');
-														app.popups.show('open');
 													});
 												});
 											});
