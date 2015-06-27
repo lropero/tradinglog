@@ -273,7 +273,9 @@
 								break;
 							case 'settings':
 								setTimeout(function() {
-									$('section#main-stats-friends').css('top', '64px');
+									if(app.view && app.view.$el.selector === 'section#settings') {
+										$('section#main-stats-friends').css('top', '64px');
+									}
 								}, 1000);
 								break;
 							default:

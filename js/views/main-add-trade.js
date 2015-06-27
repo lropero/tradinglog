@@ -179,6 +179,7 @@
 														top: 0
 													}, function() {
 														app.cache.delete('main');
+														app.popups.show('open');
 													});
 												});
 											});

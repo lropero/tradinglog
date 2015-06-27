@@ -27,9 +27,6 @@
 				app.shake.stopWatch();
 				delete app.shake;
 			}
-			if(this.drag) {
-				this.drag.destroy();
-			}
 			this.undelegateEvents();
 		},
 
@@ -52,6 +49,9 @@
 								self.shake();
 							}
 						}, 500);
+					}
+					if(app.platform === 'iOS') {
+						app.popups.show('drag');
 					}
 					self.deferred.resolve();
 				} else {
@@ -341,6 +341,7 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();
+			$('div#drag').empty();
 			app.loadView('mainViewOperation', {
 				key: key,
 				top: top
@@ -353,6 +354,7 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();
+			$('div#drag').empty();
 			app.loadView('mainViewTrade', {
 				key: key,
 				top: top

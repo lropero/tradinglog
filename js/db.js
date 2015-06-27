@@ -78,6 +78,10 @@
 					'variation NUMERIC,' +
 					'created_at INTEGER' +
 				');',
+				'CREATE TABLE IF NOT EXISTS popup (' +
+					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+					'name TEXT' +
+				');',
 				'CREATE TABLE IF NOT EXISTS position (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'trade_id INTEGER,' +
