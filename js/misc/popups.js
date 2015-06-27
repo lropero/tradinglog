@@ -14,13 +14,7 @@
 							guider.title = 'Calculator';
 							break;
 						case 'delete':
-							guider.attachTo = 'header';
 							guider.description = 'You\'ll be able to delete trades, operations, positions and others under certain conditions only. We added a small triangle at the bottom left of every element that is swipeable for your convenience.';
-							guider.offset = {
-								left: 0,
-								top: 70
-							};
-							guider.position = 'bottom';
 							guider.title = 'Swipe left to delete';
 							break;
 						case 'drag':
@@ -69,7 +63,7 @@
 							title: guider.title,
 							width: '80%'
 						}).show();
-					}, 500);
+					}, 300);
 				}
 			});
 		}
