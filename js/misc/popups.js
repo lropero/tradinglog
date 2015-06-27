@@ -14,7 +14,7 @@
 							guider.title = 'Calculator';
 							break;
 						case 'delete':
-							guider.description = 'You\'ll be able to delete trades, operations, positions and others under certain conditions only. We added a small triangle at the bottom left of every swipeable element for your convenience.';
+							guider.description = 'You\'ll be able to delete trades, operations, positions and others under certain conditions only.<br /><br />We added a small triangle at the bottom left of every swipeable element for your convenience.';
 							guider.title = 'Swipe left to delete';
 							break;
 						case 'drag':
@@ -38,7 +38,7 @@
 							guider.title = 'Map';
 							break;
 						case 'open':
-							guider.description = 'A trade will remain open in order to allow trade management (i.e. add positions) until you close it by adding an exit position which results in zero open shares or contracts. Reversing a trade is accomplished by closing the trade and opening a new one in opposite direction.';
+							guider.description = 'When adding a trade, it will remain open in order to allow trade management (i.e. add positions) until you close it by adding an exit position which results in zero open shares or contracts.<br /><br />Reversing a trade is accomplished by closing the trade and opening a new one in opposite direction.';
 							guider.title = 'Opening trades';
 							break;
 					}
