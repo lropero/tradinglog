@@ -53,6 +53,15 @@
 					if(app.platform === 'iOS') {
 						app.popups.show('drag');
 					}
+					if(app.count.open > 0 || app.count.operations > 1) {
+						app.popups.show('delete');
+					}
+					if(app.count.closed === 1) {
+						app.popups.show('map');
+					}
+					if(app.count.closed === 3) {
+						app.popups.show('calculator');
+					}
 					self.deferred.resolve();
 				} else {
 					setTimeout(function() {
