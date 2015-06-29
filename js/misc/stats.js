@@ -598,6 +598,10 @@
 			var dateValues = name.split('-');
 			var date = new Date(dateValues[0], dateValues[1], dateValues[2], 0, 0, 0, 0);
 			date.setDate(date.getDate() + 6);
+			var today = new Date();
+			if(date > today) {
+				date = today;
+			}
 			for(var i = app.stats.availables.monthly.length; i > 0; i--) {
 				if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {
 					return i - 1;

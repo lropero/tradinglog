@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 					'js/vendor/big.js',
 					'js/vendor/Chart.js',
 					'js/vendor/guiders.js',
-					'js/vendor/handlebars-v3.0.1.js',
+					'js/vendor/handlebars-v3.0.3.js',
 					'js/vendor/jquery.cookie.js',
 					'js/vendor/jquery.mobile.events.js',
 					'js/vendor/jquery.pep.js',

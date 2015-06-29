@@ -12,11 +12,13 @@
 		initialize: function(attrs) {
 			this.deferred = $.Deferred();
 			this.cache = false;
-			if(attrs.cache) {
-				this.cache = true;
-			} else if(attrs.key) {
-				this.key = attrs.key;
-				this.top = attrs.top;
+			if(typeof attrs !== 'undefined') {
+				if(attrs.cache) {
+					this.cache = true;
+				} else if(attrs.key) {
+					this.key = attrs.key;
+					this.top = attrs.top;
+				}
 			}
 			this.template = Handlebars.compile(app.templateLoader.get('main'));
 			this.render();
