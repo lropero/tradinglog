@@ -109,13 +109,6 @@
 					'comments INTEGER,' +
 					'closed_at INTEGER' +
 				');',
-				'CREATE TABLE IF NOT EXISTS user (' +
-					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
-					'alias TEXT,' +
-					'avatar TEXT,' +
-					'name TEXT,' +
-					'me INTEGER' +
-				');',
 				'CREATE TABLE IF NOT EXISTS view (' +
 					'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 					'name TEXT,' +
