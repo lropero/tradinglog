@@ -63,7 +63,11 @@
 			if(feedback.isValid()) {
 				$('header button').hide();
 				$('div#thank-you').css('display', 'block');
-				// SEND
+				$.post('http://www.tradinglog.com/feedback.php', {
+					feeling: feeling,
+					body: body,
+					email: email
+				});
 			}
 		}
 	});
