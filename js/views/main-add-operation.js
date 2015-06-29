@@ -77,11 +77,6 @@
 				return;
 			}
 			var created_at = (new Date()).getTime();
-
-			// Remove & uncomment previous line
-			app.timestamp += Math.floor(Math.random() * 432000000);
-			created_at = app.timestamp;
-
 			var operation = new app.Models.operation();
 			if(app.account.get('balance') > 0) {
 				var variation = parseFloat(Big(amount * 100).div(app.account.get('balance')).toString());

@@ -138,24 +138,6 @@
 						app.count = JSON.parse(LZString.decompressFromBase64(cache.count));
 						app.dates = JSON.parse(LZString.decompressFromBase64(cache.dates));
 						app.objects = JSON.parse(LZString.decompressFromBase64(cache.objects));
-
-						// Remove
-						var timestamp = 0;
-						for(var i = 0; i < app.objects.length; i++) {
-							if(app.objects[i].objects) {
-								for(var j = 0; j < app.objects[i].objects.length; j++) {
-									if(app.objects[i].objects[j].created_at > timestamp) {
-										timestamp = app.objects[i].objects[j].created_at;
-									}
-								}
-							} else {
-								if(app.objects[i].created_at > timestamp) {
-									timestamp = app.objects[i].created_at;
-								}
-							}
-						}
-						app.timestamp = timestamp;
-
 						deferred.resolve();
 					} else {
 						app.operations = [];
@@ -172,24 +154,6 @@
 							app.objects = [];
 							app.prepareObjects();
 							app.storeCache().done(function() {
-
-								// Remove
-								var timestamp = 0;
-								for(var i = 0; i < app.objects.length; i++) {
-									if(app.objects[i].objects) {
-										for(var j = 0; j < app.objects[i].objects.length; j++) {
-											if(app.objects[i].objects[j].created_at > timestamp) {
-												timestamp = app.objects[i].objects[j].created_at;
-											}
-										}
-									} else {
-										if(app.objects[i].created_at > timestamp) {
-											timestamp = app.objects[i].created_at;
-										}
-									}
-								}
-								app.timestamp = timestamp;
-
 								deferred.resolve();
 							});
 						});

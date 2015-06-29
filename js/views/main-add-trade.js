@@ -138,11 +138,6 @@
 				});
 				trade.validate();
 				var created_at = (new Date()).getTime();
-
-				// Remove & uncomment previous line
-				app.timestamp += Math.floor(Math.random() * 432000000);
-				created_at = app.timestamp;
-
 				var position = new app.Models.position();
 				position.set({
 					size: size,

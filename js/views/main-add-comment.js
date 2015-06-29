@@ -50,11 +50,6 @@
 			var self = this;
 			var body = this.$el.find('textarea#body').val().trim();
 			var created_at = (new Date()).getTime();
-
-			// Remove & uncomment previous line
-			app.timestamp += Math.floor(Math.random() * 432000000);
-			created_at = app.timestamp;
-
 			var comment = new app.Models.comment();
 			comment.set({
 				trade_id: this.trade.id,
