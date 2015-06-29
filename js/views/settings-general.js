@@ -35,6 +35,9 @@
 					}
 				}, 500);
 			}
+			if(!app.internet) {
+				$('div.internet').hide();
+			}
 			return this;
 		},
 

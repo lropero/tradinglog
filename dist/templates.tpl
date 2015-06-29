@@ -1,7 +1,6 @@
 <script type="text/x-handlebars-template" id="footer-template"><bar class="tab">
 	<a class="item active" data-view="main"><span class="icon ion-home"></span></a>
 	<a class="item" data-view="stats"><span class="icon ion-stats-bars"></span></a>
-	<a class="item" data-view="friends"><span class="icon ion-ios-people"></span></a>
 	<a class="item" data-view="settings"><span class="icon ion-ios-gear"></span></a>
 </bar>
 </script>
@@ -386,23 +385,23 @@
 					<div class="input-icon price">
 						<input id="point_value" type="number" placeholder="Point value" disabled />
 					</div>
-					<span class="help-block">A point is the smallest possible price change on the left side of the decimal point (i.e. the integer part) and its value is the difference in money that is affected by this movement.<span class="type-1"> For example, a point variation in the ES (four 0.25 movements) represents a gain or loss of $50.</span><span class="type-3"> Defaults to $1.</span></span>
+					<span class="help-block">A point is the smallest possible price change on the left side of the decimal point (i.e. the integer part) and its value is the difference in money that is affected by this movement.<span class="type-1"> For example, a point variation in the ES (four 0.25 movements) represents a gain or loss of $50.</span> You can access a list of point values under Settings - General.<span class="type-3"> Defaults to $1.</span></span>
 				</div>
 				<div class="wrapper-input isolate type-1 type-3">
 					<div class="input-icon price">
 						<input id="commission" type="number" placeholder="Commission" disabled />
 					</div>
-					<span class="help-block">This is a round-trip commission (charged once per buy/sell match). You'll be able to manually edit the commission by swiping the trade to the left once it's closed.<span class="type-3"> Defaults to $0.</span></span>
+					<span class="help-block">This is a round-trip commission (charged once per buy/sell match). You'll be able to manually edit the commission when the trade is closed.<span class="type-3"> Defaults to $0.</span></span>
 				</div>
 				<div class="wrapper-checkbox type-3">
 					<div class="checkbox-tap">
 						<div class="checkbox active" id="alert"></div>
 						<span>Commission alert icon <i class="ion-alert-circled"></i></span>
 					</div>
-					<span class="help-block">We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate. An alert icon <i class="ion-alert-circled"></i> will be shown in every closed trade for this instrument to remind you of doing so. The icon will disappear after you manually edit the commission by swiping the trade to the left.</span>
+					<span class="help-block">We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate. An alert icon <i class="ion-alert-circled"></i> will be shown in every closed trade for this instrument to remind you of doing so and it will disappear after you manually edit the commission.</span>
 				</div>
 				<div class="text-note type-2"><b>Point value</b>: Stock's point value is always $1.</div>
-				<div class="text-note type-2"><b>Commission</b>: Since there are many commission schemas for stocks (flat rate, percentage, etc.), stock's commission is always $0 and such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them to remind you of manually editing the commission by swiping the closed trade to the left. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</div>
+				<div class="text-note type-2"><b>Commission</b>: Since there are many commission schemas for stocks (flat rate, percentage, etc.), stock's commission is always $0 and such trades will display an alert icon <i class="ion-alert-circled"></i> after you close them to remind you of manually editing the commission. We strongly recommend that you verify broker's reports periodically in order to keep your numbers and stats accurate.</div>
 			</form>
 		</div>
 	</div>
@@ -435,9 +434,11 @@
 </div>
 </script>
 <script type="text/x-handlebars-template" id="settings-general-template"><div class="box-violet" id="complete">
-	<div class="button-primary" id="button-help">Help</div>
-	<div class="button-primary" id="button-feedback">Feedback</div>
-	<br />
+	<div class="internet">
+		<div class="button-primary" id="button-point_values" onclick="window.open('http://www.barchart.com/futures/specifications.php', '_system');">Point values</div>
+		<div class="button-primary" id="button-feedback">Feedback</div>
+		<br />
+	</div>
 	<div class="button-primary" id="button-reset" style="color: #ff3b30;">Reset DB</div>
 	<span class="copyright">
 		TradingLog &copy; 2015<br />
