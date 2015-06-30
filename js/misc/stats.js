@@ -358,15 +358,15 @@
 
 			if(data['all'].trades > 0) {
 				data['all'].accuracy = data['all'].winners * 100 / data['all'].trades;
-				data['all'].averageTrade = parseFloat(data['all'].net.div(data['all'].trades).toString());
+				data['all'].averageTrade = parseFloat(data['all'].net.minus(data['all'].operations).div(data['all'].trades).toString());
 			}
 			if(data['longs'].trades > 0) {
 				data['longs'].accuracy = data['longs'].winners * 100 / data['longs'].trades;
-				data['longs'].averageTrade = parseFloat(data['longs'].net.div(data['longs'].trades).toString());
+				data['longs'].averageTrade = parseFloat(data['longs'].net.minus(data['longs'].operations).div(data['longs'].trades).toString());
 			}
 			if(data['shorts'].trades > 0) {
 				data['shorts'].accuracy = data['shorts'].winners * 100 / data['shorts'].trades;
-				data['shorts'].averageTrade = parseFloat(data['shorts'].net.div(data['shorts'].trades).toString());
+				data['shorts'].averageTrade = parseFloat(data['shorts'].net.minus(data['shorts'].operations).div(data['shorts'].trades).toString());
 			}
 			if(data['all'].winners > 0) {
 				data['all'].averageWinningTrade = data['all'].averageWinningTrade.div(data['all'].winners);

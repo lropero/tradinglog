@@ -459,20 +459,6 @@ ol {
   border-radius: 50%;
   background-color: #222222;
 }
-.comment.photo {
-  margin: 15px;
-}
-.row .comment.photo {
-  margin-top: 15px;
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-}
-.comment.photo img {
-  width: 100%;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
 .label.position.buy .ball {
   background-color: #4bd763;
 }
@@ -744,24 +730,6 @@ ol {
   line-height: 66px;
   content: '\f4c5';
 }
-.swipe-buttons .button-swipe.add-photo:after {
-  font-size: 21px;
-  line-height: 66px;
-  content: '\f2d3';
-}
-.swipe-buttons .button-swipe.delete-photo:after {
-  font-size: 21px;
-  line-height: 66px;
-  content: '\f2d3';
-}
-.swipe-buttons .button-swipe.delete-photo:before {
-  font-size: 24px;
-  line-height: 66px;
-  position: absolute;
-  z-index: 10;
-  content: '\f12a';
-  color: #4020d0 !important;
-}
 .swipe-buttons .button-swipe.commission:after {
   font-size: 21px;
   line-height: 66px;
@@ -842,30 +810,6 @@ ol {
   font-size: 22px;
   position: relative;
   top: 2px;
-}
-.button-primary.add-photo:after {
-  font-family: ionicons;
-  font-size: 21px;
-  line-height: 46px;
-  content: '\f2d3';
-  text-align: center;
-}
-.button-primary.delete-photo:after {
-  font-family: ionicons;
-  font-size: 21px;
-  line-height: 46px;
-  content: '\f2d3';
-  text-align: center;
-}
-.button-primary.delete-photo:before {
-  font-family: ionicons;
-  font-size: 24px;
-  line-height: 46px;
-  position: absolute;
-  z-index: 10;
-  content: '\f12a';
-  text-align: center;
-  color: #4020d0 !important;
 }
 .drag-account {
   font-size: 12px;
