@@ -227,7 +227,7 @@
 				}
 				this.view = new app.Views[view](attrs);
 			} else {
-				$('div.peeking').css('display', 'none');
+				$('div#drag').css('display', 'none');
 				setTimeout(function() {
 					if(app.platform !== 'iOS') {
 						switch(view) {
