@@ -36,13 +36,11 @@
 			if(options.action) {
 				$button.off().on('touchend', function(e) {
 					e.preventDefault();
-					$('div#drag').empty();
 					options.action();
 				});
 			} else if(options.view) {
 				$button.off().on('touchend', function(e) {
 					e.preventDefault();
-					$('div#drag').empty();
 					app.loadView(options.view);
 				});
 			}

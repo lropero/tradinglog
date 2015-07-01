@@ -215,11 +215,6 @@
 					}
 					return false;
 				});
-				$calculator.on('tap', function(e) {
-					e.preventDefault();
-					$('button.left').trigger('touchend');
-					return false;
-				});
 			}, 10);
 		},
 
@@ -280,7 +275,6 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();
-			$('div#drag').empty();
 			app.loadView('mainViewOperation', {
 				key: key,
 				top: top
@@ -293,7 +287,6 @@
 			var $wrapper = $(e.currentTarget).parents('.wrapper-label');
 			var key = $wrapper.data('key');
 			var top = $('section#content').scrollTop();
-			$('div#drag').empty();
 			app.loadView('mainViewTrade', {
 				key: key,
 				top: top

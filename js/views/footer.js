@@ -41,13 +41,11 @@
 						var animated = 'animated bounceInDown';
 						$settings.addClass('show ' + animated);
 						app.timeout = setTimeout(function() {
-							$('div#drag').empty();
 							$('section#main-stats-friends').empty();
 							$settings.removeClass(animated);
 							delete app.timeout;
 						}, 1000);
 					} else if($settings.hasClass('show')) {
-						$('div#drag').empty();
 						var animated = 'animated bounceOutUp';
 						$settings.addClass(animated);
 						app.timeout = setTimeout(function() {
@@ -55,8 +53,6 @@
 							$settings.empty();
 							delete app.timeout;
 						}, 1000);
-					} else {
-						$('div#drag').empty();
 					}
 
 				}

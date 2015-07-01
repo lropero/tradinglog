@@ -243,6 +243,7 @@ section#content > * {
   -webkit-transform: translateZ(0);
 }
 section#main-stats-friends {
+  background: #ffffff;
   bottom: 44px;
   position: absolute;
   top: 64px;

@@ -600,7 +600,7 @@
 			date.setDate(date.getDate() + 6);
 			var today = new Date();
 			if(date > today) {
-				date = today;
+				date.setDate(date.getDate() - 6);
 			}
 			for(var i = app.stats.availables.monthly.length; i > 0; i--) {
 				if(date.getFullYear() + '-' + date.getMonth() === app.stats.availables.monthly[i - 1]) {

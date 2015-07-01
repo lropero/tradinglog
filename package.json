@@ -1,6 +1,6 @@
 {
   "name": "TradingLog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A mobile app designed to keep track of your trading activities and ease money management by calculating your stats.",
   "main": "index.html",
   "scripts": {
