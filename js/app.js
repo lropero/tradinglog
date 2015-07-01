@@ -214,20 +214,20 @@
 
 		loadView: function(view, attrs, callback) {
 			var self = this;
-
-			/** Some views require to undelegate events */
-			if(this.view && typeof this.view.destroy === 'function') {
-				this.view.destroy();
-				this.view = '';
-			}
-
 			if($('div#drag').is(':hidden')) {
 				if(app.platform !== 'iOS') {
 					$('section#main-stats-friends').css('top', '94px');
 				}
+
+				/** Some views require to undelegate events */
+				if(this.view && typeof this.view.destroy === 'function') {
+					this.view.destroy();
+					this.view = '';
+				}
+
 				this.view = new app.Views[view](attrs);
 			} else {
-				$('div#drag').css('display', 'none');
+				$('div.peeking').css('display', 'none');
 				setTimeout(function() {
 					if(app.platform !== 'iOS') {
 						switch(view) {
@@ -246,6 +246,13 @@
 								$('section#main-stats-friends').css('top', '64px');
 						}
 					}
+
+					/** Some views require to undelegate events */
+					if(self.view && typeof self.view.destroy === 'function') {
+						self.view.destroy();
+						self.view = '';
+					}
+
 					self.view = new app.Views[view](attrs);
 				}, 30);
 			}
