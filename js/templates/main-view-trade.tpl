@@ -25,7 +25,7 @@
 			<li class="button-default" data-view="mainAddComment">Add comment</li>
 		</ul>
 	</div>
-	<section id="content">
+	<section class="clear" id="content">
 		<ul></ul>
 	</section>
 </div>

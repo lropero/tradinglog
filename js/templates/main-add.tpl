@@ -4,4 +4,4 @@
 		<li data-section="AddOperation">Operation</li>
 	</ul>
 </control>
-<section id="content"></section>
+<section class="clear" id="content"></section>

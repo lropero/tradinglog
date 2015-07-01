@@ -24,17 +24,19 @@
 <section id="settings"></section>
 <footer></footer>
 </script>
-<script type="text/x-handlebars-template" id="main-add-comment-template"><div id="isolate">
-	<div class="button-primary" id="done">Done</div>
-</div>
-<div id="complete">
-	<form>
-		<div class="wrapper-comment isolate">
-			<textarea id="body" rows="5" placeholder="Comment" disabled></textarea>
-			<span class="help-block">Comment in which you can describe anything related to this trade.</span>
-		</div>
-	</form>
-</div>
+<script type="text/x-handlebars-template" id="main-add-comment-template"><section class="clear" id="content">
+	<div id="isolate">
+		<div class="button-primary" id="done">Done</div>
+	</div>
+	<div id="complete">
+		<form>
+			<div class="wrapper-comment isolate">
+				<textarea id="body" rows="5" placeholder="Comment" disabled></textarea>
+				<span class="help-block">Comment in which you can describe anything related to this trade.</span>
+			</div>
+		</form>
+	</div>
+</section>
 </script>
 <script type="text/x-handlebars-template" id="main-add-operation-template"><div id="isolate">
 	<div class="button-primary" id="done">Done</div>
@@ -64,33 +66,35 @@
 	</form>
 </div>
 </script>
-<script type="text/x-handlebars-template" id="main-add-position-template"><div id="isolate">
-	<div class="button-primary" id="done">Done</div>
-</div>
-<div id="complete">
-	<ul class="wrapper-radiobutton" id="type">
-		<li class="group-radiobutton">
-			<div class="radiobutton{{#lt this.closeSize 0}} active{{/lt}}" data-type="1"></div>
-			<span>Long</span>
-		</li>
-		<li class="group-radiobutton">
-			<div class="radiobutton{{#gt this.closeSize 0}} active{{/gt}}" data-type="2"></div>
-			<span>Short</span>
-		</li>
-	</ul>
-	<form>
-		<div class="wrapper-input isolate">
-			<input id="size" type="number" placeholder="Position size" value="{{#abs this.closeSize}}{{/abs}}" disabled />
-			<span class="help-block">Quantity of shares or contracts.</span>
-		</div>
-		<div class="wrapper-input isolate">
-			<div class="input-icon price">
-				<input id="price" type="number" placeholder="Price" disabled />
+<script type="text/x-handlebars-template" id="main-add-position-template"><section class="clear" id="content">
+	<div id="isolate">
+		<div class="button-primary" id="done">Done</div>
+	</div>
+	<div id="complete">
+		<ul class="wrapper-radiobutton" id="type">
+			<li class="group-radiobutton">
+				<div class="radiobutton{{#lt this.closeSize 0}} active{{/lt}}" data-type="1"></div>
+				<span>Long</span>
+			</li>
+			<li class="group-radiobutton">
+				<div class="radiobutton{{#gt this.closeSize 0}} active{{/gt}}" data-type="2"></div>
+				<span>Short</span>
+			</li>
+		</ul>
+		<form>
+			<div class="wrapper-input isolate">
+				<input id="size" type="number" placeholder="Position size" value="{{#abs this.closeSize}}{{/abs}}" disabled />
+				<span class="help-block">Quantity of shares or contracts.</span>
 			</div>
-			<span class="help-block">Buy or sell price.</span>
-		</div>
-	</form>
-</div>
+			<div class="wrapper-input isolate">
+				<div class="input-icon price">
+					<input id="price" type="number" placeholder="Price" disabled />
+				</div>
+				<span class="help-block">Buy or sell price.</span>
+			</div>
+		</form>
+	</div>
+</section>
 </script>
 <script type="text/x-handlebars-template" id="main-add-trade-template"><div id="isolate">
 	<div class="button-primary" id="done">Done</div>
@@ -139,7 +143,7 @@
 		<li data-section="AddOperation">Operation</li>
 	</ul>
 </control>
-<section id="content"></section>
+<section class="clear" id="content"></section>
 </script>
 <script type="text/x-handlebars-template" id="main-drag-template"><div class="drag-account">
 	<div class="account">Account: <span>{{this.account}}</span></div>
@@ -147,19 +151,21 @@
 	<div class="peeking"></div>
 </div>
 </script>
-<script type="text/x-handlebars-template" id="main-edit-commission-template"><div id="isolate">
-	<div class="button-primary" id="done">Done</div>
-</div>
-<div id="complete">
-	<form>
-		<div class="wrapper-input isolate">
-			<div class="input-icon price">
-				<input id="commission" type="number" placeholder="{{#money this.commission}}{{/money}}" disabled />
+<script type="text/x-handlebars-template" id="main-edit-commission-template"><section class="clear" id="content">
+	<div id="isolate">
+		<div class="button-primary" id="done">Done</div>
+	</div>
+	<div id="complete">
+		<form>
+			<div class="wrapper-input isolate">
+				<div class="input-icon price">
+					<input id="commission" type="number" placeholder="{{#money this.commission}}{{/money}}" disabled />
+				</div>
+				<span class="help-block">Commission total amount.</span>
 			</div>
-			<span class="help-block">Commission total amount.</span>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
+</section>
 </script>
 <script type="text/x-handlebars-template" id="main-map-template"><section id="content">
 	<ul id="map">
@@ -182,7 +188,7 @@
 	</ul>
 </section>
 </script>
-<script type="text/x-handlebars-template" id="main-view-operation-template"><section id="content">
+<script type="text/x-handlebars-template" id="main-view-operation-template"><section class="clear" id="content">
 	<p class="text-body">{{#nl2br operation.description}}{{/nl2br}}</p>
 </section>
 </script>
@@ -213,7 +219,7 @@
 			<li class="button-default" data-view="mainAddComment">Add comment</li>
 		</ul>
 	</div>
-	<section id="content">
+	<section class="clear" id="content">
 		<ul></ul>
 	</section>
 </div>
