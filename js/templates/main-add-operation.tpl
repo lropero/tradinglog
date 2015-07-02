@@ -15,7 +15,7 @@
 	<form>
 		<div class="wrapper-input isolate">
 			<div class="input-icon price">
-				<input id="amount" type="number" placeholder="Amount" disabled />
+				<input id="amount" type="text" placeholder="Amount" disabled />
 			</div>
 			<span class="help-block">Total amount.</span>
 		</div>

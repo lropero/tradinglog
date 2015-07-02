@@ -20,7 +20,7 @@
 			</div>
 			<div class="wrapper-input isolate">
 				<div class="input-icon price">
-					<input id="price" type="number" placeholder="Price" disabled />
+					<input id="price" type="text" placeholder="Price" disabled />
 				</div>
 				<span class="help-block">Buy or sell price.</span>
 			</div>

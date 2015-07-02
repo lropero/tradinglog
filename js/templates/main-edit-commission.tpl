@@ -6,7 +6,7 @@
 		<form>
 			<div class="wrapper-input isolate">
 				<div class="input-icon price">
-					<input id="commission" type="number" placeholder="{{#money this.commission}}{{/money}}" disabled />
+					<input id="commission" type="text" placeholder="{{#money this.commission}}{{/money}}" disabled />
 				</div>
 				<span class="help-block">Commission total amount.</span>
 			</div>
