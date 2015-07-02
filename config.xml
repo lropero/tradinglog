@@ -32,8 +32,6 @@
 	<preference name="target-device" value="universal" />
 	<preference name="webviewbounce" value="false" />
 
-	<feature name="http://api.phonegap.com/1.0/network" />
-
 	<gap:config-file platform="ios" parent="UISupportedInterfaceOrientations" mode="replace">
 		<array>
 			<string>UIInterfaceOrientationLandscapeOmg</string>
