@@ -11,7 +11,7 @@
 			{{#unless this.account}}
 				<div class="wrapper-input isolate">
 					<div class="input-icon price">
-						<input id="balance" type="text" placeholder="Initial balance" disabled />
+						<input id="balance" type="number" placeholder="Initial balance" disabled />
 					</div>
 					<span class="help-block">You need to have sufficient funds in order to add trades. You'll be able to deposit or withdraw money at any time.</span>
 				</div>

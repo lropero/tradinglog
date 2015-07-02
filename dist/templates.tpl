@@ -55,7 +55,7 @@
 	<form>
 		<div class="wrapper-input isolate">
 			<div class="input-icon price">
-				<input id="amount" type="text" placeholder="Amount" disabled />
+				<input id="amount" type="number" placeholder="Amount" disabled />
 			</div>
 			<span class="help-block">Total amount.</span>
 		</div>
@@ -88,7 +88,7 @@
 			</div>
 			<div class="wrapper-input isolate">
 				<div class="input-icon price">
-					<input id="price" type="text" placeholder="Price" disabled />
+					<input id="price" type="number" placeholder="Price" disabled />
 				</div>
 				<span class="help-block">Buy or sell price.</span>
 			</div>
@@ -130,7 +130,7 @@
 		</div>
 		<div class="wrapper-input isolate">
 			<div class="input-icon price">
-				<input id="price" type="text" placeholder="Price" disabled />
+				<input id="price" type="number" placeholder="Price" disabled />
 			</div>
 			<span class="help-block">Buy or sell price.</span>
 		</div>
@@ -159,7 +159,7 @@
 		<form>
 			<div class="wrapper-input isolate">
 				<div class="input-icon price">
-					<input id="commission" type="text" placeholder="{{#money this.commission}}{{/money}}" disabled />
+					<input id="commission" type="number" placeholder="{{#money this.commission}}{{/money}}" disabled />
 				</div>
 				<span class="help-block">Commission total amount.</span>
 			</div>
@@ -349,7 +349,7 @@
 			{{#unless this.account}}
 				<div class="wrapper-input isolate">
 					<div class="input-icon price">
-						<input id="balance" type="text" placeholder="Initial balance" disabled />
+						<input id="balance" type="number" placeholder="Initial balance" disabled />
 					</div>
 					<span class="help-block">You need to have sufficient funds in order to add trades. You'll be able to deposit or withdraw money at any time.</span>
 				</div>
@@ -391,13 +391,13 @@
 				</div>
 				<div class="wrapper-input isolate type-1 type-3">
 					<div class="input-icon price">
-						<input id="point_value" type="text" placeholder="Point value" disabled />
+						<input id="point_value" type="number" placeholder="Point value" disabled />
 					</div>
 					<span class="help-block">A point is the smallest possible price change on the left side of the decimal point (i.e. the integer part) and its value is the difference in money that is affected by this movement.<span class="type-1"> For example, a point variation in the ES (four 0.25 movements) represents a gain or loss of $50.</span> You can access a list of point values under Settings - General.<span class="type-3"> Defaults to $1.</span></span>
 				</div>
 				<div class="wrapper-input isolate type-1 type-3">
 					<div class="input-icon price">
-						<input id="commission" type="text" placeholder="Commission" disabled />
+						<input id="commission" type="number" placeholder="Commission" disabled />
 					</div>
 					<span class="help-block">This is a round-trip commission (charged once per buy/sell match). You'll be able to manually edit the commission when the trade is closed.<span class="type-3"> Defaults to $0.</span></span>
 				</div>
@@ -719,7 +719,7 @@
 				</div>
 				<div class="wrapper-input isolate">
 					<div class="input-icon price">
-						<input id="balance" type="text" placeholder="Initial balance" disabled />
+						<input id="balance" type="number" placeholder="Initial balance" disabled />
 					</div>
 					<span class="help-block">You need to have sufficient funds in order to add trades. You'll be able to deposit or withdraw money at any time.</span>
 				</div>
