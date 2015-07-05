@@ -260,6 +260,9 @@
 					app.enableScroll();
 				}
 			}
+			if(app.platform !== 'iOS') {
+				this.$el.css('top', '94px');
+			}
 		},
 
 		shake: function() {

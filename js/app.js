@@ -222,28 +222,19 @@
 			}
 
 			if($('div#drag').is(':hidden')) {
-				if(app.platform !== 'iOS') {
-					$('section#main-stats-friends').css('top', '94px');
-				}
 				this.view = new app.Views[view](attrs);
 			} else {
 				$('div#drag').css('display', 'none');
 				setTimeout(function() {
 					if(app.platform !== 'iOS') {
-						switch(view) {
-							case 'main':
-							case 'mainMap':
-								$('section#main-stats-friends').css('top', '94px');
-								break;
-							case 'settings':
-								setTimeout(function() {
-									if(app.view && app.view.$el.selector === 'section#settings') {
-										$('section#main-stats-friends').css('top', '64px');
-									}
-								}, 1000);
-								break;
-							default:
-								$('section#main-stats-friends').css('top', '64px');
+						if(view === 'settings') {
+							setTimeout(function() {
+								if(app.view && typeof app.view.drag === 'undefined') {
+									$('section#main-stats-friends').css('top', '64px');
+								}
+							}, 500);
+						} else {
+							$('section#main-stats-friends').css('top', '64px');
 						}
 					}
 					self.view = new app.Views[view](attrs);
