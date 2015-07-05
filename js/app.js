@@ -235,17 +235,17 @@
 					} else {
 						if($('div#drag').is(':visible')) {
 							$('div.peeking').css('display', 'none');
-							if(view === 'main' || view === 'mainMap') {
-								setTimeout(function() {
+							setTimeout(function() {
+								if(view === 'main' || view === 'mainMap') {
 									self.view = new app.Views[view](attrs);
-								}, 30);
-							} else {
-								$('div#drag').css('display', 'none');
-								if(app.platform !== 'iOS') {
-									$('section#main-stats-friends').css('top', '64px');
+								} else {
+									$('div#drag').css('display', 'none');
+									if(app.platform !== 'iOS') {
+										$('section#main-stats-friends').css('top', '64px');
+									}
+									self.view = new app.Views[view](attrs);
 								}
-								this.view = new app.Views[view](attrs);
-							}
+							}, 30);
 						} else {
 							this.view = new app.Views[view](attrs);
 						}
