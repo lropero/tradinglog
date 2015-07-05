@@ -9,6 +9,9 @@
 	</author>
 	<content src="index.dist.html" />
 
+	<gap:platform name="android" />
+	<gap:platform name="ios" />
+
 	<preference name="android-installLocation" value="auto" />
 	<preference name="applicationSupportsShakeToEdit" value="no" />
 	<preference name="auto-hide-splash-screen" value="false" />
@@ -24,6 +27,7 @@
 	<preference name="KeyboardShrinksView" value="true" />
 	<preference name="orientation" value="portrait" />
 	<preference name="permissions" value="none" />
+	<preference name="phonegap-version" value="3.7.0" />
 	<preference name="prerendered-icon" value="true" />
 	<preference name="show-splash-screen-spinner" value="false" />
 	<preference name="ShowSplashScreenSpinner" value="false" />
