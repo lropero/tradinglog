@@ -215,34 +215,44 @@
 		loadView: function(view, attrs, callback) {
 			var self = this;
 
-			/** Some views require to undelegate events */
-			if(this.view && typeof this.view.destroy === 'function') {
-				this.view.destroy();
-				this.view = '';
-			}
+			if(this.view) {
+				var selector = this.view.$el.selector;
 
-			if($('div#drag').is(':hidden') || $('div.peeking').is(':hidden')) {
-				this.view = new app.Views[view](attrs);
-			} else {
-				if(app.platform === 'iOS') {
-					$('div#drag').css('display', 'none');
-				} else {
-					$('div.peeking').css('display', 'none');
+				/** Some views require to undelegate events */
+				if(typeof this.view.destroy === 'function') {
+					this.view.destroy();
+					this.view = '';
 				}
-				setTimeout(function() {
+
+				if(selector === 'section#settings') {
 					if(app.platform !== 'iOS') {
-						if(view === 'settings') {
-							setTimeout(function() {
-								if(app.view && typeof app.view.drag === 'undefined') {
+						$('section#main-stats-friends').css('top', '64px');
+					}
+					this.view = new app.Views[view](attrs);
+				} else {
+					if(view === 'settings') {
+						this.view = new app.Views[view](attrs);
+					} else {
+						if($('div#drag').is(':visible')) {
+							$('div.peeking').css('display', 'none');
+							if(view === 'main' || view === 'mainMap') {
+								setTimeout(function() {
+									self.view = new app.Views[view](attrs);
+								}, 30);
+							} else {
+								$('div#drag').css('display', 'none');
+								if(app.platform !== 'iOS') {
 									$('section#main-stats-friends').css('top', '64px');
 								}
-							}, 500);
+								this.view = new app.Views[view](attrs);
+							}
 						} else {
-							$('section#main-stats-friends').css('top', '64px');
+							this.view = new app.Views[view](attrs);
 						}
 					}
-					self.view = new app.Views[view](attrs);
-				}, 30);
+				}
+			} else {
+				this.view = new app.Views[view](attrs);
 			}
 
 			if(typeof callback === 'function') {
