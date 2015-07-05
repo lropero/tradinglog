@@ -234,16 +234,22 @@
 						this.view = new app.Views[view](attrs);
 					} else {
 						if($('div#drag').is(':visible')) {
-							$('div.peeking').css('display', 'none');
+							if(app.platform === 'iOS') {
+								$('div#drag').css('display', 'none');
+							} else {
+								$('div.peeking').css('display', 'none');
+							}
 							setTimeout(function() {
 								if(view === 'main' || view === 'mainMap') {
 									self.view = new app.Views[view](attrs);
 								} else {
-									$('div#drag').css('display', 'none');
 									if(app.platform !== 'iOS') {
 										$('section#main-stats-friends').css('top', '64px');
 									}
 									self.view = new app.Views[view](attrs);
+									if(app.platform !== 'iOS') {
+										$('div#drag').css('display', 'none');
+									}
 								}
 							}, 30);
 						} else {
