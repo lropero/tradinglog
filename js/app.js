@@ -224,7 +224,11 @@
 			if($('div#drag').is(':hidden') || $('div.peeking').is(':hidden')) {
 				this.view = new app.Views[view](attrs);
 			} else {
-				$('div.peeking').css('display', 'none');
+				if(app.platform === 'iOS') {
+					$('div#drag').css('display', 'none');
+				} else {
+					$('div.peeking').css('display', 'none');
+				}
 				setTimeout(function() {
 					if(app.platform !== 'iOS') {
 						if(view === 'settings') {
