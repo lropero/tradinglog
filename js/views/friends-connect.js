@@ -43,7 +43,7 @@
 									avatar: response.avatar,
 									name: response.name
 								}
-								app.loadView('friends');
+								app.loadView('friends', {});
 							}
 						});
 					});

@@ -41,7 +41,7 @@
 			} else if(options.view) {
 				$button.off().on('touchend', function(e) {
 					e.preventDefault();
-					app.loadView(options.view);
+					app.loadView(options.view, {});
 				});
 			}
 			$button.show();

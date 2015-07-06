@@ -6,7 +6,7 @@
 
 		initialize: function() {
 			if(!app.internet) {
-				app.loadView('noInternet');
+				app.loadView('noInternet', {});
 			} else {
 				this.template = Handlebars.compile(app.templateLoader.get('friends'));
 				this.render();
@@ -15,7 +15,7 @@
 
 		render: function() {
 			if(!app.user) {
-				app.loadView('friendsConnect');
+				app.loadView('friendsConnect', {});
 			} else {
 				app.trigger('change', 'friends');
 				this.$el.html(this.template({

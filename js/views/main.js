@@ -124,7 +124,7 @@
 												app.stats.affect(created_at);
 												app.storeCache().done(function() {
 													app.cache.delete('main').done(function() {
-														app.loadView('main');
+														app.loadView('main', {});
 													});
 												});
 											}
@@ -145,7 +145,7 @@
 										app.objects.splice(key, 1);
 										app.storeCache().done(function() {
 											app.cache.delete('main').done(function() {
-												app.loadView('main');
+												app.loadView('main', {});
 											});
 										});
 									});
