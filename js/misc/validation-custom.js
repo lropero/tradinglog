@@ -94,10 +94,6 @@
 						cordova.plugins.Keyboard.show();
 					}
 				}
-				window.addEventListener('native.keyboardhide', function() {
-					window.removeEventListener('native.keyboardhide');
-					$('div#done').trigger('click');
-				});
 			}
 		}, 100);
 	}
