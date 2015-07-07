@@ -39,6 +39,12 @@
 			if(!hide) {
 				$('header button').show();
 			}
+			var $select = $('select#instrument_id');
+			if($select.length) {
+				setTimeout(function() {
+					$select.prop('disabled', false);
+				}, 500);
+			}
 		}
 	}
 
@@ -84,7 +90,7 @@
 			} else {
 				$target.focus();
 				if(app.platform !== 'iOS') {
-					if($target[0].localName !== 'select' && typeof cordova !== 'undefined') {
+					if(typeof cordova !== 'undefined') {
 						cordova.plugins.Keyboard.show();
 					}
 				}

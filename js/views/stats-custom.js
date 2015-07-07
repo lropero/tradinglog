@@ -42,8 +42,8 @@
 
 		showDatePicker: function($target) {
 			function value(pick) {
-				if(pick instanceof Date) {
-					var month = pick.getMonth() + 1;
+				var month = pick.getMonth() + 1;
+				if(!isNaN(month)) {
 					if(month < 10) {
 						month = '0' + month;
 					}

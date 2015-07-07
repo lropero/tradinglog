@@ -5,7 +5,7 @@
 	<div class="wrapper-select isolate">
 		<form>
 			<div class="select">
-				<select id="instrument_id" disabled>
+				<select id="instrument_id">
 					<option value="0">Instrument</option>
 					{{#each this.instruments}}
 						<option value="{{this.id}}">{{this.name}}</option>

@@ -6,7 +6,6 @@
 		events: {
 			'tap div#done': 'combine',
 			'tap input': 'isolate',
-			'tap select': 'isolate',
 			'tap ul#type div:not(.active)': 'radio',
 			'tap ul#type span': 'radio'
 		},
@@ -38,6 +37,18 @@
 					if(typeof cache !== 'boolean') {
 						app.trigger('change', 'main-add-trade');
 						self.$el.html(html);
+						var cookie = $.cookie('cookie');
+						if(cookie) {
+							cookie = cookie.split('&');
+							for(var i = 0; i < cookie.length; i++) {
+								cookie[i] = cookie[i].split('=')[1];
+							}
+							var $select = self.$el.find('select#instrument_id');
+							if($select.val() === '0') {
+								$select.val(cookie[0]);
+							}
+							self.cookieSize = cookie[1];
+						}
 						app.popups.show('open');
 					}
 				});
@@ -67,30 +78,16 @@
 
 		isolate: function(e) {
 			e.preventDefault();
-			var cookie = $.cookie('cookie');
-			if(cookie) {
-				cookie = cookie.split('&');
-				for(var i = 0; i < cookie.length; i++) {
-					cookie[i] = cookie[i].split('=')[1];
-				}
-				var instrument_id = cookie[0];
-				var size = cookie[1];
-			}
+			this.$el.find('select#instrument_id').prop('disabled', true);
 			if($(e.currentTarget).prop('id') === 'size') {
 				var $input = this.$el.find('input#size');
 				if(!$input.val()) {
-					if(size) {
+					if(typeof this.cookieSize !== 'undefined') {
+						var size = this.cookieSize;
 						if(size < 0) {
 							size *= -1;
 						}
 						$input.val(size);
-					}
-				}
-			} else if($(e.currentTarget).prop('id') === 'instrument_id') {
-				var $select = this.$el.find('select#instrument_id');
-				if($select.val() === '0') {
-					if(instrument_id) {
-						$select.val(instrument_id);
 					}
 				}
 			}

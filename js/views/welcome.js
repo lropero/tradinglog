@@ -15,6 +15,10 @@
 			app.submit = function() {
 				self.submit();
 			}
+			var cookie = $.cookie('cookie');
+			if(cookie) {
+				$.removeCookie('cookie');
+			}
 			this.template = Handlebars.compile(app.templateLoader.get('welcome'));
 			this.render();
 		},
