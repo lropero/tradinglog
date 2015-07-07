@@ -10,17 +10,16 @@
 
 		init: function() {
 
-			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
-				shown */
-			if(typeof cordova !== 'undefined') {
-				cordova.plugins.Keyboard.disableScroll(true);
-				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-			}
-
 			/** Platform */
 			app.platform = '';
 			if(window.device && window.device.platform) {
 				app.platform = window.device.platform;
+			}
+
+			/** Mobile setting to avoid a visual glitch that occurs when keyboard is
+				shown */
+			if(app.platform === 'iOS' && typeof cordova !== 'undefined') {
+				cordova.plugins.Keyboard.disableScroll(true);
 			}
 
 			/** Internet connection */
