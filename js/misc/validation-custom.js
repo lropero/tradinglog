@@ -83,10 +83,14 @@
 				action($target);
 			} else {
 				$target.focus();
-				if(typeof cordova !== 'undefined') {
-					cordova.plugins.Keyboard.show();
+				if(app.platform !== 'iOS') {
+					if($target[0].localName !== 'select' && typeof cordova !== 'undefined') {
+						setTimeout(function() {
+							cordova.plugins.Keyboard.show();
+						}, 20);
+					}
 				}
 			}
-		}, 100);
+		}, 80);
 	}
 })();

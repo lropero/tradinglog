@@ -41,16 +41,18 @@
 		},
 
 		showDatePicker: function($target) {
-			function value(date) {
-				var month = date.getMonth() + 1;
-				if(month < 10) {
-					month = '0' + month;
+			function value(pick) {
+				if(pick instanceof Date) {
+					var month = pick.getMonth() + 1;
+					if(month < 10) {
+						month = '0' + month;
+					}
+					var day = pick.getDate();
+					if(day < 10) {
+						day = '0' + day;
+					}
+					$target.val(pick.getFullYear() + '-' + month + '-' + day);
 				}
-				var day = date.getDate();
-				if(day < 10) {
-					day = '0' + day;
-				}
-				$target.val(date.getFullYear() + '-' + month + '-' + day);
 			}
 			var date = new Date(app.dates.lastDate);
 			date.setMonth(0);
