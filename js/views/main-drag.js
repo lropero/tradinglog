@@ -17,6 +17,9 @@
 			}));
 			$('.drag-account').css('height', parseInt($('section#content').height() / 2, 10) + 'px');
 			this.$el.show();
+			if(app.platform !== 'iOS') {
+				this.$el.find('div.peeking').hide();
+			}
 			return this;
 		}
 	});
