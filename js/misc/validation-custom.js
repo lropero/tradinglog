@@ -85,12 +85,10 @@
 				$target.focus();
 				if(app.platform !== 'iOS') {
 					if($target[0].localName !== 'select' && typeof cordova !== 'undefined') {
-						setTimeout(function() {
-							cordova.plugins.Keyboard.show();
-						}, 20);
+						cordova.plugins.Keyboard.show();
 					}
 				}
 			}
-		}, 80);
+		}, 100);
 	}
 })();
