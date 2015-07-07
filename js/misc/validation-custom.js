@@ -92,6 +92,10 @@
 				if(app.platform !== 'iOS') {
 					if(typeof cordova !== 'undefined') {
 						cordova.plugins.Keyboard.show();
+						window.addEventListener('native.keyboardhide', function() {
+							window.removeEventListener('native.keyboardhide');
+							$('div#done').click();
+						});
 					}
 				}
 			}
