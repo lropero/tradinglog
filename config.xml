@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tradinglog" version="1.0.5" versionCode="100052" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.tradinglog" version="1.0.5" versionCode="100053" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
 	<name>TradingLog</name>
 	<description>
 		A mobile app designed to keep track of your trading activities and ease money management by calculating your stats.
@@ -7,7 +7,7 @@
 	<author email="info@tradinglog.com" href="http://tradinglog.com/">
 		TradingLog
 	</author>
-	<content src="index.dist.html" />
+	<content src="index.html" />
 
 	<gap:platform name="android" />
 	<gap:platform name="ios" />
