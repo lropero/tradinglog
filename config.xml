@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tradinglog" version="1.0.5" versionCode="100053" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-	<name>TradingLog</name>
+<widget id="com.tradingloglite" version="1.0.0" versionCode="100000" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+	<name>TradingLog Lite</name>
 	<description>
 		A mobile app designed to keep track of your trading activities and ease money management by calculating your stats.
 	</description>
